@@ -1,0 +1,15 @@
+- [User profile](user_profile.md) — 跨境电商 BD/运营，正在做 TikTok 达人建联 SaaS
+- [项目：tiktok-creator-tool（现行系统）](project_tiktok_creator_tool.md) — 单租户内部工具，最终会被 Compass 替换
+- [项目：KOL Compass（接管系统）](project_kol_compass.md) — 对外 SaaS，Codex 在开发，5175 前端 + 8015 后端
+- [项目：Compass 迁移路线 + 关键决策](project_compass_migration.md) — 服务商架构 + 全 API + 决策辅助
+- [Reference: Compass 路径 + 启动](reference_compass_paths.md) — 路径 / 端口 / git
+- [Reference: TikTok Partner API 事实](reference_tiktok_partner_api.md) — 真实 quota、端点、文档 URL
+- [项目：Compass 待办/产品方向](project_compass_backlog.md) — 达人评估维度(履约/出单)、竞品达秘，详见 docs/BACKLOG.md
+- [项目：Compass 上线接真商家现状](project_compass_golive.md) — 阻断项(部署公网/生产凭证/送审/入站待开发)，交接手册 docs/DEPLOY_GO_LIVE.md
+- [项目：Compass 核心方向(竞品验证后)](project_compass_core_direction.md) — 建联前分析+建联后管理(投流/跟踪/数据)是核心；建联只是地基；不跟数据派拼库
+- [Feedback: Compass 讨论沟通风格](feedback_compass_discussion.md) — 用户对 Compass 的沟通要求
+- [Feedback: 交付后验收汇报](feedback_handoff_acceptance.md) — 每轮列"验收什么+做了什么"，未验收累积，台账在 docs/CLAUDE_ACCEPTANCE.md
+- [项目：ThinkNova 实体店两个Agent](project_thinknova_offline_agents.md) — 海报+短视频Agent问题整理，产出给Codex
+- [Feedback: ThinkNova配置改动规矩](feedback_thinknova_config_edit_rule.md) — 改配置先提议经同意，不可直接改/改错key
+- [项目：小孩数学网课](project_kid_math_tutoring.md) — 一周3次、主攻逻辑、产出HTML课件（桌面）
+- [Reference: 数学网课课程总表](reference_kid_math_roadmap.md) — 逐课主题路线，逻辑为主
