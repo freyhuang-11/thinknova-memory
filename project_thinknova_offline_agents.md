@@ -20,6 +20,11 @@ metadata:
 - 后端硬编码英文前缀"Only add subtle natural motion"在代码里(非config),已中文最高优先级覆盖;**用户已决定不删此项**。视频模型=grok-imagine-video(中文烧字幕不稳,用户选纯提示词方案)。
 - 分镜首帧:**2–4镜不固定**、每格加"画面动态"参数、台词取自业务信息且渲染成干净底部字幕(gpt-image出字比grok稳)。
 
+## 全量提示词审查(07-03晚,已修9处上线)
+- 修掉的层间矛盾:①首帧layout_rules禁字幕↔要台词字幕→改"只允许参数标注+底部字幕两类文字"②首帧负面词海报时代残留("无标题区"逼加标题区)→换分镜板专用③S07硬编码三镜固定时段→灵活④补S10 sceneRule⑤style_rules硬编码"美业="→按行业⑥durationPolicies.10残留三幕固定时段→"有几格分几段"⑦video S12全15条案例visualHint"留出醒目文字区"(海报式,zh+en)→动作氛围⑧海报layout_rules正面要求"预留二维码位"(冒二维码残余根因)→门店名落款+禁二维码。
+- **negativePromptPolicy在promptComposer里**(不在config顶层);opsEditable镜像范围很大(layoutRules/sceneRules/styleRule/durationPolicies全套),改这些都要双写。
+- 审查结论:场景13个盖住基础商户动机;缺口=招聘启事、会员储值(待拍板)。行业15个够用;缺口=母婴、花店(待拍板)。案例结构缺口+prefill英文没翻(poster 442/472、video 200/269)+54条无prefill,见待办清单C2节。
+
 ## 已修其他
 - 海报冒二维码/微信/地址=**模型脑补(不在config)**;已加负面规则(禁二维码/微信/公众号/编造地址/编造联系方式)+4个endingCta改"纯文案区禁二维码"。
 - S12(开业/周年/通知)缺口补齐,video+poster各15条。**当前案例数:video 269、poster 472**。补充要求extraRequirement确实进提示词(实测已进画面)。
