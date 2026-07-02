@@ -27,7 +27,13 @@ metadata:
 
 ## 已修其他
 - 海报冒二维码/微信/地址=**模型脑补(不在config)**;已加负面规则(禁二维码/微信/公众号/编造地址/编造联系方式)+4个endingCta改"纯文案区禁二维码"。
-- S12(开业/周年/通知)缺口补齐,video+poster各15条。**当前案例数:video 269、poster 472**。补充要求extraRequirement确实进提示词(实测已进画面)。
+- S12(开业/周年/通知)缺口补齐,video+poster各15条。补充要求extraRequirement确实进提示词(实测已进画面)。
+
+## 案例大扩充(07-03深夜,用户授权自主执行)
+- **当前案例数:video 310、poster 520(共830)**。新增:①招聘启事→塞S12,15行业×双agent=30条 ②会员储值→塞S02,30条(卖点selling_point_member现成) ③poster S10教程15条(原0条空列表) ④poster S04价目+3、video S04价目+10、珠宝S07旧金改款×2。
+- **prefill 全量健康**:696条en未翻已全部翻译(1284处字段)、54+15条无prefill补齐、7条无卖点补齐。0残留。
+- 实测(成片级):视频首帧prompt 7项修复全生效、海报prompt 4项全生效。视频成片=字幕烧上且取自业务信息✅、叙事完整✅;残余模型瑕疵=①同句字幕出现两行(格底位置泄漏)②同款杯复制两杯→已加i2v【字幕唯一性】补丁(现1303字,含一次一行/全画面底部/转场先隐后现/禁双影叠化),待复验。海报成片=零二维码零编造联系方式、达商用标准✅。
+- 未做待拍板:母婴/花店行业单开;分镜板720×1280→1080×1920(需技术确认size上限)。
 
 ## 自测能力(重要)
 - **freyhuang本人=商家用户id 1687**,会话cookie在商家API也有效,可自助生成:`POST /api/v1/business-video-assets/tasks`,payload={businessScenario(场景id promotion/notice等),caseId,outputType(video_10s/poster),selectedOptions,sellingPoints,productName,offer,storeName,extraRequirement}。余额~10万分。生成商偶发失败自动退款。成品输出在imagemax2.zhoushurencz1.top/1renfile*.cos/thinknova.oss。
