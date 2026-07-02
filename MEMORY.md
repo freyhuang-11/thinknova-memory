@@ -16,6 +16,7 @@
 - [Feedback: 交付后验收汇报](feedback_handoff_acceptance.md) — 每轮列"验收什么+做了什么"，未验收累积，台账在 docs/CLAUDE_ACCEPTANCE.md
 - [Feedback: 重启 backend 不能 taskkill /IM python](feedback_kill_python_scope.md) — 会误杀 Compass 等其他 python 服务，必须按 PID/端口精准杀
 - [Feedback: 记忆只留当前状态](feedback_memory_keep_current.md) — 过时内容直接覆盖删除，不堆叠矛盾层
+- [Feedback: Compass 仓库使用节奏](feedback_repo_rhythm.md) — 私密仓库以我为中心/记忆常新/有变化最差一天一提交github+更新记忆/密钥不提交
 - [项目：ThinkNova 实体店两个Agent](project_thinknova_offline_agents.md) — i2v读stagePromptPresets/API PUT改config/自测freyhuang=1687/参考图3槽/海报1-2-4/案例预览口子/桌面版交付包
 - [Reference: ThinkNova 路径接口](reference_thinknova_paths.md) — 域名/API/项目id/存储/Stitch资产/环境坑
 - [Feedback: ThinkNova配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上 admin 配置；仍别改错 key
