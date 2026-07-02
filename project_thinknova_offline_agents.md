@@ -1,28 +1,40 @@
 ---
 name: project-thinknova-offline-agents
-description: ThinkNova 平台「实体店内容生成/短视频生成」两个 Agent 的问题整理与交付 Codex 工作
-metadata: 
+description: ThinkNova 实体店两个Agent(海报+短视频)当前状态、改配置方法、已修问题、拍板决策、交付物
+metadata:
   node_type: memory
   type: project
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
 ---
 
-ThinkNova（https://www.thinknova.top/，工作台 /zh/app）是技术用 Codex 开发的轻量 AI 创作平台。用户聚焦其中两个 Agent：**实体店内容生成 Agent（海报，agentCode=offline_store_content，路由 /zh/app/business-assets）** 和 **实体店短视频生成 Agent（agentCode=offline_store_video，路由 /zh/app/business-video-assets）**。流程：选场景(S01-S12) → 选行业 → 填商品信息 → 生成海报或10秒短视频。目标用户是纯小白门店老板。
+> 只记**当前真实状态**,过时内容已覆盖删(见 [[feedback-memory-keep-current]])。最后整理 2026-07-03。ThinkNova=Codex开发的轻量AI创作平台。两个Agent:`offline_store_content`(海报,6积分/张)+`offline_store_video`(短视频,35积分/条)。目标用户=纯小白门店老板。**固定工作目录**:`D:\SamsoData\Documents\视频制作平台分析\`(子目录00_规格/01_问题诊断/02_交付内容/03_设计稿/对外推介),**绝不写D:\根**。路径/接口见 [[reference-thinknova-paths]]。
 
-**固定工作目录（铁律）**：本项目所有文件读写一律放在 `D:\SamsoData\Documents\视频制作平台分析\`（子目录 00_规格与参考/01_问题诊断/02_交付内容/03_设计稿/对外推介），临时 html/png 也归到子目录；**绝不**写 D:\ 根目录（会 EPERM）。该目录根有 CLAUDE.md 同此约定，但 CWD=D:\ 时未必自动加载，故记于此。
+## 改配置的正确方法(铁律)
+- config 在 agent 的 config 字段(对象)。**用 API PUT 改**:`PUT /admin/api/v1/agents/{code}`,body=GET回来的完整agent对象(含config对象),cookie鉴权。**别用后台大textarea手改**——739KB config 会崩标签页。
+- 双写:**video有opsEditable镜像**(taskGoal.firstFrame/video、stagePromptPresets.image_to_video),改top-level要**同时改opsEditable**;**poster无opsEditable**(只top-level)。改完重新GET/agents读回核验。
 
-**我的角色**：整理用户发现的问题、优化措辞、对照规格文档判断合理性，产出可直接交给 Codex 的文件。**关键约束**：不可直接改系统配置/代码；要改必须先提议 old→new 经用户同意，且严禁改错参数 key。详见 [[feedback-thinknova-config-edit-rule]]。
+## i2v视频提示词根因(本轮最大发现)
+- **i2v实际读 `promptComposer.stagePromptPresets.image_to_video.prompt`,不是blockTemplates.task_goal.video**(我之前改错地方→视频一直"静态图微动")。已改对、实测视频真动起来、有钩子-展示-落点。
+- t2i首帧(分镜板)读blockOrders.first_frame_prompt块组装(blockTemplates.task_goal.first_frame_prompt),t2i的stagePreset为空。
+- 当前i2v = 覆盖后端英文前缀 + **严格按分镜板每格标注的时段/景别/运镜/动作推进(2/3/4段不固定)** + 镜头稳定·严禁重复复制(治"2块屏幕") + 台词底部字幕原样保留 + 行业锁定+业务演绎+防穿模。
+- 后端硬编码英文前缀"Only add subtle natural motion"在代码里(非config),已中文最高优先级覆盖;**用户已决定不删此项**。视频模型=grok-imagine-video(中文烧字幕不稳,用户选纯提示词方案)。
+- 分镜首帧:**2–4镜不固定**、每格加"画面动态"参数、台词取自业务信息且渲染成干净底部字幕(gpt-image出字比grok稳)。
 
-**配置文件**（技术给的，内容是 JSON）：海报/视频各一份「编排配置.md」，外加独立 `offline-store-agent.prompt-composer-v2.json`。视频配置分 `opsEditable`（运营改这层）和 `promptComposer`（运行时结构，不建议直接改）；高频规则优先改 `docs/offline-store-video-ops.override.json`。
+## 已修其他
+- 海报冒二维码/微信/地址=**模型脑补(不在config)**;已加负面规则(禁二维码/微信/公众号/编造地址/编造联系方式)+4个endingCta改"纯文案区禁二维码"。
+- S12(开业/周年/通知)缺口补齐,video+poster各15条。**当前案例数:video 269、poster 472**。补充要求extraRequirement确实进提示词(实测已进画面)。
 
-**已定决策**：① 默认模型=Grok（用户不选时后端默认走 grok i2v，prompt 不露技术词）；② 海报+短视频默认比例都改 9:16。
+## 自测能力(重要)
+- **freyhuang本人=商家用户id 1687**,会话cookie在商家API也有效,可自助生成:`POST /api/v1/business-video-assets/tasks`,payload={businessScenario(场景id promotion/notice等),caseId,outputType(video_10s/poster),selectedOptions,sellingPoints,productName,offer,storeName,extraRequirement}。余额~10万分。生成商偶发失败自动退款。成品输出在imagemax2.zhoushurencz1.top/1renfile*.cos/thinknova.oss。
 
-**产出文件**（在 D:\SamsoData\Documents\视频制作平台分析\）：`ThinkNova_问题清单_给Codex_v2.md`（诊断）、`ThinkNova_交付Codex_修改包_v1.md`（可落地改动+实测结论）。规格依据是同目录 4 份《实体店…》提示词规格 md + stitch_exports 设计稿。
+## 拍板决策(2026-07-03)
+- **参考图拆3种**:人物/场景/产品,每类1张、均选填、**空槽=该元素不参考、全不传=按案例生成**。需后端收3张+config预留3个提示词位。
+- **海报客户自选1/2/4张**(后端出N版);**一键分享去除**。
+- **案例预览**:海报案例=图、视频案例=真视频;**741案例目前0预览图**。分工=技术只加"口子"(previewImageUrl/previewVideoUrl/previewCoverUrl字段+前端挑参考页渲染+存储固化),**生成+回填我用我们账号慢慢做、顺带QA**。
 
-**已实测确认的核心 Bug**：海报「开始生成」按钮置灰无法点击（伴 Nuxt 水合不匹配 `Hydration mismatch` + /zh/app/* 深链刷新 500）；参考案例不随场景联动（只按行业、写死7条、无 sceneId）；案例 visualHint 写死了产品名和价格会污染下一步；30秒长视频生不出+计费不符；上传图未接成 i2v 首帧导致人像不一致。
+## 交付物
+- **桌面版新界面交付包**:`03_设计稿\商家双Agent_桌面版开发交付包_20260703.zip`(10屏截图+html源码+设计令牌+README+技术清单)。Stitch项目7645298167327483745,设计系统"Ethereal Editorial",**只用蓝#2563eb(禁紫/靛;a288资产会出Indigo紫→用de3066资产)**。Stitch生成常客户端超时但服务端会落库,轮询取;海报页尤其爱超时。
+- 给技术(02_交付内容\):`给技术_本轮优化汇总_2026-07-03.md`(汇总所有技术项,A1i2v英文前缀/A2海报计费已按用户删)、`给技术_案例预览口子_2026-07-03.md`。清单:`01_问题诊断\待办与技术清单_2026-07-03.md`(A3前端i18n/A4加油包schema/A5参考图3槽/A6页面系统审计/A7案例预览)。
 
-**真实默认模型**：图片=gpt-image-2，视频=grok-imagine-1.0-video(图生视频i2v)。提示词应英文结构化(模型遵循度高)、中文只留叠字/字幕。
-
-**已定决策**：场景下线S10教程避坑、新增S13团购套餐/到店核销、S07前后对比改行业限定；定价三档 $29.8/$99.8/$198（视频¥1/条grok成本、有抽卡、按生成次数计，基础约60视频+100海报）；设计(Stitch账户中心)+两agent"拿出来"暂缓，等功能/提示词更新好再做。
-
-**本轮已产出（D:\SamsoData\Documents\视频制作平台分析\）**：批次1审计+场景定稿、批次2A按行业选项卖点、批次2B案例库(12行业×9高频场景×2条)、批次3A场景层提示词(按真实模型+三段脚本)、批次3B社媒12平台、批次3CD语言西越+真人本人+行为指令、批次4工程总清单(防漏改)、定价方案、验收报告。下一步：等用户验收 → 交技术Codex落地 → 我用账号端到端回测。
+## 产品定调
+- 视频=重点,标准管线"首帧+提示词→i2v单次",质量方差在提示词。海报≠视频(免费工具多、要差异化,海报做商家真会贴的商业单图)。北极星=零动脑,见[[feedback-thinknova-zero-brain-northstar]]。合规=内容工具不做审查、只守未成年底线,见[[feedback-thinknova-content-not-compliance]]。已授权直接改线上,见[[feedback-thinknova-config-edit-rule]]。交付验收见[[feedback-handoff-acceptance]]。定价见[[project-thinknova-pricing-ambassador]]。

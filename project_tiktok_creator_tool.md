@@ -33,3 +33,12 @@ metadata:
 - 禁止从 CSV 直接灌主库
 - .bat 文件必须 CRLF + ASCII
 - 重启 backend 用 `cmd /c start "" /B wscript //B vbs` 三层 detach
+- 重启 backend **只按 PID 精准杀**，不能 `taskkill /IM python.exe`（会误杀 Compass 等其他 python 服务）
+
+**邮件架构（2026-07-01 切换后）**：
+- 域名 jasariellive.com MX = 100% Lark（跟 Google 无关）
+- 3 个品牌 sender（NaturElan/Oxeagle/BioOrgan）SMTP 从 `smtp.gmail.com` 切到 **`smtp.larksuite.com:465`**，凭证复用 IMAP 密码
+- Lark 公共邮箱 daily cap 450/天/邮箱（当前 daily_limit=300，安全）
+- BEME 仍从 `freyhuang19@gmail.com` (personal Gmail) 发，未切
+- Google Workspace 里 4 个品牌 user（bemesg/bioorgan/naturelan1/oxeagle1）计划停付/删除
+- 回滚备份：`tiktok_creators.db.bak.smtp_switch_20260701_204356`

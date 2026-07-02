@@ -7,9 +7,21 @@
 - [项目：Compass 待办/产品方向](project_compass_backlog.md) — 达人评估维度(履约/出单)、竞品达秘，详见 docs/BACKLOG.md
 - [项目：Compass 上线接真商家现状](project_compass_golive.md) — 阻断项(部署公网/生产凭证/送审/入站待开发)，交接手册 docs/DEPLOY_GO_LIVE.md
 - [项目：Compass 核心方向(竞品验证后)](project_compass_core_direction.md) — 建联前分析+建联后管理(投流/跟踪/数据)是核心；建联只是地基；不跟数据派拼库
+- [项目：Compass 出单潜力分算法+档位](project_compass_scoring.md) — 6维度权重 + 档位≥65建联/40-64考虑/<40谨慎(用户拍板)
+- [Reference: Compass 达人库数据坑](project_compass_data_pitfalls.md) — 老库username/nickname写反、大小写重复、头像按username、列表数=当前店铺市场
+- [项目：Compass 内部达人库采集器](project_compass_harvester.md) — 达人广场钩子扩展 harvester/，跑通在涨；坑=重载必F5；待办=单页>30s缩小筛选
 - [Feedback: Compass 讨论沟通风格](feedback_compass_discussion.md) — 用户对 Compass 的沟通要求
+- [Feedback: 数据新鲜度呈现立场](feedback_data_freshness_framing.md) — 自信展示别贴"过期"标，也别纯隐藏埋雷；别过度诚实
+- [Feedback: 没完全了解前不下判断](feedback_understand_before_judging.md) — 评竞品/工具先实地用过看全貌；含达人精灵/花漾已核实事实
 - [Feedback: 交付后验收汇报](feedback_handoff_acceptance.md) — 每轮列"验收什么+做了什么"，未验收累积，台账在 docs/CLAUDE_ACCEPTANCE.md
-- [项目：ThinkNova 实体店两个Agent](project_thinknova_offline_agents.md) — 海报+短视频Agent问题整理，产出给Codex
-- [Feedback: ThinkNova配置改动规矩](feedback_thinknova_config_edit_rule.md) — 改配置先提议经同意，不可直接改/改错key
+- [Feedback: 重启 backend 不能 taskkill /IM python](feedback_kill_python_scope.md) — 会误杀 Compass 等其他 python 服务，必须按 PID/端口精准杀
+- [Feedback: 记忆只留当前状态](feedback_memory_keep_current.md) — 过时内容直接覆盖删除，不堆叠矛盾层
+- [项目：ThinkNova 实体店两个Agent](project_thinknova_offline_agents.md) — i2v读stagePromptPresets/API PUT改config/自测freyhuang=1687/参考图3槽/海报1-2-4/案例预览口子/桌面版交付包
+- [Reference: ThinkNova 路径接口](reference_thinknova_paths.md) — 域名/API/项目id/存储/Stitch资产/环境坑
+- [Feedback: ThinkNova配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上 admin 配置；仍别改错 key
+- [Feedback: ThinkNova内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向，中医加疗效/娱乐加低俗；不一刀切禁儿童(家庭亲子可)，只不做性化未成年
+- [Feedback: 别把我的推测当用户指令](feedback_dont_assume_requirements.md) — 提议≠指令；模糊回复先确认再动手（英文默认是我瞎猜的）
+- [Feedback: ThinkNova北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) — 唯一优势=客户不动脑做出想要的；所有场景×行业×案例组合按钮全预设好，提示词以我为主
+- [项目：ThinkNova 定价+推广大使](project_thinknova_pricing_ambassador.md) — 海外/中国定价、佣金档位、加油包新价、成本毛利
 - [项目：小孩数学网课](project_kid_math_tutoring.md) — 一周3次、主攻逻辑、产出HTML课件（桌面）
 - [Reference: 数学网课课程总表](reference_kid_math_roadmap.md) — 逐课主题路线，逻辑为主
