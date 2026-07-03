@@ -14,7 +14,7 @@ metadata:
 - 双写:**video有opsEditable镜像**(taskGoal.firstFrame/video、stagePromptPresets.image_to_video),改top-level要**同时改opsEditable**;**poster无opsEditable**(只top-level)。改完重新GET/agents读回核验。
 
 ## i2v视频提示词根因(本轮最大发现)
-- **i2v实际读 `promptComposer.stagePromptPresets.image_to_video.prompt`,不是blockTemplates.task_goal.video**(我之前改错地方→视频一直"静态图微动")。已改对、实测视频真动起来、有钩子-展示-落点。
+- **i2v实际请求=后端一句引导语+stagePromptPresets.image_to_video(1303字),仅此而已**(07-03弹窗全文实证)。blockTemplates的task_goal.video/subject_definition.video/layout_rules.video/durationPolicies全是**死配置不进i2v**;台词/业务信息靠首帧分镜板烧好的字幕携带。旧三幕文本曾残留在opsEditable镜像(有复活风险)→已顶层+镜像同步清成与预设一致短文本,"按三幕推进"全config绝迹。
 - t2i首帧(分镜板)读blockOrders.first_frame_prompt块组装(blockTemplates.task_goal.first_frame_prompt),t2i的stagePreset为空。
 - 当前i2v = 覆盖后端英文前缀 + **严格按分镜板每格标注的时段/景别/运镜/动作推进(2/3/4段不固定)** + 镜头稳定·严禁重复复制(治"2块屏幕") + 台词底部字幕原样保留 + 行业锁定+业务演绎+防穿模。
 - 后端硬编码英文前缀"Only add subtle natural motion"在代码里(非config),已中文最高优先级覆盖;**用户已决定不删此项**。视频模型=grok-imagine-video(中文烧字幕不稳,用户选纯提示词方案)。
