@@ -14,6 +14,7 @@
 - [Feedback: 数据新鲜度呈现立场](feedback_data_freshness_framing.md) — 自信展示别贴"过期"标，也别纯隐藏埋雷；别过度诚实
 - [Feedback: 没完全了解前不下判断](feedback_understand_before_judging.md) — 评竞品/工具先实地用过看全貌；含达人精灵/花漾已核实事实
 - [Feedback: 交付后验收汇报](feedback_handoff_acceptance.md) — 每轮列"验收什么+做了什么"，未验收累积，台账在 docs/CLAUDE_ACCEPTANCE.md
+- [Feedback: 外发文档冻结+增量交付](feedback_tech_doc_delta_delivery.md) — 给技术的文档发出即冻结，新内容单独出增量文件
 - [Feedback: 重启 backend 不能 taskkill /IM python](feedback_kill_python_scope.md) — 会误杀 Compass 等其他 python 服务，必须按 PID/端口精准杀
 - [Feedback: 记忆只留当前状态](feedback_memory_keep_current.md) — 过时内容直接覆盖删除，不堆叠矛盾层
 - [Feedback: Compass 仓库使用节奏](feedback_repo_rhythm.md) — 私密仓库以我为中心/记忆常新/有变化最差一天一提交github+更新记忆/密钥不提交
