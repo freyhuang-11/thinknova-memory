@@ -38,6 +38,11 @@ metadata:
 - 实测(成片级):视频首帧prompt 7项修复全生效、海报prompt 4项全生效。视频成片=字幕烧上且取自业务信息✅、叙事完整✅;残余模型瑕疵=①同句字幕出现两行(格底位置泄漏)②同款杯复制两杯→已加i2v【字幕唯一性】补丁(现1303字)并复验通过:双行字幕消失、无复制物体;残留=转场约1帧叠化(收敛)+末段字幕偶缺(预览批量生成时统计出现率再定)。海报成片=零二维码零编造联系方式、达商用标准✅。
 - 未做待拍板:母婴/花店行业单开;分镜板720×1280→1080×1920(需技术确认size上限)。
 
+## 案例预览体系(07-05 上线)
+- **OSS**:公司阿里云(和 mmq 同账号)bucket `thinknova-previews`(新加坡,公共读),URL 前缀 `https://thinknova-previews.oss-ap-southeast-1.aliyuncs.com/`;AK 在 `D:\SamsoData\Documents\视频制作平台分析\oss_ak.txt`(⚠️别打进任何交付zip);ossutil 每次会话需重新下载配置(scratchpad)。
+- **占位兜底已全量上线**:17 张行业封面(`03_设计稿\案例占位封面\`→OSS `placeholders/`),海报547条 previewImageUrl+视频353条 previewUrl 已填,案例卡全部有视觉。机制:海报卡读 previewImageUrl;视频卡 previewVideoUrl(播放器)→previewUrl(放图片会渲染成图,安全);前端 3 列网格无截断。冒烟2条真素材:flower_plant_s03_best/food_s01_combo。
+- **待办**:t2i 回归修复后批量生成真预览替换占位(餐饮→美业→生鲜→中医;视频355×35分+海报548×6分,顺带E24质量统计);单薄组合(98个组合仅1条案例)视数据加厚。
+
 ## 自测能力(重要)
 - **freyhuang本人=商家用户id 1687**,会话cookie在商家API也有效,可自助生成:`POST /api/v1/business-video-assets/tasks`,payload={businessScenario(场景id promotion/notice等),caseId,outputType(video_10s/poster),selectedOptions,sellingPoints,productName,offer,storeName,extraRequirement}。余额~10万分。生成商偶发失败自动退款。成品输出在imagemax2.zhoushurencz1.top/1renfile*.cos/thinknova.oss。
 
