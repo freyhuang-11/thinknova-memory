@@ -39,6 +39,7 @@ ThinkNova 商业化口径（2026-07-05 调价上线）。基础版 `视频制作
 - 30秒链路未按新模型重设计，入口若开放考虑先藏。
 - 商家端 pricing 标签是单语字段无翻译位（英文用户看到中文"15秒短视频"）→ 平台 i18n 缺口，列给技术。
 - China 启用时复核 seedance：400积分仅收¥14.7 vs 成本11，利润率仅~25%。
+- seedance 暂缓不催（用户2026-07-06定），接入**前置条件=计费按模型区分**：技术计费收口规则(pricing_json优先)下 grok/seedance 同输出类型统一扣60、seedance单条倒贴；二选一：独立输出类型+定价键，或视频不配pricing_json回退模型层 duration_credit_prices(grok 15s=60/seedance 15s=400，更优)。中转站已有 guanfang-seedance-2/fast/mini 现成模型名。
 
 ## 中国定价（暂存，开China时启用，人民币原生）
 - 上线顺序：海外先开，China 后做。
