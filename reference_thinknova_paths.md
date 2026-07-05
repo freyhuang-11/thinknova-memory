@@ -22,6 +22,7 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 ## 商家 API(cookie 同会话有效,base `/api/v1`)
 - `GET /auth/me` → freyhuang=user id 1687
 - `GET /credits/balance` → available~10万
+- `GET /credits/transactions?page=&page_size=` → 积分流水明细(type=task_freeze/补扣/退回,含 balance_after)——**验计费用流水,别用余额差猜**
 - `GET /business-video-assets/config`(带 `x-thinknova-locale` 头 zh/en/ja/ko/vi/es)/ `GET /business-assets/config`
 - `POST /business-video-assets/tasks` 生成(见主文件payload)
 - `GET /business-video-assets/tasks/{taskNo}` 任务详情(含成品URL)
