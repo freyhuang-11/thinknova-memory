@@ -24,6 +24,6 @@
 - [Feedback: ThinkNova内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向，中医加疗效/娱乐加低俗；不一刀切禁儿童(家庭亲子可)，只不做性化未成年
 - [Feedback: 别把我的推测当用户指令](feedback_dont_assume_requirements.md) — 提议≠指令；模糊回复先确认再动手（英文默认是我瞎猜的）
 - [Feedback: ThinkNova北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) — 唯一优势=客户不动脑做出想要的；所有场景×行业×案例组合按钮全预设好，提示词以我为主
-- [项目：ThinkNova 定价+推广大使](project_thinknova_pricing_ambassador.md) — 海外/中国定价、佣金档位、加油包新价、成本毛利
+- [项目：ThinkNova 定价+推广大使](project_thinknova_pricing_ambassador.md) — 新币SGD计价、grok60/seedance400积分、佣金档位、成本毛利
 - [项目：小孩数学网课](project_kid_math_tutoring.md) — 一周3次、主攻逻辑、产出HTML课件（桌面）
 - [Reference: 数学网课课程总表](reference_kid_math_roadmap.md) — 逐课主题路线，逻辑为主
