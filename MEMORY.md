@@ -20,6 +20,7 @@
 - [Feedback: Compass 仓库使用节奏](feedback_repo_rhythm.md) — 私密仓库以我为中心/记忆常新/有变化最差一天一提交github+更新记忆/密钥不提交
 - [项目：ThinkNova 实体店两个Agent](project_thinknova_offline_agents.md) — 25行业1167案例/编剧协议v1.1(B1未接)/多语言终版/07-06发版回归群+P0清单T1-T9/给技术=Codex任务卡/接口通≠功能通必实机点
 - [Feedback: 变量做满再烧单](feedback_prompt_first_then_test.md) — 提示词没补穿不许实测下模型结论;改前做满,改后验一
+- [Feedback: 案例缺口双查法](feedback_case_gap_dual_check.md) — 矩阵完整性+外部形态对标双查;商家图片需求五用途框架
 - [Reference: ThinkNova 路径接口](reference_thinknova_paths.md) — 域名/API/项目id/存储/Stitch资产/环境坑
 - [Feedback: ThinkNova配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上 admin 配置；仍别改错 key
 - [Feedback: ThinkNova内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向，中医加疗效/娱乐加低俗；不一刀切禁儿童(家庭亲子可)，只不做性化未成年
