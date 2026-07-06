@@ -82,4 +82,5 @@ metadata:
 - Phase2给技术(攒着待发):LLM编剧stage+长效token+分辨率1080×1920+{{prompt}}接通;seedance阶段转场根治+多模型方言层。
 
 ## 产品定调
+- **📌标准流程定稿(用户口径,07-06 晚,所有文档按此说话)**:海报=客户提信息→编剧层生文→**文+参考图生图**(edits多图);视频=客户选案例→编剧层生文→文+参考图生板→**板裁片+[板,人物,场景,产品]参考数组生视频**。"不是文+参考图生出来的一定会出问题"(纯文生=通用素材不是商家自己的内容)。能力已全部直连验证(三图出板满分/五铁律/跨环境三连/RETAIL五件套),差距只在技术管线四件:B1编剧层/B6有图通道/A5参考图槽/B2裁格——**A5/B6优先级与B1并列(标准流程必要环节,非体验优化)**;参考图空壳UI先藏(总账#38)。
 - 视频=重点,标准管线"首帧+提示词→i2v单次",质量方差在提示词。海报≠视频(免费工具多、要差异化,海报做商家真会贴的商业单图)。北极星=零动脑,见[[feedback-thinknova-zero-brain-northstar]]。合规=内容工具不做审查、只守未成年底线,见[[feedback-thinknova-content-not-compliance]]。已授权直接改线上,见[[feedback-thinknova-config-edit-rule]]。交付验收见[[feedback-handoff-acceptance]]。定价见[[project-thinknova-pricing-ambassador]]。
