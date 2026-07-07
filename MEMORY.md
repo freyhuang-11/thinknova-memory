@@ -8,6 +8,8 @@
 6. **验收**:每轮汇报"验收什么+做了什么";做完先自己验收真实结果再通知 → [详](feedback_handoff_acceptance.md)
 7. **记忆**:只留当前状态,过时内容覆盖删除,不堆叠矛盾层 → [详](feedback_memory_keep_current.md)
 8. **环境**:禁 taskkill /IM python(按 PID/端口精准杀);密钥不外发不进聊天不打印;ThinkNova 线上 config=唯一真值禁种子覆盖、PUT 改、video 双写 opsEditable 镜像
+9. **提问**:需要老板回答/拍板的问题一律 plan 模式结构化问,不散落正文 → [详](feedback_questions_via_plan_mode.md)
+10. **提示词参考**:老板发的参考当天归档进提示词参考库(曾丢 3 次),评估后才吸收进规则手册 → [详](reference_prompt_library.md)
 
 # 用户与沟通
 - [User profile](user_profile.md) — 跨境电商 BD/运营,新加坡市场;TikTok 达人 SaaS + ThinkNova 双线
