@@ -23,6 +23,7 @@
 - [项目:营销拉新线](project_thinknova_marketing.md) — 07-08启动拍视频拉客户;素材索引在 对外推介/新session素材包_2026-07-08/README;只讲已验证能力
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 对外USD、grok60/30s120/seedance400、佣金档位、成本毛利
 - [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/Stitch/环境坑
+- [Reference: 配置权限地图](reference_thinknova_config_powers.md) — **提需求前必查**:我能改的全部config键 vs 改不动的(实证);能自改的自己改完再说话;说明书陷阱(单语言示例/跳变镜头毒词/并集机制)
 - [Feedback: 配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上;别改错 key
 - [Feedback: 内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向;只守未成年底线
 - [Feedback: 北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) — 客户不动脑做出"他自己的内容";按钮全预设;提示词以我为主
