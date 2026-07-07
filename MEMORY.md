@@ -1,32 +1,44 @@
-- [User profile](user_profile.md) — 跨境电商 BD/运营，正在做 TikTok 达人建联 SaaS
-- [项目：tiktok-creator-tool（现行系统）](project_tiktok_creator_tool.md) — 单租户内部工具，最终会被 Compass 替换
-- [项目：KOL Compass（接管系统）](project_kol_compass.md) — 对外 SaaS，Codex 在开发，5175 前端 + 8015 后端
-- [项目：Compass 迁移路线 + 关键决策](project_compass_migration.md) — 服务商架构 + 全 API + 决策辅助
-- [Reference: Compass 路径 + 启动](reference_compass_paths.md) — 路径 / 端口 / git
-- [Reference: TikTok Partner API 事实](reference_tiktok_partner_api.md) — 真实 quota、端点、文档 URL
-- [项目：Compass 待办/产品方向](project_compass_backlog.md) — 达人评估维度(履约/出单)、竞品达秘，详见 docs/BACKLOG.md
-- [项目：Compass 上线接真商家现状](project_compass_golive.md) — 阻断项(部署公网/生产凭证/送审/入站待开发)，交接手册 docs/DEPLOY_GO_LIVE.md
-- [项目：Compass 核心方向(竞品验证后)](project_compass_core_direction.md) — 建联前分析+建联后管理(投流/跟踪/数据)是核心；建联只是地基；不跟数据派拼库
-- [项目：Compass 出单潜力分算法+档位](project_compass_scoring.md) — 6维度权重 + 档位≥65建联/40-64考虑/<40谨慎(用户拍板)
-- [Reference: Compass 达人库数据坑](project_compass_data_pitfalls.md) — 老库username/nickname写反、大小写重复、头像按username、列表数=当前店铺市场
-- [项目：Compass 内部达人库采集器](project_compass_harvester.md) — 达人广场钩子扩展 harvester/，跑通在涨；坑=重载必F5；待办=单页>30s缩小筛选
-- [Feedback: Compass 讨论沟通风格](feedback_compass_discussion.md) — 用户对 Compass 的沟通要求
-- [Feedback: 数据新鲜度呈现立场](feedback_data_freshness_framing.md) — 自信展示别贴"过期"标，也别纯隐藏埋雷；别过度诚实
-- [Feedback: 没完全了解前不下判断](feedback_understand_before_judging.md) — 评竞品/工具先实地用过看全貌；含达人精灵/花漾已核实事实
-- [Feedback: 交付后验收汇报](feedback_handoff_acceptance.md) — 每轮列"验收什么+做了什么"，未验收累积，台账在 docs/CLAUDE_ACCEPTANCE.md
-- [Feedback: 外发文档冻结+增量交付](feedback_tech_doc_delta_delivery.md) — 给技术的文档发出即冻结，新内容单独出增量文件
-- [Feedback: 重启 backend 不能 taskkill /IM python](feedback_kill_python_scope.md) — 会误杀 Compass 等其他 python 服务，必须按 PID/端口精准杀
-- [Feedback: 记忆只留当前状态](feedback_memory_keep_current.md) — 过时内容直接覆盖删除，不堆叠矛盾层
-- [Feedback: Compass 仓库使用节奏](feedback_repo_rhythm.md) — 私密仓库以我为中心/记忆常新/有变化最差一天一提交github+更新记忆/密钥不提交
-- [项目：ThinkNova 实体店两个Agent](project_thinknova_offline_agents.md) — 平台已恢复/文案六语言全修完(案例+占位词2071处)/纯活动单双端零编价/B2板穿帮复验退回/拆解图判死缓/拉丁商会素材在桌面/给技术=Codex任务卡零修辞
-- [Feedback: 变量做满再烧单](feedback_prompt_first_then_test.md) — 提示词没补穿不许实测下模型结论;改前做满,改后验一
-- [Feedback: 案例缺口双查法](feedback_case_gap_dual_check.md) — 矩阵完整性+外部形态对标双查;商家图片需求五用途框架
-- [Reference: ThinkNova 路径接口](reference_thinknova_paths.md) — 域名/API/项目id/存储/Stitch资产/环境坑
-- [Feedback: ThinkNova配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上 admin 配置；仍别改错 key
-- [Feedback: ThinkNova内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向，中医加疗效/娱乐加低俗；不一刀切禁儿童(家庭亲子可)，只不做性化未成年
-- [Feedback: 别把我的推测当用户指令](feedback_dont_assume_requirements.md) — 提议≠指令；模糊回复先确认再动手（英文默认是我瞎猜的）
-- [Feedback: ThinkNova北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) — 唯一优势=客户不动脑做出想要的；所有场景×行业×案例组合按钮全预设好，提示词以我为主
-- [项目：ThinkNova 定价+推广大使](project_thinknova_pricing_ambassador.md) — 对外USD、grok60/30s120/seedance400已上线、佣金档位、成本毛利
-- [项目：ThinkNova 营销拉新线](project_thinknova_marketing.md) — 07-08启动拍视频拉客户;素材索引在 对外推介/新session素材包_2026-07-08/README;只讲已验证能力
-- [项目：小孩数学网课](project_kid_math_tutoring.md) — 一周3次、主攻逻辑、产出HTML课件（桌面）
-- [Reference: 数学网课课程总表](reference_kid_math_roadmap.md) — 逐课主题路线，逻辑为主
+# 🔴 铁律(动手前过一遍,历史上都犯过错)
+
+1. **取证**:生成类问题证据=该单真实输入↔真实输出成对+任务号;来源未核实的材料不当证据 → [详](feedback_evidence_standard.md)
+2. **判断**:没完全了解前不下判断,先实地用过看全貌;逐字复现=硬编码/示例照搬,措辞变=模型行为;接口通≠功能通必实机点击 → [详](feedback_understand_before_judging.md)
+3. **指令**:提议≠指令,模糊回复先确认再动手;别把我自己的推测当用户指令 → [详](feedback_dont_assume_requirements.md)
+4. **实测**:变量做满再烧单——提示词/配置没补穿,不许下模型结论;改前做满,改后验一 → [详](feedback_prompt_first_then_test.md)
+5. **文档**:给技术的文档发出即冻结,新内容走增量(追加原文档须明确告知);给技术=Codex任务卡零修辞 → [详](feedback_tech_doc_delta_delivery.md)
+6. **验收**:每轮汇报"验收什么+做了什么";做完先自己验收真实结果再通知 → [详](feedback_handoff_acceptance.md)
+7. **记忆**:只留当前状态,过时内容覆盖删除,不堆叠矛盾层 → [详](feedback_memory_keep_current.md)
+8. **环境**:禁 taskkill /IM python(按 PID/端口精准杀);密钥不外发不进聊天不打印;ThinkNova 线上 config=唯一真值禁种子覆盖、PUT 改、video 双写 opsEditable 镜像
+
+# 用户与沟通
+- [User profile](user_profile.md) — 跨境电商 BD/运营,新加坡市场;TikTok 达人 SaaS + ThinkNova 双线
+- [Feedback: Compass 讨论沟通风格](feedback_compass_discussion.md) — 说重点/有据质疑/别奉承
+- [Feedback: 数据新鲜度呈现立场](feedback_data_freshness_framing.md) — 自信展示别贴"过期"标,也别埋雷;别过度诚实
+
+# ThinkNova(实体店内容 SaaS)
+- [项目:实体店两个Agent(工程主线)](project_thinknova_offline_agents.md) — 平台状态/管线机理/发版验收/测试队列;当前:T0问题报告12条已备、编剧提示词交付版待写、视频链路07-08凌晨故障中
+- [项目:营销拉新线](project_thinknova_marketing.md) — 07-08启动拍视频拉客户;素材索引在 对外推介/新session素材包_2026-07-08/README;只讲已验证能力
+- [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 对外USD、grok60/30s120/seedance400、佣金档位、成本毛利
+- [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/Stitch/环境坑
+- [Feedback: 配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上;别改错 key
+- [Feedback: 内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向;只守未成年底线
+- [Feedback: 北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) — 客户不动脑做出"他自己的内容";按钮全预设;提示词以我为主
+- [Feedback: 案例缺口双查法](feedback_case_gap_dual_check.md) — 矩阵完整性+外部形态对标;商家图片五用途框架
+
+# Compass / TikTok 达人线
+- [项目:tiktok-creator-tool(现行系统)](project_tiktok_creator_tool.md) — 单租户内部工具,最终被 Compass 替换
+- [项目:KOL Compass(接管系统)](project_kol_compass.md) — 对外 SaaS,Codex 开发,5175 前端+8015 后端
+- [项目:迁移路线+关键决策](project_compass_migration.md) — 服务商架构+全 API+决策辅助
+- [项目:核心方向(竞品验证后)](project_compass_core_direction.md) — 建联前分析+建联后管理是核心;不跟数据派拼库
+- [项目:出单潜力分算法+档位](project_compass_scoring.md) — 6维度权重+档位(用户拍板)
+- [项目:待办/产品方向](project_compass_backlog.md) — 达人评估维度、竞品达秘,详见 docs/BACKLOG.md
+- [项目:上线接真商家现状](project_compass_golive.md) — 阻断项,交接手册 docs/DEPLOY_GO_LIVE.md
+- [项目:内部达人库采集器](project_compass_harvester.md) — harvester/;坑=重载必F5
+- [Reference: Compass 路径+启动](reference_compass_paths.md) — 路径/端口/git
+- [Reference: TikTok Partner API 事实](reference_tiktok_partner_api.md) — 真实 quota/端点/文档 URL
+- [Reference: 达人库数据坑](project_compass_data_pitfalls.md) — 老库字段写反/大小写重复/列表数=当前市场
+- [Feedback: 仓库使用节奏](feedback_repo_rhythm.md) — 记忆常新/最差一天一提交/密钥不提交
+- [Feedback: 重启 backend 禁 taskkill /IM python](feedback_kill_python_scope.md) — 按 PID/端口精准杀
+
+# 其他
+- [项目:小孩数学网课](project_kid_math_tutoring.md) — 一周3次、主攻逻辑、HTML 课件(桌面)
+- [Reference: 数学网课课程总表](reference_kid_math_roadmap.md) — 逐课主题路线
