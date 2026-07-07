@@ -28,6 +28,7 @@
 - [Feedback: 内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向;只守未成年底线
 - [Feedback: 北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) — 客户不动脑做出"他自己的内容";按钮全预设;提示词以我为主
 - [Feedback: 案例缺口双查法](feedback_case_gap_dual_check.md) — 矩阵完整性+外部形态对标;商家图片五用途框架
+- [Feedback: 营销只做导演台](feedback_thinknova_marketing_director_role.md) — 只出脚本+拍摄方法+分镜(何时放哪张图),不产成片
 
 # Compass / TikTok 达人线
 - [项目:tiktok-creator-tool(现行系统)](project_tiktok_creator_tool.md) — 单租户内部工具,最终被 Compass 替换
