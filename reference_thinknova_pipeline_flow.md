@@ -29,6 +29,14 @@ metadata:
 - 🔴 **参考图(第2步)已测(0708,平台API)**:链路是**通的**(上传 `POST /assets/reference-upload`→进单 `personReferenceImageAssetId`→喂进 i2i 两张输入图,实证=下载出来就是参考图)。坏在**两处**:①**i2i 调用超时 failed**(`CURL_REQUEST_FAILED` 120s 0字节,同 T0#1 服务器→供应商)②`edit_options` = restyle/strength 0.74/preserve_composition=false → **参考图被重绘74%、特征全丢**。**推翻旧"链路断/图被扔"判断**——图没被扔,是被 restyle 参数重绘掉。imageEditOptions strength **我方可 PUT**。详见 01_问题诊断/管线逐环诊断报告_0708.md + 证据目录
 - 编剧(第3步)systemPromptSource=builtin_default(PHP写死),台词 lines 被定长硬切、切在词中间 → i2v 用「；」连接后念错字(实锤:编剧 task_14e033657b1d + i2v task_4e53507318a8)
 
+## 07-08 下午 平台逐环实测诊断（3 份报告在 01_问题诊断/，证据在 管线逐环诊断证据_0708/ + 海报问题证据_0708/）
+- 报告：`管线逐环诊断报告_0708.md`（唯一真源声明，旧待办暂作废待对照）/ `海报问题报告_0708.md` / `视频流程验证_0708.md`
+- **海报错误**：①张数失效（传1/2都出4，参数没接后端）②CTA枚举泄漏（scan_order/visit_store 概率原样画出，英文t2i+中文i2i）③t2i派发卡死40+分钟④拼装3冲突（默认中文⚔en铁律 / CTA枚举 / 禁外文⚔内容英文）。✅价格填促销语（买一送一/免费体验）不编数字、英语t2i语言正常。
+- **视频**：①裁首帧裁错格（格1无脸+带字幕）→ 成片有字幕+人物男→女 ②i2v实际prompt=config（无漂移）但 config i2v块本身缺拟真肤质/灯光 ③**编剧 firstFramePrompt/videoPrompt 的镜头下游 t2i/i2v 几乎没消费**（用写死通用六格骨架，只注入台词+活动）→ 编剧白设计镜头。
+- **参考图**：链路通（喂进i2i两张）但 restyle 0.74 重绘丢 + i2i CURL 120s 超时。
+- **我方可PUT**：CTA枚举→文案映射 / 语言只留languagePolicy删"默认中文"弱句 / i2v补肤质+灯光 / 分镜图t2i不画字幕。**要技术**：张数接后端 / 派发积压 / 裁有脸格 / 装配层消费编剧镜头。
+- ⭐检查入口=主任务详情三面板（完整链路/组装溯源/配置快照），见 [[reference-thinknova-paths]]。
+
 ## 测试铁律
 - **必须按完整六步在平台跑**,不许只查单个子任务就下结论(接口通≠功能通)。
 - 子任务用 parentTaskNo 串成同一单再看,别把不同单的编剧/分镜/i2v 张冠李戴。
