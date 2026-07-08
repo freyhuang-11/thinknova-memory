@@ -7,7 +7,7 @@ metadata:
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
 ---
 
-> 来源:技术《配置JSON说明书 07-08》《配置驱动改造报告 07-08》《计费规则 07-05》(归档于 00_规格与参考/技术侧文档/)+ 我方实查。
+> 来源:技术《商家Agent_配置JSON说明书_2026-07-08》《商家Agent完整实现说明_2026-07-08》《merchant-agent-config-guide_2026-07-08.html》(老板 07-08 定为"最终的 json 修改文档",全部归档于 00_规格与参考/技术侧文档/)+ 我方实查。**这三份=promptAssembler+businessUi 层的权威操作手册,但不含 promptComposer(见下,两层并存)。** PUT body 形态=`{"config":{promptAssembler,businessUi}}`。
 > **铁规(2026-07-08 用户定,因我多次错乱)**:提任何要求前 ①先查本地图 ②再实查线上键是否存在 ③**能自己改的立即自己改+验证,不许推给技术**;只有键不存在/被服务端并集覆盖/前端不读时才提技术,且必须附"已实查"证据。反向同罪:代码里的东西别自己硬凑。
 
 ## ✅ 我能改(admin PUT /agents/{code},当天生效)
