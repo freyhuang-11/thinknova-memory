@@ -24,7 +24,16 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - `GET /credits/balance` → available~10万
 - `GET /credits/transactions?page=&page_size=` → 积分流水明细(type=task_freeze/补扣/退回,含 balance_after)——**验计费用流水,别用余额差猜**
 - `GET /business-video-assets/config`(带 `x-thinknova-locale` 头 zh/en/ja/ko/vi/es)/ `GET /business-assets/config`
-- `POST /business-video-assets/tasks` 生成(见主文件payload)
+- `POST /business-video-assets/tasks` 建单(**纯API建单,别点UI**;header 加 `x-thinknova-locale:zh`)。body:
+  ```
+  {businessScenario, caseId, industryId, outputType, productName, offer, selectedOptions{}, sellingPoints[]}
+  ```
+  - `businessScenario`=**内容类型action id**(new_item/promotion/bestseller/price_menu/process_show/festival…对应S01/S02…),**不是行业id**(填行业报"生意场景不存在")
+  - `caseId`=referenceCases[].id(如 food_v2_S01_service_intro);`industryId`=food_beverage 等
+  - `productName`=商品名(**必填**;不是 productOrServiceName——那是内部编剧字段),`offer`=价格/活动(**必填**,空串也被拒)
+  - `outputType`=video_10s / video_30s_compound;`selectedOptions`={copyLanguage,videoRatio,videoStyle,appearanceMode,visualFocus,endingCta,paceLevel};`sellingPoints`=[selling_point_...]
+  - 返回 `data.task.taskNo`;成功码 code:0。字段全在 GET config(referenceCases/businessActions/detailOptionGroups/defaultState)里查
+- 子任务链:admin `GET https://api.thinknova.top/admin/api/v1/ai-tasks/{id}?payload_only=1`(cookie),用 `input.parentTaskNo` 串同一单;编剧看 `input.systemPromptSource`+`output.dynamicJson`(台词lines);i2v 看 `input.prompt`/`negative_prompt`/`reference_image_urls`
 - `GET /business-video-assets/tasks/{taskNo}` 任务详情(含成品URL)
 
 ## 成品存储
