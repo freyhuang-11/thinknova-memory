@@ -26,7 +26,23 @@ metadata:
 ## 六宫格描述法
 按内容不按位置:"输入含一张2×3六宫格分镜板,按6格顺序演,第1格即开场(=首帧)";不纠结哪张图是首帧/整板(老板都分不清顺序)。问题3(i2v角色错标)就这么修。
 
-## 改动归属
+## 🏁 2026-07-09 里程碑:平台端到端跑通(F编剧+黑锚板+白缝裁格),但卡问题2
+**验证单 task_96233(平台,非直连)**:F编剧✅跑通不回退(concept/boardCells/cells逐子格三件套/lines)、黑锚板✅(左上黑+5内容格)、**技术白缝裁格✅裁准上中格**、板零字幕✅、成片零字幕✅、人物场景锁✅。**但成片不跟分镜剧情**(只锁人物/场景,微距注入/两女碰杯等每格镜头没走)。
+- **根因=问题2未修(硬证据)**:i2v `task_9f4afe` 的 input.prompt 里 **0个【子格】**——编剧的 F videoPrompt(compiledPlan.videoPrompt,含【子格】~2950B)被算出但丢弃;i2v实际收到旧基座("基于…后台配置…台词只有以下几句…")+stagePromptPresets骨架(泛指令"按6格演")。台词从旧基座进了i2v所以念对,但每格镜头没进→模型锚人物首帧瞎演。
+- **给技术(问题2修复卡)**:i2v的prompt改用编剧`videoPrompt`(compiledPlan.videoPrompt,含【子格】),替换旧基座;删旧基座"台词只有以下几句"行+"后台配置"句;骨架与编剧【收尾说明】重复可清;总字节≤4096。验收:i2v input.prompt出现5个【子格】、成片逐格跟板。
+- 对比:直连**Test D**(裁上中格+整板reference+**手写完整F骨架当prompt**)剧情真跟了——证明架构对,差的就是平台没把F骨架接进i2v。
+
+## 我已PUT上线(2026-07-09,offline_store_video)
+- **肤质强化**:firstFrameTemplate板 + i2v骨架 都加"绝不网红滤镜脸/瓷娃娃/蜡面/塑料/磨皮/AI假皮"+毛孔雀斑细纹唇纹碎发。
+- **编剧升F格式**:`screenwriter.systemPrompt`=F视效总监版(输出JSON:concept/firstFrameCell/boardCells数组/**cells数组每段单行(JSON安全,关键:多行字符串会让LLM吐非法JSON→回退,已改单行)**/lines);`firstFrameTemplate`=黑锚板(左上纯黑+5格{{boardCells}}+强肤质/光影/色泽/无字);`videoTemplate`=`【视频总览】{{cells}}【收尾说明】`。
+- **实证{{cells}}拼装成功**:编剧cells逐子格 → videoTemplate拼出compiledPlan.videoPrompt含【子格】(config层就能拼F,不用技术改拼装)——**但这份videoPrompt被i2v丢弃(问题2)**。
+
+## 待办(2026-07-09 收尾,压缩前记)
+- 🔴 **问题2**(技术):i2v接编剧videoPrompt——这修好平台就跟Test D一样跟剧情。
+- firstFrameCell编剧吐"1"未吐"上中"(提示词钉死,防裁错格);子格5未走;个别叠化帧(grok老毛病);声音待老板耳审;编剧模型provider不稳(Invalid token/账号unavailable,回退频发,要技术保供应商)。
+- 🟡 **全量提示词大扫除(老板07-09指令)**:所有行业案例、细节按钮提示词(businessOptionPrompts/scenePrompts/industryPrompts)、**海报也一起**,需改的全改。大工程,压缩后带全上下文执行。
+- 桌面交付物:`D:\SamsoData\Desktop\咖啡_平台F编剧_端到端成片.mp4` + 分镜板方图/补边 + 裁格首帧;直连对照 `咖啡_裁格版_剧情跟板_D.mp4`(Test D,真跟剧情样板)。
+
+## 改动归属(旧,保留)
 - 我PUT:生图去冲突+删旁白画字 / i2v补四细节+六宫格描述+修角色错标。
-- 技术:`firstFramePrompt→t2i`已修(待我烧单实测) / `videoPrompt→i2v`(问题2待确认)。
-- **编剧键已开(2026-07-09)**:`promptComposer.screenwriter.{systemPrompt,staticTemplates.*,textModel.temperature}` 我可PUT,点①不再阻断。变量契约+地雷见 [[reference-thinknova-config-powers]]。草稿已起(00_规格与参考/编剧+i2v骨架_改造草稿_v1),**未PUT,等技术更新**。
+- **编剧键已开(2026-07-09)**:`promptComposer.screenwriter.*` 我可PUT。变量契约+地雷见 [[reference-thinknova-config-powers]]。
