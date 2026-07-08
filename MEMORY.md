@@ -25,6 +25,7 @@
 - [项目:营销拉新线](project_thinknova_marketing.md) — 07-08启动拍视频拉客户;素材索引在 对外推介/新session素材包_2026-07-08/README;只讲已验证能力
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 对外USD、grok60/30s120/seedance400、佣金档位、成本毛利
 - [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/Stitch/环境坑
+- 🔴 [Reference: 提示词改造架构](reference_thinknova_prompt_architecture.md) — **动任何生图/i2v/编剧提示词前必背**:两铁律(自包含/视频场景零字幕)+三层职责(编剧演什么·生图护栏·i2v四细节)+海报视频分家双向边界+六宫格描述法;老板07-09拍定,全文在00_规格与参考/门店内容_提示词改造规范_v1
 - [Reference: 配置权限地图](reference_thinknova_config_powers.md) — **提需求前必查**:我能改的全部config键 vs 改不动的(实证);能自改的自己改完再说话;说明书陷阱(单语言示例/跳变镜头毒词/并集机制)
 - [Feedback: 配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上;别改错 key
 - [Feedback: 内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向;只守未成年底线
