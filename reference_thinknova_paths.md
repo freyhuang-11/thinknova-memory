@@ -48,5 +48,6 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - HTML源码可从 list_screens 每屏的 htmlCode.downloadUrl 下载(bash中文文件名会乱,用PowerShell Invoke-WebRequest)
 
 ## 环境坑
+- **老板桌面=`D:\SamsoData\Desktop`(不是 C:\Users\samso\Desktop)**——给老板放成片/图等交付物放这
 - 输出含 query string 或 cookie 类内容会被 harness 安全过滤拦(返回只回结构化布尔/长度,别回原文)
 - PowerShell 打包别用 `Remove-Item 通配符`(被拦),用 Compress-Archive -Force
