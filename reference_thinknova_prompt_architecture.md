@@ -28,5 +28,5 @@ metadata:
 
 ## 改动归属
 - 我PUT:生图去冲突+删旁白画字 / i2v补四细节+六宫格描述+修角色错标。
-- 技术:`firstFramePrompt→t2i`已修(待我烧单实测) / `videoPrompt→i2v`(问题2待确认) / 编剧systemPrompt开键(点①阻断项)。
-- **没编剧键也能先改生图/i2v并烧单验证,不阻断**;编剧键只卡"编剧规范/多样性"。
+- 技术:`firstFramePrompt→t2i`已修(待我烧单实测) / `videoPrompt→i2v`(问题2待确认)。
+- **编剧键已开(2026-07-09)**:`promptComposer.screenwriter.{systemPrompt,staticTemplates.*,textModel.temperature}` 我可PUT,点①不再阻断。变量契约+地雷见 [[reference-thinknova-config-powers]]。草稿已起(00_规格与参考/编剧+i2v骨架_改造草稿_v1),**未PUT,等技术更新**。
