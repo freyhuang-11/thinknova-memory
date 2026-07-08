@@ -13,6 +13,14 @@ metadata:
 1. **每段prompt自包含**:编剧/t2i/i2v每次调用无状态,模型只拿到「本段文字+本次传入图」,看不到平台案例/配置/上一环产出。禁引用"后台image_to_video配置""上文/之前编剧"等模型拿不到的东西。→ 当前违规:i2v写"基于后台image_to_video配置"(模型看不到)。
 2. **视频场景画面零字幕**(视频专属,**海报不受此限**):台词只念不画进画面;画进分镜图→裁首帧→进视频=严重降质。补充导演信息走格外专用标注带(图1形式:灯光/情绪/摄影/音频各占独立框)。→ 违规根源已定位:config的`first_frame_prompt`写"整板唯一文字=格角落各一行旁白小字",要删。
 
+## 🔴 grok只锁首帧 → 三锁(人物/产品/场景)全部只在首帧生效(2026-07-09 老板拍定,实证)
+- **机制**:grok-1.5 i2v 只把**首帧 image_url** 当唯一锚,**不吃 `reference_image_urls`**(挂 i2v 的参考图对 grok 无效)。grok 是长期主力,不换,方案只能顺"只认首帧"设计。
+- **实证 task_542dfcb24c65**:入参传了 person 参考图(assetId 1551,扎染男)+提示词有人物锁那句,但**首帧裁的是格2=整只西瓜(无人脸)**→ 成片出一个凭空年轻女性,和上传男完全无关。人物锁失效≠没传参考图,是**首帧没人**。
+- **规律(进编剧)**:要锁人物→首帧必须有该真人正脸;锁产品→首帧有该产品;锁门店→首帧有该场景。**理想首帧=真人正脸口播近景+手持/紧邻主推产品+门店实景,三者同框**;纯产品特写/纯空镜/纯人像都不能单独当首帧(放后续格)。
+- **我已改上线(2026-07-09,offline_store_video)**:`screenwriter.systemPrompt` firstFrameCell 后插「首帧三锁·最高铁律」(上中格三者同框、禁无人纯产品/空镜、有参考图则=参考图那个人/物/店);`staticTemplates.firstFrameTemplate` 给"产品七成人物三成"开**上中格例外**(人物正脸为主体、必须清晰出镜)。→ 解决"大西瓜首帧",消灭无人首帧。PUT 落库回读已确认。
+- **仍需技术(否则首帧人=通用真人非客户本人)**:见 [[project-thinknova-offline-agents]] 技术卡「参考图前移」——生首帧/板的 i2i 现在 `reference_image_urls=[]`、`edit_options mode=restyle strength=0.74 preserve_composition=false`(身份全飘);要把已上传参考图喂进**生首帧的 i2i** 当垫图+首帧格高保真低strength。
+- **PUT端点(实证2026-07-09)**:GET `/admin/api/v1/agents?code=offline_store_video`(列表内联config,by-code详情路由已404);改 `v.config.promptComposer.screenwriter.*`;PUT `/admin/api/v1/agents/offline_store_video` body=整个agent对象JSON(非{config}包裹)。screenwriter 不在 opsEditable 镜像内,无需双写。页内改(harness滤=/base64,原文别外传)。
+
 ## 三层职责(仅视频线)
 - **编剧**:演什么(每格画面+台词+结构化标注 灯光/情绪/摄影/音频),同场景每次尽量不同(多样性)。builtin PHP,待技术开键。
 - **生图t2i/i2i**:画得对且真(主体/六宫格白缝/负面/**首帧真实感灯光种子**),**不写死画面、不画任何字、不放语气**。我PUT。
