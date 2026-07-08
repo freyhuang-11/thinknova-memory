@@ -18,7 +18,8 @@ metadata:
 - **实证 task_542dfcb24c65**:入参传了 person 参考图(assetId 1551,扎染男)+提示词有人物锁那句,但**首帧裁的是格2=整只西瓜(无人脸)**→ 成片出一个凭空年轻女性,和上传男完全无关。人物锁失效≠没传参考图,是**首帧没人**。
 - **规律(进编剧)**:要锁人物→首帧必须有该真人正脸;锁产品→首帧有该产品;锁门店→首帧有该场景。**理想首帧=真人正脸口播近景+手持/紧邻主推产品+门店实景,三者同框**;纯产品特写/纯空镜/纯人像都不能单独当首帧(放后续格)。
 - **我已改上线(2026-07-09,offline_store_video)**:`screenwriter.systemPrompt` firstFrameCell 后插「首帧三锁·最高铁律」(上中格三者同框、禁无人纯产品/空镜、有参考图则=参考图那个人/物/店);`staticTemplates.firstFrameTemplate` 给"产品七成人物三成"开**上中格例外**(人物正脸为主体、必须清晰出镜)。→ 解决"大西瓜首帧",消灭无人首帧。PUT 落库回读已确认。
-- **仍需技术(否则首帧人=通用真人非客户本人)**:见 [[project-thinknova-offline-agents]] 技术卡「参考图前移」——生首帧/板的 i2i 现在 `reference_image_urls=[]`、`edit_options mode=restyle strength=0.74 preserve_composition=false`(身份全飘);要把已上传参考图喂进**生首帧的 i2i** 当垫图+首帧格高保真低strength。
+- **纠错(2026-07-09 亲查)**:生首帧板的 i2i(task_cf5bf7ae4451)输入图 `images`/`image_url` **其实就是人物照片本人**(不是没喂),但 `imageEditOptions.video_first_frame={mode:restyle,strength:0.74,preserve_composition:false}` 把脸洗掉了、板prompt又逼产品进格 → 脸飘。`imageEditOptions.video_first_frame`+`firstFrameTemplate` 都在 config,**我能改**;没有"参考图路由到哪阶段"的 config 键(has_referenceRouting:false)。
+- **真正卡点=一次 i2i 要"重构成六宫格板"又"保住某张脸",两者互斥**。strength 盲降会毁板结构,故先只上 prompt 保脸(firstFrameTemplate 加「保脸铁律:上中格=输入那张脸,五官发型肤色性别一致,宁可弱化其余格也保首帧脸」,已PUT落库)。**config 压得住 vs 必须拆两次生成(代码)——待烧一单证死**;压不住才给技术,带成片证据。技术卡草稿见 02_交付内容/给技术_参考图前移进首帧i2i_2026-07-09.md(未发,先自验)。
 - **PUT端点(实证2026-07-09)**:GET `/admin/api/v1/agents?code=offline_store_video`(列表内联config,by-code详情路由已404);改 `v.config.promptComposer.screenwriter.*`;PUT `/admin/api/v1/agents/offline_store_video` body=整个agent对象JSON(非{config}包裹)。screenwriter 不在 opsEditable 镜像内,无需双写。页内改(harness滤=/base64,原文别外传)。
 
 ## 三层职责(仅视频线)
