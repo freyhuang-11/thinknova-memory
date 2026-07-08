@@ -33,7 +33,8 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
   - `productName`=商品名(**必填**;不是 productOrServiceName——那是内部编剧字段),`offer`=价格/活动(**必填**,空串也被拒)
   - `outputType`=video_10s / video_30s_compound;`selectedOptions`={copyLanguage,videoRatio,videoStyle,appearanceMode,visualFocus,endingCta,paceLevel};`sellingPoints`=[selling_point_...]
   - 返回 `data.task.taskNo`;成功码 code:0。字段全在 GET config(referenceCases/businessActions/detailOptionGroups/defaultState)里查
-- 子任务链:admin `GET https://api.thinknova.top/admin/api/v1/ai-tasks/{id}?payload_only=1`(cookie),用 `input.parentTaskNo` 串同一单;编剧看 `input.systemPromptSource`+`output.dynamicJson`(台词lines);i2v 看 `input.prompt`/`negative_prompt`/`reference_image_urls`
+- **参考图上传**:`POST /api/v1/assets/reference-upload`(multipart,字段名 `file`)→ 返回 `data.asset.asset_id`/`asset_no`。建单时挂 `personReferenceImageAssetId` / `sceneReferenceImageAssetId` / `productReferenceImageAssetId`(值=asset_id 数字)。**有参考图时分镜图走 image_to_image(否则 text_to_image)**。上传成功后 GET 主任务 detail.business 可见该字段确认进单。
+- 子任务链:admin `GET https://api.thinknova.top/admin/api/v1/ai-tasks/{id}?payload_only=1`(cookie),用 `input.parentTaskNo` 串同一单;编剧看 `input.systemPromptSource`+`output.dynamicJson`(台词lines)+`output.compiledPlan`(videoPrompt/firstFramePrompt);i2v 看 `input.prompt`/`negative_prompt`/`reference_image_urls`;图片资产 url 在 `output.assets[].public_url`。**admin/商家 API 同 tab 可调(cookie 同 api.thinknova.top domain 共享)**。
 - `GET /business-video-assets/tasks/{taskNo}` 任务详情(含成品URL)
 
 ## 成品存储
