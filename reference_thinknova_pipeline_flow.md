@@ -26,7 +26,7 @@ metadata:
 ## 当前实测状态(2026-07-08,老板2天对齐后的认知,别再搞错)
 - ✅ **第5步 裁格首帧 = 对的**(只有首帧是对的)
 - ❌ **第4步 分镜图 = 还不对**("风景图/分镜图还是不对")—— 视频画面没跟上分镜/台词
-- ⬜ **参考图(第2步)还没测** —— 参考图锁定进视频这一环尚未在平台验证
+- 🔴 **参考图(第2步)已测(0708,平台API)**:链路是**通的**(上传 `POST /assets/reference-upload`→进单 `personReferenceImageAssetId`→喂进 i2i 两张输入图,实证=下载出来就是参考图)。坏在**两处**:①**i2i 调用超时 failed**(`CURL_REQUEST_FAILED` 120s 0字节,同 T0#1 服务器→供应商)②`edit_options` = restyle/strength 0.74/preserve_composition=false → **参考图被重绘74%、特征全丢**。**推翻旧"链路断/图被扔"判断**——图没被扔,是被 restyle 参数重绘掉。imageEditOptions strength **我方可 PUT**。详见 01_问题诊断/管线逐环诊断报告_0708.md + 证据目录
 - 编剧(第3步)systemPromptSource=builtin_default(PHP写死),台词 lines 被定长硬切、切在词中间 → i2v 用「；」连接后念错字(实锤:编剧 task_14e033657b1d + i2v task_4e53507318a8)
 
 ## 测试铁律
