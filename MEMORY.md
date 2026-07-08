@@ -7,6 +7,7 @@
 5. **文档**:给技术的文档发出即冻结,新内容走增量(追加原文档须明确告知);给技术=Codex任务卡零修辞 → [详](feedback_tech_doc_delta_delivery.md)
 5b. **提问题格式**:正确的样子/现在的样子/怎么复现/为什么判定是问题/要求二选一(给权限或你改)+每项必须回复 → [详](feedback_problem_report_format.md)
 5c. **技术文档发文前强制自检 7 条**(排序对定调/五段格式/证据合格/复现可执行/零修辞/不打架/版本唯一)——连续判断错误后立规,一条不过不许发 → [详](feedback_tech_doc_checklist.md)
+5d. **范围边界必写反向**:数量/范围/开关类需求只写正向("海报出N张")会串进共用调用致回归(海报多张串到视频分镜图);必附"作用域仅X,不碰Y(共用链路兄弟场景)"+双向验收 → [详](feedback_scope_boundary_explicit.md)
 6. **验收**:每轮汇报"验收什么+做了什么";做完先自己验收真实结果再通知 → [详](feedback_handoff_acceptance.md)
 7. **记忆**:只留当前状态,过时内容覆盖删除,不堆叠矛盾层 → [详](feedback_memory_keep_current.md)
 8. **环境**:禁 taskkill /IM python(按 PID/端口精准杀);密钥不外发不进聊天不打印;ThinkNova 线上 config=唯一真值禁种子覆盖、PUT 改、video 双写 opsEditable 镜像
