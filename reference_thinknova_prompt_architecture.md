@@ -22,6 +22,17 @@ metadata:
 - **真正卡点=一次 i2i 要"重构成六宫格板"又"保住某张脸",两者互斥**。strength 盲降会毁板结构,故先只上 prompt 保脸(firstFrameTemplate 加「保脸铁律:上中格=输入那张脸,五官发型肤色性别一致,宁可弱化其余格也保首帧脸」,已PUT落库)。**config 压得住 vs 必须拆两次生成(代码)——待烧一单证死**;压不住才给技术,带成片证据。技术卡草稿见 02_交付内容/给技术_参考图前移进首帧i2i_2026-07-09.md(未发,先自验)。
 - **PUT端点(实证2026-07-09)**:GET `/admin/api/v1/agents?code=offline_store_video`(列表内联config,by-code详情路由已404);改 `v.config.promptComposer.screenwriter.*`;PUT `/admin/api/v1/agents/offline_store_video` body=整个agent对象JSON(非{config}包裹)。screenwriter 不在 opsEditable 镜像内,无需双写。页内改(harness滤=/base64,原文别外传)。
 
+## 🧹 视频底座扫除已完成(2026-07-09,offline_store_video,全PUT落库+回读确认)
+随机行业/案例/场景测试=整个面都可能抽到,不能只改共用底座就完事,但扫描证实**重灾区确在少数底座**:
+- **字幕泄漏(铁律2真凶,剧情/字幕乱的根)**:`blockTemplates.layout_rules.first_frame_prompt`+`opsEditable.layoutRules.firstFrame`+`promptAssembler.video.outputTypePrompts.first_frame` 原写"格1/2/4/5角落各一行『旁白』小字""格内角落小字标注镜头序号/台词OS"→ 已改**整板绝对无任何文字**。
+- **声线锁死女声**:i2v `stagePromptPresets.image_to_video.prompt`(+ops镜像)"口播＝年轻自然女声…像闺蜜"→ 改**随出镜人物性别(男则男声),不锁死**。
+- **中英混写**:`businessOptionPrompts.platform`(9)`.visualFocus`(5)+`optionRules.platform`(6:tiktok/ins/yt/fb/pin/x,+ops镜像)→ 统一中文。**注:languagePolicy.map 的英文=故意的英文输出铁律(输出语言另一层管,按钮组改中文不影响英语出片);industryRules 括号英文=技术词,不动**。
+- **优先级**:`conflictResolution.priorityOrder` 从 `[selected_option]` → `[user_extra_requirement, selected_option]`(客户补充要求抬到最高;海报早有,视频漏了)。
+- **首帧三锁+客户override**:编剧systemPrompt+firstFrameTemplate+blockTemplates.layout_rules(+ops镜像)都写"首帧格=真人正脸+产品+门店同框;客户补充明确不要人物则遵从、该单不锁人改画外音"。口径=A(默认留真人)+客户可覆盖(老板2026-07-09定)。
+- **两首帧路径纠结**:实测板prompt同时含 blockTemplates("产品七分人物三分"六格)与黑锚板(左上黑+上中=首帧)特征→两条都改齐,不赌哪条独活。
+- **未动**:26行业质感词/negativePrompt/中文平台词(已中文)。
+- **仍待技术**:i2v `{{prompt}}` 基座含"后台配置"+不接编剧F videoPrompt(问题2);参考图前移进首帧i2i(见02_交付内容技术卡)。
+
 ## 三层职责(仅视频线)
 - **编剧**:演什么(每格画面+台词+结构化标注 灯光/情绪/摄影/音频),同场景每次尽量不同(多样性)。builtin PHP,待技术开键。
 - **生图t2i/i2i**:画得对且真(主体/六宫格白缝/负面/**首帧真实感灯光种子**),**不写死画面、不画任何字、不放语气**。我PUT。
