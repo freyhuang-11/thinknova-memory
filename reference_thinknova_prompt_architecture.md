@@ -31,7 +31,7 @@ metadata:
 - **首帧三锁+客户override**:编剧systemPrompt+firstFrameTemplate+blockTemplates.layout_rules(+ops镜像)都写"首帧格=真人正脸+产品+门店同框;客户补充明确不要人物则遵从、该单不锁人改画外音"。口径=A(默认留真人)+客户可覆盖(老板2026-07-09定)。
 - **两首帧路径纠结**:实测板prompt同时含 blockTemplates("产品七分人物三分"六格)与黑锚板(左上黑+上中=首帧)特征→两条都改齐,不赌哪条独活。
 - **未动**:26行业质感词/negativePrompt/中文平台词(已中文)。
-- **仍待技术=只剩问题2**:i2v `{{prompt}}` 基座含"后台配置"+不接编剧F videoPrompt。
+- **问题2 已闭环(技术2026-07-09修+我对齐)**:技术改 OfflineStoreContentService.php——cells 解析为**对象数组**、`{{cells}}` 逐子格渲染(景别机位/画面核心/人声/开口台词/音效/运镜)、firstFrameTemplate 默认删`{{lines}}`、firstFrameCell 文字映射(上中=>1)。**我把编剧 systemPrompt+outputContract 从"单行F字符串"改成对象数组8字段对齐**:position/timeRange/shot/visual(不可空)/voice/line(格式`[[声线,感情,真人感:「台词」]]`)/sfx/move。规格全文=商家Agent_编剧输出与提示词拼装_运营说明_v2。技术只固化拼装、不控内容(systemPrompt/staticTemplates 覆盖默认值);字符串cells有兜底但会丢结构。**config存活确认:技术部署没覆盖我的PUT**。待烧单端到端总验。
 - **纠错2(2026-07-09,老板点破)**:"参考图前移"不是技术活——生首帧 i2i 的输入图 `images`/`image_url` **本来就是人物照片本人**(不是没喂);真凶是 `imageEditOptions.video_first_frame.strength=0.74` 洗脸,而 strength+板prompt 都在 config、**都是我能改的**。已删该技术卡。人物锁靠"strength调低+保脸prompt+首帧三锁"自己解决,烧单验。
 - **案例审计(2026-07-09)**:视频500/海报720案例结构干净(zh全在/prefill全在);海报216条en未翻=全disabled(非问题);视频32条en未翻(多tcm,小活待翻);"5条字幕泄漏"=误报(那是"旁白式OS"念白风格,非画字)。**已拍板并上线**:口径=A精修(默认首帧真人锚点;豁免三条:客户明确不要人/纯产品案例/product_only模式→首帧可无人不锁人)。视频32条en未翻**已翻上线(enStillCJK归零)**;海报216未翻=全disabled不管。**吃字**修复:i2v加"每字念完整不吞字漏字句尾数字咬清楚"。全部PUT落库。归档:00_规格与参考/门店内容_提示词底座扫除与首帧三锁_delta_2026-07-09.md。
 
