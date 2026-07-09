@@ -92,7 +92,10 @@ metadata:
 - **🔴当前唯一硬阻断**：问题2下游技术修复引入PHP致命错(`Using $this when not in object context`,finalizeDeferredScriptwriter)，单子failed；技术已知晚点改，修完烧单验i2v 5子格+锁分镜图。详见 [[reference-thinknova-prompt-architecture]]。
 - **总账时效**：技术待办总账是07-06/08写的，这两天技术发过版，部分已修(现网实证:核心设置选项组/案例卡封面F13/F1F2泄漏都已好)；推进按现网实测为准，别照旧账催已修的。
 - **🔴 压缩后要接着做的(2026-07-09)**：
-  1. **全行业骨架案例补齐(进行中,当前主任务)**：26行业×video+poster，长尾场景改成骨架型案例(产品当变量)。策略/解耦结论/模型约束见 [[reference-thinknova-prompt-architecture]] 解耦节。设计要点:骨架 visualHint 只写镜头结构不写具体产品，行业风格靠 industryPrompts、产品靠 productName+编剧带入；常用具体案例保留。生成前先跟老板对齐骨架设计(别盲目铺几百条)。
+  1. **全行业"通用兜底"案例补齐(进行中,当前主任务)**：26行业×video+poster，长尾场景加产品当变量的通用案例。策略/解耦结论见 [[reference-thinknova-prompt-architecture]] 解耦节。**老板2026-07-09细化两条铁律**:
+     - **绝不露"骨架/通用/模板"字样**(用户=零认知小白):case 命名用大白话动作("拍我家项目做完的前后效果对比"/"拍我家的服务制作全过程"/"老板出镜推荐我家招牌")；summary 手把手引导(适合什么项目+让他填什么+举例)；prefill 填示例产品名让他照着改。北极星=零动脑 [[feedback-thinknova-zero-brain-northstar]]。
+     - **场景尽量铺齐**:只跳明显用不到的(我判断,如前后对比不适用餐饮/纯零售)，**只要有可能用到就覆盖**(案例永远想不全，宁多勿漏)。
+     - 内部 visualHint 仍只写镜头结构不写具体产品(行业风格靠industryPrompts、产品靠productName+编剧)；常用具体案例保留并存。六语言 title/summary。规模约300-500条/agent，脚本批量。
   2. **多样性测试没跑完**：美业S06同输入×5 + 祛痘 + 海报多样性 —— 单都建了(task_3b40b8c6c134等)，卡在 **worker 堆积**(平台t2i/编剧worker 2分钟只处理2个)pending未完；worker恢复后读，或转直连(需exfil线上systemPrompt=5808hex)。海报也要验多样性(同输入出不同版)。
   3. **等技术修 问题2 的 PHP 报错(`Using $this…`)后**：烧单**同步测试**——验 i2v input.prompt 出5个【子格】+ 成片真跟分镜板(说什么演什么)+ 首帧三锁人物锁；再验 strength 够不够锁本人。
   4. **前台修改**：合并清单在 02_交付内容/前台修改清单_2026-07-09_自然语言版(26条+运营已处理);等发技术。
