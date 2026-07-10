@@ -29,6 +29,11 @@ metadata:
 - **真正卡点=一次 i2i 要"重构成六宫格板"又"保住某张脸",两者互斥**。strength 盲降会毁板结构,故先只上 prompt 保脸(firstFrameTemplate 加「保脸铁律:上中格=输入那张脸,五官发型肤色性别一致,宁可弱化其余格也保首帧脸」,已PUT落库)。**config 压得住 vs 必须拆两次生成(代码)——待烧一单证死**;压不住才给技术,带成片证据。技术卡草稿见 02_交付内容/给技术_参考图前移进首帧i2i_2026-07-09.md(未发,先自验)。
 - **PUT端点(实证2026-07-09)**:GET `/admin/api/v1/agents?code=offline_store_video`(列表内联config,by-code详情路由已404);改 `v.config.promptComposer.screenwriter.*`;PUT `/admin/api/v1/agents/offline_store_video` body=整个agent对象JSON(非{config}包裹)。screenwriter 不在 opsEditable 镜像内,无需双写。页内改(harness滤=/base64,原文别外传)。
 
+## 🔴 全板人物锁(2026-07-10 修,QA实测揪出+已PUT上线)
+- **问题(实测task_cdef306c3dea染发成片)**:成片跟对了分镜顺序/内容(问题2下游已修、i2v吃到5子格),但**分镜板每格的服务者不是同一个人**——上中格首帧口播=棕发,右上/右下干活格=黑发盘发另一个样子;成片2-4秒继承了黑发那位,和首帧棕发对不上。**根子在板(t2i)提示词没锁"全板同一人"**:`firstFrameTemplate` 只有弱句"同一位人物"+【保脸铁律】(只保上中格、且只在"输入含人物照"时触发、还写"宁可其余格弱化人物"=明着放行换人)。i2v虽写"绝不换人"但参考的板自身就不一致,grok照抄。
+- **已修(PUT+回读+双写)**:①`screenwriter.staticTemplates.firstFrameTemplate`(675→906)②`blockTemplates.task_goal.first_frame_prompt`(1267→1450)+`opsEditable.taskGoal.firstFrame`镜像。加**【全板人物锁·铁律】**(每个出现服务者的格=首帧那位,五官/发色/发型/发长/肤色/服装配饰全格严格一致,禁换脸换发色换发型换人,顾客出现时动手的仍是首帧那位,**无论是否上传人物照都生效**);把"宁可其余格弱化人物"改成"宁可弱化动作复杂度也保人物一致"。验证单=task_99b818ef1fdd(美业S06 owner_speaking),待worker跑完拉板核对人物是否一致。
+- **QA教训(进铁律)**:①**别对grok成片下"逐格逐秒复现/一格不差"结论**——grok锁首帧和镜头顺序/内容,但**每格切点和时长自己重排**(实测2.3s就提前切走上中格);只能说"跟没跟顺序和内容"。②验成片必须**密集抽过渡帧**(2/2.5/3s…),只抽整秒点(0/3/6)会漏掉提前切、人物漂移。③老板亲验揪出人物锁,我抽帧太粗夸成"一格不差"被抓——[[feedback-understand-before-judging]]。
+
 ## 🧹 视频底座扫除已完成(2026-07-09,offline_store_video,全PUT落库+回读确认)
 随机行业/案例/场景测试=整个面都可能抽到,不能只改共用底座就完事,但扫描证实**重灾区确在少数底座**:
 - **字幕泄漏(铁律2真凶,剧情/字幕乱的根)**:`blockTemplates.layout_rules.first_frame_prompt`+`opsEditable.layoutRules.firstFrame`+`promptAssembler.video.outputTypePrompts.first_frame` 原写"格1/2/4/5角落各一行『旁白』小字""格内角落小字标注镜头序号/台词OS"→ 已改**整板绝对无任何文字**。
