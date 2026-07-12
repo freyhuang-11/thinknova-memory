@@ -22,7 +22,7 @@
 
 # ThinkNova(实体店内容 SaaS)
 - 🔴 [Reference: 两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步(填资料→上传参考图→文生文→参考图+文生图=分镜图→裁格首帧→首帧+分镜图+参考图+文生视频);动任一环前必背;当前:首帧✓/分镜图✗/参考图未测。老板2天对齐后骂"你自己都不知道流程"立此
-- [项目:实体店两个Agent(工程主线)](project_thinknova_offline_agents.md) — 平台状态/管线机理/发版验收;**07-08核心成果**:能力天花板商用级(海报/参考图锁产品锁人脸/视频端到端)已直连验证;线上编剧+i2v全是技术临时版(我们成果没上线);**编剧v2优化(11行业忠实+结构化lines/shots)+视频层定论(必须分镜板非单首帧,说什么演什么)**已出交付文档;待技术开screenwriter键+分镜板管线;灯光工程待补强
+- [项目:实体店两个Agent(工程主线)](project_thinknova_offline_agents.md) — 🔴当前焦点=P1六宫格成片(裁格前SSL result:19下载失败)+P2选项进编剧(selectedOptions空),技术本地已修待上生产验;改config走419-UI保存法(直连PUT被拦);编剧收不到核心设置选项(blockOrders只两阶段)
 - [项目:营销拉新线](project_thinknova_marketing.md) — Claude=总运营/策略研究(定期调研→定产出方向,不做素材/不写终稿);老板做内容视频、Codex发三海外平台;三市场分盘/口吻四分/定价
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 对外USD、grok60/30s120/seedance400、佣金档位、成本毛利
 - [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/Stitch/环境坑
