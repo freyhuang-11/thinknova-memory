@@ -49,5 +49,6 @@
 - [Feedback: 重启 backend 禁 taskkill /IM python](feedback_kill_python_scope.md) — 按 PID/端口精准杀
 
 # 其他
+- [项目:新加坡鞋包提案](project_sg_footwear_proposal.md) — 桌面报价单+功能设计,中英双语HTML→PDF;当前12万/8模块/7平台+App商城;含无头Edge出PDF复用法
 - [项目:小孩数学网课](project_kid_math_tutoring.md) — 一周3次、主攻逻辑、HTML 课件(桌面)
 - [Reference: 数学网课课程总表](reference_kid_math_roadmap.md) — 逐课主题路线
