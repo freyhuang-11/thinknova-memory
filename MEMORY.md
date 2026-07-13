@@ -22,7 +22,7 @@
 
 # ThinkNova(实体店内容 SaaS)
 - 🔴 [Reference: 两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步(填资料→上传参考图→文生文→参考图+文生图=分镜图→裁格首帧→首帧+分镜图+参考图+文生视频);动任一环前必背;当前:首帧✓/分镜图✗/参考图未测。老板2天对齐后骂"你自己都不知道流程"立此
-- [项目:实体店两个Agent(工程主线)](project_thinknova_offline_agents.md) — ✅P1六宫格已修(720×1280裁片进i2v实证);🔴P2剩编剧仲裁映射器按数组读对象读空(task_823fd8c628b2)+1.0参考图403,修完前别烧单;改config走419-UI保存法
+- [项目:实体店两个Agent(工程主线)](project_thinknova_offline_agents.md) — ✅P1裁格+P2选项进编剧都已修(生产实证);🔴英文台词曾被中文字数规则打碎→已改语言分口径待烧单验;gen兜底案例49条已下架;1.0参考图403未闭环;改config走419-UI保存法
 - [项目:营销拉新线](project_thinknova_marketing.md) — Claude=总运营/策略研究(定期调研→定产出方向,不做素材/不写终稿);老板做内容视频、Codex发三海外平台;三市场分盘/口吻四分/定价
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 计费=服务费+模型价拼装(07-14全面调价:海报6/视频60/直连图6·i2v45已上线);中国兑换码¥108=2000分;佣金档位、成本毛利
 - [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/Stitch/环境坑
