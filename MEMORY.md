@@ -30,6 +30,7 @@
 - [Reference: 配置权限地图](reference_thinknova_config_powers.md) — **提需求前必查**:我能改的全部config键 vs 改不动的(实证);能自改的自己改完再说话;说明书陷阱(单语言示例/跳变镜头毒词/并集机制)
 - [Feedback: 配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上;别改错 key
 - [Feedback: 内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向;只守未成年底线
+- [Feedback: 小红书内容交付规矩](feedback_xiaohongshu_content_workflow.md) — 每条含"照着填"生图清单+直接写进小红书内容.md不散聊天
 - [Feedback: 北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) — 客户不动脑做出"他自己的内容";按钮全预设;提示词以我为主
 - [Feedback: 案例缺口双查法](feedback_case_gap_dual_check.md) — 矩阵完整性+外部形态对标;商家图片五用途框架
 
