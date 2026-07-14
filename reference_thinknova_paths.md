@@ -40,7 +40,12 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - `GET /business-video-assets/tasks/{taskNo}` 任务详情(含成品URL)
 
 ## 成品存储
-输出URL在 `thinknova.oss-cn-beijing.aliyuncs.com`(需鉴权,直下403) / `imagemax2.zhoushurencz1.top`(图片直下) / `1renfile-1256831266.cos.ap-chengdu.myqcloud.com`(视频mp4直下)。
+输出URL在 `thinknova.oss-cn-beijing.aliyuncs.com`(需鉴权,直下403) / `imagemax2.zhoushurencz1.top`(图片直下) / `1renfile-1256831266.cos.ap-chengdu.myqcloud.com`(视频mp4直下,供应商桶会过期,案例预览别指它)。2026-07 起成片也存自家公共桶 `thinknova-previews.oss-ap-southeast-1.aliyuncs.com/generated-assets/`(无签名直下)。
+
+## 🔑 案例预览图床=自家OSS可自传(2026-07-15实证,不用求技术)
+- 桶 `thinknova-previews`(ap-southeast-1,公共读):案例封面图全在 `previews/all/`(1200+张),案例真视频我放 `previews/case-videos/<caseId>_<task短号>.mp4`,封面帧 `previews/all/<caseId>_frame.*`。
+- 上传法:项目根 `oss_ak.txt`(2行=AK id/secret,**不外发不进聊天**)+ Python 手写 OSS V1 签名 PUT(脚本模板=scratchpad batch8/oss_batch.py 的 put();HMAC-SHA1,StringToSign=`PUT\n\n{ctype}\n{date}\n/桶/键`),PUT 200 后公开 GET 验证。
+- 挂进案例:改 referenceCases 该条 previewVideoUrl+previewAssetType='video'+4个图字段(previewUrl/thumbnailUrl/coverImageUrl/previewImageUrl)一次改齐,419-UI 法保存。**封面必须与视频同人/同内容**(老板抓过借图撞脸+货不对板)。回填台账=`视频案例真预览_待回填/台账.md`(当前9条真视频案例)。
 
 ## Stitch(桌面版设计)
 - MCP工具 mcp__stitch__*。项目id `7645298167327483745`
