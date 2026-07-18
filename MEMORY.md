@@ -15,7 +15,7 @@
 10. **提示词参考**:老板发的参考当天归档进提示词参考库(曾丢 3 次),评估后才吸收进规则手册 → [详](reference_prompt_library.md)
 
 # 用户与沟通
-- 🔴 [Reference: 共享记忆库 AgentMemoryVault](reference_agent_memory_vault.md) — D:\SamsoData\Documents\AgentMemoryVault;**每次会话末更新 ThinkNova/_memory/平台状态总览.md**(老板看进度唯一入口);规则见其 AGENTS.md
+- 🔴 [Reference: 共享记忆库 AgentMemoryVault](reference_agent_memory_vault.md) — D:\SamsoData\Documents\AgentMemoryVault;**开工 git pull+读总览和信箱,收工更新 ThinkNova/_memory/平台状态总览.md+push**(状态只写 vault 不进私有记忆);双营销线命名法(海外=Codex/国内=本机会话);Codex 已跨机闭环;技术问题清单在总览第四节
 - [User profile](user_profile.md) — 跨境电商 BD/运营,新加坡市场;TikTok 达人 SaaS + ThinkNova 双线
 - [Feedback: Compass 讨论沟通风格](feedback_compass_discussion.md) — 说重点/有据质疑/别奉承
 - [Feedback: 数据新鲜度呈现立场](feedback_data_freshness_framing.md) — 自信展示别贴"过期"标,也别埋雷;别过度诚实

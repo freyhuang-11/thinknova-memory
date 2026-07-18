@@ -9,6 +9,14 @@ metadata:
 
 老板 2026-07-16 引入 [agent-memory-vault](https://github.com/cindyxu1030/agent-memory-vault),已装到 `D:\SamsoData\Documents\AgentMemoryVault\`,用途=老板可见的项目状态 + Claude/Codex 跨 agent 共享记忆。**跨机同步=私有仓库 github.com/freyhuang-11/agent-memory-vault:我每次开工先 `git pull`、收工把状态更新连带 `git push`**(Codex 机同规则)。老板桌面有「平台进度总览」快捷方式(开 Obsidian 直达总览页)。
 
+**2026-07-18 体系定型(全部实证跑通):**
+- **Codex 已 SSH 接入另一台电脑并完整闭环**:读信箱→执行→移已处理→写状态→反向留题;我已答复(organic 提档口径+付费买量四条硬验收,在信箱)。
+- **双营销线命名法**:「海外营销」=FB/Reddit/LinkedIn(Codex 主理);「国内营销」=小红书/抖音/视频号/快手(本机营销会话主理)。所有营销文档/状态/信箱条目强制前缀,素材库共用。claude.ai 网页 "THINK NOVA marketing" 聊天=海外线入口之一。
+- **信箱.md 三收件栏**:给 Codex(海外)/给国内营销会话/给 Claude(Code);处理完移「已处理」写结果。国内营销会话已确认遵守并实证执行。
+- **《_memory/平台操作手册_Claude技法.md》**=全会话统一平台实操技法(419-UI/定价JSON/直连生图/OSS直传/任务查证/红线),新技法沉淀回手册。
+- **平台状态=只写 vault 总览,私有记忆不再复制状态**(防堆叠矛盾层);技术问题清单也在总览第四节。
+- 老板侧:Obsidian 已装并打开 vault,桌面「平台进度总览」快捷方式;旧窗口脱节时丢"同步刷新"口令即可。
+
 **How to apply:**
 - **每次工作会话结束更新 `01-Projects/ThinkNova/_memory/平台状态总览.md`**(平台进度唯一真值,老板靠它看进度——他曾抱怨"不知道平台被优化到什么进度",这是解法)。
 - 读写规则见 vault 根 AGENTS.md:00-Rules 人类专属绝不直写(提案走 04-Feedback/graduation-queue.md);_memory 可直写;_feedback 记被否决的教训;多 agent 改前重读防冲突。
