@@ -7,7 +7,7 @@ metadata:
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
 ---
 
-老板 2026-07-16 引入 [agent-memory-vault](https://github.com/cindyxu1030/agent-memory-vault),已装到 `D:\SamsoData\Documents\AgentMemoryVault\`,用途=老板可见的项目状态 + Claude/Codex 跨 agent 共享记忆。
+老板 2026-07-16 引入 [agent-memory-vault](https://github.com/cindyxu1030/agent-memory-vault),已装到 `D:\SamsoData\Documents\AgentMemoryVault\`,用途=老板可见的项目状态 + Claude/Codex 跨 agent 共享记忆。**跨机同步=私有仓库 github.com/freyhuang-11/agent-memory-vault:我每次开工先 `git pull`、收工把状态更新连带 `git push`**(Codex 机同规则)。老板桌面有「平台进度总览」快捷方式(开 Obsidian 直达总览页)。
 
 **How to apply:**
 - **每次工作会话结束更新 `01-Projects/ThinkNova/_memory/平台状态总览.md`**(平台进度唯一真值,老板靠它看进度——他曾抱怨"不知道平台被优化到什么进度",这是解法)。
