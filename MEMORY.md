@@ -24,7 +24,8 @@
 # ThinkNova(实体店内容 SaaS)
 - 🔴 [Reference: 两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步(填资料→上传参考图→文生文→参考图+文生图=分镜图→裁格首帧→首帧+分镜图+参考图+文生视频);动任一环前必背;当前:首帧✓/分镜图✗/参考图未测。老板2天对齐后骂"你自己都不知道流程"立此
 - [项目:实体店两个Agent(工程主线)](project_thinknova_offline_agents.md) — ✅P1裁格+P2选项进编剧都已修(生产实证);🔴英文台词曾被中文字数规则打碎→已改语言分口径待烧单验;gen兜底案例49条已下架;1.0参考图403未闭环;改config走419-UI保存法
-- [项目:营销拉新线](project_thinknova_marketing.md) — Claude=总运营/策略研究(定期调研→定产出方向,不做素材/不写终稿);老板做内容视频、Codex发三海外平台;三市场分盘/口吻四分/定价
+- 🔴 [项目:营销拉新线](project_thinknova_marketing.md) — 当前态+记分板+内容铁律(五触发/点名老板/零品牌/去导流/大字报打直球/清单不操作);Claude做成片,老板录口播+发+配音,Codex海外文案+封面
+- 🔴 [Reference: HyperFrames视频生产线](reference_hyperframes_production.md) — 口播→转写→抠像→小蓝式合成→交付全流程+关键坑(嵌套视频冻结/字体local/预缩放)+素材库台账
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 计费=服务费+模型价拼装(07-14全面调价:海报6/视频60/直连图6·i2v45已上线);中国兑换码¥108=2000分;佣金档位、成本毛利
 - [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/Stitch/环境坑
 - 🔴 [Reference: 提示词改造架构](reference_thinknova_prompt_architecture.md) — **动任何生图/i2v/编剧提示词前必背**:两铁律(自包含/视频场景零字幕)+三层职责(编剧演什么·生图护栏·i2v四细节)+海报视频分家双向边界+六宫格描述法;老板07-09拍定,全文在00_规格与参考/门店内容_提示词改造规范_v1
