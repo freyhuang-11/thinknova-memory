@@ -18,6 +18,8 @@ metadata:
 浅蓝白舞台(#F5F9FD渐变+蓝点阵)+ ThinkNova蓝#2E6BFF/橙#FF7A29 + **人像下半区白描边**(drop-shadow四向6px白)+ **头顶元素一拍一换**(chip+大字/白卡/成片卡/清单/等式/CTA)+ **短句字幕悬头顶y600**(深蓝+白光晕)+ 蓝块slam(金句2-4次)。小蓝方法论:字幕分档/锁人声/两色封顶/砸4-6帧/字微呼吸/永不盖脸;背景=固定舞台元素轮换,不整场切换。
 
 ## 🔴 关键坑(都踩过)
+- **8GB内存机器渲不动"75s全程透明人像"**:alpha源强制提取成PNG序列,Chrome解码位图累积~3GB后固定帧号卡死(878帧),换采帧模式/清缓存均无效。**解法=三层合成(07-18定型,正片①②实证)**:①底版comp(去掉person+slam,轻量jpg输入)正常渲;②砸字层单独comp渲透明webm(--format webm);③ffmpeg叠人像+白描边(alpha膨胀dilation×6≈CSS白描边)+叠砸字层。脚本=_合成源文件/gen_layers.py(自动拆层)+run_queue2.sh(全流水线含composite滤镜图)。
+- **data-media-start+data-duration不得超过源片时长**:提帧在源片末尾截断,渲染到缺帧时刻就60s无进展被看门狗杀掉(报"capture stalled"),留≥0.5s余量。
 - **视频嵌进带data-start的div会被冻结成静帧**——视频必须顶层直挂+自带id+样式圆角边框(border-radius/border直接写在video上)。
 - 非1080×1920的视频当全屏背景会摆不满→先ffmpeg预缩放到1080×1920再喂。
 - 中文字体必须 `@font-face src:local('Microsoft YaHei')` 否则报错掉字;emoji可用。
