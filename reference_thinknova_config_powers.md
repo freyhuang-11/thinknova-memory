@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-19T18:40:41.653Z
+  modified: 2026-07-19T20:02:01.886Z
 ---
 
 > 来源:技术《商家Agent_配置JSON说明书_2026-07-08》《商家Agent完整实现说明_2026-07-08》《merchant-agent-config-guide_2026-07-08.html》(老板 07-08 定为"最终的 json 修改文档",全部归档于 00_规格与参考/技术侧文档/)+ 我方实查。**这三份=promptAssembler+businessUi 层的权威操作手册,但不含 promptComposer(见下,两层并存)。** PUT body 形态=`{"config":{promptAssembler,businessUi}}`。
@@ -34,6 +34,7 @@ referenceCases 全字段(title/summary 六语言对象/visualHint/prefill/预览
 - ❌ 新只读:`promptComposer.blockTemplates.task_goal.first_frame_prompt`(追加两次均被服务器还原,疑代码种子管理)。
 - ⚠️ 新编辑器规矩:坏 JSON 静默不发(无报错)→ 必须对象级改+本地 parse 校验+PUT200 确认;裸文本正则改 config 已禁(吃转义符前科)。
 - ⚠️ screenwriter.staticTemplates(videoTemplate/firstFrameTemplate)**现已被运行时消费**(07-19 多单实证,推翻 07-09 的"不消费"结论);静态 i2v preset(stagePromptPresets.image_to_video.prompt)仍未进最终提交串(技术修复未部署)。
+- ✅ 07-20 行业重组实证:行业选择=建单流程第 1 步现选(fill-info 无行业字段,**行业非存储的商家资料**)→ industryFilters 下架(enabled=false)零老商家残留;businessActions.tutorial(S10 发教程避坑)原全局 enabled=false,已双 agent 启用;新行业 id 全套自配可行(filters/industryRules+镜像/industryPrompts/industryOptionPresets 一次落库,knowledge_share+space_stay 实证);跨 tab 大 payload 传浏览器=OSS 中转 JS 文件+script 标签注入(fetch 被 CORS 拦,script 不受限);t2i auto 档出 1254 方图不出横版(案例卡 cover 裁切无碍);fill-info remount 死循环=自动化点击必触发,真人无碍。
 
 ## ❌ 改不动(全部有实证)
 
