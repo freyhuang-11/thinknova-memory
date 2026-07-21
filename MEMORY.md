@@ -19,6 +19,7 @@
 - [User profile](user_profile.md) — 跨境电商 BD/运营,新加坡市场;TikTok 达人 SaaS + ThinkNova 双线
 - [Feedback: Compass 讨论沟通风格](feedback_compass_discussion.md) — 说重点/有据质疑/别奉承
 - [Feedback: 数据新鲜度呈现立场](feedback_data_freshness_framing.md) — 自信展示别贴"过期"标,也别埋雷;别过度诚实
+- [Feedback: 先查时间再说时间](feedback_check_time_first.md) — 系统只给日期不给时刻,需要判断时刻先跑 date,别凭感觉猜
 - [Feedback: 文件放哪](feedback_file_placement.md) — 桌面只放要看的测试成片/成图,文档进项目子目录(02_交付内容等)
 
 # ThinkNova(实体店内容 SaaS)
