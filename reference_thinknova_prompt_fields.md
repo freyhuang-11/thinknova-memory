@@ -22,6 +22,9 @@ metadata:
 | `promptComposer.screenwriter.staticTemplates.videoTemplate` | ✗ | ✗ | ✅ |
 | `promptAssembler.industryPrompts.<行业>` | **✗ 读不到** | ✅ | ✗ |
 | `promptComposer.opsEditable.subjectDefinition.video` | ✗ | ✗ | **✗ 实测不进提交串** |
+| `promptComposer.opsEditable.*` | **✗ 整层只读** | ctaRule/styleRule 进生图 | ✗ |
+
+**`opsEditable` 是只读的**:PUT 提交后被服务端静默丢弃(两次独立复现,响应仍 `saved:true`)。其 `notes` 写着"运营主要改这一层"与实际相反。已发技术卡。其中 `layoutRules` / `industryRules` 不进任何链路,`ctaRule` / `styleRule` 只进生图。
 
 ## 编剧 input 的完整进食清单(实证 task_40ca1bd2a775)
 
