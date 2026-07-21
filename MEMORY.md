@@ -28,7 +28,7 @@
 - 🔴 [Reference: HyperFrames视频生产线](reference_hyperframes_production.md) — 口播→转写→抠像→小蓝式合成→交付全流程+关键坑(嵌套视频冻结/字体local/预缩放)+素材库台账
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 计费=服务费+模型价拼装(07-14全面调价:海报6/视频60/直连图6·i2v45已上线);中国兑换码¥108=2000分;佣金档位、成本毛利
 - [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/Stitch/环境坑
-- 🔴 [Reference: 提示词改造架构](reference_thinknova_prompt_architecture.md) — **动任何生图/i2v/编剧提示词前必背**:两铁律(自包含/视频场景零字幕)+三层职责+海报视频分家双向边界+**07-19现行态:按秒镜头清单(六宫格描述法已废,板到不了grok)/lineValidation 11语言/到店沉默标准(老板07-20:提示词不教不禁不提,自然偶发OK每条必现=错;禁词自检实证无效已撤,现役=选项文案只喂画面/输出零标签/英文纯净三铁律,详见vault总览14)/去高饱和原相机直出/复读=废片/Luna现役**
+- 🔴 [Reference: 提示词改造架构](reference_thinknova_prompt_architecture.md) — **动任何生图/i2v/编剧提示词前必背**:两铁律(自包含/视频场景零字幕)+三层职责+海报视频分家双向边界+**07-19现行态:按秒镜头清单(六宫格描述法已废,板到不了grok)/lineValidation 11语言/到店沉默标准(老板07-20:提示词不教不禁不提,自然偶发OK每条必现=错;禁词自检实证无效已撤,现役=选项文案只喂画面/输出零标签/英文纯净三铁律,详见vault总览14)/去高饱和原相机直出/复读=废片/Luna现役;**07-20晚:先保成功率再谈效果(老板)——4096字节截断静默不报错必量提交串、videoTemplate已瘦到436字砍掉grok做不到的硬切类规则、六宫格整板实测能按格推进(推翻裁格旧依据,仅漏开头0.25秒)、人脸配额压审核待验**
 - [Reference: 配置权限地图](reference_thinknova_config_powers.md) — **提需求前必查**:我能改的全部config键 vs 改不动的(实证);能自改的自己改完再说话;说明书陷阱(单语言示例/跳变镜头毒词/并集机制);07-20:行业=建单现选非存储资料、S10教程入口已启用、新行业id全套自配实证(知识普及/住宿空间)
 - [Feedback: 配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上;别改错 key
 - [Feedback: 内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向;只守未成年底线
