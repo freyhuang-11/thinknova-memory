@@ -7,6 +7,7 @@
 
 ## L1 · 改配置/提示词前(2026-07-22 一晚押错三次)
 4. 🔴 **先查字段读取图**:哪个字段被编剧/生图/i2v 读取,改之前先拉一条真实任务 input 确认目标字段在里面 → [详](reference_thinknova_prompt_fields.md)
+4.5 🔴 **台词出问题先查 visualHint**:「台词画面同频铁律」会把画面词拉进台词;visualHint 绝不写「台词…」开头的句子 → [详](feedback_visualhint_leaks_into_lines.md)
 5. 🔴 **指派式 > 禁令式**:「第2格拍地标全景」有效,「绝不拍册子」无效;必须禁止时禁令后面立刻跟替换项 → [详](feedback_directive_over_prohibition.md)
 6. 🔴 **落库 ≠ 送达**:PUT 200 + API 回读只证明写进数据库;必须再烧一单拉真实 input/提交串,看见新文案才算"已上线" → [详](feedback_evidence_standard.md)
 7. **i2v 4096 字节硬顶**:超出静默截断且任务仍显示成功;改 videoTemplate 后必量提交串字节+数镜头数 → [详](reference_thinknova_prompt_architecture.md)

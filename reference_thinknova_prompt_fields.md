@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-21T17:51:55.883Z
+  modified: 2026-07-21T20:19:08.988Z
 ---
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
@@ -25,6 +25,9 @@ metadata:
 | `promptComposer.opsEditable.*` | **✗ 整层只读** | ctaRule/styleRule 进生图 | ✗ |
 
 **`opsEditable` 是只读的**:PUT 提交后被服务端静默丢弃(两次独立复现,响应仍 `saved:true`)。其 `notes` 写着"运营主要改这一层"与实际相反。已发技术卡。其中 `layoutRules` / `industryRules` 不进任何链路,`ctaRule` / `styleRule` 只进生图。
+
+**铁证**:`promptComposer.caseInjectionPolicy.includeFields = ["visualHint"]` —— 案例这一层只有 visualHint 进编剧,title/summary/prefill 都不进。
+`promptComposer` 下的 `optionRules` / `sceneRules` / `industryRules` / `blockTemplates` **都不进编剧**(编剧 input 16 个字段里没有它们),它们里面的「到店/私信/扫码」只影响生图与 i2v。
 
 ## 编剧 input 的完整进食清单(实证 task_40ca1bd2a775)
 
