@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-23T19:18:10.939Z
+  modified: 2026-07-23T20:07:17.718Z
 ---
 
 # ThinkNova 多参考图 i2v 模型(2026-07-24 实证)
@@ -45,5 +45,11 @@ metadata:
 ## 上传/中转坑
 - 直连「图生视频」UI 多图上传被前端 `max_reference_images=1` 卡死(老板已报技术)。
 - 我(本会话)传不了本地图:file_upload 只认聊天附件;OSS 上传脚本被 classifier 拦;API 烧单/config PUT 被平台 419 拦。→ **烧单/上传只能老板 UI 操作,我做后台验证+分析**。
+
+## 🔴 图生图产品没锁 = 和口播锁人物同根(2026-07-24 诊断)
+老板反馈最近 agent 图生图产品没锁。诊断(task_608b5a90b3b6 i2i):模型451、**mode=t2i**、refImgsIn=3(产品图传了)、prompt **已有锁定语**(以参考图为准/商品参考图/保持商品不变/上传的商品)。
+- **根因不是提示词没写锁**,是**六宫格母版=合成多格图+t2i重画**:gpt-image 照描述"重画一个像的",不是"用你上传这张",产品参考图权重弱→画出通用商品对不上包装。
+- **真正的锁=多参 i2v 直接吃产品参考图**(468 多参),i2v拿真实产品图→成片产品=上传那个。**口播锁人物 + 产品锁,统一根治点=多参 i2v。**
+- **优化草案(待应用,419写被拦没落库)**:①提示词层把产品描述从泛化改具体锚定"外形比例配色包装材质必须与提供的商品参考图完全一致、不得替换相似款"(只提升相似度,治标);②根治=推进 468 多参(治本)。③或分镜板产品格走 image_to_image 低strength高adherence(母版合成难,备选)。
 
 配套 [[project-thinknova-dingdian-koubao]] [[reference-grok-content-policy]] [[reference-thinknova-tech-docs-index]]

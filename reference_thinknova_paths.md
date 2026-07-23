@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-23T16:58:49.891Z
+  modified: 2026-07-23T20:02:56.535Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
@@ -53,6 +53,13 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 
 ## 成品存储
 输出URL在 `thinknova.oss-cn-beijing.aliyuncs.com`(需鉴权,直下403) / `imagemax2.zhoushurencz1.top`(图片直下) / `1renfile-1256831266.cos.ap-chengdu.myqcloud.com`(视频mp4直下,供应商桶会过期,案例预览别指它)。2026-07 起成片也存自家公共桶 `thinknova-previews.oss-ap-southeast-1.aliyuncs.com/generated-assets/`(无签名直下)。
+
+## 🔴🔴 封面回填真流程(2026-07-24 老板逐行追 up_covers.py 脚本给的权威版,纠正我"OSS直传就行"的错)
+**上传 ≠ 案例有封面!是两步:**
+1. **OSS 上传**:up_covers.py 读 oss_ak.txt → oss2.Bucket(thinknova-previews, ap-southeast-1)→ 遍历本地图 → 文件名去前缀`NN_`后缀`.png`映射 caseId → **key=`previews/{行业}/{文件名}.png`** → put_object_from_file → 生成 **cover_map.json**(caseId→URL)。脚本**到此为止,不回填 config**。
+2. **回填**(另一步):拿 cover_map.json,**admin PUT 把每条 URL 写进对应 case 的 `coverImageUrl`(+另3字段)**。→ **本会话 419 拦 + 2.3MB编辑器冻死,做不了**。
+- ⚠️ **回填前必验 URL 可访问**:今天发现成片(`generated-assets/`前缀)OSS 直连 404、实走 `cdn.thinknova.top`;封面(`previews/`前缀)可能不受影响但**没验证过**——批量回填前先上传1张、浏览器打开确认能显示,别踩"路径想当然"的坑。
+- ❌ **作废我的错误假设**:"OSS 传到 `previews/all/<caseId>_frame.jpg` 前端就按 caseId 自动推导显示、不用回填"——**错**,回填是必须的独立写步骤。
 
 ## 🔑 案例预览图床=自家OSS可自传(2026-07-15实证,不用求技术)
 - 桶 `thinknova-previews`(ap-southeast-1,公共读):案例封面图全在 `previews/all/`(1200+张),案例真视频我放 `previews/case-videos/<caseId>_<task短号>.mp4`,封面帧 `previews/all/<caseId>_frame.*`。
