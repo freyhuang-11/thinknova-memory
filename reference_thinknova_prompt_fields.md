@@ -5,10 +5,16 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-21T20:19:08.988Z
+  modified: 2026-07-23T16:27:38.491Z
 ---
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
+
+> 🔴🔴 **2026-07-24 重大更正——本文件曾有多处错误,已按技术官方文档校正。动手前先读 [[reference-thinknova-tech-docs-index]] 里的原文档 + 拉线上真实 config 核对路径,别只信本表。**
+> **已查实的错误**:
+> 1. **`opsEditable` 不是只读!存反了。** 技术文档《提示词模板保存与主体仲裁_2026-07-20》明确:`promptComposer.opsEditable`(taskGoal.firstFrame / subjectDefinition.firstFrame)才是**运营可编辑真值层**;`blockTemplates.*` 才是它自动编译出的**镜像(手改会被还原,不是保存失败)**。下表里"opsEditable 整层只读"是 07-22/23 污染会话写反的结论,作废。
+> 2. **字段路径可能漏段/过时**:技术文档里编剧在 `promptComposer.**masterPipeline**.scriptwriter.systemPrompt / .staticTemplates.videoTemplate / .lineValidation / .fallbackPolicy`;本表旧写法 `promptComposer.screenwriter.*` 少了 `masterPipeline`。schema 从 07-08 `promptAssembler` → 07-19 `promptComposer.masterPipeline.scriptwriter` 演进过,**以线上真实 config 回读的实际路径为准**,改前必核。
+> 3. **businessUi 嵌套 vs 扁平**:admin `config_json` 里案例/场景/卖点在 `businessUi.{referenceCases,businessActions,sellingPointOptions,detailOptionGroups}`;但商家端 `GET /api/v1/business-video-assets/config` 返回的是**扁平化顶层**(referenceCases 等直接在顶层)。引用字段先说清是哪个端点。
 
 **改任何提示词之前,先对照这张表确认落点。** 三次押错字段的教训换来的。
 
@@ -21,10 +27,10 @@ metadata:
 | `promptComposer.screenwriter.systemPrompt` | ✅ | ✗ | ✗ |
 | `promptComposer.screenwriter.staticTemplates.videoTemplate` | ✗ | ✗ | ✅ |
 | `promptAssembler.industryPrompts.<行业>` | **✗ 读不到** | ✅ | ✗ |
-| `promptComposer.opsEditable.subjectDefinition.video` | ✗ | ✗ | **✗ 实测不进提交串** |
-| `promptComposer.opsEditable.*` | **✗ 整层只读** | ctaRule/styleRule 进生图 | ✗ |
+| `promptComposer.opsEditable.taskGoal.firstFrame` | 首帧主模板(整段覆盖) | 编译进 blockTemplates 生效 | — |
+| `promptComposer.opsEditable.subjectDefinition.firstFrame` | 全局主体仲裁(优先级高于风格/行业/案例) | 生效 | — |
 
-**`opsEditable` 是只读的**:PUT 提交后被服务端静默丢弃(两次独立复现,响应仍 `saved:true`)。其 `notes` 写着"运营主要改这一层"与实际相反。已发技术卡。其中 `layoutRules` / `industryRules` 不进任何链路,`ctaRule` / `styleRule` 只进生图。
+**🔴 `opsEditable` 是运营可编辑真值层(2026-07-20 文档,已纠正旧"只读"错误)**:改 `opsEditable.taskGoal.firstFrame` / `subjectDefinition.firstFrame`,保存时系统自动编译到 `blockTemplates.task_goal.first_frame_prompt`。**别手改 `blockTemplates`——它是派生镜像,手改会被还原(这不是保存失败)**。`firstFrame` 是整段覆盖,改前先复制原文整体改回。案例差异写案例 `visualHint`,别写进全局主体仲裁。旧记忆"opsEditable 只读/PUT静默丢弃"来自污染会话,已作废;若线上 PUT 真被丢弃,那是 admin API 419 或编辑器问题,不代表字段只读——用 UI 编辑器保存法。
 
 **铁证**:`promptComposer.caseInjectionPolicy.includeFields = ["visualHint"]` —— 案例这一层只有 visualHint 进编剧,title/summary/prefill 都不进。
 `promptComposer` 下的 `optionRules` / `sceneRules` / `industryRules` / `blockTemplates` **都不进编剧**(编剧 input 16 个字段里没有它们),它们里面的「到店/私信/扫码」只影响生图与 i2v。

@@ -48,6 +48,7 @@
 
 # ThinkNova(实体店内容 SaaS)
 ### 动手前必背
+- 🔴🔴 [Reference: 技术文档档案索引=唯一真值](reference_thinknova_tech_docs_index.md) — **改任何config字段第0步**:先按索引翻技术原文档(微信目录)+拉线上回读核对路径,再动;记忆只是索引不是真值(2026-07-24 出错根因=信漂移记忆没核文档);含opsEditable是可编辑真值(旧记"只读"存反已纠)、4096裁前缀非回退、价格只在pricing_json
 - 🔴 [Reference: 提示词字段读取图](reference_thinknova_prompt_fields.md) — **改提示词第一查**:编剧只吃 case.visualHint + sellingPoints全文 + systemPrompt;industryPrompts 编剧读不到只进生图;**opsEditable 整层只读(PUT 静默丢弃,已发技术卡)**
 - 🔴 [Reference: 两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步;动任一环前必背
 - 🔴 [Reference: 提示词改造架构](reference_thinknova_prompt_architecture.md) — 三层职责+海报视频分家;4096字节纪律;先保成功率再谈效果
