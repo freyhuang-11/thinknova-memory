@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-23T12:33:21.212Z
+  modified: 2026-07-23T16:58:49.891Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
@@ -47,7 +47,7 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **版本记录**:`GET /admin/api/v1/agents/{数字id}/revisions`(video=id4/content=id3;用 code 报 500)。**但生产实际 0 条**(07-22 技术"版本记录"报告未真上生产);**直连 PUT 仍 419(419001)**;opsEditable 保存据报告已修待实测。
 - **模型定价**:`GET /admin/api/v1/models`→data.items(36);列表不含定价数值,核/改走模型编辑 UI「定价 JSON」框。459 grok-video-3 当前 enabled=1(待核该不该停)。
 - **#7 每行业显示哪些场景**=`businessUi.businessActions[].visibleIndustries`(去掉某行业=该场景在该行业隐藏);sceneId S01..S13,label 在 businessActions。
-- **占位示例**=`businessUi.placeholderDefaults.<行业>`(商品名/活动示例,config 可改);**补充要求那句 placeholder 是前端写死**(config 无,改需技术)。
+- **占位示例**=`businessUi.placeholderDefaults.<行业>`(商品名/活动示例,config 可改);**补充要求那句 placeholder** 🔴**2026-07-24更正**:由 config `globalRules.extraRequirementPlaceholder` 控制、**运营可自改**(清空=用前端默认,填了=前端优先显示后台值,技术文档《前台场景过滤与补充要求说明_07-23》)——旧写"前端写死/改需技术"是错的。
 - **编辑器 2MB config 高频冻结**:set/save 后 readback 常 CDP 45s 超时→**导航到轻页(#/dashboard)再 fetch 回读即恢复**,别在冻结页重试。config 改动存 window.__pendingCfgStr 跨 hash 导航不丢。
 - **供应商瞬时超时**:i2v/编剧 errorMsg "超出上下文截止日期"=Grok/Luna 超时(瞬时,非配置问题),会连累编剧回退+i2v failed,重烧即可。
 

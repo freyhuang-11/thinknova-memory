@@ -5,9 +5,15 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
+  modified: 2026-07-23T16:57:59.993Z
 ---
 
 > 2026-07-08 老板亲述并要求写死:"你和我对了 2 天流程,自己都不知道流程?" —— 动这两条管线任何一环之前,先把本条从头到尾走一遍,不许再把中间产物/子任务张冠李戴。
+
+> 🔴 **2026-07-24 更正——本文是 07-08 快照,管线大形态仍对,但三处术语/机制已过时(源真值见 [[reference-thinknova-tech-docs-index]]):**
+> 1. **编剧输出不是"lines+shots"**:技术文档《编剧输出与提示词拼装_07-09》定编剧输出 5 顶层字段 = `concept / firstFrameCell / boardCells(给板t2i,无台词) / cells(给i2v,逐子格8字段含台词) / lines(仅程序字数校验,不进prompt)`。**没有 `shots` 这个字段**,下文"shots 分镜"作废。
+> 2. **编剧 systemPrompt 不是 PHP 写死**:07-09 起 `systemPrompt` 已是 config 可编辑键(代码只固化拼装结构不控内容);下文"systemPromptSource=builtin_default(PHP写死)"过时。
+> 3. **台词不再"定长硬切"**:07-19 起用 `lineValidation`(masterPipeline.scriptwriter,按 copyLanguage 分语言口径)校验,下文"lines 被定长硬切/切在词中间"过时。
 
 ## 海报管线(offline_store_content,outputType=poster/image)
 1. **商家填资料**(商品名/价格活动/店名/位置/卖点/比例/风格…)

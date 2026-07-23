@@ -5,10 +5,15 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-19T18:41:24.154Z
+  modified: 2026-07-23T16:57:09.379Z
 ---
 
 老板 2026-07-09 拍定的提示词改造规范(全文=`00_规格与参考/门店内容_提示词改造规范_v1_2026-07-09.md`)。动生图/i2v/编剧任何提示词前先过一遍。配合 [[reference-thinknova-pipeline-flow]] [[reference-thinknova-config-powers]]。
+
+> 🔴🔴 **2026-07-24 更正横幅——本文是 07-09/07-19 旧快照,以下几处已被技术官方文档推翻,读正文前先看这里(源真值优先,见 [[feedback-source-truth-first-commander]] [[reference-thinknova-tech-docs-index]]):**
+> 1. **opsEditable 主从写反了**:本文多处把 `opsEditable` 当成 `blockTemplates` 的「镜像」并教「双写 opsEditable」(如全板人物锁段、三层职责"i2v我PUT+双写opsEditable")——**反了**。技术文档《提示词模板保存与主体仲裁_07-20》:`opsEditable`(taskGoal.firstFrame/subjectDefinition.firstFrame)=**运营可编辑真值**,`blockTemplates` 才是系统自动编译/还原的镜像。**正解=只维护 opsEditable,别手改 blockTemplates(手改会被还原),更别"双写"。**
+> 2. **编剧字段路径**:本文通篇 `promptComposer.screenwriter.*`;技术文档(07-19/07-21)是 `promptComposer.masterPipeline.scriptwriter.*`(systemPrompt/staticTemplates/lineValidation/fallbackPolicy)。schema 演进过,**以线上 config 回读的实际路径为准**,别认死本文。
+> 3. **4096 字节后果**(见下方"1. 4096字节截断雷"):本文说"静默砍尾、镜头和收尾消失";技术文档《07-12》说超限是"**裁静态/修饰前缀、优先保台词+分镜guard+参考图**";且**"4096超限"与"编剧回退"是两条独立机制**(回退=模型超时/格式错,走 fallbackPolicy),别绑成因果。实证 task_afe9a1492361 口播单 i2v 3307B 正常出 5 句台词、编剧无回退。**遇到镜头/收尾丢失带任务号找技术,别默认是"必爆回退"。**
 
 ## 两条铁律(违反即回炉)
 1. **每段prompt自包含**:编剧/t2i/i2v每次调用无状态,模型只拿到「本段文字+本次传入图」,看不到平台案例/配置/上一环产出。禁引用"后台image_to_video配置""上文/之前编剧"等模型拿不到的东西。→ 当前违规:i2v写"基于后台image_to_video配置"(模型看不到)。
