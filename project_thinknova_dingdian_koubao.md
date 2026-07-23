@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-23T12:39:21.758Z
+  modified: 2026-07-23T12:50:52.066Z
 ---
 
 ThinkNova 门店视频·定点口播/纯口播线(2026-07-23 起)。第一群体用户=**直销人员(Atomy/艾多美)**,主要用**纯口播**场景做视频。配合 [[project-thinknova-offline-agents]] [[reference-thinknova-paths]] [[reference-thinknova-prompt-fields]]。
@@ -30,6 +30,10 @@ ThinkNova 门店视频·定点口播/纯口播线(2026-07-23 起)。第一群体
 ## 用户端提示语(规范从用户开始)
 - **补充要求 placeholder**(前端写死,待技术改)=候选2:`可填想突出的元素、画面风格;若要指定台词,最多 5 句、每句 10–12 字(太长系统会自动压缩)。`(去掉误导的"视频时长和格式固定")。技术卡在 scratchpad/placeholder_copy_and_techcard.md。
 - **美业口播占位示例**(placeholderDefaults.beauty,config可改,待落库):商品名从"套餐"改单品+口播由头,如"氨基酸洁面/油皮亲测不紧绷,我自己一直在用"。
+
+## 待评估/待办(老板 2026-07-23 记)
+- **纯口播 vs 带产品口播能否合并成一个模式/案例?** 老板提的开放问题,待评估(两者都是单人对镜口播,差别只在手里有没有拿产品;可能一套模式+"是否手持产品"开关搞定)。
+- **两种口播都过审通过后 → 补齐所有封面图**(封面图我给提示词,交 Codex 生成;桶 previews/all/;回填 referenceCases 四 URL 字段)。
 
 ## 相关
 - Atomy 线下分享会 PPT 大纲 v2(18页)已起草(scratchpad/atomy_ppt_outline_v2.md):教直销会员用AI做营销+ThinkNova介绍+现场下单;删了推广大使、四场景改艾多美会员使用场景、加"为什么多发短视频"、留艾多美专属案例展示位(案例两天内补齐)。
