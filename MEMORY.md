@@ -35,6 +35,7 @@
 20. 🔴 密钥不外发不进聊天不打印不进任何 git 仓库
 21. 🔴 禁 `taskkill /IM python`,按 PID/端口精准杀 → [详](feedback_kill_python_scope.md)
 22. 🔴 线上 config = 唯一真值,禁种子覆盖;改前必验框身份+金额(定价曾被 config 覆盖)
+22.5 🔴 **线上 config 是前端/编剧的契约,不是提示词草稿**(2026-07-24 技术当老板面发火):结构/字段/新字段一律交技术,我只碰纯文本字段;动前先读技术文档;配置变更先用自然语言讲清再动,不直接甩 JSON;认账但别为认错乱背锅(「案例全没了」实为前端路由守卫,非我config) → [详](feedback_dont_edit_prod_config_structure.md)
 23. **记忆只留当前状态**,过时内容覆盖删除,不堆叠矛盾层 → [详](feedback_memory_keep_current.md)
 24. **老板发的提示词参考当天归档**(曾丢 3 次) → [详](reference_prompt_library.md)
 
