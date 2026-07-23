@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-23T19:02:52.562Z
+  modified: 2026-07-23T19:18:10.939Z
 ---
 
 # ThinkNova 多参考图 i2v 模型(2026-07-24 实证)
@@ -26,6 +26,21 @@ metadata:
 2. 🔴 **requestTemplate 的 `image` 字段只收单个字符串,不收数组**:把 `"image":"{{referenceImages}}"`(数组)一填,供应商直接 **HTTP 400** `json: cannot unmarshal array into Go struct field .Alias.image of type string`(实测 task_608b5a90b3b6,i2v modelId=468 fail)。
    - **正解**:`image` 保持 `{{referenceImages.0}}`(单张首帧);**多图另开字段** `{{referenceImages}}`,字段名候选 **`reference_images`**(411 manxue 适配器用的名,最可能)> `images`。以 manxueapi 视频API文档为准(老板说文档有遗漏,待确认)。
 3. 分镜板(i2i)本来就吃多参(实测 task_608b5a90b3b6 i2i refImages=3,板正常,老板"验证无数次");问题只在 i2v 请求格式。
+
+## ✅ 468 多参跑通的正确配置(2026-07-24 实证)
+两个框都要改:
+1. **「模型能力 JSON」框**:`"maxReferenceImages": 1` → **`5`**(卡张数的DB闸,在该框底部 `firstFrameAdherence` 前)。
+2. **「通用协议 JSON」框**:
+   - `requestMapping.referenceImages`:`{"mode":"multi","path":"reference_images","maxCount":5}`(path 从 image 改 reference_images);
+   - `requestTemplate`:`"image":"{{referenceImages.0}}"`(单张首帧,string)+ **新增** `"reference_images":"{{referenceImages}}"`(数组)。
+- 实证:改后 **HTTP 400 unmarshal 消失,2张参考图进 i2v**(task_fb9776f1fc18)。字段名 `reference_images` 对(技术文档07-12 实证名)。
+
+## 🔴 grok-fast(468)多图时长硬约束(供应商亲口)
+`Model grok-imagine-video-1.5-fast supports 15s only for text-to-video or a single reference image; **multiple reference images must use 6s or 10s.**`
+→ **多图必须 6s 或 10s,不能 15s**(15s只留单图/文生视频)。测多参烧单**时长选10s**;商家口播若强制15s,多参口播需改用10s输出。
+
+## 单图403特例(别误判)
+单图直连单报 `Failed to fetch input URL: 403`(task_334083c07f97):根因=该单把**同一张图同时当首帧+参考图**,同一公网URL(thinknova-previews桶)被供应商连拉两次,第二次被限流/防盗链403。**多图(不同URL各拉一次)不重演**(实证多图单是时长错非403)。非真障碍。
 
 ## 上传/中转坑
 - 直连「图生视频」UI 多图上传被前端 `max_reference_images=1` 卡死(老板已报技术)。
