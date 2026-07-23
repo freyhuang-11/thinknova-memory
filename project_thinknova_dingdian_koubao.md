@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-23T13:25:33.734Z
+  modified: 2026-07-23T13:59:14.491Z
 ---
 
 ThinkNova 门店视频·定点口播/纯口播线(2026-07-23 起)。第一群体用户=**直销人员(Atomy/艾多美)**,主要用**纯口播**场景做视频。配合 [[project-thinknova-offline-agents]] [[reference-thinknova-paths]] [[reference-thinknova-prompt-fields]]。
@@ -40,6 +40,12 @@ ThinkNova 门店视频·定点口播/纯口播线(2026-07-23 起)。第一群体
 ## 用户端提示语(规范从用户开始)
 - **补充要求 placeholder**(前端写死,待技术改)=候选2:`可填想突出的元素、画面风格;若要指定台词,最多 5 句、每句 10–12 字(太长系统会自动压缩)。`(去掉误导的"视频时长和格式固定")。技术卡在 scratchpad/placeholder_copy_and_techcard.md。
 - **美业口播占位示例**(placeholderDefaults.beauty,config可改,待落库):商品名从"套餐"改单品+口播由头,如"氨基酸洁面/油皮亲测不紧绷,我自己一直在用"。
+
+## 🔴 口播真相 + videoTemplate 改动(2026-07-23 晚,5次实证)
+- **Luna 编剧只认 extraRequirement(最高优先级),不认案例 visualHint / systemPrompt 的口播指令**(5次实证全忽略,照写景别×7/微距/无人/每3秒切镜)。唯一锁住=画面禁令进 extraRequirement(task_6869808926a5 实证人物场景锁住)。
+- **但不能要客户填补充要求(违背零动脑)**。config 无字段能把禁令隐形注入 extraRequirement(prefill 只填商品名/活动;caseInjectionPolicy 注入的非最高优先级)。→ **正解=技术加案例级"画面锁定指令"字段,服务端按 user_extra_requirement 注入,客户不可见**(技术卡:02_交付内容/给技术_口播画面锁定自动注入_2026-07-23.md)。临时可用 prefill.extraRequirement(可见)顶。
+- **videoTemplate 已加两条(i2v侧,无需客户输入,自动生效)**:①`【口播一镜到底·最优先】`(首帧是单人口播→全片一个连续长镜头,五子格只是台词分段不是切镜点→治每3秒切镜)②`【全片锁死不漂移】`(饱和度/色调/白平衡/人物形象全片与首帧一致、绝不随时间渐变漂移→治所有视频 Grok 自由发挥变形象变色)。
+- ⚠️ vt 现 2484 字节,普通视频(cells 长)拼装可能逼近 4096,**下条普通视频烧单必量提交串字节**。
 
 ## 待评估/待办(老板 2026-07-23 记)
 - **纯口播 vs 带产品口播能否合并成一个模式/案例?** 老板提的开放问题,待评估(两者都是单人对镜口播,差别只在手里有没有拿产品;可能一套模式+"是否手持产品"开关搞定)。
