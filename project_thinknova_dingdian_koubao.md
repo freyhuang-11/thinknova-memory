@@ -5,10 +5,14 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-23T19:01:41.141Z
+  modified: 2026-07-23T19:27:27.903Z
 ---
 
 ThinkNova 门店视频·纯口播线。第一群体用户=**直销人员(Atomy/艾多美)**,主要用**纯口播**做视频。配合 [[project-thinknova-offline-agents]] [[reference-thinknova-paths]] [[reference-thinknova-prompt-fields]] [[reference-thinknova-prompt-architecture]]。
+
+## 🔴 命名 + 全行业覆盖(老板 2026-07-24 睡前定)
+- **改名**:**不做"定点口播·背景流动/换背景"**——它就是**「持续口播视频」**(单人对着镜头持续说,画面不换背景不切镜)。以后统一叫"持续口播",删掉"定点换背景"这个变体概念。
+- 🟢 **口播验证已通过**(禁令进补充要求锁单人+画面,实证)→ **全行业覆盖(active待办)**:把口播案例(visualHint 纯口播 + owner_speaking + prefill offer/productName)复制到**每个行业**建一条"真人持续口播"案例,画面标准全行业统一,只换行业/商品。⚠️ 需 config 写入(419-UI法,老板操作或授权);我这会话直接 API 写被 419 拦。
 
 ## 🔴 2026-07-24 三条实证规则(口播+多参,老板要求记入规则体系)
 1. **禁令(补充要求)能锁口播画面,但成片易被 Grok 审核拒**:把「纯口播锁定:全片只拍同一个人…画面禁止操作/海报/无人镜头/场景切换…画面不跟台词走」贴进**补充要求**(Luna 最高优先级),实证编剧 cell1 从"两个人"变"单人正面对镜"(task_4d18/ac44/57df)——**画面锁成功**。但同批成片被 Grok **内容审核拒(几次过一次)**:根因=逼真真人正脸+对镜说话是 Grok 预测式审核最敏感组合(见 [[reference-grok-content-policy]]),我们提示词又拉满"原相机直出/微距肤质写实"。**降拒率杠杆**:①喂真人参考图(需多参模型) ②videoTemplate 降写实措辞→偏电影感/略风格化 ③别全程大特写正脸。测法=单变量对照。
