@@ -65,6 +65,7 @@
 - [Feedback: 内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向;只守未成年底线
 - [Feedback: 案例缺口双查法](feedback_case_gap_dual_check.md) — 矩阵完整性+外部形态对标
 - [Feedback: 小红书内容交付规矩](feedback_xiaohongshu_content_workflow.md) — 每条含"照着填"清单
+- [Feedback: 烧单分工](feedback_thinknova_burn_division.md) — agent建单老板做/直连测试我做/封面图我给提示词Codex做
 
 # Compass / TikTok 达人线
 - [项目:KOL Compass(接管系统)](project_kol_compass.md) — 对外 SaaS,Codex 开发,5175前端+8015后端
