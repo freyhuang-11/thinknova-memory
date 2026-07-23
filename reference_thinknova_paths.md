@@ -5,6 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
+  modified: 2026-07-23T12:33:21.212Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
@@ -38,6 +39,17 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **⭐检查生成问题的正确入口=主任务详情页**(老板 0708 指:检查任务都从主任务详情查):看三样——①**完整链路一目了然**:用户传了什么参考图 → 生成了哪些中间产物(首帧/分镜) → 最终交付了什么;②**组装溯源**——最终 prompt 每一段来自哪个 config 字段(`commonPrompts.systemPolicyPrompt` 等)+实际值,前端渲染(海报单按字段细分/视频单粗);③**配置快照**——任务生成时的完整 `promptAssembler`,可点开对比当前 config 差异。API 层 `child_tasks[].attempts[].prompt_entries` 是粗版(仅 `input.prompt`/`negative_prompt` = 实际提交给模型的全文)。
 - **一致性检查法**:组装溯源实际值 / 配置快照 vs 当前 config → 一致=config 是真值任务无漂移;不一致=有覆盖/旧快照。**实测 0708**:海报单 common 层 5 字段(systemPolicy/userInput/userExtra/riskCheck/finalGeneration)组装溯源实际值**逐字=当前 config commonPrompts**,一致,证明任务如实吃 config。
 - `GET /business-video-assets/tasks/{taskNo}` 任务详情(含成品URL)
+
+## 🔴 2026-07-23 实测修正(后台 API 真实形态,以此为准)
+- **agents 列表**:`GET /admin/api/v1/agents` → `data.items[]`(不是 data.agents);每项含 code/config/updated_at。
+- **子任务完整 payload**:`GET /api/v1/ai/tasks/{taskNo}?assets=1`(商家端 cookie)→ `data.task`{input,output,assets}。i2v 提交串=input.prompt(量 `new Blob([p]).size`);编剧台词=output.dynamicJson.lines / 镜头=output.compiledPlan.videoPrompt;编剧回退看 output.fallback/source(=text_model 非回退)。成片=assets[0].publicUrl(mime video/mp4)。admin `/admin/api/v1/ai-tasks/{id}?payload_only=1` 返回 null 别用;列表项有 scriptwriter_fallback 字段。
+- **成片下载**:harness 掩 URL 取不回→浏览器建 `<a download>` click 直接落 `D:\SamsoData\Downloads\`(服务器 Content-Disposition 改成 hash 文件名,按最新 mtime 认),再 ffmpeg 抽帧(fps=2,scale,tile=6x5 联系表)。
+- **版本记录**:`GET /admin/api/v1/agents/{数字id}/revisions`(video=id4/content=id3;用 code 报 500)。**但生产实际 0 条**(07-22 技术"版本记录"报告未真上生产);**直连 PUT 仍 419(419001)**;opsEditable 保存据报告已修待实测。
+- **模型定价**:`GET /admin/api/v1/models`→data.items(36);列表不含定价数值,核/改走模型编辑 UI「定价 JSON」框。459 grok-video-3 当前 enabled=1(待核该不该停)。
+- **#7 每行业显示哪些场景**=`businessUi.businessActions[].visibleIndustries`(去掉某行业=该场景在该行业隐藏);sceneId S01..S13,label 在 businessActions。
+- **占位示例**=`businessUi.placeholderDefaults.<行业>`(商品名/活动示例,config 可改);**补充要求那句 placeholder 是前端写死**(config 无,改需技术)。
+- **编辑器 2MB config 高频冻结**:set/save 后 readback 常 CDP 45s 超时→**导航到轻页(#/dashboard)再 fetch 回读即恢复**,别在冻结页重试。config 改动存 window.__pendingCfgStr 跨 hash 导航不丢。
+- **供应商瞬时超时**:i2v/编剧 errorMsg "超出上下文截止日期"=Grok/Luna 超时(瞬时,非配置问题),会连累编剧回退+i2v failed,重烧即可。
 
 ## 成品存储
 输出URL在 `thinknova.oss-cn-beijing.aliyuncs.com`(需鉴权,直下403) / `imagemax2.zhoushurencz1.top`(图片直下) / `1renfile-1256831266.cos.ap-chengdu.myqcloud.com`(视频mp4直下,供应商桶会过期,案例预览别指它)。2026-07 起成片也存自家公共桶 `thinknova-previews.oss-ap-southeast-1.aliyuncs.com/generated-assets/`(无签名直下)。
