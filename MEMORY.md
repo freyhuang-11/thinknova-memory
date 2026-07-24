@@ -60,7 +60,7 @@
 ### 现行状态
 - [项目:实体店两个Agent(工程主线)](project_thinknova_offline_agents.md) — 视频615案例/海报830;三把锁(人/商品/门店)+无参考图分支+台词口语+台词非字幕已上线;**CTA未选仍强加召唤=唯一未解**
 - 🔴 [项目:定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销Atomy第一用户;强化锁死段已上线待复烧;编剧补充要求两分支(写台词采用+压标准/没写照常)已上线;目标=人物口播+尽可能少切换
-- 🔴 [项目:营销拉新线](project_thinknova_marketing.md) — 内容铁律+分工(Claude成片/老板口播/Codex海外)
+- 🔴 [项目:国内营销线](project_thinknova_marketing.md) — 内容定稿V式(无声示意图)+X式(口播抠像),只讲机制禁案例;口播管线(CFR/抠像/喊卡手工);对照实验7条已交待发;平台定位「口语解放/推广平权」已上报总指挥待拍板;小红书干货化;**待办=生新小红书+新脚本**
 - 🔴 [Reference: HyperFrames视频生产线](reference_hyperframes_production.md) — 口播→转写→抠像→合成→交付+关键坑
 - [Reference: 扫码发布配置各平台深链](reference_thinknova_publish_schemes.md) — 系统配置→通用;抖音/小红书/快手/TikTok 已真机验证到上传页(2026-07-24);scheme只到入口·预载视频需SDK·改后必真机测
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;中国兑换码¥108=2000分
