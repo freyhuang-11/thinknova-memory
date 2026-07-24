@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-24T16:55:20.122Z
+  modified: 2026-07-24T17:31:22.245Z
 ---
 
 # ThinkNova「品牌产品」行业 + 广告TVC大片风格(2026-07-24 老板拍板)
@@ -13,9 +13,12 @@ metadata:
 ## 背景
 现有 22 行业全是**实体店类目**,卖洗衣液/饮料/胶囊这类**自有品牌快消品/线上产品**没对口行业;custom(自定义)因"想猜整个场景、不确定性爆炸"出片烂。艾多美(568杂SKU)也是这需求。见 [[project-thinknova-dingdian-koubao]]。
 
-## 决策(老板定)
-1. **加一个「品牌产品」行业**(不分细类,一个通用够用)。
-2. **每个行业都加「广告 TVC 大片」视频风格选项**。
+## 决策(老板定)+ 落库状态(2026-07-25 已存)
+1. **加一个「品牌产品」行业**(不分细类,一个通用够用)。✅ **已落库**(industryFilters id=`brand_product` + industryOptionPresets,老板真人点保存,服务端回读确认;行业 22→23)。
+2. **广告 TVC 大片 = 加在「场景」里,不是核心设置视频风格!**(🔴 我一开始错加成 videoStyle 选项,老板纠正:要的是**场景/内容类型**。场景全局→所有行业自动都有=对应"每个行业加"。)✅ **已落库**(businessActions id=`cinematic_ad`/sceneId=`S14` + scenePrompts.S14{imagePrompt,videoPrompt} + preview/label/description 六语言;videoStyle 里错加的已删;场景 13→14)。
+- ⚠️ **两者都还缺案例**:选了场景/行业后"挑案例"那步为空、走不下去。需给 S14 场景 + brand_product 行业各配案例(案例库表写入,走案例库管理页 app-UI 或 OSS)。这是下一步。
+- 📌 **服务端归一化实测**:detailOptionGroups 的 option `value` 会被加组前缀(ad_film→`video_style_ad_film`,提示词 key 同步归一化、两边一致仍生效);但 businessActions.id / industryFilters.id **不归一化**(cinematic_ad/brand_product 原样存)。
+- 📌 **编辑器落库法(2026-07-25 实测成功)**:admin→智能体→编辑→JS 在 config textarea(第2个,businessUi 开头)原生 setter 赋值 + 派发 **`InputEvent('input',{inputType:'insertText'})`**+change(**普通 Event 不同步、渲染层不认**,这是之前存不进的原因)→ 确认渲染层含新内容(dlg.innerText)→ **老板真人点「保存 Agent」**(我程序化点 button 不触发保存)→ 点「重新从服务端读取」→ GET 商家 config 回读验证。
 
 ## 「品牌产品」行业设计(产品优先)
 - **核心逻辑**:格式固定=产品英雄图+卖点+(可选)广告风格;**产品长啥样不靠系统猜,靠用户上传的产品参考图+商品名锁定**(品类再杂,不确定性没了——这是 custom 缺的)。
