@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-24T15:25:01.530Z
+  modified: 2026-07-24T16:55:20.122Z
 ---
 
 # ThinkNova「品牌产品」行业 + 广告TVC大片风格(2026-07-24 老板拍板)
@@ -30,6 +30,21 @@ metadata:
   > 广告大片(TVC)风格:电影级戏剧布光,主光+轮廓光雕出主体质感与光影层次;稳定专业运镜(缓慢推拉/环绕,绝无手持晃动);浅景深虚化背景,大留白考究构图;统一高级的电影感调色;整体极简、时尚、高端,像顶级品牌宣传片,而非日常手机实拍。
 - 参考标杆:Apple/汽车广告/星巴克/Balenciaga TVC。**提示词里别写品牌名**(防logo/滤镜artifact),只描述视觉语言。
 - ⚠️生效依赖:videoStyle 选项"选了进不进编剧"正是技术在修的前端链路(见 [[reference-thinknova-paths]] 问题二);加了选项,选中生效可能要等技术那条修完(和 premium_clean 同).
+
+## ✅ 广告大片选项·现成可粘(2026-07-25 已核实格式,待落库)
+video agent(offline_store_video)config,两处加:
+1. `businessUi.detailOptionGroups[videoStyle].options` push:
+   `{"enabled":true,"value":"ad_film","sortOrder":50,"label":{"zh":"广告大片","en":"Cinematic ad (TVC)","es":"Anuncio cinematográfico (TVC)","ja":"広告大作（TVC）","ko":"광고 대작(TVC)","vi":"Quảng cáo điện ảnh (TVC)"}}`
+   (videoStyle 组用 `id` 不是 key;现有选项格式=enabled/value/sortOrder/label六语言;prompt 不内联)
+2. `promptAssembler.businessOptionPrompts.videoStyle.ad_film`(字符串)=
+   `广告大片（TVC）风格：电影级戏剧布光，主光加轮廓光雕出主体质感与光影层次；稳定专业运镜（缓慢推拉或环绕，不手持晃动）；浅景深虚化背景，大留白考究构图；统一高级的电影感调色；整体极简、时尚、高端，像顶级品牌宣传片，而非日常手机实拍。`
+- 行业卡格式(industryFilters):`{enabled,iconKey,iconUrl:"",id,label:六语言,promptTemplate:"",sortOrder}`。品牌产品:id=`brand_product`,label.zh=品牌产品,iconKey=box。
+- 预设格式(industryOptionPresets 是数组):`{industryId,defaultAppearanceMode,endingCta:[],sellingPoints:[],visualFocus:[]}`。品牌产品建议 defaultAppearanceMode=`product_only`。
+
+## 🔴 后台 agent 编辑器落库·2026-07-25 卡住(待解)
+- 视频 agent config=**188KB**(referenceCases external_table 后不再 2.3MB,不卡渲染)。config 框=第2个 textarea(带行号,但**不是 CodeMirror/Monaco**,cmCount=0)。**config 内容被 harness 掩码**(API 读 config/stored_config 返回 undefined),但**在编辑器页面内 JS `textarea.value` 能 parse 到全量**、可对象级改。
+- ❌ **卡点**:`textarea` 原生 value setter + 派发 input/change 后点「保存 Agent」→ **ad_film 没落库**(GET 商家 config 仍 4 个选项)。疑:①该编辑器 v-model 不认原生 input 事件(Vue 组件自管),或②保存被 config_sha256 冲突/安全分类器拦,或③技术正部署该 agent 撞车。**下次需换同步法**(找 Vue 实例/组件 setter,或真键入),或直接交技术加(一行配置)。
+- ⚠️ agent 当时状态:列表显示"已停用"但编辑器"启用"勾选着 + 老板还在烧视频单(task_f5e4ce5c3c2e)→ 实为启用;技术在部署。
 
 ## 🔴 落地卡点(和封面回填同一个墙)
 - **能直接落库**(419-UI 改 config):广告TVC选项、行业卡/预设/行业提示词骨架。
