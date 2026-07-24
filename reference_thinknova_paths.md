@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-23T20:02:56.535Z
+  modified: 2026-07-24T07:58:36.053Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
@@ -54,7 +54,16 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 ## 成品存储
 输出URL在 `thinknova.oss-cn-beijing.aliyuncs.com`(需鉴权,直下403) / `imagemax2.zhoushurencz1.top`(图片直下) / `1renfile-1256831266.cos.ap-chengdu.myqcloud.com`(视频mp4直下,供应商桶会过期,案例预览别指它)。2026-07 起成片也存自家公共桶 `thinknova-previews.oss-ap-southeast-1.aliyuncs.com/generated-assets/`(无签名直下)。
 
-## 🔴🔴 封面回填真流程(2026-07-24 老板逐行追 up_covers.py 脚本给的权威版,纠正我"OSS直传就行"的错)
+## 🔴🔴🔴 封面回填正解=案例库管理页(2026-07-24 技术《运营手册_商家Agent后台配置》,推翻下面整套"OSS+PUT/419-UI"旧法)
+**别再走大 config 编辑器 / 手工 OSS 回填!** 技术手册第4节:后台 Agent 编辑页有独立入口 **「管理案例库与封面图」**(案例库管理页):
+- **分页读取**,新增案例/改封面**不会打开几 MB 的完整 Config JSON**→ 不再冻死(2.3MB 冻死的根因就是走错了大 config 编辑器)。
+- 流程:进案例库管理页→选案例(或「新增案例」填唯一 id + 最小 JSON→「创建案例」)→**上传封面图**(JPEG/PNG/WebP,≤12MB)→系统**自动写入 `coverImageUrl`**。
+- 🔴 **`coverImageUrl` 是"上传封面自动写入",别手工拼 OSS 链接**(手册明确)。→ 之前我纠结的"OSS 传完还要 admin PUT 回填四字段"多半是旧路径;**新法只需在案例库管理页上传封面**。
+- 🔴 **大案例库前提**:`businessUi.referenceCasesSource` 必须 = **`external_table`**(inline 禁用于大库=编辑器卡顿+服务端 CPU 峰值;hybrid 仅少量覆盖)。**2.3MB config 冻死高度疑似 = 海报 agent 的 referenceCases 还是 inline**——待 GET 回读 `referenceCasesSource` 确认;若 inline,根治=切 external_table(把案例挪进案例库表),config 立刻变小、封面走管理页。
+- ⚠️ **待实操验证**:案例库管理页能否用我的 419-UI/自动化驱动(还是只能老板真人点),下次有登录会话时实测;但方法上这是官方正解,优先走它。
+
+---
+## (旧/备用)封面回填 OSS+PUT 法(2026-07-24 老板逐行追 up_covers.py;上面案例库管理页是官方正解,此法仅在管理页不可用时备用)
 **上传 ≠ 案例有封面!是两步:**
 1. **OSS 上传**:up_covers.py 读 oss_ak.txt → oss2.Bucket(thinknova-previews, ap-southeast-1)→ 遍历本地图 → 文件名去前缀`NN_`后缀`.png`映射 caseId → **key=`previews/{行业}/{文件名}.png`** → put_object_from_file → 生成 **cover_map.json**(caseId→URL)。脚本**到此为止,不回填 config**。
 2. **回填**(另一步):拿 cover_map.json,**admin PUT 把每条 URL 写进对应 case 的 `coverImageUrl`(+另3字段)**。→ **本会话 419 拦 + 2.3MB编辑器冻死,做不了**。
