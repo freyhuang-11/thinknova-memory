@@ -5,10 +5,28 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-24T18:18:17.036Z
+  modified: 2026-07-24T19:20:38.953Z
 ---
 
 # ThinkNova「品牌产品」行业 + 广告TVC大片风格(2026-07-24 老板拍板)
+
+## 🔴🔴 2026-07-25 深夜定案:TVC(S14)生不出=场景没注册,不是案例问题(实验证据)
+**症状**:brand_product/所有行业的**广告TVC大片(S14)烧单报 500**(`code 500001, Internal server error`,如 request_id req_5367afe3e549),其它场景都正常。
+**隔离实验定位法(关键方法)**:直连 POST `api.thinknova.top/api/v1/business-video-assets/tasks`(商家域,带商家CSRF头),用**老行业 beauty + 同一新场景 S14** 复现 → **一样500**。→ 排除行业/案例/appearanceMode,**锁死是场景 S14**。
+**根因(admin GET 读全量config核实)**:
+- 🔴 `promptComposer.sceneRules` 里 **S01~S13 全在、唯独缺 S14** → 父任务组装读 `sceneRules[S14]` 取不到 → 500(**建单阶段就挂、不建任务记录**,所以任务列表查不到失败单)。
+- 🔴 `promptAssembler.industryPrompts` **28行业都有、唯独缺 brand_product**(配置JSON说明书6.3:industryFilters.id 必须和 industryPrompts 键对应)→ 生图层取不到。
+**修复结果**:
+- ✅ `industryPrompts.brand_product` 已从后台编辑器补上并保存生效(镜像 retail 的 imagePrompt/videoPrompt 结构)。
+- ❌ `sceneRules.S14` **运营端补不进去**:后台编辑器一保存就把 sceneRules 里的 S14 **剥离、退回13**(编辑器只认已注册场景枚举 S01~S13,把 S14 当非法键删;industryPrompts 不校验所以 brand_product 留得住)。
+- 🔴🔴 **结论:加"新行业"运营能配全;加"新场景"必须技术做**——先把场景注册进合法场景枚举(后端/代码层),运营配不了。已给技术精确spec(注册S14枚举+补sceneRules.S14)。
+**教训**:①加行业/场景**先查技术文档(配置JSON说明书6.3等)再动手**,别踩了才回头翻(漏 industryPrompts+sceneRules 根因=没先查)。②`admin GET /admin/api/v1/agents/{code}` 返回的 `config` = **全量真实值**(掩码只在显示层,JSON.stringify 是真的,可安全对象级改+核)。③建单500=组装期挂,查根因靠"隔离实验(换维度复现)+ 读config找唯一缺键",别猜(我先猜 appearanceMode 错了一轮)。
+
+## 📌 案例 appearanceMode 字段(2026-07-25 补,非500主因但口播案例需要)
+建案例除核心8字段外,还须带 `appearanceModePreset` + `appearanceModeOptions`(老案例都有;我漏补→表单"出镜方式"显示不指定)。已给全部 S14(44条,sceneId=S14 过滤才列得出、默认列表排除S14)+ brand_product 案例补齐(TVC类 preset=product_only)。
+
+## 🔴 编剧层仲裁实测(2026-07-25,口播为何变无人流程片)
+编剧prompt里后端注入 `optionArbitration.peoplePolicy`:**`appearanceMode` 独家决定出不出人**(`product_only`→`presence:no_person`→旁白voiceover_os,`visualFocusCanOverridePresence:false`)→ **一票否决案例 visualHint 的口播锁死**。美业口播单编剧收到 appearanceMode=product_only(前端预设回填bug没送owner_speaking)→ concept变"(过程)拍服务流程"、5格全"画面无人脸"。`systemPromptSource=screenwriter.systemPrompt`(单一全局编剧,无按行业分)。详见 [[reference-thinknova-prompt-fields]]。
 
 ## 背景
 现有 22 行业全是**实体店类目**,卖洗衣液/饮料/胶囊这类**自有品牌快消品/线上产品**没对口行业;custom(自定义)因"想猜整个场景、不确定性爆炸"出片烂。艾多美(568杂SKU)也是这需求。见 [[project-thinknova-dingdian-koubao]]。
