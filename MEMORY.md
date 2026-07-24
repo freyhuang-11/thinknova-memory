@@ -14,6 +14,8 @@
 7. **i2v 4096 字节硬顶**:超出静默截断且任务仍显示成功;改 videoTemplate 后必量提交串字节+数镜头数 → [详](reference_thinknova_prompt_architecture.md)
 8. **范围边界必写反向**:数量/范围/开关类需求只写正向会串进共用链路;必附"作用域仅X,不碰Y"+双向验收 → [详](feedback_scope_boundary_explicit.md)
 8.5 🔴 **动"前端会读的字段"先小范围试再铺**(2026-07-23 踩崩商家建单):prefill 只放前端认的字段(offer/productName,加 extraRequirement 崩);visibleIndustries 这种前端刚接的新字段别一次给所有场景铺满、先改一条让老板验证不崩再铺;vt 别累加规则撑爆 4096(编剧回退根因)。grok 做不到的规则(硬切/一镜到底)=无效字节别写 → [详](project_thinknova_dingdian_koubao.md)
+8.6 🔴🔴 **加行业/加场景=先查技术文档再动手,且加"新场景"必须技术做**(2026-07-25 TVC生不出踩一晚):加行业要**同时**配 industryFilters+industryOptionPresets+industryPrompts(配置JSON说明书6.3:行业卡id↔industryPrompts键必须对应)+industryRules;加**新场景**除 scenePrompts/businessActions/sceneRules 外,**还要把场景注册进合法场景枚举——这步后台编辑器会把未注册场景键(如sceneRules.S14)保存时剥离、运营配不了、商家建单500,必须技术改代码**。别踩了才回头翻文档 → [详](project_thinknova_brand_product_industry.md)
+8.7 🔴 **建单500(code 500001)诊断法·别猜**(2026-07-25):①`admin GET /admin/api/v1/agents/{code}` 返回的 config=**全量真实值**(掩码只在显示层,JSON.stringify是真的,可对象级读改);②**隔离实验**换维度复现定位(换老行业+同新场景 若还500=是场景问题);③读config找"唯一缺键"(如sceneRules全场景有、独缺S14);④商家建单走 `api.thinknova.top/api/v1/business-video-assets/tasks`,商家域CSRF token需从app请求头钩;⑤建单500=组装期挂、不建任务记录(任务列表查不到) → [详](project_thinknova_brand_product_industry.md)
 
 ## L2 · 烧单核验时
 9. 🔴 **核验必须逐帧通看**(抽帧拼联系表);单帧/播放器截图=假结论 → [详](feedback_evidence_standard.md)

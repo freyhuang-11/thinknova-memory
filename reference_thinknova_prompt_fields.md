@@ -5,10 +5,16 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-23T16:27:38.491Z
+  modified: 2026-07-24T20:17:06.056Z
 ---
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
+
+> 🟢 **2026-07-25 再确认(task_4edfd26d6b87 编剧 input + admin GET config 实测)**:
+> - **两条管线吃不同字段,别混**:**编剧(脚本/台词)**只吃 `case.visualHint`+`sellingPoints`全文+`screenwriter.systemPrompt`(全局5743字)+`selectedOptions`;**生图/i2v(画面)**才吃 `scenePrompts[场景]`+`industryPrompts[行业]`+`sceneRules[场景]`(14条各~130字)+`industryRules[行业]`(20条各~200字)。→ 想改**台词/脚本**改 visualHint+卖点+systemPrompt;想改**画面效果**改 scene/industry 那几层(生图侧)。「同行业不同场景要不同效果」=生图侧 sceneRules/industryPrompts 的活。
+> - **`optionArbitration`/`peoplePolicy` 不在 config、是后端代码运行时注入**(config 全文搜不到):规定 `appearanceMode` 独家决定出不出人(product_only→no_person→旁白)、`visualFocusCanOverridePresence:false`=**一票否决案例 visualHint 的口播锁人意图**。要改这条"谁说了算"只能技术改代码。
+> - **sceneRules 缺键会炸建单**:sceneRules 全场景有、独缺 S14 → 商家建单组装期读 `sceneRules[S14]` 取不到 → 500(不进编剧不代表不影响建单;建单会组装生图/i2v侧的prompt)。
+
 
 > 🔴🔴 **2026-07-24 重大更正——本文件曾有多处错误,已按技术官方文档校正。动手前先读 [[reference-thinknova-tech-docs-index]] 里的原文档 + 拉线上真实 config 核对路径,别只信本表。**
 > **已查实的错误**:
