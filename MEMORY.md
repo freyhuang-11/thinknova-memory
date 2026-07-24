@@ -62,6 +62,7 @@
 - 🔴 [项目:定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销Atomy第一用户;强化锁死段已上线待复烧;编剧补充要求两分支(写台词采用+压标准/没写照常)已上线;目标=人物口播+尽可能少切换
 - 🔴 [项目:营销拉新线](project_thinknova_marketing.md) — 内容铁律+分工(Claude成片/老板口播/Codex海外)
 - 🔴 [Reference: HyperFrames视频生产线](reference_hyperframes_production.md) — 口播→转写→抠像→合成→交付+关键坑
+- [Reference: 扫码发布配置各平台深链](reference_thinknova_publish_schemes.md) — 系统配置→通用;抖音/小红书/快手/TikTok 已真机验证到上传页(2026-07-24);scheme只到入口·预载视频需SDK·改后必真机测
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;中国兑换码¥108=2000分
 - [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
 
