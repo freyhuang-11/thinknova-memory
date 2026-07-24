@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-23T20:07:17.718Z
+  modified: 2026-07-24T11:25:58.867Z
 ---
 
 # ThinkNova 多参考图 i2v 模型(2026-07-24 实证)
@@ -39,8 +39,17 @@ metadata:
 `Model grok-imagine-video-1.5-fast supports 15s only for text-to-video or a single reference image; **multiple reference images must use 6s or 10s.**`
 → **多图必须 6s 或 10s,不能 15s**(15s只留单图/文生视频)。测多参烧单**时长选10s**;商家口播若强制15s,多参口播需改用10s输出。
 
-## 单图403特例(别误判)
-单图直连单报 `Failed to fetch input URL: 403`(task_334083c07f97):根因=该单把**同一张图同时当首帧+参考图**,同一公网URL(thinknova-previews桶)被供应商连拉两次,第二次被限流/防盗链403。**多图(不同URL各拉一次)不重演**(实证多图单是时长错非403)。非真障碍。
+## 🔴 403 精确根因(2026-07-24 实测纠正,旧"同图连拉两次"猜测作废)
+实测 task_334083c07f97 i2v 子任务 input.image_url/reference_image_urls =
+`https://thinknova-previews.oss-ap-southeast-1.aliyuncs.com/generated-assets/provider-input/2026/07/...`
+- **裸 OSS 原始域名**(非 cdn.thinknova.top)+ **无签名(hasQuery=false,非 presigned)**。
+- `generated-assets/provider-input/` 前缀在原始 OSS 域名上**非公共读** → 供应商无签名 GET = **403 AccessDenied**(`Failed to fetch input URL: 403`)。
+- **修法(交技术,3选1)**:①给供应商 cdn.thinknova.top 域名 URL;②该前缀设公共读;③给带签名的 presigned GET URL。已入《给技术_OPS-20260724-04》。
+- ⚠️旧记的"同图连拉两次/防盗链"是错的猜测,已作废。
+
+## 🔴 供应商当前不稳(2026-07-24 下午实测,待核是否已恢复)
+- **415(走 lk888)**:`Provider returned HTTP 502: lk888 submit failed (code=403): 无可用渠道分组`——lk888 该模型**无可用渠道**(早上02:20还能成、下午17:48掉);编剧被打断、compiledPlan 不落库。
+- **468**:OSS 403(见上)。→ 当天两个 i2v 模型**都烧不出来**,生成全线断。老板要求**加新中转站+渠道故障转移**(已入 OPS-04)。这是全线阻塞项。
 
 ## 上传/中转坑
 - 直连「图生视频」UI 多图上传被前端 `max_reference_images=1` 卡死(老板已报技术)。
