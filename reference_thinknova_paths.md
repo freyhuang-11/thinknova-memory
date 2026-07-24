@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-24T07:58:36.053Z
+  modified: 2026-07-24T11:33:12.281Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
@@ -39,6 +39,18 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **⭐检查生成问题的正确入口=主任务详情页**(老板 0708 指:检查任务都从主任务详情查):看三样——①**完整链路一目了然**:用户传了什么参考图 → 生成了哪些中间产物(首帧/分镜) → 最终交付了什么;②**组装溯源**——最终 prompt 每一段来自哪个 config 字段(`commonPrompts.systemPolicyPrompt` 等)+实际值,前端渲染(海报单按字段细分/视频单粗);③**配置快照**——任务生成时的完整 `promptAssembler`,可点开对比当前 config 差异。API 层 `child_tasks[].attempts[].prompt_entries` 是粗版(仅 `input.prompt`/`negative_prompt` = 实际提交给模型的全文)。
 - **一致性检查法**:组装溯源实际值 / 配置快照 vs 当前 config → 一致=config 是真值任务无漂移;不一致=有覆盖/旧快照。**实测 0708**:海报单 common 层 5 字段(systemPolicy/userInput/userExtra/riskCheck/finalGeneration)组装溯源实际值**逐字=当前 config commonPrompts**,一致,证明任务如实吃 config。
 - `GET /business-video-assets/tasks/{taskNo}` 任务详情(含成品URL)
+
+## 🔴 编剧回退判据 + 子任务结构(2026-07-24 实测,老板纠正:编剧回退≠视频失败)
+**铁律:编剧层回退(编剧LLM出不了台词走本地模板)和视频失败(i2v供应商挂,如lk888无渠道/OSS403)是两件事,不同阶段(编剧在前、i2v在后)。i2v挂不代表编剧回退——编剧多半已跑完,compiledPlan/台词存着。别再混。**
+- **主任务 `output.childTasks` = {scriptwriter, image, video}** 三个子任务(各含 taskNo);哪个 stage 挂看各自 status(实测两单 image=succeeded、video=failed(lk888)、scriptwriter 一单没回退一单回退)。`output.rendering.dispatch=video_child_failed` 表示挂在 i2v。
+- **判编剧回退看 scriptwriter 子任务 `output` 字段(最硬)**:
+  - `source`:`text_model`=AI真编排(没回退);`local_fallback`=回退到本地模板。
+  - `fallbackReason`:`null`=没回退;有值=回退,值即原因(实测一单=`Operation timed out after 180001ms`=Luna超时)。
+  - `message`:正常"视频分镜编排已完成";回退"…已回退到本地模板,未阻塞生成"。
+  - `modelCode`:正常=`461`(Luna,真文本模型);回退=`0`。
+  - `dynamicJson.lines`:真编排有真台词;回退=`[]`。
+- **内容佐证**:回退分镜=fallbackPolicy.visualTemplates 通用套话(跟商品无关、千篇一律);真编排 cells 带具体商品名/卖点/针对性画面。
+- 拉法:`GET /api/v1/ai/tasks/{scriptwriterTaskNo}?assets=1` → data.task.output(source/fallbackReason/compiledPlan.videoPrompt/dynamicJson.lines)。商家端 cookie,**从商家标签页(thinknova.top)调**,admin 标签页调商家API会掉登录态401。
 
 ## 🔴 2026-07-23 实测修正(后台 API 真实形态,以此为准)
 - **agents 列表**:`GET /admin/api/v1/agents` → `data.items[]`(不是 data.agents);每项含 code/config/updated_at。
