@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-24T18:03:22.352Z
+  modified: 2026-07-24T18:18:17.036Z
 ---
 
 # ThinkNova「品牌产品」行业 + 广告TVC大片风格(2026-07-24 老板拍板)
@@ -55,6 +55,8 @@ video agent(offline_store_video)config,两处加:
 - **已建**:广告大片场景(S14)每行业 2 条(大牌TVC `<ind>_s14_tvc` + 品牌故事 `<ind>_s14_other`,22×2=44)+ 品牌产品各场景 7 条(s01/s02/s03/s06/s08/s11/s13)。全 enabled、sceneIds 正确。
 - **已回填封面**:文生图生成(generated-assets 裸地址永久公开)→ GET案例+加 coverImageUrl/previewUrl/thumbnailUrl/previewImageUrl 四字段+PUT。TVC 44 条复用 2 张通用电影感封面(老板选 B);品牌产品 7 条各单独产品封面。抽查 5/5 有封面。
 - ⚠️ 文生图批量>~6张会 45s 超时(每张~3s);分小批发。Chrome 扩展今晚间歇断连,重试即可。
+- 🔴🔴 **案例必须带核心设置预设字段,否则商家建单 500(2026-07-25 品牌故事 Internal server error 根因)**:新建案例只给 id/industryId/sceneIds/title/summary/visualHint/enabled/sortOrder **不够**——商家建单会读 `paceLevelPreset`(如"steady")+`paceLevelOptions`+`videoStylePreset`(如"premium_clean")+`videoStyleOptions`+`visualFocusPreset`(如"subject_closeup")+`visualFocusOptions`+`endingCtaOptions`+`previewAssetType`("image"/"video"),缺了就 500(建单提交就报错、连任务都不建)。**建案例必带这 8 个字段**(值抄正常案例 food_s01_new)。已给 51 条全补上。可选:`sellingPointPreset`(数组)+`prefill{offer,productName}`(六语言,商家填单预填)。
+- 🔴 **核心设置进提示词·2026-07-25 测试(未定论)**:美业口播单(task…ce4940)编剧没回退、5句真台词、videoPrompt 含口播/对镜/单人——**但口播来自「场景=老板/员工口播(owner_voice)」,不是核心设置**;该单核心设置(出镜/风格/重点/CTA)表单全"不指定"。且美业预设 owner_speaking 已落 config、**前端表单仍显示"不指定"=前端预设回填 bug 仍在(技术未部署修复)**。→ 干净测"手选核心设置进提示词"需:场景选非口播(如S01)+手选一个核心设置+看编剧是否反映。生成已恢复(415 在 00:50 成功,lk888 通了)。
 
 ## (历史)落地卡点误判 — 已被上面纠正
 - **能直接落库**(419-UI 改 config):广告TVC选项、行业卡/预设/行业提示词骨架。
