@@ -66,6 +66,7 @@
 - 🔴 [Reference: HyperFrames视频生产线](reference_hyperframes_production.md) — 口播→转写→抠像→合成→交付+关键坑
 - 🔴 [Reference: 老板音色克隆生产线](reference_siliconflow_voice_clone.md) — 硅基流动CosyVoice2零样本;key在视频制作平台分析/siliconflow_key.txt;音色URI已存;情绪指令治"丧";一条脚本≈4分钱;AI声明不毁流量(马师傅实证)
 - [Reference: 扫码发布配置各平台深链](reference_thinknova_publish_schemes.md) — 系统配置→通用;抖音/小红书/快手/TikTok 已真机验证到上传页(2026-07-24);scheme只到入口·预载视频需SDK·改后必真机测
+- 🔴🔴 [项目:片型体系(治视频大差不差)](project_thinknova_film_types.md) — A/B/C/D四单定案:模型能变形、锅在形式契约+案例基因同质;一个编剧+三层基因;S14×44+口播案例已片型化,~495条待铺;写入token探针法;桌面有A/C对比片
 - 🔴 [项目:品牌产品行业+广告TVC场景](project_thinknova_brand_product_industry.md) — 2026-07-25已上线:场景S14广告大片(全行业)+行业brand_product+51案例+封面;**关键:案例创建/封面回填从admin域直接PUT能过CSRF(商家域不行)**;案例必带核心设置预设8字段否则建单500;编辑器改config用InputEvent同步+老板真人点保存
 - [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;中国兑换码¥108=2000分
 - [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
