@@ -5,12 +5,16 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-24T19:20:38.953Z
+  modified: 2026-07-25T18:47:28.253Z
 ---
 
 # ThinkNova「品牌产品」行业 + 广告TVC大片风格(2026-07-24 老板拍板)
 
-## 🔴🔴 2026-07-25 深夜定案:TVC(S14)生不出=场景没注册,不是案例问题(实验证据)
+## ✅ 2026-07-25 收尾:S14 已由技术修复并实测通过
+技术上线:①场景合法表改读 `businessUi.scenes[]`(不再硬编码S01-S13)②视频agent补S14+六语言标签+cinematic_ad+scenePrompts/sceneRules③保存时校验sceneId必须引用已注册启用场景④后台面板新增场景注册表+动态标签+sceneRules编辑⑤修opsEditable保存与运行时同步冲突。**另一并上线"编剧异步上下文"修复**:核心设置语义(复用optionRules/promptAssembler解析)+case+businessScenario+referenceRoles 自动进编剧,编剧子任务新增 `writerContext` 可核验,新增 `promptComposer.masterPipeline.scriptwriter.staticTemplates.contextPriority` 运营可配优先级。
+**实测(task_d9eb6173c06c,brand_product广告大片)**:建单200(旧500消失)→编剧succeeded→rendering;编剧 input.writerContext 含 businessScenario(cinematic_ad)+case(含visualAnchor)+coreSettings(结构化instructions+values)+referenceRoles+customIndustryName;脚本concept电影感官向、有人物对镜+产品特写,非无人流程片。→ **S14/品牌产品可出片。** 剩:最终成片走常规i2v链路待观察;contextPriority 可用来配"口播强意图>appearanceMode默认"(方案B落地点)。
+
+## 🔴🔴 2026-07-25 深夜定案(已解决,留档):TVC(S14)生不出=场景没注册,不是案例问题(实验证据)
 **症状**:brand_product/所有行业的**广告TVC大片(S14)烧单报 500**(`code 500001, Internal server error`,如 request_id req_5367afe3e549),其它场景都正常。
 **隔离实验定位法(关键方法)**:直连 POST `api.thinknova.top/api/v1/business-video-assets/tasks`(商家域,带商家CSRF头),用**老行业 beauty + 同一新场景 S14** 复现 → **一样500**。→ 排除行业/案例/appearanceMode,**锁死是场景 S14**。
 **根因(admin GET 读全量config核实)**:
