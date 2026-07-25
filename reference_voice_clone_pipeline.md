@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-25T20:13:32.962Z
+  modified: 2026-07-25T20:39:02.557Z
 ---
 
 # 老板音色克隆生产线(2026-07-26 建成,火山豆包复刻2.0)
@@ -17,7 +17,8 @@ metadata:
 - **API Key**:`D:\SamsoData\Documents\视频制作平台分析\volcengine_speech_key.txt`(新版控制台,长期有效)
 - **合成**:POST `openspeech.bytedance.com/api/v3/tts/unidirectional`,头=Content-Type/X-Api-Key/**X-Api-Resource-Id: `seed-icl-2.0`**(实测唯一通的;volc.megatts.default/voiceclone都不行)/X-Api-Request-Id(uuid);体={"req_params":{"text","speaker":"S_rbgc0p2a2","audio_params":{"format":"mp3","sample_rate":24000}}};返回=流式JSON行拼base64
 - **情绪参数**(治"丧"):audio_params 里加 `"enable_emotion":true,"emotion":"happy","emotion_scale":1-5(默认4)`(文档6561/1257584)
-- **训练**:POST `/api/v3/tts/voice_clone`(同头);但**赠送槽位只能走控制台UI上传**(API空speaker_id报55000000;custom_speaker_id=后付费要下单);UI文件选择器必须老板亲手点(工具安全门拦本地文件注入,fetch localhost也被Chrome私网拦截)
+- **训练**:POST `/api/v3/tts/voice_clone`(同头,Resource-Id同seed-icl-2.0);**首次建音色必须控制台UI+老板亲手选文件**(API空speaker_id报55000000;工具安全门拦本地文件注入,fetch localhost被Chrome私网拦截);**已有speaker_id后重训全自动API可跑**(07-26实测,传speaker_id=S_rbgc0p2a2即可);extra_params可带disable_volume_normalization=true(更贴样本)
+- **样本迭代**:v1=W原片29s(丧,机器人味);v2=老板照录音脚本录36s(2026-07-26,微信m4a→掐静音24k wav);老板"一录音就僵",终极样本=真实聊天/电话时顺手录的
 - **免费额度**:2万字符+10音色槽,后付费不用不花钱;**额度快尽先问老板再充**
 - 脚本:scratchpad/vo3/volc_tts.py(tts函数可复用)/volc_clone.py
 
