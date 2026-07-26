@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: f9888687-3c16-4546-9394-03122edbc103
-  modified: 2026-07-25T20:52:47.507Z
+  modified: 2026-07-26T05:15:45.079Z
 ---
 
 # 片型体系 —— 治"全平台视频大差不差"(2026-07-26 老板+实验定案)
@@ -17,6 +17,11 @@ metadata:
 - **已烧验并逐帧过(1fps×15帧铁律)**:D一镜口播(task_18d7f6f58afe,零补充要求纯案例基因,人脸全程稳、人物+产品同框)/E快促(task_e329726ff4c0)/F微距(task_efa10d947ef0)/G对比(task_2c226265860e)/C_TVC(task_28451afb863b)。**验收包=老板桌面 片型对比_0726\(6条+验收说明.txt)**。
 - **未烧验片型(下一批一点一点测)**:空间漫游/氛围仪式/产品英雄/人物讲述/演示讲解/生活纪实/明快陈列。
 - **批处理技法**:工单存window.__work+游标__wi,每批40条(GET detail→改visualHint→PUT),单批<45s防CDP超时;detail解析必须 `j.item||(j.data&&j.data.item)` 双形态。
+
+## 🆕 2026-07-26 技术发货三件套(OPS-20260726-01 全兑现,文档《商家视频案例预设与分镜配置运营说明》)
+- 案例级 `scriptwriterPreset:{shotCount:1-7, voiceMode:"dialogue"|"none"}` + 全局 `masterPipeline.scriptwriter.timeline.defaultShotCount=5`;优先级=案例>Agent>默认。预设回填修好(选案例自动回填,手动改不覆盖)。**边界:shotCount只控编剧时间轴;分镜板永远3×2/5格(视觉参考与时间轴解绑);30秒别用这个**。
+- **待验证(会话过期401被卡,老板登录后立即做)**:①3条测试案例写 scriptwriterPreset 回读不被剥离:TVC=7/none、口播=1/dialogue、快促=7/dialogue;②烧3单验编剧 cells数=shotCount、none无lines、1段台词=连续独白;③前台验预设回填(beauty_s11 四项不再"不指定");④核 cinematic_showcase/product_detail/dynamic 新选项是否已进选项组;⑤过了再全量铺 scriptwriterPreset(S11全部=1/dialogue、S14_tvc=7/none、S02S13=7/dialogue,快照法同前)。
+- ⚠️ shotCount=1 会把台词变成1条连续独白=结构上实现老板的台词方向A——但台词区冻结纪律仍在:先烧1条给老板听过拍板,再铺S11。
 
 ## 🔴 老板2026-07-26凌晨定的架构原则(编剧层宪法)
 1. **全局systemPrompt只管统一纪律**:人物真实感/去AI化、声音停顿情绪(不机器人)、光感、饱和度(+待拍板:材质物性真实,如洗衣液要稠不能像水)——**剩下全部跟案例走**。

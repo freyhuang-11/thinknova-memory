@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-24T07:58:13.977Z
+  modified: 2026-07-26T05:15:25.758Z
 ---
 
 🔴🔴 **铁律:这些技术官方文档=唯一真值。我的其它记忆是索引和实测增量,不能替代文档、更不能盖掉文档。动任何 config 字段前:①按下表翻对应原文档 ②拉线上真实 config 回读核对字段路径 ③再动。** 之前反复出错的根因=我把自己漂移/污染的记忆当真值,没回文档核(技术:「那么多文档你没好好看过」,2026-07-24 老板转达)。
@@ -27,6 +27,7 @@ metadata:
 | **失败提示与编剧回退镜头模板** | 07-21 | 失败文案+回退分镜 | 商家端失败显示中文可行动提示(不露Provider task failed);`fallbackPolicy.visualTemplates.{product_only,no_person,default}`各5格;product_only/no_person每格必写"不出现人物";只改Config JSON别碰Pricing |
 | **前台场景过滤与补充要求说明** | 07-23 | 空场景隐藏+placeholder | `businessActions[].visibleIndustries`(空数组=全行业可见);补充要求placeholder新文案;详见 [[project-thinknova-dingdian-koubao]] |
 | **运营提交技术需求文档规范与模板** | 07-23 | 给技术的卡格式 | 9段结构,已存 [[reference-tech-doc-submission-spec]] |
+| 🆕🆕**商家视频案例预设与分镜配置运营说明** | 07-26 | 案例预设回填+可变段数+无台词(=OPS-20260726-01 三件套发货) | 🔴**案例级 `scriptwriterPreset:{shotCount:1-7, voiceMode:dialogue|none}`**(超范围保存被拒);全局默认 `promptComposer.masterPipeline.scriptwriter.timeline.{defaultShotCount:5,minShotCount:1,maxShotCount:7}`;**预设回填已修**(选案例自动回填核心设置,手动改不被覆盖,换案例才重回填);优先级=案例scriptwriterPreset>Agent timeline>系统默认5+dialogue;🔴**边界:shotCount只控编剧时间轴,分镜板仍3列×2行5个boardCells不变、时长/模型/参考图/计费不变、30秒是独立产品别把shotCount填30**;voiceMode=none不生成台词字幕时间轴(环境音靠模型不保证);模板示例含新preset值 cinematic_showcase/product_detail/dynamic(是否已加进选项组待线上核);验收=编剧cells数=shotCount、none时lines空;FAQ:预设用稳定value别用中文、不可见选项不回填 |
 | 🆕**运营手册_商家Agent后台配置** | 07-24 | 后台四配置位+案例库管理页(权威操作手册) | 🔴**四配置位各管各的别复制真值**:①Config JSON(提示词/行业/场景/默认模型/时长/字幕开关)②Pricing JSON(仅Agent服务费)③模型管理(能力/时长/参考图数/协议/价格)④**案例库管理页「管理案例库与封面图」**(案例标题/预填/提示词/封面);🔴**大案例库必须 `businessUi.referenceCasesSource:external_table`**(inline禁用于大库=后台编辑器卡顿+服务端CPU峰值,hybrid仅少量覆盖);🔴**封面走案例库管理页上传→自动写`coverImageUrl`,别手工拼OSS链接**,分页读取不打开几MB完整config;新字段 `businessUi.videoGeneration.{allowedDurations,modelAllowlistByDuration,defaultModelByDuration}`;确认 opsEditable/stagePromptPresets/subtitle 运营可维护、scriptwriter路径`promptComposer.masterPipeline.scriptwriter` |
 
 ## schema 演进(别踩:路径随版本变过,以线上回读为准)
