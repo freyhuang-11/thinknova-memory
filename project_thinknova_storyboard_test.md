@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-27T19:50:03.371Z
+  modified: 2026-07-27T20:04:42.357Z
 ---
 
 # 故事板/生图锁/模型定位 —— 2026-07-28 两轮取证结论
@@ -174,6 +174,47 @@ admin SPA 标签页会 CDP 超时卡死(Runtime.evaluate 45s timeout)。**绕法
 - 🔴🔴 **8 条片全部 `blackdetect` = NO-BLACK,第0帧就是网格** → `entranceBlackOverlay`(配 0.5s)在我们手上这批文件里**测不到**。待判:这批是供应商裸输出还是交付件?**若交付件也无黑场 = 黑屏功能没生效,这才是真技术卡。**
 - **老板目标 0.15s vs 现状 2.8s = 差 18 倍;0.5s 黑屏就算生效也盖不住。**
 - **推论(待烧验)**:整板模式下网格无解,唯一结构解是 `panel_crop`(模型看不到板,没东西可溶)。还剩一根没烧过的杠杆 = 02:47 加的更硬那句「绝不可入画/第0帧起即为第一个子格」。
+
+## 🔴🔴 2026-07-28 04:1x 已烧 4 单(A 批 · 整板模式现状 · 验网格滞留)
+同案例同参数,只换模型:餐饮 `food_s02_deal` / 双人分享套餐 / 满60减15 / 星禾小馆 / 卖点=`limited_offer` / 9:16 / 画面重点=突出价格 / 无参考图。
+| 编号 | 单号 | 模型/时长 |
+|---|---|---|
+| A1 | `task_daefbb9ee418` | grok 415 / 15s |
+| A2 | `task_d283bcc14708` | omni 460 / 10s |
+| A3 | `task_dac3f153ba36` | grok 415 / 15s(重复) |
+| A4 | `task_4279da05e4ee` | omni 460 / 10s(重复) |
+**每单要量**:①网格滞留秒数(ffmpeg 联系表,公式见上节)②有没有黑场开头 ③成片有没有字 ④编剧 input 里 `limited_offer` 是否为 02:47 新文案 ⑤`scriptwriter_fallback` 是否 false ⑥i2v 串字节数。
+
+## 🔴🔴🔴 2026-07-28 04:0x 判死:交付链路没有任何后处理(证据链完整,可发技术卡)
+**证据**:task_d283bcc14708(omni)的 `generatedAssets` 同时给 `public_url`(交付件)和 `source_url`(供应商裸文件)。两个都下下来:
+- **SHA256 完全相同**(`FBBF737C0B2C0AC4…`),大小同为 2031KB。
+- 线上 config 明确配着 `promptComposer.masterPipeline.deliveryPostProcess.entranceBlackOverlay = {enabled:true, seconds:0.5}`。
+→ **配置声明开启 0.5 秒黑场,交付件与供应商原件逐字节相同 = 后处理根本没执行。**
+🔴 **片头那 0.083 秒(2帧)黑是模型自己出的,不是我们加的** —— 旧记忆「黑屏配 0.5s 实测只1帧」的困惑到此结案。
+🔴🔴 **`entranceBlackOverlay` 这个字段目前是摆设,别再拿它当挡网格的手段做任何方案。**
+⚠️ 我探这个字段时先探了 config **根层** `deliveryPostProcess` → undefined → 被自己的 `||{}` 兜底显示成空对象,一度误判成"功能没配"。**真实路径在 `promptComposer.masterPipeline.deliveryPostProcess`,根层没有。**
+
+## 🔴🔴 网格滞留实测·A批(整板模式 storyboard_board,config sha `5e29d3f63371`)
+| 单 | 模型 | 网格滞留 | 备注 |
+|---|---|---|---|
+| A1 task_daefbb9ee418 | grok 415/15s | — | **failed** `OFFLINE_STORE_CHILD_TASK_FAILED`「模型方暂时未能完成」积分已退 = manxueapi 通道老毛病,非配置问题 |
+| A2 task_d283bcc14708 | omni 460/10s | **0 秒,零网格** | 0ms 黑帧→100~500ms 从黑淡入门头→600ms 起单一全屏,2000ms 正常切镜;**前3秒无任何价格字幕**;门头拼音 Xinghe Xiaoguan 对但汉字糊(门头锁老问题依旧);带白色四角星水印 |
+**A2 整片 10s 全扫(2fps 联系表)**:全片**零网格 + 零价格字幕**(无「满60减15」无价签)→ **02:47 卖点去字幕化实测生效**(待办1 达成一半,另一半"编剧 input 送达"需后台确认);叙事 门头→端餐→打包→装袋→递交→收尾,5 镜跟得住;**背景招牌汉字全是 AI 乱码**(「昊柯小馆」「好美续刘小」),拼音反而对;右下四角星水印。
+**对比基准(改前)**:grok 整板 0→2.8s 全网格。
+**初步结论**:网格是 **grok 专属问题**(单参 + 固定 ~2.8s 溶解开场),omni 完全没有。→ 更加证明 `i2vReferenceStrategy` **必须能按模型分**:grok 走 panel_crop,omni 走 storyboard_board。
+
+## 🔴🔴 商家端下单 API(2026-07-28 打通,比点 UI 快十倍)
+`POST https://api.thinknova.top/api/v1/business-video-assets/tasks`,`credentials:'include'`
+🔴 **必须带 `x-csrf-token`,否则 419「Security verification failed」** —— 我第一发漏了头,POST 打出去了但**单没建上**,页面弹窗被脚本盖住没看见,差点误判成"提交成功了但任务没生成"。token 从任意 GET(如 `/api/v1/business-video-assets/config`)的响应头拿。
+**报文 18 字段**:`businessScenario / caseId / selectedIndustryId / outputType / productName / offer / storeName / storeLocation / uploadedImageAssetId / uploadedImageAssetIds / personReferenceImageAssetId / sceneReferenceImageAssetId / productReferenceImageAssetId / sellingPoints[] / selectedOptions{} / extraRequirement / durationSeconds / videoModelId`
+返回 `data.task.taskNo / status / taskStage / creditCost`。
+**批量烧法**:UI 走通一单 → 钩子存下 body 到 `localStorage.__burnTpl` → 后续只改 `durationSeconds`/`videoModelId`/`caseId` 直接 POST。
+- 表单直达路由:`/zh/app/business-video-assets/fill-info?industryId=食&scenarioId=场景&caseId=案例`(需整页导航才渲染,SPA 内跳不渲染)。
+- 商家任务列表:`GET /api/v1/business-video-assets/tasks` → `data.items[]`,字段是**驼峰** `taskNo/status/taskStage/outputType/caseId/createdAt`。
+
+### ⚠️ 两条"疑似 bug"已自查撤回,别再当结论传
+1. ❌ **「outputType=video_10s 与 15秒打架」** —— 撤回。`video_10s` 是**产品类型常量**,4 条 15 秒 grok 老单(含 task_68987d63be29)同样是 `video_10s`。
+2. 🟡 **「界面显示 grok 415、报文里 videoModelId=460」** —— **待核,别外传**。UI 显示「口播优先版·15秒」但默认报文带 460。很可能是后端按时长档覆盖模型(15秒→415),需拉任务真实执行模型确认。**未确认前不许写进技术卡。**
 
 ## 🔴 烧单操作法(2026-07-28 打通)
 - 商家端 session 在 **Chrome(claude-in-chrome)**里是活的;**in-app 浏览器永远 401,别再试**。
