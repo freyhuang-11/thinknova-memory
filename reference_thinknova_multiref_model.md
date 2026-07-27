@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-27T16:18:40.000Z
+  modified: 2026-07-27T16:33:19.287Z
 ---
 
 # ThinkNova 多参考图 i2v 模型(2026-07-24 实证)
@@ -15,6 +15,25 @@ metadata:
 - **单参模型**(如 415 主力、468 未改前):运行时 i2v **只收"截格首帧"1张**,上传的人物/场景/产品参考图**不到 i2v**(只进 i2i 分镜板)。
 - **多参模型**:i2v **收全部参考图**(首帧 + 人物/场景/产品)。
 → 想让 i2v 拿到真人/场景/产品图(锁人物、降 Grok 审核拒率),**必须用多参模型**,靠不了商家流程的截格。
+
+## 🔴🔴 2026-07-28 实拉 200 单诊断(参考图张数/成功率/失败根因)
+**怎么查(可复用)**:admin 任务列表接口翻页拿 `task_no` → `GET {任务接口}/{task_no}` → `data.task.input` 里有 **`_reference_image_limit`**、**`_i2v_reference_strategy`**、`referenceImages[]`、`reference_image_urls[]`;`error_message` 在同层。(用 id 查详情返回 `task:null`,**必须用 task_no**。)
+
+| 模型 | 运行时 limit | 实际喂进 i2v | 近期成功率 |
+|---|---|---|---|
+| omni 460 `panel_crop` | 5 | **2~5 张** | 13成/18 |
+| omni 460 `storyboard_board` | 5 | **只有 1 张(整板本身)** | 同上 |
+| grok preview 415 | **1** | 1 张 | 11成/19 |
+| grok fast 468 | 5 | 5 张 | **0成/7 = 全挂** |
+| sora 469 | — | 1 张 | 5成/5 |
+
+**结论**:
+1. ❌ 我曾怀疑"DB 列 `max_reference_images`=1 卡死 omni" —— **错的**,运行时 limit 实际是 5,DB 列那个 1 没生效。别再按这条走。
+2. 🔴 **`storyboard_board`(整板)模式下 omni 只收到 1 张图 = 整板本身,用户上传的照片进不了 i2v**。要测/要用 omni 的人物·产品·门店一致性,**必须切回 `panel_crop`**,否则等于没喂参考图。**该开关是全局的,grok 和 omni 不能各用各的。**
+3. 🔴 **`businessUi.videoGeneration.referencePolicyByDuration`:只有「10秒」档 `allowStoryboardCrops:true`,8/12/15 全是 false**;`reserveFirstFrame:true` 全档;`cropPriority:[hero,scene,product,detail]`。→ 415 是 15 秒档,**不只是模型单参,时长档也把它锁死在 1 张**,这是"preview 后面画面控制不住"的配置层根因。
+4. 🔴 **468 全挂 = 供应商通道空,不是配置问题**:manxueapi `HTTP 503 No available channel for model grok-imagine-video-1.5-fast under group auto`;1renmanju `pool: no available account`。→ **当前 10 秒口播无可用模型,口播只能走 415 的 15 秒**。已把 468 前台隐藏并改名标注「通道维修中·暂不可用」。
+5. 🔴 **omni 的失败 = `图片/视频下载超时(30s)`(lk888 拉不到我们的图)**,不是模型读不懂——即老板说的"omni 说图片读取时间太长"。图挂在**裸 OSS `generated-assets/provider-input/`**(见下方 403 那节同源问题),整板模式图更大更易超时。**修法给技术:CDN 域名或 presigned URL。**
+6. 415 的失败 = manxueapi `Connection timeout`(通道抖)。
 
 ## 涉及模型
 > 🔴🔴 **2026-07-27 全面更新,以下为当前真值(旧内容已纠)**
@@ -29,17 +48,25 @@ metadata:
 >
 > ## 🔴 模型改名(2026-07-27 已上线·客户按"要不要人说话"选)
 > 🔴 **中英文名都是客户看的(有外国客户),不能拿英文名塞技术身份**(老板 07-27 纠正)。**内部识别靠「模型ID + `model_code`」**——后台列表本来就显示、且是真身份不会因改名丢失。
+> 🔴🔴 **定位轴 = 「口播稳」vs「画面像」,不是「有没有台词」**(老板 07-28 纠正我取反的名字):
+> - **omni(460)= 多参 `maxReferenceImages:7`**,协议 `{{referenceImages}}` 数组 → **能锁人物/产品/门店一致性,大量行业必须用它**;**它照样会说话、正常台词量没问题**(只是台词一多念不清)。我曾把它命名成「无旁白/Cinematic no voiceover」= **严重取反,已改**。
+> - **grok(415 preview / 468 fast)= 单参** → **讲话更稳**,但**后面的画面控制不住**(单参只喂截格首帧,上传图进不了 i2v)。
+> - **绝大部分商家的真实需求是 omni**(要场景/人物/产品统一);grok 只在"口播必须说清楚"时优先。
+>
 > | id | model_code(我们认这个) | 中文 | English | 前台 |
 > |---|---|---|---|---|
-> | 415 | grok-imagine-video-1.5-**preview** | 真人口播版 · 15秒(会说话) | Talking Presenter · 15s (with voice) | ✅ |
-> | 468 | grok-imagine-video-1.5-**fast** | 真人口播版 · 10秒(会说话) | Talking Presenter · 10s (with voice) | ✅(07-27打开) |
-> | 460 | **omni_flash**-10s | 画面大片版 · 10秒(无旁白) | Cinematic Visuals · 10s (no voiceover) | ✅ |
+> | 460 | **omni_flash**-10s(多参7) | 实景还原版 · 10秒(锁人物·产品·门店) | True to Your Photos · 10s (locks people, product & store) | ✅ |
+> | 415 | grok-imagine-video-1.5-**preview**(单参) | 口播优先版 · 15秒(讲话最稳) | Speech First · 15s (most reliable talking) | ✅ |
+> | 468 | grok-imagine-video-1.5-**fast**(单参) | 口播优先版 · 10秒(讲话最稳) | Speech First · 10s (most reliable talking) | ✅(07-27打开前台) |
+> | 459 | **grok-video-3**(文生,10秒,**2分/秒最便宜**) | 经济实惠版 · 10秒(文字生成) | Budget Saver · 10s (Text-to-Video) | ✅ |
 > | 416 | **sora-2** | 广告创意版 · 文字生成视频 | Creative Ad · Text-to-Video | ✅ |
 > | 469 | **sora-2** | 广告创意版 · 图片生成视频 | Creative Ad · Image-to-Video | ✅ |
 > | 467 | grok-1.5-preview | 备用通道 · 口播10秒 | Backup Channel · Talking 10s | ❌ |
 > | 470 | **veo3.1** | 实验版 · 暂不推荐 | Experimental · Not Recommended | ❌ |
 > | 471 | **doubao-seedance** | 实验版 · 暂不推荐(低清) | Experimental · Not Recommended (low-res) | ❌ |
-> **客户选择逻辑=一句话**:要人讲话→口播版(15秒/10秒);要画面高级无旁白→大片版;纯创意广告→广告创意版。
+>
+> 🔴 **算价别串场**(老板 07-28 纠正):**直连文生视频/图生视频只吃单模型价格,没有「生图6+服务费」公式**;那套公式只属于 **agent 管线**。我曾拿 agent 公式去算 459 直连价 = 串场错误。
+> **改名接口**见下方;弹窗里的值可能是页面刷新前的旧数据,**别从弹窗保存,走 API 用刚 GET 的最新对象 PUT**。
 > **为什么这么命名**:omni 音画不同步+台词一多就念不清 → 名字里写死「无旁白」,客户选它就不指望台词,不用再教育。
 > **改名接口**:`PUT https://api.thinknova.top/admin/api/v1/models/{id}`,body=GET 回来的完整模型对象改 `display_name_zh/display_name_en/frontend_visible` 再 PUT,带 admin CSRF(从「更新模型」按钮 fetch 钩子抓)。列表 `GET /admin/api/v1/models?page=1&pageSize=100`。
 >
