@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-27T11:59:38.881Z
+  modified: 2026-07-27T19:04:33.552Z
 ---
 
 🔴🔴 **铁律:这些技术官方文档=唯一真值。我的其它记忆是索引和实测增量,不能替代文档、更不能盖掉文档。动任何 config 字段前:①按下表翻对应原文档 ②拉线上真实 config 回读核对字段路径 ③再动。** 之前反复出错的根因=我把自己漂移/污染的记忆当真值,没回文档核(技术:「那么多文档你没好好看过」,2026-07-24 老板转达)。
@@ -34,7 +34,7 @@ metadata:
 ## schema 演进(别踩:路径随版本变过,以线上回读为准)
 - 07-08 用 `promptAssembler`(commonPrompts/image/video/scenePrompts/industryPrompts/shotListTemplates…)——偏海报/旧管线。
 - 07-19+ 视频编剧走 `promptComposer.masterPipeline.scriptwriter.*`(systemPrompt/staticTemplates/lineValidation/fallbackPolicy)+ `promptComposer.opsEditable.*`+`caseInjectionPolicy`。
-- **我记忆里曾写 `promptComposer.screenwriter.*`(少 masterPipeline),可能是更新版或我记漏——改前必拉线上 config 看实际路径,不认死记忆。** 见 [[reference-thinknova-prompt-fields]](已标注更正)。
+- 🟢 **2026-07-28 线上回读结案:两条路径并存,不是"少一段"**。`promptComposer.screenwriter.staticTemplates.{businessContext,outputContract,firstFrameTemplate,videoTemplate}` = 静态模板(videoTemplate 确在此,masterPipeline 下没有 staticTemplates);`promptComposer.masterPipeline.scriptwriter.{timeline,lineValidation,fallbackPolicy,textModel}` = 编剧策略。另 `promptComposer.masterPipeline.i2vReferenceStrategy` 线上 = `storyboard_board`。详见 [[reference-thinknova-prompt-fields]] 顶部定案块。
 
 ## 两个表示层别混
 - admin `config_json`(ai_agents 表):案例/场景在 `businessUi.{referenceCases,businessActions,...}`。

@@ -64,7 +64,7 @@
 - [路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
 
 ### 现行状态
-- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线**:五条根因已取证(i2v 错位一格、图生图左上格必黑、门头锁失败、字幕两来源、回退触发条件)+ 取证方法
+- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线·07-28凌晨已改线上config+3张技术卡已写**:i2v错位一格/图生图左上格必黑/门头锁失败/**字幕三来源全在config全能自改(5卖点✅已改·回退模板❌待拍板·videoTemplate✅已改)**/`i2vReferenceStrategy=storyboard_board`与代码后缀打架=网格入画真凶;**待办=老板复烧1单我核送达**;取证法(`?payload=1`拿全量提交串·PUT只需{config:…}·ffmpeg联系表)
 - 🔴🔴 [片型体系](project_thinknova_film_types.md) — 治"视频大差不差";~495 条待铺
 - 🔴 [品牌产品行业 + 广告TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;含建单500 排查法
 - 🔴 [定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
