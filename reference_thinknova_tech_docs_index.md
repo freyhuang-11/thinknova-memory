@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-26T05:15:25.758Z
+  modified: 2026-07-27T09:27:42.156Z
 ---
 
 🔴🔴 **铁律:这些技术官方文档=唯一真值。我的其它记忆是索引和实测增量,不能替代文档、更不能盖掉文档。动任何 config 字段前:①按下表翻对应原文档 ②拉线上真实 config 回读核对字段路径 ③再动。** 之前反复出错的根因=我把自己漂移/污染的记忆当真值,没回文档核(技术:「那么多文档你没好好看过」,2026-07-24 老板转达)。
@@ -28,7 +28,8 @@ metadata:
 | **前台场景过滤与补充要求说明** | 07-23 | 空场景隐藏+placeholder | `businessActions[].visibleIndustries`(空数组=全行业可见);补充要求placeholder新文案;详见 [[project-thinknova-dingdian-koubao]] |
 | **运营提交技术需求文档规范与模板** | 07-23 | 给技术的卡格式 | 9段结构,已存 [[reference-tech-doc-submission-spec]] |
 | 🆕🆕**商家视频案例预设与分镜配置运营说明** | 07-26 | 案例预设回填+可变段数+无台词(=OPS-20260726-01 三件套发货) | 🔴**案例级 `scriptwriterPreset:{shotCount:1-7, voiceMode:dialogue|none}`**(超范围保存被拒);全局默认 `promptComposer.masterPipeline.scriptwriter.timeline.{defaultShotCount:5,minShotCount:1,maxShotCount:7}`;**预设回填已修**(选案例自动回填核心设置,手动改不被覆盖,换案例才重回填);优先级=案例scriptwriterPreset>Agent timeline>系统默认5+dialogue;🔴**边界:shotCount只控编剧时间轴,分镜板仍3列×2行5个boardCells不变、时长/模型/参考图/计费不变、30秒是独立产品别把shotCount填30**;voiceMode=none不生成台词字幕时间轴(环境音靠模型不保证);模板示例含新preset值 cinematic_showcase/product_detail/dynamic(是否已加进选项组待线上核);验收=编剧cells数=shotCount、none时lines空;FAQ:预设用稳定value别用中文、不可见选项不回填 |
-| 🆕**运营手册_商家Agent后台配置** | 07-24 | 后台四配置位+案例库管理页(权威操作手册) | 🔴**四配置位各管各的别复制真值**:①Config JSON(提示词/行业/场景/默认模型/时长/字幕开关)②Pricing JSON(仅Agent服务费)③模型管理(能力/时长/参考图数/协议/价格)④**案例库管理页「管理案例库与封面图」**(案例标题/预填/提示词/封面);🔴**大案例库必须 `businessUi.referenceCasesSource:external_table`**(inline禁用于大库=后台编辑器卡顿+服务端CPU峰值,hybrid仅少量覆盖);🔴**封面走案例库管理页上传→自动写`coverImageUrl`,别手工拼OSS链接**,分页读取不打开几MB完整config;新字段 `businessUi.videoGeneration.{allowedDurations,modelAllowlistByDuration,defaultModelByDuration}`;确认 opsEditable/stagePromptPresets/subtitle 运营可维护、scriptwriter路径`promptComposer.masterPipeline.scriptwriter` |
+| 🆕🆕**运营手册_商家Agent后台配置 v1.0** | 07-24(2026-07-27收到完整版) | 四配置位+新增3.5分镜首图与成片后处理 | 🔴🔴**老板要的"整板喂+黑屏"已是现成开关**(`promptComposer.masterPipeline`):`i2vReferenceStrategy`= **`panel_crop`**(默认:裁首格当主参考,多参模型再附完整板)/ **`storyboard_board`**(整板直接当主参考不裁格,仅建议给"已验证不会把网格生成进成片"的模型);`deliveryPostProcess.headReplacement{enabled:true,seconds:0.5}`=**成片前0.5秒替换成等长静音黑屏(默认已开)**;`coverFrame`=中间帧当封面(默认开)。<br>🔴 `videoGeneration.modelAllowlistByDuration`/`defaultModelByDuration` 是**对象**(键=时长字符串,值=模型ID/数组),不是数组;`defaultVideoModelId` 只是"没配按时长默认"时的兜底。文档示例出现**模型ID 480**(我没见过,待查)。`allowedDurations` 可配 **5~30秒**(不只10/12/15),但模型能力JSON没声明的时长前台不显示。<br>🔴 默认模型分两个:`defaultTextToImageModelId`(用户没传参考图)vs `defaultImageModelId`(传了参考图);编剧文本模型在 `masterPipeline.scriptwriter.textModel.modelId`。<br>🔴 **运营可维护清单含 `promptComposer.stagePromptPresets`(文生图/图生图/图生视频三阶段静态提示词)** ← 改生图层提示词的正门。还含 opsEditable/subtitle/videoGeneration/industryFilters/businessActions/detailOptionGroups/industryOptionPresets/defaultState。<br>字幕:`promptComposer.subtitle`,编剧存字幕时间轴、原片不烧录、用户成片页自选生成带字幕副本。<br>后台有**「配置变更历史」+快照比对**;保存后必点「重新从服务端读取」验证未被 schema 归一化删除。<br>案例封面走上传(≤12MB,JPEG/PNG/WebP),别手拼OSS链接;重复案例ID会被拒绝不静默覆盖。 |
+| **运营手册_商家Agent后台配置(旧摘要)** | 07-24 | 后台四配置位+案例库管理页(权威操作手册) | 🔴**四配置位各管各的别复制真值**:①Config JSON(提示词/行业/场景/默认模型/时长/字幕开关)②Pricing JSON(仅Agent服务费)③模型管理(能力/时长/参考图数/协议/价格)④**案例库管理页「管理案例库与封面图」**(案例标题/预填/提示词/封面);🔴**大案例库必须 `businessUi.referenceCasesSource:external_table`**(inline禁用于大库=后台编辑器卡顿+服务端CPU峰值,hybrid仅少量覆盖);🔴**封面走案例库管理页上传→自动写`coverImageUrl`,别手工拼OSS链接**,分页读取不打开几MB完整config;新字段 `businessUi.videoGeneration.{allowedDurations,modelAllowlistByDuration,defaultModelByDuration}`;确认 opsEditable/stagePromptPresets/subtitle 运营可维护、scriptwriter路径`promptComposer.masterPipeline.scriptwriter` |
 
 ## schema 演进(别踩:路径随版本变过,以线上回读为准)
 - 07-08 用 `promptAssembler`(commonPrompts/image/video/scenePrompts/industryPrompts/shotListTemplates…)——偏海报/旧管线。
