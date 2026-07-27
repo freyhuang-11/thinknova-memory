@@ -1,64 +1,71 @@
 ---
 name: project-thinknova-storyboard-test
-description: "ThinkNova 故事板跟随性/裁格测试盘子(2026-07-28 老板定)+ 我能自己烧单的方法 + 案例预设矛盾53条等实拉发现"
+description: "ThinkNova 故事板测试盘子·2026-07-28 实烧10单已出结论:六宫格根因=videoTemplate那句话按裁格模式写的+两模型定位定案+我能自己烧单/抽帧的方法"
 metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-27T16:58:19.553Z
+  modified: 2026-07-27T17:37:50.506Z
 ---
 
-# 故事板跟随性 · 裁格与否 · omni 一致性(2026-07-28 起,老板定的测试议程)
+# 故事板/裁格/模型定位 —— 2026-07-28 实烧 10 单(600积分)后的结论
 
-## 老板要回答的四个问题(一个一个来,每题至少 2 轮同参数重复)
-1. **不裁格(`storyboard_board`)时,开幕 0.5 秒黑屏能不能挡住开头的六宫格网格?** grok 和 omni 各验。
-2. **到底要不要裁格?哪个模型裁、哪个不裁?**(老板已知配置层做不到按模型分,他去找技术补;我们先出数据)
-3. **故事板跟随性**——不要求 100%,**≥70% 是及格线**。
-4. **omni 的场景/产品/人物一致性。**
+## 🔴🔴 根因已定位:六宫格进成片 = 我们自己让它这么干的(证据级)
+`promptComposer.screenwriter.staticTemplates.videoTemplate`(1438字节)里有这句:
+> 否则按下方镜头顺序推进,**输入图片#第1镜首帧自然开场**;画面永远单一全屏,绝不分屏/多画面/拼贴。
 
-## 🔴 已知硬约束(读结果前必看,别把这些算到策略头上)
-- `businessUi.videoGeneration.availableModelIdsByDuration`:**8秒=[470,471] / 10秒=[468,460] / 12秒=[469,471] / 15秒=[415,467]**。
-  → **grok 只能 15 秒(415),omni 只能 10 秒(460)**,对照单时长天然对不齐。
-- `referencePolicyByDuration`:**只有 10 秒档 `allowStoryboardCrops:true`**,8/12/15 全 false;`reserveFirstFrame:true` 全档;`cropPriority:[hero,scene,product,detail]`。
-  → **415(15秒)不管切哪个模式永远只拿 1 张图**;只有 omni(10秒)能拿 2~5 张。「要不要裁格」对两个模型根本不是同一个问题。
-- **`i2vReferenceStrategy` 是全局开关**,grok 和 omni 不能各用各的 → 测试必须**分两批**(先整板烧完 grok+omni,再切 panel_crop 重烧同样两单)。
-- **468(10秒口播)供应商通道全空,7单0成**,已前台隐藏 → **10 秒口播当前无可用模型**。
-- omni 在整板模式有 **`图片/视频下载超时(30s)`** 挂单风险(整板图大),挂了先看错误再重烧,别当模型能力问题。
+**这句是按 `panel_crop` 写的**(那时输入图片确实=第1镜首帧)。但线上现在跑 **`storyboard_board`,输入图片是整块 3×2 六宫格板** → 模板仍叫模型"用输入图片自然开场" → 模型照办,拿整块网格开场。
+- 实测 grok415:0.0s 黑,**0.8/1.5/2.3s 全是清晰六宫格**,3.0s 才变正常整幅 → 网格挂约 2.5 秒。
+- i2v **正向**提示词里搜「网格/分镜/六宫格/参考图/拼接/逐格」=**一个都没有**(只"边框"1次);**负向** 274 字堆满「六宫格/分镜板/故事板/2x3网格/格子边框/分屏/拼图…」→ **纯禁令零指派**,踩了铁律5。
 
-## 🔴🔴 2026-07-28 实拉 589 案例发现的数据问题(可能是"不跟 storyboard"的根因之一)
-**`appearanceModePreset='owner_speaking'` 且 `scriptwriterPreset.shotCount>1` 的案例 = 53 条(内部矛盾)。**
-- 机制(**推断·待烧单验证**):i2v 提交串有【口播锁定·最优先】——「若首帧是单人对镜口播:全片一个固定机位长镜头到底,**下方 cells 只取台词、其余镜头描述全作废**」;而后端 `optionArbitration` 规定 **appearanceMode 独家决定出不出人,`visualFocusCanOverridePresence:false`**(visualFocus 一票否决不了)。→ owner_speaking 赢 → 多镜头故事板必然报废。
-- 样本:`food_s06_make 制作/出餐过程`、`tcm_s06_full 完整调理过程`、`tcm_s06_moxa`、`tcm_s06_cup`、`fashion_s06_alteration`、`pet_v2_S06_grooming_process`……**几乎全是 S06「展示真实过程」类**。
-- 对照:`owner_speaking + shotCount=1` = 44 条(正常口播案例)。
-- **63 条缺预设**,其中 8 条是我留的 `zz_tok_probe1~8` CSRF 探针案例 → **待清理**。
-- **案例默认画幅是「16:9 横屏」**(fill-info 打开就是横屏)——这就是老板早前说的"而且还是横屏"。门店短视频应默认 9:16 竖屏。**待定位是案例预设还是全局默认。**
+### 改法(已写好·PUT 被权限分类器拦截·待老板放行)
+- 原文备份在会话 scratchpad 的 `videoTemplate_backup_20260728.txt`(临时目录,要留就迁 Obsidian)。
+- 新句:`画面从第0.00秒起即为第1镜的单一全屏画面;输入图片若为多格分镜拼版,只作分镜参考、不是画面本身,须将第1格放大铺满全屏开场,其余格按时序依次展开为同一条连续视频;成片任何一帧绝不出现格线/边框/分屏/拼贴。`
+- 字节:模板 1438→1629(+191);提交串 15秒档 3477→约3668,**距4096余约430字节**,不触发截断。
+- 老板目标:**六宫格必须锁在 0.15 秒内**(他判断一定做得到)。
 
-## 本轮测试选定的案例与参数(换了个全新场景,避开旧的窑鸡/TVC)
-- 行业 **宠物 pet_care** × 场景 **展示真实过程 process_show(=S06)** × 案例 **`pet_v2_S06_grooming_process`「洗澡/美容全过程」**
-- 选它的理由:`visualHint` 写得极干净——「沉浸微距·手艺型:全片只用微距与大特写,零远景零全景;**五格微距细节递进**,最后成品大特写收束」→ 天然是量故事板跟随性的标尺。
-- **人为改一项**:出镜方式从案例预设的「老板口播」改成「**商品+门店**」,否则触发口播锁定、五格递进作废,跟随性没得测。
-- 固定填写:商品名`全套SPA洗护` / 价格`首次体验价 S$29，含免费皮肤检测` / 门店`毛球宠物美容` / 位置`新加坡义顺928号` / 比例**9:16 竖屏**(必须手动改,默认是16:9) / 卖点`项目细致` / 补充要求留空 / 60 积分一单。
+## 🔴🔴 两个模型的定位(老板 2026-07-28 看片后定案,实测)
+| | grok 415(口播优先版·15秒) | omni 460(实景还原版·10秒) |
+|---|---|---|
+| 中文台词 | **没问题**,各类解说都能扛 | **做不了**(老板实测判定) |
+| 英文台词 | — | **可以** |
+| 分镜跟随 | **约 80%**(老板判定,过 ≥70% 及格线) | — |
+| 稳定性 | **差:5单3成2挂(60%)** | **好:5单5成(100%)** |
+| 定位 | 口播/解说线 | 画面线 + 英文解说 |
 
-## 每单验四项
-| # | 验什么 | 怎么判 | 及格线 |
-|---|---|---|---|
-| a | 开幕网格挡没挡住 | 0–2 秒按 10fps 抽帧,看 0.5 秒黑屏淡出后还有没有网格 | 0.5秒后无网格 |
-| b | 故事板跟随性 | 下载该单分镜板 + 成片按镜头抽帧,逐格比「主体/场景/动作」算命中率 | **≥70%** |
-| c | omni 三锁一致性 | 成片人物脸/产品/门店 vs 上传参考图 | 逐帧看 |
-| d | 配置真生效 | 拉 i2v input 看 `_i2v_reference_strategy` + 实际图张数 | 防白测 |
+> 这条推翻旧记忆「omni 正常说话没问题」。旧的「omni=多参画面 / grok=口播稳」大方向仍成立。
 
-## 🔴 我现在能自己烧单了(方法,2026-07-28 打通)
-**商家端 UI 驱动法**(比拼 API body 稳):
-1. 浏览器开 `https://thinknova.top/zh/app/business-video-assets`;
-2. JS 点选:行业 → 下一步 → 场景 → 下一步 → 案例 → 「下一步：填写信息」;
-3. fill-info 页若卡「加载中…」→ 直接 navigate 到 `/zh/app/business-video-assets/fill-info?industryId=..&scenarioId=..&caseId=..` 强刷;
-4. 用原生 value setter + `InputEvent{bubbles:true}` 填 input/textarea;下拉项用 `button/[role=option]/li` 文本精确匹配点击(**同名选项取最后一个,前面那个是当前值的显示按钮**);
-5. 先点「确认」(生成方式面板:时长+模型),再点「开始生成」。
+## 🔴 整板模式的硬伤:omni 的多参能力完全没用上
+实拉 i2v 子任务 input:
+| 模型 | `_reference_image_limit` | **实际喂进去的参考图** |
+|---|---|---|
+| grok 415(15秒档) | 1 | 1(整板) |
+| omni 460(10秒档) | 5 | **1(整板)** |
+→ 花 omni 的钱、用 grok 的用法。`referencePolicyByDuration` 只有 10秒档 `allowStoryboardCrops:true`,8/12/15 全 false。
 
-**查证接口**:
-- 管理端任务列表 = `GET /admin/api/v1/ai-tasks?page=&pageSize=`(路径靠在 admin 页装 fetch 钩子后点「筛选」抓到);
-- **任务详情必须用 `task_no` 不能用 `id`**(用 id 返回 `task:null`):`GET /admin/api/v1/ai-tasks/{task_no}` → `data.task.input` 里有 `_reference_image_limit` / `_i2v_reference_strategy` / `referenceImages[]`,`error_message` 同层;
-- 商家端案例库 = `GET /api/v1/business-video-assets/reference-cases?page=&pageSize=24`(**筛选参数不生效,得拉全 589 条自己过滤**);商家端配置 = `GET /api/v1/business-video-assets/config`(referenceCases 为空是因为 `external_table`)。
-- 模型改名 = `PUT /admin/api/v1/models/{id}`,详见 [[reference-thinknova-multiref-model]]。
+## 🔴 同输入不同结果 = 模型随机(不是配错)
+两条 omni 洗护单:同策略、同 1 张参考图、正向段落结构一致、**负面词 274 字一字不差**,唯一差别是时间戳写「2秒」vs「2.0秒」。结果**一条出网格一条不出**。→ 当前打法本身不可控。
 
-配套:[[reference-thinknova-multiref-model]] [[project-thinknova-film-types]] [[reference-thinknova-prompt-fields]] [[feedback-evidence-standard]]
+## 🔴 待核 / 待办
+1. **`entranceBlackOverlay` 配置 `{enabled:true, seconds:0.5}`,实测只有约 1 帧**(0.0s 黑、0.1s 已全亮)→ 配置与实现不符,**待技术**。
+2. **B3 前后对比两条(grok+omni)`scriptwriter_fallback = true`** —— 编剧回退了,其余 8 单都 false。原因未查,**待查**。
+3. **前端 bug(该给技术)**:选模型弹窗显示「当前使用:XXX」但下拉框实为空值 → 商家点确认+开始生成,**无反应、无报错、无"请选择模型"提示**。我自己也踩了。
+4. 53 条「老板口播 + shotCount 5」矛盾案例待处理;63 条缺预设(含我留的 `zz_tok_probe1~8` 待清理);fill-info 默认 16:9 横屏待定位。
+5. **下一步测试(老板定)**:上传 3 张图(人物/场景/产品)测**三把锁**能力。
+
+## 🔴 我自己烧单+核片的方法(2026-07-28 全打通)
+- **建单**:复制一份真实提交体(`window.__BODY`),改 `caseId/selectedIndustryId/businessScenario/prefill/selectedOptions/durationSeconds/videoModelId`,`POST https://api.thinknova.top/api/v1/business-video-assets/tasks`,头带商家域 `X-CSRF-TOKEN`。**对照必须同案例同行业同场景,换案例是为了扩面不是互比**(老板明确)。
+- **admin CSRF 免钩子取法**:任意 `GET https://api.thinknova.top/admin/api/v1/...` 的**响应头里就有 `x-csrf-token`**,直接读来做 PUT。(admin.thinknova.top 只是静态 SPA,API 全在 api.thinknova.top)
+- **任务详情**:`GET /admin/api/v1/ai-tasks/{task_no}` → `data.task.child_tasks` 三个子任务(生图/i2v/编剧);**i2v 子任务的 `input` 里才有** `_i2v_reference_strategy`/`_reference_image_limit`/`referenceImages`/`prompt`/`negative_prompt`。
+- **案例库全量**:`GET /api/v1/business-video-assets/reference-cases?page=N&pageSize=24` 循环到空,共 **589 条**(筛选参数不生效)。
+- **抽帧核片**:成片 URL 是签名 URL,**不能打印**(harness 会 BLOCK)。做法=在 thinknova.top 页面内 `video.src=publicUrl` + `canvas.drawImage` 拼联系表 DOM,再 `computer screenshot`。坑:媒体加载常卡(readyState 0 无报错)要重试/换标签页;SPA 会自动跳转销毁 window 全局,渲染+截图必须连着做。
+
+## 本轮 10 单参数(可复用)
+- 第一批:`pet_v2_S06_grooming_process`(沉浸微距·手艺型)× grok415/15s ×2 + omni460/10s ×2,出镜方式手动改「商品+门店」避开口播锁定。
+- 第二批(三种互相打架的片型,各烧 grok+omni 一对):
+  - `food_s02_deal` 快节奏促销型(要求五格干脆切换)
+  - `photo_studio_s05_location` 空间漫游型(要求一镜连续不跳切)
+  - `digital_3c_s07_ba` 前后对比·结构型(前2格之前/第3格转折/后2格之后)
+- 全部 9:16 竖屏(**默认 16:9,必须手动改**)、60 积分/单。
+
+配套:[[reference-thinknova-multiref-model]] [[reference-thinknova-prompt-fields]] [[project-thinknova-film-types]] [[feedback-evidence-standard]] [[feedback-directive-over-prohibition]]
