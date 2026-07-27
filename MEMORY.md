@@ -1,94 +1,88 @@
-# 铁律 · 按触发时机分层(漏的原因是"该用时没想起来",所以按什么时候用来排)
+# 铁律 · 按触发时机分层(按"什么时候用"排;漏 = 该用时没想起来)
+> 这里只放**触发条件 + 一句动作**。案例、字段路径、复盘全在链接文件里,该用时打开。
 
-## L0 · 每次开口/动手前(最高频)
-0. 🔴🔴🔴 **总指挥一错全错·源真值优先**(2026-07-24 config反复错+opsEditable存反换来):我是总指挥,记忆一错所有子系统/子agent/技术卡/结论全跟着错。故:①**权威源(官方文档/线上真值/代码)> 我的记忆**,记忆只是索引+实测增量不能盖源;②改任何配置/字段/关键结论前**回源核对**不凭印象;③实验结论标「实测·待核」带任务号不外推;④污染会话(07-22/23)产物待重核;⑤发现一错→对源审计一批;⑥认账但守事实别乱背锅 → [详](feedback_source_truth_first_commander.md)
-1. 🔴 **时间先查再说**:系统只给日期不给时刻,要判断"现在/多久前"先跑 `date` → [详](feedback_check_time_first.md)
-2. 🔴 **提议≠指令**:模糊回复先确认再动手;别把自己的推测当用户指令 → [详](feedback_dont_assume_requirements.md)
-2.5 🔴 **自动例程别每次拿老问题升级问老板**(2026-07-27 老板"不要每次问我,自动模式没提案自动跑"):例程内协调判断本是我的职责,能自己拍板的自动跑;平台级只有老板能定的报一次记录在案就够,别每天重复顶置 → [详](feedback_auto_mode_dont_over_escalate.md)
-3. 🔴 **没完全了解前不下判断**:先实地用过看全貌;接口通≠功能通必实机 → [详](feedback_understand_before_judging.md)
+## L0 · 每次开口/动手前
+0. 🔴🔴🔴 **权威源(技术文档/线上真值/代码)> 我的记忆**;下关键结论前回源核对,实验结论标「实测·待核」带任务号、不外推 → [详](feedback_source_truth_first_commander.md)
+1. 🔴 判断"现在/多久前"**先跑 `date`** → [详](feedback_check_time_first.md)
+2. 🔴 **提议≠指令**;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
+2.5 🔴 **例程内能自己拍板的自动跑**,别每天拿老问题问老板 → [详](feedback_auto_mode_dont_over_escalate.md)
+3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 
-## L1 · 改配置/提示词前(2026-07-22 一晚押错三次)
-4. 🔴 **先查字段读取图**:哪个字段被编剧/生图/i2v 读取,改之前先拉一条真实任务 input 确认目标字段在里面 → [详](reference_thinknova_prompt_fields.md)
-4.5 🔴 **台词出问题先查 visualHint**:「台词画面同频铁律」会把画面词拉进台词;visualHint 绝不写「台词…」开头的句子 → [详](feedback_visualhint_leaks_into_lines.md)
-5. 🔴 **指派式 > 禁令式**:「第2格拍地标全景」有效,「绝不拍册子」无效;必须禁止时禁令后面立刻跟替换项 → [详](feedback_directive_over_prohibition.md)
-6. 🔴 **落库 ≠ 送达**:PUT 200 + API 回读只证明写进数据库;必须再烧一单拉真实 input/提交串,看见新文案才算"已上线" → [详](feedback_evidence_standard.md)
-7. **i2v 4096 字节硬顶**:超出静默截断且任务仍显示成功;改 videoTemplate 后必量提交串字节+数镜头数 → [详](reference_thinknova_prompt_architecture.md)
-8. **范围边界必写反向**:数量/范围/开关类需求只写正向会串进共用链路;必附"作用域仅X,不碰Y"+双向验收 → [详](feedback_scope_boundary_explicit.md)
-8.5 🔴 **动"前端会读的字段"先小范围试再铺**(2026-07-23 踩崩商家建单):prefill 只放前端认的字段(offer/productName,加 extraRequirement 崩);visibleIndustries 这种前端刚接的新字段别一次给所有场景铺满、先改一条让老板验证不崩再铺;vt 别累加规则撑爆 4096(编剧回退根因)。grok 做不到的规则(硬切/一镜到底)=无效字节别写 → [详](project_thinknova_dingdian_koubao.md)
-8.6 🔴🔴 **加行业/加场景=先查技术文档再动手,且加"新场景"必须技术做**(2026-07-25 TVC生不出踩一晚):加行业要**同时**配 industryFilters+industryOptionPresets+industryPrompts(配置JSON说明书6.3:行业卡id↔industryPrompts键必须对应)+industryRules;加**新场景**除 scenePrompts/businessActions/sceneRules 外,**还要把场景注册进合法场景枚举——这步后台编辑器会把未注册场景键(如sceneRules.S14)保存时剥离、运营配不了、商家建单500,必须技术改代码**。别踩了才回头翻文档 → [详](project_thinknova_brand_product_industry.md)
-8.7 🔴 **建单500(code 500001)诊断法·别猜**(2026-07-25):①`admin GET /admin/api/v1/agents/{code}` 返回的 config=**全量真实值**(掩码只在显示层,JSON.stringify是真的,可对象级读改);②**隔离实验**换维度复现定位(换老行业+同新场景 若还500=是场景问题);③读config找"唯一缺键"(如sceneRules全场景有、独缺S14);④商家建单走 `api.thinknova.top/api/v1/business-video-assets/tasks`,商家域CSRF token需从app请求头钩;⑤建单500=组装期挂、不建任务记录(任务列表查不到) → [详](project_thinknova_brand_product_industry.md)
+## L1 · 改配置/提示词前
+4. 🔴 **先查字段读取图**:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md)
+4.5 🔴 **台词出问题先查 visualHint** → [详](feedback_visualhint_leaks_into_lines.md)
+5. 🔴 **指派式 > 禁令式**;必须禁止时,禁令后面立刻跟替换项 → [详](feedback_directive_over_prohibition.md)
+6. 🔴 **落库 ≠ 送达**:PUT 200 只证明写进库;烧单看见新文案才算上线 → [详](feedback_evidence_standard.md)
+7. **i2v 4096 字节硬顶**,超出静默截断且仍显示成功;改后必量字节 → [详](reference_thinknova_prompt_architecture.md)
+8. **范围边界必写反向**:附"作用域仅X、不碰Y"+双向验收 → [详](feedback_scope_boundary_explicit.md)
+8.5 🔴 **动"前端会读的字段"先改一条验,别一次铺满** → [详](project_thinknova_dingdian_koubao.md)
+8.6 🔴🔴 **加行业/加场景先翻技术文档**;加新场景必须技术把它注册进合法枚举,否则后台保存时被剥离→商家建单500 → [详](project_thinknova_brand_product_industry.md)
+8.7 🔴 **建单500 诊断法·别猜**:admin GET 拿全量真值 → 隔离实验换维度 → 找唯一缺键 → [详](project_thinknova_brand_product_industry.md)
 
 ## L2 · 烧单核验时
-9. 🔴 **核验必须逐帧通看**(抽帧拼联系表);单帧/播放器截图=假结论 → [详](feedback_evidence_standard.md)
-10. **变量做满再烧单**:提示词/配置没补穿,不许下模型结论;改前做满,改后验一 → [详](feedback_prompt_first_then_test.md)
-11. **证据成对**:该单真实输入↔真实输出+任务号;来源未核实材料不当证据 → [详](feedback_evidence_standard.md)
+9. 🔴 **逐帧通看**(抽帧拼联系表);单帧/播放器截图 = 假结论 → [详](feedback_evidence_standard.md)
+10. **变量做满再烧单**;没补穿不许下模型结论 → [详](feedback_prompt_first_then_test.md)
+11. **证据成对**:该单真实输入 ↔ 真实输出 + 任务号 → [详](feedback_evidence_standard.md)
 
 ## L3 · 给技术发文档前
-12. 🔴 **只发技术才能处理的**:发之前逐条验"我自己能不能改";2026-07-22 曾一稿五节被自己重验砍掉三节
-13. 🔴 **给技术文档=9段规范(2026-07-23 老板定,取代旧5段)**:需求编号OPS-XXX/正确表现/当前表现(事实)/复现步骤/证据/初步判断/期望改动/配置数据要求(完整字段路径+当前值+目标值+空值规则)/可勾选验收/非本次范围;事实判断期望分离,禁把推测写成根因,一份最多3独立问题 → [详](reference_tech_doc_submission_spec.md)(旧5段见 feedback_problem_report_format.md)
-14. **发文前 7 条自检**(排序对定调/五段格式/证据合格/复现可执行/零修辞/不打架/版本唯一) → [详](feedback_tech_doc_checklist.md)
-15. **发出即冻结**:新内容走增量,追加原文档须明确告知 → [详](feedback_tech_doc_delta_delivery.md)
+12. 🔴 **只发技术才能处理的**;发之前逐条自验"我自己能不能改"
+13. 🔴 **9段规范**;事实/判断/期望分离,禁把推测写成根因,一份最多3个独立问题 → [详](reference_tech_doc_submission_spec.md)(已作废的旧5段:[feedback_problem_report_format.md](feedback_problem_report_format.md))
+14. **发文前 7 条自检** → [详](feedback_tech_doc_checklist.md)
+15. **发出即冻结**;新内容走增量 → [详](feedback_tech_doc_delta_delivery.md)
 
 ## L4 · 汇报沟通时
-16. **每轮汇报"验收什么+做了什么"**;做完先自己验收真实结果再通知 → [详](feedback_handoff_acceptance.md)
-17. **说重点/有据质疑/别奉承** → [详](feedback_compass_discussion.md)
-18. **需要老板拍板的问题用 plan 模式结构化问**,不散落正文 → [详](feedback_questions_via_plan_mode.md)
-19. **数据新鲜度**:自信展示别贴"过期"标,也别埋雷 → [详](feedback_data_freshness_framing.md)
+16. **每轮说清"验收什么 + 做了什么"**;做完先自验再通知 → [详](feedback_handoff_acceptance.md)
+17. **说重点 / 有据质疑 / 别奉承 / 追根因不打补丁** → [详](feedback_communication_principles.md)、[详](feedback_compass_discussion.md)
+18. **要老板拍板的用 plan 模式结构化问**,不散落正文 → [详](feedback_questions_via_plan_mode.md)
+19. **数据新鲜度**:别贴"过期"标,也别埋雷 → [详](feedback_data_freshness_framing.md)
 
-## L5 · 环境红线(违反=事故)
-20. 🔴 密钥不外发不进聊天不打印不进任何 git 仓库
+## L5 · 环境红线(违反 = 事故)
+20. 🔴 密钥不外发、不打印、不进任何 git 仓库
 21. 🔴 禁 `taskkill /IM python`,按 PID/端口精准杀 → [详](feedback_kill_python_scope.md)
-22. 🔴 线上 config = 唯一真值,禁种子覆盖;改前必验框身份+金额(定价曾被 config 覆盖)
-22.5 🔴 **线上 config 是前端/编剧的契约,不是提示词草稿**(2026-07-24 技术当老板面发火):结构/字段/新字段一律交技术,我只碰纯文本字段;动前先读技术文档;配置变更先用自然语言讲清再动,不直接甩 JSON;认账但别为认错乱背锅(「案例全没了」实为前端路由守卫,非我config) → [详](feedback_dont_edit_prod_config_structure.md)
-23. **记忆只留当前状态**,过时内容覆盖删除,不堆叠矛盾层 → [详](feedback_memory_keep_current.md)
-24. **老板发的提示词参考当天归档**(曾丢 3 次) → [详](reference_prompt_library.md)
+22. 🔴 线上 config = 唯一真值,禁种子覆盖;改前必验框身份 + 金额
+22.5 🔴 **config 是前端/编剧的契约**:结构/字段/新字段一律交技术,我只碰纯文本字段 → [详](feedback_dont_edit_prod_config_structure.md)
+23. **记忆只留当前状态**,过时的覆盖删除,不堆矛盾层 → [详](feedback_memory_keep_current.md)
+24. **老板发的提示词当天归档** → [详](reference_prompt_library.md)
 
 ---
 
 # 用户与沟通
-- 🔴 [Reference: 共享记忆库 AgentMemoryVault](reference_agent_memory_vault.md) — D:\SamsoData\Documents\AgentMemoryVault;**开工 git pull+读总览和信箱,收工更新总览+push**;双营销线(海外=Codex/国内=本机)
-- [User profile](user_profile.md) — 跨境电商 BD/运营,新加坡市场;TikTok 达人 SaaS + ThinkNova 双线
-- [Feedback: 文件放哪](feedback_file_placement.md) — 桌面只放要看的成片/成图,文档进 02_交付内容
+- 🔴 [共享记忆库 AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工 push
+- [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
+- [文件放哪](feedback_file_placement.md) — 桌面只放要看的成片/成图
 
 # ThinkNova(实体店内容 SaaS)
 ### 动手前必背
-- 🔴🔴 [Reference: 技术文档档案索引=唯一真值](reference_thinknova_tech_docs_index.md) — **改任何config字段第0步**:先按索引翻技术原文档(微信目录)+拉线上回读核对路径,再动;记忆只是索引不是真值(2026-07-24 出错根因=信漂移记忆没核文档);含opsEditable是可编辑真值(旧记"只读"存反已纠)、4096裁前缀非回退、价格只在pricing_json
-- 🔴🔴 [Reference: 模型台账+时长映射](reference_thinknova_multiref_model.md) — **动模型/时长前必看**:15秒=grok1.5preview(415,老板说"grok1.5"就指它)/10秒=omni(460)或fast(468);**omni只有10秒**所以A/B不能同时长;omni是多参+有水印;468已迁1renmanju;**模型列表的credit_price是废弃字段(显示0),真值在编辑弹窗「定价JSON」**
-- 🔴 [Reference: 提示词字段读取图](reference_thinknova_prompt_fields.md) — **改提示词第一查**:编剧只吃 case.visualHint + sellingPoints全文 + systemPrompt;industryPrompts 编剧读不到只进生图;**opsEditable 整层只读(PUT 静默丢弃,已发技术卡)**
-- 🔴 [Reference: 两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步;动任一环前必背
-- 🔴 [Reference: 提示词改造架构](reference_thinknova_prompt_architecture.md) — 三层职责+海报视频分家;4096字节纪律;先保成功率再谈效果
-- 🔴 [Reference: Grok审核红线实测](reference_grok_content_policy.md) — **红线是组合不是敏感词**(物体正对镜头+情绪紧绷才拒,单独任一项都过);换词无用;中医忍痛表情实证能过
-- [Reference: 配置权限地图](reference_thinknova_config_powers.md) — 能改的 config 键 vs 改不动的;能自改的自己改完再说话
+- 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — **改任何 config 字段第0步**
+- 🔴🔴 [模型台账 + 时长映射](reference_thinknova_multiref_model.md) — **动模型/时长前必看**;含两模型定位定案
+- 🔴 [提示词字段读取图](reference_thinknova_prompt_fields.md) — **改提示词第一查**:谁读得到哪个字段
+- 🔴 [两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步
+- 🔴 [提示词改造架构](reference_thinknova_prompt_architecture.md) — 三层职责 + 4096 字节纪律
+- 🔴 [Grok 审核红线实测](reference_grok_content_policy.md) — 红线是组合不是敏感词
+- [配置权限地图](reference_thinknova_config_powers.md) — 哪些 config 键我能改
+- [路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
 
 ### 现行状态
-- [项目:实体店两个Agent(工程主线)](project_thinknova_offline_agents.md) — 视频615案例/海报830;三把锁(人/商品/门店)+无参考图分支+台词口语+台词非字幕已上线;**CTA未选仍强加召唤=唯一未解**
-- 🔴 [项目:定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销Atomy第一用户;强化锁死段已上线待复烧;编剧补充要求两分支(写台词采用+压标准/没写照常)已上线;目标=人物口播+尽可能少切换
-- 🔴 [项目:国内营销线](project_thinknova_marketing.md) — 内容定稿V式(无声示意图)+X式(口播抠像),只讲机制禁案例;口播管线(CFR/抠像/喊卡手工);对照实验7条已交待发;平台定位「口语解放/推广平权」已上报总指挥待拍板;小红书干货化;**待办=生新小红书+新脚本**
-- 🔴 [Reference: HyperFrames视频生产线](reference_hyperframes_production.md) — 口播→转写→抠像→合成→交付+关键坑
-- 🔴 [Reference: 老板音色克隆生产线](reference_voice_clone_pipeline.md) — 火山豆包复刻2.0现行:音色S_rbgc0p2a2/Resource-Id必须seed-icl-2.0/情绪参数治"丧"/2万字免费额度;硅基流动零样本已废(老板验收不过);AI声明不毁流量(马师傅实证)
-- [Reference: 扫码发布配置各平台深链](reference_thinknova_publish_schemes.md) — 系统配置→通用;抖音/小红书/快手/TikTok 已真机验证到上传页(2026-07-24);scheme只到入口·预载视频需SDK·改后必真机测
-- 🔴🔴 [项目:故事板测试盘子(五条根因已取证)](project_thinknova_storyboard_test.md) — **当前主线·07-28二轮取证**;①i2v只发5格且每格标签错位一格、板上第6格永远拍不到(=「6宫格生成不完/没锁分镜图」真凶)②上传参考图走image_to_image时**分镜板左上格100%纯黑(4/4)**→场景锁没法验 ③产品锁✅内部环境锁✅**门头锁❌** ④字幕两来源:5个卖点promptText命令"价格数字醒目可读"+编剧回退把优惠原文写进画面核心(grok照画,omni不画)⑤回退原因=台词数≠镜头数;**取证法:Chrome里下载到D:\SamsoData\Downloads+本机ffmpeg抽联系表(页面内video抽帧已废)**
-- 🔴🔴 [项目:片型体系(治视频大差不差)](project_thinknova_film_types.md) — A/B/C/D四单定案:模型能变形、锅在形式契约+案例基因同质;一个编剧+三层基因;S14×44+口播案例已片型化,~495条待铺;写入token探针法;桌面有A/C对比片
-- 🔴 [项目:品牌产品行业+广告TVC场景](project_thinknova_brand_product_industry.md) — 2026-07-25已上线:场景S14广告大片(全行业)+行业brand_product+51案例+封面;**关键:案例创建/封面回填从admin域直接PUT能过CSRF(商家域不行)**;案例必带核心设置预设8字段否则建单500;编辑器改config用InputEvent同步+老板真人点保存
-- 🔴 [项目:定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;中国兑换码¥108=2000分;**2026-07-27定案:视频=生图6+模型(基准3分/秒)+服务费{8:30,10:24,12:18,15:9}=四时长统一60;基准锚点=omni和fast,其他模型可浮动**;成本单位别搞错(sora按秒¥0.1/s,omni与fast按整段¥1/条,preview¥1.8/条)
-- [Reference: 路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
+- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线**:五条根因已取证(i2v 错位一格、图生图左上格必黑、门头锁失败、字幕两来源、回退触发条件)+ 取证方法
+- 🔴🔴 [片型体系](project_thinknova_film_types.md) — 治"视频大差不差";~495 条待铺
+- 🔴 [品牌产品行业 + 广告TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;含建单500 排查法
+- 🔴 [定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
+- 🔴 [国内营销线](project_thinknova_marketing.md) — V式/X式内容;待办=新小红书+新脚本
+- 🔴 [定价 + 推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;07-27 定价公式已定案
+- 🔴 [HyperFrames 视频生产线](reference_hyperframes_production.md) / 🔴 [老板音色克隆生产线](reference_voice_clone_pipeline.md)
+- [实体店两个 Agent(工程主线)](project_thinknova_offline_agents.md) — 三把锁已上线;CTA 未选仍强加召唤=未解
+- [扫码发布深链配置](reference_thinknova_publish_schemes.md) — 四平台已真机验证
 
 ### 内容与产品规矩
-- [Feedback: 配置改动规矩](feedback_thinknova_config_edit_rule.md) — 已授权直接改线上;别改错 key
-- [Feedback: 北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) — 客户不动脑做出"他自己的内容"
-- [Feedback: 内容工具不做合规](feedback_thinknova_content_not_compliance.md) — 吸引导向;只守未成年底线
-- [Feedback: 案例缺口双查法](feedback_case_gap_dual_check.md) — 矩阵完整性+外部形态对标
-- [Feedback: 小红书内容交付规矩](feedback_xiaohongshu_content_workflow.md) — 每条含"照着填"清单
-- [Feedback: 烧单分工](feedback_thinknova_burn_division.md) — agent建单老板做/直连测试我做/封面图我给提示词Codex做
+- [配置改动规矩](feedback_thinknova_config_edit_rule.md) / [北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) / [内容工具不做合规](feedback_thinknova_content_not_compliance.md)
+- [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 
 # Compass / TikTok 达人线
-- [项目:KOL Compass(接管系统)](project_kol_compass.md) — 对外 SaaS,Codex 开发,5175前端+8015后端
-- [项目:tiktok-creator-tool(现行)](project_tiktok_creator_tool.md) — 单租户内部工具,将被 Compass 替换
-- [项目:迁移路线+关键决策](project_compass_migration.md) / [核心方向](project_compass_core_direction.md) / [出单潜力分](project_compass_scoring.md)
-- [项目:上线接真商家现状](project_compass_golive.md) / [待办](project_compass_backlog.md) / [采集器](project_compass_harvester.md)
-- [Reference: 路径+启动](reference_compass_paths.md) / [TikTok Partner API 事实](reference_tiktok_partner_api.md) / [达人库数据坑](project_compass_data_pitfalls.md)
-- [Feedback: 仓库使用节奏](feedback_repo_rhythm.md) — 最差一天一提交;密钥不提交
+- [KOL Compass(接管系统)](project_kol_compass.md) / [tiktok-creator-tool(现行)](project_tiktok_creator_tool.md)
+- [迁移路线](project_compass_migration.md) / [核心方向](project_compass_core_direction.md) / [出单潜力分](project_compass_scoring.md)
+- [上线现状](project_compass_golive.md) / [待办](project_compass_backlog.md) / [采集器](project_compass_harvester.md)
+- [路径+启动](reference_compass_paths.md) / [TikTok Partner API](reference_tiktok_partner_api.md) / [达人库数据坑](project_compass_data_pitfalls.md)
+- [仓库使用节奏](feedback_repo_rhythm.md)
 
 # 其他
-- [项目:新加坡鞋包提案](project_sg_footwear_proposal.md) — 12万/8模块/7平台;含无头Edge出PDF复用法
-- [项目:小孩数学网课](project_kid_math_tutoring.md) + [课程总表](reference_kid_math_roadmap.md) — 一周3次,主攻逻辑
+- [新加坡鞋包提案](project_sg_footwear_proposal.md) / [小孩数学网课](project_kid_math_tutoring.md) + [课程总表](reference_kid_math_roadmap.md)
