@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-24T11:25:58.867Z
+  modified: 2026-07-27T14:32:35.636Z
 ---
 
 # ThinkNova 多参考图 i2v 模型(2026-07-24 实证)
@@ -17,8 +17,29 @@ metadata:
 → 想让 i2v 拿到真人/场景/产品图(锁人物、降 Grok 审核拒率),**必须用多参模型**,靠不了商家流程的截格。
 
 ## 涉及模型
-- **415** grok-imagine-video-1.5-preview(现役主力 i2v,manxueapi,单参 maxRef=1)
-- **468** grok-imagine-video-1.5-fast「Grok 1.5 多图」(manxueapi,要改成真多参的目标)
+> 🔴🔴 **2026-07-27 全面更新,以下为当前真值(旧内容已纠)**
+>
+> ## 平台「模型 ↔ 时长」映射(老板口径,说 grok1.5 一律指 preview 满血版)
+> | 时长档 | 模型 |
+> |---|---|
+> | **15 秒** | **Grok 1.5 preview(415)= 满血版**,老板说"grok1.5"就是它 |
+> | **10 秒** | **omni(460)** 或 **Grok 1.5 fast(468)** |
+> | 8/12 秒 | veo3.1(470)/ Jimeng3.5(471)等,已淘汰不用 |
+> **omni 只有 10 秒**;做 A/B 对比时"两个模型同时长"不成立,口播/TVC 对比只能是 omni10秒 vs grok1.5-15秒。
+>
+> ## 现役模型台账(2026-07-27 实拉)
+> | id | 名 | 供应商 | 参考图 | 定价JSON | 备注 |
+> |---|---|---|---|---|---|
+> | 415 | Grok 1.5 preview | manxueapi | 单参1 | 3分/秒 | 15秒档;⭐默认模型;manxueapi 曾大面积 503/账号池空 |
+> | 460 | omni | lk888 | **多参(limit 3~5)** | **3分/秒** | 10秒;**有白色四角星水印**;lk888 实测 15成0败 |
+> | 468 | Grok 1.5 fast → 改名「Grok 1.5 1ren」 | **已迁 1renmanju** | 单参1 | 3分/秒 | 10秒;前台 frontend_visible=❌ 选不到 |
+> | 467 | grok-imagine-video-1.5 | 1renmanju | 单参1 | — | 前台不可见 |
+> | 469 | sora-2 | lk888 | 单参1 | **6分/秒(偏贵待调)** | 成本仅¥0.1/秒 |
+> | 470 veo3.1 / 471 Jimeng3.5 | lk888 | 单参1 | 4/10分整段 | **均已淘汰**(veo画网格、Jimeng分辨率496×864) |
+> ⚠️ **模型列表接口的 `credit_price` 是废弃字段(常显示0),真值只在编辑弹窗的「定价 JSON」里**——我曾据此误判"模型价被清零"。
+
+- ~~415 现役主力 i2v(manxueapi,单参 maxRef=1)~~ → 见上表
+- ~~468 在 manxueapi~~ → **已迁 1renmanju**
 - **411** grok 1.5(manxueapi,文生视频,**已停用但是多参样板**):`model_request_mode=manxue_videos_reference_images_json` + `max_reference_images=5` = 07-12 smoke 验证过的多图配置(首帧+4张=5项 reference_images 请求体)。
 
 ## 468 改多参的坑(2026-07-24 实测)
