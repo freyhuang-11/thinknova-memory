@@ -65,7 +65,7 @@
 - [路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
 
 ### 现行状态
-- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线·07-28凌晨已改线上config+3张技术卡已写**:i2v错位一格/图生图左上格必黑/门头锁失败/**字幕三来源全在config全能自改(5卖点✅已改·回退模板❌待拍板·videoTemplate✅已改)**/`i2vReferenceStrategy=storyboard_board`与代码后缀打架=网格入画真凶;**待办=老板复烧1单我核送达**;取证法(`?payload=1`拿全量提交串·PUT只需{config:…}·ffmpeg联系表)
+- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线·07-28 05:0x n=5 实测定案**:grok 开场网格是**双峰(0.17s/2.9s,3:1)不是固定值**·`entranceBlackOverlay` **一直正常执行**(我"判死后处理"那条已自证推翻)·板↔片一致性 **83%**·**人物锁门店锁强、产品锁看产品可辨识度**·460 改名✅已落库并送达·**取证一律走 admin `offline-store-content/tasks/{no}`**(唯一能拿到 6宫格板图 + 供应商裸片)·**批量烧单必须串行间隔≥20秒**
 - 🔴🔴 [片型体系](project_thinknova_film_types.md) — 治"视频大差不差";**620条已全量铺完(07-26 05:00,0失败)+601条预设铺完(07-27)**;剩下的是**烧验**:7个片型未烧验(空间漫游/氛围仪式/产品英雄/人物讲述/演示讲解/生活纪实/明快陈列)
 - 🔴 [品牌产品行业 + 广告TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;含建单500 排查法
 - 🔴 [定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
