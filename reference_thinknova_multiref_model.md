@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-27T14:32:35.636Z
+  modified: 2026-07-27T16:18:40.000Z
 ---
 
 # ThinkNova 多参考图 i2v 模型(2026-07-24 实证)
@@ -26,6 +26,22 @@ metadata:
 > | **10 秒** | **omni(460)** 或 **Grok 1.5 fast(468)** |
 > | 8/12 秒 | veo3.1(470)/ Jimeng3.5(471)等,已淘汰不用 |
 > **omni 只有 10 秒**;做 A/B 对比时"两个模型同时长"不成立,口播/TVC 对比只能是 omni10秒 vs grok1.5-15秒。
+>
+> ## 🔴 模型改名(2026-07-27 已上线·客户按"要不要人说话"选)
+> 🔴 **中英文名都是客户看的(有外国客户),不能拿英文名塞技术身份**(老板 07-27 纠正)。**内部识别靠「模型ID + `model_code`」**——后台列表本来就显示、且是真身份不会因改名丢失。
+> | id | model_code(我们认这个) | 中文 | English | 前台 |
+> |---|---|---|---|---|
+> | 415 | grok-imagine-video-1.5-**preview** | 真人口播版 · 15秒(会说话) | Talking Presenter · 15s (with voice) | ✅ |
+> | 468 | grok-imagine-video-1.5-**fast** | 真人口播版 · 10秒(会说话) | Talking Presenter · 10s (with voice) | ✅(07-27打开) |
+> | 460 | **omni_flash**-10s | 画面大片版 · 10秒(无旁白) | Cinematic Visuals · 10s (no voiceover) | ✅ |
+> | 416 | **sora-2** | 广告创意版 · 文字生成视频 | Creative Ad · Text-to-Video | ✅ |
+> | 469 | **sora-2** | 广告创意版 · 图片生成视频 | Creative Ad · Image-to-Video | ✅ |
+> | 467 | grok-1.5-preview | 备用通道 · 口播10秒 | Backup Channel · Talking 10s | ❌ |
+> | 470 | **veo3.1** | 实验版 · 暂不推荐 | Experimental · Not Recommended | ❌ |
+> | 471 | **doubao-seedance** | 实验版 · 暂不推荐(低清) | Experimental · Not Recommended (low-res) | ❌ |
+> **客户选择逻辑=一句话**:要人讲话→口播版(15秒/10秒);要画面高级无旁白→大片版;纯创意广告→广告创意版。
+> **为什么这么命名**:omni 音画不同步+台词一多就念不清 → 名字里写死「无旁白」,客户选它就不指望台词,不用再教育。
+> **改名接口**:`PUT https://api.thinknova.top/admin/api/v1/models/{id}`,body=GET 回来的完整模型对象改 `display_name_zh/display_name_en/frontend_visible` 再 PUT,带 admin CSRF(从「更新模型」按钮 fetch 钩子抓)。列表 `GET /admin/api/v1/models?page=1&pageSize=100`。
 >
 > ## 现役模型台账(2026-07-27 实拉)
 > | id | 名 | 供应商 | 参考图 | 定价JSON | 备注 |
