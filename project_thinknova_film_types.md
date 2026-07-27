@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: f9888687-3c16-4546-9394-03122edbc103
-  modified: 2026-07-27T14:07:46.976Z
+  modified: 2026-07-27T15:34:16.917Z
 ---
 
 # 片型体系 —— 治"全平台视频大差不差"(2026-07-26 老板+实验定案)
@@ -50,6 +50,25 @@ metadata:
 **老板定的基准**:**omni 和 fast 必须落在 60 积分**,其他模型可上下浮动。fast(468)=3分/秒已达标;**omni(460) credit_price=0 → 只收30分,待改成3积分/秒**(模型管理里改,单条模型无GET端点、只有列表接口,写入端点待抓)。
 **成本真值(老板给,单位别搞错)**:sora-2 = **¥0.1/秒**(按秒);omni/grok1.5fast = **¥1/条**(整段);grok1.5preview = **¥1.8/条**(整段)。→ 10秒是分水岭:10秒内 sora 便宜,10秒以上整段计价的划算;15秒 omni ¥1 vs sora ¥1.5。**我曾把所有模型都当按秒算,得出"sora便宜10倍"的错误结论,已纠。**
 60积分 = ¥3.24(¥108/2000分),成本¥1 → 毛利约69%。
+
+## 🆕🆕 2026-07-27 深夜:601案例全量预设 + TVC四流派 + 整板模式开启
+### 全量预设铺完(601条,零失败)
+每条案例现在都有:出镜/风格/重点/节奏/**scriptwriterPreset(段数+voiceMode)**/卖点/预填。按场景映射:**S11口播=1段dialogue(一镜到底)**、**S14_tvc=5段voiceMode:none(无台词)**、S14_other=5段dialogue、S02/S13=fast_promo、S07=before_after、S06=hands_on_process…**老板要求:客户只填商品名+价格就行。**
+⚠️ 合法值只能从 `businessUi.detailOptionGroups` 取:appearanceMode(product_only/owner_speaking/product_store/customer_pickup/appearance_mode_menu_board_display)、videoStyle(real_store_promo/owner_recommendation/local_conversion/premium_clean)、visualFocus(price_focus/freshness_focus/arrival_focus/location_focus/subject_closeup/before_after/hands_on_process/store_environment/person_on_camera)、paceLevel(steady/medium_high/fast_promo)。
+### TVC 四流派(治"画面过于单一")
+老板反馈:TVC不能永远一种画面感,要有深景近景层次,苹果式高级感要有但不能没有星巴克式生活感。→ 22条 `_s14_tvc` 轮流分配四流派:**极简高级(Apple)6 / 生活温度(星巴克)6 / 空间叙事(汽车广告)5 / 质感工艺5**,每条都强制【景别必须有层次】(五格必须含深景+中景+近景微距+真实使用瞬间,禁全片同一景别、禁五格全静物)+ 保留高级感条款。
+### 口播调优(老板说 grok 15秒口播是最满意的一条)
+- **语速**:60条S11案例 paceLevel `steady`→`medium_high`(只动语速,不碰画面/机位/台词内容)
+- **台词说满**:一镜到底没有画面切换=人持续说话,加【纯口播·台词说满】按每秒6字取满(10秒55-65/12秒68-78/**15秒85-95字**);`lineValidation` zh max **75→100**(下限45不动,否则8/10/12秒短片全回退)
+- **动作克制**:编剧曾自作主张加"取量/揉洗"动作打断口播 → 加【纯口播·动作克制】只许持物+轻微手势,禁操作演示走动
+- **台词必须有实话**:曾出现通篇空词(讲究/省心/靠谱/有数)→ 加规则:至少一半句子说具体事实,空词全片最多1次
+### 🔴 整板模式已开启(2026-07-27 23:40,待验证)
+`i2vReferenceStrategy: panel_crop → **storyboard_board**`;`entranceBlackOverlay: 0.3→**0.5秒**`。
+**动机(实测证据)**:omni TVC 单 task_9054ba5a95dd —— 板图非常高级(纯净暗场/光束/石台/浓稠挂丝/手搓泡沫/水面涟漪),成片却掉档(**多出水泥墙横梁、黑位发灰、光束散、手搓泡沫和水面两格直接没了**)。根因=**i2v 只把裁格(第1格)当首帧,后9秒自己演**,整板虽传但只是 reference 不主宰;后5格只剩文字描述,模型重画画不出板的精致度,还自行补了想象的厂房环境。
+⚠️ **风险**:veo 实测会把六宫格画进成片(第6秒),omni 未测。**若出网格,改回 panel_crop 即可(一个字段秒回滚)**。老板提醒:黑屏开关就是为盖开头那一下设计的。
+### 其它实测事实
+- **编剧超时会导致口播无台词**:`fallbackReason: Operation timed out after 180001ms` + `source: local_fallback` → 兜底模板不产台词。**不是预设问题,重烧即可**。诊断口播没声音先看这两个字段。
+- 商家端任务详情接口 `/api/v1/business-video-assets/tasks/{no}` 的 detail.business 里有全部建单参数(含参考图assetId),可用于复用参数烧对照单。
 
 ## 🔴 老板2026-07-26凌晨定的架构原则(编剧层宪法)
 1. **全局systemPrompt只管统一纪律**:人物真实感/去AI化、声音停顿情绪(不机器人)、光感、饱和度(+待拍板:材质物性真实,如洗衣液要稠不能像水)——**剩下全部跟案例走**。
