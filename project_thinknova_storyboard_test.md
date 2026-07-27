@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-27T19:35:39.267Z
+  modified: 2026-07-27T19:50:03.371Z
 ---
 
 # 故事板/生图锁/模型定位 —— 2026-07-28 两轮取证结论
@@ -135,7 +135,7 @@ admin SPA 标签页会 CDP 超时卡死(Runtime.evaluate 45s timeout)。**绕法
 - **5 个卖点去字幕化**:`businessUi.sellingPointOptions` 的 `limited_offer` / `group_buy_available` / `selling_point_trial_price` / `clear_price` / `selling_point_member`,把【画面】段从"信息醒目可读/价格数字清晰"换成**实拍指派**(快手打包/整桌摆齐/引导入座/当面点清/端上常点那份),末句统一「靠…表达,不靠画面上的标注文字」;**【台词方向】段原样保留**(台词该说优惠,画面不该画)。zh+en 都改了。
 - **videoTemplate 开场词**:`promptComposer.screenwriter.staticTemplates.videoTemplate`(🔴**线上真实路径就是 screenwriter,不是 masterPipeline**),把「输入图片#第1镜首帧自然开场;画面永远单一全屏,绝不分屏/多画面/拼贴。」换成「输入图片是多格分镜参考板,只用于读取人物/商品/门店的样貌与风格,绝不可入画——成片第0帧起即为下方第一个子格所描述的实拍单画面;画面永远单一全屏,绝不出现网格/分格线/拼贴/分屏。」541→596字符。
 - config sha256 `1baeac84e5c2…` → `9f949948c19b…`;备份 `D:\SamsoData\Downloads\backup_offline_store_video_20260728_0240.json`(609KB)。
-- 已验:admin 回读 ✅ + 商家端 `/api/v1/business-video-assets/config` 同步 ✅。**但落库≠送达,复烧验证未做(商家整单老板亲自烧)。**
+- 已验:admin 回读 ✅ + 商家端 `/api/v1/business-video-assets/config` 同步 ✅。**但落库≠送达,复烧验证未做(🔴 03:35 起改为我自己烧,不等老板)。**
 - 三张技术卡已写:`02_交付内容\给技术_OPS-VIDEO-20260728-0{1,2,3}_*.md`(格位错位/i2i黑格/输入图前提矛盾),索引已更新。
 
 ## ✅ 2026-07-28 03:20 已完成:回退模板去字幕化(老板授权)
@@ -160,8 +160,31 @@ admin SPA 标签页会 CDP 超时卡死(Runtime.evaluate 45s timeout)。**绕法
 - 不改的代价:今日回退率 20%,复烧只要撞上回退单就仍满屏打价格,验不出卖点改动效果。
 - 老板给的三个选项:①授权一起改(我推荐)②先别动只验卖点③改但先给技术备案。
 
+## 🔴🔴🔴 2026-07-28 04:0x 网格滞留·首次精确量化(ffmpeg 实测,推翻旧眼估)
+**方法(可复用)**:`ffmpeg -t 6 -i x.mp4 -vf "fps=5,scale=190:-1,drawtext=fontfile='C\:/Windows/Fonts/arial.ttf':text='%{eif\:n*200\:d}ms':...,tile=6x5" -frames:v 1 out.jpg`
+🔴 **标签公式必须是 `n*(1000/fps)`**,我第一次写成 `n*(100/fps)` 导致标签差 10 倍,差点报错数字。
+**样本**(整板模式 + 23:45 storyboardClarification 已上线,02:47 videoTemplate 改之前烧的):
+| 片 | 网格滞留 | 首个干净全屏帧 |
+|---|---|---|
+| B2_grok_studio(影楼15s) | **0→2.8s** | 3.0s |
+| R1_grok_pet(宠物15s) | **0→2.8s** | 3.0s |
+- 🔴 **旧记忆「B2 滞留 5.5s」是眼估,偏大,已作废** —— 真值 2.8s。
+- 🔴🔴 **两条不同行业/不同案例的 grok 都精确落在 2.8s** → 不是随机,是 **grok 的固定开场行为:用约 2.8 秒把输入图溶解掉**(看 2.4→2.8s 是渐隐不是切换)。整板模式下输入图=六宫格板,所以溶的就是 2.8 秒网格。
+- 🔴🔴 **提示词管不了这个**:烧这两条时 23:45 那句「成片必须在开头第一秒内完全离开网格布局」**已经在线上**,grok 照样溶 2.8s。
+- 🔴🔴 **8 条片全部 `blackdetect` = NO-BLACK,第0帧就是网格** → `entranceBlackOverlay`(配 0.5s)在我们手上这批文件里**测不到**。待判:这批是供应商裸输出还是交付件?**若交付件也无黑场 = 黑屏功能没生效,这才是真技术卡。**
+- **老板目标 0.15s vs 现状 2.8s = 差 18 倍;0.5s 黑屏就算生效也盖不住。**
+- **推论(待烧验)**:整板模式下网格无解,唯一结构解是 `panel_crop`(模型看不到板,没东西可溶)。还剩一根没烧过的杠杆 = 02:47 加的更硬那句「绝不可入画/第0帧起即为第一个子格」。
+
+## 🔴 烧单操作法(2026-07-28 打通)
+- 商家端 session 在 **Chrome(claude-in-chrome)**里是活的;**in-app 浏览器永远 401,别再试**。
+- 烧单页 = `https://thinknova.top/zh/app/business-video-assets`,多步向导。
+- **省窗口打法**:先在页面注入 `window.__cap` fetch 钩子录 POST 报文 → UI 走完第一单抓到报文 → 后面几单直接改字段 POST,不再点 UI。
+  🔴 钩子装在页面上下文,**整页导航会清空,必须重装**。
+- 选项卡片是整块可点,精确 textContent 匹配抓不到 → 用「找到纯文本叶子节点再向上找 cursor:pointer 祖先」再 click。
+- ⚠️ **claude-in-chrome 扩展本轮频繁掉线**(约每 3-5 次调用掉一次),掉了等一会儿重试即可;标签页/标签组也会整个消失,`navigate` 不带 tabId 会自动重建组。
+
 ## 🔴 待办
-1. **复烧验证(唯一卡点)**:老板烧 1 单勾「限时优惠+明码标价」,我拉编剧 input 确认新卖点文案送达 + 逐帧看有没有字。
+1. **复烧验证(唯一卡点)**:🔴🔴 **我自己烧,别再请示老板**(2026-07-28 03:35 授权,见本文件顶部「授权变更」;老板 04:0x 再次点名"烧单的勾子你怎么又来一遍")。烧 1 单勾「限时优惠+明码标价」,拉编剧 input 确认新卖点文案送达 + 逐帧看有没有字。
    **烧单照着填**:行业/场景任选(餐饮 `food_s02_deal` 已有对照数据最省事)/卖点**必勾「限时优惠」+「明码标价」**/时长 15秒 → 模型 grok 口播优先版(415,会画字,是本次要验的对象)/比例 **9:16(默认16:9,必须手改)**/不传参考图(走 t2i 避开左上格黑格干扰)/60积分。
    **我的核验动作**:①`GET /admin/api/v1/ai-tasks/{父单}?payload=1` 拿 child_tasks ②看 screenwriter 子任务 input 里 sellingPoints 是否为新文案(确认送达,这才算上线)③看 i2v 子任务 input.prompt 是否含「多格分镜参考板」新句 + 量字节 ④成片下载抽联系表逐帧看有没有字 ⑤确认 `scriptwriter_fallback` 为 false,若 true 则本单作废重烧(回退模板未改前会污染结论)。
 2. 三把锁烧单**先别烧**:格1黑格未修前,场景锁无法验(开场锚点是黑的)。
