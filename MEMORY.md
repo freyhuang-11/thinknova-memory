@@ -65,7 +65,7 @@
 
 ### 现行状态
 - 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线·07-28凌晨已改线上config+3张技术卡已写**:i2v错位一格/图生图左上格必黑/门头锁失败/**字幕三来源全在config全能自改(5卖点✅已改·回退模板❌待拍板·videoTemplate✅已改)**/`i2vReferenceStrategy=storyboard_board`与代码后缀打架=网格入画真凶;**待办=老板复烧1单我核送达**;取证法(`?payload=1`拿全量提交串·PUT只需{config:…}·ffmpeg联系表)
-- 🔴🔴 [片型体系](project_thinknova_film_types.md) — 治"视频大差不差";~495 条待铺
+- 🔴🔴 [片型体系](project_thinknova_film_types.md) — 治"视频大差不差";**620条已全量铺完(07-26 05:00,0失败)+601条预设铺完(07-27)**;剩下的是**烧验**:7个片型未烧验(空间漫游/氛围仪式/产品英雄/人物讲述/演示讲解/生活纪实/明快陈列)
 - 🔴 [品牌产品行业 + 广告TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;含建单500 排查法
 - 🔴 [定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
 - 🔴 [国内营销线](project_thinknova_marketing.md) — V式/X式内容;待办=新小红书+新脚本
