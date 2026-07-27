@@ -5,10 +5,17 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-24T20:17:06.056Z
+  modified: 2026-07-27T08:01:43.598Z
 ---
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
+
+> 🔴🔴 **2026-07-27 破解"保存了却没生效"之谜(实测,极重要)**:
+> **写 `opsEditable.*` 必须同时写对应的 `blockTemplates.*` 镜像,两处一起 PUT 才落库**;只写 opsEditable → PUT 返回 200 OK 但**服务端用镜像盖回去、静默丢弃**(实测 firstFrame 两次都被回滚)。旧记忆"opsEditable 只读"和"blockTemplates 是只读镜像"**都不准确**,真相是**两者必须同步写**。
+> 对应关系:`opsEditable.taskGoal.firstFrame` ↔ `blockTemplates.task_goal.first_frame_prompt`。
+> **可直接 API 写配置**:`PUT /admin/api/v1/agents/{code}`,body=完整 agent 对象(GET 回来改一个字段再 PUT),带 admin CSRF;比后台编辑器可靠(新版编辑器会因刷新丢暂存改动、且老板点保存会把旧内容存回去)。
+> `promptComposer.screenwriter.systemPrompt` 单独写即可生效(无镜像)。
+> **六拍骨架同时存在于三处**:opsEditable.taskGoal.firstFrame / blockTemplates.task_goal.first_frame_prompt / screenwriter.systemPrompt——改画面格位配额要考虑全部三处。
 
 > 🟢 **2026-07-25 再确认(task_4edfd26d6b87 编剧 input + admin GET config 实测)**:
 > - **两条管线吃不同字段,别混**:**编剧(脚本/台词)**只吃 `case.visualHint`+`sellingPoints`全文+`screenwriter.systemPrompt`(全局5743字)+`selectedOptions`;**生图/i2v(画面)**才吃 `scenePrompts[场景]`+`industryPrompts[行业]`+`sceneRules[场景]`(14条各~130字)+`industryRules[行业]`(20条各~200字)。→ 想改**台词/脚本**改 visualHint+卖点+systemPrompt;想改**画面效果**改 scene/industry 那几层(生图侧)。「同行业不同场景要不同效果」=生图侧 sceneRules/industryPrompts 的活。
