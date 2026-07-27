@@ -5,10 +5,17 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-27T08:01:43.598Z
+  modified: 2026-07-27T19:02:03.976Z
 ---
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
+
+> 🟢🟢 **2026-07-28 03:00 线上回读定案(offline_store_video),路径之争到此为止**:
+> - **`promptComposer.screenwriter.staticTemplates.videoTemplate` 真实存在且生效**(实测 541→596 字符,改后 i2v 单读到)。`staticTemplates` 四键 = `businessContext / outputContract / firstFrameTemplate / videoTemplate`。**`masterPipeline.scriptwriter` 下没有 staticTemplates**,别再往那儿找 videoTemplate。
+> - **两条路径并存,各管各的**:`promptComposer.screenwriter.*`(静态模板)与 `promptComposer.masterPipeline.scriptwriter.*`(`timeline` / `lineValidation` / `fallbackPolicy` / `textModel`)。旧记忆说"screenwriter 少了 masterPipeline"是**误判**——不是少段,是两个不同子树。
+> - **`fallbackPolicy.visualTemplates` 在 config 里、运营可改**(`masterPipeline.scriptwriter.fallbackPolicy` 与 `opsEditable.masterPipeline.scriptwriter.fallbackPolicy` 两处内容完全一致)。旧记忆记成"回退模板是代码、要发技术卡"是**错的**,已纠。
+> - **`promptComposer.masterPipeline.i2vReferenceStrategy` 线上 = `storyboard_board`**(整板当参考,不裁格);每个 i2v 子任务的 `input._i2v_reference_strategy` 会回显该值,可逐单核。
+> - **PUT 只需 `{config:…}`**,不必发完整 agent 对象;详见 [[project-thinknova-storyboard-test]] 取证方法第 0.5 条。
 
 > 🔴🔴 **2026-07-27 破解"保存了却没生效"之谜(实测,极重要)**:
 > **写 `opsEditable.*` 必须同时写对应的 `blockTemplates.*` 镜像,两处一起 PUT 才落库**;只写 opsEditable → PUT 返回 200 OK 但**服务端用镜像盖回去、静默丢弃**(实测 firstFrame 两次都被回滚)。旧记忆"opsEditable 只读"和"blockTemplates 是只读镜像"**都不准确**,真相是**两者必须同步写**。
