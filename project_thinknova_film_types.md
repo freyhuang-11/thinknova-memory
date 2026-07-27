@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: f9888687-3c16-4546-9394-03122edbc103
-  modified: 2026-07-26T05:15:45.079Z
+  modified: 2026-07-27T10:16:37.947Z
 ---
 
 # 片型体系 —— 治"全平台视频大差不差"(2026-07-26 老板+实验定案)
@@ -22,6 +22,16 @@ metadata:
 - 案例级 `scriptwriterPreset:{shotCount:1-7, voiceMode:"dialogue"|"none"}` + 全局 `masterPipeline.scriptwriter.timeline.defaultShotCount=5`;优先级=案例>Agent>默认。预设回填修好(选案例自动回填,手动改不覆盖)。**边界:shotCount只控编剧时间轴;分镜板永远3×2/5格(视觉参考与时间轴解绑);30秒别用这个**。
 - **待验证(会话过期401被卡,老板登录后立即做)**:①3条测试案例写 scriptwriterPreset 回读不被剥离:TVC=7/none、口播=1/dialogue、快促=7/dialogue;②烧3单验编剧 cells数=shotCount、none无lines、1段台词=连续独白;③前台验预设回填(beauty_s11 四项不再"不指定");④核 cinematic_showcase/product_detail/dynamic 新选项是否已进选项组;⑤过了再全量铺 scriptwriterPreset(S11全部=1/dialogue、S14_tvc=7/none、S02S13=7/dialogue,快照法同前)。
 - ⚠️ shotCount=1 会把台词变成1条连续独白=结构上实现老板的台词方向A——但台词区冻结纪律仍在:先烧1条给老板听过拍板,再铺S11。
+
+## 🆕 2026-07-27 全天上线(全部 API 写入+回读验证)
+**写配置新姿势(取代编辑器)**:`PUT /admin/api/v1/agents/{code}`,GET完整agent对象→只改目标字段→PUT→回读。🔴🔴**`opsEditable.*` 必须和 `blockTemplates.*` 镜像同时写**,只写一个→PUT 200但被静默回滚(破了长期"保存了没生效"悬案)。token 用探针法(案例库新增案例 zz_tok_probe3)。
+**生图层(stagePromptPresets,之前 text_to_image/image_to_image 的 prefix/suffix 全空=零纪律)**:加【统一纪律·真实感】=材质物性(稠液挂壁不像水/食物热气油脂/汤汁挂勺)+人物去AI化(皮肤质感/手指结构/表情自然)+光感饱和度克制+**包装文字虚化不可辨、不编假字**(治乱码);i2v 的 storyboardClarification 也补了物性。
+**生图格位配额(opsEditable.taskGoal.firstFrame + blockTemplates.task_goal.first_frame_prompt)**:选门店环境或传场景参考图→格1门头/店内全景开场、格4主体与环境同框,并锁参考图真实装修;产品格必须与参考图外形/摆盘/色泽/器皿一致。**实测生效**(格1从人脸特写变店内全景)。⚠️只在触发条件满足时启动,默认单不受影响。
+**编剧层(screenwriter.systemPrompt,已 6763字)**:①段数与句数跟 shotCount ②台词量按时长(10秒45-55字/15秒60-75)③台词连贯一段话拆开说 ④用户补充要求最高优先(必须整整一句专门表达)⑤感官词全片只用一次 ⑥板片同源(boardCells 对应 cells 同序号)。**lineValidation zh/zh_cn/zh_tw/default 的 min 60→45**(给10秒片留写短空间)。
+**实测对比(同输入)**:改前7句73字塞10秒、"嫩"重复3次、好评如潮被平摊半句;改后5句52-58字、好评独立成句、格1门店全景。
+🔴 **补充要求能直接指挥画面**(实测):写"开场先给门店招牌和店内环境全景"→boardCells 格1 原样照做。=客户自己就能控运镜,不用改配置。但**只能控"拍什么",锁不住"是哪一家"**(要靠参考图进i2v)。
+**模型**:默认 i2v 415→**460 omni**(manxueapi 报 `pool: no available account` 全线挂,lk888 正常);omni 是**多参模型**(limit 5,415只有1)但5个位只用了2个(crop+storyboard),用户上传的人物/场景/产品图**没进i2v**=场景/产品走样根因,已让老板转告技术填满。🔴 **omni 成片右下角有白色四角星水印**(昨天给客户演示那条也有),ffmpeg delogo 可去。
+**手册新知(运营手册v1.0完整版)**:`masterPipeline.i2vReferenceStrategy` = `panel_crop`(默认裁首格)/`storyboard_board`(**整板直喂=老板要的**,仅建议给已验证不出网格的模型);`deliveryPostProcess.headReplacement{0.5秒黑屏}` **默认已开**;时长可配5~30秒;白名单/默认模型按时长是**对象**;详见 [[reference-thinknova-tech-docs-index]]。
 
 ## 🔴 老板2026-07-26凌晨定的架构原则(编剧层宪法)
 1. **全局systemPrompt只管统一纪律**:人物真实感/去AI化、声音停顿情绪(不机器人)、光感、饱和度(+待拍板:材质物性真实,如洗衣液要稠不能像水)——**剩下全部跟案例走**。
