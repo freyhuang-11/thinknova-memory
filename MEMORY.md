@@ -6,6 +6,7 @@
 1. 🔴 判断"现在/多久前"**先跑 `date`** → [详](feedback_check_time_first.md)
 2. 🔴 **提议≠指令**;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴 **例程内能自己拍板的自动跑**,别每天拿老问题问老板 → [详](feedback_auto_mode_dont_over_escalate.md)
+2.7 🔴 **接"上次的活"先看记忆文件修改时间**;另一会话可能几分钟前刚推翻我的结论 → [详](feedback_parallel_sessions_check_first.md)
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 
 ## L1 · 改配置/提示词前

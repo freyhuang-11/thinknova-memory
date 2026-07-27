@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: current
-  modified: 2026-07-27T17:38:08.219Z
+  modified: 2026-07-27T19:30:41.709Z
 ---
 
 # ThinkNova 多参考图 i2v 模型(2026-07-24 实证)
@@ -63,13 +63,15 @@ metadata:
 > ## 🔴 模型改名(2026-07-27 已上线·客户按"要不要人说话"选)
 > 🔴 **中英文名都是客户看的(有外国客户),不能拿英文名塞技术身份**(老板 07-27 纠正)。**内部识别靠「模型ID + `model_code`」**——后台列表本来就显示、且是真身份不会因改名丢失。
 > 🔴🔴 **定位轴 = 「口播稳」vs「画面像」,不是「有没有台词」**(老板 07-28 纠正我取反的名字):
-> - **omni(460)= 多参 `maxReferenceImages:7`**,协议 `{{referenceImages}}` 数组 → **能锁人物/产品/门店一致性,大量行业必须用它**;**它照样会说话、正常台词量没问题**(只是台词一多念不清)。我曾把它命名成「无旁白/Cinematic no voiceover」= **严重取反,已改**。
+> - **omni(460)= 多参 `maxReferenceImages:7`**,协议 `{{referenceImages}}` 数组 → **能锁人物/产品/门店一致性,大量行业必须用它**。
+>   🔴🔴 **中文口播:做不了(2026-07-28 老板看片拍板,已作数)**。本行旧文「它照样会说话、正常台词量没问题」**是错的,已作废**——那是 07-27 凭能力参数推的,07-28 实测成片推翻。**英文解说可以。**
+>   命名注意:名字仍按「画面像」轴写(不要写成「无旁白/Cinematic no voiceover」,那是 07-27 被纠正过的取反命名),但**必须把中文口播限制写进括号**。
 > - **grok(415 preview / 468 fast)= 单参** → **讲话更稳**,但**后面的画面控制不住**(单参只喂截格首帧,上传图进不了 i2v)。
 > - **绝大部分商家的真实需求是 omni**(要场景/人物/产品统一);grok 只在"口播必须说清楚"时优先。
 >
 > | id | model_code(我们认这个) | 中文 | English | 前台 |
 > |---|---|---|---|---|
-> | 460 | **omni_flash**-10s(多参7) | 实景还原版 · 10秒(锁人物·产品·门店) | True to Your Photos · 10s (locks people, product & store) | ✅ |
+> | 460 | **omni_flash**-10s(多参7) | 🔴**待改名**:现「实景还原版 · 10秒(锁人物·产品·门店)」→ 目标「**实景还原版 · 10秒(锁人物产品门店 · 无中文口播)**」 | 现「True to Your Photos · 10s (locks people, product & store)」→ 目标「**True to Your Photos · 10s (locks people, product & store · no Chinese voiceover)**」 | ✅ |
 > | 415 | grok-imagine-video-1.5-**preview**(单参) | 口播优先版 · 15秒(讲话最稳) | Speech First · 15s (most reliable talking) | ✅ |
 > | 468 | grok-imagine-video-1.5-**fast**(单参) | 口播优先版 · 10秒(讲话最稳) | Speech First · 10s (most reliable talking) | ✅(07-27打开前台) |
 > | 459 | **grok-video-3**(文生,10秒,**2分/秒最便宜**) | 经济实惠版 · 10秒(文字生成) | Budget Saver · 10s (Text-to-Video) | ✅ |
