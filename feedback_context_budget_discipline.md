@@ -1,6 +1,6 @@
 ---
 name: feedback-context-budget-discipline
-description: 上下文被浏览器截图吃光的实测账 + 我操作后台必须遵守的省窗口纪律
+description: "触发:要点浏览器/要Read图/要分片打印长文本之前 → 合并成一段JS只回一行摘要;判断上下文为何满一律读 usage 字段不看字符数"
 metadata: 
   node_type: memory
   type: feedback

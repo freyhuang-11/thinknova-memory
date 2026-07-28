@@ -22,4 +22,4 @@ ThinkNova 实体店 海报/短视频 agent 是**内容制作工具**，目标 = 
 - **默认出图语言改不动**：copyLanguage 无 default 字段、数组序被服务端强制 zh_cn 打头，配置改不了默认语言。要英文默认=技术，或前端按 UI locale 自动匹配(海外 UI=en 可能已自动)。
 - **图上文字=矢量/叠加层方向**：AI 模型只出栅格图、文字烧进像素(所以中文会糊)。真正解=AI 出视觉+预留文字区，另起 SVG/HTML 层渲染店名/价格/CTA(矢量、正确、可编辑、任意语言)。=技术工程改造，配置只能配合"出干净留白背景"。一举解决糊字+多语言上图。
 
-见 [[project_thinknova_offline_agents]]、[[feedback_thinknova_config_edit_rule]]。
+见 [[project_thinknova_offline_agents]]、[[feedback-dont-edit-prod-config-structure]]。

@@ -21,11 +21,11 @@ metadata:
 ## 外发技术文档前,逐条自检(一条不过不许发)
 
 1. **排序对定调**:优先级和用户已拍板的产品定调逐条核对过?(成片>一切;编剧+参考图并列;凡影响成片的不挂账)
-2. **格式五段**:每项=正确的样子/现在的样子/怎么复现/为什么判定是问题/要求(A给权限 or B你改)?
+2. **格式合规**:严格按 [[reference-tech-doc-submission-spec]] 的 **9 段**写?(事实/判断/期望分离,禁把推测写成根因,一份最多3个独立问题)
 3. **证据合格**:每条证据=真实输入↔真实输出+任务号?来源未核实的一律删?
 4. **复现可执行**:"怎么复现"一栏,技术不问我们任何问题就能照做?验收=按复现步骤原样重测?
 5. **零修辞**:通篇无比喻、无情绪词、无"血泪/黑洞"类表达?
 6. **不与已发文档打架**:和已冻结文档冲突的内容走增量并注明取代关系?
 7. **版本唯一**:确认用户手里/微信里没有本文档的旧版残留;有则提醒用户作废旧版。
 
-规则关联:[[feedback-evidence-standard]] [[feedback-problem-report-format]] [[feedback-tech-doc-delta-delivery]] [[feedback-questions-via-plan-mode]]
+规则关联:[[reference-tech-doc-submission-spec]](格式唯一真值) [[feedback-evidence-standard]] [[feedback-tech-doc-delta-delivery]] [[feedback-questions-via-plan-mode]]

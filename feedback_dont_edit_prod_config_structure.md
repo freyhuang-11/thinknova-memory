@@ -20,7 +20,8 @@ metadata:
 1. 🔴 **结构/字段/新字段一律不自己在线上改**——写成需求交技术定数据结构。我只碰"**纯文本提示词**"这类我完全懂的字段(如 systemPrompt/visualHint 正文、videoTemplate 文案)。
 2. 🔴 **动字段前先把技术那份文档逐条读完**(位置待老板指:vault?微信?目录?——问到后补进 [[reference-thinknova-config-powers]] 并读完)。
 3. 🔴 **改前量字节、改后回读、先改一条验证不崩再铺开**(呼应 [[project-thinknova-dingdian-koubao]] 今日3坑 + MEMORY 铁律8.5)。
-4. 🔴 **配置类变更先用自然语言**把"改什么/为什么"讲清给老板或技术确认,**不再直接甩 JSON 上线**。
+4. 🔴 **纯文本字段自己改也要先想清确切 key 路径**，保存前确保 JSON 能 parse；schema 会变（v2 迁移、案例库拆 external_table 等），改前先确认**当前**结构，别照旧记忆乱改。（本条自 2026-06-29 旧规矩 `feedback_thinknova_config_edit_rule` 收编，该文件已删）
+5. 🔴 **配置类变更先用自然语言**把"改什么/为什么"讲清给老板或技术确认,**不再直接甩 JSON 上线**。
 
 ## 别甩锅但要守事实(backbone)
 一般性批评该认的认,但**具体故障别为了认错而乱背锅误导排查方向**:2026-07-24「案例全没了」当面复现=前端 `/fill-info` 路由守卫静默重定向弹回首步清空选择,后台 referenceCases 530 条完好,与 config/我的改动无关→只能改前端。认账(改法有问题)与守事实(这个bug非我config)可以并存。见 [[project-thinknova-dingdian-koubao]] 阻塞段。

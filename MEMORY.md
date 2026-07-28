@@ -27,7 +27,7 @@
 
 ## L3 · 给技术发文档前
 12. 🔴 **只发技术才能处理的**;发之前逐条自验"我自己能不能改"
-13. 🔴 **9段规范**;事实/判断/期望分离,禁把推测写成根因,一份最多3个独立问题 → [详](reference_tech_doc_submission_spec.md)(已作废的旧5段:[feedback_problem_report_format.md](feedback_problem_report_format.md))
+13. 🔴 **9段规范**;事实/判断/期望分离,禁把推测写成根因,一份最多3个独立问题 → [详](reference_tech_doc_submission_spec.md)
 14. **发文前 7 条自检** → [详](feedback_tech_doc_checklist.md)
 15. **发出即冻结**;新内容走增量 → [详](feedback_tech_doc_delta_delivery.md)
 
@@ -76,7 +76,7 @@
 - [扫码发布深链配置](reference_thinknova_publish_schemes.md) — 四平台已真机验证
 
 ### 内容与产品规矩
-- [配置改动规矩](feedback_thinknova_config_edit_rule.md) / [北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) / [内容工具不做合规](feedback_thinknova_content_not_compliance.md)
+- [北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) / [内容工具不做合规](feedback_thinknova_content_not_compliance.md)
 - [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 
 # Compass / TikTok 达人线
