@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-28T03:36:18.538Z
+  modified: 2026-07-28T08:40:24.622Z
 ---
 
 # 故事板/生图锁/模型定位 —— 2026-07-28 两轮取证结论
@@ -325,6 +325,27 @@ i2v 的 `negativePrompt` 第一段含 **「忽略分镜板结构，多个首帧�
 - 🔴 **任务创建时冻结模型/时长/案例策略 → 改配置只影响新任务。以后做对照实验,改完必须重新烧单,别拿旧单验。**
 - 验收口径:任务详情核对 模型ID / 时长 / **`_i2v_reference_strategy`** / 参考图数量 —— 正好用我今天打通的 admin `offline-store-content/tasks/{no}` 通道看。
 - ⚠️ **文档写的适用 Agent 是 `offline_store_video`,我今天实操成功的 code 是 `offline_store_content`。哪个对没核,别写死。**
+
+## 🔴🔴🔴 2026-07-28 05:4x 回源核对结果(**四条硬更正,全部线上实测**)
+1. 🔴🔴 **我一直在搜错 agent**。`offline_store_content` = **商家生海报**(Make a Poster);`offline_store_video` = **商家生视频**(Make a Video)。今晚之前所有 config 检索都做在海报 agent 上。
+   → 已在**正确的 `offline_store_video`** 上复搜「首帧格/折叠/忽略分镜板」= **仍然 NONE**,所以"negativePrompt 那句在代码里"的结论**幸存**,但流程错了。**以后动 config 第一件事:确认 agent code。**
+2. 🔴🔴 **`max_reference_images` 线上实测**:**460 omni = 1,415 grok = 1,468/467 也都 = 1。**
+   → ~~记忆里"omni 多参 limit 5"~~ **作废**。**两个在用的模型全是单参 → 用户上传的人物/场景/产品图对哪个模型都进不去,不是配置问题。** 「参考图没进 i2v」这条彻底结案。
+3. ✅ **场景锁模型的前置条件已验齐**(`offline_store_video`):`businessUi.videoGeneration.allowedDurations=[8,10,12,15]`;`modelAllowlistByDuration={"8":[470,471],"10":[468,460],"12":[469,471],"15":[415,467]}` → **460 在 10 秒白名单内 ✅**;460 `supported_durations=[10]`、enabled、frontend_visible ✅。**14 个场景(S01~S14)目前没有任何一个带 `preferredVideoModelId`。**
+   ⚠️ 所有模型 `base_duration_seconds` 都是 **0(未配默认时长)**;460 因为只支持 10 秒且 10 在白名单里,是唯一解,所以安全。**换别的模型锁场景前必须先确认这点,否则按文档会静默回退。**
+4. 🔴 **案例库真实入口(找了很久,记下来)**:`GET/PUT /admin/api/v1/agents/offline_store_video/reference-cases`(`referenceCasesSource=external_table`,inline 为 0)。
+   - 现有 **60 条**案例,**没有任何一条带 `i2vReferenceStrategy`** → 全部走全局 `storyboard_board`。
+   - **口播类案例 = `scriptwriterPreset.shotCount===1`,共 4 条**:`food_s11_owner`(老板/员工推荐口播)、`brand_product_s11_owner`(品牌方口播·推荐)、`ks_re_agent_talk`(经纪人真心话)、`ks_fin_advisor_talk`(顾问真心话)。其余 56 条都是 shotCount=5。`voiceMode` 60/60 全是 `dialogue`。
+
+### 🔴🔴 老板 05:4x 定的口径(比"锁 omni"更好,记住这个思路)
+> 「裁格优先处理口播的,我们是需要做裁格的,口播因为是一镜到底的形态,剩下的需要我们真实验证完三锁情况」
+**为什么这是更优解**:口播是一镜到底,分镜板的多格结构对它毫无用处;改成 `panel_crop` 后 **grok 收到的唯一一张图就是裁出来的首格,根本看不到整板 → 网格从根上消失**,而且**中文口播保住了**。
+→ **推论:如果口播案例走 panel_crop,就不必再把 promotion 场景锁到 omni(那要牺牲中文口播)。锁场景这条先别急着铺。**
+**非口播的 56 条维持 `storyboard_board` 不动,等三锁真实验证完再定。**
+
+### ⛔ 写操作被 harness 拦截(2026-07-28 05:4x)
+`PUT /admin/api/v1/agents/offline_store_video`(改 config)被 **Claude Code auto mode classifier 拒绝**,不是接口问题也不是权限问题。**线上 config 的写操作我这轮做不了,必须老板放行。**
+✅ 改前完整备份已存:`03_工作区\0728_网格滞留取证\BACKUP_offline_store_video_config_0728.json`(236KB,改动前 sha `cab8a3780702`)。
 
 ## 🔴 待办
 0. 🔴🔴 **接手第一件事(2026-07-28 05:2x 留给下一班)**:
