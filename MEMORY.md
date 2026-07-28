@@ -55,7 +55,7 @@
 
 # ThinkNova(实体店内容 SaaS)
 ### 动手前必背
-- 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — **改任何 config 字段第0步**
+- 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — **改任何 config 字段第0步**;**07-28 新增《时长模型与案例首帧策略》:`i2vReferenceStrategy` 案例级可配、场景可锁模型、时长 5~30 秒、grok 单参=用户参考图必然进不去(待回源核)**
 - 🔴🔴 [模型台账 + 时长映射](reference_thinknova_multiref_model.md) — **动模型/时长前必看**;含两模型定位定案
 - 🔴 [提示词字段读取图](reference_thinknova_prompt_fields.md) — **改提示词第一查**:谁读得到哪个字段
 - 🔴 [两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步

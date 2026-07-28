@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-27T20:49:30.815Z
+  modified: 2026-07-28T03:36:18.538Z
 ---
 
 # 故事板/生图锁/模型定位 —— 2026-07-28 两轮取证结论
@@ -20,7 +20,7 @@ metadata:
 | 产品锁 | ✅ 锁得住(砂锅鸡实测全板一致) | ⚠️ 靠板传递,非直锁 |
 | 内部环境锁 | ✅ 基本锁住 | ⚠️ 同上 |
 | 门头锁 | ❌ 完全失败 | ❌ |
-| **参考图是否进 i2v** | — | 🔴🔴 **没进**。omni 多参 limit 5,**5 个位只用了 2 个(crop + storyboard)**,用户上传的人物/场景/产品图**根本没送进 i2v** = 成片场景/产品走样的根因(见 [[project-thinknova-film-types]]) |
+| **参考图是否进 i2v** | — | 🔴🔴 **没进**。~~当 bug 报~~ → **07-28 文档已解释一半**:提交几张由**所选模型 `maxReferenceImages`** 决定,**grok 415 单参 = 永远只有主首帧图,用户上传图必然进不去,设计如此**。🟡 omni 460 limit 5 只用 2 个位仍对不上文档,**待回源核**(见 [[project-thinknova-film-types]]) |
 
 → **结论:我们目前只有「生图三锁」,没有「生视频三锁」。** 成片里的门头之所以对,是 07-27 那次多参把 P6 原图直喂 i2v 才有的,不是常规路径。**演示时别承诺"锁得住门店"。**
 
@@ -298,8 +298,37 @@ i2v 的 `negativePrompt` 第一段含 **「忽略分镜板结构，多个首帧�
 - 选项卡片是整块可点,精确 textContent 匹配抓不到 → 用「找到纯文本叶子节点再向上找 cursor:pointer 祖先」再 click。
 - ⚠️ **claude-in-chrome 扩展本轮频繁掉线**(约每 3-5 次调用掉一次),掉了等一会儿重试即可;标签页/标签组也会整个消失,`navigate` 不带 tabId 会自动重建组。
 
+## 🔴🔴🔴 2026-07-28 05:2x 老板发来新技术文档 —— **网格那个卡点,运营侧自己能解了**
+原文归档:`00_规格与参考\运营说明_商家视频时长模型与案例首帧策略_2026-07-28.md`,摘要已进 [[reference-thinknova-tech-docs-index]]。
+⚠️ **以下全是"文档口径",线上 config 还没回读核对(admin+商家两个 session 同时过期了)。铁律0:动手前必须先回源验一遍字段是否真在线上。**
+
+**推翻我记忆里这条**:~~「`i2vReferenceStrategy` 是全局开关,不能按模型分,只能等技术」~~
+→ ✅ **案例级已经可配**:`businessUi.referenceCases[].i2vReferenceStrategy`(外部案例库模式改案例表 `payload_json`),**案例级 > 全局**,不填才走全局。
+
+🔴 **但别乐观误报:案例级 ≠ 按模型分。** 同一个案例照样可以被 grok 和 omni 分别烧,单靠案例级仍然做不到"grok 走 panel_crop、omni 走 storyboard_board"。
+**可行的组合解(运营侧全能配,不用发卡)**:
+`businessUi.businessActions[].preferredVideoModelId` 把**场景**锁到某个模型 + 该场景下的**案例**配对应 `i2vReferenceStrategy` → 等价于按模型分。**代价 = 该场景下用户失去模型和时长选择权(前台连选择框都不显示)。**
+
+🔴🔴 **文档还顺手解释了我一直没想通的那条**:i2v 实际提交几张参考图,由**所选模型的 `maxReferenceImages`** 决定。
+→ **grok 415 是单参 = 永远只提交主首帧图,用户上传的人物/场景/产品图 100% 送不进去 —— 这是设计如此,不是 bug,别再当 bug 报。**
+→ 而且 grok + `storyboard_board` = 它唯一收到的那张图就是整板 → **这就是网格入画的结构性来源。结论:grok 应该一律 panel_crop。**
+🟡 **仍待核**:omni 460 多参 limit 5 却只用了 2 个位(crop + 整板),文档说 ≥2 张会按剩余名额加用户上传图 —— **对不上,回源核**。
+
+**据此改我的技术卡计划**:
+- ❌ 卡①「`i2vReferenceStrategy` 必须能按模型分」→ **撤销,别发**。运营侧已有可行路径(场景锁模型 + 案例级策略),发出去技术会回"你后台就能配"(铁律12)。
+- ✅ 仍然只有代码侧那条属实:i2v `negativePrompt` 里的「忽略分镜板结构,多个首帧格折叠成单一画面」与「绝不可入画」自相矛盾,config 全量搜零命中。
+- 🟡 「i2v 子格标签跳过上左、图生图从上左填满 6 格」这条错位,**先自查能不能靠案例级/模板改掉再说**。
+
+**其它新增能力(同一份文档,都待回源核)**:
+- 时长 `businessUi.videoGeneration.{allowedDurations, modelAllowlistByDuration}`,**5~30 秒可配,不再固定 10/15**;模型能力 JSON 没声明支持的时长前台不显示;保存 Agent 立即生效。
+- 模型能力 JSON `constraints.{durations, defaultDurationSeconds, maxReferenceImages}`,**默认时长由模型自己定,前台不再强行优先 15 秒**。
+- 🔴 **任务创建时冻结模型/时长/案例策略 → 改配置只影响新任务。以后做对照实验,改完必须重新烧单,别拿旧单验。**
+- 验收口径:任务详情核对 模型ID / 时长 / **`_i2v_reference_strategy`** / 参考图数量 —— 正好用我今天打通的 admin `offline-store-content/tasks/{no}` 通道看。
+- ⚠️ **文档写的适用 Agent 是 `offline_store_video`,我今天实操成功的 code 是 `offline_store_content`。哪个对没核,别写死。**
+
 ## 🔴 待办
-0. 🔴🔴 **接手第一件事(2026-07-28 05:0x 留给下一班)**:
+0. 🔴🔴 **接手第一件事(2026-07-28 05:2x 留给下一班)**:
+   0. **先登录**(admin + 商家 session 05:2x 都过期了),然后**回源核对上面这份 07-28 文档的每个字段是否真在线上**:`businessUi.videoGeneration`、`referenceCases[].i2vReferenceStrategy`、`businessActions[].preferredVideoModelId`、agent code 到底是 `offline_store_video` 还是 `offline_store_content`。**核完再动手,别照文档直接改。**
    a. **C 单(task_302c7394ae08)那一档"网格挂 2.9 秒"要不要治、怎么治 —— 等老板拍板**。可选:①`i2vReferenceStrategy` 按模型分(要技术)②把 `entranceBlackOverlay` 首帧 alpha 提到 1.0 且延到 1.0~1.5s(能挡住 C 单,但开场变闷)③演示时人工过滤。
    b. **grok 通道成功率**:B 批 6 发 4 成(67%),失败全是「模型方暂时未能完成,积分已退」;**同秒并发发单更容易失败**(A 批同秒 3 发全挂,B 批间隔 20~25 秒发的都成了)。→ **批量烧单一律串行 + 间隔 ≥20 秒**。
    c. 三锁**用参考图**的那一版还没测(本轮 5 单全是 t2i 无参考图)。要测得先把 `i2vReferenceStrategy` 切 `panel_crop`,否则 omni 只收得到板图一张。
