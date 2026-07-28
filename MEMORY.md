@@ -7,6 +7,7 @@
 2. 🔴 **提议≠指令**;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴 **例程内能自己拍板的自动跑**,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md)(同文件反向边界段)
 2.7 🔴 **接"上次的活"先看记忆文件修改时间**;另一会话可能几分钟前刚推翻我的结论 → [详](feedback_parallel_sessions_check_first.md)
+2.8 🔴🔴🔴 **老板给的词按他的字面做满,不许自己缩窄定义再报"全部完成"**;拿不准边界先问,别在报告里用对着我私自定义说的"全部/所有/都" → [详](feedback_dont_assume_requirements.md)(同文件「缩窄定义」段)
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 
 ## L1 · 改配置/提示词前
@@ -19,6 +20,7 @@
 8.5 🔴 **动"前端会读的字段"先改一条验,别一次铺满** → [详](project_thinknova_dingdian_koubao.md)
 8.6 🔴🔴 **加行业/加场景先翻技术文档**;加新场景必须技术把它注册进合法枚举,否则后台保存时被剥离→商家建单500 → [详](project_thinknova_brand_product_industry.md)
 8.7 🔴 **建单500 诊断法·别猜**:admin GET 拿全量真值 → 隔离实验换维度 → 找唯一缺键 → [详](project_thinknova_brand_product_industry.md)
+8.8 🔴🔴 **`businessUi` 子树改不进 textarea**:后台弹窗按自己的表单内部状态回写 businessUi 整块,textarea 里的改动被**静默丢弃且回执照报"已保存"**(07-29 实证)。要改语言/选项组只能人工在界面上点 → [详](reference_thinknova_config_powers.md)
 
 ## L2 · 烧单核验时
 9. 🔴 **逐帧通看**(抽帧拼联系表);单帧/播放器截图 = 假结论 → [详](feedback_evidence_standard.md)
@@ -65,8 +67,9 @@
 - [路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
 
 ### 现行状态
-- 🔴🔴 [口播缺陷链 + 裁格定案](project_thinknova_0729_koubo_defect.md) — **动口播/裁格/videoTemplate/烧口播单之前先看这条**;07-29 03:43 **全局 `i2vReferenceStrategy` 已翻 `panel_crop`(双写含 opsEditable),启用中 103 条口播全裁**;含语速 `lineValidation` 无时长维度、英文 max40<15秒需42 的结构冲突
-- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线**;~~50 条 owner_speaking 整板~~ **07-29 已由全局翻转解决**(取证 `task_8fd0bb09c351`)·07-28 05:0x n=5 实测定案:grok 开场网格是**双峰(0.17s/2.9s,3:1)不是固定值**·`entranceBlackOverlay` **一直正常执行**(我"判死后处理"那条已自证推翻)·板↔片一致性 **83%**·**人物锁门店锁强、产品锁看产品可辨识度**·460 改名✅已落库并送达·**取证一律走 admin `offline-store-content/tasks/{no}`**(唯一能拿到 6宫格板图 + 供应商裸片)·**批量烧单必须串行间隔≥20秒**
+- 🔴🔴 [口播缺陷链 + 裁格定案](project_thinknova_0729_koubo_defect.md) — **动口播/裁格/videoTemplate/烧口播单之前先看这条**;07-29 03:43 **全局 `i2vReferenceStrategy` 已翻 `panel_crop`(live+opsEditable 双写),启用中 103 条 `owner_speaking` 案例全部裁格**;03:49 `lineValidation.en.max`40→50 / `ja.max`85→95 已落库;**未解**=`lineValidation` 无时长维度(交技术)+ `businessUi` 改不进 textarea
+- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线**;07-28 05:0x n=5 实测定案:grok 开场网格是**双峰(0.17s/2.9s,3:1)不是固定值**·`entranceBlackOverlay` **一直正常执行**(我"判死后处理"那条已自证推翻)·板↔片一致性 **83%**·**人物锁门店锁强、产品锁看产品可辨识度**·460 改名✅已落库并送达·**取证一律走 admin `offline-store-content/tasks/{no}`**(唯一能拿到 6宫格板图 + 供应商裸片)·**批量烧单必须串行间隔≥20秒**;07-29 在烧 5 单验一镜到底/不拉长/三锁/语速,**结论未出**
+- 🔴 **案例文案重复(07-29 查到,未修)**:675 条里 `visualHint` **182 条完全重复**(最大一组 22 条一字不差)、`summary` **270 条**(最大 21 条)、`title` **80 条**。老板反馈「每次找客户想要的案例总感觉找不到匹配的」根因在此;改写草稿由另一会话产出中 → 见 [案例缺口双查法](feedback_case_gap_dual_check.md) / [片型体系](project_thinknova_film_types.md)
 - 🔴🔴 [片型体系](project_thinknova_film_types.md) — 治"视频大差不差";**620条已全量铺完(07-26 05:00,0失败)+601条预设铺完(07-27)**;剩下的是**烧验**:7个片型未烧验(空间漫游/氛围仪式/产品英雄/人物讲述/演示讲解/生活纪实/明快陈列)
 - 🔴 [品牌产品行业 + 广告TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;含建单500 排查法
 - 🔴 [定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户

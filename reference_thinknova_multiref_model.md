@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-28T19:32:31.701Z
+  modified: 2026-07-28T20:19:29.433Z
 ---
 
 # ThinkNova i2v 模型 · 多参考图台账
@@ -50,6 +50,7 @@ metadata:
 - 🔴 **`storyboard_board` 下主首帧图 = 整板本身,且文档明写"不重复提交同一张图"**(手册 v4 §3.5) → 整板模式白白吃掉一个参考位。要 omni 的人物·产品·门店一致性**用 `panel_crop`**。
   ⚠️ 我曾实测"整板模式下 omni 实际只喂 1 张"(200 单诊断,**未留任务号**);文档 §6 说剩余名额仍会加用户上传图 → **以文档为准**,这条实测**需带任务号重核**再谈。
 - 🔴 **该开关不是全局一刀切**:案例级 `businessUi.referenceCases[].i2vReferenceStrategy` 优先于全局(07-28 文档 §5)→ **grok 案例和 omni 案例可以各用各的**,按"模型会不会把网格生成进成片"分配(见 [[project-thinknova-film-types]] 八)。❌ 旧说法「全局开关,grok 和 omni 不能各用各的」已被文档推翻。
+  ✅ **线上全局(07-29 03:43 起)= `panel_crop`**。→ **omni 案例现在默认也走裁格**,多参位不再被整板白吃;要让 omni 走整板必须在该案例上**显式**写 `storyboard_board`。
 - ❌「DB 列 `max_reference_images`=1 卡死 omni」已推翻 → 运行时 limit 实际是 5,DB 列那个 1 没生效(07-28)。**别再按这条走。**
 
 ## 四、时长档字段 `referencePolicyByDuration`(文档未收录,已降级)
@@ -64,6 +65,9 @@ metadata:
 |---|---|---|---|
 | omni 460 `panel_crop` | 5 | **2~5 张** | 13 成/18 |
 | omni 460 `storyboard_board` | 5 | **只有 1 张(整板本身)** | 同上 |
+
+⚠️ **这张表测于 07-28,当时全局 = `storyboard_board`**;07-29 03:43 全局翻 `panel_crop` 后,不显式配置的案例都走上面第一行。要引用"实际喂进 i2v 张数"必须**带任务号并确认该单的 `_i2v_reference_strategy`**。
+
 | grok preview 415 | **1** | 1 张 | 11 成/19 |
 | grok fast 468 | 5 | 5 张 | **0 成/7 = 全挂** |
 | sora 469 | — | 1 张 | 5 成/5 |

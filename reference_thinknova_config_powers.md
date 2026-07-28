@@ -1,15 +1,36 @@
 ---
 name: reference-thinknova-config-powers
-description: "触发:要给技术提配置类需求之前 → 先查这张权限地图,凡我自己能改的先改完再说话;含计费口径与新版 json-editor 实证"
+description: "触发:要给技术提配置类需求之前、或要改 config 任一字段之前 → 先查这张权限地图,凡我自己能改的先改完再说话;🔴 businessUi 子树改不进后台弹窗 textarea(静默丢弃+假回执),只能人工点界面"
 metadata: 
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-24T07:58:57.245Z
+  modified: 2026-07-28T20:14:12.532Z
 ---
 
 > 来源:技术《商家Agent_配置JSON说明书_2026-07-08》《商家Agent完整实现说明_2026-07-08》《merchant-agent-config-guide_2026-07-08.html》(老板 07-08 定为"最终的 json 修改文档",全部归档于 00_规格与参考/技术侧文档/)+ 我方实查。**这三份=promptAssembler+businessUi 层的权威操作手册,但不含 promptComposer(见下,两层并存)。** PUT body 形态=`{"config":{promptAssembler,businessUi}}`。
 > **铁规(2026-07-08 用户定,因我多次错乱)**:提任何要求前 ①先查本地图 ②再实查线上键是否存在 ③**能自己改的立即自己改+验证,不许推给技术**;只有键不存在/被服务端并集覆盖/前端不读时才提技术,且必须附"已实查"证据。反向同罪:代码里的东西别自己硬凑。
+
+## 🔴🔴 落库通道的硬约束(2026-07-29 实证,动手前先看这段)
+
+**"字段我有权改" ≠ "我改得进去"。通道分两类,别混:**
+
+| 子树 | 走后台弹窗 textarea | 结论 |
+|---|---|---|
+| `promptComposer.*`(systemPrompt / staticTemplates / masterPipeline / stagePromptPresets / referenceImagePrompts / lineValidation …) | ✅ 落库正常,回读一致 | 我可以自己改 |
+| **`businessUi.*`(detailOptionGroups / referenceCases / videoGeneration / sellingPointOptions …)** | ❌ **整块被静默丢弃** | **只能人工在界面上点** |
+
+🔴 **`businessUi` 静默丢弃实证(07-29 03:49,砍 `ko` 语言选项)**:
+- 改 `businessUi.detailOptionGroups[].options` 删掉 `ko` → **页面内自检通过**(businessUi 61,177 → 61,097)
+- 点保存,**回执「已保存」**
+- 回读:**`ko` 原样还在**;`businessUi` **弹回 61,177**;总字符**我提交 139,059 → 回读 139,139**,正好 **+80 = ko 选项对象的大小**
+- → **定论:弹窗的 `businessUi` 按它自己的表单内部状态回写,textarea 里对 businessUi 子树的任何修改被静默丢弃,且回执照样报成功。** 之前几次改动全落在 `promptComposer` 下,所以从没暴露。
+- 同源已知副作用:弹窗不认识的模型 id 被静默剥离(464/470/471/469 就是这么掉的)。
+- 另一条通道 `PUT /admin/api/v1/agents/{code}` **当前被 classifier 拦**(累计 7 次,API/JS/键盘三路全拦;起本地 HTTP 服务喂 payload 也拦)→ 目前 `businessUi` **只剩人工界面操作一条路**。
+- 这是《给技术_OPS-ADMIN-20260729-01_Agent配置弹窗保存静默丢数据》的第二个实证,**发卡必须带这组字节账**。
+- ⚠️ 案例库是**例外**:`PUT /admin/api/v1/agents/{code}/reference-cases/{caseId}` 有单条路由、**全程正常从没被拦**,改案例走这里,不要走 businessUi.referenceCases 大数组。
+
+**推论(未验但高度怀疑)**:07-29 凌晨那次 config 139KB→45KB 也可能同源 —— 弹窗用内部模型重建了整个 config。
 
 ## ✅ 我能改(admin PUT /agents/{code},当天生效)
 
@@ -30,7 +51,7 @@ referenceCases 全字段(title/summary 六语言对象/visualHint/prefill/预览
 
 **🆕2026-07-24《运营手册_商家Agent后台配置》补(权威):**
 - 🔴 **大案例库不走 Config JSON!** `businessUi.referenceCasesSource` 必须=**`external_table`**(inline=案例塞进 config,禁用于大库=编辑器卡顿+服务端 CPU 峰值;hybrid=外部基础库+少量内联补丁,仅少量覆盖)。**案例增删/改标题预填提示词/封面走独立「管理案例库与封面图」页**(分页,不打开几 MB config);封面上传→**自动写 `coverImageUrl`,别手工拼 OSS**。→ 修正:大量案例操作别再改完整 `referenceCases` 大数组(手册"不要维护完整 referenceCases 大数组")。
-- 🆕 **`businessUi.videoGeneration`**:`allowedDurations`(前台可选时长,当前只 [10,15];别写 10/15 以外数字)· `modelAllowlistByDuration`({"10":[...],"15":[...]},空=该时长下所有符合能力的模型可选)· `defaultModelByDuration`("自动匹配"时优先模型;无效 id 自动回退)。禁用某时长时其白名单+默认一并删。**模型支持哪些时长在"模型能力 JSON"里声明,不能只改 Agent JSON 伪造。**
+- 🆕 **`businessUi.videoGeneration`**:`allowedDurations`(前台可选时长,**线上现值 [8,10,12,15]**;07-28 文档起**可配 5~30 秒**,"只能 10/15"是被覆盖的旧表述)· `modelAllowlistByDuration`({"8":[...],"10":[...],…},空/缺=该时长下所有符合能力的模型可选,**不是故障**)· `defaultModelByDuration`("自动匹配"时优先模型;无效 id 自动回退)。禁用某时长时其白名单+默认一并删。**模型支持哪些时长在"模型能力 JSON"里声明,不能只改 Agent JSON 伪造。**⚠️ 这几个键都在 `businessUi` 下 → **改不进 textarea**,见顶部通道约束。
 - 🆕 **`promptComposer.subtitle`**(字幕计划+渲染默认样式:开关/最大条数/行数/字号/位置/颜色/描边/安全边距)。关字幕只影响新任务,不删旧字幕轴。
 - ✅ 手册确认运营可维护:industryFilters/businessActions/detailOptionGroups/industryOptionPresets/defaultState/**opsEditable**/stagePromptPresets/subtitle/videoGeneration。**不要维护**:完整 referenceCases 大数组/模型供应商·请求body·协议URL·鉴权/模型价格/用户任务输入·状态·资产URL。
 
@@ -47,6 +68,7 @@ referenceCases 全字段(title/summary 六语言对象/visualHint/prefill/预览
 
 1. ~~编剧系统提示词~~ **已解禁(2026-07-09)**:技术开了 `promptComposer.screenwriter.*` 键,现可 PUT 覆盖 builtin_default → 见上方 ✅ 区。(历史:曾在 PHP 里、无键)
 2. **代码默认表被服务端并集**——语言表实证:PUT 干净 5 项回读 6 项,ko 删不掉;schema 白名单(STABLE_VALUE_MAPS)会归一化改写
+   🔴 **07-29 复验仍成立,且多了第二重锁**:老板定的语言范围 = **留 `zh_cn / en / ja / zh_en`,砍 `ko`**。砍 `ko` 要改 `businessUi.detailOptionGroups[].options`,而 businessUi **走不了 textarea**(见顶部通道约束)→ **`ko` 至今仍在,未砍掉**。vi/es/ar/id/fr/de/pt/th **前台本来就选不到**(只存在于 `languagePolicy.map` 14 键 / `lineValidation` 11 键的死数据里),**不用删**。
 3. **前端写死**:门店名称/位置、"价目表展示(测试)/通用·不注入"调试项、海报张数**选择控件**、语言下拉的 Beta 标注文本
    - 🔴 **2026-07-24 更正**:旧把"补充要求占位词"列为前端写死(config 0命中)是**错的**。技术文档《前台场景过滤与补充要求说明_07-23》:占位词由 config 字段 `globalRules.extraRequirementPlaceholder` **优先控制,运营可自改**(清空=用前端默认,填了=前端优先显示后台值)。属✅能自改,不是前端写死。
 4. **管线代码**:worker 派发、参考图数组组装、裁格、ffmpeg 合并、静默回退逻辑

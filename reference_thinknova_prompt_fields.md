@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-28T19:32:52.492Z
+  modified: 2026-07-28T20:18:01.296Z
 ---
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
@@ -14,10 +14,11 @@ metadata:
 > - **`promptComposer.screenwriter.staticTemplates.videoTemplate` 真实存在且生效**(实测 541→596 字符,改后 i2v 单读到)。`staticTemplates` 四键 = `businessContext / outputContract / firstFrameTemplate / videoTemplate`。**`masterPipeline.scriptwriter` 下没有 staticTemplates**,别再往那儿找 videoTemplate。
 > - **两条路径并存,各管各的**:`promptComposer.screenwriter.*`(静态模板)与 `promptComposer.masterPipeline.scriptwriter.*`(`timeline` / `lineValidation` / `fallbackPolicy` / `textModel`)。旧记忆说"screenwriter 少了 masterPipeline"是**误判**——不是少段,是两个不同子树。
 > - **`fallbackPolicy.visualTemplates` 在 config 里、运营可改**(`masterPipeline.scriptwriter.fallbackPolicy` 与 `opsEditable.masterPipeline.scriptwriter.fallbackPolicy` 两处内容完全一致)。旧记忆记成"回退模板是代码、要发技术卡"是**错的**,已纠。
-> - **`promptComposer.masterPipeline.i2vReferenceStrategy` 线上 = `storyboard_board`**(整板当参考,不裁格);每个 i2v 子任务的 `input._i2v_reference_strategy` 会回显该值,可逐单核。
+> - **`promptComposer.masterPipeline.i2vReferenceStrategy` 线上 = `panel_crop`**(2026-07-29 03:43:45 由 `storyboard_board` 翻过来,`opsEditable` 镜像双写,全库残留 `storyboard_board` 0);每个 i2v 子任务的 `input._i2v_reference_strategy` 会回显该值,可逐单核。**任务创建时冻结,旧单不重写。**
 >   🔴 **这是"全局兜底"不是唯一真值(07-28《时长模型与案例首帧策略》§5)**:真正生效的读取顺序 = **案例 `businessUi.referenceCases[].i2vReferenceStrategy`(external_table 模式下写案例表 `payload_json`) → 案例不填才回落到上面这个全局值**。子任务回显 `null` = 案例没配、走全局,不是故障。取值只有 `panel_crop`(默认且推荐) / `storyboard_board`(仅限已验证不会把网格生成进成片的模型)。只影响商家视频流,不影响海报和独立能力页。
 >   🔴 **同层的 `deliveryPostProcess.{entranceBlackOverlay, coverFrame}` 没有案例级**,文档只承认 `promptComposer.masterPipeline` 这一处(手册 v4 §3.5)。
 > - **PUT 只需 `{config:…}`**,不必发完整 agent 对象;详见 [[project-thinknova-storyboard-test]] 取证方法第 0.5 条。
+> - 🔴🔴 **写得进 ≠ 有权改**(07-29 实证):`promptComposer.*` 走后台弹窗 textarea 落库正常;**`businessUi.*` 整块被弹窗按自己的表单状态回写、textarea 里的修改被静默丢弃且回执报成功**。改 businessUi 只能人工点界面 → [[reference-thinknova-config-powers]] 顶部通道约束。
 
 > 🔴🔴 **2026-07-27 破解"保存了却没生效"之谜(实测,极重要)**:
 > **写 `opsEditable.*` 必须同时写对应的 `blockTemplates.*` 镜像,两处一起 PUT 才落库**;只写 opsEditable → PUT 返回 200 OK 但**服务端用镜像盖回去、静默丢弃**(实测 firstFrame 两次都被回滚)。旧记忆"opsEditable 只读"和"blockTemplates 是只读镜像"**都不准确**,真相是**两者必须同步写**。
@@ -53,7 +54,8 @@ metadata:
 | `promptComposer.opsEditable.subjectDefinition.firstFrame` | 全局主体仲裁(优先级高于风格/行业/案例) | 生效 | — |
 | `businessUi.referenceCases[].scriptwriterPreset.{shotCount,voiceMode}` | ✅ 决定 cells/lines 段数与有无口播 | ✗ | ✗ |
 | `businessUi.referenceCases[].i2vReferenceStrategy` | ✗ | ✗ | ✅ 决定主参考图是裁格首帧还是整板 |
-| `promptComposer.masterPipeline.i2vReferenceStrategy` | ✗ | ✗ | ✅ **仅案例未配时的兜底** |
+| `promptComposer.masterPipeline.i2vReferenceStrategy` | ✗ | ✗ | ✅ **仅案例未配时的兜底;线上现值 `panel_crop`** |
+| `promptComposer.masterPipeline.scriptwriter.lineValidation.<lang>.{metric,min,max}` | ✅ 台词字数/词数校验 | ✗ | ✗ | 
 | `promptComposer.masterPipeline.deliveryPostProcess.*` | ✗ | ✗ | ✗(成片后处理层,**只有 Agent 全局**) |
 | `promptComposer.stagePromptPresets.{text_to_image,image_to_image,image_to_video}` | ✗ | ✅ | ✅ 三阶段静态提示词,**运营可维护(手册 v4 §5)** |
 
