@@ -60,6 +60,7 @@
 - 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — **改任何 config 字段第0步**;顶部有「口径速查」5 条。**07-29 逐字回源核过**:`i2vReferenceStrategy` **默认且推荐 = `panel_crop`(线上已对齐)**、案例级可配且优先于全局;`deliveryPostProcess` **只有 Agent 全局无案例级**;场景可锁模型;时长 5~30 秒由模型能力 JSON 定默认;**grok 单参 = 用户参考图必然进不去,文档明写是设计如此**;**文档说"运营可维护" ≠ 我改得进去(businessUi 见铁律 8.8)**
 - 🔴🔴 [模型台账 + 时长映射](reference_thinknova_multiref_model.md) — **动模型/时长前必看**;含两模型定位定案
 - 🔴 [提示词字段读取图](reference_thinknova_prompt_fields.md) — **改提示词第一查**:谁读得到哪个字段
+- 🔴🔴 [场景提示词/选项规则/案例写入路由](reference_thinknova_option_scene_rules.md) — **改场景指引或出镜景别选项前必看**;活的是 `promptAssembler.scenePrompts` + `promptComposer.optionRules`(有 opsEditable 镜像),`businessOptionPrompts` 是死的;案例单条 PUT 路由可绕开 businessUi 静默丢弃;**`product_only` 不等于无人**
 - 🔴 [两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步
 - 🔴 [提示词改造架构](reference_thinknova_prompt_architecture.md) — 三层职责 + 4096 字节纪律
 - 🔴 [Grok 审核红线实测](reference_grok_content_policy.md) — 红线是组合不是敏感词
