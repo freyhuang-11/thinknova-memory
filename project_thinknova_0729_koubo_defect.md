@@ -4,7 +4,7 @@ description: "触发:要动口播单/i2vReferenceStrategy/videoTemplate/烧口�
 metadata: 
   node_type: memory
   type: project
-  modified: 2026-07-28T19:27:39.934Z
+  modified: 2026-07-28T19:50:31.045Z
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
 ---
 
@@ -23,6 +23,52 @@ metadata:
    实测画面分布:0–3s 人物讲述 / **3–9s 布料手部空镜** / 9–12s 折衣中景 / 12–15s 人物讲述 → **15 秒里只有 6 秒有人在讲**。老板说的"15秒出了10秒的内容"就是这个,**不是时长不够,是内容密度**。
 2. **人物被拉长** ← 参考图(六宫格板)实测 **1312×1199 = 比例 1.094**,出片 **720×1280 = 0.5625**,**差 1.94 倍**。第 0 帧就是整板被非等比压进 9:16(横向压到 51.4%)。实测**同一镜头内渐进形变**:t=9.6s 比例正常 → t=11.4s 头/颈/躯干明显变窄拉长。ffprobe 全程无 SAR/DAR 异常 → **不是播放器,是画面内容本身被生成成拉长的**。
 3. **英文单不吃语速修复** ← `copyLanguage=en`,编剧提示词明写台词长度看 `lineLengthTarget` 的 metric(characters / words)。07-29 上午那四条**全是中文字数口径**,对 words 口径一条不生效。
+
+## ✅ 2026-07-29 03:43 已定案:全局翻成 panel_crop
+老板原话是「**口播类都要裁格**」。我 07-28 私自把「口播类」定义成 `shotCount==1`(46 条)交差,
+**报告写「46 条口播案例全部改成裁格」——「全部」是对着我自己的定义说的,不是对着老板的话。** 这是这次事故的诚信教训:
+🔴 **老板给的词不许自己缩窄定义再报"全部完成";要么按他的词做满,要么先问清楚边界。**
+
+线上真值(675 条逐条 GET,**列表接口不返回 `i2vReferenceStrategy`,只能逐条读**):
+启用中 `owner_speaking` **103 条** —— 43 条 `panel_crop`(07-28 那批)、**60 条 null**(53 条 sc5 + 6 条无预设 + 1 条 sc1 新增);另有 11 条停用的也是 null。
+
+**修法(老板拍板选 B)**:把 `promptComposer.masterPipeline.i2vReferenceStrategy` 与 `promptComposer.opsEditable.masterPipeline.i2vReferenceStrategy` **双写** `storyboard_board → panel_crop`。
+- 依据:手册 v4 §3.5 原文「`panel_crop` **这是默认且推荐的方式**」/「`storyboard_board` **只建议对已验证不会把网格生成进成片的模型使用**」——**线上全局原本是反着配的**。
+- 字节账:139,084 → **139,072**,正好 −12 =(16→10 字符)×2 处;五大块长度一字未变;全库残留 `storyboard_board` **0**。
+- 回执「Agent 已保存。」,行更新时间 03:22:51 → **03:43:45**。
+- 效果:案例级不填 = 用全局(文档 07-28 §5),**60 条 null 立刻继承裁格,启用中 103 条口播 103 条全裁**。
+- ⚠️ 影响面是**全部 675 条**不止口播(老板知情同意);要保留整板的案例需**单独**设回 `storyboard_board`。
+
+## 🔴 语速:`lineValidation` 的结构性缺陷(07-29 查到,未修)
+按语言的平表,**没有时长维度**,同一范围盖住 8/10/12/15 秒:
+
+| 语言 | metric | min–max |
+|---|---|---|
+| zh / zh_cn / zh_tw / default | characters | 45–100 |
+| ja / ko | characters | 55–85 |
+| en / es / vi / id / ar | words | 25–40 |
+
+1. 15 秒片子写 45 字**照样过校验** → systemPrompt 里「15秒76-88字」拦不住,模型贴下限写 = 语速慢的直接原因。
+2. 🔴 **英文自相矛盾**:systemPrompt「15秒42-48词」vs `lineValidation.en` **max 40** → **目标下限 42 > 校验上限 40**,英文 15 秒结构上不可能达标;es/vi/id/ar 同值同病。ja/ko 55-85 字对 15 秒偏低。
+3. 平表加时长维度 = **改结构 → 归技术**(铁律 22.5)。改 min/max 数值属运营权限但平表治不了本。
+
+### 07-29 03:49 已落库(老板拍板"抬上限让指令能达成")
+- `lineValidation.en.max` **40 → 50**(双写 live+ops):原先指令下限 42 > 校验上限 40,英文 15 秒结构上不可能达标
+- `lineValidation.ja.max` **85 → 95**(双写)
+- `systemPrompt` **7,834 → 7,901**:补日文口径「日文(ja)同为characters但每字承载更短:8秒44-52字、10秒54-64字、12秒64-76字、15秒80-92字」
+- ⚠️ 仍未根治:平表无时长维度,15 秒片子写 45 字照样过校验。**技术卡待发。**
+- ⚠️ `zh_en`(中英双语)在 `lineValidation` 里**无键**,落到 `default`(characters 45-100),双语实际更长,口径待定
+
+## 🔴🔴 后台弹窗:`businessUi` 整块不吃 textarea(07-29 03:49 实证)
+老板定的语言范围:**留 `zh_cn / en / ja / zh_en`,砍 `ko`**(vi/es/ar/id/fr/de/pt/th 前台本就选不到,只是 `languagePolicy.map` 14 键 / `lineValidation` 11 键里的死数据,不用删)。
+砍 `ko` 我改了 `businessUi.detailOptionGroups[].options`,页面内自检通过(businessUi 61,177→61,097),点保存回执「已保存」——
+**但回读 `ko` 原样还在,businessUi 弹回 61,177,总字符我提交 139,059 → 回读 139,139,正好 +80 = ko 选项对象大小。**
+
+🔴 **定论:弹窗的 `businessUi` 按它自己的表单内部状态回写,textarea 里对 businessUi 子树的任何修改被静默丢弃,且回执照样报成功。**
+之前几次改动全在 `promptComposer` 下所以没暴露。→ **改 `businessUi` 不能走 textarea**;只能走接口 PUT(被 classifier 拦)或人工在界面上点。
+→ 这是《给技术_OPS-ADMIN-20260729-01_Agent配置弹窗保存静默丢数据》的**第二个实证**,发卡时必须带上这组字节账。
+
+**推论(未验但高度怀疑)**:07-29 凌晨那次 139KB→45KB 也可能同源——弹窗用内部模型重建整个 config。
 
 ## 🔴 我自己判错的那一步(根因中的根因)
 07-28 我把 **46 条 `shotCount=1` 的口播案例**设成 `panel_crop` + `entranceBlackOverlay.enabled=false`,

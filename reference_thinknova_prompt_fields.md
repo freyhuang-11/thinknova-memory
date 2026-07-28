@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-27T19:02:03.976Z
+  modified: 2026-07-28T19:32:52.492Z
 ---
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
@@ -15,6 +15,8 @@ metadata:
 > - **两条路径并存,各管各的**:`promptComposer.screenwriter.*`(静态模板)与 `promptComposer.masterPipeline.scriptwriter.*`(`timeline` / `lineValidation` / `fallbackPolicy` / `textModel`)。旧记忆说"screenwriter 少了 masterPipeline"是**误判**——不是少段,是两个不同子树。
 > - **`fallbackPolicy.visualTemplates` 在 config 里、运营可改**(`masterPipeline.scriptwriter.fallbackPolicy` 与 `opsEditable.masterPipeline.scriptwriter.fallbackPolicy` 两处内容完全一致)。旧记忆记成"回退模板是代码、要发技术卡"是**错的**,已纠。
 > - **`promptComposer.masterPipeline.i2vReferenceStrategy` 线上 = `storyboard_board`**(整板当参考,不裁格);每个 i2v 子任务的 `input._i2v_reference_strategy` 会回显该值,可逐单核。
+>   🔴 **这是"全局兜底"不是唯一真值(07-28《时长模型与案例首帧策略》§5)**:真正生效的读取顺序 = **案例 `businessUi.referenceCases[].i2vReferenceStrategy`(external_table 模式下写案例表 `payload_json`) → 案例不填才回落到上面这个全局值**。子任务回显 `null` = 案例没配、走全局,不是故障。取值只有 `panel_crop`(默认且推荐) / `storyboard_board`(仅限已验证不会把网格生成进成片的模型)。只影响商家视频流,不影响海报和独立能力页。
+>   🔴 **同层的 `deliveryPostProcess.{entranceBlackOverlay, coverFrame}` 没有案例级**,文档只承认 `promptComposer.masterPipeline` 这一处(手册 v4 §3.5)。
 > - **PUT 只需 `{config:…}`**,不必发完整 agent 对象;详见 [[project-thinknova-storyboard-test]] 取证方法第 0.5 条。
 
 > 🔴🔴 **2026-07-27 破解"保存了却没生效"之谜(实测,极重要)**:
@@ -49,6 +51,11 @@ metadata:
 | `promptAssembler.industryPrompts.<行业>` | **✗ 读不到** | ✅ | ✗ |
 | `promptComposer.opsEditable.taskGoal.firstFrame` | 首帧主模板(整段覆盖) | 编译进 blockTemplates 生效 | — |
 | `promptComposer.opsEditable.subjectDefinition.firstFrame` | 全局主体仲裁(优先级高于风格/行业/案例) | 生效 | — |
+| `businessUi.referenceCases[].scriptwriterPreset.{shotCount,voiceMode}` | ✅ 决定 cells/lines 段数与有无口播 | ✗ | ✗ |
+| `businessUi.referenceCases[].i2vReferenceStrategy` | ✗ | ✗ | ✅ 决定主参考图是裁格首帧还是整板 |
+| `promptComposer.masterPipeline.i2vReferenceStrategy` | ✗ | ✗ | ✅ **仅案例未配时的兜底** |
+| `promptComposer.masterPipeline.deliveryPostProcess.*` | ✗ | ✗ | ✗(成片后处理层,**只有 Agent 全局**) |
+| `promptComposer.stagePromptPresets.{text_to_image,image_to_image,image_to_video}` | ✗ | ✅ | ✅ 三阶段静态提示词,**运营可维护(手册 v4 §5)** |
 
 **🔴 `opsEditable` 是运营可编辑真值层(2026-07-20 文档,已纠正旧"只读"错误)**:改 `opsEditable.taskGoal.firstFrame` / `subjectDefinition.firstFrame`,保存时系统自动编译到 `blockTemplates.task_goal.first_frame_prompt`。**别手改 `blockTemplates`——它是派生镜像,手改会被还原(这不是保存失败)**。`firstFrame` 是整段覆盖,改前先复制原文整体改回。案例差异写案例 `visualHint`,别写进全局主体仲裁。旧记忆"opsEditable 只读/PUT静默丢弃"来自污染会话,已作废;若线上 PUT 真被丢弃,那是 admin API 419 或编辑器问题,不代表字段只读——用 UI 编辑器保存法。
 

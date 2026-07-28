@@ -55,7 +55,7 @@
 
 # ThinkNova(实体店内容 SaaS)
 ### 动手前必背
-- 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — **改任何 config 字段第0步**;**07-28 新增《时长模型与案例首帧策略》:`i2vReferenceStrategy` 案例级可配、场景可锁模型、时长 5~30 秒、grok 单参=用户参考图必然进不去(待回源核)**
+- 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — **改任何 config 字段第0步**;顶部有「口径速查」三条。**07-29 逐字回源核过**:`i2vReferenceStrategy` **默认且推荐 = `panel_crop`**、案例级可配且优先于全局、`storyboard_board` **只给"已验证不会把网格生成进成片"的模型**(→ grok 口播案例一律裁格);`deliveryPostProcess` **只有 Agent 全局无案例级**;场景可锁模型;时长 5~30 秒由模型能力 JSON 定默认;**grok 单参 = 用户参考图必然进不去,文档明写是设计如此**
 - 🔴🔴 [模型台账 + 时长映射](reference_thinknova_multiref_model.md) — **动模型/时长前必看**;含两模型定位定案
 - 🔴 [提示词字段读取图](reference_thinknova_prompt_fields.md) — **改提示词第一查**:谁读得到哪个字段
 - 🔴 [两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步
@@ -65,7 +65,8 @@
 - [路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
 
 ### 现行状态
-- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线·07-28 05:0x n=5 实测定案**:grok 开场网格是**双峰(0.17s/2.9s,3:1)不是固定值**·`entranceBlackOverlay` **一直正常执行**(我"判死后处理"那条已自证推翻)·板↔片一致性 **83%**·**人物锁门店锁强、产品锁看产品可辨识度**·460 改名✅已落库并送达·**取证一律走 admin `offline-store-content/tasks/{no}`**(唯一能拿到 6宫格板图 + 供应商裸片)·**批量烧单必须串行间隔≥20秒**
+- 🔴🔴 [口播缺陷链 + 裁格定案](project_thinknova_0729_koubo_defect.md) — **动口播/裁格/videoTemplate/烧口播单之前先看这条**;07-29 03:43 **全局 `i2vReferenceStrategy` 已翻 `panel_crop`(双写含 opsEditable),启用中 103 条口播全裁**;含语速 `lineValidation` 无时长维度、英文 max40<15秒需42 的结构冲突
+- 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线**;~~50 条 owner_speaking 整板~~ **07-29 已由全局翻转解决**(取证 `task_8fd0bb09c351`)·07-28 05:0x n=5 实测定案:grok 开场网格是**双峰(0.17s/2.9s,3:1)不是固定值**·`entranceBlackOverlay` **一直正常执行**(我"判死后处理"那条已自证推翻)·板↔片一致性 **83%**·**人物锁门店锁强、产品锁看产品可辨识度**·460 改名✅已落库并送达·**取证一律走 admin `offline-store-content/tasks/{no}`**(唯一能拿到 6宫格板图 + 供应商裸片)·**批量烧单必须串行间隔≥20秒**
 - 🔴🔴 [片型体系](project_thinknova_film_types.md) — 治"视频大差不差";**620条已全量铺完(07-26 05:00,0失败)+601条预设铺完(07-27)**;剩下的是**烧验**:7个片型未烧验(空间漫游/氛围仪式/产品英雄/人物讲述/演示讲解/生活纪实/明快陈列)
 - 🔴 [品牌产品行业 + 广告TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;含建单500 排查法
 - 🔴 [定点口播/纯口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户

@@ -1,9 +1,11 @@
 ---
 name: reference-thinknova-multiref-model
 description: "触发:要动视频模型或时长、或发现\"用户参考图没进 i2v\"时 → 模型↔时长映射/两模型定位定案/maxReferenceImages 规则/200单成功率诊断/403 根因"
-metadata:
+metadata: 
   node_type: memory
   type: reference
+  originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
+  modified: 2026-07-28T19:32:31.701Z
 ---
 
 # ThinkNova i2v 模型 · 多参考图台账
@@ -30,16 +32,30 @@ metadata:
 
 **omni 只有 10 秒** → "两个模型同时长"的 A/B 不成立,口播/TVC 对比只能是 omni-10秒 vs grok1.5-15秒。
 
+**官方时长机制(07-28 文档 §1~§4,以此为准)**:
+- `businessUi.videoGeneration.allowedDurations` **可配 5~30 秒任意整数**,不再固定 10/15;前台只显示"已勾选 且 至少一个模型在能力 JSON 声明支持"的时长。**保存 Agent 立即生效,无需发布。**(手册 v4 §9"10/15 秒以外需技术"是被覆盖的旧表述。)
+- 模型能力 JSON `constraints.{durations, defaultDurationSeconds, maxReferenceImages}`;**默认时长由模型自己声明,前台不再强行优先 15 秒**。
+- **三层优先级**:①**场景级首选模型** `businessUi.businessActions[].preferredVideoModelId` —— 一旦设,**前台连时长和模型选择框都不显示,后端强制不可绕过**,用该模型的能力 JSON 默认时长;可选 `preferredVideoDurationSeconds` 覆盖但**文档不建议填**。②Agent 可选时长 × `modelAllowlistByDuration` 白名单,用户在其中选。③(首帧策略这层)案例不填才用 Agent 全局。
+- 🔴 **场景锁模型的失效条件**:该模型必须**同时**在本 Agent 时长-模型白名单内、且其默认时长在可选时长里,否则**锁定失效、静默回退用户选择逻辑**。我们所有模型 `base_duration_seconds=0`(未配默认时长)→ **锁场景前必须先给模型配默认时长**。
+- 同 `model_code` 的多条模型记录,**前台只展示默认或权重最高的一条**。
+- 🔴 **任务创建时冻结模型/时长/案例策略,改配置只影响新任务,旧任务不重写** → 对照实验必须重新烧单。
+
 ## 三、🔴 核心机制:多参 vs 单参由模型决定
-- **单参模型**(415;468 未改前):运行时 i2v **只收"截格首帧"1 张**,上传的人物/场景/产品图**到不了 i2v**(只进 i2i 分镜板)。
-- **多参模型**:i2v 收全部参考图(首帧+人物/场景/产品)。
+> 官方口径:《运营说明_商家视频时长模型与案例首帧策略》v1.0 / 2026-07-28 §6。
+- **张数由"所选模型的最大参考图数量"决定**(模型能力 JSON `constraints.maxReferenceImages`)。
+  - **只支持 1 张**(415):**只提交主首帧图** → 上传的人物/场景/产品图 **100% 进不了 i2v**,**这是设计如此不是 bug**(只进 i2i 分镜板)。
+  - **支持 2 张及以上**:**主首帧图优先**,再按剩余名额加入完整分镜图和用户上传的角色/场景/商品参考图;**用户上传不足不会凑数生成无关图**。
+- 文档明说:**模型是否真正锁人物/构图/分镜顺序仍取决于供应商能力,配置只能决定提交什么参考图和顺序。**
 - → 想让 i2v 拿到真人/场景/产品图(锁人物、降 grok 审核拒率),**必须用多参模型**,靠不了商家流程的截格。
-- 🔴 **`storyboard_board`(整板)模式下 omni 的多参能力等于零**:limit=5 但实际只喂 1 张(整板本身)= 花 omni 的钱用单参的用法。要 omni 的人物·产品·门店一致性**必须切回 `panel_crop`**。**该开关全局,grok 和 omni 不能各用各的**(取舍见 [[project-thinknova-film-types]])。
+- 🔴 **`storyboard_board` 下主首帧图 = 整板本身,且文档明写"不重复提交同一张图"**(手册 v4 §3.5) → 整板模式白白吃掉一个参考位。要 omni 的人物·产品·门店一致性**用 `panel_crop`**。
+  ⚠️ 我曾实测"整板模式下 omni 实际只喂 1 张"(200 单诊断,**未留任务号**);文档 §6 说剩余名额仍会加用户上传图 → **以文档为准**,这条实测**需带任务号重核**再谈。
+- 🔴 **该开关不是全局一刀切**:案例级 `businessUi.referenceCases[].i2vReferenceStrategy` 优先于全局(07-28 文档 §5)→ **grok 案例和 omni 案例可以各用各的**,按"模型会不会把网格生成进成片"分配(见 [[project-thinknova-film-types]] 八)。❌ 旧说法「全局开关,grok 和 omni 不能各用各的」已被文档推翻。
 - ❌「DB 列 `max_reference_images`=1 卡死 omni」已推翻 → 运行时 limit 实际是 5,DB 列那个 1 没生效(07-28)。**别再按这条走。**
 
-## 四、🔴 时长档也会锁参考图张数
-`businessUi.videoGeneration.referencePolicyByDuration`:**只有「10 秒」档 `allowStoryboardCrops:true`,8/12/15 全是 false**;`reserveFirstFrame:true` 全档;`cropPriority:[hero, scene, product, detail]`。
-→ 415 是 15 秒档,**不只是模型单参,时长档也把它锁死在 1 张** —— 这是"preview 后面画面控制不住"的配置层根因。
+## 四、时长档字段 `referencePolicyByDuration`(文档未收录,已降级)
+线上 config 有 `businessUi.videoGeneration.referencePolicyByDuration`:只有「10 秒」档 `allowStoryboardCrops:true`,8/12/15 全 false;`reserveFirstFrame:true` 全档;`cropPriority:[hero, scene, product, detail]`。
+🔴 **三份官方文档(07-24 手册 v4 / 07-26 案例预设 / 07-28 时长模型)全部没有这个字段**,且 07-28 §6 把提交张数的决定权**明确只归给模型 `maxReferenceImages`**。
+→ **按文档:415 只吃 1 张纯粹是模型能力,不是时长档锁的。** ❌ 旧说法「15 秒档也把 415 锁死在 1 张 = preview 画面控制不住的配置层根因」**降级为未经文档确认的猜测,不许当根因外传**;要用它先找技术确认该字段还生效不。
 
 ## 五、🔴 200 单实拉诊断(2026-07-28)
 **怎么查(可复用)**:admin 任务列表翻页拿 `task_no` → `GET {任务接口}/{task_no}` → `data.task.input` 里有 **`_reference_image_limit`**、**`_i2v_reference_strategy`**、`referenceImages[]`、`reference_image_urls[]`;`error_message` 同层。(**用 id 查详情返回 `task:null`,必须用 `task_no`。**)

@@ -1,9 +1,11 @@
 ---
 name: project-thinknova-storyboard-test
 description: "触发:要查故事板/生图锁/i2v 现状,或要给故事板问题取证之前 → 取证一律走 admin offline-store-content/tasks/{no};含网格双峰、板↔片一致性83%、三把锁已落库、批量烧单串行≥20秒"
-metadata:
+metadata: 
   node_type: memory
   type: project
+  originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
+  modified: 2026-07-28T19:31:39.262Z
 ---
 
 # 故事板 / 生图锁 / i2v —— 当前状态
@@ -17,7 +19,8 @@ metadata:
 - [ ] ⚠️ **模型 464 被后台 UI 保存静默剥出 10s/15s 白名单** —— 待老板拍板恢复。
 - [ ] 明天新上 **wan** / **快乐马**，同 4 组再跑。
 - [ ] 第二刀：给案例 visualHint 写自带镜头表（纯文本、可批量、商家端零感知）。
-- [ ] 修 5格/6格矛盾：启用 525 条里 444 条 `shotCount=5`，骨架却画 6 格；visualHint 写「五格」。
+- [ ] 🔴 **50 条 `owner_speaking + shotCount=5` 改 `panel_crop`**（口播绑 grok 415，未过官方"不出网格"门槛；依据手册 v4 §3.5 + 07-28 文档 §5）。取证单 `task_8fd0bb09c351`。老板已当面质疑，等拍板即可批量改。
+- [ ] visualHint 里"五格"口径统一改"六格"（**不是 5/6 矛盾**：生图板 3×2=6 格、编剧 `boardCells` 官方固定 5 个，两层本就不同，见 [[project-thinknova-film-types]] 十）。
 - [ ] 三锁**用参考图**那版从未真测（至今无一单传过 >1 张）；「内部环境 2 种」只做了 1 种。
 - [ ] `task_302c7394ae08` 那档网格挂 2.9s 治不治，待拍板。
 - [ ] 门头锁失败是否与「招牌文字必须虚化」互斥 —— 待验，不外推。
@@ -29,6 +32,7 @@ metadata:
 - **网格挂 2.9s 的元凶 = 刀1 原句**「首帧图＝第一镜的画面…若另给了参考图，那是分镜规划板」，明着叫模型把六宫格板当第一镜画面用。已改(07-29 01:57)。
 - **grok 网格滞留 = 双峰(≈0.17s / ≈2.9s，约 3:1)，不是固定值**，n=5 复现。omni **100% 零网格**。**panel_crop 下网格 0 帧**(`task_0dc0d4579aa5`)——不是挡住，是模型压根没看到板。
 - **`entranceBlackOverlay` 一直正常执行**：0.5s / 12 帧线性淡出，首帧亮度恒 **16.18/255**(≈6%灰，非纯黑)。"不够黑" = `fade_out_overlay` 模式本身。
+  文档定义(手册 v4 §3.5)：位置 **`promptComposer.masterPipeline.deliveryPostProcess`(Agent 全局，不是案例级)**；行为 = **不裁切、不改动原视频时间线和音轨**，只在成片开头 `seconds` 内叠黑遮罩并淡出；**缺省启用、缺省 0.3 秒**（我们线上显式设 0.5，是配置值不是默认值）；旧 `headReplacement` 仍可读但按此遮罩方式执行。同层 `coverFrame{enabled,position:middle,format:jpg}` 缺省启用=中间帧提封面写缩略图。两个 `enabled` 都 false 即关后处理，不影响生成和计费。
 - **语速慢根因**(`task_0dc0d4579aa5` 47字/15秒=3.13字/秒)：`lineValidation.zh` 的 `lineLengthTarget{min45,max100}` **只按语言分不按时长分**，systemPrompt 又写「台词总长度仍按 lineLengthTarget 执行不变」压过所有按秒规矩 → 47 字判合规。且 systemPrompt 内三条规矩打架（A 纯口播85-95 / B 按秒65-78 / C 每句9-12），**B 的 15 秒格算错**(15×5.5=82.5 不在 65-78)。单一 min/max 数学上救不了(15秒要≥76、10秒不能超~62，区间不相交) → 把 lineLengthTarget 从"目标"降级为"硬边界"即可，**不用发技术卡**。
 - **格位标签体系对不上（黑锚板遗留，非技术 bug）**：图生图从"上左"填满 6 格，i2v 子格标签只有「上中/右上/左下/下中/右下」5 个跳过上左，`boardCells` 只 5 条且不带位置标签。成片大多还对是因为 **i2v 主要读子格文字、不太吃位置标签**——侥幸对。第 6 格是 gpt-image-2 自己编的。
 - **代码硬编码两处（config 全量搜 0 命中 → 真技术卡料）**：① i2v `negativePrompt` 的「忽略分镜板结构，多个首帧格折叠成单一画面」与「绝不可入画」对打；② 「上传商品图会优先作为短视频首帧和主体参考…」= 世界观锁死的直接指令源。②卡已写：`02_交付内容\给技术_OPS-VIDEO-20260729-01_上传商品图硬编码首帧指令.md`。
@@ -70,7 +74,10 @@ metadata:
 - **videoTemplate 开场词**(02:47) `promptComposer.screenwriter.staticTemplates.videoTemplate`（🔴 线上真路径是 `screenwriter` 不是 masterPipeline）541→596 字符。
 - **回退模板去字幕化**(03:20) 6 处：`no_person[2]`/`product_only[2]`/**`default[1]`** × 主层 `masterPipeline.scriptwriter.fallbackPolicy` + `opsEditable` 镜像。「文字清晰可读」「{{price}}」残留均 0。
 - **460 改名**(05:0x，双向验收) zh=`实景还原版 · 10秒（锁人物产品门店 · 无中文口播）`。
-- **46 条口播案例**(`shotCount==1`，43 owner_speaking + 3 product_store) → `i2vReferenceStrategy=panel_crop` + `entranceBlackOverlay.enabled=false`，**46/46 逐条 GET 核实**。⚠️ 另有 50 条 `owner_speaking + shotCount=5` **故意没动**（多镜头仍需整板定顺序）。
+- **46 条口播案例**(`shotCount==1`，43 owner_speaking + 3 product_store) → `i2vReferenceStrategy=panel_crop`，**46/46 逐条 GET 核实**。
+  🔴 **剩下 50 条 `owner_speaking + shotCount=5` 仍是 `storyboard_board` = 与官方文档口径不符，待改。** 依据《运营手册_商家Agent后台配置》v1.0/2026-07-24(v4) §3.5：`panel_crop` **「这是默认且推荐的方式」**；`storyboard_board` **「只建议对已验证不会把网格生成进成片的模型使用」**。口播只能走 grok 415（omni 460 中文口播做不了），而 grok 415 实测无网格率仅 ~75%（双峰 0.17s/2.9s）→ **未通过官方门槛**。**我原来的理由「多镜头仍需整板定顺序」不成立**：07-26 案例预设文档 §5 明写 `shotCount` 不改变分镜板布局与 `boardCells`，官方也从未按 shotCount 区分裁不裁格。
+  ⚠️ 线上实证一致：商家单 `task_8fd0bb09c351`（`fashion_v2_S10_styling_tip`，owner_speaking + shotCount=5）实际吃到 `_i2v_reference_strategy = storyboard_board`，成片非一镜到底、人物被拉长。
+  🔴 **同批写进案例的 `entranceBlackOverlay.enabled=false` 按文档不成立**：手册 v4 §3.5 明确 `deliveryPostProcess`（含 `entranceBlackOverlay`/`coverFrame`）位置是 **`promptComposer.masterPipeline` = Agent 全局**；07-28 文档 §5 的案例级字段**只有 `i2vReferenceStrategy` 一个**。案例级 `deliveryPostProcess` 无文档依据 → 当它不生效，别据此排期。
 - **2 条案例 visualHint 差异化重写**(zh+en)：`home_v2_S03_signature` 208 字（门店实景型+自带镜头表+【环境重建】不复刻参考图背景）；`brand_product_s14_tvc` 221 字（电影质感型+格1极暗侧逆光微距→格4首次全貌→格6品牌定格+换极简暗调影棚）。**两条现在是两个完全不同的世界，可与旧片直接对照**。
 - **三刀落库**(07-29 01:57，sha `ae794877fbea`→`135f069e4c7d`)：刀1 `stagePromptPresets.image_to_video.prompt` 的【输入图片】整行改指派式（双镜像各 862 字）；刀2 骨架追加【出镜设置优先于骨架·硬规】（双镜像各 2001 字）；刀3 `referenceImagePrompts` 三条重写为**自标注+反向边界**（284/260/302 字节，原 39/38/40 字）。
 - **备份**：`03_工作区\0728_网格滞留取证\BACKUP_osv_config_0729_sha_ae794877fbea.json`(236KB) / `BACKUP_offline_store_video_config_0728.json` / `D:\SamsoData\Downloads\backup_offline_store_video_20260728_0240.json`。
@@ -86,6 +93,10 @@ metadata:
 5. ❌「omni 不跟板走 / omni 不吃 storyboard」→ **现为**它在正确执行 `product_only`，把板上多余的人删了（07-29 00:5x）。
 6. ❌「boardCells 被固定模板淹没(≈1.6%)」→ **现为** 1973/5681=**34.7%**，信噪比理论不成立（07-28 晚）。
 7. ❌ 07-27 旧记忆「omni 460 照样会说话、台词量没问题」→ **现为**中文口播做不了，英文解说可以（老板 07-28 拍板）。
+8. ❌「`i2vReferenceStrategy` 是全局开关、不能按案例/模型分」→ **现为**案例级 `businessUi.referenceCases[].i2vReferenceStrategy` 可配且**优先于**全局（07-28《时长模型与案例首帧策略》§5）。
+9. ❌「口播多镜头（shotCount=5）需要整板定顺序，所以留 `storyboard_board`」→ **现为**官方门槛是"模型会不会把网格生成进成片"，与 shotCount 无关；grok 未过门槛 → 口播一律 `panel_crop`（手册 v4 §3.5）。
+10. ❌「案例级也能配 `deliveryPostProcess` / `entranceBlackOverlay`」→ **现为**文档只承认 Agent 全局 `promptComposer.masterPipeline.deliveryPostProcess`；案例级可配的**只有** `i2vReferenceStrategy`（手册 v4 §3.5 + 07-28 文档 §5）。
+11. ❌「4 单 `_i2v_reference_strategy=null` 是字段没生效/故障」→ **现为**文档明写"不填写 → 使用 Agent 全局 `promptComposer.masterPipeline.i2vReferenceStrategy`"，null=案例没配，属正常（07-28 文档 §5 表）。
 
 ## ⑥ 老板已下的决策（勿再提）
 ❌ 黑屏**维持 0.5**不加 0.75。｜❌ **不改 `durationPolicies.10` 压台词** —— 时长≠模型，10 秒将来可能切 grok1.5 fast（也多参也吃台词），**台词密度绝不能绑时长**。｜❌ **反网格禁令词不用加**（`negativeGuard` 20 词已证无效）。｜✅ 六宫格只有 3×2 一种，一句指派式压住即可，不做系统。｜✅ **烧单我自己做**（07-28 03:35 授权，覆盖 [[feedback-thinknova-burn-division]]「商家整单老板亲自烧」）。｜❗**「修好再烧」**。｜✅ 客户三大要求 = **锁产品、锁场景、锁人物**；编剧层原始意图 = 同场景同案例每次生成也应不一样（**现状没做到**）。｜✅ 行业验收：美业看细节；餐饮看产品一致性 + 门店环境一致性。
@@ -93,8 +104,7 @@ metadata:
 ## ⑦ 待核（拿不准是否过期，一律保留）
 - 🟡 **omni 5 个参考图位只用了 2 个**（板 + 用户产品图），空 3 个，未查。
 - 🟡 **DB `max_reference_images` 与运行时 `_reference_image_limit` 不一致** —— 该查，别外传。
-- 🟡 **案例级 `deliveryPostProcess` 后端认不认没验**（字段 PUT 200 且回读还在，但 07-28 文档只写了案例级 `i2vReferenceStrategy`）。验法：烧 `food_s11_owner`，看 `metadata.delivery_post_process.entrance_black_overlay.applied` 是否 **false** + 首帧亮度不再是 16.18。**若后端不认** → 全局关会连带 storyboard_board 案例一起失去黑场，不能直接关，那就是一张该发的技术卡。
-- 🟡 `brand_product_s14_tvc` 的 `shotCount=7` 而骨架画六格；systemPrompt 有换算条款（cells/lines 严格等于 shotCount，可 1~7）→ 暂判无害，未实测。
+- 🟡 `brand_product_s14_tvc` 的 `shotCount=7` 而骨架画六格 → **文档判定无害**：07-26 案例预设文档 §5 明写 shotCount(1~7) 与分镜板格数解绑，"7 段宣传片仍可以使用现有 3列×2行分镜板作为视觉来源"。
 - 🟡 案例详情 GET 对部分案例（如 `home_v2_S03_signature`）**不返回 `appearanceOptions`** → 组3 换出镜设置前需另找白名单来源。
 - 🟡 `firstFrameTemplate` 遗留未同步改：「唯上中格＝首帧例外」+ `timeline.defaultShotCount=5`。
 - 🟡 编剧层多样性：`screenwriter.textModel.temperature=0.7`；全配置搜 seed/random/variation/shuffle **0 命中** → 文案层有随机性，画面层多样性不由编剧层决定。
@@ -136,7 +146,7 @@ metadata:
 | **世界观解绑** | ✅ **成功**。旧 S03/S14 完整复刻上传图（拱门+海景+橄榄树+木茶几），两条分不出是哪个案例；新 S03 = 家具卖场（轨道灯／木饰面／挂价签），新 S14 = 暗调影棚。上传图元素在新片 80 帧取样中**一帧未出现** |
 | **网格滞留** | ⚠️ **未证**。新片 0.125s 粒度全片 + 开场逐帧均无网格，**但旧的两条也无网格** → 无效对照。要证得另找一条真出过网格的旧单 |
 | **锁产品** | 🔴 **新引入风险**：新 S14 沙发由米白变**深炭灰皮革**（新 S03 仍米白正确）。提示词中**无任何「深灰／暗色」字样** = 模型自由发挥。根因：参考图·产品那条只写了反向边界（背景道具不复刻），**没写正向锁色**，产品色跟着一起松 |
-| 四单共同事实 | `i2vReferenceStrategy` 四单**全为 null**（既非 `panel_crop` 也非 `storyboard_board`），但首帧实物**四单都是 6 宫格板** → 该字段未生效／走全局默认。本次改动没动这个开关 |
+| 四单共同事实 | `i2vReferenceStrategy` 四单**全为 null** = **案例没配、按文档回落 Agent 全局**（全局线上=`storyboard_board`），所以首帧实物四单都是 6 宫格板 —— **正常行为不是故障**（07-28 文档 §5）。本次改动没动这个开关 |
 
 ### 待办（按优先级）
 1. 🔴 **参考图·产品文案加正向锁色**：先锁死「颜色／材质／明度必须与参考图一致」，再讲反向边界。**老板尚未拍板，未动。**
