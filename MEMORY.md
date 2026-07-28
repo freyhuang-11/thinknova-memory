@@ -42,7 +42,7 @@
 21. 🔴 禁 `taskkill /IM python`,按 PID/端口精准杀 → [详](feedback_kill_python_scope.md)
 22. 🔴 线上 config = 唯一真值,禁种子覆盖;改前必验框身份 + 金额
 22.5 🔴 **config 是前端/编剧的契约**:结构/字段/新字段一律交技术,我只碰纯文本字段 → [详](feedback_dont_edit_prod_config_structure.md)
-22.7 🔴 **后台操作读文字不点截图**(点一次白回一张图);证据图走 ffmpeg 联系表 → [详](feedback_context_budget_discipline.md)
+22.7 🔴🔴 **上下文只有一个杠杆:减少往返次数**(实测 1758 次调用×中位数1052 啃满,**没有单一元凶**;判断原因一律读 usage 字段,别拿 jsonl 字符数当依据)。一段 JS 干完一整套只回一行摘要;后台读文字不截图;证据图走 ffmpeg 联系表 → [详](feedback_context_budget_discipline.md)
 23. **记忆只留当前状态**,过时的覆盖删除,不堆矛盾层 → [详](feedback_memory_keep_current.md)
 24. **老板发的提示词当天归档** → [详](reference_prompt_library.md)
 
