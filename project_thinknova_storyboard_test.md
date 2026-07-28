@@ -488,3 +488,64 @@ i2v 的 `negativePrompt` 第一段含 **「忽略分镜板结构，多个首帧�
 task_no:41cc7690d5cf / 363402a0c6cb(挂) / 50a4c6993824 / 525fe357c177 / 4c3732aa09f5(挂) / 6be3d4abb09e / 68987d63be29 / 0b4da9f68600 / 0ae2b944f3f2(回退) / 4c48cace5ba2(回退)
 
 配套:[[reference-thinknova-multiref-model]] [[reference-thinknova-prompt-fields]] [[project-thinknova-film-types]] [[feedback-evidence-standard]] [[feedback-directive-over-prohibition]]
+
+---
+
+## 🔴🔴🔴 2026-07-29 00:5x 已落地 + 关键真值更正
+
+### ✅ 已上线(逐条 GET 核实,不是靠列表接口)
+- **46 条口播案例(`scriptwriterPreset.shotCount==1`)全部 `i2vReferenceStrategy=panel_crop`** —— 46/46 逐条 GET 确认
+- **同 46 条全部 `deliveryPostProcess.entranceBlackOverlay.enabled=false`** —— 裁格后没格线可盖,黑场取消
+- 口播集合定义:shotCount==1 → 46 条(43 owner_speaking + 3 product_store),全部 voiceMode=dialogue
+- ⚠️ **另有 50 条 `owner_speaking + shotCount=5` 故意没动** —— 多镜头仍需整板定顺序
+
+### 🔴 API 真值更正(旧记忆是错的)
+- **admin API base = `https://api.thinknova.top/admin/api/v1`**
+  `https://admin.thinknova.top/admin/api/v1` 现在返回 **200 + text/html(SPA 兜底)**,不是 404 —— 会静默给出假数据,必查 content-type
+- **案例列表接口的 `i2vReferenceStrategy` 返回不全**(46 条里只报 18 条)。**核验一律逐条 GET `/reference-cases/{id}`,列表不可信**
+- agent 配置读:`GET /agents/offline_store_video` → `data.agent.config`(不是 data.item)
+- **agent 配置写:`PUT /agents/offline_store_video`,body `{config}`** —— 已用空改动 PUT 验证安全(sha `ae794877fbea` 前后不变、字节 138411 不变)
+
+### 🔴🔴 案例库全量真值(07-29)
+- 总 675 条 / **启用 525 条**
+- 四项预设(出镜/风格/重点/节奏)**实际只用到 60 种组合**,平均 8.75 条案例同参
+- 最大同参簇:`product_store|local_conversion|price_focus|fast_promo` = **47 条**;老板那两条 omni 的 `product_only|premium_clean|subject_closeup|steady` = **42 条**
+- **`*Options` 是案例级白名单**:每条案例只露 出镜3~4 / 风格4 / 重点4 / 节奏3。**全局 focus 池有 9 个值但每条只发 4 张牌** → 往池子加值**不会**让商家下拉变长。老板"下拉框会太长"的担心不成立
+- 理论 5×5×10×3=750 种组合,只用了 60 种(8%)——**池子远没用满,先重分配再谈加枚举**
+
+### 🔴🔴🔴 同质化根因(拆开提示词后确认)
+板提示词共 6030 字,其中:
+- **【六拍骨架】446 字,全局写死**:格1(0-2.5s)钩子/格2过程/格3细节/格4价值/格5展示/格6收尾 —— **525 条案例共用同一张镜头表**
+- **案例 visualHint ~150 字**,挂在「视觉主体必须满足：」后面,**确实进了板提示词**(不是没送到)
+- 预设也**已经展开成中文散文**(`coreSettings.instructions[]`,分 layout_rules/style_rules 桶),但每条只有一句约 20~30 字
+→ **结论:案例提示词和预设都只能改"质感/打光/形容词",改不了"镜头表"。这就是 620 条片型铺完仍然大差不差的根因。**
+
+### 🔴 两个系统性矛盾(未修)
+1. 案例 visualHint 写「**五格**」,骨架写「**格1~格6**」—— 同一段提示词自相矛盾
+2. **525 条里 444 条 `shotCount=5`,骨架却画 6 格**
+
+### 🔴🔴 「omni 不吃 storyboard」= 误诊,已回源确认
+提示词里写死:`peoplePolicy.note = "appearanceMode exclusively decides whether people appear; visualFocus only changes composition focus."`
+→ **出镜预设独占决定有没有人,板画了人也没用。** 两条 omni 是正确执行 `product_only`。
+→ 要验 omni 到底吃不吃板,**必须把出镜改成 product_store 再烧**,这个变量还没做过。
+
+### ⛔ 被 Claude Code 分类器拦截(连拦 2 次,已按规矩停手待老板授权)
+准备写入 agent config 的 4 处改动(**均已写好、备份已存**,备份 = `03_工作区/0728_网格滞留取证/BACKUP_osv_config_0729_sha_ae794877fbea.json` 236KB):
+1. `entranceBlackOverlay.seconds` **0.5 → 0.75**(2 镜像:masterPipeline + opsEditable.masterPipeline)
+2. `task_goal.video_prompt` 追加【成片不得出现分镜板·硬性】反网格条款,要求分格痕迹 **0.8 秒内消失**(3 镜像:blockTemplates.task_goal.video_prompt / .video / opsEditable.taskGoal.video)
+3. 骨架追加【案例优先·覆盖规则】,让案例指定的镜头序列能覆盖六拍骨架(2 镜像:blockTemplates.task_goal.first_frame_prompt / opsEditable.taskGoal.firstFrame,各 1887 字)
+4. `durationPolicies.10.videoPrompt` 追加【10秒画面优先】少台词条款(2 镜像:durationPolicies / opsEditable.durationPolicies)
+
+### 📌 台词密度进预设 —— 现状与判断
+- promptComposer 里**没有**任何 lineLength/copyDensity 可编辑旋钮(全量搜索 0 命中);台词量由 `durationPolicies[N].videoPrompt` 散文 + `screenwriter.systemPrompt` 控制
+- 现行:`durationPolicies.15` 写「台词铺满15秒」;`durationPolicies.10` 写「台词用短句」
+- **omni 上限 10s、grok 15s** → 时长已天然代理了"omni少台词 / grok多台词",所以改 `durationPolicies.10` 是**最短路径,不需要新字段**
+- 真要做「案例级台词密度」字段 = **新字段 = 交技术**(铁律22.5)
+
+### 待办
+- [ ] 老板授权后写 config 4 处改动
+- [ ] 烧单测:**omni + grok 必须成对**;omni=多画面少台词,grok=多台词
+- [ ] 烧单必带变量:**omni + appearanceMode=product_store**(验 omni 到底吃不吃板)
+- [ ] 明天新上 **wan** 和 **快乐马** 两个模型待测
+- [ ] 第二刀:给案例 visualHint 写自己的镜头表(纯文本,可批量,商家端零感知)
+- [ ] 修 5格/6格 矛盾
