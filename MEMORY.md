@@ -67,6 +67,7 @@
 - [路径接口](reference_thinknova_paths.md) — 域名/API/存储/环境坑
 
 ### 现行状态
+- 🔴🔴 [字节手术 + 无台词开关 + 模型×语言](project_thinknova_0729_byte_surgery.md) — **动 i2v 提示词/查 4096/做无台词/选 omni-grok 之前先看**;`scriptwriterPreset.voiceMode=none` **早就存在**(22条S14 TVC在用);omni **能说英文不能说中文**;i2v 底座两键曾自相矛盾已修;grok15s口播 4793→**3249**
 - 🔴🔴 [口播缺陷链 + 裁格定案](project_thinknova_0729_koubo_defect.md) — **动口播/裁格/videoTemplate/烧口播单之前先看这条**;07-29 03:43 **全局 `i2vReferenceStrategy` 已翻 `panel_crop`(live+opsEditable 双写),启用中 103 条 `owner_speaking` 案例全部裁格**;03:49 `lineValidation.en.max`40→50 / `ja.max`85→95 已落库;**未解**=`lineValidation` 无时长维度(交技术)+ `businessUi` 改不进 textarea
 - 🔴🔴 [故事板测试盘子](project_thinknova_storyboard_test.md) — **当前主线**;07-28 05:0x n=5 实测定案:grok 开场网格是**双峰(0.17s/2.9s,3:1)不是固定值**·`entranceBlackOverlay` **一直正常执行**(我"判死后处理"那条已自证推翻)·板↔片一致性 **83%**·**人物锁门店锁强、产品锁看产品可辨识度**·460 改名✅已落库并送达·**取证一律走 admin `offline-store-content/tasks/{no}`**(唯一能拿到 6宫格板图 + 供应商裸片)·**批量烧单必须串行间隔≥20秒**;07-29 在烧 5 单验一镜到底/不拉长/三锁/语速,**结论未出**
 - 🔴 **案例文案重复(07-29 查到,未修)**:675 条里 `visualHint` **182 条完全重复**(最大一组 22 条一字不差)、`summary` **270 条**(最大 21 条)、`title` **80 条**。老板反馈「每次找客户想要的案例总感觉找不到匹配的」根因在此;改写草稿由另一会话产出中 → 见 [案例缺口双查法](feedback_case_gap_dual_check.md) / [片型体系](project_thinknova_film_types.md)
