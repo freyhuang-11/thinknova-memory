@@ -1,6 +1,6 @@
 ---
 name: reference-thinknova-tech-docs-index
-description: "技术官方文档档案索引=ThinkNova config/pipeline 的唯一真值;动任何字段前先按此定位原文档+拉线上核对,记忆只是索引不是真值(2026-07-24 老板+技术要求)"
+description: "触发:要动任何 config 字段的第 0 步 → 按此表定位官方原文档 + 拉线上真实 config 回读核对,记忆只是索引不是真值"
 metadata:
   node_type: memory
   type: reference

@@ -1,6 +1,6 @@
 ---
 name: reference-kid-math-roadmap
-description: 小孩数学网课的课程路线表（计算/审题/三年级均衡，已按第1课实测重排）
+description: "触发:要定下一节数学课讲什么之前 → 课程路线表(计算/审题/三年级均衡),已按第1课实测重排"
 metadata: 
   node_type: memory
   type: reference

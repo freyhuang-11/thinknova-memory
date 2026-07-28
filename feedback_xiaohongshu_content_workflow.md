@@ -1,6 +1,6 @@
 ---
 name: feedback-xiaohongshu-content-workflow
-description: "小红书内容交付规矩——每条含\"照着填\"生图清单、直接写进小红书MD文档不散在聊天"
+description: "触发:要交付小红书/任何需生图的内容之前 → 每条附\"照着填\"生图清单、正文写进 小红书内容.md 不散在聊天;零商业化种草(不报价/不留联系方式/工具名不进正文),标题≤20字符"
 metadata: 
   node_type: memory
   type: feedback

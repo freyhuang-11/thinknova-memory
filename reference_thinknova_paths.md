@@ -1,6 +1,6 @@
 ---
 name: reference-thinknova-paths
-description: ThinkNova 平台的域名/接口/项目id/存储等固定坐标
+description: "触发:要调 ThinkNova 接口、下载成片、或 config 编辑器冻结时 → 域名/API/项目id/存储的固定坐标与环境坑绕法"
 metadata: 
   node_type: memory
   type: reference

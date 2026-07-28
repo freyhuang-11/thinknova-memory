@@ -1,6 +1,6 @@
 ---
 name: reference-thinknova-config-powers
-description: "ThinkNova 配置权限地图:我能自己改的全部键 vs 改不动的东西(消化自技术三份说明+实查);提需求前必查,能自改的自己改完再说话"
+description: "触发:要给技术提配置类需求之前 → 先查这张权限地图,凡我自己能改的先改完再说话;含计费口径与新版 json-editor 实证"
 metadata: 
   node_type: memory
   type: reference

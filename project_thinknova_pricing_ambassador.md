@@ -1,6 +1,6 @@
 ---
 name: project-thinknova-pricing-ambassador
-description: ThinkNova 定价（对外USD）+ 视频模型调价(grok60/30s120/seedance400，已上线) + 推广大使佣金，含成本口径与毛利
+description: "触发:要对外报价、算成本毛利、或谈推广大使佣金之前 → 海报6/视频15s=60/10s=36(30s=120 已非现行产品);以线上 pricing_json 为准"
 metadata:
   node_type: memory
   type: project

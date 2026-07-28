@@ -1,6 +1,6 @@
 ---
 name: feedback_thinknova_zero_brain_northstar
-description: ThinkNova实体店工具北极星=客户不动脑子就做出想要的；所有场景×行业×案例组合的按钮必须预设好
+description: "触发:要做案例/预设/按钮默认值之前 → 站在\"店老板不动脑\"角度,把每个场景×行业×案例组合的出镜/风格/CTA/卖点全部预设满;需要客户琢磨调按钮=失败"
 metadata: 
   node_type: memory
   type: feedback

@@ -1,6 +1,6 @@
 ---
 name: reference-agent-memory-vault
-description: 共享记忆库 AgentMemoryVault(Obsidian):位置/分工/每次会话末必须更新平台状态总览
+description: "触发:每次开工第一件事和收工最后一件事 → 开工 pull + 读信箱,收工 push;平台状态只写 vault 总览,私有记忆不复制状态"
 metadata: 
   node_type: memory
   type: reference

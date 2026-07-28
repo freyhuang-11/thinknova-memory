@@ -1,6 +1,6 @@
 ---
 name: feedback-source-truth-first-commander
-description: "跨项目最高铁律:权威源>我的记忆;我是总指挥一错全错,记忆必回源核对+定期审计(2026-07-24 config反复出错+opsEditable存反 换来的)"
+description: "触发:要下关键结论、或要改任何配置字段之前 → 先回权威源(技术文档/线上真值/代码)核对;实测结论标「实测·待核」带任务号不外推;一处被证伪就审计同源一批"
 metadata:
   node_type: memory
   type: feedback

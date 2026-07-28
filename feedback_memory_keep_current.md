@@ -1,6 +1,6 @@
 ---
 name: feedback-memory-keep-current
-description: 记忆维护规矩——只保留当前真实状态，过时内容直接覆盖删除，不堆叠矛盾层
+description: "触发:要更新记忆文件、或发现同一文件里两段说法打架时 → 重写成当前状态并删掉旧版(不 append、不堆矛盾层);定期把🔴顶到最前、已完成的直接删"
 metadata: 
   node_type: memory
   type: feedback

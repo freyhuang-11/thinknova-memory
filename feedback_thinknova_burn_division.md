@@ -1,6 +1,6 @@
 ---
 name: feedback-thinknova-burn-division
-description: "触发:要烧单/要生成之前 → 验证类烧单我自己烧不请示;只有要老板肉眼拍板效果的成片才交他;封面图我出提示词交 Codex"
+description: "触发:要烧单/要生成之前 → 验证类烧单我自己烧不请示;只有要老板肉眼拍板效果的成片才交他;封面图我出提示词交 Codex;烧前提示词必须全部修完"
 metadata:
   node_type: memory
   type: feedback

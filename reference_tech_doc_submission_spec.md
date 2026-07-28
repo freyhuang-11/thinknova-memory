@@ -1,6 +1,6 @@
 ---
 name: reference-tech-doc-submission-spec
-description: "给技术提需求/问题文档的强制规范(老板2026-07-23定):9段结构+需求编号+事实判断期望分离,取代旧5段"
+description: "触发:要动笔写给技术的需求/问题文档之前 → 严格按 9 段结构+需求编号写,事实/判断/期望分离,禁把推测写成根因,一份最多 3 个独立问题"
 metadata:
   node_type: memory
   type: reference
@@ -36,4 +36,4 @@ metadata:
 ## 提交后
 技术回复固定含"已完成/未完成/风险点/验证结果";补充用同一需求编号别另开;**技术确认字段/接口后运营再改配置,别在未确认路径前直接覆盖线上**;验收失败在原文档加"验收反馈"章节。
 
-配套 [[feedback-tech-doc-checklist]] [[feedback-tech-doc-delta-delivery]]。
+配套 [[feedback-tech-doc-checklist]] [[feedback-tech-doc-checklist]]。

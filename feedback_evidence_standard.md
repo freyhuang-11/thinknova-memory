@@ -1,6 +1,6 @@
 ---
 name: feedback-evidence-standard
-description: 取证铁律:成片核验必须逐帧通看(单帧=假结论);生成类问题证据=该单真实输入↔真实输出成对呈现+单号;来源未核实的材料不得当证据
+description: "触发:要下\"画面里有/没有X\"结论、或要把证据写进给技术的文档之前 → ffmpeg 抽帧拼联系表逐帧通看(单帧/播放器截图=假结论);证据=该单真实输入↔真实输出+任务号;PUT 200 只算落库不算送达"
 metadata: 
   node_type: memory
   type: feedback

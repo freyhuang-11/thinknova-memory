@@ -1,6 +1,6 @@
 ---
 name: feedback_thinknova_content_not_compliance
-description: ThinkNova 实体店 agent 提示词=内容工具吸引导向，不做合规审查（唯一底线未成年）
+description: "触发:要给新行业/新场景写提示词或负面词之前 → 别加合规禁令(禁疗效/禁低俗/禁未成年),目标只有吸引顾客;唯一底线=不性化未成年"
 metadata: 
   node_type: memory
   type: feedback

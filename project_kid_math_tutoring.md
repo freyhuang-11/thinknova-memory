@@ -1,6 +1,6 @@
 ---
 name: project-kid-math-tutoring
-description: 给一个小孩上数学网课的持续项目——一周3次、主攻逻辑、产出HTML课件
+description: "触发:要备小孩数学网课或出 HTML 课件之前 → 一周3次、主攻逻辑、课件规格与已上课记录在此"
 metadata: 
   node_type: memory
   type: project

@@ -1,6 +1,6 @@
 ---
 name: reference-thinknova-publish-schemes
-description: "ThinkNova 扫码发布配置——各平台深链 scheme 现行值(2026-07-24 真机实测到上传页);位置+机制+每条状态"
+description: "触发:要配置或排查扫码发布深链时 → 四平台 scheme 现行值+配置位置+跳转机制,已真机实测到上传页"
 metadata:
   node_type: memory
   type: reference

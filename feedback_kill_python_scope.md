@@ -1,6 +1,6 @@
 ---
 name: feedback-kill-python-scope
-description: 重启 tiktok-creator-tool 时不能 taskkill /F /IM python.exe，会误杀 Compass 后端等其他 python 服务
+description: "触发:要重启 python 后端/杀进程之前 → 禁 taskkill /F /IM python.exe,先按端口拿 PID 再 Stop-Process"
 metadata: 
   node_type: memory
   type: feedback

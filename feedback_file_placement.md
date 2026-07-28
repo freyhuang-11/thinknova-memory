@@ -1,11 +1,11 @@
 ---
 name: feedback-file-placement
-description: 文件放哪——桌面只放要老板看的测试成片/成图,文档一律进项目子目录
+description: "触发:要写文件到桌面、或老板说「桌面上有X」之前 → 桌面=D 盘 SamsoData/Desktop(不是C盘),只放成片成图;文档一律进 视频制作平台分析 对应子目录并在总表加行"
 metadata:
   node_type: memory
   type: feedback
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-27T19:34:09.845Z
+  modified: 2026-07-28T19:18:27.338Z
 ---
 
 🔴🔴 **桌面 = `D:\SamsoData\Desktop`,不是 `C:\Users\samso\Desktop`**(两个路径都存在,C 盘那个是系统默认残留)。老板说"桌面上有X"一律指 D 盘那个。**别猜,跑 `[Environment]::GetFolderPath('Desktop')` 一秒出真值。**

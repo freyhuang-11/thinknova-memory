@@ -1,6 +1,6 @@
 ---
 name: reference-hyperframes-production
-description: HyperFrames视频生产线——口播正片/纯动效成片的完整工作流、关键坑、文件位置(营销线核心产能)
+description: "触发:要做 HyperFrames 口播正片/纯动效成片之前 → 完整工作流+关键坑(视频嵌进带 data-start 的 div 会冻成静帧)+文件位置"
 metadata: 
   node_type: memory
   type: reference

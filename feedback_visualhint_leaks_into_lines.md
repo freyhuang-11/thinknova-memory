@@ -1,6 +1,6 @@
 ---
 name: feedback-visualhint-leaks-into-lines
-description: "台词里冒出的词,十有八九来自 visualHint 的画面词 —— 因为「台词画面同频铁律」会把画面里的东西拉进台词;查台词问题先查 visualHint"
+description: "触发:台词里冒出不该有的词(到店/咨询/办卡)时 → 第一步去 visualHint 搜这个词,别急着加禁令;visualHint 只写画面、绝不写「台词…」开头的句子"
 metadata: 
   node_type: memory
   type: feedback

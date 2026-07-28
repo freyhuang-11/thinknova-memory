@@ -1,6 +1,6 @@
 ---
 name: reference-prompt-library
-description: "提示词参考库+规则手册位置(核心资产,老板发的参考曾丢过3次,永久归档于此)"
+description: "触发:老板发来提示词/参考/规则手册的当天 → 立刻归档进参考库(曾丢过3次),位置与归档规矩在此"
 metadata: 
   node_type: memory
   type: reference

@@ -1,6 +1,6 @@
 ---
 name: reference-thinknova-pipeline-flow
-description: "ThinkNova 海报/视频两条完整管线的分步流程(老板亲述,我反复搞不清被骂后写死)——动这两个Agent任何一环前必背这条"
+description: "触发:要动海报或视频 Agent 任何一环之前 → 先背这两条完整管线(海报4步/视频6步);本文是 07-08 快照,三处术语已过时,源真值见技术文档索引"
 metadata:
   node_type: memory
   type: reference

@@ -1,6 +1,6 @@
 ---
 name: feedback-case-gap-dual-check
-description: "案例体系验证必须双查:内部矩阵完整性 + 外部内容形态对标;只查矩阵会天天被用户发现新缺失"
+description: "触发:要验证案例覆盖/老板发来参考图之后 → 双查:①内部行业×场景矩阵零缺口 ②外部内容形态对标(竞品模板目录+抖音小红书实体店形态),只查矩阵必漏"
 metadata:
   node_type: memory
   type: feedback

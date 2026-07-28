@@ -1,13 +1,13 @@
 ---
 name: project-thinknova-storyboard-test
-description: "ThinkNova 故事板/生图锁/i2v 当前状态：同质化根因=六拍骨架写死、网格双峰、语速根因、三刀已落库、取证接口手册"
+description: "触发:要查故事板/生图锁/i2v 现状,或要给故事板问题取证之前 → 取证一律走 admin offline-store-content/tasks/{no};含网格双峰、板↔片一致性83%、三把锁已落库、批量烧单串行≥20秒"
 metadata:
   node_type: memory
   type: project
 ---
 
 # 故事板 / 生图锁 / i2v —— 当前状态
-> 过程流水、实验明细、逐帧测量表 → `project_thinknova_storyboard_archive.md`（仅追溯，不日常检索）。本文件只留现在仍成立的。
+> 过程流水、实验明细、逐帧测量表 → `archive/storyboard_test_history_to_0729.md`（仅追溯，不日常检索）。本文件只留现在仍成立的。
 
 ## ① 主线与待办
 主线：治「不同案例的片大差不差」+「grok 开场网格」+「口播语速慢」。

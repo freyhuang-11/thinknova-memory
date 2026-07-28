@@ -1,6 +1,6 @@
 ---
 name: feedback-data-freshness-framing
-description: Compass 数据新鲜度的呈现立场——自信展示，别过度诚实标注，也别纯隐藏埋雷
+description: "触发:要在 Compass 界面上给数据贴\"估算/过期/未核实\"标之前 → 别贴,自信展示;只在 BD 真要下手那一刻给一句中性轻提示"
 metadata: 
   node_type: memory
   type: feedback
@@ -17,4 +17,4 @@ metadata:
 - 战略上**不跟任何人拼数据新鲜度**，那场仗赢不了。界面重心压在不会过期的资产：联系方式、历史建联结果、潜力分(相对排名)。
 - 给我自己的提醒：**别过度诚实**。诚实是对内的（不假装有实时数据、不造假 API），但对客户呈现要有分寸，别把"快照本质"当丑闻摊开。
 
-落地见 [[project_compass]] R14 补强(v=r15)。关联 [[project_compass]] [[feedback_compass_discussion]]。
+落地见 [[project_compass]] R14 补强(v=r15)。关联 [[project_compass]] [[feedback-communication-principles]]。

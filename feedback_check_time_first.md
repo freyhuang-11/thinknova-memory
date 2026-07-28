@@ -1,6 +1,6 @@
 ---
 name: feedback-check-time-first
-description: 工作习惯:需要判断时间时先跑 date,不许凭感觉猜时刻(系统只给日期不给时刻)
+description: "触发:要说\"现在/刚才/多久之前\"、或要判断某单跑了多久之前 → 先跑 date 取真实时刻,不许凭感觉猜;写记忆用绝对时间戳"
 metadata:
   type: feedback
 ---

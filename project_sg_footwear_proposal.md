@@ -1,6 +1,6 @@
 ---
 name: project_sg_footwear_proposal
-description: "新加坡鞋包自营品牌的客户提案(报价单+功能设计),桌面 HTML→PDF 双语交付"
+description: "触发:要改新加坡鞋包提案的报价单/功能设计之前 → 文件位置与双语交付口径;改金额要同时改 HTML 和 chart.js 两处硬编码"
 metadata: 
   node_type: memory
   type: project

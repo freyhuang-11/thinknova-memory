@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: f9888687-3c16-4546-9394-03122edbc103
-  modified: 2026-07-28T18:18:36.418Z
+  modified: 2026-07-28T19:16:40.319Z
 ---
 
 # 上下文预算纪律(2026-07-28 实测定案)
@@ -27,7 +27,7 @@ metadata:
 ## 铁律
 1. 🔴 **后台操作一律 `read_page` / `get_page_text` / `javascript_tool` 拿文字,禁止用点击工具导航。**
    只在"必须给老板看画面"时截 1 张。
-2. 🔴 **证据图走联系表**:一条视频 ffmpeg 压成 1 张 tile 图再 Read,不读原始逐帧图。
+2. 🔴 **证据图走联系表**:一条视频压成 1 张 tile 图再 Read,不读原始逐帧图(ffmpeg 命令与逐帧取证标准 → 见 [[feedback-evidence-standard]],本文不重复)。
 3. 🔴 **打印前先探字段结构**(曾把 3 个 URL 字符串打成 555 行按字符编号的对象)。
 4. 大段提示词只取关键节,不全文拉。
 

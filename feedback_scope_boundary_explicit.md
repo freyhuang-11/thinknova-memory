@@ -1,6 +1,6 @@
 ---
 name: feedback-scope-boundary-explicit
-description: "给技术的数量/范围/开关类需求,必须显式写反向边界(仅作用于X,禁止碰Y),否则会串进共用调用导致回归"
+description: "触发:要给技术写数量/范围/开关/多版类需求之前 → 附一行反向边界\"作用域仅X、共用链路上的Y不受影响\"+双向验收,否则会串味回归"
 metadata:
   node_type: memory
   type: feedback

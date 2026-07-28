@@ -199,3 +199,55 @@ task_608b5a90b3b6 的 i2i:模型 451、mode=t2i、refImgsIn=3(产品图确实传
 
 ## 5.5 多参样板 411(已停用)
 `model_request_mode = manxue_videos_reference_images_json` + `max_reference_images=5`,07-12 smoke 验证过的多图配置(首帧 + 4 张 = 5 项 reference_images 请求体)。字段名 `reference_images` 的出处即此。
+
+---
+
+# 六、查表附录(**现行有效**,从当前状态版移出以控体积;需要时来这里抄)
+
+> ⚠️ 本节不是过期内容,是**仍然生效的操作配方与全文措辞**。当前状态版里已留指针。
+
+## 6.1 视觉纪律全文(现行,config 已落库)
+- **色彩**:原相机直出——饱和克制、肤色准确、白平衡正常,质感靠光影层次;绝不高饱和滤镜感也绝不灰暗。i2v 层另有:饱和度克制 / 不加戏 / 只画提示词提到的元素。
+- **肤质**:绝不网红滤镜脸/瓷娃娃/蜡面/塑料/磨皮/AI 假皮;要毛孔、雀斑、细纹、唇纹、碎发。
+- **灯光**:统一主光源;亮面/暗面/投影三层次;鼻影、颧骨高光、颈影、发丝轮廓光;产品高光反射;背景略暗做纵深;绝不平光死白惨白。
+- **人物**:干净耐看的真实店员,非网红脸;眼神三点走位(看产品→看动作→回镜头);**全板人物锁**=每个出现服务者的格都是首帧那位,五官/发色/发型/发长/肤色/服装配饰全格严格一致,禁换脸换发色换发型换人,顾客出现时动手的仍是首帧那位,**无论是否上传人物照都生效**;宁可弱化动作复杂度也保人物一致。
+- **声线**:与出镜人物相符的真人声(不锁死性别);微笑入声、换气轻而真实、重点词前半拍微顿、尾音自然落;情绪弧=发现→惊喜→认可→真心推荐;距离感近贴耳、远变轻;每字念完整不吞字漏字、句尾数字咬清楚;负面组永驻 negative_prompt(机器人腔/播音腔/平直节奏/僵硬表情)。
+- **镜头**:手持微晃、镜头呼吸、景别特写/近景/中景切换、曝光高光不死白。**走入式方向写死**:摄影机在店外朝店内推进、人物背向镜头走入,禁止从门内向外走。
+- **物性(07-27 生图层【统一纪律·真实感】)**:稠液挂壁不像水、食物热气油脂、汤汁挂勺;人物去 AI 化(皮肤质感/手指结构/表情自然);光感与饱和度克制;**包装文字虚化不可辨、不编假字**;环境招牌挂画菜单文字虚化;任何一格不得空白。
+- **格位配额(触发式,默认单不受影响)**:选门店环境或传场景参考图 → 格1 门头/店内全景开场、格4 主体与环境同框,并锁参考图真实装修;产品格必须与参考图外形/摆盘/色泽/器皿一致。**实测生效**(格1 从人脸特写变店内全景)。
+- **负面词**只禁"新增字幕水印",不泛化禁"文字"。
+
+## 6.2 案例预设合法值枚举(2026-07-27 快照,以 `businessUi.detailOptionGroups` 现值为准)
+- `appearanceMode`:product_only / owner_speaking / product_store / customer_pickup / appearance_mode_menu_board_display
+- `videoStyle`:real_store_promo / owner_recommendation / local_conversion / premium_clean(+07-25 新增 ad_film,服务端归一化为 `video_style_ad_film`)
+- `visualFocus`:price_focus / freshness_focus / arrival_focus / location_focus / subject_closeup / before_after / hands_on_process / store_environment / person_on_camera
+- `paceLevel`:steady / medium_high / fast_promo
+
+## 6.3 整板模式必配提示词原文(现行)
+`stagePromptPresets.image_to_video.storyboardClarification` 顶部【输入图是分镜参考板·不是画面内容】:
+> 这是 3 列×2 行六格参考板,不是成片画面;成片必须在开头第一秒内完全离开网格布局,立刻推近到第 1 格并铺满全屏,之后按 2-6 格演进但每刻只有一个画面。
+
+`negativeGuard` 需补:六宫格 / 分镜板 / 故事板 / 2x3 网格 / 多画面并列 / 边框分割。
+
+## 6.4 468(单参→多参)配置配方(07-24 实证,通道恢复后可复用)
+**两个框都要改**:
+1. **「模型能力 JSON」**:`"maxReferenceImages": 1` → **`5`**(卡张数的 DB 闸,在该框底部 `firstFrameAdherence` 前)。
+2. **「通用协议 JSON」**:
+   - `requestMapping.referenceImages` = `{"mode":"multi","path":"reference_images","maxCount":5}`(path 从 `image` 改 `reference_images`);
+   - `requestTemplate`:`"image":"{{referenceImages.0}}"`(单张首帧,string)+ **新增** `"reference_images":"{{referenceImages}}"`(数组)。
+- **两个 count 字段必须一起对上**:DB 列 `max_reference_images`(控前端可上传张数+运行喂几张)vs 通用协议 JSON 的 `referenceImages.maxCount`;只改一个 → 前端仍只让传 1 张 / 运行仍单参。
+- 🔴 `requestTemplate` 的 `image` 只收单个字符串:填数组 → 供应商 **HTTP 400** `json: cannot unmarshal array into Go struct field .Alias.image of type string`。
+- **供应商亲口的时长约束**:`Model grok-imagine-video-1.5-fast supports 15s only for text-to-video or a single reference image; multiple reference images must use 6s or 10s.`
+
+## 6.5 后台编辑器落库法(备用通道,完整步骤)
+admin→智能体→编辑→JS 给 config textarea(**第 2 个,以 businessUi 开头**;带行号但不是 CodeMirror/Monaco,cmCount=0)用**原生 value setter** 赋值 → 派发 **`InputEvent('input',{inputType:'insertText'})`** + `change`(⚠️普通 `Event` 不同步、渲染层不认,这是早期"存不进去"的原因)→ 用 `dlg.innerText` 确认渲染层含新内容 → **老板真人点「保存 Agent」**(我程序化 `.click()` 不触发这个按钮;但案例库的「创建案例」按钮 JS 可点)→ 点「重新从服务端读取」→ GET 商家 config 回读验证。视频 agent config ≈188KB(referenceCases 转 external_table 后不再 2.3MB,不卡渲染)。
+
+## 6.7 C1 一键发布 P0 方案细节(现行,07-14 定案)
+成片页「发布」按钮 → 二维码 → 手机 H5(保存素材 / 复制文案 / 打开 App 深链),**零平台审核、全平台通用**。深链只承诺"打开 App",**不承诺直达发布页**(scheme 非官方会失效,做成运营可改配置)。两个坑:①微信内置浏览器要做引导浮层 ②iOS 用 share sheet / 长按。
+**P1 = 聚合商(Ayrshare 类,一个 API 外包全部平台审核,月费几百刀)> 自建直连(TikTok/Meta/YouTube 三场审核)**,本期不做。国内平台(抖音要 ICP 备案+能力审批;小红书、视频号无 API)全走 P0。
+文档 = `02_交付内容/给技术_C1一键发布P0_扫码半自动_2026-07-14.md`;定位资料包 = `02_交付内容/给Codex_平台定位资料包_新加坡线下会议_2026-07-14.md`。
+
+## 6.6 环境杂项(现行)
+- 商家 fill-info 页偶发白屏(remount bug 已报);会话掉得快要反复重登;Chrome 扩展会间歇断连,重试即可。
+- 文生图批量 >~6 张会 45s 超时(每张 ~3s),分小批发。
+- 探针案例 `zz_tok_probe` DELETE 没通,仍挂在库里(enabled:false 商家不可见),待 UI 删。

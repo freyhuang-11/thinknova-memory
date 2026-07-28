@@ -1,6 +1,6 @@
 ---
 name: feedback-understand-before-judging
-description: 不能在没完全了解一个东西时就下决策/判断——尤其竞品，要实际用过/看过再评
+description: "触发:要给竞品/工具/接口下定性结论之前 → 先实地用过、看全貌再评;接口通≠功能通必实机;拿不准就说\"还没看全\""
 metadata: 
   node_type: memory
   type: feedback
@@ -18,4 +18,4 @@ metadata:
 - **花漾TK(szdamai.com)**：TikTok Shop 卖家的「达人邀约(定向/私信/邮件/站外四通道)+达人CRM/私域+买家管理/复购」，贴 Seller Center 侧边栏(公开达人页只放休眠启动器)。**全链路 BD+CRM+私域，真正正面对手**。花漾在卖家后台的真实侧边栏还没看到(需 Seller Center 登录态)。
 - 差异化结论(用户自己竞品报告 2026-06-17)：不拼建联前数据/库大小，**拼建联后管理**(合作推进/样品风控/内容验收/复投/老板复盘)。报告路径见 `D:\SamsoData\Documents\kol工具验收以及产品\KOL_COMPASS_COMPETITOR_DIFFERENTIATION_REPORT_2026-06-17.md`。
 
-关联 [[project_compass]] [[feedback_data_freshness_framing]] [[feedback_compass_discussion]]。
+关联 [[project_compass]] [[feedback_data_freshness_framing]] [[feedback-communication-principles]]。

@@ -1,6 +1,6 @@
 ---
 name: reference-grok-content-policy
-description: "Grok Imagine 1.5 内容审核红线实测图 —— 触发点是\"画面叙事组合\"不是敏感词,5条对照实验实证"
+description: "触发:烧单被 Grok 审核拒,或要写涉敏画面提示词之前 → 红线是\"画面叙事组合\"不是敏感词;5条对照实验的判定边界在此"
 metadata: 
   node_type: memory
   type: reference

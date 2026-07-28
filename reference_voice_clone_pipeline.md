@@ -1,6 +1,6 @@
 ---
 name: reference-voice-clone-pipeline
-description: 老板音色克隆生产线(火山豆包复刻2.0=现行):音色S_rbgc0p2a2/key路径/seed-icl-2.0资源号/情绪参数/免费额度;硅基流动线已废
+description: "触发:要合成老板音色之前 → 火山豆包复刻2.0=现行:音色ID/key路径/资源号/情绪参数/免费额度;硅基流动线已废"
 metadata: 
   node_type: memory
   type: reference

@@ -5,7 +5,7 @@
 0. 🔴🔴🔴 **权威源(技术文档/线上真值/代码)> 我的记忆**;下关键结论前回源核对,实验结论标「实测·待核」带任务号、不外推 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断"现在/多久前"**先跑 `date`** → [详](feedback_check_time_first.md)
 2. 🔴 **提议≠指令**;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
-2.5 🔴 **例程内能自己拍板的自动跑**,别每天拿老问题问老板 → [详](feedback_auto_mode_dont_over_escalate.md)
+2.5 🔴 **例程内能自己拍板的自动跑**,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md)(同文件反向边界段)
 2.7 🔴 **接"上次的活"先看记忆文件修改时间**;另一会话可能几分钟前刚推翻我的结论 → [详](feedback_parallel_sessions_check_first.md)
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 
@@ -29,11 +29,11 @@
 12. 🔴 **只发技术才能处理的**;发之前逐条自验"我自己能不能改"
 13. 🔴 **9段规范**;事实/判断/期望分离,禁把推测写成根因,一份最多3个独立问题 → [详](reference_tech_doc_submission_spec.md)
 14. **发文前 7 条自检** → [详](feedback_tech_doc_checklist.md)
-15. **发出即冻结**;新内容走增量 → [详](feedback_tech_doc_delta_delivery.md)
+15. **发出即冻结**;新内容走增量文件(追加必须明说追加了哪节) → [详](feedback_tech_doc_checklist.md)(同文件"发出之后"段)
 
 ## L4 · 汇报沟通时
-16. **每轮说清"验收什么 + 做了什么"**;做完先自验再通知 → [详](feedback_handoff_acceptance.md)
-17. **说重点 / 有据质疑 / 别奉承 / 追根因不打补丁** → [详](feedback_communication_principles.md)、[详](feedback_compass_discussion.md)
+16. **每轮说清"验收什么 + 做了什么"**;未验收项累积不丢,做完先自验再通知 → [详](feedback_communication_principles.md)
+17. **说重点 / 有据质疑 / 别奉承 / 追根因不打补丁 / 先讨论再操作** → [详](feedback_communication_principles.md)
 18. **要老板拍板的用 plan 模式结构化问**,不散落正文 → [详](feedback_questions_via_plan_mode.md)
 19. **数据新鲜度**:别贴"过期"标,也别埋雷 → [详](feedback_data_freshness_framing.md)
 

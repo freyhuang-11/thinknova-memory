@@ -1,12 +1,12 @@
 ---
 name: reference-thinknova-prompt-architecture
-description: "门店内容提示词分层架构与铁律:三层职责/海报视频分家/编剧现行规则/4096字节纪律/grok能力边界——动任何提示词前必背"
+description: "触发:要改任何提示词之前 → 三层职责分工/海报视频分家/编剧现行规则/i2v 4096 字节硬顶(超出静默截断仍显示成功,改后必量字节)/grok 能力边界"
 metadata:
   node_type: memory
   type: reference
 ---
 
-> 只留**当前有效规则**;实验流水、证据单号、视觉纪律全文在 `draft_thinknova_arch_archive.md`;被推翻的旧结论已删(查 git)。
+> 只留**当前有效规则**;实验流水、证据单号、视觉纪律全文在 `archive/thinknova_arch_history_to_0729.md`;被推翻的旧结论已删(查 git)。
 > 🔴 与技术官方文档冲突时**以技术文档为准**([[reference-thinknova-tech-docs-index]])。
 
 ## 一、两条铁律(07-09 拍定,违反即回炉)

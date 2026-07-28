@@ -1,6 +1,6 @@
 ---
 name: project-thinknova-brand-product-industry
-description: "ThinkNova「品牌产品」行业(产品优先)+ 广告TVC大片场景 S14:已全量上线;含建单500诊断法与案例必带字段"
+description: "触发:要加行业/加场景之前,或商家建单报 500 时 → 新场景必须技术注册进合法枚举否则后台保存被剥离;含 admin GET 拿全量真值→隔离实验换维度→找唯一缺键 的诊断法"
 metadata:
   node_type: memory
   type: project

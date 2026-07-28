@@ -1,6 +1,6 @@
 ---
 name: feedback-parallel-sessions-check-first
-description: "多会话并行时,动手前先看记忆文件的修改时间和最新状态,否则重做+把已作废结论固化"
+description: "触发:接\"接着上次干\"的活、动手第一个动作 → 先按 LastWriteTime 排记忆文件看谁刚被改过,比我手上上下文新就先读再决定;发现已完成就停手报告"
 metadata: 
   node_type: memory
   type: feedback

@@ -1,6 +1,6 @@
 ---
 name: feedback-dont-edit-prod-config-structure
-description: "线上 config 是前端/编剧依赖的契约,不是提示词草稿——结构/字段类改动一律交技术,自己只碰纯文本字段(2026-07-24 技术+老板严重反馈)"
+description: "触发:要动线上 config 的结构/字段/新增字段之前 → 停手,写成需求交技术;我只碰纯文本提示词字段,且改前量字节、改后回读、先改一条验"
 metadata:
   node_type: memory
   type: feedback

@@ -1,6 +1,6 @@
 ---
 name: project-thinknova-marketing
-description: 国内营销线当前态(07-24):内容定稿V式+X式只讲机制禁案例/对照实验7条已交待发/口播管线+抠像坑/平台定位口语解放已上报总指挥/小红书干货化
+description: "触发:要做国内营销内容/口播成片之前 → V式X式只讲机制禁案例、脚本先经老板确认再开渲、口型逐帧验收法与抠像坑;待办=新小红书+新脚本"
 metadata:
   node_type: memory
   type: project

@@ -1,6 +1,6 @@
 ---
 name: feedback-prompt-first-then-test
-description: "烧积分实测前先把提示词/配置层可控变量做满;没做穿提示词不许下'模型能力'结论"
+description: "触发:要烧积分实测之前 → 先把提示词/config 层可控变量补满再开测;没做穿提示词不许下\"模型能力\"结论;改完 config 必须单点验证"
 metadata:
   node_type: memory
   type: feedback
@@ -15,4 +15,4 @@ metadata:
 - 测试前自查:这个维度的提示词/config 是否已做到当前能做的最强?没有就先补再测。
 - 下结论区分两类:"提示词未尽(可修)" vs "模型边界(架构级)";只有提示词做穿后仍失败,才允许写"模型能力"结论。
 - 同理适用:改完 config 必须单点验证(4096 事故同日教训,见 [[project-thinknova-offline-agents]]),两条合成一条纪律——**改前做满,改后验一**。
-- 关联 [[feedback-understand-before-judging]] [[feedback-tech-doc-delta-delivery]]
+- 关联 [[feedback-understand-before-judging]] [[feedback-tech-doc-checklist]]

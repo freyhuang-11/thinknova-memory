@@ -1,6 +1,6 @@
 ---
 name: project-thinknova-dingdian-koubao
-description: "ThinkNova 纯口播线:2026-07-23 已跑通(锁死单人对镜口播实证)+完整工作配方+扩展到所有行业"
+description: "触发:要做定点/纯口播单,或要动前端会读的字段之前 → 先改一条验再铺满;含锁死单人对镜口播的完整配方、扩展到所有行业的做法与已踩的坑"
 metadata:
   node_type: memory
   type: project

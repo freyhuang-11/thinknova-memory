@@ -1,6 +1,6 @@
 ---
 name: user-profile
-description: 用户身份、产品 / 业务上下文。跨境电商 BD/运营创始人，正在做 TikTok Shop 达人建联 SaaS 化
+description: "触发:要判断需求背景或做产品取舍之前 → 老板=跨境电商 BD/运营创始人(新加坡),TikTok 达人 SaaS + ThinkNova 双线"
 metadata: 
   node_type: memory
   type: user

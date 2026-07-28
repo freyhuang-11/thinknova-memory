@@ -1,5 +1,22 @@
+---
+name: project-compass
+description: "触发:要重启/讨论 Compass 达人线之前 → 路径启动凭证/采集器/Partner API 配额/数据坑/14条待办全在这;当前休眠,停在 2026-07-04"
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
+  modified: 2026-07-28T19:16:05.838Z
+---
+
 # Compass 达人线 · 重启唯一入口
-> 停在 2026-07-04。过程记录见 `draft_compass_archive.md`。
+> 停在 2026-07-04,当前休眠。过程记录见 `archive/compass_history_to_0729.md`。
+
+## 0 讨论 Compass 时的 mental model(老板反复强调)
+- **服务商形态**:思考任何功能时 mental model = 「BD 公司服务多个商家,每商家多店铺,团队多角色」;跨境商家基础 5 店铺。
+- **但上线排序=单商家优先**:先做单商家多店铺,服务商(多商家)推迟到上线后版本。**别往当前版本 / `DESIGN.md` / `PRODUCT.md` 塞服务商。**
+- **跟"我们老系统"对比要克制**:Compass 是 SaaS 多租户走 API,老系统是单租户走爬虫,**业务流程不同规则不同**。每个"老系统这样做"之前先问"Compass 适用吗"(例:WhatsApp 老系统有,Compass 不能有)。
+- **聊 TikTok API 能力前先拿事实**(2026-06-23 我没查 API 就给"私信 1 天 1 万条"的方案被 callout);**老板自己也会记错**——他说 1 万/天,真实是 1000/周起,要主动校正不是迎合。
+- 沟通/交付节奏见 [[feedback-communication-principles]],需拍板的走 [[feedback-questions-via-plan-mode]]。
 
 ## 1 跑到哪
 - 执行派 SaaS，不跟数据派拼库；建联地基**已够**，两柱①建联前选人②建联后管理(投流决策/ROI)**未开工**。

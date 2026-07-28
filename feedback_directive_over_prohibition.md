@@ -1,6 +1,6 @@
 ---
 name: feedback-directive-over-prohibition
-description: "写提示词规则的第一方法论:指派式(逐项指定做什么)有效,禁令式(绝不做什么)基本无效"
+description: "触发:要往提示词里加\"绝不做X\"之前 → 改成逐格指派\"第N格拍Y\";必须禁止时禁令后立刻跟替换项,改完必须烧单看实际 cells"
 metadata: 
   node_type: memory
   type: feedback

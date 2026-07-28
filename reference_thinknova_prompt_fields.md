@@ -1,6 +1,6 @@
 ---
 name: reference-thinknova-prompt-fields
-description: "ThinkNova 提示词字段读取图 —— 哪个字段被编剧/生图/i2v 读取,改提示词前必查,防止改在没人读的字段上"
+description: "触发:要改提示词的第一查 → 拉一条真实任务 input,确认目标字段真被编剧/生图/i2v 读取,别改在没人读的字段上;字段路径以线上回读为准"
 metadata: 
   node_type: memory
   type: reference
