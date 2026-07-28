@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-28T14:53:59.579Z
+  modified: 2026-07-28T14:56:56.913Z
 ---
 
 # 故事板/生图锁/模型定位 —— 2026-07-28 两轮取证结论
@@ -421,6 +421,33 @@ i2v 的 `negativePrompt` 第一段含 **「忽略分镜板结构，多个首帧�
 - 🔴 **验收方法(下一班必做)**:烧一单 `food_s11_owner`,看交付资产 `metadata.delivery_post_process.entrance_black_overlay.applied` 是否为 **false**,并逐帧确认第 0 帧亮度**不再是 16/255**(开启时 4 单实测起始亮度恒等于 16.18)。
 - ⛔ 本轮没验成:商家端 session 又过期(POST 401),烧不了单。
 - **如果后端不认案例级** → `entranceBlackOverlay` 只有 Agent 全局一处(`promptComposer.masterPipeline.deliveryPostProcess` + `opsEditable` 镜像各一份),关掉会**连带 56 条 storyboard_board 案例一起失去挡网格的黑场**,不能直接关 → 那就是一张该发的技术卡。
+
+## 🔴🔴🔴 2026-07-28 晚·最终定案:**画面的方向盘是"案例预设四项",不是模型、不是板**
+老板拿自己账号 3 单反馈:「2 条 omni 明显没跟板走、画面风格一模一样;grok 是跟着板走的」。**查完:老板现象描述全对,但归因要改一个字 —— omni 不是"没跟板",是"跟着预设走、把板上多余的人删了"。**
+
+**决定性对照(同案例 `home_v2_S03_signature`、同场景 bestseller、同一张上传产品图,只差预设)**:
+| 单 | 模型 | **出镜 appearanceMode** | 成片 | 判定 |
+|---|---|---|---|---|
+| `task_b6074f858d21` | omni 10s | **product_only** | **全片零人物**(板格2 画了女生也不拍) | ✅ 正确执行预设 |
+| `task_8fa33243a334` | grok 15s | **product_store** | 全片有人,跟板走 | ✅ 正确执行预设 |
+| `task_25047019b9d2` | omni 10s | **product_only** | 全片零人物 | ✅ 同上 |
+
+🔴 **所以「omni 不跟板」是误判(我上一轮也附和错了,当场撤回)**:板上有人 + 预设 `product_only` → **成片删人是对的,是"板画多了"**。
+🔴 **两条 omni 为什么一模一样**:同一张上传图 + **出镜/风格/重点三项完全相同**(product_only / premium_clean / subject_closeup)→ 必然同构。**跟模型无关。**
+
+### ✅ 回答老板「预设的核心设置是不是很大程度影响画面」——**是,而且是决定性的**
+影响力排序(实测):
+1. **出镜 appearanceMode** —— 决定有没有人、谁出镜。**最强,能直接推翻板。**
+2. **重点 visualFocus** —— 决定景别偏向(subject_closeup 就会全片特写循环)。
+3. **风格 videoStyle** —— 影响光感调性。
+4. **节奏 paceLevel** —— 主要影响台词密度和切换频率。
+5. 六拍骨架(全局固定)—— 决定镜头功能序列。
+→ **案例分得再细,只要这四项撞车 + 上传图相同,成片必然一模一样。** 620 条片型基因是写在 `visualHint` 里的,**优先级排在这四项之后**,所以被压住了。
+
+### 🔴 网格:老板这单实测 **~2.9 秒**(与我 B 批的"坏峰"完全吻合)
+`task_8fa33243a334`(grok 15s,storyboard_board)裸片逐帧:**格线与相邻格内容从 0ms 一直挂到 ~2875ms**。
+老板记得"上次做到过 1 秒内"= B 批那 3 条好峰单(0.17~0.33s)。**双峰结论再次被独立复现,n 已到 5。**
+🔴🔴 **注意:我 05:5x 改的 panel_crop 只覆盖了 4 条口播案例(shotCount=1)。老板这三单用的是 S03/S10/S14 案例,全部仍是 `storyboard_board`,不在保护范围内。**
 
 ## 🔴 待办
 0. 🔴🔴 **接手第一件事(2026-07-28 05:2x 留给下一班)**:
