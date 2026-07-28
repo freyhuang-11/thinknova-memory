@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-28T14:38:08.447Z
+  modified: 2026-07-28T14:48:07.174Z
 ---
 
 # 故事板/生图锁/模型定位 —— 2026-07-28 两轮取证结论
@@ -368,10 +368,32 @@ i2v 的 `negativePrompt` 第一段含 **「忽略分镜板结构，多个首帧�
 🔴 **为什么会看错(记住这个坑)**:走 `image_to_image`(用户传了参考图)时,**分镜板格1 本来就是照着上传图重绘的,长得极像**。所以"成片首帧像我的上传图"和"成片首帧=板格1"在画面上是同一件事,**不能靠首帧判断板有没有被吃到**。
 ✅ **正确判据**:看成片中后段有没有出现**只有板上才有的独特视角**(微距/局部/特殊机位)。
 
-🟡 **顺带查到一条真实不一致(待核,别外传)**:`task_25047019b9d2` 的 i2v `rawRequest.input` 里
-`image_url` = 1 张 + `referenceImages` / `reference_image_urls` = **2 张**,
-而模型 460 线上 `max_reference_images` = **1**。**实际提交数 > 配置允许数。**
-⚠️ 我没能逐字节确认那两张分别是什么(`provider_input_image_*` 直链 401 下不到),**所以不许下"送错图"的结论**。要坐实得让技术给可下载链接或加日志。
+## 🔴🔴🔴 参考图链路·**运行时真值**(2026-07-28 晚,4 单 rawRequest 实读,这一版才准)
+**取证字段(以后直接看这三个,别再猜)**:i2v `rawRequest.input` 里的
+`_i2v_reference_strategy`(本单实际策略)、`_reference_image_limit`(运行时上限)、`reference_asset_roles`(用户图的角色+assetNo)。
+
+| 单 | 模型 | 策略 | 运行时上限 | i2v 实收 | 实收内容 |
+|---|---|---|---|---|---|
+| `task_25047019b9d2` 沙发 | omni 10s | storyboard_board | **5** | **2 张** | 板 + 用户产品图 `asset_85824bafd5fb` |
+| `task_b6074f858d21` 家居 | omni 10s | storyboard_board | **5** | **2 张** | 板 + **同一张** `asset_85824bafd5fb` |
+| `task_8fd0bb09c351` 服装 | grok 15s | storyboard_board | **1** | **1 张** | **只有板** |
+| `task_8fa33243a334` 家居 | grok 15s | storyboard_board | **1** | **1 张** | **只有板** |
+
+🔴🔴 **我上一轮说"460 和 415 的 maxRef 都是 1"—— 对 omni 是错的,当场作废。**
+我读的是模型表 `max_reference_images` 列(=1),**但运行时 `_reference_image_limit` 给 omni 的是 5**。
+→ **DB 列与运行时不一致,这本身是一条该查的事**(待核,别外传)。grok=1 那半边是对的。
+→ 老记忆「omni 多参 limit 5,5 个位只用了 2 个」**恢复有效**,而且现在有任务号坐实。
+✅ **结论**:**grok 单参 = 用户上传图永远进不去**(这条不变);**omni 能进,但 5 个位只用了 2 个,还空 3 个**。
+
+## 🔴🔴🔴 根因:「不同风格的视频出来几乎一模一样」= **六拍骨架写死在 firstFramePrompt 里**
+老板原话:「生成的 2 个不同风格的视频效果几乎一模一样,这样也太难受了」。
+**链路推演(有证据)**:
+1. `storyboard_board` 下,**视觉输入几乎只有那块板**(grok 完全只有板;omni 板 + 1 张产品图)。
+2. 板由 gpt-image-2 按 `firstFramePrompt` 生成,而那段模板里**六拍骨架是写死的**:「格1(0-2.5s)钩子=… / **产品七分人物三分** / 3列×2行六格 / 任何一格都不得空白」。
+3. **风格类选项(videoStyle / paceLevel / visualFocus / appearanceMode)只改编剧文案和 videoPrompt 的文字描述,改不动这段骨架** → 板的镜头序列必然同构。
+4. → 板长得像 → 成片必然像。**换风格 ≈ 换台词,画面骨架不动。**
+**佐证**:`task_8fa33243a334`(家居门店实景板)与 `task_b6074f858d21`(拱门海景样板间板)场景差别很大,但成片都是「全景 → 材质微距 → 局部特写 → 人物 → 全景收尾」同一套骨架。
+🔴 **方向(未拍板,别当结论)**:要真拉开风格,得让**六拍骨架按片型/风格变**——[[project-thinknova-film-types]] 那 620 条片型正好是干这个的;或用案例级 `visualHint` 覆盖骨架。**改前必须回源看 `promptComposer.opsEditable.taskGoal.firstFrame` 是不是运营可改的那份。**
 
 ## 🟡 案例级关黑场:**字段进去了,但后端认不认还没验(别当已完成)**
 老板口径:「口播这种裁格图的,就把黑屏关掉 —— 黑屏是为了配合6宫格首帧才开的,不是每个案例都要开」。
