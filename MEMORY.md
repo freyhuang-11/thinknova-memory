@@ -79,12 +79,7 @@
 - [北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) / [内容工具不做合规](feedback_thinknova_content_not_compliance.md)
 - [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 
-# Compass / TikTok 达人线
-- [KOL Compass(接管系统)](project_kol_compass.md) / [tiktok-creator-tool(现行)](project_tiktok_creator_tool.md)
-- [迁移路线](project_compass_migration.md) / [核心方向](project_compass_core_direction.md) / [出单潜力分](project_compass_scoring.md)
-- [上线现状](project_compass_golive.md) / [待办](project_compass_backlog.md) / [采集器](project_compass_harvester.md)
-- [路径+启动](reference_compass_paths.md) / [TikTok Partner API](reference_tiktok_partner_api.md) / [达人库数据坑](project_compass_data_pitfalls.md)
-- [仓库使用节奏](feedback_repo_rhythm.md)
-
+# Compass / TikTok 达人线（当前休眠，未推进）
+- [Compass 现行状态 + 14 条待办](project_compass.md) — 路径/启动/Partner API/数据坑全在里面;历史见 archive/compass_history_to_0729.md
 # 其他
 - [新加坡鞋包提案](project_sg_footwear_proposal.md) / [小孩数学网课](project_kid_math_tutoring.md) + [课程总表](reference_kid_math_roadmap.md)

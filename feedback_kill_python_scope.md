@@ -16,4 +16,4 @@ metadata:
 2. `Stop-Process -Id <PID> -Force`
 3. 或按工作目录过滤：`Get-Process python | Where-Object { (Get-Process $_.Id).Path -like '*tiktok-creator-tool*' }`
 
-[[reference-compass-paths]] 里有 Compass 端口；任何 backend 重启操作前都要确认杀的是正确进程。
+[[project-compass]] 里有 Compass 端口；任何 backend 重启操作前都要确认杀的是正确进程。

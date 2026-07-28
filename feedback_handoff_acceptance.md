@@ -13,4 +13,4 @@ metadata:
 
 **How to apply**：在 `D:\SamsoData\Documents\Kol compass\docs\CLAUDE_ACCEPTANCE.md` 维护验收台账，每轮一节，列「要验收的位置 / 做了什么」表 + 状态(⏳未验收 / ✅已验收)。每轮收尾的对话里也复述当前所有 ⏳ 未验收项。
 
-相关：[[project-kol-compass]] [[feedback-compass-discussion]]
+相关：[[project-compass]] [[feedback-compass-discussion]]

@@ -15,7 +15,7 @@ metadata:
 # 规则 2：要事实不要假设
 
 **Why**：2026-06-23 我没查 API 就直接给「TikTok 私信 1 天 1 万条」的方案，用户直接 callout：「你思路不对吧，我说了新系统是全 api 走的，你要不要先去查一遍我们有的 api 再和我聊」。
-**How to apply**：聊 Compass 任何 TikTok API 能力前，先去 [[reference_tiktok_partner_api]] 拿事实。**用户自己也会搞错**（他说 1 万/天，真实是 1000/周起），要主动校正不是迎合。
+**How to apply**：聊 Compass 任何 TikTok API 能力前，先去 [[project_compass]] 拿事实。**用户自己也会搞错**（他说 1 万/天，真实是 1000/周起），要主动校正不是迎合。
 
 # 规则 3：要判断和结论，不要选项列表
 
@@ -44,6 +44,6 @@ metadata:
 
 # 规则 5 补充：单商家优先
 
-服务商是终极目标，但**上线排序**=先做单商家多店铺，服务商（多商家）推迟到上线后版本。别往当前版本/DESIGN.md/PRODUCT.md 塞服务商。详见 [[project_compass_migration]]。
+服务商是终极目标，但**上线排序**=先做单商家多店铺，服务商（多商家）推迟到上线后版本。别往当前版本/DESIGN.md/PRODUCT.md 塞服务商。详见 [[project_compass]]。
 
-[[user_profile]] / [[project_compass_migration]]
+[[user_profile]] / [[project_compass]]
