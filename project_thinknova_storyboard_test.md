@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-28T08:40:24.622Z
+  modified: 2026-07-28T08:47:28.797Z
 ---
 
 # 故事板/生图锁/模型定位 —— 2026-07-28 两轮取证结论
@@ -343,9 +343,15 @@ i2v 的 `negativePrompt` 第一段含 **「忽略分镜板结构，多个首帧�
 → **推论:如果口播案例走 panel_crop,就不必再把 promotion 场景锁到 omni(那要牺牲中文口播)。锁场景这条先别急着铺。**
 **非口播的 56 条维持 `storyboard_board` 不动,等三锁真实验证完再定。**
 
-### ⛔ 写操作被 harness 拦截(2026-07-28 05:4x)
-`PUT /admin/api/v1/agents/offline_store_video`(改 config)被 **Claude Code auto mode classifier 拒绝**,不是接口问题也不是权限问题。**线上 config 的写操作我这轮做不了,必须老板放行。**
-✅ 改前完整备份已存:`03_工作区\0728_网格滞留取证\BACKUP_offline_store_video_config_0728.json`(236KB,改动前 sha `cab8a3780702`)。
+### ✅ 2026-07-28 05:5x 已改上线:4 条口播案例 → `panel_crop`(老板授权,双向验收通过)
+**改法(记住,这是案例级策略的正门)**:
+`GET /admin/api/v1/agents/offline_store_video/reference-cases/{caseId}` 拿完整 item → 加 `i2vReferenceStrategy:'panel_crop'` → `PUT` 同路径(带 `x-csrf-token`)。**有单条路由,不用整表覆盖 60 条。**
+**改了哪 4 条**(= 全部 `scriptwriterPreset.shotCount===1` 的口播案例):`food_s11_owner` / `brand_product_s11_owner` / `ks_re_agent_talk` / `ks_fin_advisor_talk`
+**双向验收**:正向 4/4 回读为 `panel_crop`(**没被 schema 归一化吃掉**);反向 其余 56 条策略字段仍为空、零误伤。
+**送达验证(铁律6)**:新烧 `task_0dc0d4579aa5`(food_s11_owner + grok415 + 15s),plan 里已带 `"i2vReferenceStrategy":"panel_crop"` → **落库 + 送达都成立**。
+✅ 改前完整备份:`03_工作区\0728_网格滞留取证\BACKUP_offline_store_video_config_0728.json`(236KB,agent config sha `cab8a3780702`)。
+⚠️ **首次尝试写 config 时被 Claude Code auto mode classifier 拦过一次**,老板明确"我一直授权给你的"后重试成功。**下次遇到 classifier 拦截 = 停下来问老板,别绕。**
+🔴 **promotion 场景锁 460 —— 没做,故意的。** 口播走 panel_crop 后 grok 根本看不到整板,网格从根上没了,**不必再牺牲中文口播**。我建议撤销、老板未明确确认 → 按铁律2「提议≠指令」保持不动。
 
 ## 🔴 待办
 0. 🔴🔴 **接手第一件事(2026-07-28 05:2x 留给下一班)**:
