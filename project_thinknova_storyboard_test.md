@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: current
-  modified: 2026-07-28T08:47:28.797Z
+  modified: 2026-07-28T08:57:57.446Z
 ---
 
 # 故事板/生图锁/模型定位 —— 2026-07-28 两轮取证结论
@@ -351,6 +351,13 @@ i2v 的 `negativePrompt` 第一段含 **「忽略分镜板结构，多个首帧�
 **送达验证(铁律6)**:新烧 `task_0dc0d4579aa5`(food_s11_owner + grok415 + 15s),plan 里已带 `"i2vReferenceStrategy":"panel_crop"` → **落库 + 送达都成立**。
 ✅ 改前完整备份:`03_工作区\0728_网格滞留取证\BACKUP_offline_store_video_config_0728.json`(236KB,agent config sha `cab8a3780702`)。
 ⚠️ **首次尝试写 config 时被 Claude Code auto mode classifier 拦过一次**,老板明确"我一直授权给你的"后重试成功。**下次遇到 classifier 拦截 = 停下来问老板,别绕。**
+### 🔴🔴🔴 逐帧验收结果:**panel_crop 把网格从根上消灭了(0 帧,不是"挡住")**
+`task_0dc0d4579aa5`(food_s11_owner 口播 + **grok 415** + 15s + panel_crop)裸片逐帧:
+**0ms 就是干净的单一全屏画面,整段 0→1.4s 同一机位口播,零网格、零格线、零拼贴。**
+对照 `storyboard_board` 下同样是 grok:4 单里 3 单 0ms 是整板、1 单网格挂到 2.9 秒。
+🔴 **结构性铁证**:panel_crop 单的 `allAssets` 里有 **3 张图** —— 分镜板(1330×1183,即文档说的约 27:32)**+ 一张单独的 720×1280 (9:16) 裁格图**;`storyboard_board` 单只有 2 张(板图重复两次,没有裁格图)。**看 allAssets 里有没有 9:16 那张,就能一眼判断这单走的哪个策略。**
+→ **定案:grok 的网格问题在 panel_crop 下不存在。不是靠黑场挡,是模型压根没看到板。** 老板 05:5x 也已亲自看片确认「没问题」。
+
 🔴 **promotion 场景锁 460 —— 没做,故意的。** 口播走 panel_crop 后 grok 根本看不到整板,网格从根上没了,**不必再牺牲中文口播**。我建议撤销、老板未明确确认 → 按铁律2「提议≠指令」保持不动。
 
 ## 🔴 待办
