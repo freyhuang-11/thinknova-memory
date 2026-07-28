@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-28T20:19:29.433Z
+  modified: 2026-07-28T20:19:41.406Z
 ---
 
 # ThinkNova i2v 模型 · 多参考图台账
@@ -65,12 +65,11 @@ metadata:
 |---|---|---|---|
 | omni 460 `panel_crop` | 5 | **2~5 张** | 13 成/18 |
 | omni 460 `storyboard_board` | 5 | **只有 1 张(整板本身)** | 同上 |
-
-⚠️ **这张表测于 07-28,当时全局 = `storyboard_board`**;07-29 03:43 全局翻 `panel_crop` 后,不显式配置的案例都走上面第一行。要引用"实际喂进 i2v 张数"必须**带任务号并确认该单的 `_i2v_reference_strategy`**。
-
 | grok preview 415 | **1** | 1 张 | 11 成/19 |
 | grok fast 468 | 5 | 5 张 | **0 成/7 = 全挂** |
 | sora 469 | — | 1 张 | 5 成/5 |
+
+⚠️ **这张表测于 07-28,当时全局 = `storyboard_board`**;07-29 03:43 全局翻 `panel_crop` 后,不显式配置的案例都走 `panel_crop` 那一行。要引用"实际喂进 i2v 张数"必须**带任务号并确认该单的 `_i2v_reference_strategy`**。
 
 **失败根因**:
 - **468 全挂 = 供应商通道空,不是配置问题**:manxueapi `HTTP 503 No available channel for model grok-imagine-video-1.5-fast under group auto`;1renmanju `pool: no available account`。→ **当前 10 秒口播无可用模型,口播只能走 415 的 15 秒**。已把 468 前台隐藏并改名「通道维修中·暂不可用」。
