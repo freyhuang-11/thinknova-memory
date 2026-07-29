@@ -9,6 +9,7 @@
 2.7 🔴 **接"上次的活"先看记忆文件修改时间**;另一会话可能几分钟前刚推翻我的结论 → [详](feedback_parallel_sessions_check_first.md)
 2.8 🔴🔴🔴 **老板给的词按他的字面做满,不许自己缩窄定义再报"全部完成"**;拿不准边界先问,别在报告里用对着我私自定义说的"全部/所有/都" → [详](feedback_dont_assume_requirements.md)(同文件「缩窄定义」段)
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
+3.2 🔴 **写入被拒先原样重试一次再说**,大量是瞬时的;别把"这条命令能不能发"退回给老板(方向性选择照旧问) → [详](feedback_retry_before_escalating.md)
 
 3.5 🔴🔴🔴 **「前台有没有X」只认商家端 config 接口,admin config 不是前台真值**(07-30 实证:admin 29 行业 / 前台 22)。**新文档与旧文档冲突时,一律以最新为准并覆盖旧记录** → [详](reference_thinknova_frontend_truth.md)
 
