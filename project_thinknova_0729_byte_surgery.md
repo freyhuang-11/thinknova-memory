@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-28T21:12:56.094Z
+  modified: 2026-07-29T10:14:36.007Z
 ---
 
 # 2026-07-29 i2v 字节手术 + 无台词开关(现行状态)
@@ -19,7 +19,8 @@ metadata:
 ## 🔴 omni 是「能说英文、不能说中文」(老板口述,07-29)
 所以「不能说话」**不是模型的二值属性,是模型 × 语言的矩阵**。
 - `voiceMode` 是**案例级** → 同一条案例中文要静音、英文要说话,**案例级开关做不到**。
-- 模型表 42 个模型、38 个字段(`supported_sizes/ratios/resolutions/durations/source_modes` + `instruction_role/instruction_prompt/max_reference_images/fallback_model_ids`…),**没有任何 audio/voice/speech 能力位**。
+- ~~模型表没有任何 audio/voice/speech 能力位~~ 🔴**这条 07-29 晚被推翻,是我拿模型名做正则、没查 `capability` 字段造成的假结论**。按 `capability` 统计,模型表里有 **`text_to_speech` 2 个 + `voice_clone` 2 个**,配音模型是存在的。基于「没有配音路径」做的一切推理作废。
+- 模型表 44 条、38 个字段(`supported_sizes/ratios/resolutions/durations/source_modes` + `instruction_role/instruction_prompt/max_reference_images/fallback_model_ids`…)。**能力分布查 `capability` 字段,不要用 code/name 正则猜。**
 - **技术卡建议(很轻)**:同构新增 `supported_voice_languages`(omni 填 `["en"]`);派发前若 `copyLanguage` 不在列表 → 强制 `voiceMode=none`,复用已在跑的 `fallbackPolicy.ambient_only` + `visualTemplates`。加 1 字段 + 1 判断,不新造内容。
 - ⚠️ **「场景级模型设置」我在线上没找到**:`businessUi.videoGeneration` 只有 `allowedDurations / modelAllowlistByDuration / defaultModelByDuration / referencePolicyByDuration`,**全按时长切,没有按场景**;案例表也无 model 字段。老板提到的"场景级"待核。
 

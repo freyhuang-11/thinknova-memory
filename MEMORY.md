@@ -13,6 +13,8 @@
 ## L1 · 改配置/提示词前
 4. 🔴 **先查字段读取图**:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md)
 4.5 🔴 **台词出问题先查 visualHint** → [详](feedback_visualhint_leaks_into_lines.md)
+4.7 🔴🔴 **长提示词里位置决定生死**:同一条规则放中后段会被前面的规则挤掉,关键规则必须置顶并标「优先级最高·与后文冲突以本条为准」(07-29 实证:同一条规则中段时 50ml 复发、置顶后清零)。**加规则前先想清楚会挤掉谁** → [详](project_thinknova_0729_screenwriter_stack.md)
+4.8 🔴 **查"有没有某能力"要读结构化字段(`capability`),不许拿 code/name 做正则猜** —— 07-29 我靠名字正则得出「没有 TTS 模型」,实际有 4 个(text_to_speech 2 + voice_clone 2),整条推理链作废
 5. 🔴 **指派式 > 禁令式**;必须禁止时,禁令后面立刻跟替换项 → [详](feedback_directive_over_prohibition.md)
 6. 🔴 **落库 ≠ 送达**:PUT 200 只证明写进库;烧单看见新文案才算上线 → [详](feedback_evidence_standard.md)
 7. **i2v 4096 字节硬顶**,超出静默截断且仍显示成功;改后必量字节 → [详](reference_thinknova_prompt_architecture.md)
@@ -60,7 +62,8 @@
 - 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — **改任何 config 字段第0步**;顶部有「口径速查」5 条。**07-29 逐字回源核过**:`i2vReferenceStrategy` **默认且推荐 = `panel_crop`(线上已对齐)**、案例级可配且优先于全局;`deliveryPostProcess` **只有 Agent 全局无案例级**;场景可锁模型;时长 5~30 秒由模型能力 JSON 定默认;**grok 单参 = 用户参考图必然进不去,文档明写是设计如此**;**文档说"运营可维护" ≠ 我改得进去(businessUi 见铁律 8.8)**
 - 🔴🔴 [模型台账 + 时长映射](reference_thinknova_multiref_model.md) — **动模型/时长前必看**;含两模型定位定案
 - 🔴 [提示词字段读取图](reference_thinknova_prompt_fields.md) — **改提示词第一查**:谁读得到哪个字段
-- 🔴🔴 [场景提示词/选项规则/案例写入路由](reference_thinknova_option_scene_rules.md) — **改场景指引或出镜景别选项前必看**;活的是 `promptAssembler.scenePrompts` + `promptComposer.optionRules`(有 opsEditable 镜像),`businessOptionPrompts` 是死的;案例单条 PUT 路由可绕开 businessUi 静默丢弃;**`product_only` 不等于无人**
+- 🔴🔴 [场景提示词/选项规则/案例写入路由](reference_thinknova_option_scene_rules.md) — **改场景指引或出镜景别选项前必看**;场景规则的活路径是 `promptComposer.screenwriter.systemPrompt` 查表(`promptAssembler.scenePrompts` **烧单实证不喂本编剧**),`promptComposer.optionRules` 有 opsEditable 镜像必须双写,`businessOptionPrompts` 是死的;案例单条 PUT 路由可绕开 businessUi 静默丢弃;**`product_only` 不等于无人**
+- 🔴🔴🔴 [编剧层现状:没台词根因+omni中文边界+规则栈顺序](project_thinknova_0729_screenwriter_stack.md) — **抱怨「没台词/台词差」第0步**;整单没台词 = 编剧模型 461 挂→`source:local_fallback`→兜底模板写死无口播(中英一起没,不是提示词问题);omni 中文只崩「数字单位」和「四字紧凑短语」其余念得对;systemPrompt 规则**放中后段会被挤掉,必须置顶**
 - 🔴 [两条管线完整流程](reference_thinknova_pipeline_flow.md) — 海报4步/视频6步
 - 🔴 [提示词改造架构](reference_thinknova_prompt_architecture.md) — 三层职责 + 4096 字节纪律
 - 🔴 [Grok 审核红线实测](reference_grok_content_policy.md) — 红线是组合不是敏感词
