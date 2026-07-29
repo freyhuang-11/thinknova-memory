@@ -4,17 +4,28 @@ description: 触发:商家生视频「没台词/台词差/台词念不清」之�
 metadata: 
   node_type: memory
   type: project
-  modified: 2026-07-29T10:14:26.872Z
+  modified: 2026-07-29T10:27:01.642Z
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
 ---
 
 # 商家生视频·编剧层现行状态(2026-07-29 实证)
 
-## 🔴🔴🔴 「整单没台词」的唯一已知根因 = 编剧模型挂 → 本地兜底模板
+## 🔴🔴🔴 「整单没台词」= 编剧回退本地模板;**回退原因不止一种,必须读 `fallbackDiagnostic`**
 查 `childTasksBlock` 里 `capability_code:screenwriter` 的 **output_payload**:
 - 正常:`"source":"text_model"`,`"modelCode":"gpt-5.6-luna"`,`"fallback":false`
-- 挂了:`"source":"local_fallback"`,`"fallback":true`,`"model":{"id":0,"modelCode":null}`,
-  message =「视频分镜编排已回退到本地模板,未阻塞生成。」
+- 回退:`"source":"local_fallback"`,`"fallback":true`,`"model":{"id":0,"modelCode":null}`
+
+🔴 **`output_payload.fallbackDiagnostic` 直接给出 code/title/action/lineValidation —— 别再猜**。
+台词在 `output_payload.dynamicJson.cells[].line`(**不是 `cells`/`shots` 顶层**)。
+已实测到的两种 code(07-29 17:36 / 17:45,同一个客户连着两单):
+| code | rawReason | 含义 |
+|---|---|---|
+| `line_count_mismatch` | scriptwriter lines count does not match shot count | 模型给的台词条数 ≠ 分镜数 → 整单丢弃改本地模板 |
+| `unknown` | scriptwriter model returned invalid JSON | 模型没吐出合法 JSON(**不等于供应商挂**,461 当时在跑) |
+
+**`lineValidation` 实测口径**:`zh = {metric:characters, min:45, max:100}`、`en = {metric:words, min:25, max:50}`。
+→ ⚠️ 10 秒单要 en 25 词起 / zh 45 字起,**下限本身就顶着**;我 07-29 只调了 max,**min 没动过**,`line_count_mismatch` 很可能就是被 min 卡掉句子导致条数对不上。**未验,别当定论。**
+🔴 我 07-29 白天写下的「唯一根因 = 模型挂」是错的,只看了 message 没看 fallbackDiagnostic。
 
 **本地兜底模板每格写死 `line:""` / `voice:"无口播"` / sfx「无口播,仅保留自然环境音和轻音乐」**
 → **中文英文一起没台词**,跟 copyLanguage 无关、跟提示词无关。
@@ -74,7 +85,7 @@ metadata:
 ## 未验/未决
 1. 461→456 候补未触发验证;408/409 要不要启用 = 老板定
 2. 兜底模板无口播 = 技术卡未发
-3. 英文单 `task_4d165c9b3f9d` 卡 pending/planning,**第0条会不会误杀英文台词(整句都是英文字母)未验**
+3. ✅**已验并排除**:英文单 `task_4d165c9b3f9d` 出片,`src=text_model`,5 格 0 空,台词正常英文(「Skin care can go wrong befo…」)→ **第0条「禁英文字母」不误杀英文台词**,不用加语言护栏
 4. omni 网页版水印去不掉 → omni 只能当候补,grok 为主,但 grok 全天 503
 
 关联 [[project-thinknova-0729-byte-surgery]] [[reference-thinknova-option-scene-rules]] [[project-thinknova-0729-koubo-defect]]
