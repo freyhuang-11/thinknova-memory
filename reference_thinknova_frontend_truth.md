@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-29T18:55:46.336Z
+  modified: 2026-07-29T19:14:06.799Z
 ---
 
 # 商家端才是前台真值(2026-07-30 被老板当场纠正)
@@ -42,6 +42,25 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 - ⛔ **已作废的老规格**:归档《实体店内容生成预设选项与内置Prompt配置》第 6/7 条
   「视频默认 10 秒,用户侧统一只展示 10 秒短视频;15 秒不在用户侧展示」——
   **被 07-24 手册(5~30 秒运营可配)和老板 07-30「默认 15 秒、明天上 30 秒」双重推翻,不要再引用。**
+
+## 🔴🔴 加「预设选项值」的唯一正确姿势(07-30 打通,含后端映射表红线)
+**后端有一张业务选项映射表**,不在表里的值保存时报:
+`422 / code 422010 / "Unmapped business option value: group=visualFocus value=space_tour"`
+- ✅ **`videoStyle` / `paceLevel` 可以自己加新值** —— 后端会**自动加组前缀**落库:
+  `cinematic_showcase` → `video_style_cinematic_showcase`;`slow_immersive` → `pace_level_slow_immersive`
+- ❌ **`visualFocus` 加不进去**(后端写死映射)。`endingCta` 未测,大概率同样(CTA 驱动实际行为)。
+- 🔴 **必须两步走**:①只加选项值 PUT → ②回读拿**归一化后的真实键** → ③用真实键写
+  `optionRules[组][真实键]` **live + opsEditable 双写**。
+  直接用原始值当规则键 = **规则被静默剥掉**(回读 false),07-30 踩过。
+- 选项对象最小字段:`{value,label{6语},sortOrder,enabled}`。
+- 📌 `appearance_mode_menu_board_display「价目表展示(测试)」` 就是这么来的 —— **测试值挂在前台没清**。
+
+## 07-30 已落地(前台接口验证送达)
+- `coworking_office` → label「**企业服务**」+ `enabled:true` + `sortOrder:35`,前台行业 22→23
+- 19 条案例迁入企业服务(17 条 `coworking_office_*` 原在 space_stay + 2 条 `ks_biz_*`),覆盖 13 场景
+- space_stay 启用案例 49→32(不再是四行业混装)
+- 16 条 `ks_re/fin/fs/style_*` **迁回 knowledge_share**(目标行业前台关着,迁过去等于隐藏)
+- 新预设值 5 个:videoStyle +电影感大片/纪实生活感/明快陈列/氛围仪式感(4→8),paceLevel +慢速沉浸/节奏卡点(3→5),规则均双写
 
 ## 预设现状(07-30 实测,回应「预设没补充」)
 - **案例级预设是有差异的**:581 条启用案例里 pace 3 种 / style 4 种 / focus 9 种 /
