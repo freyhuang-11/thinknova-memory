@@ -10,6 +10,8 @@
 2.8 🔴🔴🔴 **老板给的词按他的字面做满,不许自己缩窄定义再报"全部完成"**;拿不准边界先问,别在报告里用对着我私自定义说的"全部/所有/都" → [详](feedback_dont_assume_requirements.md)(同文件「缩窄定义」段)
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 
+3.5 🔴🔴🔴 **「前台有没有X」只认商家端 config 接口,admin config 不是前台真值**(07-30 实证:admin 29 行业 / 前台 22)。**新文档与旧文档冲突时,一律以最新为准并覆盖旧记录** → [详](reference_thinknova_frontend_truth.md)
+
 ## L1 · 改配置/提示词前
 4. 🔴 **先查字段读取图**:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md)
 4.5 🔴 **台词出问题先查 visualHint** → [详](feedback_visualhint_leaks_into_lines.md)
@@ -59,6 +61,7 @@
 
 # ThinkNova(实体店内容 SaaS)
 ### 动手前必背
+- 🔴🔴 [商家端=前台真值 + 行业开关 + 时长/输出类型改不了](reference_thinknova_frontend_truth.md) — **下"前台有没有"结论前必读**;含 07-30 我造成的 16 条案例不可见事故
 - 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — **改任何 config 字段第0步**;顶部有「口径速查」5 条。**07-29 逐字回源核过**:`i2vReferenceStrategy` **默认且推荐 = `panel_crop`(线上已对齐)**、案例级可配且优先于全局;`deliveryPostProcess` **只有 Agent 全局无案例级**;场景可锁模型;时长 5~30 秒由模型能力 JSON 定默认;**grok 单参 = 用户参考图必然进不去,文档明写是设计如此**;**文档说"运营可维护" ≠ 我改得进去(businessUi 见铁律 8.8)**
 - 🔴🔴 [模型台账 + 时长映射](reference_thinknova_multiref_model.md) — **动模型/时长前必看**;含两模型定位定案
 - 🔴 [提示词字段读取图](reference_thinknova_prompt_fields.md) — **改提示词第一查**:谁读得到哪个字段
