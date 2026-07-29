@@ -86,6 +86,7 @@
 
 ### 内容与产品规矩
 - [北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) / [内容工具不做合规](feedback_thinknova_content_not_compliance.md)
+- 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — **建任何案例前必读**;目标用户是完全不懂的人,绑死品类的案例他不知道怎么用;已有的算了,新建的必须过 3 条自检
 - [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 
 # Compass / TikTok 达人线（当前休眠，未推进）
