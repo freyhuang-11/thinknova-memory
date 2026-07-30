@@ -4,7 +4,7 @@ description: 触发:动编剧层任何东西(提示词/lineValidation/烧验/台
 metadata: 
   node_type: memory
   type: project
-  modified: 2026-07-30T18:41:30.980Z
+  modified: 2026-07-30T18:53:30.922Z
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
 ---
 
@@ -53,7 +53,7 @@ metadata:
 6. 兜底/回退单的症状(切镜/语速/语种乱)全是兜底模板+grok 即兴的锅,规则冤案高发区。
 
 ## ⏳ 残留(07-31 03:00)
-1. 三锁双参验证单 `db787156c4c0` 在跑(人物3858+场景3859,grok482)——先验管线是否提交2张参考图,锁强度白天评。
+1. 🔴 **三锁双参已验=管线坏的(db787156c4c0 定案)**:模型表 482 max_reference_images=2,但运行时 `_reference_image_limit=1`、我传的人物(3858)+场景(3859)参考图 reference_asset_roles 为空=没进管线——**不是缓存,是管线不读模型表该字段,交技术**。锁强度测试在此修复前无法进行。
 2. KB8 首帧裁切失败原因(技术)、attemptTrace.failureReason 落库(技术)、编剧结果记统计值(技术)。
 3. 30 秒上线:lineValidation 分时长档+编剧 30s 能力。
 4. 7 片型烧验(编剧修好后成本最低,可与案例预览回填流水线合一:烧→验→OSS→previewVideoUrl 回填,今晚双单已跑通该链)。
