@@ -16,7 +16,7 @@
 ## L1 · 改配置/提示词前
 4. 🔴 **先查字段读取图**:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md)
 4.5 🔴 **台词出问题先查 visualHint** → [详](feedback_visualhint_leaks_into_lines.md)
-4.7 🔴🔴 **长提示词里位置决定生死**:同一条规则放中后段会被前面的规则挤掉,关键规则必须置顶并标「优先级最高·与后文冲突以本条为准」(07-29 实证:同一条规则中段时 50ml 复发、置顶后清零)。**加规则前先想清楚会挤掉谁** → [详](project_thinknova_0729_screenwriter_stack.md)
+4.7 🔴🔴🔴 **关键规则一律前置(07-30 老板定为通则)**:提示词一旦过长,后置规则就不被采集——50ml 复发(中段)、黑场失效(91%位置,置顶后网格零帧,两模型两单实证)都是同一个病。写任何长提示词:关键规则放头部,尾部只放次要修饰 → [详](project_thinknova_0729_screenwriter_stack.md)
 4.8 🔴 **查"有没有某能力"要读结构化字段(`capability`),不许拿 code/name 做正则猜** —— 07-29 我靠名字正则得出「没有 TTS 模型」,实际有 4 个(text_to_speech 2 + voice_clone 2),整条推理链作废
 5. 🔴 **指派式 > 禁令式**;必须禁止时,禁令后面立刻跟替换项 → [详](feedback_directive_over_prohibition.md)
 6. 🔴 **落库 ≠ 送达**:PUT 200 只证明写进库;烧单看见新文案才算上线 → [详](feedback_evidence_standard.md)
