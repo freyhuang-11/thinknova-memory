@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-29T19:14:06.799Z
+  modified: 2026-07-30T09:35:44.875Z
 ---
 
 # 商家端才是前台真值(2026-07-30 被老板当场纠正)
@@ -42,6 +42,14 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 - ⛔ **已作废的老规格**:归档《实体店内容生成预设选项与内置Prompt配置》第 6/7 条
   「视频默认 10 秒,用户侧统一只展示 10 秒短视频;15 秒不在用户侧展示」——
   **被 07-24 手册(5~30 秒运营可配)和老板 07-30「默认 15 秒、明天上 30 秒」双重推翻,不要再引用。**
+
+## 🔴🔴 语言清单可以整表替换了(07-30 文档(3) 新能力,推翻我此前「藏语言要过后端」的结论)
+`detailOptionGroups.copyLanguage` 加 **`optionsMode:"replace"`** → 前台**只显示当前 options 数组,删掉的语言后端不再补回**。
+07-30 实测:前台语言 19→6(简中/繁中β/English/日语/Españolβ/中英双语),韩语消失。
+配套字段:`allowEmpty`(显示"不指定")/`emptyLabel`/`betaLabel`/`options[].beta`(名字后挂"测试中")。
+🔴 红线:**每个启用的 value 必须在 `promptComposer.languagePolicy.map` 有生成指令**才许上前台;
+线上 map 现有 14 语言(zh_cn,zh_tw,en,ja,ko,es,fr,de,pt,th,vi,id,ar,zh_en)。
+⚠️「藏平台组」仍未解(platform enabled:false 前台照发),这条还得后端。
 
 ## 🔴🔴 加「预设选项值」的唯一正确姿势(07-30 打通,含后端映射表红线)
 **后端有一张业务选项映射表**,不在表里的值保存时报:
