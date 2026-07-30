@@ -4,11 +4,18 @@ description: 触发:商家生视频「没台词/台词差/台词念不清」之�
 metadata: 
   node_type: memory
   type: project
-  modified: 2026-07-30T16:28:14.167Z
+  modified: 2026-07-30T16:49:46.435Z
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
 ---
 
 # 商家生视频·编剧层现行状态(2026-07-29/31 实证)
+
+## 🔴🔴🔴 07-31 终局·全链修通(编剧战役收官)
+- **总根因(我的锅,已认账)**:`lineValidation` 语义=**全片总计**(拼接去空白),我误当"每句"配成 zh{8,34} → PHP 把它动态注入提示词=亲口命令模型写电报体;模型按我 systemPrompt 写满 62-75 反超我配的 34 被校验杀 → 电报体/连环回退/语速慢/57%死寂四症同源。
+- **技术真值(07-31 复信)**:systemPrompt 只取一份不叠加(masterPipeline > screenwriter > 旧字段 > 内置);PHP 注入「台词长度硬规则」数值全来自 lineValidation;**分工定案:lineValidation=唯一长度真值,systemPrompt 零字数只管风格,PHP 只读不另存**。校验口径:zh characters 总计(标点计入)/en·es·vi·id·ar words/ja·ko characters。
+- **已落地**:lineValidation zh系{62,75}·words{25,40}·ja/ko{55,85}(flat+byLanguage,live+ops 四写);systemPrompt 剥离全部数字(2937字)。**终验双单一次过**:口播 a39a66a2ce5b=71字自然句;非口播 695cc1646083=68字+静默 8.5s→**1.6s**+画外音零人脸,成片合格(NK2_sheet)。
+- 残留:①KB8 主任务卡「分镜板首帧裁切失败,已停止视频派发」新保护闸(裁切失败原因待技术/重烧验证)②约2处溶解叠影残留(硬切规则部分吃住,下轮压)③lineValidation 无时长维度,30秒上线前必须分档④技术待办:attemptTrace.failureReason 落库+编剧结果记实际统计值。
+- 🔴 **烧单验编剧的标准配方**:美业口播 beauty_v2_S03_scalp_signature vs 餐饮非口播 food_s01_new,同参数见本会话 canary 系列;验收=总字数落区间+自然句+口播一镜到底/非口播零人脸+silencedetect 静默<2s。
 
 ## 🔴🔴🔴 07-31 深夜·4000字紧缩令(老板定为通则)+ 战局终态
 - **老板定论:提示词一律≤4000字(字数不是字节),言简意赅目的明确,废话重复全删**。已执行:编剧 systemPrompt 11095→**3075字/15段**(删纯口播85-95字表、末句填空vs各司其职CTA矛盾、十几个并列"最高优先级";并入「非口播台词一律画外音,画面不出现念词的人」);videoTemplate 953→**564字/1501B**(videoPrompt 4096B 从此不临界——旧模板占64%预算,分镜一丰满就爆,爆了现在是杀尝试不是静默截断)。老稿存档=`00_规格与参考/ARCHIVE_screenwriter_prompts_0731.json`
