@@ -1,0 +1,27 @@
+---
+name: feedback-burn-report-format
+description: "触发:烧任何测试单之前 → 必须先向老板报客户视角五要素,他看到成片才不会误判成事故"
+metadata: 
+  node_type: memory
+  type: feedback
+  originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
+  modified: 2026-07-30T08:47:43.012Z
+---
+
+# 烧单前必报客户视角五要素(老板 2026-07-30 定)
+
+**背景**:07-30 我烧钩子测试单,把「顾客不要赠品,要的是意外收获」当 productName 填进去,
+老板在任务列表看到成片台词,以为台词系统出了严重问题——其实是我的测试输入。
+**测试单在老板眼里和真实单没有区别,不报备=制造假事故。**
+
+**规矩**:每次烧单,发单前(至少同一条消息里)按客户视角报五要素:
+1. **行业**选了什么
+2. **场景**选了什么
+3. **案例**选了哪条(名称,不只 id)
+4. **补充了什么信息**(productName/price/extraRequirement 原文)
+5. **要验证什么**(预期画面效果 + 预期台词行为,各一句)
+
+**How to apply**:烧单代码块前面加一张五要素小表;批量烧单一张表列全部;
+老板不在场的自动烧单,把表写进汇报的第一段。
+
+关联 [[feedback-thinknova-burn-division]] [[feedback-evidence-standard]]

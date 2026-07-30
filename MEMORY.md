@@ -28,6 +28,7 @@
 8.8 🔴🔴 **`businessUi` 子树改不进 textarea**:后台弹窗按自己的表单内部状态回写 businessUi 整块,textarea 里的改动被**静默丢弃且回执照报"已保存"**(07-29 实证)。要改语言/选项组只能人工在界面上点 → [详](reference_thinknova_config_powers.md)
 
 ## L2 · 烧单核验时
+8.9 🔴🔴 **烧单前必报客户视角五要素**(行业/场景/案例/补充信息原文/要验证的画面与台词);测试单不报备=老板眼里的假事故(07-30 实证) → [详](feedback_burn_report_format.md)
 9. 🔴 **逐帧通看**(抽帧拼联系表);单帧/播放器截图 = 假结论 → [详](feedback_evidence_standard.md)
 10. **变量做满再烧单**;没补穿不许下模型结论 → [详](feedback_prompt_first_then_test.md)
 11. **证据成对**:该单真实输入 ↔ 真实输出 + 任务号 → [详](feedback_evidence_standard.md)
