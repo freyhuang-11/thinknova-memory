@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-30T12:56:49.526Z
+  modified: 2026-07-30T14:20:04.679Z
 ---
 
 # 商家端才是前台真值(2026-07-30 被老板当场纠正)
@@ -52,8 +52,10 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 🔴 **语言终版(07-30 晚老板三改后定稿,视频+海报两个 agent 同表)**:zh_cn/en/ja/ko/es 五种,
 全部 beta:false 无后缀;繁中、中英双语已撤。前台双端点验证送达。
 ⚠️「藏平台组」仍未解(platform enabled:false 前台照发),这条还得后端。
-🔴 **「补充要求」placeholder 是前端硬编码**(「可指定人物形象、画面风格…」在 config 全文 0 命中),
-`businessUi.placeholderDefaults` 前台不读——改这条引导文案必须过前端/技术。
+🔴 **「补充要求」placeholder 07-30 深夜起改为配置优先(技术发版,推翻"前端硬编码"旧结论)**:
+读取链 `placeholderDefaults.{行业}.extraRequirement` → `placeholderDefaults.default.extraRequirement` → `globalRules.extraRequirementPlaceholder` → 内置。海报+视频两页均生效,六语按 locale 返回。
+两个 agent 的 default.extraRequirement 六语已全部写成新引导(视频=台词/卖点/要求都能写;海报=文案/卖点/要求),填单页 DOM 实测送达。
+🔴🔴 **agent 整体 PUT 直连已通(07-30 深夜实证,不用再走 419-UI 弹窗法)**:`GET /admin/api/v1/agents/{code}`(注意 data.agent,列表接口已瘦身不带 config)→ 从**响应头**取 `x-csrf-token` → 整对象 PUT 带该头 = code 0。商家端建单 POST 同理需此头,且 **07-30 起必填 `durationSeconds`**。
 
 ## 🔴🔴 加「预设选项值」的唯一正确姿势(07-30 打通,含后端映射表红线)
 **后端有一张业务选项映射表**,不在表里的值保存时报:
