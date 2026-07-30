@@ -1,4 +1,4 @@
----
+﻿---
 name: reference-thinknova-config-powers
 description: "触发:要给技术提配置类需求之前、或要改 config 任一字段之前 → 先查这张权限地图,凡我自己能改的先改完再说话;🔴 businessUi 子树改不进后台弹窗 textarea(静默丢弃+假回执),只能人工点界面"
 metadata: 
@@ -7,6 +7,8 @@ metadata:
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
   modified: 2026-07-28T20:14:12.532Z
 ---
+
+> 🔴 07-31 里程碑注:「businessUi 改不进/419 拦直连 PUT」已作废——GET 响应头拿 x-csrf-token 后 agent 整体 PUT 直连可写(含 businessUi,placeholderDefaults 实证送达)。写入正解见 reference_thinknova_paths。
 
 > 来源:技术《商家Agent_配置JSON说明书_2026-07-08》《商家Agent完整实现说明_2026-07-08》《merchant-agent-config-guide_2026-07-08.html》(老板 07-08 定为"最终的 json 修改文档",全部归档于 00_规格与参考/技术侧文档/)+ 我方实查。**这三份=promptAssembler+businessUi 层的权威操作手册,但不含 promptComposer(见下,两层并存)。** PUT body 形态=`{"config":{promptAssembler,businessUi}}`。
 > **铁规(2026-07-08 用户定,因我多次错乱)**:提任何要求前 ①先查本地图 ②再实查线上键是否存在 ③**能自己改的立即自己改+验证,不许推给技术**;只有键不存在/被服务端并集覆盖/前端不读时才提技术,且必须附"已实查"证据。反向同罪:代码里的东西别自己硬凑。

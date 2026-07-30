@@ -1,4 +1,4 @@
----
+﻿---
 name: project-thinknova-0729-byte-surgery
 description: 触发:动 i2v 提示词/查 4096 字节/做无台词预设/选 omni-grok 模型之前 → 07-29 字节手术定案 + voiceMode 开关早已存在 + 模型×语言矩阵
 metadata: 
@@ -7,6 +7,8 @@ metadata:
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
   modified: 2026-07-29T10:14:36.007Z
 ---
+
+> 🔴 07-31 里程碑注:本文件的提示词字节数、omni「不能说中文」旧结论已被推翻/重写——编剧层唯一现状源=project_thinknova_0729_screenwriter_stack(omni 中文只崩数字单位+四字紧凑;systemPrompt 已重写为3457字)。本文件仅留 voiceMode=none 用法与历史。
 
 # 2026-07-29 i2v 字节手术 + 无台词开关(现行状态)
 

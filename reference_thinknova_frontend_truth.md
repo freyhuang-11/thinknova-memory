@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-30T14:20:04.679Z
+  modified: 2026-07-30T18:47:40.606Z
 ---
 
 # 商家端才是前台真值(2026-07-30 被老板当场纠正)
@@ -26,12 +26,8 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 → 🔴 **`enabled` 是文档明确允许运营改的字段(手册 6.3:label/sortOrder/enabled 可改,只有 id 不要改)**,
 所以「上一个行业」不用新建 id,翻 `enabled` 就行。老板 07-30:「行业id 你肯定是可以自己加的」。
 
-## 🔴 我 07-30 造成的事故(已知未修)
-按老板「案例回到自己行业」的指示,把 19 条 `ks_*` 案例改了 `industryId`。事后才发现:
-- 文档 6.4 明写 `referenceCases.industryId` = **不要改**
-- 目标行业里 **4 个前台是关闭的** → 迁进去的 **16 条案例商家完全看不到**
-- 只有 `travel_agency`(旅行社)那 3 条是可见的
-**两条出路**:①把这 4 个行业 `enabled` 打开(顺带 57 条原生案例也停用着) ②把 16 条迁回 knowledge_share。**等老板定。**
+## ✅ 07-30 ks_* 迁移事故(已修复,留教训)
+把 19 条 `ks_*` 案例迁进关闭行业导致 16 条前台不可见——当日已把 16 条迁回 knowledge_share 解决(见下「已落地」)。教训:迁案例前先核目标行业 enabled。
 
 ## 🔴 时长/输出类型:运营改不了,别再试
 - `businessUi.videoGeneration.allowedDurations` **后端强制升序归一化**。07-30 实测写 `[15,10]`,

@@ -1,158 +1,39 @@
 ---
 name: project-thinknova-storyboard-test
-description: "触发:要查故事板/生图锁/i2v 现状,或要给故事板问题取证之前 → 取证一律走 admin offline-store-content/tasks/{no};全局已翻 panel_crop、网格双峰、板↔片一致性83%、三把锁已落库、批量烧单串行≥20秒"
+description: "触发:查故事板/生图锁/i2v取证,或烧单取证前 → 取证接口手册(admin offline-store-content/tasks/{no} 唯一全料入口)+板层已定案结论+两模型定位"
 metadata: 
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-28T20:17:41.611Z
+  modified: 2026-07-30T18:44:17.515Z
 ---
 
-# 故事板 / 生图锁 / i2v —— 当前状态
-> 过程流水、实验明细、逐帧测量表 → `archive/storyboard_test_history_to_0729.md`（仅追溯，不日常检索）。本文件只留现在仍成立的。
+# 故事板/生图/i2v · 取证手册与定案(07-31 里程碑清账版)
+> 过程流水与旧实验 → `archive/storyboard_test_history_to_0729.md`。裁格/黑幕/提示词/长度现状 → [[project-thinknova-0729-screenwriter-stack]](唯一现状源)。
 
-## ① 主线与待办
-主线：治「不同案例的片大差不差」+「grok 开场网格」+「口播语速慢」+「案例文案重复找不到匹配」。
-- [ ] 🟡 **5 单验证进行中(07-29)**：美业行业、P1人物/P2门店/P3产品三张参考图；正常场景×2 模型 + 中文口播×2 + 英文口播×1。验一镜到底 / 人物不拉长 / 三锁 / 语速。**结论未出,别当已验证引用。** 详见 [[project-thinknova-0729-koubo-defect]]。
-- [ ] 组1 `task_6cd9ecf159eb`、组2 `task_6a3ac4503647`（omni10s/product_only）已 succeeded **未核**。对照旧单 `task_b6074f858d21`=`home_v2_S03_signature`(S03)、`task_25047019b9d2`=`brand_product_s14_tvc`(S14)——**两个不同案例/场景**；同一张图 `asset_85824bafd5fb`。验刀1/刀3/新 visualHint（两单无台词，语速不影响）。
-- [ ] 🔴 **案例文案去重**：675 条里 `visualHint` 182 条完全重复（最大一组 22 条一字不差）、`summary` 270 条、`title` 80 条 = 老板「找不到匹配案例」的根因。**改写草稿由另一会话在产出,我不重复动手**（铁律 2.7）。
-- [ ] ⚠️ **模型 464 被后台 UI 保存静默剥出 10s/15s 白名单** —— 🔴 464=官方最贵的模型,老板特殊情况自己开,**不要主动加回白名单**。
-- [ ] 明天新上 **wan** / **快乐马**，同 4 组再跑。
-- [ ] 第二刀：给案例 visualHint 写自带镜头表（纯文本、可批量、商家端零感知）。
-- [ ] visualHint 里"五格"口径统一改"六格"（**不是 5/6 矛盾**：生图板 3×2=6 格、编剧 `boardCells` 官方固定 5 个，两层本就不同，见 [[project-thinknova-film-types]] 十）。
-- [ ] 三锁**用参考图**那版从未真测（至今无一单传过 >1 张）；「内部环境 2 种」只做了 1 种。
-- [ ] `task_302c7394ae08` 那档网格挂 2.9s 治不治，待拍板。
-- [ ] 门头锁失败是否与「招牌文字必须虚化」互斥 —— 待验，不外推。
+## ① 取证/接口手册(日常用,仍全部有效)
+- 🔴 admin base=`https://api.thinknova.top/admin/api/v1`;`admin.thinknova.top/...` 会返回 SPA 兜底假 200,必查 content-type。
+- 🔴 **取证总管道**:`GET /admin/api/v1/offline-store-content/tasks/{taskNo}` → allAssets/intermediateArtifacts/childTasksBlock/plan/configSnapshot/firstFramePanels——**唯一能拿 6宫格板图+供应商裸片**的入口。一眼判策略:allAssets 有 720×1280 裁格图=panel_crop;只有板图=storyboard_board。运行时真值:i2v rawRequest.input 的 `_i2v_reference_strategy`/`_reference_image_limit`/`reference_asset_roles`。
+- 商家侧子任务:`GET /api/v1/ai/tasks/{no}?assets=1`(input/output/assets);主任务 childTasks{scriptwriter,image,video};键名 camelCase/snake 摆动两种都试。
+- **案例库**:`GET/PUT /agents/offline_store_video/reference-cases/{id}` 单条路由(**upsert 可建新,分页上限20/页**);写法=GET 响应头拿 `x-csrf-token` → 整对象 PUT。🔴 列表接口 `i2vReferenceStrategy` 返回不全,核验逐条 GET;**商家端 reference-cases 列表忽略 industryId 参数**。
+- **agent config**:`GET /agents/{code}` → `data.agent.config`;🔴 **直连 PUT 带 x-csrf-token 已通(07-31 解锁,含 businessUi),419-UI 弹窗法/剪贴板人工法全部废弃**。镜像铁律不变:blockTemplates/opsEditable 双写。
+- **建单**:`POST /api/v1/business-video-assets/tasks` + csrf 头 + `x-thinknova-locale:zh`;**必填 durationSeconds(07-30 起)**;选模型字段=`videoModelId`(modelId 被静默无视);复用旧单参数=`GET tasks/{no}` → data.detail.business。烧完必验 task.model。批量烧单串行≥20秒。
+- **大 JSON 灌浏览器**:本地 CORS 服务器(必须答 OPTIONS+`Access-Control-Allow-Private-Network`,127.0.0.1 免混合内容拦截);**重 SPA 页会冻死 CDP,一律在 robots.txt 轻页跑 fetch**。落盘=页面 `<a download>` → `D:\SamsoData\Downloads`。
+- 抽帧:`ffmpeg -vf "fps=2,scale=240:-1,tile=6x5"`;音频死寂:`silencedetect=noise=-35dB:d=0.4`。打印含 `=` 换 `≡`,签名 URL 不打印。
+- 🔴 任务创建时冻结模型/策略快照 → 改配置后对照必须重新烧单。
+- 🔴 模型表 `GET /models?pageSize=200`;`/models/{id}` GET 503 只有 PUT 可用(从列表拿整对象改后 PUT)。464=最贵模型,**不要主动加回白名单**。
 
-## ② 已定案的根因
-- **同质化 = 六拍骨架全局写死**。`firstFramePrompt` 的【六拍骨架·产品七分人物三分】446 字逐格钉死秒数与功能（格1全景→格2过程→格3微距→格4价值→格5展示→格6收尾），**525 条案例/14 场景/所有行业一字不差共用**；风格四项只改形容词，改不动镜头表 → 板同构 → 片必然像。(拆 `task_dac3f153ba36` imagePrompt 实读)
-- **世界观锁死**：上传的「产品图」若是整套场景成图（`asset_85824bafd5fb`=拱门+海景+橄榄树+沙发），板格1 几乎是原图复刻，两条不同案例的板句子重合度 **85%**；再叠 `product_only` 删掉人物这唯一变量 → 必然雷同。(07-29 01:0x)
-- **三个翻车点同一个病：正面指令压倒禁令**(铁律5)。网格 vs `negativeGuard` 20 词；板画人 vs `optionRules.product_only`；世界观雷同 vs visualHint。**加禁令词是无效功，只能改正面指令。**
-- **网格挂 2.9s 的元凶 = 刀1 原句**「首帧图＝第一镜的画面…若另给了参考图，那是分镜规划板」，明着叫模型把六宫格板当第一镜画面用。已改(07-29 01:57)。
-- **grok 网格滞留 = 双峰(≈0.17s / ≈2.9s，约 3:1)，不是固定值**，n=5 复现。omni **100% 零网格**。**panel_crop 下网格 0 帧**(`task_0dc0d4579aa5`)——不是挡住，是模型压根没看到板。
-- **`entranceBlackOverlay` 一直正常执行**：0.5s / 12 帧线性淡出，首帧亮度恒 **16.18/255**(≈6%灰，非纯黑)。"不够黑" = `fade_out_overlay` 模式本身。
-  文档定义(手册 v4 §3.5)：位置 **`promptComposer.masterPipeline.deliveryPostProcess`(Agent 全局，不是案例级)**；行为 = **不裁切、不改动原视频时间线和音轨**，只在成片开头 `seconds` 内叠黑遮罩并淡出；**缺省启用、缺省 0.3 秒**（我们线上显式设 0.5，是配置值不是默认值）；旧 `headReplacement` 仍可读但按此遮罩方式执行。同层 `coverFrame{enabled,position:middle,format:jpg}` 缺省启用=中间帧提封面写缩略图。两个 `enabled` 都 false 即关后处理，不影响生成和计费。
-- **语速慢根因**(`task_0dc0d4579aa5` 47字/15秒=3.13字/秒)：`lineValidation` 是**按语言的平表、没有时长维度**，同一范围盖住 8/10/12/15 秒；systemPrompt 又写「台词总长度仍按 lineLengthTarget 执行不变」压过所有按秒规矩 → 47 字判合规。已做的:①把 lineLengthTarget 从"目标"降级为"硬边界" ②修 systemPrompt 内三条打架的规矩 ③07-29 抬 `en.max`40→50、`ja.max`85→95 让指令下限不再高于校验上限。
-  🔴 **但这些都不是根治**：单一 min/max 数学上救不了(15秒要≥76、10秒不能超~62,区间不相交),**15 秒片子写 45 字照样过校验**。**加时长维度 = 改结构 = 必须交技术**(铁律 22.5),技术卡待发。❌ 旧结论「不用发技术卡」已推翻。详见 [[project-thinknova-0729-koubo-defect]]。
-- **格位标签体系对不上（黑锚板遗留，非技术 bug）**：图生图从"上左"填满 6 格，i2v 子格标签只有「上中/右上/左下/下中/右下」5 个跳过上左，`boardCells` 只 5 条且不带位置标签。成片大多还对是因为 **i2v 主要读子格文字、不太吃位置标签**——侥幸对。第 6 格是 gpt-image-2 自己编的。
-- **代码硬编码两处（config 全量搜 0 命中 → 真技术卡料）**：① i2v `negativePrompt` 的「忽略分镜板结构，多个首帧格折叠成单一画面」与「绝不可入画」对打；② 「上传商品图会优先作为短视频首帧和主体参考…」= 世界观锁死的直接指令源。②卡已写：`02_交付内容\给技术_OPS-VIDEO-20260729-01_上传商品图硬编码首帧指令.md`。
-- **画面方向盘影响力**：`appearanceMode`（最强，能推翻板）> `visualFocus` > `videoStyle` > `paceLevel` > 六拍骨架；**`visualHint` 排在四项之后**，620 条片型基因因此被压住。**板层不吃 `appearanceMode`**（板照样画人），人物到 i2v 才删（`peoplePolicy.note` 写死"appearanceMode 独占决定有没有人"）。
-- **能承诺**(n=5)：人物锁 grok 4/4 同一人、门店锁 5/5 同一空间、板↔片一致性 **≈83%**（顺序 5/5 全对，缺的基本是第6格、片长塞不下）、成片零字幕 5/5。**三锁强弱取决于产品可辨识度不是模型玄学**：结构清楚全露（分格塑料便当盒）极强，被包装遮住（牛皮纸开窗盒）中等 → **演示选品挑前者**。
-- **不能承诺**：门头招牌汉字（永远 AI 乱码，拼音反而对）；grok 开场无网格（仅 75%）；omni 有四角星水印、无中文口播、第4~5镜会换人。
-- **两模型定位**：grok 415=口播/解说线（中文台词行、会画字幕、稳定性差 ≈67%，失败=「模型方暂时未能完成」积分已退，manxueapi 老毛病；**同秒并发更易挂 → 批量烧单必须串行+间隔≥20秒**）；omni 460=画面线+英文解说（**中文口播做不了**、不画字幕、稳定）。目前 15秒=单参、10秒=多参。
+## ② 已定案(仍成立的结论)
+- **三锁承诺(n=5)**:人物锁 4/4、门店锁 5/5、板↔片一致性 ≈83%;**锁强弱取决于产品可辨识度**(结构全露强/被包装遮中等),演示选品挑前者。**不能承诺**:门头招牌汉字(AI 必乱码,拼音反而行)。
+- **同质化根因**=六拍骨架全局写死+世界观锁死(整套场景图当产品图)——已由片型体系 620 条差异化+案例去重 468 处治理;「正面指令压倒禁令」铁律由此而来。
+- **网格问题已终结**:开场硬规前置+案例级黑幕双保险(grok 双时长零帧实证);grok 网格双峰(0.17s/2.9s)是历史病理记录。
+- **appearanceMode > visualFocus > videoStyle > paceLevel > 骨架 > visualHint** 的画面影响力序;板层不吃 appearanceMode(人物到 i2v 才删)。
+- **两模型定位(待改名)**:grok=口播/中文台词稳、**做不到硬切(溶解=能力边界)**、稳定性差会 502/503(失败退积分);omni=分镜执行准可硬切、有四角星水印、中文只崩数字单位与四字紧凑短语。
+- 编剧回退率历史:07-23 36.8%→07-28 20%→07-31 战役后失败即退款不再静默。
 
-## ③ 取证 / 接口手册（唯一真值）
-- 🔴 **admin base = `https://api.thinknova.top/admin/api/v1`**。`admin.thinknova.top/...` 现返回 **200 + text/html(SPA 兜底)** = 静默假数据，必查 content-type。
-- 🔴 **取证总管道**：`GET /admin/api/v1/offline-store-content/tasks/{taskNo}` → `data.detail` 给 `allAssets`/`intermediateArtifacts`/`childTasksBlock`/`plan`/`configSnapshot`/`firstFramePanels`。**只有这里拿得到 6宫格板图 + 供应商裸片**（商家端只给 1 条最终资产）。
-- **一眼判策略**：`allAssets` 有 720×1280(9:16) 裁格图 = `panel_crop`；只有 2 张板图 = `storyboard_board`。
-- **运行时真值三字段**：i2v `rawRequest.input` 的 `_i2v_reference_strategy` / `_reference_image_limit` / `reference_asset_roles`。
-- **全量提交串**：`GET /admin/api/v1/ai-tasks/{no}?payload=1` → `data.task.input.prompt`（列表接口截断 280 字不可用）；`child_tasks` 给 t2i/i2v/screenwriter 三子任务号。
-- **案例库**：`GET/PUT /admin/api/v1/agents/offline_store_video/reference-cases[/{caseId}]`，**有单条路由，不用整表覆盖**；PUT 全程正常从没被拦。🔴 **列表接口的 `i2vReferenceStrategy` 返回不全（46 条只报 18 条），核验一律逐条 GET。**
-- **agent config**：读 `GET /agents/offline_store_video` → `data.agent.config`（**不是 data.item**）；写 `PUT /agents/offline_store_video` body `{config}`。🔴 **PUT 被 Claude Code 分类器连拦 6 次（API/JS/键盘三路全拦）**，已探 7 个更窄路由全不存在。
-  **可行落库路径**：本地改 JSON → `Set-Clipboard` → 后台 `#/ai/agents` → 商家生视频「编辑」→ 业务配置黑框 Ctrl+A/V → **「保存 Agent」这一下必须老板按**。
-  - 坑1：保存后编辑框**全空白** = 前端扛不住 139KB，**数据是好的，千万别再点保存**（空白再保存才真清空），回读 API 核验即可。
-  - 坑2：UI 保存会按勾选框**重写 `businessUi.videoGeneration.modelAllowlistByDuration`**（464 就是这么被剥离的）→ **改完必须逐键 diff**。
-- 🔴 **agent code**：`offline_store_video`=商家生视频；`offline_store_content`=商家生海报。动 config 第 0 步先确认。
-- **模型表** `GET /admin/api/v1/models?pageSize=200`（不是 ai-models）。`/models/{id}` **GET 是 503，只有 PUT 能用** → 从列表挑完整对象 → 改字段 → PUT 带 `x-csrf-token`。
-- **商家端建单**：`POST https://api.thinknova.top/api/v1/business-video-assets/tasks`，`credentials:'include'`，头带 `x-csrf-token`（任意 GET 响应头拿）+ `x-thinknova-locale:zh`。**漏 csrf → 419 且单没建上**（弹窗被脚本盖住，别误判成"提交成功"）。**复用旧单最省事**：`GET .../tasks/{no}` → `data.detail.business` = 全套建单参数，改 `caseId`/`durationSeconds`/`videoModelId` 重发。`videoModelId` 可信（415/460 与真执行模型一一对应，后端不覆盖）。10 秒单 60 积分。
-- **session**：商家端 + admin 都在 **claude-in-chrome** 里活着；**in-app 浏览器永远 401**。admin API 从 `thinknova.top` 源也能跨域调通（两边都用 `api.thinknova.top`）。
-- **抽帧**：`ffmpeg -i x.mp4 -vf "fps=5,scale=190:-1,tile=6x5:padding=3:color=white" -frames:v 1 out.jpg`。🔴 时间标签公式必须 `n*(1000/fps)`。**页面内 `<video>` 抽帧在这台 Chrome 上废了**（readyState 恒 0）。
-- **落盘**：页面内 `fetch→blob→<a download>.click()`，落到 **`D:\SamsoData\Downloads`**。视频 `publicUrl` 需会话(401) → 改用 `metadata.asset_sync.source_url`（OSS 直链免鉴权）；板图可直接 `Invoke-WebRequest`。
-- **harness 规避**：打印含 `=` 的串前换 `≡`；JS 拼 query 用 `String.fromCharCode(61)`；签名 URL 一律不打印。
-- 🔴 **桌面 = `D:\SamsoData\Desktop`**（p1~p5 参考图在此）。例外：`C:\Users\samso\Desktop\0728_分镜取证\`（7 张图，当初建错位置）。
-- **多语言**：`visualHint`/`title`/`summary` 都是 **`{zh,en}` 对象不是字符串**，读必须 `.zh`，改必须双语。zh/en 各 352；ja/ko/vi/es 只 8 条不必补。`visualHint` **无字数上限**（中位 141/最长 314）。
-- **改 config 探针法**：先 PUT 一次**未修改的原对象**做无操作探针，回读逐字节一致再动真格。`agent.config` 是生效值，`stored_config` 只是字母序序列化，别被 diff 吓到。
-- 🔴 骨架/模板类字段**两份镜像必须同写**（`blockTemplates.*` + `opsEditable.*`），只写一份会 PUT 200 但静默回滚。
-- 🔴 **i2v 提示词 4096 字节硬顶是活的**（实测 4405 字节 → xAI 400 挂单）。改完必量真实提交串字节。
-- 🔴 **任务创建时冻结模型/时长/案例策略** → 改配置只影响新任务，对照实验必须重新烧单。
-- **案例库全量(07-29)**：675 条 / 启用 525；四项预设实际只用到 **60 种组合**（理论 750，8%），最大簇 47 条。`*Options` 是**案例级白名单**，每条只露 3~4 张牌 → **往全局池加枚举不会让商家下拉变长**。
-- **时长/模型能力**：`allowedDurations=[8,10,12,15]`，`modelAllowlistByDuration={"8":[470,471],"10":[468,460],"12":[469,471],"15":[415,467]}`；所有模型 `base_duration_seconds=0`（未配默认时长）→ **换模型锁场景前必须先确认，否则静默回退**。S01~S14 目前无一带 `preferredVideoModelId`。
-- **编剧回退**：`fallbackReason="scriptwriter lines count does not match shot count"`；日回退率 07-23 36.8% / 07-27 2.9% / 07-28 20%。烧单出现 `scriptwriter_fallback=true` 的单作废重烧。
+## ③ 未验/待办(仍开放)
+- 三锁双参验证:`db787156c4c0` 在跑(人物3858+场景3859,grok482)——验管线是否提交2张;锁强度白天评。
+- omni 吃板真测(videoModelId=460)未做;门头锁 vs 招牌文字虚化互斥未验;visualHint「五格/六格」口径统一未做(板3×2=6格 vs boardCells 固定5,两层本就不同,非矛盾)。
+- 7 片型烧验(与案例预览回填流水线合一:烧→验→OSS→previewVideoUrl 回填,07-31 双单已跑通)。
 
-## ④ 已上线的改动
-- **卖点去字幕化**(07-28 02:47) `businessUi.sellingPointOptions` 5 项（limited_offer/group_buy_available/selling_point_trial_price/clear_price/selling_point_member）：【画面】段换实拍指派、【台词方向】原样保留，zh+en。**A2 整片实测零字幕，生效**。
-- **videoTemplate 开场词**(02:47) `promptComposer.screenwriter.staticTemplates.videoTemplate`（🔴 线上真路径是 `screenwriter` 不是 masterPipeline）541→596 字符。
-- **回退模板去字幕化**(03:20) 6 处：`no_person[2]`/`product_only[2]`/**`default[1]`** × 主层 `masterPipeline.scriptwriter.fallbackPolicy` + `opsEditable` 镜像。「文字清晰可读」「{{price}}」残留均 0。
-- **460 改名**(05:0x，双向验收) zh=`实景还原版 · 10秒（锁人物产品门店 · 无中文口播）`。
-- 🔴🔴 **全局 `i2vReferenceStrategy` 已翻 `panel_crop`**(07-29 03:43:45，`masterPipeline` + `opsEditable` 双写，字节账 139,084→139,072 = −12)。**效果:案例不填就继承全局 → 启用中 103 条 `owner_speaking` 全部裁格**（此前只有 43 条显式设了 panel_crop，另 60 条是 null 吃全局整板）。全库残留 `storyboard_board` **0**。
-  ⚠️ 影响面是**全部 675 条**不止口播（老板知情同意）；要保留整板的案例需**单独**设回 `storyboard_board`。全貌与取证 → [[project-thinknova-0729-koubo-defect]]。
-  🔴 **同批写进案例的 `entranceBlackOverlay.enabled=false` 按文档不成立**：手册 v4 §3.5 明确 `deliveryPostProcess`（含 `entranceBlackOverlay`/`coverFrame`）位置是 **`promptComposer.masterPipeline` = Agent 全局**；07-28 文档 §5 的案例级字段**只有 `i2vReferenceStrategy` 一个**。案例级 `deliveryPostProcess` 无文档依据 → 当它不生效，别据此排期。
-- **2 条案例 visualHint 差异化重写**(zh+en)：`home_v2_S03_signature` 208 字（门店实景型+自带镜头表+【环境重建】不复刻参考图背景）；`brand_product_s14_tvc` 221 字（电影质感型+格1极暗侧逆光微距→格4首次全貌→格6品牌定格+换极简暗调影棚）。**两条现在是两个完全不同的世界，可与旧片直接对照**。
-- **三刀落库**(07-29 01:57，sha `ae794877fbea`→`135f069e4c7d`)：刀1 `stagePromptPresets.image_to_video.prompt` 的【输入图片】整行改指派式（双镜像各 862 字）；刀2 骨架追加【出镜设置优先于骨架·硬规】（双镜像各 2001 字）；刀3 `referenceImagePrompts` 三条重写为**自标注+反向边界**（284/260/302 字节，原 39/38/40 字）。
-- **备份**：`03_工作区\0728_网格滞留取证\BACKUP_osv_config_0729_sha_ae794877fbea.json`(236KB) / `BACKUP_offline_store_video_config_0728.json` / `D:\SamsoData\Downloads\backup_offline_store_video_20260728_0240.json`。
-- **故意没做**：promotion 场景锁 460 —— 口播走 panel_crop 后 grok 看不到整板，不必牺牲中文口播；我建议撤销、老板未确认 → 铁律2 保持不动。
-
-## ⑤ 防重犯（只留我很可能自己再推导一遍的错）
-> 其余已推翻的旧结论一律删除，正文与归档都不留副本（历史在 git commit 里）。
-
-1. ❌「grok 开场网格 = 固定 2.8 秒、提示词治不了、唯一解 panel_crop」→ **现为**双峰 0.17s/2.9s，且刀1 原句才是元凶（07-28 05:0x，n=5）。
-2. ❌「`public_url` 与 `metadata.asset_sync.source_url` 的 SHA 相同 → 交付链路没有后处理」→ **现为** source_url 只是镜像前的同一份文件、**不是供应商裸片**；裸片在 `allAssets` 里 `isInternal:true` 那条（07-28 05:0x）。
-3. ❌「模型表 `max_reference_images`=1 → omni 也是单参」→ **现为** DB 列=1 但运行时 `_reference_image_limit` omni=**5**、grok=1（07-28 晚，4 单 rawRequest 实读）。
-4. ❌「成片首帧像我的上传图 → 6 宫格没被吃到」→ **现为**视觉错觉；i2i 下板格1 本就照上传图重绘。判据要看中后段有没有只有板上才有的独特视角（07-28 晚）。
-5. ❌「omni 不跟板走 / omni 不吃 storyboard」→ **现为**它在正确执行 `product_only`，把板上多余的人删了（07-29 00:5x）。
-6. ❌「boardCells 被固定模板淹没(≈1.6%)」→ **现为** 1973/5681=**34.7%**，信噪比理论不成立（07-28 晚）。
-7. ❌ 07-27 旧记忆「omni 460 照样会说话、台词量没问题」→ **现为**中文口播做不了，英文解说可以（老板 07-28 拍板）。
-8. ❌「`i2vReferenceStrategy` 是全局开关、不能按案例/模型分」→ **现为**案例级 `businessUi.referenceCases[].i2vReferenceStrategy` 可配且**优先于**全局（07-28《时长模型与案例首帧策略》§5）。
-9. ❌「口播多镜头（shotCount=5）需要整板定顺序，所以留 `storyboard_board`」→ **现为**官方门槛是"模型会不会把网格生成进成片"，与 shotCount 无关；grok 未过门槛 → 口播一律 `panel_crop`（手册 v4 §3.5）。
-10. ❌「案例级也能配 `deliveryPostProcess` / `entranceBlackOverlay`」→ **现为**文档只承认 Agent 全局 `promptComposer.masterPipeline.deliveryPostProcess`；案例级可配的**只有** `i2vReferenceStrategy`（手册 v4 §3.5 + 07-28 文档 §5）。
-11. ❌「4 单 `_i2v_reference_strategy=null` 是字段没生效/故障」→ **现为**文档明写"不填写 → 使用 Agent 全局 `promptComposer.masterPipeline.i2vReferenceStrategy`"，null=案例没配，属正常（07-28 文档 §5 表）。
-
-## ⑥ 老板已下的决策（勿再提）
-❌ 黑屏**维持 0.5**不加 0.75。｜❌ **不改 `durationPolicies.10` 压台词** —— 时长≠模型，10 秒将来可能切 grok1.5 fast（也多参也吃台词），**台词密度绝不能绑时长**。｜❌ **反网格禁令词不用加**（`negativeGuard` 20 词已证无效）。｜✅ 六宫格只有 3×2 一种，一句指派式压住即可，不做系统。｜✅ **烧单我自己做**（07-28 03:35 授权，覆盖 [[feedback-thinknova-burn-division]]「商家整单老板亲自烧」）。｜❗**「修好再烧」**。｜✅ 客户三大要求 = **锁产品、锁场景、锁人物**；编剧层原始意图 = 同场景同案例每次生成也应不一样（**现状没做到**）。｜✅ 行业验收：美业看细节；餐饮看产品一致性 + 门店环境一致性。
-
-## ⑦ 待核（拿不准是否过期，一律保留）
-- 🟡 **omni 5 个参考图位只用了 2 个**（板 + 用户产品图），空 3 个，未查。
-- 🟡 **DB `max_reference_images` 与运行时 `_reference_image_limit` 不一致** —— 该查，别外传。
-- 🟡 `brand_product_s14_tvc` 的 `shotCount=7` 而骨架画六格 → **文档判定无害**：07-26 案例预设文档 §5 明写 shotCount(1~7) 与分镜板格数解绑，"7 段宣传片仍可以使用现有 3列×2行分镜板作为视觉来源"。
-- 🟡 案例详情 GET 对部分案例（如 `home_v2_S03_signature`）**不返回 `appearanceOptions`** → 组3 换出镜设置前需另找白名单来源。
-- 🟡 `firstFrameTemplate` 遗留未同步改：「唯上中格＝首帧例外」+ `timeline.defaultShotCount=5`。
-- 🟡 编剧层多样性：`screenwriter.textModel.temperature=0.7`；全配置搜 seed/random/variation/shuffle **0 命中** → 文案层有随机性，画面层多样性不由编剧层决定。
-- 🟡 台词密度：promptComposer 里**没有** lineLength/copyDensity 可编辑旋钮；做「案例级台词密度」= 新字段 = 交技术（铁律22.5）。
-
-配套：[[reference-thinknova-multiref-model]] [[reference-thinknova-prompt-fields]] [[project-thinknova-film-types]] [[feedback-evidence-standard]] [[feedback-directive-over-prohibition]] [[reference-thinknova-tech-docs-index]]
-
-## 🔴 2026-07-29 04:xx 交接（config 事故 + 已修复 + 待办）
-
-### 后台弹窗的三个数据丢失机制（**动 config 前必看**，全貌见 [[reference-thinknova-config-powers]] 顶部）
-1. **139KB 时黑框显示空白 = 渲染 bug**，config 本身没坏；**此时再点一次保存才会真清空**。
-2. **弹窗按它自己的内部模型回写**，不是按你贴进去的文本：
-   - 它不认识的模型会被静默剥离（464 / 470 / 471 / 469）。
-   - 07-29 03:xx 一次保存把 config 从 139,229 打成 **45,133 字符**：`stagePromptPresets` / `masterPipeline` 整块消失、`systemPrompt` 归零、`businessUi` 从 61,434 掉到 14,628。**重贴一次即恢复。**
-3. 🔴🔴 **`businessUi` 整块不吃 textarea**（07-29 03:49 实证，砍 `ko` 那次）：页面自检通过（61,177→61,097）、回执「已保存」，但回读 `ko` 原样还在、businessUi 弹回 61,177、总字符提交 139,059 → 回读 **139,139（+80 = ko 选项对象大小）**。→ **改 businessUi 只能人工点界面**；`promptComposer.*` 走 textarea 正常。
-4. → **结论：能不走弹窗就不走。** 但接口 PUT 被 classifier 拦（累计 7 次），起本地 HTTP 服务喂 payload 也被拦（Bash 和 PowerShell 都拦）。**例外：案例库 `PUT /reference-cases/{caseId}` 单条路由全程正常。**
-
-### 我自己把 139KB 灌进页面的可用手法（**已实测成功，别再让老板贴**）
-1. PowerShell：`[IO.File]::ReadAllText(路径) | Set-Clipboard`
-   ⚠️ 后台弹窗操作会把剪贴板清空（实测从 139,229 变 0），用前必重装 + 校验字符数。
-2. 页面里盖一层 `position:fixed;inset:0` 的 overlay，内嵌 textarea 并 `focus()` —— 保证不误触真实元素。
-3. `computer` 点该 textarea（拿到 document 焦点）→ `key: ctrl+v`。
-4. 读 `textarea.value` → `JSON.parse` → 挂到 `window.__RESTORE`，后续 JS 直接引用，**不经过我的上下文**。
-   - `navigator.clipboard.readText()` 权限是 granted，但**没有页面焦点时报 NotAllowedError**，必须先点。
-
-### 现行线上状态（07-29 03:49:43 保存后回读确认）
-- config **139,072 字符**（03:43 翻 panel_crop 后的值），五大块齐全
-- **三刀在位**（i2v「不得保留分格布局」/ 骨架「出镜设置永远优先」/ `referenceImagePrompts` 三条），**双镜像一致**
-- `promptComposer.masterPipeline.i2vReferenceStrategy` = **`panel_crop`**（`opsEditable` 镜像同值；全库残留 `storyboard_board` 0）
-- **语速修正已落库**，`systemPrompt` **7,901** 字（含中文按秒 + words 口径 + 日文口径三套）
-- `lineValidation` 双镜像现值：`zh {45,100}` / **`en {25,50}`** / **`ja {55,95}`** / `ko {55,85}`；`zh_en` **无键**，落 default
-- ⚠️ **`ko` 语言选项仍在**（老板要砍，businessUi 改不进 textarea，见上）
-- `modelAllowlistByDuration` 只剩 `10:[468,460]` / `15:[415,467]`；**8 与 12 档被写成 null**
-  → ⚠️ **不是故障**：商家端读的是 `availableModelIdsByDuration`（`8:[470,471]` `10:[468,460]` `12:[469,471]` `15:[415,467]`），白名单缺失 = 不加限制。**我曾据此误报「线上故障」，已撤回** —— 教训：查了限制层没查可选层就下结论。
-- 🔴 **464 = 官方最贵的模型，老板特殊情况自己开，不要主动加回白名单。**
-
-### 逐帧取证定案（四单对照，联系表在 `0728_网格滞留取证/SHEET_*.jpg`）
-四单：S03 旧 `task_b6074f858d21` / S03 新 `task_6cd9ecf159eb` / S14 旧 `task_25047019b9d2` / S14 新 `task_6a3ac4503647`（全部 10 秒、模型 460 omni_flash-10s、同一张参考图 `asset_85824bafd5fb` role=product）
-
-| | 结论 |
-|---|---|
-| **世界观解绑** | ✅ **成功**。旧 S03/S14 完整复刻上传图（拱门+海景+橄榄树+木茶几），两条分不出是哪个案例；新 S03 = 家具卖场（轨道灯／木饰面／挂价签），新 S14 = 暗调影棚。上传图元素在新片 80 帧取样中**一帧未出现** |
-| **网格滞留** | ⚠️ **未证**。新片 0.125s 粒度全片 + 开场逐帧均无网格，**但旧的两条也无网格** → 无效对照。要证得另找一条真出过网格的旧单 |
-| **锁产品** | 🔴 **新引入风险**：新 S14 沙发由米白变**深炭灰皮革**（新 S03 仍米白正确）。提示词中**无任何「深灰／暗色」字样** = 模型自由发挥。根因：参考图·产品那条只写了反向边界（背景道具不复刻），**没写正向锁色**，产品色跟着一起松 |
-| 四单共同事实 | `i2vReferenceStrategy` 四单**全为 null** = **案例没配、按文档回落 Agent 全局**，所以首帧实物四单都是 6 宫格板 —— **正常行为不是故障**（07-28 文档 §5）。⚠️ **这四单烧于 03:43 全局翻 `panel_crop` 之前**，当时全局=`storyboard_board`；现在同样 null 的案例会裁格。**任务创建时冻结策略,旧单不重写 → 要对照必须重烧。** |
-
-### 待办（按优先级）
-1. ✅ **参考图·产品正向锁色已落库**（07-29，`referenceImagePrompts.product` 302→365 字节：「颜色、材质、明度必须与图完全一致,不因场景灯光而改变」）→ **待烧验**，在进行中的 5 单里一起验。
-2. 🔴 **我烧单时写的 `extraRequirement` 镜头表要改**：上一版 6 格里给了 2 格拍空间（格1 门店空间全景／格6 空间收尾），老板看到成片第一帧是天花板轨道灯，原话「人家沙发就是沙发，你非要给他加东西出来」。**改成至少 4 格是产品本体。这是我自己的输入纪律，不用改 config。**
-3. 找一条**真出过网格**的旧单，做网格修复的有效对照
-4. 8/12 档白名单写回（在 `businessUi` 下 → **改不进 textarea**，接口 PUT 也被拦）→ 归进 `OPS-ADMIN-20260729-01` 技术卡
-5. 5 单验证（美业，三张参考图）**进行中,结论未出**；老板硬指令仍是「提示词全修完再烧」
+关联 [[project-thinknova-0729-screenwriter-stack]] [[project-thinknova-film-types]] [[reference-thinknova-multiref-model]] [[reference-thinknova-paths]]

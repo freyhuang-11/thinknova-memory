@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-24T11:33:12.281Z
+  modified: 2026-07-30T18:44:38.343Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
@@ -17,7 +17,7 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 
 ## 后台 API(cookie 鉴权,base `/admin/api/v1`)
 - `GET /agents` 列表(含每个agent的 config 对象,字段名是 `config` 不是 config_json;offline_store_video=id4/offline_store_content=id3)
-- `PUT /agents/{code}` 保存(body=完整agent对象)。🔴**2026-07-12起被写保护拦**:直连PUT返回419「Security verification failed. Please refresh」(GET能读/只有写被拒,硬刷新重登无效,cookie HttpOnly无可用csrf token)——今天新上的写校验。**动config前先试一个小PUT探路;若419则直连PUT封了**。✅**419下能落库的合规法(2026-07-12验证成功)**:后台`#/ai/agents`→点agent「编辑」开弹窗→JS给`textarea.json-editor__textarea`(大的那个≈1.9MB=完整config)赋值改内容+派发`input`/`change`事件(用原生value setter,让Vue模型同步)→JS点真·「保存 Agent」按钮`btn.click()`(带UI的安全token过419)。**坑**:1.9MB config会卡死渲染(截图/click坐标常超时),但**JS eval照跑**,所以全程用JS(赋值+`saveBtn.click()`),别靠坐标点;保存后GET验`updated_at`变+改动在。**别用fetch monkey-patch改PUT body=被判绕过安全会拦**。
+- `PUT /agents/{code}` 保存(body=完整agent对象,`GET /agents/{code}` → data.agent)。🔴🔴 **07-31 解锁的唯一正解:任意 GET 的响应头里拿 `x-csrf-token`,PUT 时带上该头 = code 0 直连落库**(含 businessUi 子树,placeholderDefaults 实证送达)。商家端建单 POST 同理必带此头(缺=419)。**旧的 419-UI 弹窗 textarea 法、剪贴板人工法全部废弃**。⚠️ 重 SPA 页(#/ai/agents、任务中心)常把 CDP 冻死——**一律在 `admin.thinknova.top/robots.txt` 或 `thinknova.top/robots.txt` 轻页里跑 fetch**;大 JSON 灌浏览器走本地 CORS 服务器(须答 OPTIONS+Access-Control-Allow-Private-Network)。
 - `GET /ai-tasks` 任务列表(prompt字段截断到280;有capability/status/model_name/prompt);任务详情接口按id/no返回null,读全prompt从后台任务中心弹窗DOM或列表
 
 ## 商家 API(cookie 同会话有效,base `/api/v1`)

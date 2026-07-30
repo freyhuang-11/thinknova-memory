@@ -1,4 +1,4 @@
----
+﻿---
 name: reference-thinknova-multiref-model
 description: "触发:要动视频模型或时长、或发现\"用户参考图没进 i2v\"时 → 模型↔时长映射/两模型定位定案/maxReferenceImages 规则/200单成功率诊断/403 根因"
 metadata: 
@@ -7,6 +7,8 @@ metadata:
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
   modified: 2026-07-28T20:19:41.406Z
 ---
+
+> 🔴 07-31 里程碑注:grok 做不到硬切(溶解=能力边界,老板定论),omni 才能硬切;建单选模型字段=videoModelId(modelId 被静默无视);烧完必验 task.model。模型现状详见 project_thinknova_0729_screenwriter_stack。
 
 # ThinkNova i2v 模型 · 多参考图台账
 

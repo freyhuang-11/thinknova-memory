@@ -1,4 +1,4 @@
----
+﻿---
 name: reference-thinknova-prompt-fields
 description: "触发:要改提示词的第一查 → 拉一条真实任务 input,确认目标字段真被编剧/生图/i2v 读取,别改在没人读的字段上;字段路径以线上回读为准"
 metadata: 
@@ -7,6 +7,8 @@ metadata:
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
   modified: 2026-07-28T20:18:01.296Z
 ---
+
+> 🔴 07-31 里程碑注:编剧长度真值=lineValidation(语义=全片lines总计,PHP动态注入提示词);systemPrompt 择一链=masterPipeline>screenwriter>旧字段>内置,不叠加。详见 project_thinknova_0729_screenwriter_stack。
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
 
