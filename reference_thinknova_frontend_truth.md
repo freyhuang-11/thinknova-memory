@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-30T09:35:44.875Z
+  modified: 2026-07-30T12:56:49.526Z
 ---
 
 # 商家端才是前台真值(2026-07-30 被老板当场纠正)
@@ -49,7 +49,11 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 配套字段:`allowEmpty`(显示"不指定")/`emptyLabel`/`betaLabel`/`options[].beta`(名字后挂"测试中")。
 🔴 红线:**每个启用的 value 必须在 `promptComposer.languagePolicy.map` 有生成指令**才许上前台;
 线上 map 现有 14 语言(zh_cn,zh_tw,en,ja,ko,es,fr,de,pt,th,vi,id,ar,zh_en)。
+🔴 **语言终版(07-30 晚老板三改后定稿,视频+海报两个 agent 同表)**:zh_cn/en/ja/ko/es 五种,
+全部 beta:false 无后缀;繁中、中英双语已撤。前台双端点验证送达。
 ⚠️「藏平台组」仍未解(platform enabled:false 前台照发),这条还得后端。
+🔴 **「补充要求」placeholder 是前端硬编码**(「可指定人物形象、画面风格…」在 config 全文 0 命中),
+`businessUi.placeholderDefaults` 前台不读——改这条引导文案必须过前端/技术。
 
 ## 🔴🔴 加「预设选项值」的唯一正确姿势(07-30 打通,含后端映射表红线)
 **后端有一张业务选项映射表**,不在表里的值保存时报:
