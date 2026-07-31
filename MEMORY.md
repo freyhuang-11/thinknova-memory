@@ -86,7 +86,7 @@
 - 🔴 [字节手术+无台词开关](project_thinknova_0729_byte_surgery.md) — voiceMode=none 早就存在(22条TVC在用);omni 中文边界看 screenwriter-stack
 - 🔴 [品牌产品行业+TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;建单500 排查法
 - 🔴 [定点口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
-- 🔴🔴 [国内营销线](project_thinknova_marketing.md) — **主战场·07-31晚现状**:抖音娱乐版画风12秒样片待老板批(批了渲C2整条→C1/C3/A2量产);音色=混合样本版;人像彻底撤(数字人不做);小红书活人号16-20待发;🔴铁流程=样片先行/先批后动/查重三张表
+- 🔴🔴 [国内营销线](project_thinknova_marketing.md) — **主战场·07-31深夜现状**:娱乐版也毙,回归纸底楷体原版+小蓝库技法升级(海报叠字/圆吞转场/线稿自画/红印章/拉焦/衰减震屏),C2v3样片12.4s待批(批了扩全本→C1/C3/A2量产);音色=混合样本版;人像彻底撤(数字人不做);小红书活人号16-20待发;🔴铁流程=样片先行/先批后动/查重三张表
 - 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;07-30 重定价:omni/wan/sora=3分/秒,grok系=4分/秒;价格三口径待技术
 - 🔴 [HyperFrames 生产线](reference_hyperframes_production.md) / 🔴 [音色克隆生产线](reference_voice_clone_pipeline.md)
 - [实体店两个 Agent(工程主线)](project_thinknova_offline_agents.md) — CTA 未选强加已在 07-31 提示词层修复
