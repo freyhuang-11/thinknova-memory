@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-31T11:00:48.235Z
+  modified: 2026-07-31T11:18:07.157Z
 ---
 
 ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线。**我=获客核心(老板07-30令)。**
@@ -33,7 +33,8 @@ ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线�
 - 能力:grok 系中文口播稳但**转场只能溶解做不到硬切**;omni 硬切准但**不能说中文**。参考图只在生图(分镜板)阶段生效,视频层只吃1张主图。
 - 纪律:烧前先说清行业/场景/案例/填了什么/验证什么;烧完验编剧 source=text_model 和 task.model;批量串行≥20秒;逐帧验收。
 - 🔴🔴 **纯文生视频入口(不是 business-video-assets)**:页面 `/zh/app/capabilities/text_to_video`;API `POST https://api.thinknova.top/api/v1/ai/tasks`,body `{capability:'text_to_video', modelId:<id>, input:{prompt, ratio:'9:16', resolution:'720p', durationSeconds:10}}`,头带 `x-csrf-token`(任意 GET 响应头取)+`x-thinknova-locale`。查:`GET /api/v1/ai/tasks/{id}?assets=1`,成片 URL 在 assets 里(正则捞 `.mp4` 最稳)。列表:`GET /api/v1/ai/tasks?capability=text_to_video&page=1&pageSize=20`。
-- **文生视频模型台账(07-31 实拉)**:416 sora-2「广告创意版」12秒/4分每秒;480 wan2.7-t2v「国货之光(有点慢)」5/10/12/15秒/**18分每秒最贵**;**488 grok-imagine-video「经济实惠型(TT)」=老板指定,10/15秒,4分每秒(10秒=40分)**,ratio 5选1,resolution 480p/720p,提示词上限 4000 字节。
+- **模型台账(07-31 实拉全量)**——文生视频:**494 `grok-imagine/text-to-video`「经济实惠文K」= 老板07-31指定现行首选,支持 6/10/15/20/25/30 秒,3分每秒最便宜(30秒=90分),一条片可一次生成不用切镜**;488 grok-imagine-video「经济实惠型(TT)」10/15秒 4分/秒;416 sora-2「广告创意版」12秒固定 4分/秒;480 wan2.7-t2v「国货之光(有点慢)」5/10/12/15秒 **18分/秒最贵**。图生视频:489 grok-imagine-video-1.5(10/15秒 6分)、460 omni_flash(10秒 3分,锁人物产品门店无中文口播)、469 sora-2(12秒 6分)、481 wan2.7-r2v(8分)、484 grok-imagine-video「30秒(效果不稳定版)」。
+- 参数:ratio 5选1(2:3/3:2/1:1/9:16/16:9)、resolution 480p/720p、提示词上限 4000 字节。
 - 🔴🔴🔴 **CDP 超时 ≠ 页面脚本没跑**:在 Chrome 里跑建单 JS,若 `Runtime.evaluate timed out`(>45秒,常见于脚本内 sleep),**页面里的 fetch 照样发出去了**。07-31 我因此把三镜重复烧了一遍,白费 120 积分。**铁律:报超时后必须先 `GET /ai/tasks` 查列表确认已建单数,再决定重不重发**;建单脚本内不要 sleep,间隔在外面等。
 - ⚠️ **信箱要全文扫**,不能只看「给 Claude(Code)」栏——这条令写在「给国内营销」栏,我漏了一次。
 
