@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-25T20:48:24.617Z
+  modified: 2026-07-31T05:58:40.961Z
 ---
 
 # 老板音色克隆生产线(2026-07-26 建成,火山豆包复刻2.0)
@@ -17,7 +17,8 @@ metadata:
 - **配套内容方向=大量输出知识**:老板原话"用我这种声音就只能大量的输出知识了"——冷静干货流,对标李冶/马师傅(都不兴奋照样爆);不硬凹兴奋,不用平台配音音色
 
 ## 关键真值(火山·现行)
-- **音色ID**:`S_rbgc0p2a2`(赠送槽位,剩10个,剩14次重训);样本=W_cfr.mp4 0.40–29.80s(29秒,喊卡前最干净段)
+- **音色ID**:`S_rbgc0p2a2`(剩11次重训);**现行样本=混合版**(scratchpad/vo3/ref_boss_mix.wav=16s平静[照稿念]+16s牢骚[真情绪]拼接,07-31第三训)——单一平静样本=机器人,单一牢骚样本=全程亢奋,混合才有起伏
+- 🔴 **样本审核坑**:训练样本被平台ASR转写审核,**脏话=拒收(43001124 ASRTextAuditReject)**;修法=火山flash ASR拿逐字时间戳→ffmpeg aselect逐词切净重拼(ref_boss_v3_clean.wav 的做法)
 - **API Key**:`D:\SamsoData\Documents\视频制作平台分析\volcengine_speech_key.txt`(新版控制台,长期有效)
 - **合成**:POST `openspeech.bytedance.com/api/v3/tts/unidirectional`,头=Content-Type/X-Api-Key/**X-Api-Resource-Id: `seed-icl-2.0`**(实测唯一通的;volc.megatts.default/voiceclone都不行)/X-Api-Request-Id(uuid);体={"req_params":{"text","speaker":"S_rbgc0p2a2","audio_params":{"format":"mp3","sample_rate":24000}}};返回=流式JSON行拼base64
 - **情绪参数**(治"丧"):audio_params 里加 `"enable_emotion":true,"emotion":"happy","emotion_scale":1-5(默认4)`(文档6561/1257584)
