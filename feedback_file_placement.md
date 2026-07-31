@@ -5,11 +5,12 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-07-28T19:18:27.338Z
+  modified: 2026-07-31T07:07:04.944Z
 ---
 
 🔴🔴 **桌面 = `D:\SamsoData\Desktop`,不是 `C:\Users\samso\Desktop`**(两个路径都存在,C 盘那个是系统默认残留)。老板说"桌面上有X"一律指 D 盘那个。**别猜,跑 `[Environment]::GetFolderPath('Desktop')` 一秒出真值。**
 > 2026-07-28 我没查这条,直接翻 C 盘桌面,误报"餐饮参考图 P4/P5 找不到、请老板重新给图"——图一直好好躺在 `D:\SamsoData\Desktop\p4.jpeg`/`p5.jpeg`。老板原话:「我说了无数次我们的桌面在 D 盘」。
+> 2026-07-31 **三犯**:样片交付又写到 C 盘桌面(上下文压缩摘要里带的是错路径,我照抄没核),老板:「我桌面在D盘!!你天天给我乱放!」。教训:**压缩摘要里的路径也不可信,写桌面前必跑 GetFolderPath 核一遍**。已把真路径提级进 MEMORY.md 索引行。
 
 **桌面(`D:\SamsoData\Desktop`)只放要给老板当场看的测试成片(mp4)/成图(海报)。** 其他一切文档(给技术交付/诊断/清单/报告)一律进 `D:\SamsoData\Documents\视频制作平台分析\` 对应子目录:
 - 给技术/交付类 → `02_交付内容\`(所有 `给技术_…md` 都在这)

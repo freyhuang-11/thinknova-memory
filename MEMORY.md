@@ -62,7 +62,7 @@
 # 用户与沟通
 - 🔴 [共享记忆库 AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工 push
 - [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
-- [文件放哪](feedback_file_placement.md) — 桌面只放要看的成片/成图
+- 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — **桌面=`D:\SamsoData\Desktop`,C盘桌面是假的(已三犯:07-12/07-28/07-31,老板骂"天天乱放")**;桌面只放成片/成图,文档进视频制作平台分析子目录
 
 # ThinkNova(实体店内容 SaaS)
 ### 动手前必背
