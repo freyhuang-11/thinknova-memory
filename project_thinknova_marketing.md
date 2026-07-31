@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-31T14:05:01.495Z
+  modified: 2026-07-31T14:12:48.986Z
 ---
 
 ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线。**我=获客核心(老板07-30令)。**
@@ -41,8 +41,10 @@ ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线�
 ## 🛠 平台产素材(唯一通道,总指挥转达老板令:图和视频一律用自己平台)
 - **纯文生视频**:页面 `/zh/app/capabilities/text_to_video`;API `POST https://api.thinknova.top/api/v1/ai/tasks`,body `{capability:'text_to_video', modelId:<id>, input:{prompt, ratio:'9:16', resolution:'720p', durationSeconds:10}}`,头带 `x-csrf-token`(任意 GET 响应头取)+`x-thinknova-locale`。查 `GET /api/v1/ai/tasks/{id}?assets=1`(正则捞 `.mp4` 最稳);列表 `GET /api/v1/ai/tasks?capability=text_to_video&page=1&pageSize=20`。
 - **文生图**:同接口 `capability:'text_to_image', modelId:493`(gpt-image-2,**5积分/张,中文字准确**,能直接出带文案的营销海报)。
-- **模型台账(07-31 21:59 拉线上真值,覆盖旧记录)**:文生图**只有 493** gpt-image-2(5分/次,ratio 支持 1:1/3:4/4:3/16:9/9:16);图生图 492(5分/次);文生视频 **494 grok-imagine = 4分/秒(不是3,已涨价)**、416 sora-2=4分/秒、480 wan2.7=18分/秒;图生视频 460 omni_flash-10s=3分/秒(最便宜)、489=6、469=6、481=8、484=6。**488 grokTT 已下架**。
-  🔴 老板 07-31 说的 **448/491 在商家端模型列表查不到**,待他给出处。**每次烧前拉一次 `/api/v1/ai/models?capability=` 核价,别信这张表**。
+- 🔴🔴🔴 **查模型必须用 `GET /api/v1/ai/models`(不带参数)**。**加 `?capability=text_to_image` 会把默认模型 448 过滤掉**,只返回 493——07-31 我因此断言"448不存在",被老板截图打脸。**不带过滤才是真值**。
+- **文生图台账(07-31 22:0x 真值)**:**448 = 老板设的默认**(provider lk888,**6分/张 per_image**,ratio 1:1/2:3/3:2/3:4/4:3/9:16/16:9,`size` 可到 3840,`quality` auto/high/medium/low,参考图最多14张)> 493(ttapi,5分/张)、491(kie)。图生图 492(5分/张)。
+- **视频台账(同次真值,覆盖旧记录)**:文生视频 **494 grok-imagine=4分/秒(不是3,已涨价)**、416 sora-2=4分/秒、480 wan2.7=18分/秒;图生视频 460 omni_flash-10s=3分/秒(最便宜)、489/469/484=6、481=8。**488 grokTT 已下架**。
+  🔴 **每次烧前拉一次真值核价,别信这张表**。
 - **商家整片链路**(带编剧台词的):`POST /api/v1/business-video-assets/tasks`,必填 businessScenario/caseId/industryId/outputType/durationSeconds/productName/offer/selectedOptions;选模型只认 `videoModelId`。15秒75分/10秒60分/30秒180分,**30秒不推荐**(台词念两遍)。
 - 🔴🔴🔴 **CDP 超时 ≠ 页面脚本没跑**:Chrome 里跑建单 JS 报 `Runtime.evaluate timed out`(常因脚本内 sleep>45秒),**fetch 照样发出去了**。07-31 我因此重复烧三镜白费120积分。**铁律:超时后先查任务列表确认已建单数再决定重发**;建单脚本内不要 sleep,间隔在外面等。
 - ⚠️ **重 SPA 页会冻死 CDP** → fetch 一律在 `thinknova.top/robots.txt` 轻页跑。
