@@ -8,6 +8,7 @@ metadata:
   modified: 2026-07-28T20:19:41.406Z
 ---
 
+> 🔴🔴🔴 07-31 定价唯一真值(实证):**改模型价只认 admin 模型编辑弹窗的「定价 JSON」框**(`{currency,billingUnit,creditPrice,baseDurationSeconds,durationPriceStepSeconds}`)——前台 `/api/v1/ai/models?capability=X` 与 agent 的 videoModelOptions 都读它。**`GET /admin/api/v1/models` 列表里的 `credit_price` 字段是死数据**,用 API PUT 改它前台零反应(07-31 白改一轮)。计费公式=**视频模型价×秒数 + 生图6 + 时长服务费(8秒30/10秒24/12秒18/15秒9)**;现值:482=4、484=6(30秒186)、488文生视频=4(原6积分/10秒亏本已修)、460/468=3、481wan=8。分辨率(480p/720p)在能力JSON里是用户可选参数,**定价JSON无分辨率维度=一个模型只能一个价**,要分档只能复制模型(老板 07-31 定:不分)。
 > 🔴 07-31 里程碑注:grok 做不到硬切(溶解=能力边界,老板定论),omni 才能硬切;建单选模型字段=videoModelId(modelId 被静默无视);烧完必验 task.model。模型现状详见 project_thinknova_0729_screenwriter_stack。
 
 # ThinkNova i2v 模型 · 多参考图台账
