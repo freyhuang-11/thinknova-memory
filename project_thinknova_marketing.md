@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-31T13:11:40.028Z
+  modified: 2026-07-31T13:24:28.974Z
 ---
 
 ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线。**我=获客核心(老板07-30令)。**
@@ -60,6 +60,11 @@ ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线�
 理由层29s / 不用出镜也能做视频30s(含真实界面录屏)/ 帮开店的人做内容22s / 一条视频有几步67s(长科普,七步三小时时间条)/ **花大几千请人拍48s(老板验收通过=样板)** / 熬夜找素材34s。
 素材:`hf-test/my-video/d1/`(d1-d3店铺空镜、studio摄影棚、post后期、edit修图、ui界面录屏、p1-p3新海报、v1-v3成品切片、vend结尾片)。
 新海报三张(理疗/健身/宠物,gpt-image-2生,中文准确)在 `scratchpad/posters/`。
+
+## 📦 对外交付包(07-31,给同事的 Codex 用)
+`02_交付内容/thinknova-video-kit/` + 同名 .zip(55KB)。六步流水线全套:skills×6、TTS/ASR 可跑脚本、ThinkNova 素材 API(建单+轮询+下载)、HyperFrames 合成模板、技术坑清单、验收法、《花大几千》范例源码+台词。
+🔴 **零密钥**:走 `config.example.json`,音色 ID 是占位符(同事必须自己克隆,不许用老板音色);已扫描确认无 key/无 S_rbgc0p2a2。
+⚠️ `来源与授权.md`:hurricane-shot-prompt 是外来材料本地化版,标注**内部自用不外传**——整包再往外给之前要老板点头。
 
 ## 📕 小红书(两个 skill 已装)
 - `~/.claude/skills/xhs-note` = 写单篇笔记,**四根柱子:选题→标题→配图→文案**(三内容柱50/30/20+五类高爆选题;标题≤15字五开法;封面五要素五版式+**493出中文封面**;文案具体化+勾评论)+**违禁词五级扫描**+AI味词黑名单
