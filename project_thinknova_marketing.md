@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-31T13:03:38.255Z
+  modified: 2026-07-31T13:11:40.028Z
 ---
 
 ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线。**我=获客核心(老板07-30令)。**
@@ -62,7 +62,8 @@ ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线�
 新海报三张(理疗/健身/宠物,gpt-image-2生,中文准确)在 `scratchpad/posters/`。
 
 ## 📕 小红书(两个 skill 已装)
-- `~/.claude/skills/xhs-note` = 写单篇笔记(标题公式+**违禁词五级扫描**+AI味词黑名单)
+- `~/.claude/skills/xhs-note` = 写单篇笔记,**四根柱子:选题→标题→配图→文案**(三内容柱50/30/20+五类高爆选题;标题≤15字五开法;封面五要素五版式+**493出中文封面**;文案具体化+勾评论)+**违禁词五级扫描**+AI味词黑名单
+  🔴 原库腔调是美妆学生党号(姐妹们/绝绝子/emoji轰炸),**只学结构不学腔调**——我们读者是三四十岁开店老板
 - `~/.claude/skills/xhs-growth` = 涨粉/SEO/冷启动策略(本地化自 vivy-yi/xiaohongshu-skills **132技能库**,全量在 `00_规格与参考/xiaohongshu-skills/skills/` 九大类)
 🔴 最高危:**「搞钱/变现」违禁词**——"帮小店多卖钱"必须改"顾客更愿意进店"。
 🔴 冷启动关键:**先囤10-15篇再开始发**,每天3篇测5种类型;我们现在正卡在"边想边发、量太少"。
