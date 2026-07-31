@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-31T08:22:15.428Z
+  modified: 2026-07-31T09:12:08.504Z
 ---
 
 ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线。**我=获客核心(老板07-30令)。**
@@ -24,6 +24,15 @@ ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线�
 - ❌ 具体商家故事(98一锅猪肚鸡他不舍得点→他就点了)=案例=作废,这是07-21就定的规矩我又踩;
 - ✅ 正解=**讲机制**(人掏钱前要先说服自己→文案分两层→理由层),**行业中性**(说"商品/店",不举餐饮/服装任何单一行业),**产品在解法位**(公式③:"我现在不自己想,让AI照着场景直接生成");
 - 举例=画面用示意图代替,不用故事。
+
+## 🔴🔴🔴 出素材一律走自家平台(07-31 总指挥转达老板令,信箱)
+**国内营销的图和视频一律用我们自己平台产,不用外部工具。** 我 07-31 直连中转站(manxueapi)烧 Seedance,**单条约6元;平台 grok 10秒才60积分(约0.6元),差十倍以上**,老板当场火。教训:**开烧前先查单价,不是只查能力**。
+- 平台生视频:`POST https://api.thinknova.top/api/v1/business-video-assets/tasks`(带商家端登录 cookie + `x-csrf-token`,漏了419);必填 businessScenario/caseId/industryId/outputType/**durationSeconds(10/15/30,必填)**/productName/offer/selectedOptions{copyLanguage,videoRatio};选模型只认 `videoModelId`(写 modelId 被静默无视)。查结果 `GET /api/v1/ai/tasks/{taskNo}?assets=1` → `output.childTasks` 三段 + `assets[0].publicUrl`。
+- 平台生图:`/zh/app/capabilities/text_to_image`,产物天然是平台资产,`assets[0].assetNo` 才能回填封面(外链不收)。
+- 价目(07-31):10秒60分 / 15秒75分 / 30秒180分;**30秒不推荐**(编剧按15秒出稿铺满30秒,台词念两遍,待技术)。国内营销优先15秒。
+- 能力:grok 系中文口播稳但**转场只能溶解做不到硬切**;omni 硬切准但**不能说中文**。参考图只在生图(分镜板)阶段生效,视频层只吃1张主图。
+- 纪律:烧前先说清行业/场景/案例/填了什么/验证什么;烧完验编剧 source=text_model 和 task.model;批量串行≥20秒;逐帧验收。
+- ⚠️ **信箱要全文扫**,不能只看「给 Claude(Code)」栏——这条令写在「给国内营销」栏,我漏了一次。
 
 ## 🔴🔴 铁流程(违者挨骂,本战役连吃三次)
 1. **样片先行**:任何新形态先出≤12秒样片→老板批→才渲整条。免费额度也一样,先批后动。
