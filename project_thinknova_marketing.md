@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-31T07:28:15.223Z
+  modified: 2026-07-31T07:38:12.132Z
 ---
 
 ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线。**我=获客核心(老板07-30令)。**
@@ -36,7 +36,10 @@ S_rbgc0p2a2 = **混合样本版**(16s平静v2+16s牢骚v3清洁版拼接,07-31�
 ## 📍 悬案(07-31深夜更新)
 1. **桌面「样片C2_知识版_12秒待批.mp4」等批**(黑底亮字+知识普及重写版);批了→渲整条28.9s(`hf-test/comp_c2v8.html` 已备好全本,音频`vo3/c2/C2_v8.mp3` 28.9s+逐字`C2_v8_words.json`;12.4s样片版=comp_c2v8_sample.html)。
 2. 作废留档:娱乐版comp_c2fun*、水墨浅底comp_c2v3*、餐饮案例版音频C2_full_v2/C2_v5(带案例,违红线)。
-3. **踩过的技术坑**:GSAP `fromTo` 默认 immediateRender,from里opacity>0的元素会从第0帧就漏在画面上 → 这类tween必须加 `immediateRender:false` 或先 `tl.set(...,0)`。
+3. **踩过的技术坑(三条,做新片直接照抄)**:
+   - GSAP `fromTo` 默认 immediateRender,from里opacity>0的元素会从第0帧就漏在画面上 → 必须加 `immediateRender:false` 或先 `tl.set(...,0)`。
+   - **文字重叠根因=固定 top + 长句折行**(11字×104px>940px容器)。**正解=分场容器(每场一个.sc,场内 .ln 流式排版)+ nowrap + JS量宽自动缩字号**(`while(ln.scrollWidth>MAXW) fs-=3`),结构上不可能再叠。
+   - **黑底铁律(07-31老板)**:「如果是黑底,必须要有足够多画面来证明」——黑底=画面密度要求更高:①第一帧就要有图形(不能只有字) ②图形要大要靠中(stage top≈700,元素比浅底放大1.2倍) ③要有恒定动效垫底(点阵漂移/光带扫过/底部进度条) ④聚光底色要够亮(#4C351F级),暗角别压过.3。
 3. 渲法:comp拷成`hf-test/my-video/index.html`→`npx --yes hyperframes@0.7.62 render . --experimental-fast-capture=false -o renders/X.mp4`→ffmpeg合音轨。**坑:多video块渲染卡帧824=末块差一帧,砍末块或时长收0.1s**。
 4. C2批完→C1《卖光了》/C3《主页门头》/A2《顾客夸你》照模板量产(脚本在总库标待批)。
 5. 小红书16-20活人版(人设=帮小店做内容的人)在桌面txt等老板校准细节后发;数据回填后与旧11-15对照验证"活人号"诊断。
