@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-07-31T13:24:28.974Z
+  modified: 2026-07-31T13:49:17.914Z
 ---
 
 ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线。**我=获客核心(老板07-30令)。**
@@ -70,6 +70,8 @@ ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线�
 - `~/.claude/skills/xhs-note` = 写单篇笔记,**四根柱子:选题→标题→配图→文案**(三内容柱50/30/20+五类高爆选题;标题≤15字五开法;封面五要素五版式+**493出中文封面**;文案具体化+勾评论)+**违禁词五级扫描**+AI味词黑名单
   🔴 原库腔调是美妆学生党号(姐妹们/绝绝子/emoji轰炸),**只学结构不学腔调**——我们读者是三四十岁开店老板
 - `~/.claude/skills/xhs-growth` = 涨粉/SEO/冷启动策略(本地化自 vivy-yi/xiaohongshu-skills **132技能库**,全量在 `00_规格与参考/xiaohongshu-skills/skills/` 九大类)
+🔴 **132库里文案真货是 `seeding-copywriting`(18KB,PAS/能力→好处→结果/异议处理/风险反转)和 `trust-building`(35KB,80/20给价值)**;`copywriting-skills` 只有4.4KB全是废话,别读它(07-31 老板骂"你只看了一个skills"的根因)
+🔴 新克隆(07-31):`guizang-social-card-skill`(**小红书图文卡片生成,28版式10主题,HTML→PNG,AGPL+商业授权**,接进产品要谈授权)、`autoclaw-xhs`、`XiaohongshuSkills`(自动发布)
 🔴 最高危:**「搞钱/变现」违禁词**——"帮小店多卖钱"必须改"顾客更愿意进店"。
 🔴 冷启动关键:**先囤10-15篇再开始发**,每天3篇测5种类型;我们现在正卡在"边想边发、量太少"。
 🔴 SEO:每篇标题必须含核心词(开实体店/小店经营/实体店引流/门店文案/店铺短视频/夫妻店/开店第一年);关键词从搜索下拉+底部相关搜索+爆款标题共性来。
