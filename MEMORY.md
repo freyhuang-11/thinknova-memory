@@ -86,7 +86,9 @@
 - 🔴 [字节手术+无台词开关](project_thinknova_0729_byte_surgery.md) — voiceMode=none 早就存在(22条TVC在用);omni 中文边界看 screenwriter-stack
 - 🔴 [品牌产品行业+TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;建单500 排查法
 - 🔴 [定点口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
-- 🔴🔴 [国内营销线](project_thinknova_marketing.md) — **主战场·07-31深夜现状**:画风终态=黑底亮字版(黑底+楷体奶白+亮橙金关键词+红印章+白闪+满屏橙收锤,小蓝技法:海报叠字/圆吞转场/线稿自画/拉焦/衰减震屏),C2v4样片12.4s待批(批了扩全本→C1/C3/A2量产);音色=混合样本版;人像彻底撤(数字人不做);小红书活人号16-20待发;🔴铁流程=样片先行/先批后动/查重三张表
+- 🔴🔴 [国内营销线](project_thinknova_marketing.md) — **主战场·07-31收工态**:介质已换=**AI实拍空镜打底+两层字幕(底部全程口播字幕+中部大字卡)+老板音色**,所有平面画风(娱乐版/水墨/黑底/纸底彩图)全废;**台词写法已定稿**(《花大几千请人拍》48s老板验收通过,skill=video-script-style);当天出六条成片在D盘桌面;素材一律走平台文生视频**494「经济实惠文K」**;🔴铁流程=**脚本先给老板过目才动手**/样片先行/烧前查单价/CDP超时先查列表再重发
+- 🔴 [小红书两把尺](project_thinknova_marketing.md) — 写笔记用 `/xhs-note`(违禁词五级扫描·AI味黑名单),涨粉SEO冷启动用 `/xhs-growth`(本地化自132技能库);最高危=「搞钱/变现」违禁词;冷启动要先囤10篇再发
+- 🔴 [做视频四件套skill](project_thinknova_marketing.md) — 写脚本按顺序调:`video-script-style`(台词)→`high-retention-hook`(前3秒)→`hkrr-clock`(全片留存)→`hurricane-shot-prompt`(分镜+生成提示词)
 - 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;07-30 重定价:omni/wan/sora=3分/秒,grok系=4分/秒;价格三口径待技术
 - 🔴 [HyperFrames 生产线](reference_hyperframes_production.md) / 🔴 [音色克隆生产线](reference_voice_clone_pipeline.md)
 - [实体店两个 Agent(工程主线)](project_thinknova_offline_agents.md) — CTA 未选强加已在 07-31 提示词层修复
