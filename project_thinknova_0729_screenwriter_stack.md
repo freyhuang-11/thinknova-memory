@@ -4,7 +4,7 @@ description: 触发:动编剧层任何东西(提示词/lineValidation/烧验/台
 metadata: 
   node_type: memory
   type: project
-  modified: 2026-07-30T18:58:10.871Z
+  modified: 2026-07-31T06:48:18.420Z
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
 ---
 
@@ -51,6 +51,14 @@ metadata:
 4. **规则要求「写满」+素材贫乏+禁虚构=空话注水**;必须给贫料出路(常识属性)。
 5. 编辑 systemPrompt 搬块必须用带正文前缀的唯一锚,indexOf 命中引用文本会切断句子(踩过)。
 6. 兜底/回退单的症状(切镜/语速/语种乱)全是兜底模板+grok 即兴的锅,规则冤案高发区。
+
+## 🔴🔴 07-31 清晨·多参阶梯定论 + 30秒真相 + 参考图跟随修复(接终局)
+- **多参定论:grok 482 上游只吃 1 张参考图**。capability max 7/5/2 三档实测出站 4/4/2 张全被供应商拒(「模型方暂时未能完成」),回滚 max=1 立即恢复——技术文档设计的双参在 grok 上不成立;要多参=技术查出站格式或换上游模型。**capability_json 编辑位置=admin 模型编辑弹窗「模型能力JSON」框(referenceImages{max,min,transport,firstFrame,primaryReference,providerImageTransform},API 读不到,只能 UI 改,盲写会清字段)**。
+- 🔴 **事故教训:能力 JSON 保存成坏状态 → 15 秒建单全线 500(商家侧宕机),重存即愈**。诊断法=按时长隔离(10秒过/15秒挂=锁定该时长派发模型的配置)。
+- **参考图不被跟随已根治(生图层)**:根因=16KB 生图提示词淹没参考图+编剧脑补人物外观。修法:生图链两模板 8728→~3100B(参考图约束置顶+「文字与参考图冲突以参考图为准」+质感四铁律保留全文——过度压缩会掉画质,老板校准:范围内尽量控必要可超4096);编剧加「你看不到参考图,绝不自行描述有参考图对象的外观」。lock6/7 实证人物/产品跟图。
+- **前3秒叠镜修复**:板→第1镜溶解残影,videoTemplate 加「开场第一秒单层干净」硬规+试点案例黑幕 0.5→0.9s(food_s01_new),lock7 实证干净;**473 条整板黑幕是否统一 0.9 等老板拍板**。
+- **30 秒真相**:现行=单段路径(video_10s+durationSeconds30,484 内部尾帧接段→一份15秒稿念两遍);`video_30s_compound` 三段路径**被后端停用**(422「不再支持」)——`promptComposer.durationPolicies` 有 10/15/30_compound 分时长策略(技术留的结构!),30_compound 的 videoPrompt/assemblyPrompt 我已填好(三段式:钩子/卖点/信任CTA,双写),**等技术重新打开该路径或给 lineValidation 分时长档**。
+- 其它:referencePolicyByDuration 10/15/30 全 allowStoryboardCrops:true 已在库;TVC 对客文案=「广告大片(纯画面配乐)」+22条摘要正向说明(不写"无台词");价格双层=模型表(计费,已对齐)+前台显示价(第三存储点,待白天开模型弹窗查「定价JSON」框);484 能力JSON多参未动(等 grok 结论,现无意义)。
 
 ## ⏳ 残留(07-31 03:00)
 1. ✅ **三锁双参已验通(db787156c4c0,老板实看人像锁住+我复核纠错)**:人物(3858)+场景(3859)双参**在生图阶段进管线**(image 子任务 `input.images` 带 role:person/scene,image_to_image 画板)→ 板按参考画 → 裁格进 grok = 锁经板链路生效。⚠️ 我曾只查视频子任务看到 1 张就误判"没进管线"——**教训:用户参考图注入点在生图阶段,视频阶段只喂板/裁格是设计;查参考图进没进要看 image 子任务的 `input.images[].role`**。唯一余问(问技术一句话):模型表 maxRef=2 是否意图让 i2v 阶段直收 2 张(现运行时 `_reference_image_limit=1`)。
