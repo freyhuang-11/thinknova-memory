@@ -92,6 +92,7 @@
 - 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;07-30 重定价:omni/wan/sora=3分/秒,grok系=4分/秒;价格三口径待技术
 - 🔴 [HyperFrames 生产线](reference_hyperframes_production.md) / 🔴 [音色克隆生产线](reference_voice_clone_pipeline.md)
 - [实体店两个 Agent(工程主线)](project_thinknova_offline_agents.md) — CTA 未选强加已在 07-31 提示词层修复
+- 🔴 [官网博客运营 API](reference_thinknova_blog_ops.md) — 写/发官网博客前必读;纯 API 无后台页、要 blog.write 令牌(我手上没有)、**中英双语全填才准发**、封面必须平台资产编号横图、公开读接口免令牌可自验
 - [扫码发布深链配置](reference_thinknova_publish_schemes.md) — 四平台已真机验证
 
 ### 内容与产品规矩
