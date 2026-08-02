@@ -93,6 +93,7 @@
 - 🔴 [HyperFrames 生产线](reference_hyperframes_production.md) / 🔴 [音色克隆生产线](reference_voice_clone_pipeline.md)
 - [实体店两个 Agent(工程主线)](project_thinknova_offline_agents.md) — CTA 未选强加已在 07-31 提示词层修复
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — **探店片型第0步必读**:一镜一图vs一片一图;萍萍台词公式(钩子→第2句价格锚→短句→三连催单,催单被我们总纲禁着待老板放行);真差距=声调起伏(TTS)+切镜密度(grok不硬切)+台词结构;**omni老板定论砍掉**(中文转英语/画面字乱码/产品锁不住);A/B实测7格撞4096墙;探店案例=`food_beverage_s01_tandian`(条件式门头/固定男声/案例级黑幕/特写≤七成)
+- 🔴🔴 [海报场景改造 08-03](project_thinknova_poster_scene_revamp.md) — **动海报场景/案例/styleRule 第0步必读**:两线案例表已实证独立;S14小红书封面/S15公众号首图/S16朋友圈三新场景已上线烧验(柠檬茶封面效果极好);styleRule撤低饱和+词表黑白名单;scenePrompts 13条重写+S13补键;S11改名出镜;**场景注册运营自己能做**+案例PUT裸对象配方;待办=S16随手拍压不过copy层待拍板/三案例封面待传/铺行业待拍板
 - 🔴 **08-03 遗留待办**:①门头做进核心设置(客户自选,待技术/老板定)②OPS-VIDEO-20260803-01 技术卡已写好老板拍板发(lineValidation缺时长维度+storyboardGuard 37字节截断)③10秒单临时规避走15秒④海报 copy_rules「价格必留」opsEditable无入口待问技术⑤门头/产品锁不死=模型问题等老板换模型再测
 - 🔴 [官网博客运营 API](reference_thinknova_blog_ops.md) — 写/发官网博客前必读;纯 API 无后台页、要 blog.write 令牌(我手上没有)、**中英双语全填才准发**、封面必须平台资产编号横图、公开读接口免令牌可自验
 - [扫码发布深链配置](reference_thinknova_publish_schemes.md) — 四平台已真机验证
