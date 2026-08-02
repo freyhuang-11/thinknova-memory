@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-01T05:55:57.773Z
+  modified: 2026-08-02T10:27:42.555Z
 ---
 
 # 官网博客运营(2026-08-01 技术交付,本期纯 API 无后台页面)
@@ -16,7 +16,8 @@ metadata:
 - 已上线并可读。**分类只有 1 个**:`local-store-marketing`(实体店内容营销)。
 - **标签 10 个**:local-store-content / poster / short-video / customer-faq / multilingual / customer-objections / price-explainer / process-video / small-business / content-workflow。
 - **已发文章 4 篇,全部 07-30 发布**:multilingual-faq-cards-local-stores / ai-content-workflow-busy-local-store-owners / how-to-explain-prices-with-process-poster-short-video / ai-poster-short-video-ideas-local-stores。
-- 🔴 **四篇 `cover_image_url` 全是 null = 一张封面都没有**(SEO 字段倒是都填了)。补封面正好用我们自己的海报 agent 生成 16:9 横图 → 上传 `POST /assets/upload` 拿 asset_no → `PUT` 回 `cover_asset_no`。**需要令牌才能写。**
+- 🔴 **四篇 `cover_image_url` 全是 null = 一张封面都没有**(SEO 字段倒是都填了)。🔴 **封面不是我的活(老板 08-02 定),是海外营销 Codex 的**,做法我已写进共享库信箱「给 Codex」栏。
+- 🔴 **08-02 更正**:旧版指南写"不能上传图片到博客接口",我据此在 07-31 告诉 Codex"只能重新文生图";**新版明写了 `POST /assets/upload` 直传接口**,本地图片直接传就能拿 asset_no。旧结论作废,以最新版文档为准。
 
 ## 🔴 开工前的硬前提
 - **写接口要 Bearer 服务令牌且必须含 `blog.write` 权限**,由系统管理员用 `php think app:service-token` 创建,**只在创建时完整显示一次**。我手上没有 → 要发博客必须先找老板/技术要令牌。
