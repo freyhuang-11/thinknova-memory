@@ -121,11 +121,15 @@ S_rbgc0p2a2 = 混合样本版(16s平静+16s牢骚清洁版,剩11次重训),speec
 ~~六条视频发小红书的建议~~ **已作废**:08-01 老板定视频不发小红书,六条全走抖音/视频号/快手,同题材冲突问题自动消失。
 积分:今晚出图共 448×13 + 493×2 ≈ 88 分。kraft 底图永久复用,封面此后零成本。
 
-## 🔴 08-01 实体店内容 Agent 建单接口(卡住,已给技术)
-**唯一必填字段 = `productOrServiceName`「商品/服务名称」**;price/address/activityTime/phone/wechat/extraNotes 全选填;行业22个+场景S01-S11 都是选不是打字。→ **对外可以说「必填的只有一样:你卖什么」,比「两句话」更硬,已核实。**
-接口真值:`GET /api/v1/offline-store-content/config`(fieldSchemas/outputTypes[image·poster·video·all]/industries/scenes/commonOptionGroups[channel·style_tone·target_audience·conversion_action·urgency 均maxSelect1]/sceneOptionGroups按sceneIds/industryOptionGroups)。
-🔴 **`POST /api/v1/offline-store-content/tasks` 连续 500**(code 500001,零字段提示)。隔离实验:poster/image/video 三种 outputType **全 500 → 排除 outputType,是请求体结构问题**。500 不扣积分。已写卡 `02_交付内容/给技术_OPS-OSC-20260801-01_实体店内容建单请求体规格.md`,要正确请求体样例。**技术回之前不再猜着发单。**
-🔵 08-01 老板定:**把「商品/服务名称」和「活动」都改成必填**(让对外「填两样」的口径和产品对齐)。**字段必填性=结构改动,交技术,我不碰**。已写进同一张卡的 6.5 节,并提醒了代价(加必填 vs 零动脑北极星有张力;另一条路是不改产品、把说法改成「必填只有一样」)。
+## 🔴🔴🔴 海报/成片建单 = `business-assets`(08-02 打通,卡了一整轮的坑)
+**页面入口**:工作台首页两张卡 → 做海报 `/zh/app/business-assets`;做视频 `/zh/app/business-video-assets`。
+**建单**:`POST /api/v1/business-assets/tasks`
+`{businessScenario, caseId, industryId, outputType:"poster", productName, offer, selectedOptions:{copyLanguage:"zh_cn",outputRatio:"9:16"}, sellingPoints:[]}`
+**海报 6 积分/张**(实测 task_89f546609a82)。
+辅助:`GET /api/v1/business-assets/config`(businessActions=new_item/promotion/bestseller… 各带 sceneId)、`GET /api/v1/business-assets/reference-cases`(24 案例,如 `food_s03_drink` 招牌饮品·出杯)。
+🔴🔴 **卡整轮的根因**:一直往 `offline-store-content/tasks` 发——那只是 config 命名空间,**不是建单端点**,连吃 4 个 500,还写了张卡准备甩给技术。
+**老板一句「你出内容和技术有什么关系」点醒**:发技术之前必须自验「我自己能不能做」,这次没过这一关。
+**正确做法:接口打不通就去页面上看真实入口**,不要猜着发。技术卡已撤销。
 
 ## 📝 08-01 待审(已产出,老板还没过目)
 - `对外推介/营销视频_导演台/小红书_第2批5篇_待审_2026-08-01.md` — 4纯方法+1带解法(降回80/20);01=补总表第11条、02=补第15条;**图还没做**,批了再做,新烧画面清单会先发他
