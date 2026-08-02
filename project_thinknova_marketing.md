@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-08-02T15:37:30.822Z
+  modified: 2026-08-02T15:58:32.805Z
 ---
 
 ThinkNova 国内营销线(小红书/抖音/视频号/快手)。Codex=海外线。**我=获客核心(老板07-30令)。**
@@ -131,7 +131,17 @@ S_rbgc0p2a2 = 混合样本版(16s平静+16s牢骚清洁版,剩11次重训),speec
 ~~六条视频发小红书的建议~~ **已作废**:08-01 老板定视频不发小红书,六条全走抖音/视频号/快手,同题材冲突问题自动消失。
 积分:今晚出图共 448×13 + 493×2 ≈ 88 分。kraft 底图永久复用,封面此后零成本。
 
-## 🔴🔴🔴 海报/成片建单 = `business-assets`(08-02 打通,卡了一整轮的坑)
+## 🔴🔴🔴 视频建单 = `business-video-assets`(08-02 深夜打通,和海报是两个 namespace)
+- **海报 → `/api/v1/business-assets/tasks`(outputTypes 只有 poster)**;**视频 → `/api/v1/business-video-assets/tasks`(outputTypes 只有 video)**。两个 config 长得几乎一样,别混。
+- **怎么找到的**:`offline-store-content/config` 的 `workspaceUi.sidebarNav` 里有 `to=/app/business-assets` 和 `to=/app/business-video-assets`。**又一次验证「看页面/看导航,别猜接口名」**——猜了 4 次全是 500。
+- 🔴 **`offline-store-content/tasks` POST 一律 500**(GET 列表和 config 正常)。它是 config + 列表 namespace,**不是建单口**,别再撞了。
+- 🔴🔴 **时长这个键必须同时放两处**:顶层 `durationSeconds:10` **且** `selectedOptions.durationSeconds:10`。只放一处(或换名 videoDuration / preferredVideoDurationSeconds / videoDurationSeconds)一律 **422「请选择视频时长」**。
+- **最小可用 body**:`{businessScenario:'new_item', caseId:'food_s01_combo', outputType:'video', durationSeconds:10, selectedOptions:{copyLanguage:'zh_cn', videoRatio:'9:16', durationSeconds:10}, sellingPoints:[], productName, offer}`。头带 `x-csrf-token`(任意 GET 响应头取)+ `x-thinknova-locale`。
+- **可选维度**(detailOptionGroups):copyLanguage / platform / videoRatio / videoStyle / appearanceMode / visualFocus / endingCta / paceLevel / locationEmphasis。
+- 🔴 **CDP 单次 Runtime.evaluate 上限 45 秒**,JS 里写轮询循环必超时。轮询要拆成多次短调用。
+- 💰 **视频价 = 30 积分底 + 3 积分/秒**:10秒=60、15秒=75(config `pricing.video.10/.15` 与近 20 单真实 creditCost 双证)。老板 08-02 定:**对外主报 10 秒=60 积分口径**。
+
+## 🔴🔴🔴 海报建单 = `business-assets`(08-02 打通,卡了一整轮的坑)
 **页面入口**:工作台首页两张卡 → 做海报 `/zh/app/business-assets`;做视频 `/zh/app/business-video-assets`。
 **建单**:`POST /api/v1/business-assets/tasks`
 `{businessScenario, caseId, industryId, outputType:"poster", productName, offer, selectedOptions:{copyLanguage:"zh_cn",outputRatio:"9:16"}, sellingPoints:[]}`
