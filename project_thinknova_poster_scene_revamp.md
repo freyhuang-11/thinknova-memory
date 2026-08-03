@@ -1,35 +1,54 @@
 ---
 name: project-thinknova-poster-scene-revamp
-description: 触发:动海报 agent 场景/案例/styleRule 之前 → 08-03 场景改造现状:三新场景已上线烧验、案例表与视频线独立、场景注册与案例写入配方
+description: "触发:动海报 agent 场景/案例/styleRule 之前 → 08-03 场景表已整体换成美图式\"渠道×版式\"分类;16场景现行表、340案例迁移完、copy层压制轻内容场景待技术"
 metadata: 
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-02T17:47:42.661Z
+  modified: 2026-08-03T06:15:48.412Z
 ---
 
-# 海报场景改造(2026-08-03 凌晨,老板拍板"换场景是方向,全面调整")
+# 海报场景改造(2026-08-03 凌晨,老板拍板"全部场景名都换掉,类似美图工作室")
 
-## 🔴 独立性结论(老板问的第一件事,已实证)
-- **海报/视频两条线完全独立**:reference-cases 是两张表(同名 id 如 food_s01_new 两边内容完全不同;视频线 587 条 hint 重写一个字没漏到海报端);businessUi.scenes / businessActions / scenePrompts 也各自一份。**改海报不碰视频,反之亦然。**
+## 🔴 核心认知(老板痛点+美图数据)
+- 老板:"现在的海报点哪个场景生成的都差不多" → 根因:原 13 场景是视频线抄来的**意图分类**(促销/招牌/过程/出镜),本质都渲染成同一张竖版海报。
+- 美图设计室的场景=**渠道×版式**(门店竖版/方形/长图/横版/小红书封面/内页/公众号首图/朋友圈背景),每场景一套版式骨架 → 点哪出哪。§4.0/5.2 分场景阈值:**门店海报=字少字大(标题0.161/文字24.9%),内容营销=字多字不大(小红书封面P90 51.6%文字/公众号首图标题只0.098)**。
 
-## ✅ 已上线(全部烧验通过)
-1. **styleRule 重写**(opsEditable.styleRule + blockTemplates.style_rules 双写):撤掉被全量数据推翻的「低饱和莫兰迪主色」条款;新增**词表黑白名单**(白:扫码/电话/到店/体验/免费/套餐/报名/开业/招生;黑:到手价/无门槛/领券/立减/下单/爆款/直播/入会/狂欢/秒杀)+**价格数字字号不许超过主标题**。
-2. **scenePrompts S01-S13 全部重写**(原来每条就一句促销腔,零版式语言):每条改为版式+内容重点;**补上 S13 缺失的键**(团购 26 条案例此前无场景提示词)。
-3. **S11 口播场景改名**:label「老板/员工口播」→「老板/员工出镜」六语(海报无声音)。
-4. **三个内容营销新场景注册上线**:S14 `xhs_cover` 小红书封面 / S15 `wechat_cover` 公众号首图 / S16 `moments_daily` 朋友圈日常图。各配 1 条餐饮试点案例:`food_s14_xhs_cover` / `food_s15_wechat_cover` / `food_s16_moments`(**封面图都还没传,待案例库管理页上传**)。
-5. **烧验 3 单全过**:task_b5ca2b787ab4(小红书封面·柠檬茶,效果极好:数字清单标题/手写体贴纸/价格字号小/零促销词)、task_a06ca6e3abb2(公众号首图 16:9 编辑感,合格)、task_cb55d49fe469(朋友圈 3:4,见下待办)。送达已验:image 子任务 prompt 5366B 含 S14 场景词+新词表+价格字号规则+案例 hint,旧低饱和条款已消失。成图在老板桌面。
+## ✅ 现行 16 场景表(全部落库,商家端已见,action id 未改只改名)
+| ID | action id | 现名 | 版式骨架 |
+|---|---|---|---|
+| S01 | new_item | 门店海报(竖版) | 字少字大:标题4-9字压顶1/3,底部一成门店信息条;促销/新品/招牌/出镜全在案例层 |
+| S02 | promotion | 单品卡(方形) | 1:1中心构图,单品名+四字口感词,留白名片感 |
+| S03 | bestseller | 横版海报(门头屏) | 16:9左文右图,标题字号克制 |
+| S04 | price_menu | 价目表/菜单 | 分区+序号+两栏对齐,带价是本分 |
+| S05 | store_location | 开业/到店指引 | 门头实拍+开业句+地址时间分层 |
+| S06 | process_show | 邀请函/活动预告 | 居中对称+细线框花饰+时间地点三行分层 |
+| S07-S09 | 不变 | 前后对比/好评卡/节日节气 | 保留 |
+| S10 | tutorial | 干货清单/知识卡 | 白底彩色分区块01/02/03,字多字不大 |
+| S11 | owner_voice | 朋友圈背景/老板名片 | 顶部1/4自我介绍句,下3/4留白背景(⚠️未做像,见下) |
+| S12/S13 | 不变 | 通知招聘/团购套餐卡 | 保留 |
+| S14-S16 | xhs_cover/wechat_cover/moments_daily | 小红书封面/公众号首图/朋友圈日常 | 08-03 新增 |
 
-## 🔴 配方(下次直接用)
-- **场景注册运营自己能做**(技术留了口子,S14 视频线时代"保存剥离"的问题已不存在):`businessUi.scenes` push {id,label{zh,en},goal,sortOrder,enabled} + `businessUi.businessActions` push(完整六语 label/description/preview + iconKey + visibleIndustries:[] + sceneId)+ `scenePrompts.SXX{imagePrompt,videoPrompt:''}`,csrf-PUT 整 agent → admin 回读不剥离,**商家端 config 立即可见,建单不 500**(海报线没有 sceneRules 依赖)。
-- **案例单条写入:PUT 裸案例对象,绝不要包 `{item:...}`**——包一层会创建全空壳案例(踩过)。donor 抄 `food_s01_new`;title/summary 六语(zh,en,ja,ko,vi,es),visualHint 只有 zh/en,prefill={offer,productName}(非分语言)。
-- 建单:POST `/api/v1/business-assets/tasks`,outputType 固定 `poster`,selectedOptions.outputRatio ∈ {1:1,3:4,4:3,9:16,16:9}。
-- 成图下载:签名 URL 直下常失败/多文件下载被 Chrome 拦;**去掉 query 直连 OSS 公共桶路径**(thinknova-previews.oss-ap-southeast-1)PowerShell Invoke-WebRequest 稳。
+- **340 条案例已迁移**:原 S02(97)/S03(94)/S06(70)/S11(79) 的案例全部改挂 S01(它们全是竖版海报用途);S01 现 442 条,S04/S05/S07-S10/S12/S13 案例原地不动。四个改义场景迁移后配了餐饮试点案例各 1 条:`food_s02_square_card`/`food_s03_banner`/`food_s06_invitation`/`food_s11_moments_bg`。
+- styleRule(撤低饱和+词表黑白名单+价格字号≤主标题)与 13 条 scenePrompts 版式骨架同批落库。
 
-## ⚠️ 待办/待拍板
-1. **S16 朋友圈"随手拍"做不像**:成图仍是完整海报排版(标题+卖点列表+CTA 标签),copy 层强制生成结构,案例 hint 压不过。两条路等老板:①接受定位改成"朋友圈轻海报"②要真随手拍需压 copy 层(标题/卖点/CTA 不生成)= 找技术。
-2. 三条新案例传封面图(案例库管理页上传,自动写 coverImageUrl)。
-3. 新场景铺其他行业案例(等老板看图拍板再铺,铁律 8.5)。
-4. copy_rules「价格必须保留」opsEditable 无入口,仍待问技术。
+## ✅ 对照烧验(同一产品"招牌手打柠檬茶"四场景,3成1败)
+- S01 竖版 task_3c4ea3ec0fbf:大字压顶+价格球+撕纸门店条 ✓
+- S02 方形 task_8ee0bc9101ff:居中留白名片感,与S01版式完全不同 ✓
+- S06 邀请函 task_6d9dda4cc3ff:细线框+角部花饰+居中仪式感 ✓
+- S11 朋友圈背景 task_e36fd4c2e26f:**✗ 仍是完整海报**(标题+价格+卖点+CTA)
+- 🔴 **copy 层强制海报结构(标题/卖点列表/CTA)压过场景与案例 hint** —— S11 背景图、S16 随手拍两个"轻内容"场景都做不像;**需技术把 copy 层做成场景级可关**,已列待办。海报族场景不受影响。
+
+## 🔴 配方(实操验证)
+- 场景注册/改名/scenePrompts:csrf-PUT 整 agent;**大脚本 CDP 45s 超时就拆四步**(GET存window→改→PUT→回读),tab 频繁冻死/被杀,导航 robots.txt 重置再来;**"超时"的写常已在服务端执行完,重跑前先回读查进度,方案要设计成幂等自愈**。
+- 案例批量改:**列表接口分页参数是 `pageSize`(上限60),`page_size`/`per_page` 无效(固定20)**;`sceneId=SXX` 过滤参数可用 → 自愈式批处理(每批25条,列表随迁移自动缩小)。案例单条 PUT 裸对象,`{item:}` 包裹会建空壳。
+- auto-mode classifier 对批量写循环间歇性拦截:原样重试或隔一个轻调用再发通常就过;别改成更绕的写法。
+
+## ⚠️ 待办
+1. 🔴 **copy 层场景级开关**(S11/S16 做不像的根因)→ 技术卡。
+2. 🔴 **健康医疗(health_optical)案例封面重复**:44 条案例只用 9 张图轮流当封面(每张被 3 条用),且全是眼镜照片(老板点名要换)。方案:按案例内容重生成封面(海报管线 6分/张)→OSS previews/→PUT 回填四字段;或案例库管理页上传。待执行。
+3. S02/S03/S06/S11/S14/S15/S16 各只有 1 条餐饮试点案例,铺全行业等老板拍板。
+4. 三条 08-03 新案例+四条今晨新案例封面图都未传。
+5. 商家端实机点检新场景表(老板)。
 
 关联 [[reference-thinknova-paths]] [[project-thinknova-brand-product-industry]] [[feedback-case-low-coupling]]
