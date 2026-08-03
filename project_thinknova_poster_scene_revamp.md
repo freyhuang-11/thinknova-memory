@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-03T06:15:48.412Z
+  modified: 2026-08-03T07:28:18.618Z
 ---
 
 # 海报场景改造(2026-08-03 凌晨,老板拍板"全部场景名都换掉,类似美图工作室")
@@ -45,10 +45,10 @@ metadata:
 - auto-mode classifier 对批量写循环间歇性拦截:原样重试或隔一个轻调用再发通常就过;别改成更绕的写法。
 
 ## ⚠️ 待办
-1. 🔴 **copy 层场景级开关**(S11/S16 做不像的根因)→ 技术卡。
-2. 🔴 **健康医疗(health_optical)案例封面重复**:44 条案例只用 9 张图轮流当封面(每张被 3 条用),且全是眼镜照片(老板点名要换)。方案:按案例内容重生成封面(海报管线 6分/张)→OSS previews/→PUT 回填四字段;或案例库管理页上传。待执行。
+1. 🔴 **copy 层场景级开关**(S11/S16 做不像的根因)→ 技术卡 **OPS-POSTER-20260803-02 已写好待老板过目发技术**(02_交付内容)。攻过两轮:blockTemplates.copy_rules/cta_rules 加豁免只去掉了价格块,卖点列表+CTA 是 business_fact/文案子任务结构层注入,文本层关不掉——铁证:task_3d34844e9ffe(S11复烧)。
+2. ✅ **健康医疗封面重生成完结(08-03)**:44/44 按案例自身场景+prefill 参数烧海报当封面,PUT 回填四字段,全量核验 44 张全唯一零重复。配方:清洗 prefill 的"如:"前缀当参数→建单(businessScenario 必须=案例现挂场景的 action id,用错=500)→succeeded 后取 publicUrl 去 query 的 OSS 公共路径回填。台账=03_工作台/健康医疗封面重生成台账_2026-08-03.md。**平台生成队列约1张/分钟,44张全程约40分钟,收割用后台 sleep 定时器分轮做**。
 3. S02/S03/S06/S11/S14/S15/S16 各只有 1 条餐饮试点案例,铺全行业等老板拍板。
-4. 三条 08-03 新案例+四条今晨新案例封面图都未传。
+4. 08-03 七条新试点案例封面图未传(可复用本条配方:烧一张回填)。
 5. 商家端实机点检新场景表(老板)。
 
 关联 [[reference-thinknova-paths]] [[project-thinknova-brand-product-industry]] [[feedback-case-low-coupling]]
