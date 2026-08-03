@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-03T15:00:53.519Z
+  modified: 2026-08-03T19:41:02.784Z
 ---
 
 # 东南亚语言扩充(2026-08-04 凌晨,老板令:补 SEA 语言+测正确性/流畅性)
@@ -25,10 +25,17 @@ metadata:
 ## 关联烧测单(08-04)
 海报五语对照:en task_217afe75f7d9 ✓ / es task_8d7f88339771(未逐字验) / vi task_d6a3ea739705 ✗半 / id task_c91e21fc2ffe ✗ / ms task_e133be5cbf21 ✗。视频:zh task_a8087673c381 / ms task_a7dd93a3cb9f / en task_0141981872d3 全死于通道故障(台词层已出稿可查)。
 
+## 08-04 夜班终态(演示日凌晨)
+- **视频五语矩阵完成 4/5**:en(44词,台词"Forget every lemon tea you've had"反常识钩子,英文编剧最灵)/es(43词)/ms(33词,曾尾巴3.5秒静默→ms 15s窗min 26→33已修)/id(停顿偏多但可用)全部出片并拷老板桌面;**vi 视频 5 连败**(死因散布 image×2/建单500×1/video×2 ≡ 供应商各层轮流抖非语言问题),第5次 task_9ecabde81891 结果待查。
+- **海报 copyLanguage 技术已修**(08-03 发版):ms/id/vi 海报全对零汉字;copyMode(full/minimal/none)同版上线,S10/S11/S14≡minimal、S16≡none 已配——S11 出"干净壁纸"、S16 出"随手拍"全成。
+- **中文节奏现值**:15s 窗 60-80(75 过紧曾致编剧终态失败——"别一次收太紧"第二次教训);videoTemplate 320字/816B 含【口播节奏】自然呼吸版(句号换气一拍/钩子后停一拍),实测停顿 0.18-0.8s 有层次。🔴 **动 videoTemplate 必先量最大单字节**:曾连加两段(+141字)顶穿 4096 杀编剧,老板抓的。
+- 逐格跟随性硬规实验段已撤(超字节),移入待测池。
+
 ## 待办
-1. video 通道修复后:烧五语视频矩阵,量语速/静默/断句 + 老板耳听流畅性;zh 单同时验句间停顿0.1秒+逐格跟随性硬规+补充说明前置指针(三改动都在库里未验)。
-2. 海报 copyLanguage 修复后:重开三语+烧验。
-3. ms/id 清真敏感规则(猪肉/酒精不入马来/印尼语物料)预埋行业层——未做。
-4. th 泰语等 ms/id 跑通后评估。
+1. vi 视频补齐(查 task_9ecabde81891;仍败则等供应商稳定后再烧)。
+2. 15s 中文 60-80 语速仍略赶(78字/13.5s≡5.8字/秒),进一步收紧走"多测再上"纪律。
+3. ms/id 清真敏感规则预埋行业层——未做。
+4. th 泰语等 ms/id 稳定后评估。
+5. 海报 vi 副标混排小瑕疵(用户 offer 英文原文保留导致)观察即可。
 
 关联 [[project-thinknova-poster-scene-revamp]] [[reference-thinknova-tech-docs-index]]
