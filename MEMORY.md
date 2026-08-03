@@ -94,6 +94,7 @@
 - [实体店两个 Agent(工程主线)](project_thinknova_offline_agents.md) — CTA 未选强加已在 07-31 提示词层修复
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — **探店片型第0步必读**:一镜一图vs一片一图;萍萍台词公式(钩子→第2句价格锚→短句→三连催单,催单被我们总纲禁着待老板放行);真差距=声调起伏(TTS)+切镜密度(grok不硬切)+台词结构;**omni老板定论砍掉**(中文转英语/画面字乱码/产品锁不住);A/B实测7格撞4096墙;探店案例=`food_beverage_s01_tandian`(条件式门头/固定男声/案例级黑幕/特写≤七成)
 - 🔴🔴 [海报场景改造 08-03](project_thinknova_poster_scene_revamp.md) — **动海报场景/案例/styleRule 第0步必读**:场景表已整体换成美图式「渠道×版式」16场景(老板拍板);340条案例迁入S01门店海报;对照烧验3成1败(S11/S16轻内容场景被copy层海报结构压住=待技术);styleRule词表黑白名单;两线案例表独立;场景注册/批量迁移/pageSize=60/裸对象PUT配方全在文内;待办=copy层场景开关技术卡/健康医疗封面44条只用9张图待重生成/铺行业待拍板
+- 🔴🔴 [东南亚语言扩充 08-04](project_thinknova_sea_languages.md) — **动输出语言第0步必读**:视频线 vi/id/ms 已上前台(编剧层通,TTS 待通道修复后测);海报线三语已回滚(copyLanguage 不进文案层=技术卡问题2,"中英对是模型翻译兜底不是链路对");加语言正门配方(optionsMode:replace+languagePolicy.map+lineValidation);待办=五语流畅性矩阵/清真规则/th 评估
 - 🔴 **08-03 遗留待办**:①门头做进核心设置(客户自选,待技术/老板定)②OPS-VIDEO-20260803-01 技术卡已写好老板拍板发(lineValidation缺时长维度+storyboardGuard 37字节截断)③10秒单临时规避走15秒④海报 copy_rules「价格必留」opsEditable无入口待问技术⑤门头/产品锁不死=模型问题等老板换模型再测
 - 🔴 [官网博客运营 API](reference_thinknova_blog_ops.md) — 写/发官网博客前必读;纯 API 无后台页、要 blog.write 令牌(我手上没有)、**中英双语全填才准发**、封面必须平台资产编号横图、公开读接口免令牌可自验
 - [扫码发布深链配置](reference_thinknova_publish_schemes.md) — 四平台已真机验证
