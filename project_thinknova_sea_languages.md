@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-04T15:28:48.056Z
+  modified: 2026-08-04T16:55:37.752Z
 ---
 
 # 东南亚语言扩充(2026-08-04 凌晨,老板令:补 SEA 语言+测正确性/流畅性)
@@ -36,6 +36,7 @@ metadata:
 2. **✅ 界面语言技术需求已口头交老板转技术**:补 th/ms/id 三个前端 i18n 语言包(UI 现 zh/en/ja/ko/vi/es 六个,输出语言九个,缺这三个对齐)。
 3. **✅ grok 多参餐饮单 = 成功且结论重大**:task_d9eda0289fc3(探店案例/古法窑鸡/15s/zh,scene=2935 P5门头+product=2926 P6砂锅鸡,旧asset_id复用免重传,派发482确认/编剧gpt-5.6-luna无回退)。**成片逐帧结论:①门头文字级锁定——「Huan xi 欢喜大排档」真实招牌+广东美食黄灯箱直接进片(比分镜板还准,分镜板只到风格级);②产品近乎复刻P6(同陶煲/鸡爪/芝麻/香菜);③15秒切了约5个镜头(门头出场→递煲→产品特写→吃鸡→店内收尾),旧"grok不硬切/一镜到底"的短板被多参明显缓解;④人物全程一致**。多参上线前后判若两个模型,探店片型可以拿这个当标杆配方。成片在老板桌面 grok多参测_欢喜大排档砂锅鸡15秒_task_d9eda0289fc3.mp4。P4 店内图无对应参考位,弃。
 4. **✅ vi 视频解禁**:第5单败于**供应商 402 TT API 欠费**(03:32,积分全退;vi 累计6败全是基建层,语言链路零失败),欠费当天上午恢复后补烧 task_bcff16537292 **一次成功**:多镜头推进、画面自动越南本地化(整鸡+香蕉叶+陶杯),停顿 1.0-1.36s×3 无死尾。⚠️ vi 台词逐字未验(见下条接口变化),编剧 source=text_model 无回退。成片在老板桌面 语言测_越南语15秒_task_bcff16537292.mp4。
+4.5 🔴 **08-04 午后老板追加令·全部卡 admin 401,登录后按序执行**:①**语言标签改本地文字**(老板抓的:前台下拉里越南语/印尼语/马来语/泰语显示的是汉字,对应国家的人看不懂;存量语言惯例=label 所有键都填本国文字,如日本語/한국어;改法=两 agent copyLanguage 的 vi→Tiếng Việt / id→Bahasa Indonesia / ms→Bahasa Melayu / th→ไทย,label 全键统一);②**模型改名**(老板令:grok 改"万能"方向但要好听,omni 改"人物质感更好"方向;我拟 grok=全能导演/omni=人像大师;名字住 admin models 表,GET /admin/api/v1/models 找 id 后 PUT,写法待实测);③**探店案例封面回填**:封面帧已传 OSS 公开可读 `previews/all/food_beverage_s01_tandian_frame.jpg`(取自 grok 多参成片 1.2s 门头+人物帧,同人同内容),等登录后案例单条 PUT 写 coverImageUrl;④vi 分镜图没压住=诊断已给老板(33B短版guard+缺禁令替换项,一句话补丁待老板点头);⑤**探店风格要真人博主感**(老板:现在太假)=案例级单刀改 tandian visualHint+台词口吻,AB 烧验后给老板过目,别动全局。
 5. 🔴 **接口变化(08-04 下午发现)**:商家端 `GET /api/v1/ai/tasks/{子任务no}` 现在对子任务一律返回 task:null(旧法失效)——**子任务取证改走 admin `GET /admin/api/v1/ai-tasks?keyword={taskNo}` 列表**(有 model_name/scriptwriter_fallback/prompt截断280);主任务 `?assets=1` 的 output.childTasks.scriptwriter 内嵌 source/fallbackReason 仍可判回退。台词全文两路都拿不到=验语言只能靠听成片或分镜。
 2. 15s 中文 60-80 语速仍略赶(78字/13.5s≡5.8字/秒),进一步收紧走"多测再上"纪律。
 3. ms/id 清真敏感规则预埋行业层——未做。
