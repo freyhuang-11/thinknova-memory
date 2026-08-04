@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-04T14:43:51.113Z
+  modified: 2026-08-04T15:07:21.246Z
 ---
 
 # 东南亚语言扩充(2026-08-04 凌晨,老板令:补 SEA 语言+测正确性/流畅性)
@@ -31,11 +31,11 @@ metadata:
 - **中文节奏现值**:15s 窗 60-80(75 过紧曾致编剧终态失败——"别一次收太紧"第二次教训);videoTemplate 320字/816B 含【口播节奏】自然呼吸版(句号换气一拍/钩子后停一拍),实测停顿 0.18-0.8s 有层次。🔴 **动 videoTemplate 必先量最大单字节**:曾连加两段(+141字)顶穿 4096 杀编剧,老板抓的。
 - 逐格跟随性硬规实验段已撤(超字节),移入待测池。
 
-## 🔴 08-04 早老板新令(admin 登录态 401 过期,老板重新登录后立即执行)
-1. **输出语言加泰语 th + vi/id/ms/th 全部去 β,不需要测试**(老板原话"不需要测试了")——两个 agent 的 copyLanguage options 都改;th 的 lineValidation 用 characters 度量(泰文无空格),预设 15s:50-90/10s:35-60 标待复测;languagePolicy.map.th 后端已有。
-2. **系统界面语言(UI locale,现 zh/en/ja/ko/vi/es 六个)加东南亚语言含泰语 = 前端 i18n 语言包 = 技术需求**,写进给技术的单子(老板发了界面语言菜单截图点名要加)。
-3. **grok 多参已上线**:用桌面 P4(店内环境·古法窑鸡灯牌)/p5(欢喜大排档门头,新加坡)/P6(砂锅鸡成品图)烧一单餐饮多参看锁定。参考位分配:scene≡P5 门头、product≡P6;P4 无对应位(店内图)。**p5/P6 旧 asset_id 可从 08-02 探店旧单 business 字段里捞**(task_f61d18751fbe / omni 双单),不必重新上传;P4 上传需过本地 CORS 服务器(夜里 CDP 冻,未成功过)。烧后核 i2v 提交图数(07-30 文档:maxRef≥2 时提交裁格首帧+完整分镜板 2 张,不加用户图——**多参真正影响的是生图阶段吃用户图+i2v 吃双图,跟随性可能提升,验证点在此**)。
-4. vi 视频第 5 次 task_9ecabde81891 待查(前 4 次败于供应商各层轮流抖非语言问题)。
+## ✅ 08-04 午后:老板新令四项执行完毕(登录恢复后)
+1. **✅ 输出语言泰语+去β已上线双前台**:视频+海报两 agent copyLanguage 均 = 9 语全无β(zh_cn/en/ja/ko/es/vi/id/ms/th),商家端 config 回读双确认。th 选项 label {zh:泰语,en:ไทย,ja:タイ語,ko:태국어,es:Tailandés,vi:Tiếng Thái} sortOrder 90。视频 agent th lineValidation 已写四镜像(masterPipeline+opsEditable × 顶层+byLanguage):`{metric:characters, 15s:50-90, 10s:35-60}` **标待复测**(老板令不测试直接上,但泰文 TTS/渲染从没烧验过,首个泰语单出问题先查这)。languagePolicy.map.th(303字)+opsEditable.languageMap.th 后端原本就有。
+2. **✅ 界面语言技术需求已口头交老板转技术**:补 th/ms/id 三个前端 i18n 语言包(UI 现 zh/en/ja/ko/vi/es 六个,输出语言九个,缺这三个对齐)。
+3. **grok 多参餐饮单已烧**:task_d9eda0289fc3(探店案例 food_beverage_s01_tandian/new_item/古法窑鸡/15s/zh),scene=2935(P5 欢喜大排档门头)+product=2926(P6 砂锅鸡)双参已确认进单(从 task_f61d18751fbe 捞的旧 asset_id,免重传)。验证点=i2v 提交图数+门头/产品锁定+跟随性。P4 店内图无对应参考位,弃。
+4. **vi 视频第 5 单 task_9ecabde81891 = 失败,死因新鲜:供应商 402 TT API 余额不足**(03:32,积分全退)。vi 累计 6 死因全是基建层(image×2/500×1/video×2/402欠费×1),语言链路本身从未败过。**欠费已恢复**(08-04 11:09、14:08 两单 succeeded)。vi 视频演示解禁需重烧一单成了才算。
 2. 15s 中文 60-80 语速仍略赶(78字/13.5s≡5.8字/秒),进一步收紧走"多测再上"纪律。
 3. ms/id 清真敏感规则预埋行业层——未做。
 4. th 泰语等 ms/id 稳定后评估。
