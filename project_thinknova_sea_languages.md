@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-04T15:07:21.246Z
+  modified: 2026-08-04T15:28:48.056Z
 ---
 
 # 东南亚语言扩充(2026-08-04 凌晨,老板令:补 SEA 语言+测正确性/流畅性)
@@ -34,8 +34,9 @@ metadata:
 ## ✅ 08-04 午后:老板新令四项执行完毕(登录恢复后)
 1. **✅ 输出语言泰语+去β已上线双前台**:视频+海报两 agent copyLanguage 均 = 9 语全无β(zh_cn/en/ja/ko/es/vi/id/ms/th),商家端 config 回读双确认。th 选项 label {zh:泰语,en:ไทย,ja:タイ語,ko:태국어,es:Tailandés,vi:Tiếng Thái} sortOrder 90。视频 agent th lineValidation 已写四镜像(masterPipeline+opsEditable × 顶层+byLanguage):`{metric:characters, 15s:50-90, 10s:35-60}` **标待复测**(老板令不测试直接上,但泰文 TTS/渲染从没烧验过,首个泰语单出问题先查这)。languagePolicy.map.th(303字)+opsEditable.languageMap.th 后端原本就有。
 2. **✅ 界面语言技术需求已口头交老板转技术**:补 th/ms/id 三个前端 i18n 语言包(UI 现 zh/en/ja/ko/vi/es 六个,输出语言九个,缺这三个对齐)。
-3. **grok 多参餐饮单已烧**:task_d9eda0289fc3(探店案例 food_beverage_s01_tandian/new_item/古法窑鸡/15s/zh),scene=2935(P5 欢喜大排档门头)+product=2926(P6 砂锅鸡)双参已确认进单(从 task_f61d18751fbe 捞的旧 asset_id,免重传)。验证点=i2v 提交图数+门头/产品锁定+跟随性。P4 店内图无对应参考位,弃。
-4. **vi 视频第 5 单 task_9ecabde81891 = 失败,死因新鲜:供应商 402 TT API 余额不足**(03:32,积分全退)。vi 累计 6 死因全是基建层(image×2/500×1/video×2/402欠费×1),语言链路本身从未败过。**欠费已恢复**(08-04 11:09、14:08 两单 succeeded)。vi 视频演示解禁需重烧一单成了才算。
+3. **✅ grok 多参餐饮单 = 成功且结论重大**:task_d9eda0289fc3(探店案例/古法窑鸡/15s/zh,scene=2935 P5门头+product=2926 P6砂锅鸡,旧asset_id复用免重传,派发482确认/编剧gpt-5.6-luna无回退)。**成片逐帧结论:①门头文字级锁定——「Huan xi 欢喜大排档」真实招牌+广东美食黄灯箱直接进片(比分镜板还准,分镜板只到风格级);②产品近乎复刻P6(同陶煲/鸡爪/芝麻/香菜);③15秒切了约5个镜头(门头出场→递煲→产品特写→吃鸡→店内收尾),旧"grok不硬切/一镜到底"的短板被多参明显缓解;④人物全程一致**。多参上线前后判若两个模型,探店片型可以拿这个当标杆配方。成片在老板桌面 grok多参测_欢喜大排档砂锅鸡15秒_task_d9eda0289fc3.mp4。P4 店内图无对应参考位,弃。
+4. **✅ vi 视频解禁**:第5单败于**供应商 402 TT API 欠费**(03:32,积分全退;vi 累计6败全是基建层,语言链路零失败),欠费当天上午恢复后补烧 task_bcff16537292 **一次成功**:多镜头推进、画面自动越南本地化(整鸡+香蕉叶+陶杯),停顿 1.0-1.36s×3 无死尾。⚠️ vi 台词逐字未验(见下条接口变化),编剧 source=text_model 无回退。成片在老板桌面 语言测_越南语15秒_task_bcff16537292.mp4。
+5. 🔴 **接口变化(08-04 下午发现)**:商家端 `GET /api/v1/ai/tasks/{子任务no}` 现在对子任务一律返回 task:null(旧法失效)——**子任务取证改走 admin `GET /admin/api/v1/ai-tasks?keyword={taskNo}` 列表**(有 model_name/scriptwriter_fallback/prompt截断280);主任务 `?assets=1` 的 output.childTasks.scriptwriter 内嵌 source/fallbackReason 仍可判回退。台词全文两路都拿不到=验语言只能靠听成片或分镜。
 2. 15s 中文 60-80 语速仍略赶(78字/13.5s≡5.8字/秒),进一步收紧走"多测再上"纪律。
 3. ms/id 清真敏感规则预埋行业层——未做。
 4. th 泰语等 ms/id 稳定后评估。
