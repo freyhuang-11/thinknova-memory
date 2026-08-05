@@ -107,6 +107,8 @@
 - 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — 建案例前必读;新建必过 3 条自检
 - [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 
+- 🔴🔴 [投资人运营计划 08-05](project_thinknova_investor_plan.md) — **谈融资/预算/会展/投流之前必读**:正式版已交付(S$100k/60-40两阶段/200-300解锁/渠道打包冲1000);老板规矩=成本必须确切数字;三个询价待办(SWITCH/SFMA/onePA);8月两展观展地推收连锁名单
+
 # Compass / TikTok 达人线(休眠)
 - [Compass 现状+14 条待办](project_compass.md) — 历史见 archive/compass_history_to_0729.md
 # 其他
