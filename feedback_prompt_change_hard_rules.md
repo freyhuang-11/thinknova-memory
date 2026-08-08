@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-08T08:17:13.154Z
+  modified: 2026-08-08T08:24:37.434Z
 ---
 
 # 改提示词的四条硬规（2026-08-08 编剧层全穿事故后立）
@@ -20,16 +20,43 @@ metadata:
 
 三次都已回滚。
 
-## ⚠️ 08-08 二次核查：字节机制**未被证实**，别当结论用
-我原来写「根因是字节预算超 4096」。**回头查证据，证不出来：**
-- videoPrompt 的实际组成 = `promptComposer.screenwriter.staticTemplates.videoTemplate`（939B）+ cells。
-- 我第 3 次改的 `promptAssembler.video.outputTypePrompts.video` **不在这个拼装路径里**，加它的字不会撑爆 videoPrompt。
-- 想拿 attemptTrace 的报错原文坐实，**三个接口全取不到**：商家 `/api/v1/ai/tasks/{子任务号}` 返回 task=null；admin `ai-tasks` 列表只有 status/prompt(截断)、没有 attemptTrace；父单 `output.childOutputs` 里只有 image/video，没有 scriptwriter。
+## ✅ 08-08 取到报错原文后的定论（我中途写过一版「字节机制证不出来」，**那版是错的，已撤**）
 
-**已证实的只有因果，不是机制**：改那个字段 → attemptCount=10；回滚 → 恢复。
-**更可能的机制是内容矛盾**（该字段写「禁止镜头切换/禁止叙事」，与另外三处「必须逐格切走/硬切/运镜推进」直接打架），不是字节。
+**取证接口（我曾记错说它返回 null，那是用数字 id 调的）**：
+`GET /admin/api/v1/ai-tasks/{task_no}` → `data.task.output.attemptTrace[]`，每条含 modelCode / errorCode / **errorMessage 原文**。用 **task_no**，不是数字 id。
 
-👉 **所以：4096 只约束 videoTemplate + cells 这条路径**（这条是老板定的死规矩，照守）。对**不在 videoPrompt 里**的字段，别拿"只减不增"当借口不修矛盾——那会让我为了错的理由放弃对的修法。改之前先确认**这个字段到底进不进 videoPrompt**。
+`task_8e08618a9091` 十次尝试原文（老板提醒「10 次报错不一样」才查的）：
+
+| 次 | 模型 | 报错 |
+|---|---|---|
+| 1-3 | luna | **videoPrompt exceeds 4096 bytes** |
+| 4 | deepseek-v4-pro | lines length out of range |
+| 5 | deepseek-v4-pro | lines are incomplete sentences |
+| 6 | deepseek-v4-pro | **videoPrompt exceeds 4096 bytes** |
+| 7 | terra | invalid JSON |
+| 8 | terra | **videoPrompt exceeds 4096 bytes** |
+| 9 | terra | invalid JSON |
+| 10 | deepseek-v4-flash | 成功，最终 videoPrompt **3106 字节** |
+
+**结论：4096 顶穿是真的（10 次里 5 次），但撑爆它的不是我们的固定模板，是编剧自己写的 cells。** 同一单，模型写得啰嗦就 4096+，收敛就 3106，差近 1000 字节全在 cells 上。
+
+## 🔴🔴🔴 系统性真相（46 单实测，08-08）
+| 指标 | 值 |
+|---|---|
+| videoPrompt 中位数 | **3489 B（占 4096 的 85%）** |
+| p90 / 最大 | 3955 / **4050**（离墙 46 B） |
+| 需重试的单 | **23/46 = 50%** |
+| 46 单总尝试次数 | **136（平均 3.0 次/单）** |
+
+**系统被设计成贴着硬顶跑，余量约等于零。** systemPrompt 同一段里两条规则互相打架：「每格90字，**写满不写少**，宁可占字数」vs「cells 总字数**不超过900字**，超了整单作废」。900 字中文≈2700B + videoTemplate 939B = 3639B，余量仅 457B。
+👉 **推论（重要）**：一半的稿子不是主力 luna 写的，是掉到 deepseek-flash 等最弱候补写的。**「台词差/情绪平/画面呆」有相当一部分不是提示词没写好，是稿子根本没让好模型写。** 评价提示词效果前，先看这单是第几次尝试、哪个模型出的。
+
+## 💡 字节从哪来（答「挤掉了谁」，且不碰画面描述）
+最大单 4050B 拆解：visual 1140 / **line 626** / **voice 564** / 其余 348。
+`voice` 与 `line` 的 `[[声线,感情,真人感:…]]` 包头**逐字重复同一套声线描述**；五格合计约 1000B 声线元数据，真台词只约 180B（**元数据是台词的 5 倍，占总预算 25%**）。
+而 08-02 已量过 TTS 不渲染逐句情绪（我们 LRA 2.7 vs 竞品 7.9）→ **25% 的预算花在引擎不读的指令上。**
+👉 去重可释放约 500-600B，**一个字画面描述都不用动**（老板底线：画面/人物/灯光/运镜/氛围绝不许为省字节砍）。
+⚠️ 未定：`voice` 与 `line` 包头**哪个是权威字段**——要么问技术，要么 A/B 烧验，不许猜。
 
 ## 🔴 顶穿的诊断判据（08-08 实证，最灵敏）
 **看编剧 `attemptCount`**（主任务 `output.childTasks.scriptwriter.attemptCount`）：
