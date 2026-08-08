@@ -28,7 +28,7 @@
 4.8 🔴 **查"有没有某能力"读结构化字段(`capability`),不拿 code/name 正则猜**
 5. 🔴 **指派式 > 禁令式**;必须禁止时禁令后立刻跟替换项;「写满」类要求必须给贫料出路,否则模型拿空话注水 → [详](feedback_directive_over_prohibition.md)
 6. 🔴 **落库 ≠ 送达**:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md)
-7. 🔴🔴🔴 **i2v videoPrompt 4096字节硬顶=死规矩(08-08 老板重申)**:videoTemplate 939字节+cells 2.4-3.0KB 已贴 3.3-3.9KB,**改任何进 videoPrompt 的字段只许减字,必须加就先删等量**;加字前要能答"挤掉了谁"。**🔴 现无接口可看拼装后全文(admin列表截断280/plan只给摘要)=蒙眼飞行,已列待发技术卡** → [详](feedback_prompt_change_hard_rules.md)
+7. 🔴🔴🔴 **i2v videoPrompt 4096字节硬顶=死规矩(08-08 老板重申)**:videoPrompt=videoTemplate(939B)+**编剧自写的 cells**;撑爆它的是 cells 不是固定模板。**改任何进 videoPrompt 的字段只许减字,必须加就先删等量**;加字前要能答"挤掉了谁"。**✅ 改之前必读拼装后全文:`GET /admin/api/v1/ai-tasks/{task_no}` → `output.compiledPlan.videoPrompt`(必须用 task_no,数字id返null);同一响应的 `attemptTrace[]` 有每次报错原文。旧写"没接口=蒙眼飞行/待发技术卡"作废** → [详](feedback_prompt_change_hard_rules.md)
 7.1 🔴🔴 **案例 visualHint 里一个字都不许写声线/语调/节奏**:实证同案例三版(原状重试1有台词/加声线重试3无台词/纯指派重试4无台词)——换气停顿类指令→编剧压短台词→撞 lineValidation 下限→连环重试→空台词。**声线节奏归全局 videoTemplate【口播节奏】段** → [详](feedback_prompt_change_hard_rules.md)
 7.2 🔴🔴 **烧单是验证手段不是探索手段**:动手前先读现状源(screenwriter-stack→koubo-defect→线上config),08-08 全天跳过这步走了三条弯路(声线/镜头/架构分层记忆里本来就有) → [详](feedback_prompt_change_hard_rules.md)
 8. **范围边界必写反向**:附"作用域仅X、不碰Y"+双向验收 → [详](feedback_scope_boundary_explicit.md)
@@ -96,7 +96,7 @@
 - 🔴 [品牌产品行业+TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;建单500 排查法
 - 🔴 [定点口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
 - 🔴🔴 [国内营销线](project_thinknova_marketing.md) — **主战场·08-04大整理版(L0-L4按触发时机分层)**:🔴**烧单冻结中**(做视频一律用库存素材,脚本按镜头反着写);台词铁规=**知识普及为主平台引导为辅**(每条一个命名机制知识点,平台只在解法位一句);小红书配图一律文生图448、不烧视频抽帧;资产=小红书10篇+视频9条(G1-G6全交付);铁流程=脚本先过目/大版本先交大纲/样片先行/交付前联系表自验
-- 🔴🔴 [新加坡线下会议线](project_thinknova_sg_events.md) — **08-04从营销线拆出·形态决策冻结中(v6未认,老板在想,别催别执行)**:现行成品=v5 17页 `AI分享会_新加坡_更新.pptx`;人群定论=中介>教培>美业(保险不打);对外口径定稿(S$38吃个饭/数字人省拍我们省想/AI乱说话消解);🔴下一步=课程形态**先外部调研**(本地132库+同行课纲,五问自检)再和老板讨论,不许闭门造车
+- 🔴🔴 [新加坡线下会议线](project_thinknova_sg_events.md) — **08-06 已交付**:形态=**每周六14:00-16:00长期免费招商课**(Suntec Tower2 L7 + 线上同步);成品=`AI分享会_新加坡_v7.pptx` 21页 + 邀请函6张(朋友圈带码/小红书无码);🔴🔴🔴全场主线=**「生产内容+发送内容才是核心」,禁用一切自贬话术**;🔴小红书版海报**绝不能有二维码**(放哪都判导流);台上禁说"上半场/下半场"
 - 🔴 [小红书两把尺](project_thinknova_marketing.md) — 写笔记用 `/xhs-note`(**四柱:选题→标题→配图→文案**+违禁词五级扫描+AI味黑名单),涨粉SEO冷启动用 `/xhs-growth`(本地化自132技能库);最高危=「搞钱/变现」违禁词;冷启动要先囤10篇再发
 - 🔴 [做视频四件套skill](project_thinknova_marketing.md) — 写脚本按顺序调:`video-script-style`(台词)→`high-retention-hook`(前3秒)→`hkrr-clock`(全片留存)→`hurricane-shot-prompt`(分镜+生成提示词)
 - 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;07-30 重定价:omni/wan/sora=3分/秒,grok系=4分/秒;价格三口径待技术
