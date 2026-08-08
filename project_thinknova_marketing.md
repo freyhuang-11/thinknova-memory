@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-08-08T09:35:07.682Z
+  modified: 2026-08-08T12:00:23.933Z
 ---
 
 ThinkNova 国内营销线(小红书图文 + 抖音/视频号/快手视频)。Codex=海外线;**新加坡线下会议 → [[project-thinknova-sg-events]]**。我=获客核心(老板07-30令)。
@@ -86,4 +86,4 @@ ThinkNova 国内营销线(小红书图文 + 抖音/视频号/快手视频)。Cod
 2. G4/G5/G6 待老板过目定发布顺序
 3. BGM 仍缺;字幕/封面上报的三件核验(商家端找「生成带字幕副本」入口等)未做
 4. 奶茶实验 A/B 两条成片=抖音端备用素材(不进小红书)
-5. 新加坡线下会已独立成线 → [[project-thinknova-sg-events]](v7 PPT + 邀请函全部交付,等老板补首场日期和报名群/号)
+5. 新加坡线下会已独立成线 → [[project-thinknova-sg-events]](**首场 08-22 已定档**;v7 PPT + 中英邀请函12张全交付,只等老板补"扫码进个人号还是群")

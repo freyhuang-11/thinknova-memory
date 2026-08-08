@@ -97,7 +97,7 @@
 - 🔴 [品牌产品行业+TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;建单500 排查法
 - 🔴 [定点口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
 - 🔴🔴 [国内营销线](project_thinknova_marketing.md) — **主战场·08-04大整理版(L0-L4按触发时机分层)**:🔴**烧单冻结中**(做视频一律用库存素材,脚本按镜头反着写);台词铁规=**知识普及为主平台引导为辅**(每条一个命名机制知识点,平台只在解法位一句);小红书配图一律文生图448、不烧视频抽帧;资产=小红书10篇+视频9条(G1-G6全交付);铁流程=脚本先过目/大版本先交大纲/样片先行/交付前联系表自验
-- 🔴🔴 [新加坡线下会议线](project_thinknova_sg_events.md) — **08-06 已交付**:形态=**每周六14:00-16:00长期免费招商课**(Suntec Tower2 L7 + 线上同步);成品=`AI分享会_新加坡_v7.pptx` 21页 + 邀请函6张(朋友圈带码/小红书无码);🔴🔴🔴全场主线=**「生产内容+发送内容才是核心」,禁用一切自贬话术**;🔴小红书版海报**绝不能有二维码**(放哪都判导流);台上禁说"上半场/下半场"
+- 🔴🔴 [新加坡线下会议线](project_thinknova_sg_events.md) — **🔴首场定档 2026-08-22(周六)14:00-17:00**(Suntec Tower2 L7 + 线上同步,免费,之后每周六);台上=14点讲/15点动手/16点起自由答疑可早走;成品=`AI分享会_新加坡_v7.pptx` 21页 + 邀请函**中英12张**(带码发朋圈WhatsApp FB/无码发小红书IG);🔴🔴🔴全场主线=**「生产内容+发送内容才是核心」,禁用一切自贬话术**;🔴小红书版海报**绝不能有二维码**(放哪都判导流);台上禁说"上半场/下半场"
 - 🔴 [小红书两把尺](project_thinknova_marketing.md) — 写笔记用 `/xhs-note`(**四柱:选题→标题→配图→文案**+违禁词五级扫描+AI味黑名单),涨粉SEO冷启动用 `/xhs-growth`(本地化自132技能库);最高危=「搞钱/变现」违禁词;冷启动要先囤10篇再发
 - 🔴 [做视频四件套skill](project_thinknova_marketing.md) — 写脚本按顺序调:`video-script-style`(台词)→`high-retention-hook`(前3秒)→`hkrr-clock`(全片留存)→`hurricane-shot-prompt`(分镜+生成提示词)
 - 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;07-30 重定价:omni/wan/sora=3分/秒,grok系=4分/秒;价格三口径待技术

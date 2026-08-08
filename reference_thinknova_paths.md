@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-08-08T08:40:25.776Z
+  modified: 2026-08-08T11:53:02.031Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
@@ -66,6 +66,7 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **#7 每行业显示哪些场景**=`businessUi.businessActions[].visibleIndustries`(去掉某行业=该场景在该行业隐藏);sceneId S01..S13,label 在 businessActions。
 - **占位示例**=`businessUi.placeholderDefaults.<行业>`(商品名/活动示例,config 可改);**补充要求那句 placeholder** 🔴**2026-07-24更正**:由 config `globalRules.extraRequirementPlaceholder` 控制、**运营可自改**(清空=用前端默认,填了=前端优先显示后台值,技术文档《前台场景过滤与补充要求说明_07-23》)——旧写"前端写死/改需技术"是错的。
 - **编辑器 2MB config 高频冻结**:set/save 后 readback 常 CDP 45s 超时→**导航到轻页(#/dashboard)再 fetch 回读即恢复**,别在冻结页重试。config 改动存 window.__pendingCfgStr 跨 hash 导航不丢。
+- 🔴🔴 **冻结页脚本会延迟执行造成 lost-update(08-08 实证)**:CDP 45s 超时后页面里的脚本**并没死**,醒来接着跑——它用冻结前 GET 的旧对象 PUT 回去,把我后来的新写入原样覆盖(pet_care_s02_member 被这样回滚过一次)。规矩:**CDP 超时的标签页立即 tabs_close 杀掉再开新页**,不许留活口;超时后凡涉写入,必须点名回读确认最终态。另:同页连续 >6 个 fetch 或带 sleep 的循环几乎必冻,写入循环每批 ≤12 个请求、不放 sleep(串行烧单的 20 秒间隔用多次调用实现,别在页内 setTimeout)。
 - **供应商瞬时超时**:i2v/编剧 errorMsg "超出上下文截止日期"=Grok/Luna 超时(瞬时,非配置问题),会连累编剧回退+i2v failed,重烧即可。
 
 ## 成品存储
