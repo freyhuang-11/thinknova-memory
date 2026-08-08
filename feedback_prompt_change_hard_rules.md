@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-08T07:50:36.554Z
+  modified: 2026-08-08T08:17:13.154Z
 ---
 
 # 改提示词的四条硬规（2026-08-08 编剧层全穿事故后立）
@@ -18,7 +18,18 @@ metadata:
 2. 改纯指派版 +50 字 → 重试 **4 次**、台词仍空
 3. 全局 `promptAssembler.video.outputTypePrompts.video` +44 字（306→438 字节）→ **编剧层全穿**
 
-三次都已回滚。根因不是措辞，是**字节预算**：videoTemplate 939 字节 + cells 2.4-3.0KB 已经贴到 3.3-3.9KB，任何加字都在往 4096 硬顶上撞。
+三次都已回滚。
+
+## ⚠️ 08-08 二次核查：字节机制**未被证实**，别当结论用
+我原来写「根因是字节预算超 4096」。**回头查证据，证不出来：**
+- videoPrompt 的实际组成 = `promptComposer.screenwriter.staticTemplates.videoTemplate`（939B）+ cells。
+- 我第 3 次改的 `promptAssembler.video.outputTypePrompts.video` **不在这个拼装路径里**，加它的字不会撑爆 videoPrompt。
+- 想拿 attemptTrace 的报错原文坐实，**三个接口全取不到**：商家 `/api/v1/ai/tasks/{子任务号}` 返回 task=null；admin `ai-tasks` 列表只有 status/prompt(截断)、没有 attemptTrace；父单 `output.childOutputs` 里只有 image/video，没有 scriptwriter。
+
+**已证实的只有因果，不是机制**：改那个字段 → attemptCount=10；回滚 → 恢复。
+**更可能的机制是内容矛盾**（该字段写「禁止镜头切换/禁止叙事」，与另外三处「必须逐格切走/硬切/运镜推进」直接打架），不是字节。
+
+👉 **所以：4096 只约束 videoTemplate + cells 这条路径**（这条是老板定的死规矩，照守）。对**不在 videoPrompt 里**的字段，别拿"只减不增"当借口不修矛盾——那会让我为了错的理由放弃对的修法。改之前先确认**这个字段到底进不进 videoPrompt**。
 
 ## 🔴 顶穿的诊断判据（08-08 实证，最灵敏）
 **看编剧 `attemptCount`**（主任务 `output.childTasks.scriptwriter.attemptCount`）：
