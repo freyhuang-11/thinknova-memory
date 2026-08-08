@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-08T08:24:37.434Z
+  modified: 2026-08-08T08:40:14.621Z
 ---
 
 # 改提示词的四条硬规（2026-08-08 编剧层全穿事故后立）
@@ -94,10 +94,16 @@ metadata:
 机制推断：「换气/停顿/留出」类指令让编剧压短台词 → 撞 lineValidation 下限（中文 15 秒 62 字）→ 连环重试 → 产出空台词。
 **声线和节奏归全局 videoTemplate 的【口播节奏】段管，案例层不许碰。**
 
-### 4. 看不到全文就别改（🔴 现存盲区）
-**没有任何接口能返回拼装后的完整 videoPrompt**：admin `ai-tasks` 列表 `prompt` 截断在 280 字；商家端 `plan.videoPrompt` 只给摘要 shotList；`/admin/api/v1/ai-tasks/{id}` 返回 null。
-只有 admin 主任务详情页的「组装溯源」能看到，但那是前端页面。
-→ **在拿到全文接口之前，任何加字改动都是蒙眼飞行。已列为待发技术卡：要一个返回拼装后完整 prompt 的接口，或让 admin 列表不截断。**
+### 4. ✅ 改之前必须先看拼装后全文——**接口一直都有，是我记错了**（08-08 更正）
+~~旧结论：没有任何接口能返回拼装后的完整 videoPrompt，属蒙眼飞行，已列待发技术卡。~~ **作废，技术卡不用发。**
+
+**正解**：`GET /admin/api/v1/ai-tasks/{task_no}` → `data.task.output.compiledPlan.videoPrompt` = **发给 grok 的完整原文**（同一响应还有 `attemptTrace[]` 带每次报错原文、`dynamicJson.cells`）。
+🔴 **必须用 task_no，用数字 id 会返回 `task:null`** —— 我当初就是用数字 id 试的，于是把"这接口没用"写进了记忆，然后被自己的错记忆挡了好几天。
+
+**拼装格式（实读）**：videoTemplate 全文 + 每格一段
+`【子格<位置>｜<时间段>】 景别机位:… ／画面核心:<visual>／人声:<voice>／开口台词:<line>／音效:<sfx>／运镜:<move>`
+
+👉 **改任何提示词之前，先拉一条真实单的 compiledPlan.videoPrompt 读一遍**。今天所有真发现（声线重复、字节分布、余量）全是从这段全文里读出来的，不是猜出来的。
 
 ## 附：今日验证通过、可保留的改动
 - 前后对比案例（`home_v2_S07_before_after`）：全局暗号开关 +案例具体化 + 镜头指派式 → 三项验证通过，对照单证明爆炸半径 0
