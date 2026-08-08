@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-08T07:48:51.630Z
+  modified: 2026-08-08T07:50:36.554Z
 ---
 
 # 改提示词的四条硬规（2026-08-08 编剧层全穿事故后立）
@@ -19,6 +19,17 @@ metadata:
 3. 全局 `promptAssembler.video.outputTypePrompts.video` +44 字（306→438 字节）→ **编剧层全穿**
 
 三次都已回滚。根因不是措辞，是**字节预算**：videoTemplate 939 字节 + cells 2.4-3.0KB 已经贴到 3.3-3.9KB，任何加字都在往 4096 硬顶上撞。
+
+## 🔴 顶穿的诊断判据（08-08 实证，最灵敏）
+**看编剧 `attemptCount`**（主任务 `output.childTasks.scriptwriter.attemptCount`）：
+| 值 | 含义 |
+|---|---|
+| **1** | 正常 |
+| **3-4** | 已在撞边界（台词被压短/变空） |
+| **10** | **确认顶穿**，每次尝试都被杀 |
+
+实证：全局字段 +44 字（306→438 字节）后，storyboard 单 attemptCount = **10**。回滚后恢复。
+**每次改完提示词，第一件事就是烧一单看 attemptCount，不是看成片。**
 
 ## 硬规
 
