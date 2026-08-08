@@ -1,10 +1,11 @@
 ---
 name: reference-agent-memory-vault
-description: "触发:每次开工第一件事和收工最后一件事 → 开工 pull + 读信箱,收工 push;平台状态只写 vault 总览,私有记忆不复制状态"
+description: "触发:每次开工第一件事和收工最后一件事 → 开工 pull + 读信箱,收工 push 并验证远端真收到(08-08 有过推空 2 天的事故);平台状态只写 vault 总览,私有记忆不复制状态"
 metadata: 
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
+  modified: 2026-08-08T06:38:40.697Z
 ---
 
 老板 2026-07-16 引入 [agent-memory-vault](https://github.com/cindyxu1030/agent-memory-vault),已装到 `D:\SamsoData\Documents\AgentMemoryVault\`,用途=老板可见的项目状态 + Claude/Codex 跨 agent 共享记忆。**跨机同步=私有仓库 github.com/freyhuang-11/agent-memory-vault:我每次开工先 `git pull`、收工把状态更新连带 `git push`**(Codex 机同规则)。老板桌面有「平台进度总览」快捷方式(开 Obsidian 直达总览页)。
@@ -17,6 +18,12 @@ metadata:
 - **「新加坡会议」线(07-18 并入体系)**:线下工作坊物料/合伙人 Vicky 渠道会话,产出文档强制「新加坡会议_」前缀;收工写总览、要 Claude Code 做的事写信箱「给 Claude」栏;首个归档包已入库 `_memory/新加坡会议_归档包_2026-07-15.md`。
 - **平台状态=只写 vault 总览,私有记忆不再复制状态**(防堆叠矛盾层);技术问题清单也在总览第四节。
 - 老板侧:Obsidian 已装并打开 vault,桌面「平台进度总览」快捷方式;旧窗口脱节时丢"同步刷新"口令即可。
+
+🔴🔴 **2026-08-08 血的教训:`git push` 敲完 ≠ 远端收到,收工必须验证。**
+- 08-06 的信箱例程把文档全写好了,**但从没提交**,在本地工作区躺了 2 天;08-08 开工 `git pull` 报"本地改动会被覆盖"才发现。**后果是实的**:那条写给 Codex 的指令他根本 pull 不到 → 他"没照做"其实是没收到,差点又误判成执行不力(和 08-05 冤枉 Codex 同一个坑,只是这次源头在我)。
+- **收工三连(缺一不可)**:`git add -A && git commit && git push` → `git status --short` 空 → `git rev-list --left-right --count HEAD...origin/master` 得 `0 0`。**没验证过就不算收工。**
+- **开工遇到 pull 被本地改动挡住:先 `git diff` 看清楚再决定,一律"先 commit 再 merge",绝不 `checkout --`/`reset --hard` 丢弃**——那可能是上一次例程或另一个会话没提交的真产物。
+- **推论(判断别人时用)**:"库里没他的文件"有三种可能——没跑 / 跑了推不上来 / **我自己的指令压根没送到**。第三种最容易被忽略,下 judgment 前先确认自己那条推上去了没。呼应铁律 2.9 [[feedback_silence_is_not_evidence]]。
 
 **How to apply:**
 - **每次工作会话结束更新 `01-Projects/ThinkNova/_memory/平台状态总览.md`**(平台进度唯一真值,老板靠它看进度——他曾抱怨"不知道平台被优化到什么进度",这是解法)。
