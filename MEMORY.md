@@ -33,6 +33,7 @@
 7.2 🔴🔴 **烧单是验证手段不是探索手段**:动手前先读现状源(screenwriter-stack→koubo-defect→线上config),08-08 全天跳过这步走了三条弯路(声线/镜头/架构分层记忆里本来就有) → [详](feedback_prompt_change_hard_rules.md)
 8. **范围边界必写反向**:附"作用域仅X、不碰Y"+双向验收 → [详](feedback_scope_boundary_explicit.md)
 8.5 🔴 **动"前端会读的字段"先改一条验,别一次铺满** → [详](project_thinknova_dingdian_koubao.md)
+8.53 🔴🔴 **案例名实一致:场景+案例名承诺的=成片生成的**;交付不了就改名,不许挂着做不到的承诺;烧单验收多一问"这是不是标题说的那个东西" → [详](feedback_case_name_matches_output.md)
 8.55 🔴🔴🔴 **改一个案例只许影响这一个案例**:案例问题只在案例层解;根因在全局模板时做**显式开关**(全局原句一字不改+窄口径条件,暗号埋进目标案例),动全局前先扫库量爆炸半径,命中>1就收窄;改完烧对照单证明没带偏 → [详](feedback_case_change_no_blast_radius.md)
 8.6 🔴🔴 **加行业/加场景先翻技术文档**;新场景必须技术注册进合法枚举,否则商家建单500 → [详](project_thinknova_brand_product_industry.md)
 8.7 🔴 **建单500 诊断法**:admin GET 全量真值 → 隔离实验换维度 → 找唯一缺键 → [详](project_thinknova_brand_product_industry.md)
