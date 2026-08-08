@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-08-06T07:04:59.561Z
+  modified: 2026-08-08T08:35:13.608Z
 ---
 
 ThinkNova 国内营销线(小红书图文 + 抖音/视频号/快手视频)。Codex=海外线;**新加坡线下会议 → [[project-thinknova-sg-events]]**。我=获客核心(老板07-30令)。
@@ -63,6 +63,8 @@ ThinkNova 国内营销线(小红书图文 + 抖音/视频号/快手视频)。Cod
 
 # 技术配方(API 真值索引,用前回源核对)
 - 文生视频:`POST /api/v1/ai/tasks` {capability:'text_to_video',modelId:494,input:{prompt,ratio:'9:16',resolution:'720p',durationSeconds}};查 `/api/v1/ai/tasks/{id}?assets=1` 取 `task.output.assets[0].storage_path` 拼 OSS 前缀。
+- 🔴🔴 **文生图(448)只传 prompt,别传别的**(08-06 老板纠正+实测):`input:{prompt}` 就够。多传 ratio/size/quality **建单会 200 但任务必 failed**,错误码 `INVALID_PROVIDER_RESPONSE / Protocol V2 response is missing providerTaskId`——我一次废掉 4 单才查出来(对比同期成功单的 input 只有 prompt)。**构图/比例写进提示词文字**(如"竖版3:4构图")。**要传参考图 = 用图生图 492,不是文生图。**
+- 🔴 `GET /api/v1/ai/models` 返回 `data.models[]`(不是 data.items),字段 capability/enabled/isDefault。
 - 商家视频:`POST /api/v1/business-video-assets/tasks`;🔴 durationSeconds 顶层+selectedOptions 两处都放,缺=422;价=30底+3/秒(10s=60,15s=75)。海报:`business-assets/tasks`,6分/张。`offline-store-content/tasks` 不是建单口(POST 必500)。
 - 🔴 建单 500=案例×场景组合不合法(space_stay 全行业500=平台侧问题);诊断=固定其他维度单换一维。
 - 🔴 查模型 `GET /api/v1/ai/models` 不带参数(带 capability 会滤掉默认模型448)。
