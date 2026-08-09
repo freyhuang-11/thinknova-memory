@@ -4,7 +4,7 @@ description: "触发:海报提示词/海报案例出问题 或 有人说海报�
 metadata:
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-09T16:09:30.335Z
+  modified: 2026-08-09T16:48:26.221Z
 ---
 
 # 海报案例库视频语言清毒(2026-08-09,老板发现"海报提示词里有视频内容")
@@ -34,6 +34,12 @@ metadata:
 - 小尾巴:新版海报底部三行小字是案例描述语泄漏上画面(如"本地华人风格门店场景"),不算编造待小修;S07/S08 两个"保留场景"未美图化=同类雷待排。
 - **海报烧单正解**:POST `/api/v1/business-assets/tasks`(与视频线同构,productName/offer/caseId,**caseId必填**);/offline-store-content/tasks 是另一条路(fields.productOrServiceName 过验证但500,弃用)。商家海报案例列表 `/api/v1/business-assets/reference-cases?industryId=`。
 - 海报前台=/zh/app/business-assets;offline-store-content/config 有 fieldSchemas(productOrServiceName*/price/address/activityTime/phone/wechat/extraNotes)。
+
+## ✅ 08-10 CTA 默认取消(老板令"海报所有CTA默认取消")
+- **配置层3处已改**(csrf-PUT code0+回读verified):①`promptAssembler.image.outputTypePrompts.poster` ②`promptAssembler.layoutGuidance.poster`——两句原文都是"必须保留标题、副标题、价格、地址和CTA区域"(P0修编造时**没动到CTA这半句**,这就是海报都有CTA的根因);现改为"默认不设行动号召(CTA)区,仅商家选择结尾引导选项或明确要求时才加"+副标题/价格/地址条件呈现 ③copy_rules 追加"行动号召(CTA)默认不写"句。**endingCta 选项组(visit_store/dm_booking/scan_order/group_buy)保留不动**=商家主动选择的合法通道;defaultState 本就不预选。
+- **案例层32条清完+全表复扫零残留**:CTA字样全在视频克隆条的**外语字段**(summary.en/vi/es+visualHint.en,"ends with an in-store CTA"——08-09清毒只清了中文的教训);member家族15+recruit家族15+jewelry_s07+retail_s06_pack(扫码→出示)。替换词典:in-store CTA→storefront closing scene / CTA đến cửa hàng→kết bằng cảnh cửa hàng / CTA en tienda→cierra con la escena de la tienda。
+- **"限时"31处=S02促销案例标题**(案例身份,商家主动选促销案例),输出层已有守卫拦空话——**没动名字**,待老板拍板要不要改名。
+- 🔴 **烧单验证时发现:promotion/bestseller 场景建单稳定500**(promotion+food_s02_deal、bestseller+food_s03_dish 含/不含offer都500);festival+food_s09_holiday 与 xhs_cover+food_s14 正常。维度未定位(场景or案例),待查;症状像服务端(500001无信息)。验证单:task_3e66d8ed2f2a(xhs)+task_e79360ccfbe4(S09标准海报,主证据)。
 
 ## ⚠️ 长期
 - 两表同 ID 不同步是持续风险:视频侧改案例时,想想海报侧同 ID 条要不要跟(尤其停用/改名)
