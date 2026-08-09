@@ -4,7 +4,7 @@ description: "触发:海报提示词/海报案例出问题 或 有人说海报�
 metadata:
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-09T09:34:08.880Z
+  modified: 2026-08-09T15:29:11.280Z
 ---
 
 # 海报案例库视频语言清毒(2026-08-09,老板发现"海报提示词里有视频内容")
@@ -23,6 +23,13 @@ metadata:
 ## 配方
 - 海报案例分页:**`pageSize`(上限60)才有效**,`page_size` 无效(固定20);单条 GET/PUT 与视频表同构,URL 换 agent 码 offline_store_content
 - 起草→守卫替换→PUT→全表复扫,家族同文压缩执行(member/recruit/daily/price_video 四族同句)
+
+## 🔴🔴 08-09 深夜 P0 事故与三修复(重大客户 joeylu 测试单 task_c9b2f527362e)
+- **事故**:客户只填"新加坡国庆节"(space_stay S09,无价格无时间,传了3张空间照)→成品编造"每晚299元起"+"8月1-31日"+拼错INGAPPRE;3张参考图被缩成右下角小贴块,主画面是无关泳池;版式大红促销与老板给的美图参照(留白/竖排/器物/低饱和)完全相反。
+- **根因**:①copy_rules"必须保留价格地址不得遗漏"压过"不得虚构"→无料硬编 ②图生图模板矛盾句"锁定参考图空间"vs"必须重新生成不沿用原图构图"→模型自由发挥+参考图拼贴 ③08-03场景改造时S07-S09"保留不动",S09节日根本没美图化,重大客户恰好测的就是它。
+- **三修复已落库(全文本层,回读verified)**:①copy_rules首句→"没填的整块省略,绝不虚构价格/日期/电话/地址;禁'限时优惠/别错过'空话" ②scenePrompts.S09.imagePrompt→美图画册质感(静物主角/留白/竖排衬线标题/低饱和单色系/禁贴纸吊牌爆炸标签倒计时/像杂志封面) ③platformAdapters.image_to_image.poster 矛盾句→"以参考图空间为主画面,可换角度光线,必须一眼认得出是那家店,绝不缩成小图拼贴"。
+- **待验证**:同参复烧未完成——商家海报建单接口=POST /api/v1/offline-store-content/tasks,字段=fields.productOrServiceName(裸productName=422),但仍缺必填结构(连续500);明日走前台UI带原3张参考图复测(参考图URL在 task_399767578bd0 input.referenceImages)。
+- 海报商家端配置接口=GET /api/v1/offline-store-content/config(fieldSchemas/scenes/industries全在)。
 
 ## ⚠️ 长期
 - 两表同 ID 不同步是持续风险:视频侧改案例时,想想海报侧同 ID 条要不要跟(尤其停用/改名)
