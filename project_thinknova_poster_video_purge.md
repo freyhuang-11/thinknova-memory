@@ -4,7 +4,7 @@ description: "触发:海报提示词/海报案例出问题 或 有人说海报�
 metadata:
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-09T15:29:11.280Z
+  modified: 2026-08-09T16:09:30.335Z
 ---
 
 # 海报案例库视频语言清毒(2026-08-09,老板发现"海报提示词里有视频内容")
@@ -28,8 +28,12 @@ metadata:
 - **事故**:客户只填"新加坡国庆节"(space_stay S09,无价格无时间,传了3张空间照)→成品编造"每晚299元起"+"8月1-31日"+拼错INGAPPRE;3张参考图被缩成右下角小贴块,主画面是无关泳池;版式大红促销与老板给的美图参照(留白/竖排/器物/低饱和)完全相反。
 - **根因**:①copy_rules"必须保留价格地址不得遗漏"压过"不得虚构"→无料硬编 ②图生图模板矛盾句"锁定参考图空间"vs"必须重新生成不沿用原图构图"→模型自由发挥+参考图拼贴 ③08-03场景改造时S07-S09"保留不动",S09节日根本没美图化,重大客户恰好测的就是它。
 - **三修复已落库(全文本层,回读verified)**:①copy_rules首句→"没填的整块省略,绝不虚构价格/日期/电话/地址;禁'限时优惠/别错过'空话" ②scenePrompts.S09.imagePrompt→美图画册质感(静物主角/留白/竖排衬线标题/低饱和单色系/禁贴纸吊牌爆炸标签倒计时/像杂志封面) ③platformAdapters.image_to_image.poster 矛盾句→"以参考图空间为主画面,可换角度光线,必须一眼认得出是那家店,绝不缩成小图拼贴"。
-- **待验证**:同参复烧未完成——商家海报建单接口=POST /api/v1/offline-store-content/tasks,字段=fields.productOrServiceName(裸productName=422),但仍缺必填结构(连续500);明日走前台UI带原3张参考图复测(参考图URL在 task_399767578bd0 input.referenceImages)。
-- 海报商家端配置接口=GET /api/v1/offline-store-content/config(fieldSchemas/scenes/industries全在)。
+- **✅ 08-10 凌晨闭环:两轮修复+复烧验证通过**。第一轮(copy_rules/S09/参考图句)后复烧 task_665721631929:上70%美图感成立但底部仍编¥88套餐+假店名地址——**漏网点=`promptAssembler.image.outputTypePrompts.poster` 里还有一份"必须保留价格"**(多层同罪)。第二轮补 4 处:outputTypePrompts.poster 改条件省略 + 海报/视频两 agent 的 business_fact 模板双镜像各加「留空(等号后无内容)=商家未填:画面绝不出现对应信息,绝不编店名/地址/电话/价格/套餐/日期」。复烧 task_63755e3d4034:**零编造+全版面美图感**(竖排书法/静物/留白/低饱和),达标。
+- **拒绝编造=两条产品线硬规(6处守卫)**:海报4(copy_rules/outputTypePrompts.poster/business_fact×2)+视频2(business_fact×2)。查同类问题先搜「必须保留|必须准确体现|不得遗漏」——**同一铁律可能在多层各有一份,修一处不算修完**。
+- warre_wei 鸳鸯火锅单(task_82dbc761b172)核过:无编造——店名地址=商家资料注入(证据:图prompt里"门店名=吴幺妹;地址=…"),169=客户填。**判编造前先查商家资料注入**:父单input无≠没数据,profile走job注入。
+- 小尾巴:新版海报底部三行小字是案例描述语泄漏上画面(如"本地华人风格门店场景"),不算编造待小修;S07/S08 两个"保留场景"未美图化=同类雷待排。
+- **海报烧单正解**:POST `/api/v1/business-assets/tasks`(与视频线同构,productName/offer/caseId,**caseId必填**);/offline-store-content/tasks 是另一条路(fields.productOrServiceName 过验证但500,弃用)。商家海报案例列表 `/api/v1/business-assets/reference-cases?industryId=`。
+- 海报前台=/zh/app/business-assets;offline-store-content/config 有 fieldSchemas(productOrServiceName*/price/address/activityTime/phone/wechat/extraNotes)。
 
 ## ⚠️ 长期
 - 两表同 ID 不同步是持续风险:视频侧改案例时,想想海报侧同 ID 条要不要跟(尤其停用/改名)

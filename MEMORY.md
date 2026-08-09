@@ -104,7 +104,7 @@
 - 🔴 [HyperFrames 生产线](reference_hyperframes_production.md) / 🔴 [音色克隆生产线](reference_voice_clone_pipeline.md)
 - [实体店两个 Agent(工程主线)](project_thinknova_offline_agents.md) — CTA 未选强加已在 07-31 提示词层修复
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — **探店片型第0步必读**:一镜一图vs一片一图;萍萍台词公式(钩子→第2句价格锚→短句→三连催单,催单被我们总纲禁着待老板放行);真差距=声调起伏(TTS)+切镜密度(grok不硬切)+台词结构;**omni老板定论砍掉**(中文转英语/画面字乱码/产品锁不住);A/B实测7格撞4096墙;探店案例=`food_beverage_s01_tandian`(条件式门头/固定男声/案例级黑幕/特写≤七成)
-- 🔴🔴 [海报案例视频语言清毒 08-09](project_thinknova_poster_video_purge.md) — 海报出问题第0步:837条底细/615条视频克隆两表不同步/123条已清零残留;视频侧改案例要想海报侧同ID条
+- 🔴🔴🔴 [海报线现状+P0编造事故闭环 08-10](project_thinknova_poster_video_purge.md) — 海报出问题第0步:**拒绝编造6处守卫已上线(修一处不算修完,同铁律多层各一份)**;判编造先查商家资料注入;海报烧单走 business-assets(caseId必填);837条底细/615视频克隆/123清毒;S07/S08未美图化待排
 - 🔴🔴 [海报场景改造 08-03](project_thinknova_poster_scene_revamp.md) — **动海报场景/案例/styleRule 第0步必读**:场景表已整体换成美图式「渠道×版式」16场景(老板拍板);340条案例迁入S01门店海报;对照烧验3成1败(S11/S16轻内容场景被copy层海报结构压住=待技术);styleRule词表黑白名单;两线案例表独立;场景注册/批量迁移/pageSize=60/裸对象PUT配方全在文内;待办=copy层场景开关技术卡/健康医疗封面44条只用9张图待重生成/铺行业待拍板
 - 🔴🔴 [东南亚语言扩充 08-04](project_thinknova_sea_languages.md) — **动输出语言第0步必读**:✅泰语+全语言去β已上线双前台(9语无β,th lineValidation=characters 四镜像,标待复测);界面语言 i18n 需求(th/ms/id)已交老板转技术;✅grok多参双参单成功=门头文字级锁定+15秒约5镜头(探店标杆配方,判若两模型);✅vi补烧一次成功已解禁;子任务取证接口已变(商家端子任务详情返回null,改走admin列表);两条硬教训(动模板必量最大单字节/字数窗别一次收太紧)
 - 🔴 **编剧层反呆板手术方案已备待测**(08-04 老板令"多次测试才能上线",禁直接落库):三刀=开场八路数表/语气蒸馏三条/few-shot范例,草案全文+挤字方案+AB测试设计在 `03_工作台/编剧层反呆板手术方案_待测试_2026-08-04.md`;**风格类编剧改动一律走"单刀→AB烧验→老板过目→再下一刀"**
@@ -118,6 +118,7 @@
 - [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 
 - 🔴🔴 [投资人运营计划 08-05](project_thinknova_investor_plan.md) — **谈融资/预算/会展/投流之前必读**:正式版已交付(S$100k/60-40两阶段/200-300解锁/渠道打包冲1000);老板规矩=成本必须确切数字;三个询价待办(SWITCH/SFMA/onePA);8月两展观展地推收连锁名单
+- 🔴🔴 **投资人反馈应对 08-10**:路演材料现行版=`对外推介\路演PPT\`ThinkNova_路演_v5.pptx(15页,P3美金盘子TAM/SAM/SOM带来源,P3备注有讲稿)+讲稿文字版+文字版md;BP=`02_交付内容\`2026-08-09.docx(**老板令勿再改**);单位经济表=ThinkNova_单位经济测算_2026-08-10.xlsx(三档29.8/99.8/198美元,默认毛利50-54%/LTV·CAC 2.0/6.5/12,黄格假设待填实测);护城河措辞建议=便签_数据护城河表述建议md(降调:数据=未来可能的护城河,前提闭环);**万万渠道嫁接应对分析**在 03_工作台\内部_护城河与价值闭环自辩_2026-08-09.md 第五节(90天KPI试点三底线/结构三选项/四问答法)——内部件,绝不外发
 
 # Compass / TikTok 达人线(休眠)
 - [Compass 现状+14 条待办](project_compass.md) — 历史见 archive/compass_history_to_0729.md
