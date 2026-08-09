@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-30T08:47:43.012Z
+  modified: 2026-08-09T18:58:18.323Z
 ---
 
 # 烧单前必报客户视角五要素(老板 2026-07-30 定)
@@ -23,5 +23,9 @@ metadata:
 
 **How to apply**:烧单代码块前面加一张五要素小表;批量烧单一张表列全部;
 老板不在场的自动烧单,把表写进汇报的第一段。
+
+**追加(08-10,文具礼盒事故)**:验收/测试类烧单,productName 一律带「测试单-」前缀
+(如"测试单-worker验收-0810"),老板扫任务列表就能认出,不用来问;
+技术卡指定复现参数时,案例照抄技术卡,但商品名仍要打测试前缀。
 
 关联 [[feedback-thinknova-burn-division]] [[feedback-evidence-standard]]
