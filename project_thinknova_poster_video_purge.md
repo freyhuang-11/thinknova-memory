@@ -4,7 +4,7 @@ description: "触发:海报提示词/海报案例出问题 或 有人说海报�
 metadata:
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-09T17:14:50.324Z
+  modified: 2026-08-10T08:49:51.372Z
 ---
 
 # 海报案例库视频语言清毒(2026-08-09,老板发现"海报提示词里有视频内容")
@@ -39,7 +39,7 @@ metadata:
 - **配置层3处已改**(csrf-PUT code0+回读verified):①`promptAssembler.image.outputTypePrompts.poster` ②`promptAssembler.layoutGuidance.poster`——两句原文都是"必须保留标题、副标题、价格、地址和CTA区域"(P0修编造时**没动到CTA这半句**,这就是海报都有CTA的根因);现改为"默认不设行动号召(CTA)区,仅商家选择结尾引导选项或明确要求时才加"+副标题/价格/地址条件呈现 ③copy_rules 追加"行动号召(CTA)默认不写"句。**endingCta 选项组(visit_store/dm_booking/scan_order/group_buy)保留不动**=商家主动选择的合法通道;defaultState 本就不预选。
 - **案例层32条清完+全表复扫零残留**:CTA字样全在视频克隆条的**外语字段**(summary.en/vi/es+visualHint.en,"ends with an in-store CTA"——08-09清毒只清了中文的教训);member家族15+recruit家族15+jewelry_s07+retail_s06_pack(扫码→出示)。替换词典:in-store CTA→storefront closing scene / CTA đến cửa hàng→kết bằng cảnh cửa hàng / CTA en tienda→cierra con la escena de la tienda。
 - **"限时"31处=S02促销案例标题**(案例身份,商家主动选促销案例),输出层已有守卫拦空话——**没动名字**,待老板拍板要不要改名。
-- 🔴 **烧单验证时发现:promotion/bestseller 场景建单稳定500**(promotion+food_s02_deal、bestseller+food_s03_dish 含/不含offer都500,worker修复后复测仍500);festival+food_s09_holiday 与 xhs_cover+food_s14 正常。维度未定位(场景or案例),待查;症状像服务端(500001无信息)。验证单:task_3e66d8ed2f2a(xhs)+task_e79360ccfbe4(S09标准海报,主证据)。
+- 🔴 **S02/S03 建单500已定位=场景维度服务端异常,技术卡已写**:promotion 换4案例全500、bestseller 换2案例全500,其余场景(festival/xhs/price_menu)全过,视频线同场景正常;config 场景层(scenePrompts/sceneRules/businessActions/detailOptionGroups)结构对称已排除。卡=`02_交付内容\给技术_OPS-POSTER-20260810-01_海报S02S03场景建单必500.md`(待老板转发);附注 task_e66bfa808370 僵尸单16h+。验证单:task_3e66d8ed2f2a(xhs)+task_e79360ccfbe4(S09)。
 - **一验结果**:xhs单干净;S09单底部仍出"到店来一碗"横幅+角标"节日到店吃碗热乎的"——案例本身零召唤词(查过),是模型促销肌肉记忆绕开例词。**二刀:例词禁令升级为"禁一切招揽/催促/邀请到店祈使句+底部不放号召横幅"**(三处同步,PUT code0 回读verified),**二验通过(task_848120778c48,98秒)**:零召唤句、零号召横幅,角标全为描述句,美图感在。CTA默认取消=闭环。(task_e66bfa808370 卡在processing 22分钟+,疑被5条视频验收单压队后未恢复,失败即退款不追;正常海报60-100秒出图,超5分钟即视为异常单。)**教训:禁令句给例词=模型换句式绕过,要禁句式类别。**另记:S09一单商家填了8.8折但没上画面(offer填了不显示,待观察是否美图风压掉价格位)。
 - **视频建单新形态(08-10实测)**:outputType:'video' + **durationSeconds:15**(顶层字段,不在selectedOptions;缺=422"请选择视频时长");旧 video_10s/video_30s_compound 口径作废。videoGeneration.allowedDurations=[10,15],15秒只允许模型482。
 - **encodeJson worker bug 技术已修(08-10回执)**:根因=海报/视频共用编排worker,容量满时排队状态写库调了缺失方法→高峰误标失败;修后=排队等待不失败。我的验收:连发5条15秒视频单全部建单成功,4单进planning排队未失败(旧bug是立即worker_exception),1单直接rendering——排队语义已生效,等5单全走完即关卡。技术卡 OPS-VIDEO-20260809-01 可闭环。
