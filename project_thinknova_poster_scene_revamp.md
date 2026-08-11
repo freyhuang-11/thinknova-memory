@@ -68,3 +68,15 @@ metadata:
 - 7条 `*_s02_member` 外语重译完成(ja/ko/vi/es 的 title+summary,旧"储值办卡"残留0,商家端带 locale 头验证 7/7)。**visualHint 未动且"漂移"前提不成立**:这7条 hint 只有 zh/en 两键,全库586条启用案例里带 ja hint 的仅1条=全库字段设计问题,且外语字节数大、有顶爆 4096 风险,待老板拍板。
 - **全库外语缺失**:title/summary 各缺 ja/ko/vi/es **55条**(44条集中TVC线:22条 `*_s14_tvc`+22条 `*_s14_other`+7条 brand_product+3条散);visualHint 四语缺 585 条。机翻嫌疑 0(现有译文都是真译)。超30条阈值故只出清单未硬铺。24条新案例尚无封面。
 - 🔴🔴 **接口坑升级(上次记的还不全)**:商家端 `reference-cases` **同时忽略 industryId 和 businessScenario,且 pageSize 传什么都固定返24条**。判停条件必须写 `arr.length < 24`,全库775条要翻满33页;按"不足一页即结束"会在第1页假性收尾、误报"全部缺失"。
+
+## ✅ 08-11 S01 瘦身达标(老板批评"都堆在S01,人家不知道怎么选")
+- **S01 434条 → 109条**(商家端 391→114);每行业 S01 ≤12(food 6/retail 5/beauty 8),目标全达标。
+- 手法:322条多场景案例**全部**有 id 槽位且槽位非 S01、槽位场景已在 sceneIds 里 → 摘 S01 后每条至少剩1个场景;**语义判定一条没用上、零"拿不准"**。先摘1条商家端全量翻页验证再批量,零失败零空 sceneIds。
+- 🔴 遗留:S02「单品卡(方形)」/S03「横版海报(门头屏)」显示名是版式名、装的是老语义(促销/招牌)案例,**名实待老板拍板**(与 S06/S11 改名同类问题)。
+
+## 🔴🔴🔴 08-11 铁证:海报的 CTA 与描述语泄漏是**服务端预置 copyPlan**,文本层永远关不掉
+- 子任务 `task_1c5906aeea51`(poster_scriptwriter)的 **input.copyPlan 被服务端预置**:`cta:"到店购买"`(商家一个 endingCta 都没选)、`subtitle` 用案例描述语做种子、`state` 带 sceneLabel/industryLabel;其输出被**原样拼到生图提示词末尾的「补充要求：…」**,压过前面所有守卫。**全 config 搜不到这些值 → 服务端代码**。
+- → 技术卡 `02_交付内容\给技术_OPS-POSTER-20260811-01_服务端预置copyPlan覆盖提示词守卫.md` 已写好待老板转发。**这解释了 08-03 起反复出现、两轮提示词整改都关不掉的 CTA 与小字泄漏**;也印证了另一 agent 独立观察到的"结构层注入"(我原本存疑,现有逐字铁证,采纳)。
+- 运营侧已做满:08-10 三处 CTA 守卫 + 08-11 补两处漏网(`blockTemplates.layout_rules.template`、`languagePolicy.map.zh_en` 里的 CTA 预留位)+ 两层描述语围栏(按类别不给例词)+ 拆掉 `copyPlanTemplates.titleFallback` 的 `{sceneLabel}`。提交串逐字验证送达,成品照旧 → 注入点在提示词之后。
+- 🔴 **字段读取图更正**:`caseInjectionPolicy.includeFields=["visualHint"]` —— **案例 summary 不进提示词**,改 summary 只影响前台展示不影响成片。
+- S07/S08 已按 S09 配方美图化(S08 另加"绝不虚构顾客、评分、好评数量")。三张验证图:S09 最好(零描述语泄漏,仍有软CTA)、S07 美图感成立但副标题泄漏场景名、S08 不达标(泄漏+CTA)——**S08 的不达标原因不在案例层,等技术修完 copyPlan 再复烧**。
