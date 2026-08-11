@@ -12,6 +12,23 @@ metadata:
 
 # ThinkNova 提示词字段读取图(2026-07-22 实证)
 
+## 🔴🔴🔴 2026-08-12 实测定案:`visualHint` 只有 `zh` 键会被喂给编剧,其余语言键是死数据
+两条历史单取证(编剧子任务 `input.case` 只有三个键 `{id,title,visualHint}`):
+- `task_bcff16537292` copyLanguage=**vi** → 收到的 visualHint 是**中文**(700字)
+- `task_0141981872d3` copyLanguage=**en** → 收到的 visualHint 也是**中文**(243字)
+
+→ **改案例提示词只需要写 `visualHint.zh`;写 en/ja/ko/vi/es 是白写**(08-12 我给 12 条剧情片写了整份英文 hint,没人读)。
+→ 由此「视频侧 692 条 / 海报侧 820 条 visualHint 缺 ja/ko/vi/es」**不是缺陷**;「海报侧 213 条 en 逐字等于 zh」是脏数据但**不影响出片**。
+→ **前台可见的多语言只有 `title`/`summary`/`previewCaption`**,这三个必须六语齐:海报侧已 100%;视频侧真缺口只有 7 条业务案例(drink_second_half / auto_maintenance_package / beauty_hair_color_68 / beauty_nail_99 / fruit_shine_muscat_offer / gold_discount / supermarket_weekend_deals),另 11 条缺的是 `zz_*`/`ks_*` 测试残留,该清库不该补。
+
+## 🔴 2026-08-12 案例预览回填(零烧单配方)
+- 案例预览六字段:`previewVideoUrl` + `previewAssetType:'video'` + `previewUrl/thumbnailUrl/coverImageUrl/previewImageUrl`(四个图字段填同一张静帧)。
+- 素材来源=账号已有成片,**按 `caseId` 精确对上那条案例自己的成片**(商家端 `GET /api/v1/business-video-assets/tasks?page=&page_size=20` 每项带 caseId),不许借别的案例的图。
+- 地址:`https://thinknova-previews.oss-ap-southeast-1.aliyuncs.com/` + 资产 `storage_path`(**别用 `public_url`,带签名会过期**);静帧优先用视频资产的 `thumbnail_url` 去掉 query。公共 URL 无签名直读 200 已验。
+- ⚠️ **坑:部分 image 资产的 `storage_path` 本身就是绝对 URL(`cos.lingkeai.vip` 域)**,直接拼公共桶前缀会拼出坏地址,必须先判 `^https?://`。
+- ⚠️ 一个案例常有多条历史任务,**拿不到视频要回溯更早的任务**(只看最新一条会少救十几条)。
+- 现状:视频侧 715 条中有视频预览 **130 条**(08-12 回填 103 条);31 条历史任务只出了板图没出成片;**449 条账号里零成功任务,不烧单补不了**。
+
 > 🟢🟢 **2026-07-28 03:00 线上回读定案(offline_store_video),路径之争到此为止**:
 > - **`promptComposer.screenwriter.staticTemplates.videoTemplate` 真实存在且生效**(实测 541→596 字符,改后 i2v 单读到)。`staticTemplates` 四键 = `businessContext / outputContract / firstFrameTemplate / videoTemplate`。**`masterPipeline.scriptwriter` 下没有 staticTemplates**,别再往那儿找 videoTemplate。
 > - **两条路径并存,各管各的**:`promptComposer.screenwriter.*`(静态模板)与 `promptComposer.masterPipeline.scriptwriter.*`(`timeline` / `lineValidation` / `fallbackPolicy` / `textModel`)。旧记忆说"screenwriter 少了 masterPipeline"是**误判**——不是少段,是两个不同子树。
