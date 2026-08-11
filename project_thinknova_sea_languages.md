@@ -5,10 +5,21 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-05T05:43:48.219Z
+  modified: 2026-08-11T15:41:34.028Z
 ---
 
 # 东南亚语言扩充(2026-08-04 凌晨,老板令:补 SEA 语言+测正确性/流畅性)
+
+## 🔴🔴🔴 08-11 夜 线上全库实测:两层语言必须分开讲(旧记混为一谈,害我给老板报错)
+**层1「输出语言」= 9 种**(zh_cn/en/ja/ko/es/vi/id/ms/th),**视频/海报两侧都齐、全无 beta**,detailOptionGroups 是**数组**(旧写对象,取不到值)。
+**层2「案例文案 i18n」= 6 个界面语言**(zh/en/ja/ko/vi/es),**视频侧海报侧都没有 th/id/ms**——不是海报缺,是两侧都没有。案例标题按界面语言渲染,而界面 i18n 只有 6 个,要加 th/ms/id 得技术先出前端语言包(08-04 已交老板转技术,至今未做)。
+→ **通则:说"某语言有没有"必须先问是输出语言还是界面语言,两层数量不一样。**
+
+## ✅ 08-11 夜 海报侧语言窟窿补完(线上回读 861/861 六语齐)
+- **223 条案例是坏批**(美图式场景改造迁进来那批):不但缺 ja/ko/vi/es,**其中 215 条 `en` 直接等于中文原文**——外国商家看到一屏汉字。已按 265 条去重串译 5 语全量写回,`en==zh` 归零。
+- **`previewCaption` 216 条同病**(216/216 en==zh),已按 205 条去重串译补齐六语。
+- 顺手修 **23 条名实不符**:7 条海报案例标题写「口播」(海报无声)已改「海报」;16 条 S11 标题「…口播」改「…出镜」(en 本来就是 Talks/Recommends,是中文标题错)。
+- **✅ 海报 lineValidation 补 ms/th(这才是老板说的"视频有海报没有")**:海报侧原本只有 ar/en/es/id/ja/ko/vi/zh/zh_cn/zh_tw/default,缺 ms 与 th;已按海报自身量级写 `ms={40,25,words}`(对齐 id/vi)、`th={90,50,characters}`(对齐视频侧线上值),**live + opsEditable 双写**回读确认。海报侧**没有 byLanguage 子树**,只需双写不是四写。
 
 ## 现状
 - **视频 agent(offline_store_video)**:前台语言 8 个 = zh_cn/en/ja/ko/es + **viβ/idβ/msβ(08-04 新增)**。ms 全新配齐:languagePolicy.map.ms + opsEditable.languageMap.ms 双写指令、lineValidation.ms(words 26-46,byDuration 10:18-30/15:26-46)双镜像。**编剧层语言链路已验证通**:ms 单台词真马来语("Baru dilancarkan, teh lemon ini tersedia untuk anda…")。**TTS 语音流畅性未测**——被 video 通道故障阻塞(8/8 video_child_create_failed),通道修复后烧 en/es/vi/id/ms 五语矩阵听感+量语速静默。

@@ -5,10 +5,16 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-08-11T13:16:50.037Z
+  modified: 2026-08-11T15:42:25.093Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
+
+## 🔴 2026-08-11 深夜新增接口真值(实测)
+- 🔴 **案例列表 `GET /admin/api/v1/agents/{code}/reference-cases?page=N&page_size=20`:page_size 硬顶 20**(传 60/200 也只回 20),`data.{items,pagination}`;循环终止条件必须是 `items.length===0`,不是 `<pageSize`。全库:视频 715 条 / 海报 861 条。
+- 🔴 **`GET /ai-tasks?capability=xxx` 最多只回 50 条**(page 2 空),够不到几天前的单;要查老单必须用已知 task_no 走 `GET /ai-tasks/{task_no}` → `output.childTasks.{scriptwriter,image,video}.taskNo` → 再 GET 子任务拿 `input.prompt`/`input.negative_prompt`/`input._i2v_reference_strategy` 和 `output.dynamicJson.cells`。**这是对比"哪天的提示词变了"的唯一可靠路子。**
+- 🔴 **大 JSON 回传三件套**(harness 会拦含 query string 的原文):①`<a download>` 落 `D:\SamsoData\Downloads\` 再本地 Read;②本地 CORS 服务器 `POST /文件名` 存盘(必须用 **ThreadingTCPServer**,单线程 TCPServer 会把浏览器挂死 → CDP 45s 超时);③只回聚合计数。
+- 🔴 **Chrome 标签这两天极易 45s 冻死**:每次 >6 个 fetch 就有风险;超时后**立刻 tabs_close 再开新页**(冻结页脚本会醒来用旧对象 PUT 覆盖新写入)。
 
 ## 🔴 2026-08-11 实操坑(新)
 - 🔴 **`www.thinknova.top` 的 TLS 证书是坏的**,能用的是 apex `https://thinknova.top`(下面那行旧写法要注意)
