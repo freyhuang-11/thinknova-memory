@@ -5,10 +5,20 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-30T18:47:40.606Z
+  modified: 2026-08-11T17:25:49.937Z
 ---
 
 # 商家端才是前台真值(2026-07-30 被老板当场纠正)
+
+## 🔴🔴 2026-08-12 实测:成片页**没有字幕入口**,别再对外说平台"有字幕功能"
+成片页真实地址 `https://thinknova.top/zh/app/business-video-assets/result?taskNo={task_no}`。
+**按钮全集**=下载视频/发布/存到我的资产库/重新生成/换个风格试试/再做一条/开头更直接/不要无关人物/
+结尾强调到店/门店位置放结尾/返回改信息/按补充要求再生成。**全页「字幕」0 次、`<video>` 上 `<track>` 0 条**;
+商家端 `GET /api/v1/ai/tasks/{task_no}?assets=1` 整份 10.7KB 响应里 `subtitle`/`srt`/`vtt` **一个都没有**。
+⚠️ 建单页 HTML 里的 `subtitle` 全是**排版类名**、`caption` 是我们自己的 `previewCaption`,**都不是字幕**,别误判。
+→ 技术文档写的「用户在成片页自选生成带字幕副本」**线上不存在**=**入口没上**,不是"设计如此"(我 08-01 那半句答复作废)。
+→ **待做(读不是写)**:核 admin `promptComposer.subtitle.enabled` 实际值。关着=我开;`true` 却无入口=发技术卡。
+→ 同源旧结论仍有效:`coverFrame` 后处理确实执行(position=middle),但 `thumbnail_url` 指向 mp4 未回写 jpg=后端 bug,已交技术。
 
 ## 🔴🔴 admin config ≠ 前台。判断「前台有没有」只认这个接口
 ```
