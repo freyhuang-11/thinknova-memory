@@ -112,3 +112,9 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **老板桌面=`D:\SamsoData\Desktop`(不是 C:\Users\samso\Desktop)**——给老板放成片/图等交付物放这
 - 输出含 query string 或 cookie 类内容会被 harness 安全过滤拦(返回只回结构化布尔/长度,别回原文)
 - PowerShell 打包别用 `Remove-Item 通配符`(被拦),用 Compress-Archive -Force
+
+## 🔴 08-11 两库大整理后的新坐标(老板"我都不知道在哪里看东西")
+- **本机库入口**:`D:\SamsoData\Documents\视频制作平台分析\README_从这里开始.md`(60行,三行直达 看现状/找对外资料/找今天在做的事 + 最常用10文件 + 七目录各一句)。顶层 9→**7个**;`03_工作区` 整体解散(7天零改动、全是烧单废料);`04_社媒运营` 归档;眼前文件 4940→3998、3.1G→2.0G;归档统一到 **`99_归档\`**(944个/1157MB,**零删除**,还原底稿=`99_归档\_全量清单_整理前_2026-08-11.csv` 4940行 + `_移动清单_2026-08-11.csv`)。
+- **Obsidian 入口**:书签栏第一条「① 从这里开始」=`START_HERE.md`(54行,五条线直达)。`_memory` 50→**28个**,7月逐日流水29份+旧版4份+模板4份进 `_archive/`(全 `git mv`,历史未断)。commit `e614cc7` 已验证远端。
+- 🔴 **两库分工要记住**:ThinkNova 产品线/海外营销在 Obsidian;**国内营销、新加坡线下会、投资人三条线的文件在本机库**,不在 Obsidian(START_HERE 已标真实路径)。
+- ✅ **密钥已加 .gitignore**(08-11):本机库根目录 4 个密钥(oss_ak/manxue_ak/siliconflow_key/volcengine_speech_key)**从未被 git 跟踪、历史也无记录**,已写 `.gitignore` 覆盖 `*ak.txt/*key.txt/*secret*/*token*/*.env` 并 `git check-ignore` 逐个验证。文件本身一字未动。该库 git 最后提交停在 07-01,老板 08-11 定"留着"。
