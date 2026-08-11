@@ -128,3 +128,6 @@
 - [Compass 现状+14 条待办](project_compass.md) — 历史见 archive/compass_history_to_0729.md
 # 其他
 - [新加坡鞋包提案](project_sg_footwear_proposal.md) / [小孩数学网课](project_kid_math_tutoring.md) + [课程总表](reference_kid_math_roadmap.md)
+- 🔴🔴🔴 **08-11 编剧层大整改收官(全局台词/画面/音频)** — systemPrompt 现值3993字,加了六条全局规则:禁复读(优惠原话全片1次)/例词守卫/末句字数≥均句/末格留白0.4秒/情绪写两个可见部位/开场禁叠化画中画;收尾改指派式三路数;voice只写身份不写情感(情绪靠台词承载)。**片尾死寂已解决(0/0/0.9s),音高漂移三刀失败终结(归音色克隆或TTS层)**。案例层同步:视频侧65条+summary 41条、海报侧S01瘦身434→109、补24条新案例。详见 [编剧层](project_thinknova_0729_screenwriter_stack.md) / [片型](project_thinknova_film_types.md) / [海报场景](project_thinknova_poster_scene_revamp.md) / [口播裁格](project_thinknova_0729_koubo_defect.md)
+- 🔴🔴 **08-11 三条新铁律** — ①**验收门槛不能跨片型套用**(拿单人口播的死寂/音量门槛套对话剧,误杀好片) ②**「写满」类指令会把被禁话术挤出来**,必须同时指定合法填充材料 ③**授权子agent挤提示词字数时,必须显式列出合规不可删清单**(曾误删"绝不承诺疗效",已恢复)
+- 🔴 **08-11 成片验收=四项齐验**:联系表逐帧+片尾死寂+mean音量+台词逐句读,缺一不算验收完(曾只看画面不听音频交差被老板抓)
