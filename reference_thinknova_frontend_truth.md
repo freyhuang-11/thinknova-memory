@@ -82,3 +82,22 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
   和 `endingCta.none`(本来就是"不要CTA")。→ **要补的是选项值本身,不是规则。**
 
 关联 [[reference-thinknova-tech-docs-index]] [[reference-thinknova-option-scene-rules]] [[feedback-case-low-coupling]]
+
+
+### 🔴🔴🔴 海报线不接受上传底图(08-11 实测)
+
+线上 `business-assets/config` 的 **`referenceImageModel` = null**;商家端只有「填信息 → 结果」三页,
+**没有任何上传入口**。→ **海报线每一单都自己重新生成一张图,用户传不了自己的照片。**
+
+后果(踩过):小红书 05 篇原定标题「**同一张照片,我做了两版**」——**平台压根做不到**,
+写出去就是对外承诺一个没有的能力(铁律 3.1)。已改成「同一道菜,我做了两版」。
+
+**能做到的替代**:把构图/光线/机位/道具全写进 `extraRequirement` 写死,
+拿到同一道菜、同一家店、同一张桌、同一处光的两张图 —— 但**不是同一张照片**,并排能看出机位差别。
+要字面意义的「同一张照片套两套字」得技术给海报线开上传能力,属 config 结构级。
+
+**同批两个接口事实(与旧记忆不符,已核正)**:
+- 海报线 `offer` **可以留空**(空串 200 OK)。旧记忆「offer 必填」那条是**视频线**的规矩,别串线。
+- `extraRequirement` **硬上限 200 字**,超了报 `422010`。
+- 显式传 `selectedOptions.copyLanguage` 后可回读 `detail.business.selectedOptions` 核对;
+  `zh_cn` / `en` / `ms` 三单实测各自重排版式(底部横3格 / 横4格 / 左上竖排3行),不是同版式换字。
