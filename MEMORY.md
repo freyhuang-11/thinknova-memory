@@ -7,6 +7,11 @@
 闸1 现状源(读了什么/现状是什么) → 闸2 字节账(Δ与挤掉了谁) → 闸3 爆炸半径(命中几条) → 闸4 attemptCount(不是看成片) → 闸5 单条验证+老板过目才许铺开。
 **通则:先读后动,先验后铺。** 下面 L0-L5 是细则,闸门是调用它们的时机表。
 
+## 🔴🔴🔴 L-0.5 · 动手之前先问「有没有现成的 skill」
+**34 个 skill 的路由表 → [什么场景用什么 skill](reference_skills_routing.md)**(老板 08-11:「你明明有那么多 skills,你知道什么时候用什么嘛」)。
+三条铁规矩:①**`hyperframes` 是做任何视频/动画的强制入口**(我一直手搓 ffmpeg,坑本来不用踩)②`cheat-score-blind` 是内部 sub-agent,主对话绝不许调 ③组合拳顺序不能乱(写视频稿=video-script-style→high-retention-hook→hkrr-clock→hurricane-shot-prompt)。
+🔴 08-11 两个跟头都是没查表栽的:封面手搓、选题受众拍脑袋(cheat-persona/seed/learn-from/trends 全没用)。
+
 ## L0 · 每次开口/动手前
 0. 🔴🔴🔴 **权威源(技术文档/线上真值/代码)> 我的记忆**;下关键结论前回源核对,实验结论标「实测·待核」带任务号、不外推 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断"现在/多久前"**先跑 `date`** → [详](feedback_check_time_first.md)
