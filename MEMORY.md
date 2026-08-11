@@ -81,7 +81,7 @@
 # ThinkNova(实体店内容 SaaS)
 ### 动手前必背
 - 🔴🔴🔴 [编剧层 07-31 里程碑版](project_thinknova_0729_screenwriter_stack.md) — **动编剧/长度/台词/烧验第0步·唯一现状源**:lineValidation=全片总计唯一真值(**线上真值 zh 15秒 min60/max80、10秒 min40/max48,metric=characters含标点**;旧记的62-75已作废)、systemPrompt≤4000字零数字、PHP注入、标准验收配方、战役教训六条、判读手册
-- 🔴🔴 [商家端=前台真值](reference_thinknova_frontend_truth.md) — 下"前台有没有"结论前必读;语言终版 zh_cn/en/ja/ko/es 无beta;placeholder 配置化读取链;agent 直连 PUT 解锁
+- 🔴🔴 [商家端=前台真值](reference_thinknova_frontend_truth.md) — 下"前台有没有"结论前必读;**08-11 线上真值:输出语言 9 种 zh_cn/en/ja/ko/es/vi/id/ms/th 全部无 beta(技术早已做完,旧记的"6语/界面i18n待技术"作废,别再当待办报)**;placeholder 配置化读取链;agent 直连 PUT 解锁
 - 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — 改 config 字段第0步;顶部「口径速查」
 - 🔴🔴 [模型台账 + 时长映射](reference_thinknova_multiref_model.md) — 动模型/时长前必看;grok 做不到硬切,omni 才能(07-31 老板定论)
 - 🔴 [提示词字段读取图](reference_thinknova_prompt_fields.md) — 改提示词第一查:谁读得到哪个字段

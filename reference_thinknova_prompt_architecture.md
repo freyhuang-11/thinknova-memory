@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-07-30T18:42:53.323Z
+  modified: 2026-08-11T13:55:12.184Z
 ---
 
 > 只留**当前有效规则**;实验流水、证据单号、视觉纪律全文在 `archive/thinknova_arch_history_to_0729.md`;被推翻的旧结论已删(查 git)。
@@ -52,7 +52,7 @@ metadata:
 - 🔴 **负面词只禁"新增字幕水印",不泛化禁"文字"**——泛化会把真人真店一起净化掉。
 
 ## 六、字节纪律
-- **i2v 提交串(videoPrompt) 4096 字节硬顶**。🔴 07-31 起语义变了:**超限=编剧该次尝试被杀重试**(scriptwriter videoPrompt exceeds 4096 bytes),不再静默截断。videoTemplate 已压到 **564字/1501B**,分镜预算余 2595B,正常不再临界;再往 videoTemplate 加字前仍要量。
+- **i2v 提交串(videoPrompt) 4096 字节硬顶**。🔴 07-31 起语义变了:**超限=编剧该次尝试被杀重试**(scriptwriter videoPrompt exceeds 4096 bytes),不再静默截断。videoTemplate ⛔**08-11 更正:线上真值 363 字**(旧记 564字/1501B 作废);再往 videoTemplate 加字前仍要量。🔴 **别重写它的开场句**——08-11 有 agent 把有效的开场句"改写升级"成大段描述板子(拍摄计划表/格线/白缝/缩小复本),反而把模型注意力引到格子上,格网复发;已恢复原文。
 - **超限后果以技术文档《07-12》为准**:裁静态/修饰前缀,**优先保台词+分镜 guard+参考图**。
   ❌「超 4096 = 静默砍尾但任务仍 succeeded」已推翻(07-24)。遇镜头/收尾丢失**带任务号找技术**。
 - **「4096 超限」与「编剧回退」是两条独立机制**,别绑成因果(反证 task_afe9a1492361:i2v 3307B 正常出 5 句、编剧无回退)。

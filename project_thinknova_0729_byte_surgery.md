@@ -30,7 +30,7 @@ metadata:
 `promptComposer.stagePromptPresets.image_to_video` 下:
 - `storyboardGuard`:「输入**仅一张图片**=第1镜的首帧画面」
 - `storyboardClarification`:「输入的这张图是**六格分镜参考板**、**绝不是成片画面**」
-两句同时拼进同一条提示词。翻 `panel_crop` 后**首帧确实已是裁好的单格 720×1280**,Guard 口径才对,Clarification 前段 640 字节是基于旧「整板当首帧」的过期叙事。
+两句同时拼进同一条提示词。⛔**08-11 作废这段的前提**:线上早已不走 panel_crop(config 里出现 0 次),**"整板当首帧"才是现行事实**,不是"过期叙事"。**08-11 我曾拿这条 07-29 记录去推"当年走 panel_crop 所以没格网",被老板当场否掉——这就是记忆堆层害人的实例。**
 **两个键都有 `opsEditable` 镜像,必须双写;`videoTemplate` 无镜像。**
 
 ## 字节手术结果(07-29,已落库回读确认)

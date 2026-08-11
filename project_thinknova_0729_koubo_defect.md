@@ -4,7 +4,7 @@ description: "触发:动口播单/裁格/i2vReferenceStrategy 之前 → 分层�
 metadata: 
   node_type: memory
   type: project
-  modified: 2026-08-11T11:21:51.226Z
+  modified: 2026-08-11T13:55:25.943Z
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
 ---
 
@@ -20,7 +20,7 @@ metadata:
 - 建单 500 排查补充:**caseId 对应案例 enabled:false 时 POST /business-video-assets/tasks 直接 500001**(不是参数错);outputType 现行唯一合法值＝`video`(`video_10s` 会报"不再支持30秒")。
 
 ## 🔴 现行分层(07-31 线上真值复核)
-- 全局 `i2vReferenceStrategy` = **storyboard_board(整板)**(live+ops 双写);**口播类案例级 = panel_crop**(07-30 我按"只有口播裁格,其余整板"全库归类)。07-29 那次"全局翻 panel_crop"已被此分层取代。
+- ⛔**08-11 线上实测作废**:全库统一 `storyboard_board`,**`panel_crop` 在 config 里出现 0 次**——"口播案例级 panel_crop 分层"和"07-29 全局翻 panel_crop"两条都已不成立,**别再拿它们推理**。
 - 首帧裁切失败保护闸(技术新加):裁格失败即停派发。~~KB8 一例失败/KB9 同案例成功 = 偶发~~ ⛔ **08-11 作废:board 策略下压根不裁格,"网格入片"与这条保护闸无关,见文首 08-11 段**。
 - `entranceBlackOverlay` 案例级:473 整板={0.5s},114 裁格=零黑幕,Agent 默认关。
 - ⛔ **本文件旧版的 lineValidation 表(45-100 等)、语言范围(砍ko)、419-UI 弹窗保存法全部作废**:长度真值看 [[project-thinknova-0729-screenwriter-stack]];语言终版=zh_cn/en/ja/ko/es;**agent 直连 PUT 带 x-csrf-token 已通,businessUi 也能写**(placeholderDefaults 07-31 实证落库+前台送达),弹窗 textarea 法废弃。
