@@ -31,3 +31,14 @@ metadata:
 - 几何拉伸技术卡(OPS-VIDEO-20260729-02,参考图宽高比)草稿在 `02_交付内容\`;裁格分层后口播侧已实际根治,整板侧是否仍需此卡待观察。
 
 关联 [[project-thinknova-0729-screenwriter-stack]] [[reference-thinknova-config-powers]] [[feedback-dont-assume-requirements]]
+
+## 🔴🔴🔴 08-11 分镜板漏首帧:根因查清,「KB8 裁切偶发」旧定性作废
+**真机制不是裁切失败,是"整板当首帧"**:四单取证(重症 task_6bdc98077bfb/task_8d09aa45d930,干净 task_3c7109642cf8/task_d5172f8606e2)——i2v 子任务 `_i2v_reference_strategy` **全部=storyboard_board**,`image_url`＝`reference_image_urls[0]`＝**那张3×2六宫格板本身**;`allAssets` 只有板一张图,**全程没有裁切动作**。grok 是图生视频,**第0帧＝输入图**,板进去板就上屏,实测滞留 0.25→2.5 秒,0.5 秒黑幕盖不住。
+**两处互搏指令让它变成抛硬币**:
+1. `negative_prompt` 第1行含「忽略分镜板结构」「多个首帧格折叠成单一画面」=**反向命令模型保住格子**,与第2行「网格/分格/六宫格/分镜板」互搏。⚠️ **这行不在任何 agent config 里**(video/content 两 agent 全量遍历零命中)=**后端硬编码,我们够不着**(老板令不发技术卡,只记账)。
+2. `storyboardGuard`＝「开场按顶部【开场硬规】」,但 **08-01 字节手术把 videoTemplate 那段标题改成了「[总览]」→ 指针悬空**。**这就是 07-31「网格问题已终结」之后的回归点——我们自己埋的雷。**
+**修复(全局 videoTemplate,非 systemPrompt)**:恢复并前置具名段【开场硬规·最高优先】,禁令式改指派式:「那张板是拍摄计划表,不是画面。黑场之后第0帧起,画面就是摄影机架进左上第1格那个场景里拍出来的实拍单画面,铺满整幅、一层到底…整块板、格线、白缝、缩小的复本,全片任何时刻都不入画。」363→439字,videoPrompt 3116/3123B(余~980B)。回滚存档 `00_规格与参考\ROLLBACK_videoTemplate_0811_grid.json`。
+**验证**:修复后 2 单零格线(task_80bd0ce125ec/task_12c49cf1803d);已上架的 retail/beauty 两条逐帧复查**没中招**。⚠️ **基线约50%,n=2 不算证明(纯运气概率25%),需补验3单**——因额度中断未做完,**这是最高优先的续跑项**。
+**重症vs干净案例配置逐字相同**(i2vReferenceStrategy 都缺省、entranceBlackOverlay 都是{true,0.5,0.12,1}、storyboardPanelIndex 都=1)→ **纯模型随机,"抄干净样本配置"这条路不成立**。
+**确定性备选(有代价,待老板拍板)**:案例级 `i2vReferenceStrategy:"panel_crop"` 入参裁成第1格单图,**入参无格子=100%根除**(07-28 技术卡 OPS-VIDEO-20260728-03 的方案B)。代价:videoTemplate 有分支「输入图为单张实拍时＝全片唯一镜头,不加黑场全程不切镜」,**对话剧会塌成一镜到底**,且该分支正被114条口播案例吃着,爆炸半径>1。
+**两条接口坑入账**:①**案例 enabled:false 时建单直接 500001**(不是参数错,补进 8.7 建单500排查法) ②`outputType` 现行唯一合法值是 `video`,传 `video_10s` 报"不再支持30秒"。
