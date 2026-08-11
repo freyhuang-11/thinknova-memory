@@ -1,9 +1,11 @@
 ---
 name: project-thinknova-brand-product-industry
-description: "触发:要加行业/加场景之前,或商家建单报 500 时 → 新场景必须技术注册进合法枚举否则后台保存被剥离;含 admin GET 拿全量真值→隔离实验换维度→找唯一缺键 的诊断法"
-metadata:
+description: "触发:要加行业/加场景之前,或商家建单报 500 时 → 加行业与加场景运营都能自己做(07-25 技术修复后场景注册表已可编辑);加场景必配齐 scenePrompts+sceneRules 否则建单500;含 admin GET 拿全量真值→隔离实验换维度→找唯一缺键 的诊断法"
+metadata: 
   node_type: memory
   type: project
+  originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
+  modified: 2026-08-11T19:01:56.628Z
 ---
 
 # 「品牌产品」行业 + 广告 TVC 大片场景(2026-07-24 老板拍板,07-25 全量上线)
@@ -16,9 +18,10 @@ metadata:
 - ✅ **实测出片**(task_d9eb6173c06c,brand_product 广告大片):建单 200 → 编剧 succeeded → rendering;脚本 concept 电影感官向、有人物对镜 + 产品特写,非无人流程片。**S14 / 品牌产品可出片。**
 - ⚠️ **S14 案例默认列表排不出来**,必须用 `sceneId=S14` 过滤才列得出。
 
-## 二、🔴🔴 加行业 vs 加场景:权限边界(核心教训)
-- **加"新行业"运营能配全**;**加"新场景"必须技术做** —— 后台编辑器只认已注册的场景枚举,保存时会把未注册的 sceneId **静默剥离**(S14 曾被一保存就退回 13),`industryPrompts` 不校验所以新行业留得住。
-- 技术已上线的修复(07-25):①场景合法表改读 `businessUi.scenes[]`(不再硬编码 S01-S13)②视频 agent 补 S14 + 六语言标签 + cinematic_ad + scenePrompts/sceneRules ③保存时校验 sceneId 必须引用已注册启用场景 ④后台面板新增场景注册表 + 动态标签 + sceneRules 编辑 ⑤修 opsEditable 保存与运行时同步冲突。
+## 二、🔴🔴 加行业 / 加场景:现状 = 运营都能自己做(08-12 更正)
+- ✅ **加行业**:运营能配全。`industryFilters` 里 `enabled` 是**文档明确允许运营改的字段**(手册 6.3:label/sortOrder/enabled 可改,只有 id 不要改),老板 07-30:「行业id 你肯定是可以自己加的」。**关着的行业翻 `enabled` 即可上线,不用技术。**
+- ✅ **加场景**:07-25 技术修复上线后**运营也能自己做**——①场景合法表改读 `businessUi.scenes[]`(不再硬编码 S01-S13)②保存时校验 sceneId 必须引用已注册启用场景 ③**后台面板新增场景注册表 + 动态标签 + sceneRules 编辑**。加场景必须同时配齐 `businessUi.scenes[]` 注册 + `businessActions` 条目 + `scenePrompts.SXX` + `sceneRules.SXX`,**缺 sceneRules 会建单 500**。
+- ⛔ **已作废(07-24 修复前的旧状态,别再引用)**:~~「加新场景必须技术做,后台保存会把未注册 sceneId 静默剥离」~~ —— 08-12 我拿这条旧结论答老板"加场景要技术",被当场纠正。**这是"新结论没覆盖旧结论"的典型事故。**
 - **教训**:加行业/场景**先查技术文档(配置 JSON 说明书 6.3 等)再动手**——`industryFilters.id` 必须和 `industryPrompts` 键对应,漏了生图层取不到;`sceneRules[SXX]` 缺了父任务组装取不到 → 建单 500。
 
 ## 三、🔴 建单 500 诊断法(别猜,已成通用方法)
