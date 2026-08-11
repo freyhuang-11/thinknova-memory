@@ -5,10 +5,20 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-08-08T11:53:02.031Z
+  modified: 2026-08-11T13:16:50.037Z
 ---
 
 ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-agents]])。
+
+## 🔴 2026-08-11 实操坑(新)
+- 🔴 **`www.thinknova.top` 的 TLS 证书是坏的**,能用的是 apex `https://thinknova.top`(下面那行旧写法要注意)
+- 🔴 **账号并发上限 = 5 个父任务**,超了排队(并行会话同时烧会互相堵)
+- 🔴 **视频建单必填 `durationSeconds`**(10 或 15),漏了报 `422010 请选择视频时长`。海报线没这条
+- 🔴 **必须显式传 `selectedOptions.copyLanguage`** —— 08-06 那批 20 条报废 6 条(越南语/中英病句)的**根因就是原单 selectedOptions 里根本没有这个字段**,不是玄学。已拉 `task_15bb7e` 原单坐实
+- `ms`(马来文)在合法枚举里:`zh_cn/en/ja/ko/es/vi/id/ms/th`,海报与视频两侧同序一致
+- **抖音封面图是签名 URL**,签名绑死路径,只拿得到 323×430 一档,改尺寸一律 403
+- **抖音主页 CDP 每次导航只允许一次 JS 求值**,之后渲染进程冻死;localhost 回传被 CSP 挡 → 走「导航→单次求值→curl 下载」
+- ⚠️ ffmpeg lavfi `color=` **不带 `d=` 是无限流**,接进 `alphamerge` 会让整条命令永不结束
 
 ## 域名
 - 商家前端:`https://www.thinknova.top`(工作台 `/zh/app`;视频 `/zh/app/business-video-assets`,海报 `/zh/app/business-assets`)
