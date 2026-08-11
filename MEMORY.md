@@ -80,7 +80,7 @@
 
 # ThinkNova(实体店内容 SaaS)
 ### 动手前必背
-- 🔴🔴🔴 [编剧层 07-31 里程碑版](project_thinknova_0729_screenwriter_stack.md) — **动编剧/长度/台词/烧验第0步·唯一现状源**:lineValidation=全片总计唯一真值(zh 62-75)、systemPrompt≤4000字零数字、PHP注入、标准验收配方、战役教训六条、判读手册
+- 🔴🔴🔴 [编剧层 07-31 里程碑版](project_thinknova_0729_screenwriter_stack.md) — **动编剧/长度/台词/烧验第0步·唯一现状源**:lineValidation=全片总计唯一真值(**线上真值 zh 15秒 min60/max80、10秒 min40/max48,metric=characters含标点**;旧记的62-75已作废)、systemPrompt≤4000字零数字、PHP注入、标准验收配方、战役教训六条、判读手册
 - 🔴🔴 [商家端=前台真值](reference_thinknova_frontend_truth.md) — 下"前台有没有"结论前必读;语言终版 zh_cn/en/ja/ko/es 无beta;placeholder 配置化读取链;agent 直连 PUT 解锁
 - 🔴🔴 [技术文档档案索引 = 唯一真值](reference_thinknova_tech_docs_index.md) — 改 config 字段第0步;顶部「口径速查」
 - 🔴🔴 [模型台账 + 时长映射](reference_thinknova_multiref_model.md) — 动模型/时长前必看;grok 做不到硬切,omni 才能(07-31 老板定论)
@@ -92,8 +92,8 @@
 - [配置权限地图](reference_thinknova_config_powers.md) / [路径接口](reference_thinknova_paths.md) — csrf-PUT 正解/轻页法/CORS服务器法都在 paths
 
 ### 现行状态(07-31 里程碑)
-- ✅ **编剧战役收官**:回退语义=失败即退款;终验双单全项过并已挂进案例预览(口播 9b3b28 一镜到底/非口播 8e6ea1 画外音);案例体检 587 条 hint 100% 双标记(六语);声线三件套新规。残留=三锁双参验证在跑(db787156c4c0)、30秒上线分档、7 片型烧验(与预览回填流水线合一)、KB8 裁切偶发原因(技术)
-- 🔴🔴 [口播/裁格现状](project_thinknova_0729_koubo_defect.md) — 全局 storyboard_board+口播案例 panel_crop 分层;首帧裁切保护闸;旧 lineValidation 表已作废
+- ✅ **编剧战役收官**:回退语义=失败即退款;终验双单全项过并已挂进案例预览(口播 9b3b28 一镜到底/非口播 8e6ea1 画外音);案例体检 587 条 hint 100% 双标记(六语);声线三件套新规。残留=三锁双参验证在跑(db787156c4c0)、30秒上线分档、7 片型烧验(与预览回填流水线合一)。**「KB8 裁切偶发」定性已作废:根本没有裁切动作,i2v 输入图就是六宫格板、grok 第0帧＝输入图**
+- 🔴🔴 [口播/裁格现状](project_thinknova_0729_koubo_defect.md) — **08-11 线上实测:全库统一 storyboard_board,`panel_crop` 在 config 里出现 0 次(旧记「口播案例 panel_crop 分层」已作废)**;格网只靠 videoTemplate 开场句压,别动输入图策略、别延长黑幕
 - 🔴 [故事板取证手册](project_thinknova_storyboard_test.md) — **取证接口唯一真值**(admin offline-store-content/tasks/{no} 拿板图裸片)+三锁 n=5 承诺+两模型定位
 - ✅ 案例文案去重 468 处/284 条+prefill 问句化 93 条已铺完送达(07-30);[案例缺口双查法](feedback_case_gap_dual_check.md)
 - 🔴🔴 [片型体系](project_thinknova_film_types.md) — 620条铺完;剩 7 片型烧验
