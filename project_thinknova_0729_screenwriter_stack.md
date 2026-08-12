@@ -4,11 +4,20 @@ description: 触发:动编剧层任何东西(提示词/lineValidation/烧验/台
 metadata: 
   node_type: memory
   type: project
-  modified: 2026-08-11T13:55:07.542Z
+  modified: 2026-08-12T19:47:32.859Z
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
 ---
 
 # 编剧层·08-01 现状(以此为唯一现状源)
+
+## 🔴🔴🔴 2026-08-13 编剧连挂事故:`shotCount=1` 与 systemPrompt 全局冲突(已修)
+**症状**:S11 定点口播案例连续失败,`task_a1fb1695b740` / `task_9368eab23b28` **10 次尝试跨 6 个模型全挂**(luna/deepseek-v4-pro/terra/deepseek-flash/qwen×2),错误集中在 `lines count does not match shot count` 和 `lines are incomplete sentences`,最后掉到备用模型才报 `provider account is unavailable`。
+🔴 **判读教训:多个不同模型报同一批内容校验错 = 提示词问题,不是模型/供应商问题。**「provider unavailable」出现在尝试链末尾时是**耗光主模型后的次生现象**,别当根因(08-12 我就把 `beauty_s11_static_talk` 那单误判成供应商挂了)。
+**根因**:56 条 S11 案例 `scriptwriterPreset.shotCount=1`,但 systemPrompt **有七处都假设多格多句** —— 每句换维度 / 一段话拆成几句 / 第1格只说钩子 / 倒数第2格前讲完 / 后格只写"同景仅手势微变" / 单格单lines只一句 / 五格里至少两格无人脸。模型只能二选一:拆成多句 → 条数不符;硬塞一条 76 字 → 判不完整句。
+**修法(案例层解,不跟全局搏斗)**:56 条全部 `shotCount:1 → 5`。定点口播的"不切镜"由案例 hint + systemPrompt「后格只写『同景,仅手势微变』」保证,**不需要靠 shotCount=1**。改完全库 shotCount=1 归零(655 条 5 格 / 1 条 7 格 / 59 条未设)。
+**验证**:两条原本必挂的案例重烧,**均 attempt 1 成功**,5 句 5 格 77 字落区间、格位全合法。
+**顺带**:systemPrompt 加了兜底句「shotCount=1时lines只有一条:把字数写成一段连贯口语,内部可有逗号句号,绝不拆成多条、不必每句换维度」(3999字)。⚠️ **但实测证明这一句压不住那七处**,真正生效的是改 shotCount —— 别以为加一句话就能对抗多处相反指令。
+
 
 ## 🔴🔴🔴 08-08 老板定调:编剧=营销专家,画面要为台词的主张作证
 老板原话:「台词和画面都是由编剧来生成的,那编剧层就要站在真实的角度去考虑,他一定是个营销专家,再每次编写台词和画面的时候要考虑到用户看到画面和台词是什么感受,我们需要尽可能的让别人有兴趣,有钩子我们的产品才会是一个好产品」。
