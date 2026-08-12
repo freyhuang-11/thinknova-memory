@@ -27,7 +27,14 @@ metadata:
 - 地址:`https://thinknova-previews.oss-ap-southeast-1.aliyuncs.com/` + 资产 `storage_path`(**别用 `public_url`,带签名会过期**);静帧优先用视频资产的 `thumbnail_url` 去掉 query。公共 URL 无签名直读 200 已验。
 - ⚠️ **坑:部分 image 资产的 `storage_path` 本身就是绝对 URL(`cos.lingkeai.vip` 域)**,直接拼公共桶前缀会拼出坏地址,必须先判 `^https?://`。
 - ⚠️ 一个案例常有多条历史任务,**拿不到视频要回溯更早的任务**(只看最新一条会少救十几条)。
-- 现状:视频侧 715 条中有视频预览 **130 条**(08-12 回填 103 条);31 条历史任务只出了板图没出成片;**449 条账号里零成功任务,不烧单补不了**。
+- 现状:视频侧 726 条中有视频预览 **130 条**、有封面 **696 条**;31 条历史任务只出了板图没出成片;**449 条账号里零成功任务,不烧单补不了**。
+
+### 🔴🔴🔴 08-13 我造成的封面事故:图字段里塞了 mp4(已全量修复)
+**症状**:老板发现案例封面全是黑屏。
+**根因**:回填封面时我拿资产的 `thumbnail_url` 直接写进四个图字段,**但那批资产的 `thumbnail_url` 指向的就是 mp4 本身**(magic bytes `ftypisom`,和 `previewVideoUrl` 同一个地址)。浏览器把视频当图片渲染 → 显示第 0 帧 = 我们那 0.15 秒黑幕。**124 条有封面的里 114 条中招。**
+🔴 **教训:写进图字段前必须验它真是图片**(下载看 magic bytes 或用 PIL 打开),不能因为字段名叫 thumbnail 就信它。
+**修法(零烧单)**:`ffmpeg -ss 2.5 -i <公网视频URL> -frames:v 1` **远程 seek 抽帧,不用下载整个文件**;传自家公共桶 `previews/all/{caseId}_cover.jpg`;再写回四个图字段,`previewVideoUrl` 保持不动。112 条成功,写回零失败,亮度 79-102 全部正常。
+**2 条修不了**:`pet_care_s06_training_class` / `flower_plant_s09_festival` —— 视频在**供应商桶** `1renfile-...myqcloud.com`(07-08),现在 **404 已过期**,印证「供应商桶会过期,案例预览别指它」。已把这 2 条六个预览字段全清空,免得前台显示坏图。
 
 > 🟢🟢 **2026-07-28 03:00 线上回读定案(offline_store_video),路径之争到此为止**:
 > - **`promptComposer.screenwriter.staticTemplates.videoTemplate` 真实存在且生效**(实测 541→596 字符,改后 i2v 单读到)。`staticTemplates` 四键 = `businessContext / outputContract / firstFrameTemplate / videoTemplate`。**`masterPipeline.scriptwriter` 下没有 staticTemplates**,别再往那儿找 videoTemplate。
