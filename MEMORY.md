@@ -25,6 +25,12 @@
 3.2 🔴 **写入被拒先原样重试一次再说**;别把"这条命令能不能发"退回给老板。**唯一硬墙=改我自己的 settings.json 权限段(classifier 死拦,也不许绕,只能给老板贴;08-02 已贴好 36 条 allow)** → [详](feedback_retry_before_escalating.md)
 3.5 🔴🔴🔴 **「前台有没有X」只认商家端 config 接口,admin config 不是前台真值;新文档与旧记录冲突以最新覆盖** → [详](reference_thinknova_frontend_truth.md)
 
+## L0.8 · 🔴🔴🔴 预设即产品(老板 2026-08-13 定调)
+**「商家 90% 以上会用系统默认设置生成内容,所以我们要提前把很多工作做进预设,这是我们系统的意义。」**
+→ 推论一:**验证必须走默认路径**。08-13 血案:我验剧情片时手动传 `appearanceMode:'product_store'` 覆盖了案例预设,2 单都好;而默认预设是 `product_only`,实际出片「无人物入镜」——**一部两个人的小剧场画面里一个人都没有**,五句对白全成画外音。**烧单时凡是手动传了某个 selectedOptions,就等于没验那个维度的默认值。**
+→ 推论二:**预设错 = 全量事故**。案例预设跨行业/跨场景照抄时,`appearanceModePreset`/`visualFocusPreset`/`videoStylePreset`/`paceLevelPreset` 是真进提示词的(prefill 只是灰字提示不影响出片)。08-13 那 23 条剧情片的病灶在**源模板本身**,11 条复制品把错误等比放大。**改的时候必须连源模板一起改。**
+→ 推论三:**新建案例先问"默认值对不对",再问"选项全不全"**。
+
 ## L1 · 改配置/提示词前
 4. 🔴 **先查字段读取图**:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md)
 4.3 🔴🔴🔴 **配置字段的语义(每句还是总计?目标还是边界?)不确定=先问技术,绝不凭直觉配**——lineValidation「总计」被我当「每句」配,一字之差造出电报体+连环回退+语速慢三症,烧十几单才定位 → [详](project_thinknova_0729_screenwriter_stack.md)
