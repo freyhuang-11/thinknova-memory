@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-11T17:25:49.937Z
+  modified: 2026-08-12T17:43:25.590Z
 ---
 
 # 商家端才是前台真值(2026-07-30 被老板当场纠正)
@@ -17,7 +17,11 @@ metadata:
 商家端 `GET /api/v1/ai/tasks/{task_no}?assets=1` 整份 10.7KB 响应里 `subtitle`/`srt`/`vtt` **一个都没有**。
 ⚠️ 建单页 HTML 里的 `subtitle` 全是**排版类名**、`caption` 是我们自己的 `previewCaption`,**都不是字幕**,别误判。
 → 技术文档写的「用户在成片页自选生成带字幕副本」**线上不存在**=**入口没上**,不是"设计如此"(我 08-01 那半句答复作废)。
-→ **待做(读不是写)**:核 admin `promptComposer.subtitle.enabled` 实际值。关着=我开;`true` 却无入口=发技术卡。
+→ ✅ **2026-08-13 核完,挂账了结**:admin `GET /agents/offline_store_video` 实拉——`promptComposer.subtitle.enabled` = **`false`**(不是文档暗示的缺省启用);
+整份 config(143,861B)里 **`subtitle` 只出现 2 次**(全在这一个块内)、**`srt`/`vtt` 0 次** → 交付链路没有任何地方消费字幕;且 **`subtitle` 不在 `opsEditable` 层**
+(config 自注「promptComposer 是运行时结构,不建议直接改」)。
+🔴 **所以"关着=我开"这句作废**:开关只管编剧存不存时间轴,**不管前台有没有入口**——翻成 `true` 前台照样没按钮,只多一份没人取的数据。
+**字幕最终定性=整条交付端就没做,是产品决策不是运营开关**,已升级老板(三选一:不做/只翻开关验证但无交付价值/发技术卡做前台入口+副本链路)。
 → 同源旧结论仍有效:`coverFrame` 后处理确实执行(position=middle),但 `thumbnail_url` 指向 mp4 未回写 jpg=后端 bug,已交技术。
 
 ## 🔴🔴 admin config ≠ 前台。判断「前台有没有」只认这个接口
