@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-12T17:50:09.433Z
+  modified: 2026-08-12T21:10:37.837Z
 ---
 
 # 场景提示词 / 选项规则 / 案例写入(2026-07-29 实证 · 08-12 大改)
@@ -35,6 +35,10 @@ metadata:
 
 ### 🔴🔴🔴 【场景要点】改成用 sceneId 精确匹配(08-12)
 旧版用「新品=/促销=/招牌=」这类**简称**,靠模型去模糊匹配两个 label —— **一改名就可能全表失配**。现已改成 `S01=/S02=/S04=…` 十条,精确、且比写场景名更省字。**以后改场景名不用再动这张表。**
+
+### 🔴🔴🔴 08-13 场景迁移后的连锁反应(踩过才知道)
+- **`businessScenario` 必须和案例当前 `sceneIds[0]` 对应,对不上直接建单 500001**。我拿 S02 的 `promotion` 配已迁到 S08 的案例,连挂两次才反应过来。**场景迁移后,任何写死 businessScenario 的脚本/收藏/外部调用都会挂。**
+- S08 的 action id 仍是 `customer_review`(label 已改「剧情短片」)——**id 不跟着改名走**,查 action id 一律从 `businessActions` 按 `sceneId` 反查,别按名字猜。
 
 ### ⛔ 08-12 实测:`sceneRules` 和 `scenePrompts` 的内容都不进编剧
 编剧 `input.systemPromptSource='screenwriter.systemPrompt'`,`input.scene` 只有 `{id,label}` 两个键。
