@@ -15,6 +15,57 @@ metadata:
 
 > 排错流水与历史单号在 `archive/thinknova_arch_history_to_0729.md`。
 
+## 🔴🔴🔴 2026-08-13 多参考图 → 成片无人声(实测 + 官方文档根因)
+
+**症状**:同案例同提示词,只改图片数 —— 4 张图的成片**一句人声都没有**(画面正常、环境音正常 mean −15.1dB,不是静音文件)。老板原话「不按台词说话」,实测比这重:**是完全不说**。
+
+**已排除**:台词逐字进了 i2v 提示词(程序化比对 5/5 命中);2804 字节远低于 4096;编剧 `source=text_model` 没回退。**组装层无辜,是供应商侧行为。**
+
+### 实测矩阵(distinct = 去重后 grok 实际收到几张图 = `image_url` ∪ `reference_image_urls`)
+| 单 | distinct | 结构 | 人声 |
+|---|---|---|---|
+| `task_7a36e19d7e74` | **1** | 板 + [板] | ✅ 5句一字不差 |
+| `task_7da9bf1ee568`(父 `task_72b026b79287`) | **2** | 板 + [板, 人物] | ✅ 全程15秒说满 |
+| `task_3e03be93be9e`(父 `task_a14f0c864b9a`) | **4** | 板 + [板, 人, 景, 物] | ❌ 零人声 |
+| 老板手写 4 单(`4953f42e399a`/`d4347f800b6f`/`3f4a586b8b73`/`11efb272deab`) | **2** | 首帧 + [首帧, 分镜图] | ❌ 3哑 + 1只蹦「好 谢谢」 |
+
+🔴 **别把它简化成"张数超过N就哑"——我 08-13 就这么下过一次结论,当场被自己的下一单打脸。** 老板手写单 distinct=2 全哑,我们管线 distinct=2 却说话,**结构相同结果相反**。已知差异:①老板单是双人对话/我们是单人口播 ②老板单 `image_url` 是真实首帧照片/我们是分镜拼板 ③提示词格式(引号台词 vs 「开口台词:」)。**三个变量都没隔离,谁是主因未定。**
+
+🔴 **提示词层压不住**:老板 `task_3f4a586b8b73` 的提示词已明写「禁止静音,禁止只有动作没有对白,禁止只做表情不说话」→ **照样零人声**。别再往提示词里加反静音句。
+
+### 官方文档根因(子agent 08-13 查,带源)
+- 🔴🔴 **xAI 官方:`image` + `reference_images` 是非法组合,返回 400**(https://docs.x.ai/developers/model-capabilities/video/generation)。三模式互斥:`prompt`=t2v / `prompt+image`=i2v / `prompt+reference_images`=**R2V**。
+  **而我们两个都传**(image_url=分镜板,reference_image_urls=板+商家图),却没收到 400 → **中转商在替我们改写请求、按图数自动选模式**。
+- 🔴 **中转商 = kie.ai**(`tempfile.aiquickdraw.com` 是它的临时文件域名,文件 3 天删)。其 grok-imagine 文档**零 audio/voice/dialogue 参数**,且 prompt 标注 "Language: English"(我们传中文能出中文台词属**未文档化行为**,随时可能变)。
+- 🔴🔴🔴 **R2V 的语音要靠 `reference_audios`/`voice_id` 驱动,不是靠提示词写台词** —— 我们从来没传过。官方 26 个预置音色(ara/eve/orion…)**没有任何一条标注支持中文,查不到,不许假设**。(https://docs.x.ai/developers/model-capabilities/video/reference-to-video)
+- ⚠️ **R2V 官方封顶 720p;时长多家第三方写 2–10s**。我们要 15 秒 —— **参考图一多可能不止丢声音,时长和清晰度也在被降级**,这是同一根因的另外两个症状,验的时候一起看。
+- 【查不到,别编】GitHub/Reddit/X 上无人复现此问题;预置音色语言表;kie.ai 能否透传 voice_ids。
+
+### 关键接口事实(08-13 实测)
+- 🔴 **`reference_image_urls[0]` 恒等于 `image_url` 本身**(分镜板被重复放进参考图数组)→ **算"grok 到底看到几张图"必须去重**,直接读 `reference_image_urls.length` 会算多一张。
+- 🔴 **商家只上传 1 张,服务端实发 2 张;上传 3 张,实发 4 张** —— 服务端自己加一张。
+- `promptComposer.opsEditable.masterPipeline.i2vReferenceStrategy` **只有 `storyboard_board` 一个值**,config 里**没有「不给 i2v 传商家参考图」这个选项**,要技术加。
+- ✅ **`businessUi.videoGeneration.referencePolicyByDuration.{10,15}.allowStoryboardCrops` 现在两档都是 `true`** —— ⛔ 本文件 §四 旧写「只有10秒档 true,8/12/15 全 false」**已作废**。
+
+### 自查配方(可复用)
+成片有没有真人声:`ffmpeg -i x.mp4 -vn -ac 1 -ar 16000 x.wav` → `PYTHONIOENCODING=utf-8 python asr2.py x.wav`(scratchpad,faster-whisper tiny,本地免key)。**必须同时看 `volumedetect` 的 mean_volume** —— 有声音但 ASR 零输出 = 有环境音无人声,和静音文件是两码事。
+
+### ❌ 作废的旧结论
+「08-04 grok多参**双参**单成功」——翻原单 `task_db787156c4c0`,video 子任务**实发参考图 = 1 张**,不是 2 张。**它不能当"两张也行"的证据。** 另一单 `task_793a8d1ad7a7`(4张)整单 failed。
+
+### 待办 · 老板 08-13 亲自去问 kie.ai 客服(四问,最值钱=能否透传 `reference_audios`)
+**答复回来前不要动线上配置。** 按答复分三条路:
+
+| 客服回答 | 接着做 |
+|---|---|
+| 能透传 `voice_ids` **且支持中文** | 最省事:出技术卡让服务端多图时补该参数,烧 1 单验中文音色质量 |
+| 能透传但**音色不支持中文** | 此路作废 → 走「参考图不传给 i2v」 |
+| **不能透传/不答** | 走「参考图不传给 i2v」+ 同步启动换模型评估 |
+
+**「参考图不传给 i2v」方案(不依赖客服,但要技术)**:分镜板本身就是用商家参考图生成的(板上的人 = 人物参考图那个人),**人物锁在画板阶段已完成,i2v 再传一遍是多余的**。让 i2v 只收板 → 回到 distinct=1 的必出声状态。阻碍见上:`i2vReferenceStrategy` 没有这个枚举值。
+
+**换模型备选**(子agent 08-13 查,带源):**Kling O3 / Video 3.0 Omni** —— 明确支持中/英/日/韩/西 5 语唇形 + 每角色最多 4 张参考图 + 最多 6 分镜 + 15 秒,是唯一**四项全中**的;定价按有无音频分三档,说明音频是一等公民。**Seedance 2.0** —— 参考资产容量最大(9图+3视频+3音频),音素级中文唇形。⚠️ 换模型 = 全线重标定(时长映射/价格/门头锁定/审核红线全部重测),先在对方 playground 手工跑一条中文对白 + 2 张参考图,别先动我们的线。
+
 ## 一、🔴🔴 定位定案(2026-07-28 老板实烧 10 单看片拍板)
 | | **grok 415** 口播优先版·15秒 | **omni 460** 实景还原版·10秒 |
 |---|---|---|
