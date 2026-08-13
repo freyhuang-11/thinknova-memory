@@ -105,55 +105,39 @@
 ### 现行状态
 - 🔴🔴 [口播/裁格·格网](project_thinknova_0729_koubo_defect.md) — ✅**格网已解**(剧情片+`panel_crop`,08-12 验 2/2 零格线)。⛔ 旧记「panel_crop 出现 0 次」**作废**:真值 **123 条案例在用**(案例字段要查案例表接口,不能搜 agent config)
 - 🔴🔴 [片型体系+案例库现状](project_thinknova_film_types.md) — 场景表 10 个/案例 726+861;三档定档;08-13 大整改全文在此
-- 🔴 [故事板取证手册](project_thinknova_storyboard_test.md) — 取证接口唯一真值(admin offline-store-content/tasks/{no} 拿板图裸片)
-- 🔴 [字节手术+无台词开关](project_thinknova_0729_byte_surgery.md) — voiceMode=none 早就存在(22条TVC在用);omni 中文边界看 screenwriter-stack
-- 🔴 [品牌产品行业+TVC场景](project_thinknova_brand_product_industry.md) — S14 已上线;建单500 排查法
-- 🔴 [定点口播线](project_thinknova_dingdian_koubao.md) — 直销 Atomy 第一用户
+- 🔴 [故事板取证](project_thinknova_storyboard_test.md) / [字节手术+无台词开关](project_thinknova_0729_byte_surgery.md)(voiceMode=none 早就有,22条TVC在用) / [品牌产品+TVC场景](project_thinknova_brand_product_industry.md)(S14已上线;建单500排查法) / [定点口播线](project_thinknova_dingdian_koubao.md)(Atomy)
 - 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md) — **主战场 · 08-10 整条线重启**:旧内容(小红书10篇/G系列)**已全部归档**;新定位=**「一个人+AI,怎么把内容真的做出来」实录,老板出镜**;**变现分层=抖音小红书零推销引流 → 微信群转化 → 线下会成交**;接入 **cheat-on-content**(打分→盲预测→T+3复盘,rubric 换 tutorial-builder);🔴**微信群 08-11 起每天出货=全线唯一硬规定**;口诀**标签固定选题必变**(荣哥611条同选题=0赞);封面**四个锚不变风格随便变**;🔴**AI标注必勾**(不勾自动降权)
 - 🔴🔴 [新加坡线下会议线](project_thinknova_sg_events.md) — **🔴首场定档 2026-08-22(周六)14:00-17:00**(Suntec Tower2 L7 + 线上同步,免费,之后每周六);台上=14点讲/15点动手/16点起自由答疑可早走;成品=`AI分享会_新加坡_v7.pptx` 21页 + 邀请函**中英12张**(带码发朋圈WhatsApp FB/无码发小红书IG);🔴🔴🔴全场主线=**「生产内容+发送内容才是核心」,禁用一切自贬话术**;🔴小红书版海报**绝不能有二维码**(放哪都判导流);台上禁说"上半场/下半场"
-- 🔴🔴🔴 **微信群每日运营=硬规定(08-10 老板拍板,全线唯一硬规定)** — 已挂国内营销线(任务卡+信箱 f95881d,08-11 起每天出货);形态=知识卡(HTML模板渲染,文字绝不走AI文生图)+群文案,落款「整理·ThinkNova」必留,栏目含AI视频实事(不许编);模板/样卡/7天包在 `03_工作台\群内容\`;发送永远人工老板过目
+- 🔴🔴🔴 **微信群每日运营=全线唯一硬规定(08-10 拍板,08-11 起每天出货)** — 形态=知识卡(HTML模板渲染,**文字绝不走AI文生图**)+群文案,落款「整理·ThinkNova」必留,AI视频实事不许编;模板/样卡/7天包在 `03_工作台\群内容\`;**发送永远人工老板过目**
 - 🔴🔴🔴 [小红书线现状](project_thinknova_xhs_line.md) — **写小红书前必读**:人设=给实体店做图片的人·一天一家店一篇讲完(不连载);**四稿死因**(教学腔/身份不可持续/语气滑回教);**分享vs教只差主语**(出现"你/应该/别"=返工);**封面两套语言**(vlog纯照片 vs 经营类底图+大字,我们属后者);六篇开头必须六种进入方式;底图必须走 S14 新烧,旧促销海报不能用
-- 🔴🔴 [抖音封面对标](reference_douyin_cover_benchmark.md) — **做封面前打开真图看**(已存 `00_规格与参考\对标封面\` 29张);四项量化差距:头占41.5%/元素4-9个/亮背景托暗人/**选帧**(绿反光是"人物不清晰"的真根因);天花板是打光不是设计,6张表情照能解决
-- 🔴🔴 [打分闸门与校准](reference_cheat_gates_calibration.md) — **打分/比较两批分数前必读**:跨批分数不可直接比(必须夹带锚点条测漂移);闸五=选题重复+加活闸;闸零=重做完必须整批重走;**提分杠杆已按实测修正**(SAT靠反差落点不是坦白/QL靠可立刻做的动作不是名字)
-- 🔴 [小红书两把尺](project_thinknova_marketing.md) — 写笔记用 `/xhs-note`(**四柱:选题→标题→配图→文案**+违禁词五级扫描+AI味黑名单),涨粉SEO冷启动用 `/xhs-growth`(本地化自132技能库);最高危=「搞钱/变现」违禁词;冷启动要先囤10篇再发
-- 🔴 [做视频四件套skill](project_thinknova_marketing.md) — 写脚本按顺序调:`video-script-style`(台词)→`high-retention-hook`(前3秒)→`hkrr-clock`(全片留存)→`hurricane-shot-prompt`(分镜+生成提示词)
-- 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md) — 海报6/视频60;07-30 重定价:omni/wan/sora=3分/秒,grok系=4分/秒;价格三口径待技术
-- 🔴 [HyperFrames 生产线](reference_hyperframes_production.md) / 🔴 [音色克隆生产线](reference_voice_clone_pipeline.md)
-- [实体店两个 Agent(工程主线)](project_thinknova_offline_agents.md) — CTA 未选强加已在 07-31 提示词层修复
+- 🔴🔴 [抖音封面对标](reference_douyin_cover_benchmark.md)(做封面前打开真图看,29张已存;差距=头占41.5%/元素4-9个/亮背景托暗人/**选帧**;天花板是打光不是设计) / 🔴🔴 [打分闸门与校准](reference_cheat_gates_calibration.md)(**比较两批分数前必读**:跨批不可直接比,必须夹带锚点测漂移)
+- 🔴 **两把尺+四件套 skill** — 写小红书笔记用 `/xhs-note`(四柱:选题→标题→配图→文案+违禁词五级扫描,最高危=「搞钱/变现」),涨粉冷启动用 `/xhs-growth`(先囤10篇再发);写视频脚本按序调 `video-script-style`→`high-retention-hook`→`hkrr-clock`→`hurricane-shot-prompt` → [国内营销线](project_thinknova_marketing.md)
+- 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md)(海报6/视频60;omni·wan·sora=3分/秒,grok系=4分/秒) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个Agent工程主线](project_thinknova_offline_agents.md)
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — **探店片型第0步必读**:一镜一图vs一片一图;萍萍台词公式(钩子→第2句价格锚→短句→三连催单,催单被我们总纲禁着待老板放行);真差距=声调起伏(TTS)+切镜密度(grok不硬切)+台词结构;**omni老板定论砍掉**(中文转英语/画面字乱码/产品锁不住);A/B实测7格撞4096墙;探店案例=`food_beverage_s01_tandian`(条件式门头/固定男声/案例级黑幕/特写≤七成)
 - 🔴🔴🔴 [海报线现状+P0编造事故闭环 08-10](project_thinknova_poster_video_purge.md) — 海报出问题第0步:**拒绝编造6处守卫已上线(修一处不算修完,同铁律多层各一份)**;判编造先查商家资料注入;海报烧单走 business-assets(caseId必填);837条底细/615视频克隆/123清毒;S07/S08未美图化待排
 - 🔴🔴 [海报场景改造 08-03](project_thinknova_poster_scene_revamp.md) — **动海报场景/案例/styleRule 第0步必读**:场景表已整体换成美图式「渠道×版式」16场景(老板拍板);340条案例迁入S01门店海报;对照烧验3成1败(S11/S16轻内容场景被copy层海报结构压住=待技术);styleRule词表黑白名单;两线案例表独立;场景注册/批量迁移/pageSize=60/裸对象PUT配方全在文内;待办=copy层场景开关技术卡/健康医疗封面44条只用9张图待重生成/铺行业待拍板
 - 🔴🔴🔴 **08-13 案例库大整改收官** — 场景表 14→10、109 条案例归位/改名/清黑话、预设修正(S11 `shotCount 1→5` 治编剧连挂、S08 统一 `customer_pickup`)、两条线 CTA 默认全取消、死库存清理、封面 696/726。**探店打卡四形态定案(达人代看=萍萍式,和剧情短片规则相反所以放 S05)** → [片型](project_thinknova_film_types.md)
 - 🔴🔴🔴 **08-13 海报去重 bug 查清=服务端多槽位填充,已出技术卡 `OPS-POSTER-20260813-01`(待老板转技术)** — 商家填的 offer 被当 `price` 同时填进①`copyPlanTemplates.title="{productName}{priceSeparator}{price}"` ②`business_fact` 的价格 ③卖点数组,成品图上同一句出现 3 次;**模型没乱加,是把每个槽位都老实画了**。另挖出独立真 bug:`sellingPointOptions[].promptText`(给模型的指导语)被凑数塞进 `business_fact` 卖点=**被当成要画到图上的文案**,违反自己的「描述词围栏」,随时会爆编造。⛔ **案例 visualHint 的去重规则送不到文案模型**(文案子任务 `input.state` 里没有 caseId/visualHint)——**规则写在视觉字段却指望它管文案 = 结构性错配**。尾部「海报标题:…卖点:…CTA:…」那串**是服务端硬编码,config 里搜不到,运营改不了**。
-- 🔴🔴 **08-13 待办(压缩后接着干)**:
-  ①🟢 **多参无人声已解(08-13)**:提示词开头加一句 **「不要背景音乐，只要人物讲话声音。」** 就出声(EMMA 8分钟内同剧本同2图 A/B:无此句零人声、有此句说满全片)。⛔「禁止静音」类反静音句**完全无效**;有效的是**关掉 BGM 给人声腾音轨**。⛔ 我当天下过三条错结论(≥2就哑/门槛在4/分镜板必须排第一)**全部作废** —— 病根是**单侧取样就下规律**。我们自己管线**还没加这句**,加之前要算 4096 字节账 + 单条 A/B → [多参模型台账](reference_thinknova_multiref_model.md)
-  ①.5 🔴🔴 **`sfx` 是我们管线里 BGM 的对应物(08-13 发现,未验)**:`promptComposer.screenwriter.staticTemplates.outputContract` **强制每格 8 字段含 `sfx`**,于是实发 i2v 提示词里「音效:…」出现 5 次、「环境声」2 次(`背景音乐/配乐/BGM` 则是 0 次)。EMMA 靠「不要背景音乐」把音轨让给人声才出声 —— **我们却在合同层强制往音轨塞 5 条音效**。两条候选刀:①加抑制句(花字节)②**把 `sfx` 从 8 字段拿掉**(既省字节又去掉竞争者,更干净)。⛔ 爆炸半径=全部视频单,动前必须单条 A/B + 老板过目。
-  ①.7 ✅ **「其他行业」= `industryId: custom`(前台那个格子),08-13 补齐**:视频 2→10 条、海报 2→16 条,**两条线每个启用场景各 1 条,零空场景**。⚠️ **22 条全部缺封面**(约 6 积分/张 ≈132 积分),等老板放行再烧。🔴 `custom` **不在 `businessUi.industryFilters` 表里**,按行业统计时会整个漏掉它 —— 数行业覆盖必须单独加上 `custom`。
-  ②周六 08-16 下午处理海报侧 → `03_工作台\周六待处理_海报侧问题清单_2026-08-16.md`(封面重复 303 条 / S14-S16 只覆盖4行业 / 企业服务+品牌产品海报线 0 条 / 387 条缺字段**先问技术读不读**)
-  ③✅ 海报封面已补完:**启用案例 0 条缺封面**(烧 19 单/114 积分,零失败);⚠️ 发现 **6 条案例的 `prefill.offer` 写的是说明文案**(「把顾客评价原话填在这里」),**直接当内容烧会出字面印着说明文的废图** —— prefill 只是给商家的提示,烧样图时必须换成真实文案
-  ④两张技术卡待老板转发:`OPS-POSTER-20260811-01`(已被技术 08-12 实现,可归档)、**`OPS-POSTER-20260813-01`(优惠多槽位重复 + promptText 当卖点,新)**
-  ⑤技术次日上线**公告栏**,以后系统调整要发公告给商家(场景表刚改了 10 个名字,这是第一条该发的)
+- 🟢 **多参无人声已解(08-13)** — 提示词开头加 **「不要背景音乐，只要人物讲话声音。」** 就出声(EMMA 同剧本同2图 A/B 实证);⛔「禁止静音」类**完全无效**;⛔我当天三条错结论(≥2就哑/门槛在4/板排第一)**全作废**,病根=**单侧取样下规律**。我们管线**还没加**(要算4096字节账+单条A/B),且 `outputContract` **强制每格填 `sfx`**=我们自己往音轨塞5条音效,是同一根因 → [多参台账](reference_thinknova_multiref_model.md)
+- ✅✅ **「其他行业」= `industryId: custom` 已补齐(08-13)** — 视频10/海报16 条,每个启用场景各1条,**零空场景零缺封面零重复**(约375积分)。🔴`custom` **不在 `industryFilters` 表里**,统计行业覆盖必须单独加它。🔴**给 custom 烧样图必须显式禁行业指向 + 禁编造项目价格**(第一版没写→模型自己默认成美业还编了16个项目16个价格),**封面按版式配 `outputRatio`** → [片型](project_thinknova_film_types.md)
+- 🔴 **08-13 未完待办** — ①**编剧层三刀已改好但写不进去**(整份 agent 的 PUT 被 Claude Code 权限分类器拦,案例级 PUT 正常):删写死的「七十六到七十九字」(10秒单真bug)/商家成句台词豁免开场钩子与末句字数/`sfx` 一律写"无"+videoTemplate 加 EMMA 那句;②周六 08-16 海报侧 → `03_工作台\周六待处理_海报侧问题清单_2026-08-16.md`;③技术卡 `OPS-POSTER-20260811-01` 可归档、**`OPS-POSTER-20260813-01` 待转发**;④公告栏上线后场景改名要发第一条公告;⑤⚠️ 6 条案例 `prefill.offer` 写的是说明文案,烧样图前必须换真实文案
 - 🔴🔴🔴 **场景表 = 10 个(08-12 老板拍板,前台+烧单双验)** — S01商品介绍/S02活动介绍/S04信息公告/S05探店打卡/S06手艺揭秘/S07前后对比/**S08剧情短片**/S10教程避坑/S11老板出镜/S14广告大片;下架 S03/S09/S12/S13 **留作空位不删**。🔴**改场景名必须同时改 `scenes[]` 和 `businessActions` 两张表(两个 label 都进编剧)**;【场景要点】已改 **sceneId 精确匹配**;⛔`sceneRules`/`scenePrompts` 内容不进编剧但结构必须在(缺了建单500);🔴`businessScenario` 与案例 `sceneIds[0]` 对不上直接 500001 → [场景规则](reference_thinknova_option_scene_rules.md)
 - ✅ **格网已解 + EMMA 结构上线(08-12)** — 规律=**第1格双人/多人中景才漏板**(特写/单人 0 中招),对话剧片型 08-10 才铺进来所以"以前没有"是真的;解法=剧情片+`panel_crop`,用**窄口径暗号「分镜推进」**避开 videoTemplate「单张实拍=一镜到底」分支(123 条在吃),全局原句一字未改;EMMA=排他锁+角色卡常驻+情绪写在 visual+时间非均分 → [口播裁格](project_thinknova_0729_koubo_defect.md)
 - 🔴🔴 **语言分两层别混** — 输出语言 9 种(两侧齐);案例文案 i18n 只有 6 个界面语言,**两侧都没有 th/id/ms**;⛔**`visualHint` 只有 `zh` 键喂编剧,其余语言键是死数据**(vi/en 单实测收到的都是中文),前台可见的只有 title/summary/previewCaption → [字段读取图](reference_thinknova_prompt_fields.md)
 - 🔴🔴 [东南亚语言扩充 08-04](project_thinknova_sea_languages.md) — **动输出语言第0步必读**:✅泰语+全语言去β已上线双前台(9语无β,th lineValidation=characters 四镜像,标待复测);界面语言 i18n 需求(th/ms/id)已交老板转技术;✅grok多参双参单成功=门头文字级锁定+15秒约5镜头(探店标杆配方,判若两模型);✅vi补烧一次成功已解禁;子任务取证接口已变(商家端子任务详情返回null,改走admin列表);两条硬教训(动模板必量最大单字节/字数窗别一次收太紧)
 - 🔴 **待测/待办小池**:①编剧层反呆板三刀草案(`03_工作台/编剧层反呆板手术方案_待测试_2026-08-04.md`,**风格类改动一律"单刀→AB烧验→老板过目→再下一刀"**)②门头做进核心设置待定 ③10秒单临时走15秒 ④门头/产品锁不死=模型问题等换模型 ⑤🔴 **`video-shotcraft` 做平台演示片 + 路演片(老板 08-13 批准,但"不是这周")** —— 只做**这两样**,内容线(抖音/小红书)不用它(横屏1920×1080无9:16预设、主体是产品截图、零中文支持文档、且会变成 HyperFrames 之外的第二套栈)。🔴 **动手第一步先查 Remotion 商用授权**(个人/小团队免费,**公司可能要付费**,我们是公司),没查清不许开工。装法 `npx skills add Vincentwei1021/video-shotcraft`(Apache-2.0,本地渲染不上传素材)。**白拿项:它 152 张镜头配方卡=一套有名字的镜头词汇,即使不装也该抄来当共享语言**(老板痛点:「不然我永远不知道怎么给你解释」)
-- 🔴 [官网博客运营 API](reference_thinknova_blog_ops.md)(要 blog.write 令牌我没有;中英全填才准发) / [扫码发布深链](reference_thinknova_publish_schemes.md)(四平台已真机验证)
+- 🔴 [官网博客 API](reference_thinknova_blog_ops.md)(缺 blog.write 令牌) / [扫码发布深链](reference_thinknova_publish_schemes.md)(四平台已真机验证)
 
 ### 内容与产品规矩
-- [北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) / [内容工具不做合规](feedback_thinknova_content_not_compliance.md)
+- [北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) / [内容工具不做合规](feedback_thinknova_content_not_compliance.md) / [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 - 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — 建案例前必读;新建必过 3 条自检
-- [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 
-- 🔴🔴🔴 **自营30天市场计划 08-10(老板拍板前提:只靠自己/万万线不考虑/艾多美已明确拒绝放弃/年费订阅技术动不了→机制按积分充值现状设计)** — 计划全文=`03_工作台\自营30天市场计划_2026-08-10.md`:分佣挂首充(30-40%待拍板+复充10%六个月+四条保护)、种子店3-5家免费陪跑30天、08-22线下会周周开、W1-W4逐周节奏、KPI待认;joeylu=P0海报事故测试号(老板不认识,免费重出撤销)
-- 🔴🔴 [投资人运营计划 08-05](project_thinknova_investor_plan.md) — **谈融资/预算/会展/投流之前必读**:正式版已交付(S$100k/60-40两阶段/200-300解锁/渠道打包冲1000);老板规矩=成本必须确切数字;三个询价待办(SWITCH/SFMA/onePA);8月两展观展地推收连锁名单
-- 🔴🔴 **投资人反馈应对 08-10**:路演材料现行版=`对外推介\路演PPT\`ThinkNova_路演_v5.pptx(15页,P3美金盘子TAM/SAM/SOM带来源,P3备注有讲稿)+讲稿文字版+文字版md;BP=`02_交付内容\`2026-08-09.docx(**老板令勿再改**);单位经济表=ThinkNova_单位经济测算_2026-08-10.xlsx(三档29.8/99.8/198美元,默认毛利50-54%/LTV·CAC 2.0/6.5/12,黄格假设待填实测);护城河措辞建议=便签_数据护城河表述建议md(降调:数据=未来可能的护城河,前提闭环);**万万渠道嫁接应对分析**在 03_工作台\内部_护城河与价值闭环自辩_2026-08-09.md 第五节(90天KPI试点三底线/结构三选项/四问答法)——内部件,绝不外发
+# 商务与融资
+- 🔴🔴🔴 **自营30天市场计划**=`03_工作台\自营30天市场计划_2026-08-10.md`(老板前提:只靠自己/万万不考虑/艾多美已放弃/年费订阅动不了→按积分充值设计);分佣挂首充+种子店3-5家免费陪跑+08-22起周周线下会;joeylu=P0事故测试号
+- 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — **谈融资/预算/会展/投流前必读**(S$100k/60-40两阶段;成本必须确切数字;三个询价待办)。现行材料:路演 v5.pptx 15页+讲稿、BP 2026-08-09.docx(**老板令勿再改**)、单位经济表 08-10.xlsx(黄格假设待填);**万万渠道应对分析=内部件绝不外发**
 
-# Compass / TikTok 达人线(休眠)
-- [Compass 现状+14 条待办](project_compass.md) — 历史见 archive/compass_history_to_0729.md
-# 其他
-- [新加坡鞋包提案](project_sg_footwear_proposal.md) / [小孩数学网课](project_kid_math_tutoring.md) + [课程总表](reference_kid_math_roadmap.md)
+# 其他(休眠)
+- [Compass/TikTok达人线](project_compass.md) / [新加坡鞋包提案](project_sg_footwear_proposal.md) / [小孩数学网课](project_kid_math_tutoring.md) + [课程总表](reference_kid_math_roadmap.md)
 - 🔴🔴🔴 **编剧层现状** — systemPrompt **3999 字**(六条全局规则:禁复读/例词守卫/末句字数≥均句/末格留白0.4秒/情绪写两个可见部位/开场禁叠化;场景要点按 sceneId;`shotCount=1` 兜底句);**片尾死寂已解决**,音高漂移三刀失败终结(归音色克隆或TTS层)→ [编剧层](project_thinknova_0729_screenwriter_stack.md)
 - 🔴🔴 **验收四铁律** — ①**成片验收四项齐验**:联系表逐帧+片尾死寂+mean音量+台词逐句读 ②**门槛不能跨片型套用**(拿单人口播的死寂门槛套对话剧=误杀) ③**「写满」类指令会把被禁话术挤出来**,必须同时给合法填充材料 ④**授权子agent挤字数时必须显式列出合规不可删清单**(曾误删"绝不承诺疗效")
-- 🔴🔴 **两库入口**:本机=`视频制作平台分析\README_从这里开始.md`,Obsidian=书签「① 从这里开始」。**归档=移动不是删除**(去 `99_归档\` / `_archive\`),坐标见 [路径接口](reference_thinknova_paths.md) 文末
-- 🔴 **skill 路由表**:`00_规格与参考\SKILLS与规则总台账_2026-08-11.md`(93行,一页速查在开头)。装34个日常真用9个;老板 08-11 定**全部保留不停用**(含 hyperframes 7个)——但**平台成片一律走 ThinkNova 管线,hyperframes 只在明确要 HTML 动画/演示片时才用**,别被它"任何视频请求强制入口"的描述误导。
+- 🔴🔴 **两库入口**:本机=`视频制作平台分析\README_从这里开始.md`,Obsidian=书签「① 从这里开始」;**归档=移动不是删除**(`99_归档\`/`_archive\`)。**skill 路由表**=`00_规格与参考\SKILLS与规则总台账_2026-08-11.md`(全部保留不停用;但**平台成片一律走 ThinkNova 管线**,hyperframes 只在明确要 HTML 动画/演示片时才用)
