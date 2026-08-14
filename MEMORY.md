@@ -19,7 +19,7 @@
 2.5 🔴 **例程内能自己拍板的自动跑**,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md)(同文件反向边界段)
 2.7 🔴 **接"上次的活"先看记忆文件修改时间**;另一会话可能几分钟前刚推翻我的结论 → [详](feedback_parallel_sessions_check_first.md)
 2.8 🔴🔴🔴 **老板给的词按他的字面做满,不许自己缩窄定义再报"全部完成"**;拿不准边界先问 → [详](feedback_dont_assume_requirements.md)(「缩窄定义」段)
-2.9 🔴🔴 **「某条线几天没落库」先排查同步链路(git分叉/DNS/push失败)再下judgment**;库里没文件≠他没干活,区分不了就如实写区分不了,别升级老板(08-05 冤枉 Codex,连错两天) → [详](feedback_silence_is_not_evidence.md)
+2.9 🔴🔴🔴 **「某条线几天没落库/独立通道连续零变化」都不许推出「他没干活」**;先排查同步链路(git分叉/DNS/push失败),区分不了就如实写区分不了,别升级老板。**已犯两次**:08-05「库里没文件→暗示没跑」冤枉 Codex 连错两天;08-14「公开博客接口四次快照 total=6→暗示倾向没做」,结果 08-13 01:55 他一次发 15 篇+回填 4 张挂 14 天的封面,**距我 08-13 例程只差 13 分钟**。**快照证明那一秒的状态,不是趋势也不是意图——写到"截至X时仍是N"就句号,别接"所以只剩没做"** → [详](feedback_silence_is_not_evidence.md)
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 3.1 🔴🔴🔴 **config 里的 placeholder/说明文案 ≠ 实际行为**;对外说任何产品能力前必须有 A/B 实测任务号。08-11 血案:placeholder 写「写台词会照着念」,实测**光填进去平台会改写**,要加一句「一个字都别改」才一字不差,而老板已照错稿录完片 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 **写入被拒先原样重试一次再说**;别把"这条命令能不能发"退回给老板。**唯一硬墙=改我自己的 settings.json 权限段(classifier 死拦,也不许绕,只能给老板贴;08-02 已贴好 36 条 allow)** → [详](feedback_retry_before_escalating.md)
