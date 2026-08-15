@@ -1,6 +1,5 @@
 # 铁律 · 按触发时机分层(按"什么时候用"排;漏 = 该用时没想起来)
 > 这里只放**触发条件 + 一句动作**。案例、字段路径、复盘全在链接文件里,该用时打开。
-> 📍 2026-07-31 里程碑:编剧战役收官。📍 2026-08-08:立行动闸门,规矩改成"先产出再动手"。
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 **动手之前先过闸,每道闸要求先输出一个可检查的产物,输出不出来就不许往下走。**
@@ -108,7 +107,7 @@
 - 🔴🔴🔴 **微信群每日运营=全线唯一硬规定(08-10 拍板,08-11 起每天出货)** — 形态=知识卡(HTML模板渲染,**文字绝不走AI文生图**)+群文案,落款「整理·ThinkNova」必留,AI视频实事不许编;模板/样卡/7天包在 `03_工作台\群内容\`;**发送永远人工老板过目**
 - 🔴🔴🔴 [小红书线现状](project_thinknova_xhs_line.md) — **写小红书前必读**:人设=给实体店做图片的人·一天一店一篇;分享vs教只差主语(出现"你/应该/别"=返工);封面=经营类底图+大字,底图走 S14 新烧
 - 🔴🔴 [抖音封面对标](reference_douyin_cover_benchmark.md)(做封面前打开真图看,29张已存;差距=头占41.5%/元素4-9个/亮背景托暗人/**选帧**;天花板是打光不是设计) / 🔴🔴 [打分闸门与校准](reference_cheat_gates_calibration.md)(**比较两批分数前必读**:跨批不可直接比,必须夹带锚点测漂移)
-- 🔴 **两把尺+四件套 skill** — 写小红书笔记用 `/xhs-note`(四柱:选题→标题→配图→文案+违禁词五级扫描,最高危=「搞钱/变现」),涨粉冷启动用 `/xhs-growth`(先囤10篇再发);写视频脚本按序调 `video-script-style`→`high-retention-hook`→`hkrr-clock`→`hurricane-shot-prompt` → [国内营销线](project_thinknova_marketing.md)
+- 🔴 **两把尺+四件套 skill** — 小红书笔记 `/xhs-note`(违禁词最高危=「搞钱/变现」),冷启动 `/xhs-growth`;视频脚本按序 `video-script-style`→`high-retention-hook`→`hkrr-clock`→`hurricane-shot-prompt` → [国内营销线](project_thinknova_marketing.md)
 - 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md)(海报6/视频60;omni·wan·sora=3分/秒,grok系=4分/秒) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个Agent工程主线](project_thinknova_offline_agents.md)
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — **探店片型第0步必读**:萍萍台词公式(钩子→价格锚→短句→三连催单,催单待老板放行);真差距=TTS声调+切镜密度+台词结构;omni已砍;探店案例=`food_beverage_s01_tandian`
 - 🔴🔴🔴 [海报线现状+P0编造事故闭环 08-10](project_thinknova_poster_video_purge.md) — 海报出问题第0步:**拒绝编造6处守卫已上线(修一处不算修完,同铁律多层各一份)**;判编造先查商家资料注入;海报烧单走 business-assets(caseId必填);837条底细/615视频克隆/123清毒;S07/S08未美图化待排
