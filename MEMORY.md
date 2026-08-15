@@ -19,7 +19,7 @@
 2.5 🔴 **例程内能自己拍板的自动跑**,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md)(同文件反向边界段)
 2.7 🔴 **接"上次的活"先看记忆文件修改时间**;另一会话可能几分钟前刚推翻我的结论 → [详](feedback_parallel_sessions_check_first.md)
 2.8 🔴🔴🔴 **老板给的词按他的字面做满,不许自己缩窄定义再报"全部完成"**;拿不准边界先问 → [详](feedback_dont_assume_requirements.md)(「缩窄定义」段)
-2.9 🔴🔴🔴 **「某条线几天没落库/独立通道连续零变化」都不许推出「他没干活」**;先排查同步链路(git分叉/DNS/push失败),区分不了就如实写区分不了,别升级老板。**已犯两次**:08-05「库里没文件→暗示没跑」冤枉 Codex 连错两天;08-14「公开博客接口四次快照 total=6→暗示倾向没做」,结果 08-13 01:55 他一次发 15 篇+回填 4 张挂 14 天的封面,**距我 08-13 例程只差 13 分钟**。**快照证明那一秒的状态,不是趋势也不是意图——写到"截至X时仍是N"就句号,别接"所以只剩没做"** → [详](feedback_silence_is_not_evidence.md)
+2.9 🔴🔴🔴 **「几天没落库/通道零变化」不许推出「他没干活」**;先排查同步链路,区分不了就如实写。快照证明那一秒的状态,不是趋势不是意图——写到"截至X时仍是N"就句号(已犯两次:08-05 冤枉 Codex、08-14 博客快照) → [详](feedback_silence_is_not_evidence.md)
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 3.1 🔴🔴🔴 **config 里的 placeholder/说明文案 ≠ 实际行为**;对外说任何产品能力前必须有 A/B 实测任务号。08-11 血案:placeholder 写「写台词会照着念」,实测**光填进去平台会改写**,要加一句「一个字都别改」才一字不差,而老板已照错稿录完片 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 **写入被拒先原样重试一次再说**;别把"这条命令能不能发"退回给老板。**唯一硬墙=改我自己的 settings.json 权限段(classifier 死拦,也不许绕,只能给老板贴;08-02 已贴好 36 条 allow)** → [详](feedback_retry_before_escalating.md)
@@ -43,7 +43,7 @@
 5.4 🔴🔴 **微信群=单向输出**:提问全周最多1次(周五点单日),冷场也不许加互动;「实事」只讲**实体商家用AI的事件**(主角是开店的人,不是技术),查不到就不发 → [详](feedback_group_oneway_broadcast.md)
 5.5 🔴🔴 **对外文案主语是机器 = 返工**:禁「都不是人写的/AI生成的/机器做的」,一律翻成客户视角「这些都不用你想」;自贬话术全禁(平台的「AI生成」标注照勾,那是字段不是文案) → [详](feedback_customer_view_not_machine_view.md)
 6. 🔴 **落库 ≠ 送达**:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md)
-7. 🔴🔴🔴 **i2v videoPrompt 4096字节硬顶=死规矩(08-08 老板重申)**:videoPrompt=videoTemplate(939B)+**编剧自写的 cells**;撑爆它的是 cells 不是固定模板。**改任何进 videoPrompt 的字段只许减字,必须加就先删等量**;加字前要能答"挤掉了谁"。**✅ 改之前必读拼装后全文:`GET /admin/api/v1/ai-tasks/{task_no}` → `output.compiledPlan.videoPrompt`(必须用 task_no,数字id返null);同一响应的 `attemptTrace[]` 有每次报错原文。旧写"没接口=蒙眼飞行/待发技术卡"作废** → [详](feedback_prompt_change_hard_rules.md)
+7. 🔴🔴🔴 **i2v videoPrompt 4096字节硬顶=死规矩(08-08 老板重申;🔴08-15 补充口径:4096 只是 grok 的限制,不是通用天花板——别的模型逐个问上限,minimax 走能力JSON maxBytes)**:videoPrompt=videoTemplate(939B)+**编剧自写的 cells**;撑爆它的是 cells 不是固定模板。**改任何进 videoPrompt 的字段只许减字,必须加就先删等量**;加字前要能答"挤掉了谁"。**✅ 改之前必读拼装后全文:`GET /admin/api/v1/ai-tasks/{task_no}` → `output.compiledPlan.videoPrompt`(必须用 task_no,数字id返null);同一响应的 `attemptTrace[]` 有每次报错原文。旧写"没接口=蒙眼飞行/待发技术卡"作废** → [详](feedback_prompt_change_hard_rules.md)
 7.1 🔴🔴 **案例 visualHint 里一个字都不许写声线/语调/节奏**:实证同案例三版(原状重试1有台词/加声线重试3无台词/纯指派重试4无台词)——换气停顿类指令→编剧压短台词→撞 lineValidation 下限→连环重试→空台词。**声线节奏归全局 videoTemplate【口播节奏】段** → [详](feedback_prompt_change_hard_rules.md)
 7.2 🔴🔴 **烧单是验证手段不是探索手段**:动手前先读现状源(screenwriter-stack→koubo-defect→线上config),08-08 全天跳过这步走了三条弯路(声线/镜头/架构分层记忆里本来就有) → [详](feedback_prompt_change_hard_rules.md)
 8. **范围边界必写反向**:附"作用域仅X、不碰Y"+双向验收 → [详](feedback_scope_boundary_explicit.md)
@@ -117,7 +117,7 @@
 - 🔴🔴🔴 [海报线现状+P0编造事故闭环 08-10](project_thinknova_poster_video_purge.md) — 海报出问题第0步:**拒绝编造6处守卫已上线(修一处不算修完,同铁律多层各一份)**;判编造先查商家资料注入;海报烧单走 business-assets(caseId必填);837条底细/615视频克隆/123清毒;S07/S08未美图化待排
 - 🔴🔴 [海报场景改造 08-03](project_thinknova_poster_scene_revamp.md) — **动海报场景/案例/styleRule 第0步必读**:场景表已整体换成美图式「渠道×版式」16场景(老板拍板);340条案例迁入S01门店海报;对照烧验3成1败(S11/S16轻内容场景被copy层海报结构压住=待技术);styleRule词表黑白名单;两线案例表独立;场景注册/批量迁移/pageSize=60/裸对象PUT配方全在文内;待办=copy层场景开关技术卡/健康医疗封面44条只用9张图待重生成/铺行业待拍板
 - 🔴🔴🔴 **08-13 案例库大整改收官** — 场景表 14→10、109 条案例归位/改名/清黑话、预设修正(S11 `shotCount 1→5` 治编剧连挂、S08 统一 `customer_pickup`)、两条线 CTA 默认全取消、死库存清理、封面 696/726。**探店打卡四形态定案(达人代看=萍萍式,和剧情短片规则相反所以放 S05)** → [片型](project_thinknova_film_types.md)
-- 🔴🔴🔴 **08-13 海报去重 bug 查清=服务端多槽位填充,已出技术卡 `OPS-POSTER-20260813-01`(待老板转技术)** — 商家填的 offer 被当 `price` 同时填进①`copyPlanTemplates.title="{productName}{priceSeparator}{price}"` ②`business_fact` 的价格 ③卖点数组,成品图上同一句出现 3 次;**模型没乱加,是把每个槽位都老实画了**。另挖出独立真 bug:`sellingPointOptions[].promptText`(给模型的指导语)被凑数塞进 `business_fact` 卖点=**被当成要画到图上的文案**,违反自己的「描述词围栏」,随时会爆编造。⛔ **案例 visualHint 的去重规则送不到文案模型**(文案子任务 `input.state` 里没有 caseId/visualHint)——**规则写在视觉字段却指望它管文案 = 结构性错配**。尾部「海报标题:…卖点:…CTA:…」那串**是服务端硬编码,config 里搜不到,运营改不了**。
+- 🔴🔴 **海报去重 bug(08-13 查清,08-15 技术已修 label/promptText 分离,待周六验收)** — offer 被服务端填进标题/价格/卖点三槽位;⛔结构性事实记住两条:**案例 visualHint 送不到文案模型**(其 input.state 无 caseId/visualHint,视觉字段管不了文案);尾部「海报标题:…」串=服务端硬编码,config 搜不到。全档 → 合订本 `02_交付内容\给技术_合订本_四问题_2026-08-14.md`
 - 🔴🔴🔴 **多参无人声 · 最终结论(08-13 受控实测)** — **图越多越不稳,提示词措辞救不了**:同案例同参数、判定口径=5句说满且中途无长断 → **2图 2/3、3图 1/3、4图 0/3**。措辞全试过(硬锁/软锁/合并成一句/完全不提/禁BGM/去音效)**没有一个能救 4 图**。⛔ 当晚我下过并被自己推翻的结论共八条(≥2就哑/门槛在4/板排第一/sfx是BGM对应物/黑边pad是元凶/人物图+场景图必哑/删字数规则害台词变差/模板感来自各司其职)——全是**单侧取样当规律** → [多参台账](reference_thinknova_multiref_model.md) [取证纪律](feedback_source_truth_first_commander.md)
   ✅ **解法=技术把 i2v 参考图上限砍到 2 张(08-13 实测生效)**:商家传 3 张、编剧仍收到 `referenceImageCount:3`,但 **i2v 实发只有 2 张**;回滚提示词后同配置连烧 2 单**全程说满 15 秒**(此前同配置 0/3)。
   🔴 **失败形态不是静音**,是**音轨被连续音乐占满**(浊音占比 80–93% 且几乎无停顿;正常说话是 40–62% 带规律停顿)——报现象别说"零人声"。
