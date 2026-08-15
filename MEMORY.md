@@ -21,19 +21,8 @@
 3.5 🔴🔴🔴 **「前台有没有X」只认商家端 config 接口,admin config 不是前台真值;新文档与旧记录冲突以最新覆盖** → [详](reference_thinknova_frontend_truth.md)
 
 ## L0.6 · 🔴🔴🔴 三道关口:方案 → 文案 → 才许渲图(老板 2026-08-15 定)
-
-**关口一(08-15 加):「以后每周出内容都需要先给我 3 条线和我沟通,然后再决定要不要做执行」**
-→ **每周开工前先交"三条线各打算讲什么、为什么、素材有没有"——只有方案,没有稿子。**
-   老板点头才许写稿。**没过这道就动笔 = 整批白写。**
-   依据:08-13~15 废掉的三批十八条抖音稿,**全是方案层就跑偏,却一路写到成稿才被看见**。
-   方案层被否只废十分钟,成稿层被否废一整批。
-
-**关口二:「所有要渲染作图的内容是我们一起沟通内容没问题了才做的!!」**
-→ **文本 → 老板点头 → 才渲卡/出封面/出成图。** 违反 = 整批白渲。
-🔴 我 08-13~15 连犯三次:微信七张卡、小红书四篇封面内页、抖音封面 v1–v4,**全是文案没过目就先渲完**,
-错一处整批返工,还占掉老板看图的时间。
-**交付形态**:先给**纯文本过目件**(聊天里能看完的那种),渲卡脚本可以改好但**不执行**。
-同源规矩:行动闸门闸5「单条验证 + 老板过目才许铺开」—— 我自己写的,自己一直没执行。
+**关口一:每周内容开工前先交"三条线方案"(讲什么/为什么/素材有无),老板点头才许写稿**——08-13~15 三批十八条抖音稿全是方案层跑偏写到成稿才被看见;方案被否废十分钟,成稿被否废一整批。
+**关口二:「所有要渲染作图的内容是沟通没问题了才做」——文本→点头→才渲卡/封面/成图**;08-13~15 连犯三次(微信七卡/小红书封面/抖音封面)全是没过目先渲完。交付形态=纯文本过目件,渲卡脚本改好**不执行**。同源=闸5。
 
 ## L0.8 · 🔴🔴🔴 预设即产品(老板 2026-08-13 定调)
 **「商家 90% 以上用默认设置,把工作做进预设是我们系统的意义。」** 三推论:①**验证必须走默认路径**——烧单手动传了某个 selectedOptions 就等于没验那维度的默认值(08-13 血案:手动传 appearanceMode 验好了,默认 product_only 实际出片两人剧无人入镜)②**预设错=全量事故**,四个 Preset 真进提示词(prefill 只是灰字),改必须连源模板一起改 ③新建案例先问"默认值对不对"再问"选项全不全"。
@@ -63,32 +52,23 @@
 8.8 🔴🔴 **config/案例写入唯一正解:GET 响应头拿 `x-csrf-token` → 带头 PUT(agent 整体/案例单条/businessUi 都通,07-31 解锁)**;419-UI 弹窗法废弃;重 SPA 页会冻死 CDP,fetch 一律在 robots.txt 轻页跑 → [详](reference_thinknova_paths.md)
 
 ## L2 · 烧单核验时
-8.9 🔴🔴 **烧单前必报客户视角五要素**(行业/场景/案例/补充信息原文/验证目标) → [详](feedback_burn_report_format.md)
-9. 🔴 **逐帧通看**(ffmpeg 联系表);音频用 silencedetect 量死寂;单帧截图=假结论 → [详](feedback_evidence_standard.md)
-9.5 🔴 **烧完先验三件:task.model 实际派发(videoModelId 才可信)、编剧 source(回退/被劫持单作废重烧)、字数落区间** → [详](project_thinknova_0729_screenwriter_stack.md)
-10. **变量做满再烧单**;没补穿不许下模型结论 → [详](feedback_prompt_first_then_test.md)
-11. **证据成对**:真实输入↔真实输出+任务号;批量烧单串行≥20秒 → [详](feedback_evidence_standard.md)
+8.9 🔴🔴 **烧单前必报客户视角五要素**(行业/场景/案例/补充信息/验证目标) → [详](feedback_burn_report_format.md);**变量做满再烧** → [详](feedback_prompt_first_then_test.md)
+9. 🔴 **逐帧通看**(联系表);音频量死寂;单帧截图=假结论;**证据成对**(真实输入↔输出+任务号,串行≥20秒) → [详](feedback_evidence_standard.md)
+9.5 🔴 **烧完先验三件:task.model 实际派发、编剧 source、字数落区间** → [详](project_thinknova_0729_screenwriter_stack.md)
 
 ## L3 · 给技术发文档前
-12. 🔴 **只发技术才能处理的**;发之前逐条自验"我自己能不能改"
-13. 🔴 **9段规范**;事实/判断/期望分离,一份最多3个独立问题 → [详](reference_tech_doc_submission_spec.md)
-14. **发文前 7 条自检** → [详](feedback_tech_doc_checklist.md)
-15. **发出即冻结**;新内容走增量文件 → [详](feedback_tech_doc_checklist.md)("发出之后"段)
+12. 🔴 **只发技术才能处理的**(逐条自验"我能不能改");**9段规范**,事实/判断/期望分离,一份最多3问题 → [详](reference_tech_doc_submission_spec.md)
+14. **发文前 7 条自检;发出即冻结,新内容走增量** → [详](feedback_tech_doc_checklist.md)
 
 ## L4 · 汇报沟通时
-16. **每轮说清"验收什么 + 做了什么"**;做完先自验再通知 → [详](feedback_communication_principles.md)
-17. **说重点 / 有据质疑 / 别奉承 / 追根因不打补丁 / 先讨论再操作** → [详](feedback_communication_principles.md)
-18. **要老板拍板的用 plan 模式结构化问** → [详](feedback_questions_via_plan_mode.md)
-19. **数据新鲜度**:别贴"过期"标,也别埋雷 → [详](feedback_data_freshness_framing.md)
+16. **每轮说清"验收什么+做了什么"**;说重点/有据质疑/别奉承/追根因/先讨论再操作 → [详](feedback_communication_principles.md)
+18. **要老板拍板用 plan 模式问** → [详](feedback_questions_via_plan_mode.md);**数据新鲜度别贴"过期"也别埋雷** → [详](feedback_data_freshness_framing.md)
 
 ## L5 · 环境红线(违反 = 事故)
-20. 🔴 密钥不外发、不打印、不进任何 git 仓库
-21. 🔴 禁 `taskkill /IM python`,按 PID/端口精准杀;临时本地服务器用完即按 PID 杀 → [详](feedback_kill_python_scope.md)
-22. 🔴 线上 config = 唯一真值,禁种子覆盖;改前必验框身份+金额;464 不主动加白;408/409 未经老板同意不启用
-22.5 🔴 **config 结构/字段/新字段一律交技术,我只碰纯文本字段** → [详](feedback_dont_edit_prod_config_structure.md)
-22.7 🔴🔴 **上下文唯一杠杆=减少往返**:一段 JS 干完一整套只回摘要;读文字不截图;证据走联系表;成片老板自己看不用发他 → [详](feedback_context_budget_discipline.md)
-23. **记忆只留当前状态**,过时覆盖删除不堆矛盾层 → [详](feedback_memory_keep_current.md)
-24. **老板发的提示词当天归档** → [详](reference_prompt_library.md)
+20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀,临时服务器用完即杀 → [详](feedback_kill_python_scope.md)
+22. 🔴 线上 config=唯一真值,禁种子覆盖;464 不主动加白;408/409 未经老板同意不启用;**结构/新字段一律交技术,我只碰纯文本** → [详](feedback_dont_edit_prod_config_structure.md)
+22.7 🔴🔴 **上下文唯一杠杆=减少往返**:一段 JS 干完一整套只回摘要;读文字不截图;证据走联系表 → [详](feedback_context_budget_discipline.md)
+23. **记忆只留当前状态**不堆矛盾层 → [详](feedback_memory_keep_current.md);**老板发的提示词当天归档** → [详](reference_prompt_library.md)
 
 ---
 
@@ -152,6 +132,5 @@
 
 # 其他(休眠)
 - [Compass/TikTok达人线](project_compass.md) / [新加坡鞋包提案](project_sg_footwear_proposal.md) / [小孩数学网课](project_kid_math_tutoring.md) + [课程总表](reference_kid_math_roadmap.md)
-- 🔴🔴🔴 **编剧层现状** — systemPrompt **3999 字**(六条全局规则:禁复读/例词守卫/末句字数≥均句/末格留白0.4秒/情绪写两个可见部位/开场禁叠化;场景要点按 sceneId;`shotCount=1` 兜底句);**片尾死寂已解决**,音高漂移三刀失败终结(归音色克隆或TTS层)→ [编剧层](project_thinknova_0729_screenwriter_stack.md)
-- 🔴🔴 **验收四铁律** — ①**成片验收四项齐验**:联系表逐帧+片尾死寂+mean音量+台词逐句读 ②**门槛不能跨片型套用**(拿单人口播的死寂门槛套对话剧=误杀) ③**「写满」类指令会把被禁话术挤出来**,必须同时给合法填充材料 ④**授权子agent挤字数时必须显式列出合规不可删清单**(曾误删"绝不承诺疗效")
+- 🔴🔴 **验收四铁律** — ①成片四项齐验(联系表逐帧+片尾死寂+mean音量+台词逐句读) ②门槛不跨片型套用 ③「写满」类指令会挤出被禁话术,须给合法填充材料 ④授权子agent挤字数须显式列合规不可删清单
 - 🔴🔴 **两库入口**:本机=`视频制作平台分析\README_从这里开始.md`,Obsidian=书签「① 从这里开始」;**归档=移动不是删除**(`99_归档\`/`_archive\`)。**skill 路由表**=`00_规格与参考\SKILLS与规则总台账_2026-08-11.md`(全部保留不停用;但**平台成片一律走 ThinkNova 管线**,hyperframes 只在明确要 HTML 动画/演示片时才用)
