@@ -2,14 +2,10 @@
 > 这里只放**触发条件 + 一句动作**。案例、字段路径、复盘全在链接文件里,该用时打开。
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
-**动手之前先过闸,每道闸要求先输出一个可检查的产物,输出不出来就不许往下走。**
-闸1 现状源(读了什么/现状是什么) → 闸2 字节账(Δ与挤掉了谁) → 闸3 爆炸半径(命中几条) → 闸4 attemptCount(不是看成片) → 闸5 单条验证+老板过目才许铺开。
-**通则:先读后动,先验后铺。** 下面 L0-L5 是细则,闸门是调用它们的时机表。
+**动手先过闸,每道闸先输出可检查产物**:闸1 现状源 → 闸2 字节账(挤掉谁) → 闸3 爆炸半径 → 闸4 attemptCount → 闸5 单条验证+老板过目才铺开。**先读后动,先验后铺**;L0-L5 是细则。
 
-## 🔴🔴🔴 L-0.5 · 动手之前先问「有没有现成的 skill」
-**34 个 skill 的路由表 → [什么场景用什么 skill](reference_skills_routing.md)**(老板 08-11:「你明明有那么多 skills,你知道什么时候用什么嘛」)。
-三条铁规矩:①**`hyperframes` 是做任何视频/动画的强制入口**(我一直手搓 ffmpeg,坑本来不用踩)②`cheat-score-blind` 是内部 sub-agent,主对话绝不许调 ③组合拳顺序不能乱(写视频稿=video-script-style→high-retention-hook→hkrr-clock→hurricane-shot-prompt)。
-🔴 08-11 两个跟头都是没查表栽的:封面手搓、选题受众拍脑袋(cheat-persona/seed/learn-from/trends 全没用)。
+## 🔴🔴🔴 L-0.5 · 动手前先查 skill 路由表 → [什么场景用什么 skill](reference_skills_routing.md)
+三条铁规矩:①`hyperframes`=任何视频/动画强制入口 ②`cheat-score-blind`=内部 sub-agent 主对话绝不调 ③组合拳顺序不乱(视频稿=video-script-style→high-retention-hook→hkrr-clock→hurricane-shot-prompt)。08-11 两跟头全是没查表。
 
 ## L0 · 每次开口/动手前
 0. 🔴🔴🔴 **权威源(技术文档/线上真值/代码)> 我的记忆**;下关键结论前回源核对,实验结论标「实测·待核」带任务号、不外推 → [详](feedback_source_truth_first_commander.md)
@@ -54,7 +50,7 @@
 5.4 🔴🔴 **微信群=单向输出**:提问全周最多1次(周五点单日),冷场也不许加互动;「实事」只讲**实体商家用AI的事件**(主角是开店的人,不是技术),查不到就不发 → [详](feedback_group_oneway_broadcast.md)
 5.5 🔴🔴 **对外文案主语是机器 = 返工**:禁「都不是人写的/AI生成的/机器做的」,一律翻成客户视角「这些都不用你想」;自贬话术全禁(平台的「AI生成」标注照勾,那是字段不是文案) → [详](feedback_customer_view_not_machine_view.md)
 6. 🔴 **落库 ≠ 送达**:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md)
-6.5 🔴🔴🔴 **提示词语言跟模型走,不跟用户走(老板 08-15 定调)**:**国产模型(minimax-h3、seedance/SD 系)= 中文提示词;海外模型(grok、sora 等)= 英文提示词;台词永远 = copyLanguage 原语言,一个词都不许被翻**。依据:kie 文档 grok prompt 明标 Language:English,我们传中文=未文档化行为;老板手测英文提示词「效果完全不一样,能满足几乎所有要求」含多参考图。→ 架构含义:模板要按模型分语言版本,这是多语言输出(9语)能成立的前提——描述层语言与台词语言解耦。首刀=grok 线英文化实验(进行中)。
+6.5 🔴🔴🔴 **grok 提示词铁律(老板 08-16 定律,实测钉死):「混合语言 = AI 宕机只剩 BGM;整条 prompt 单一英语(台词也英文写)= 音频活」**。台账=`01_问题诊断\英文提示词实验台账_2026-08-15夜.md`:①混 60 字中文台词即哑(`task_1417ee9c8549`),混日文=死寂;纯英即说(`task_19f7f8b4a4b0`/无板单)②台词英文写+备注说X语 → 说中文行、说日语被抗命成普通话(罗马音在验)③纯英出声≈2/3 非 100% ④英文负面词生效=零字幕、三锁全中 ⑤说出的中文=意译非商家原话字面。**提示词语言跟模型走**:国产模型中文、海外英文,台词语种靠英文台词+语种备注。技术卡 `OPS-VIDEO-20260815-01`+直测包已交;直连建单/取消/传图配方在台账。
 7. 🔴🔴🔴 **i2v videoPrompt 4096字节硬顶=死规矩(08-08 老板重申;🔴08-15 补充口径:4096 只是 grok 的限制,不是通用天花板——别的模型逐个问上限,minimax 走能力JSON maxBytes)**:videoPrompt=videoTemplate(939B)+**编剧自写的 cells**;撑爆它的是 cells 不是固定模板。**改任何进 videoPrompt 的字段只许减字,必须加就先删等量**;加字前要能答"挤掉了谁"。**✅ 改之前必读拼装后全文:`GET /admin/api/v1/ai-tasks/{task_no}` → `output.compiledPlan.videoPrompt`(必须用 task_no,数字id返null);同一响应的 `attemptTrace[]` 有每次报错原文。旧写"没接口=蒙眼飞行/待发技术卡"作废** → [详](feedback_prompt_change_hard_rules.md)
 7.1 🔴🔴 **案例 visualHint 里一个字都不许写声线/语调/节奏**:实证同案例三版(原状重试1有台词/加声线重试3无台词/纯指派重试4无台词)——换气停顿类指令→编剧压短台词→撞 lineValidation 下限→连环重试→空台词。**声线节奏归全局 videoTemplate【口播节奏】段** → [详](feedback_prompt_change_hard_rules.md)
 7.2 🔴🔴 **烧单是验证手段不是探索手段**:动手前先读现状源(screenwriter-stack→koubo-defect→线上config),08-08 全天跳过这步走了三条弯路(声线/镜头/架构分层记忆里本来就有) → [详](feedback_prompt_change_hard_rules.md)
