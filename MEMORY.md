@@ -44,6 +44,7 @@
 7. 🔴🔴🔴 **i2v videoPrompt 4096字节硬顶=死规矩(08-08 老板重申;🔴08-15 补充口径:4096 只是 grok 的限制,不是通用天花板——别的模型逐个问上限,minimax 走能力JSON maxBytes)**:videoPrompt=videoTemplate(939B)+**编剧自写的 cells**;撑爆它的是 cells 不是固定模板。**改任何进 videoPrompt 的字段只许减字,必须加就先删等量**;加字前要能答"挤掉了谁"。**✅ 改之前必读拼装后全文:`GET /admin/api/v1/ai-tasks/{task_no}` → `output.compiledPlan.videoPrompt`(必须用 task_no,数字id返null);同一响应的 `attemptTrace[]` 有每次报错原文。旧写"没接口=蒙眼飞行/待发技术卡"作废** → [详](feedback_prompt_change_hard_rules.md)
 7.1 🔴🔴 **案例 visualHint 里一个字都不许写声线/语调/节奏**:实证同案例三版(原状重试1有台词/加声线重试3无台词/纯指派重试4无台词)——换气停顿类指令→编剧压短台词→撞 lineValidation 下限→连环重试→空台词。**声线节奏归全局 videoTemplate【口播节奏】段** → [详](feedback_prompt_change_hard_rules.md)
 7.2 🔴🔴 **烧单是验证手段不是探索手段**:动手前先读现状源(screenwriter-stack→koubo-defect→线上config),08-08 全天跳过这步走了三条弯路(声线/镜头/架构分层记忆里本来就有) → [详](feedback_prompt_change_hard_rules.md)
+7.5 🔴🔴🔴 **交付件 = 能直接照着发的东西(08-16 老板连打两次)**:旁边不许躺 `.bak`(挪进 `_历史版本\`)、正文里不许混我的自查注和复盘(搬进 `_说明.md`)、txt 一律 **utf-8-sig**;⛔ **emoji 键帽 `1️⃣`–`5️⃣` 在记事本是方框**(三码位组合),换 **①②③④⑤** → [详](feedback_deliverable_is_postable.md)
 8. **范围边界必写反向**:附"作用域仅X、不碰Y"+双向验收 → [详](feedback_scope_boundary_explicit.md)
 8.5 🔴 **动"前端会读的字段"先改一条验,别一次铺满** → [详](project_thinknova_dingdian_koubao.md)
 8.53 🔴🔴 **案例名实一致:场景+案例名承诺的=成片生成的**;交付不了就改名,不许挂着做不到的承诺;烧单验收多一问"这是不是标题说的那个东西" → [详](feedback_case_name_matches_output.md)
@@ -101,6 +102,7 @@
 - 🔴🔴🔴 [小红书线现状](project_thinknova_xhs_line.md) — **写小红书前必读**:人设=给实体店做图片的人·一天一店一篇;分享vs教只差主语(出现"你/应该/别"=返工);封面=经营类底图+大字,底图走 S14 新烧
 - 🔴🔴 [抖音封面对标](reference_douyin_cover_benchmark.md)(做封面前打开真图看,29张已存;差距=头占41.5%/元素4-9个/亮背景托暗人/**选帧**;天花板是打光不是设计) / 🔴🔴 [打分闸门与校准](reference_cheat_gates_calibration.md)(**比较两批分数前必读**:跨批不可直接比,必须夹带锚点测漂移)
 - 🔴 **两把尺+四件套 skill** — 小红书笔记 `/xhs-note`(违禁词最高危=「搞钱/变现」),冷启动 `/xhs-growth`;视频脚本按序 `video-script-style`→`high-retention-hook`→`hkrr-clock`→`hurricane-shot-prompt` → [国内营销线](project_thinknova_marketing.md)
+- 🔴🔴🔴 [横屏 X 式管线](reference_hengping_x_pipeline.md) — **做横屏口播片第0步必读**:规则定过五次散在五处、cut.py 抬头写「小蓝那套」但实现零抠像(断的);抠像必须 20帧/块+降到1440×810+断点续跑+等内存回落+TIMEOUT 240;示意图锁 0–55% 带内可绕开「人压素材vs避让」那条未裁定的规矩
 - 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md)(海报6/视频60;omni·wan·sora=3分/秒,grok系=4分/秒) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个Agent工程主线](project_thinknova_offline_agents.md)
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — **探店片型第0步必读**:萍萍台词公式(钩子→价格锚→短句→三连催单,催单待老板放行);真差距=TTS声调+切镜密度+台词结构;omni已砍;探店案例=`food_beverage_s01_tandian`
 - 🔴🔴🔴 [海报线现状+P0编造事故闭环 08-10](project_thinknova_poster_video_purge.md) — 海报出问题第0步:**拒绝编造6处守卫已上线(修一处不算修完,同铁律多层各一份)**;判编造先查商家资料注入;海报烧单走 business-assets(caseId必填);837条底细/615视频克隆/123清毒;S07/S08未美图化待排
