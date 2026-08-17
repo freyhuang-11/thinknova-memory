@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-17T14:12:21.512Z
+  modified: 2026-08-17T21:26:32.913Z
 ---
 
 # 语言包+动态参考图(08-16 事故→08-17 技术修复→按文档执行)
@@ -17,7 +17,13 @@ metadata:
 4. 多参判定(文档 §4):`allowMerchantMultiReference=true` 且 商家有效图≥2 且 输出语言∈{zh,en} 且 无成对引号原话 且 模型上限>1 → multi;否则 small。上限读取链(§5):input.referenceImages.max→constraints.maxReferenceImages→旧字段→默认。
 5. 复测顺序(§7):en+strict关 烧1单验「基础4000+en附加」同在→四项检查过→开 strict→zh多参/引号/日语三类→放量。
 
-## 🏆 多参首胜配方(2026-08-18 凌晨 `task_f545c881fcf3`,唯一可用配置,不许乱改)
+## ✅ 08-18 通宵闭环 · 英文链多参达标(最新状态,先读这段)
+**结果**:5 条达标片(桌面 `美业_达标片_台词铺满15秒_task_4ec671de7453.mp4` 等),说普通话+铺满15秒+三锁+板3×2+出站零中文。晨报=`02_交付内容\晨报_通宵闭环结果_2026-08-18.md`,逐单证据在验收台账末节。
+**三个真根因(此前全被误判)**:①**en 链 i2v 模板只有 244 字节、里面没有任何"要说话"的指令**(中文模板的【口播节奏】等在英文链整段丢失)=英文单反复哑的结构性根因 ②成片说英语=`Speak naturally in Mandarin:` 前缀被 grok 丢掉照念英文 ③台词只说一半=该前缀被字数校验计数吃掉 40% 预算。
+**已落库 10 处**:en 模板补齐(必须出声/节奏/开场/收尾/零字幕,1065字节)|语言改从 concept 的 `Spoken language: X` 读+禁念英文原文|取消逐句前缀(源=`languagePacks.en.scriptwriterInstruction`)|窗 44-58 词(**生效键 `lineValidation.byLanguage.en`,不是 `.en`**)|画板 firstFrameTemplate 顶加 [Board structure] 硬规(3×2/禁黑格/锁三图)→板结构与黑格已解|商品名价格保真|合规话术不入台词|说话人须出镜(含基础提示词【人物与口播】改写)|反哑负面词(en链未生效,写入通道待技术)|cells 预算 2300 字符(i2v 4000 字节硬顶)。
+**🔴 实测规律(n=9)**:**人对镜说话 4/4 有声;纯画外音(手部工序)2/5 有声** → 哑单税与"画面有无可见说话人"强相关。提示词层已尽力,再往下只剩案例级改动(手艺揭秘开头加对镜说一句)=**待老板拍板**。
+
+## 🏆 多参首胜配方(2026-08-18 凌晨 `task_f545c881fcf3`,历史记录)
 - **482 = `{promptLanguage:'en', strictOutboundLanguage:false, allowMerchantMultiReference:true}`(🔴老板令:多参开关永远开着)**;
 - en 附加指令=**原版 335 字**(头"You are a short-video screenwriter…",教 `Speak naturally in Mandarin:` 逐句前缀;⛔我改写的 1070/1388 字包裹版是退化点已废弃,原文可从探针单 task_56828949aadc raw system 尾部再取);
 - **lineValidation.en 已放宽 18-60 词(byDuration 10:12-42 / 15:18-60)——26-46 太紧正是编剧连败真凶**;
