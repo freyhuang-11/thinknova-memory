@@ -54,7 +54,7 @@
 8.8 🔴🔴 **config/案例写入唯一正解:GET 响应头拿 `x-csrf-token` → 带头 PUT(agent 整体/案例单条/businessUi 都通,07-31 解锁)**;419-UI 弹窗法废弃;重 SPA 页会冻死 CDP,fetch 一律在 robots.txt 轻页跑 → [详](reference_thinknova_paths.md)
 
 ## L2 · 烧单核验时
-8.9 🔴🔴 **烧单前必报客户视角五要素**(行业/场景/案例/补充信息/验证目标) → [详](feedback_burn_report_format.md);**变量做满再烧** → [详](feedback_prompt_first_then_test.md)
+8.9 🔴🔴 **烧单前必报客户视角五要素**(行业/场景/案例/补充信息/验证目标) → [详](feedback_burn_report_format.md);**变量做满再烧** → [详](feedback_prompt_first_then_test.md);🔴 **烧验案例轮换(老板 08-17 定)**:古法窑鸡案例已 100+ 单退休,验证烧单换着案例/行业烧,过关成片抽帧进封面池(一鱼两吃)
 9. 🔴 **逐帧通看**(联系表);音频量死寂;单帧截图=假结论;**证据成对**(真实输入↔输出+任务号,串行≥20秒) → [详](feedback_evidence_standard.md)
 9.5 🔴 **烧完先验三件:task.model 实际派发、编剧 source、字数落区间** → [详](project_thinknova_0729_screenwriter_stack.md)
 
