@@ -5,14 +5,22 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-16T12:01:07.747Z
+  modified: 2026-08-17T13:29:52.919Z
 ---
 
-# 语言包+动态参考图 08-16 晚半上线事故与回滚(全档)
+# 语言包+动态参考图(08-16 事故→08-17 技术修复→按文档执行)
 
-## 当前线上状态(2026-08-16 晚,唯一真值)
-- **482 的 `capability.agentInput` 已整体删除 = 回到 08-15 已知好状态**(promptLanguage/strictOutboundLanguage 都没有)。修复前不再启用。
-- agent config 里 `promptComposer.languagePacks`(zh/en,en 零中文)+ `businessUi.videoGeneration.referenceRouting{multi:6,small:2}` 仍在库(不激活无害)。
+## 🔴🔴🔴 执行教义(2026-08-17 深夜,老板整顿后定death;以技术文档《运营说明_商家视频编剧语言包与海报文案修复_2026-08-16.md》为唯一权威,我此前一切反向提案作废)
+1. **grok 多参单的生视频层只许英语,台词也用英文写**(老板铁律);说什么语言靠 en 附加指令里的逐句包裹 `Voice line (spoken in <语言名>): "..."`(V1/V2/V3 直连 3/3 实证说普通话)。「en 模式=翻译腔所以不可用」「给台词开中文例外」「模板回滚中文」这些我的旧结论**全部作废**——en 语义台词+英文指令控口播语言就是文档 §3 的设计本身。
+2. **测试一律走商家 agent 管线**,直连单只当机理探针不当产品依据。
+3. **烧验案例轮换**,古法窑鸡案例(100+单)退休;过关成片抽帧进封面池。
+4. 多参判定(文档 §4):`allowMerchantMultiReference=true` 且 商家有效图≥2 且 输出语言∈{zh,en} 且 无成对引号原话 且 模型上限>1 → multi;否则 small。上限读取链(§5):input.referenceImages.max→constraints.maxReferenceImages→旧字段→默认。
+5. 复测顺序(§7):en+strict关 烧1单验「基础4000+en附加」同在→四项检查过→开 strict→zh多参/引号/日语三类→放量。
+
+## 当前线上状态(2026-08-17 深夜,唯一真值)
+- 482 = `{promptLanguage:'en', strictOutboundLanguage:false, allowMerchantMultiReference:true}`(§7 灰度中)。
+- en 附加指令已重写为 1070 字(英文台词人味规则+逐句说话语言包裹铁律),opsEditable+镜像双写;经实证新代码读的基础位=老位置 `screenwriter.systemPrompt`(文档写的 opsEditable.masterPipeline 新位置线上不存在但不影响)。
+- systemPrompt=4000 字「语气回血+互搏修复版」:恢复 6 段语气规则+价格句人话指派;**08-17 深夜蹦字事故根因=我 01:43 塞入「情绪全靠台词承载」与「情绪写在visual『谁怎样地说』里」同句互搏→cells 丢"说"→台词变无主旁白蹦字;已合并修复(「情绪两处落地」),修复单 cells 立即恢复说话表演**。规则互搏=头号大忌再次实证。
 - 482 写前快照:`00_规格与参考\SNAPSHOT_model482_capability_2026-08-16.json`(+runtime full)。
 
 ## 技术实现形态(运营说明 08-16)
