@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-17T13:29:52.919Z
+  modified: 2026-08-17T13:47:28.765Z
 ---
 
 # 语言包+动态参考图(08-16 事故→08-17 技术修复→按文档执行)
@@ -17,8 +17,9 @@ metadata:
 4. 多参判定(文档 §4):`allowMerchantMultiReference=true` 且 商家有效图≥2 且 输出语言∈{zh,en} 且 无成对引号原话 且 模型上限>1 → multi;否则 small。上限读取链(§5):input.referenceImages.max→constraints.maxReferenceImages→旧字段→默认。
 5. 复测顺序(§7):en+strict关 烧1单验「基础4000+en附加」同在→四项检查过→开 strict→zh多参/引号/日语三类→放量。
 
-## 当前线上状态(2026-08-17 深夜,唯一真值)
-- 482 = `{promptLanguage:'en', strictOutboundLanguage:false, allowMerchantMultiReference:true}`(§7 灰度中)。
+## 当前线上状态(2026-08-18 凌晨定格,唯一真值)
+- **482 = `{allowMerchantMultiReference:true}` 仅此一项,🔴老板令:多参开关永远开着,任何人不许再关**;promptLanguage 不配=中文组装(en 态在技术排雷前会让全部单的编剧七连败,不能开)。已知代价(老板拍板接受):商家传≥2图的中文单走多参=大概率哑,问题保持可见直到技术修好。
+- **en 链三颗雷(全技术侧,修好前 en 不开)**:P0-A position 中文枚举 vs 零CJK校验自相矛盾;P0-B 台词"完整句"校验拒包裹前缀→**最优解已提给技术:编剧写纯英台词,说话语言包裹由组装层机械添加**;P1 qwen 双备胎账号不可用。尸检单=`task_8186edf741d1`(七连败全取证在台账)。
 - en 附加指令已重写为 1070 字(英文台词人味规则+逐句说话语言包裹铁律),opsEditable+镜像双写;经实证新代码读的基础位=老位置 `screenwriter.systemPrompt`(文档写的 opsEditable.masterPipeline 新位置线上不存在但不影响)。
 - systemPrompt=4000 字「语气回血+互搏修复版」:恢复 6 段语气规则+价格句人话指派;**08-17 深夜蹦字事故根因=我 01:43 塞入「情绪全靠台词承载」与「情绪写在visual『谁怎样地说』里」同句互搏→cells 丢"说"→台词变无主旁白蹦字;已合并修复(「情绪两处落地」),修复单 cells 立即恢复说话表演**。规则互搏=头号大忌再次实证。
 - 482 写前快照:`00_规格与参考\SNAPSHOT_model482_capability_2026-08-16.json`(+runtime full)。
