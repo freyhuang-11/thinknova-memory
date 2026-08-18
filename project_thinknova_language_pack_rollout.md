@@ -17,6 +17,16 @@ metadata:
 **线上配置(08-18 14:30)**:482 = `{promptLanguage:'zh', strictOutboundLanguage:false, allowMerchantMultiReference:false}`;`referenceRouting = {multiReferenceLimit:2, smallReferenceLimit:2}`(双保险,任何路径最多板+1)。**全链回中文,英文包停用**。
 **实测**:板+1 配置下连烧 3 单(板独/美业3图/餐饮2图)**零哑单**(浊音 70%/65%/38%)。
 **三层提示词现状(全中文)**:编剧 systemPrompt 4000 字(语气规则齐:情绪爆点/机器味/多馋一分/不是念稿/松口加语气词/禁"价格明白"总结腔/谁怎样地说;08-18 新增**换说法重说同一个意思也算重复**治"一只吃两只分着吃"式绕圈);画板 firstFrameTemplate 中文原版+顶部板结构硬规(3×2/禁黑格/锁三图)+零字幕;视频 videoTemplate 中文原版+顶部必须出声硬规,**禁文字规则放在 {{cells}} 之后**(贴画面描述,复刻原版位置)。
+**🔑 负面词三段结构(08-18 晚·拉实发串对账定案)**:i2v 实际收到的 negative_prompt = **A + B 两段(
+ 拼接)**,生图板收到 **C + B**。
+- **A = `promptComposer.languagePacks.zh.fallbacks.negativePrompt`(+opsEditable 镜像)** → 只落 i2v;
+- **B = 服务端硬编码**(config 全量搜索零命中,含 六宫格/分屏/泵头/格与格粘连 等),运营动不了;
+- **C = `promptAssembler.video.negativePrompt`** → 落生图板;
+- ⛔ 案例表**没有任何 negativePrompt 字段**(已核 27 个键),负面词不能按案例定制;
+- ⛔ `negativePromptPolicy.byRenderTarget` 中文链不读(旧结论保留作废)。
+**⚠️ 自我纠错**:`task_9b34357111e6` 的零字幕**不是负面词的功劳**——agent updated_at 14:34:38 晚于该单 i2v 14:30:31,那单发的是旧串。零字幕来自 videoTemplate 里 `{{cells}}` 之后那条禁文字规则。**教训:判断"某次配置改动是否生效"必须比对 agent.updated_at 与子任务 created_at,不能只看 config 回读。**
+**08-18 14:55 负面词改版(去重+补充,已回读)**:A(134字)去掉字幕概念的 7 词堆叠压到中英各一组,新增 `无人声/只有背景音乐/口型对不上/静止不动的画面/黑屏/分屏/网格线/格子边框`;C(64字)三种"腔"合并为一,新增 `多指/假塑料质感/摆拍感/空镜/纯黑格/格与格粘连`。
+
 **🔑 负面词真通道(08-18 回源纠正)**:实际发出去的是 **`promptComposer.languagePacks.zh.fallbacks.negativePrompt`**(+opsEditable 镜像)+ 技术文档指定的 `promptAssembler.video.negativePrompt`;⛔ 我之前一直改的 `negativePromptPolicy.byRenderTarget` **在中文链上根本不被读**——"运营写不进负面词"的旧结论**作废**,是我找错字段。已写入禁字幕词(字幕/subtitles/captions/on-screen text/水印)。
 **多语言窗**:byLanguage 13 语齐;08-18 修正 en 回真实语速口径(15s 30-44 词)、ja/ko 补 byDuration(10s 36-56 字)治语速飙快。
 **待验**:字幕是否根除(负面词刀后第一单)、台词防重复刀效果。
