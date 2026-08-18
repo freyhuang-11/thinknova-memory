@@ -95,7 +95,7 @@
 
 ### 现行状态
 - 🔴🔴 [口播/裁格·格网](project_thinknova_0729_koubo_defect.md) — ✅**格网已解**(剧情片+`panel_crop`,08-12 验 2/2 零格线)。⛔ 旧记「panel_crop 出现 0 次」**作废**:真值 **123 条案例在用**(案例字段要查案例表接口,不能搜 agent config)
-- 🔴🔴 [片型体系+案例库现状](project_thinknova_film_types.md) — 场景表 10 个/案例 726+861;三档定档;08-13 大整改全文在此
+- 🔴🔴🔴 [片型体系+案例库现状](project_thinknova_film_types.md) — **08-18 片型分化两刀已落地**:场景要点升为最高优先级 + 545 条案例按场景改写【台词方向】(七场景验收全过,回滚配方已存);⛔`panel_crop`=一镜到底模式**不是通用防漏板开关**,别全库铺。场景表 10 个/案例 734+861;三档定档
 - 🔴 [故事板取证](project_thinknova_storyboard_test.md) / [字节手术+无台词开关](project_thinknova_0729_byte_surgery.md)(voiceMode=none 早就有,22条TVC在用) / [品牌产品+TVC场景](project_thinknova_brand_product_industry.md)(S14已上线;建单500排查法) / [定点口播线](project_thinknova_dingdian_koubao.md)(Atomy)
 - 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md) — **主战场·08-10 重启**:定位=「一个人+AI」实录老板出镜;变现分层=抖音小红书引流→微信群转化→线下会成交;cheat-on-content 打分→盲预测→T+3复盘;🔴微信群每天出货=唯一硬规定;标签固定选题必变;AI标注必勾
 - 🔴🔴 [新加坡线下会议线](project_thinknova_sg_events.md) — 🔴首场 2026-08-22(周六)14:00-17:00 Suntec Tower2 L7,之后每周六;成品=v7.pptx 21页+邀请函中英12张(带码发朋圈/无码发小红书IG,🔴小红书版绝不能有二维码);主线=「生产+发送内容才是核心」禁自贬话术
