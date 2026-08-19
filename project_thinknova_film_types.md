@@ -306,3 +306,8 @@ S01+S03=产品英雄型/人物讲述型(同场景两案例错开)·S02+S13=快�
 - 通道 = 海报线 **S16「发朋友圈日常」`copyMode=none`**(零文字零海报结构),约 6 积分/张,比烧视频便宜一个量级。
 - ⚠️ **S16 案例只有 5 个行业有**(food_beverage/custom/retail/beauty/life_service),我需要的行业全没有 → 统一用 **`custom_s16_moments`(行业无关)+ 每张写不同的 `extraRequirement` 画面要求**。
 - 待补封面 **28 张**(13 条原缺 + 15 条新建)。验证单 `task_20890d5ff45c`。
+
+### ✅ 收官复检(执行后全库重扫):缺封面 0 / 缺编剧预设 0 / 缺台词方向 0 / 场景空缺 0 / 重名 0 / 环境带看残留 0;启用案例 595 → **610**
+**封面图配方(老板令:用生图不许烧视频)**:海报线 **S16 `moments_daily` + `custom_s16_moments`(行业无关)**,`copyMode=none` → 零文字干净图 941×1672 竖构图,约 6 积分/张。流程 = 建海报单 → `output.childOutputs.image.assets[].publicUrl` 取 key → `oss_get.py` 下载 → `oss_put.py` 传 **`previews/all/{caseId}.png`** → PUT 案例 `coverImageUrl/previewImageUrl/previewUrl` + `previewAssetType:'image'`。**28 张全部走通,0 失败,约 168 积分。**
+⚠️ S16 案例只有 5 个行业有(food_beverage/custom/retail/beauty/life_service);给某行业批量做封面前,先给它补一条 S16 案例会更顺。
+交付件 = `02_交付内容\结果_全库整改收官_2026-08-18.md`
