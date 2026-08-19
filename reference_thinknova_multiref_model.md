@@ -218,3 +218,20 @@ metadata:
 - 🔴 xAI 官方:`image` + `reference_images` 是**非法组合返 400**;三模式互斥(`prompt`=t2v / `prompt+image`=i2v / `prompt+reference_images`=R2V)。**我们两个都传却没收到 400 → 中转商在替我们改写请求、按图数自动选模式。**
 - 🔴 中转商 = **kie.ai**(`tempfile.aiquickdraw.com` 是其临时文件域名,**文件 3 天删**);其 grok-imagine 文档**零 audio/voice/dialogue 参数**,prompt 标注 `Language: English` → **我们传中文出中文台词属未文档化行为,随时可能变**。
 - ⚠️ **R2V 官方封顶 720p**,时长多家第三方写 2–10s,而我们要 15 秒 → **参考图一多可能不止丢声音,时长和清晰度也在被降级,验的时候一起看**。
+
+## 🔴🔴🔴 08-19 新模型 503 metaso MiniMax-H3 接入(老板:很稳定,成本 1.5,先做一段时间看要不要切主模型)
+**已改名**:`MiniMax H3 `(裸技术名,带尾空格,而且当时已 enabled+frontend_visible=商家能看见) → **「多图参考版 · 10/15秒(多张参考图·出片最稳)」**;en=`Multi-reference · 10/15s`。写法=`PUT /admin/api/v1/models/503`,body=列表行+`runtime`。
+
+**🔑🔑 方法学(害我当场说错一次,必须记住)**:**admin 模型列表行的字段是死的,商家端读的是 `runtime.capability`。** 503 实测:
+| 字段 | admin 列表行 | 商家端真值(runtime) |
+|---|---|---|
+| `max_reference_images` | **1**(假) | **9**(真) |
+| `credit_price`/`billing_unit` | **0 / per_task**(假) | **4 / per_second**(真) |
+→ **判断模型能力/定价一律看 `GET /admin/api/v1/models/{id}/runtime` 或商家端 `config.videoModelOptions`,别信列表行。**(旧记的「500 `max_reference_images`=1 但实发 2 张=配置字段是死的」是同一现象,现在有解释了。)
+
+**503 真实能力(runtime.capability.constraints 逐字)**:`maxReferenceImages:9` / `durations:[10,15]` / `resolutions:["768P"]` / `ratios:[adaptive,21:9,16:9,4:3,1:1,3:4,9:16]` / `inputModalities:["text","image"]` / `referenceImageRole:"reference_image"`;`prompt_language:zh`、`default_duration_seconds:15`、`is_default:false`。
+
+**⚠️ 三条待办(未动,等老板拍板)**
+1. **参考视频没开**:老板说"还能参考视频",但 `inputModalities` 只有 text/image,**没有 video** → 平台不会发视频,要技术在能力 JSON 里加。
+2. **定价没按新成本配**:仍是 `4 积分/秒`(=grok 482 的价,15秒 60 积分),而老板说成本 1.5。定价是商业决策,我不自改。
+3. **🔴 少参架构会把它的多参能力锁死**:现行 `businessUi.videoGeneration.referenceRouting = {multiReferenceLimit:2, smallReferenceLimit:2}` 是为 grok 定的全局值,会把 503 的 9 张压到 2 张。**要试 503 多参必须按模型分流,不能全局放开——否则 482 会被一起放开,多参哑单老病立刻复发**(08-13 实测:grok 2图 2/3、3图 1/3、4图 0/3)。
