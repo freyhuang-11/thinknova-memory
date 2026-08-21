@@ -53,6 +53,9 @@
 8.7 🔴 **建单500 诊断法**:admin GET 全量真值 → 隔离实验换维度 → 找唯一缺键 → [详](project_thinknova_brand_product_industry.md)
 8.8 🔴🔴 **config/案例写入唯一正解:GET 响应头拿 `x-csrf-token` → 带头 PUT(agent 整体/案例单条/businessUi 都通,07-31 解锁)**;419-UI 弹窗法废弃;重 SPA 页会冻死 CDP,fetch 一律在 robots.txt 轻页跑 → [详](reference_thinknova_paths.md)
 
+## L1.9 · 🔴🔴🔴 动后台前先开手册 → [执行手册·后台操作](../../../../D:/SamsoData/Documents/视频制作平台分析/00_规格与参考/执行手册_后台操作_2026-08-21.md)
+老板 08-21 定:「你一直在丢规则,把技术给你的规范整理进执行手册,每次执行后台操作前看一下」。手册含:动手前五问 / 4000字节硬账 / 真通道与死字段对照表 / 写入配方 / 验证四步(回读≠生效) / 成片四层验收 / 已重复踩过的八个坑。
+
 ## L2 · 烧单核验时
 8.85 🔴🔴🔴 **烧单前逐条打勾 → [烧单前强制自查表](../../../../D:/SamsoData/Documents/视频制作平台分析/00_规格与参考/烧单前强制自查表_2026-08-18.md)**(老板 08-18 定「新问题可以有,老问题不许反复」):A字节账(≤3600预留4000硬顶)B配置键要在真实任务里确认生效(byLanguage.en 才是真键;stagePromptPresets/languagePolicy.map 写不进)C查规则互搏 D改对该链模板(en 链模板在 languagePacks.en.masterPipeline...) E案例+行业双轮换 F四层验收全做(含下载板图看图) G一次一单、失败先查根因
 8.9 🔴🔴 **烧单前必报客户视角五要素**(行业/场景/案例/补充信息/验证目标) → [详](feedback_burn_report_format.md);**变量做满再烧** → [详](feedback_prompt_first_then_test.md);🔴 **烧验案例轮换(老板 08-17 定)**:古法窑鸡案例已 100+ 单退休,验证烧单换着案例/行业烧,过关成片抽帧进封面池(一鱼两吃)
