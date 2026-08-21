@@ -72,22 +72,7 @@ metadata:
 **待验**:字幕是否根除(负面词刀后第一单)、台词防重复刀效果。
 **⛔ 烧验纪律**:古法窑鸡案例已烧几百单,**永久退休**;每单换案例换行业(美业素材:人2644/精华瓶2132/门店2696)。
 
-## (历史)08-18 通宵闭环 · 英文链多参达标 —— 已被上面的少参定稿取代
-**结果**:5 条达标片(桌面 `美业_达标片_台词铺满15秒_task_4ec671de7453.mp4` 等),说普通话+铺满15秒+三锁+板3×2+出站零中文。晨报=`02_交付内容\晨报_通宵闭环结果_2026-08-18.md`,逐单证据在验收台账末节。
-**三个真根因(此前全被误判)**:①**en 链 i2v 模板只有 244 字节、里面没有任何"要说话"的指令**(中文模板的【口播节奏】等在英文链整段丢失)=英文单反复哑的结构性根因 ②成片说英语=`Speak naturally in Mandarin:` 前缀被 grok 丢掉照念英文 ③台词只说一半=该前缀被字数校验计数吃掉 40% 预算。
-**已落库 10 处**:en 模板补齐(必须出声/节奏/开场/收尾/零字幕,1065字节)|语言改从 concept 的 `Spoken language: X` 读+禁念英文原文|取消逐句前缀(源=`languagePacks.en.scriptwriterInstruction`)|窗 44-58 词(**生效键 `lineValidation.byLanguage.en`,不是 `.en`**)|画板 firstFrameTemplate 顶加 [Board structure] 硬规(3×2/禁黑格/锁三图)→板结构与黑格已解|商品名价格保真|合规话术不入台词|说话人须出镜(含基础提示词【人物与口播】改写)|反哑负面词(en链未生效,写入通道待技术)|cells 预算 2300 字符(i2v 4000 字节硬顶)。
-**🔴 实测规律(n=9)**:**人对镜说话 4/4 有声;纯画外音(手部工序)2/5 有声** → 哑单税与"画面有无可见说话人"强相关。提示词层已尽力,再往下只剩案例级改动(手艺揭秘开头加对镜说一句)=**待老板拍板**。
-
-## 🏆 多参首胜配方(2026-08-18 凌晨 `task_f545c881fcf3`,历史记录)
-- **482 = `{promptLanguage:'en', strictOutboundLanguage:false, allowMerchantMultiReference:true}`(🔴老板令:多参开关永远开着)**;
-- en 附加指令=**原版 335 字**(头"You are a short-video screenwriter…",教 `Speak naturally in Mandarin:` 逐句前缀;⛔我改写的 1070/1388 字包裹版是退化点已废弃,原文可从探针单 task_56828949aadc raw system 尾部再取);
-- **lineValidation.en 已放宽 18-60 词(byDuration 10:12-42 / 15:18-60)——26-46 太紧正是编剧连败真凶**;
-- 首胜链:编剧 1 次过、cells 0 CJK、mode=multi 实发 3 张、出站 0 CJK、成片说普通话(语义贴台词)。技术当晚修复=校验只查语义字段(position/timeRange 豁免+枚举归一化 1..N)。
-- 事故链教训:我两次重写 en 附加指令引入规则互搏(包裹格式 vs "line不加前缀")=七连败退化点;**boss 定论"问题不在技术在你"成立**。恢复成功配置+对症单刀(放宽词数窗)即通。
-- 待办:多参稳定性梯队 4 单(S02/S06/S05复现/S08)在跑;稳定后按 §7 开 strict + 三类验证;strict 开启前出站零CJK已实测但未上闸。
-- en 附加指令已重写为 1070 字(英文台词人味规则+逐句说话语言包裹铁律),opsEditable+镜像双写;经实证新代码读的基础位=老位置 `screenwriter.systemPrompt`(文档写的 opsEditable.masterPipeline 新位置线上不存在但不影响)。
-- systemPrompt=4000 字「语气回血+互搏修复版」:恢复 6 段语气规则+价格句人话指派;**08-17 深夜蹦字事故根因=我 01:43 塞入「情绪全靠台词承载」与「情绪写在visual『谁怎样地说』里」同句互搏→cells 丢"说"→台词变无主旁白蹦字;已合并修复(「情绪两处落地」),修复单 cells 立即恢复说话表演**。规则互搏=头号大忌再次实证。
-- 482 写前快照:`00_规格与参考\SNAPSHOT_model482_capability_2026-08-16.json`(+runtime full)。
+## ⛔(已归档)英文链 + 多参首胜相关两段 —— 全链已回中文、多参已证伪,原文移至 `99_归档\归档_英文链多参段_2026-08-21.md`
 
 ## 技术实现形态(运营说明 08-16)
 模型能力 JSON `agentInput{promptLanguage: zh|en, strictOutboundLanguage}`;strict=true 时出站含 CJK 即拒派发(`I2V_OUTBOUND_LANGUAGE_MISMATCH`,不烧 i2v 但编剧+画板已烧完,积分退);路由:补充要求含成对引号原话→small≤2 / 无原话 zh,en→multi≤6 / 其他语言→small;9 个 `_` 审计字段落在 video 子任务 input。

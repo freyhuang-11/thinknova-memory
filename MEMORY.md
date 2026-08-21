@@ -1,6 +1,31 @@
 # 铁律 · 按触发时机分层(按"什么时候用"排;漏 = 该用时没想起来)
 > 这里只放**触发条件 + 一句动作**。案例、字段路径、复盘全在链接文件里,该用时打开。
 
+## 🔴🔴🔴 L-1.5 · **执行前必读路由表**(老板 08-21 定:"执行前先看文档,不然每次都会忘")
+> **动手前先在这张表里找到你要做的事,把对应文件打开再动。** 找不到对应行 = 先问,别猜。
+
+| 我要做什么 | 先开哪个 |
+|---|---|
+| **任何后台写操作**(改 config/案例/模型) | 🔴 `00_规格与参考\执行手册_后台操作_2026-08-21.md` — 动手五问 / 字节账 / 真通道 vs 死字段 / 验证四步 / 八个重复踩过的坑 |
+| 烧验证单 | 🔴 `00_规格与参考\烧单前强制自查表_2026-08-18.md`(A–I 九节逐条打勾) |
+| 动编剧/台词/长度/字数窗 | [[project-thinknova-0729-screenwriter-stack]] |
+| 动 grok/H3/参考图/负面词/提示词 | [[project-thinknova-language-pack-rollout]] + [[reference-thinknova-multiref-model]] |
+| 动片型/案例库/场景表 | [[project-thinknova-film-types]] |
+| 做探店片型 | [[reference-competitor-gravity-ai]](萍萍公式) |
+| 改 config 字段(查口径) | [[reference-thinknova-tech-docs-index]] |
+| 下"前台有没有X"的结论 | [[reference-thinknova-frontend-truth]] |
+| 建案例 | [[feedback-case-low-coupling]](3 条自检) |
+| 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
+| 海报出问题 | [[project-thinknova-poster-video-purge]] |
+| 动输出语言 | [[project-thinknova-sea-languages]] |
+| 写小红书 | [[project-thinknova-xhs-line]] |
+| 做抖音封面 | [[reference-douyin-cover-benchmark]] |
+| 比较两批打分 | [[reference-cheat-gates-calibration]] |
+| 做横屏口播片 | [[reference-hengping-x-pipeline]] |
+| 用哪个 skill | [[reference-skills-routing]] |
+| 谈融资/预算 | [[project-thinknova-investor-plan]] |
+| 接"上次的活" | [[feedback-parallel-sessions-check-first]](先看记忆文件修改时间) |
+
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 **动手先过闸,每道闸先输出可检查产物**:闸1 现状源 → 闸2 字节账(挤掉谁) → 闸3 爆炸半径 → 闸4 attemptCount → 闸5 单条验证+老板过目才铺开。**先读后动,先验后铺**;L0-L5 是细则。
 
@@ -41,7 +66,7 @@
 6. 🔴 **落库 ≠ 送达**:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md)
 6.4 🔴🔴🔴 **英文化已上线(08-16 凌晨,回滚=`00_规格与参考\ROLLBACK_全量英文化前_2026-08-16.json` + `ROLLBACK_iv_stage_presets_…`)**:videoTemplate/firstFrameTemplate/durationPolicies(10/15/30)/负面数组(两层20项)全英文;systemPrompt **4000字整**加【cells语言】规则(cells 全英/台词 copyLanguage;为腾字删了三句冗余)。**验证单 `task_de951043a1fc`:cells 0 中文、台词纯中、`[Overview]` 拼装正常、除台词外残余中文=114字=恰好技术三处**。⛔ **`opsEditable.stagePromptPresets.image_to_video` 五字段运营写不进(两次 PUT code:0 回读原值=服务端丢写)**,含两个后发现的出站中文源:`prompt` 包装层987字(逐格执行/声音细节整段)+`negativeGuard`;英文文本=`02_交付内容\附件_OPS-VIDEO-20260816-01_stagePromptPresets英文文本.json`。**交付状态:卡01/卡02 初版老板已发技术;后续变更全在《增量_OPS-VIDEO-20260816-01与02_补充说明》+附件,老板待补发**——卡01技术3处(骨架标签/负面词第一段/五字段通道),卡02问题2改为A(上限回2,零新活)/B(单if换1:1)由技术自选。⚠️ 过渡期现状:多参单(商家传≥2图)台词仍中文=照旧无声,A 落地即堵。
 6.5 🔴🔴🔴 **grok 提示词语言定律(08-16 终版,台账=`01_问题诊断\英文提示词实验台账_2026-08-15夜.md`)**:①**多参(实发≥3)混语言=音频宕机只剩BGM;整条单一英语=活**(混60字中文即哑/混日文死寂/纯英即说;去BGM句救不了) ②**少参(板+1)任意混语全出声且台词逐字照念**——`task_2e250fdf2217` 中文骨架+日文台词=**日语98.6%置信逐字念出,原话保真** ③**日语在 grok 多参下 0/5 判死**(令说/原文/罗马音/前置声明全灭,唯一出声那次抗命说普通话)④纯英说中文=意译不保原话字面;成功率≈2/3非100% ⑤英文负面词生效=零字幕、三锁全中;**1:1还原只有多参给,少参靠板继承="像"级——1:1与全语言保真不可兼得** ⑥**带水印/带字的图绝不能当参考图尤其主图**(点评截图当主图→满屏字幕+水印)⑦待办:非中文语言**语速过快**,治法=lineValidation 按语言收紧(主)+节奏句(辅),ops 待做。
-7. 🔴🔴🔴 **i2v videoPrompt 4096字节硬顶=死规矩(08-08 老板重申;🔴08-15 补充口径:4096 只是 grok 的限制,不是通用天花板——别的模型逐个问上限,minimax 走能力JSON maxBytes)**:videoPrompt=videoTemplate(939B)+**编剧自写的 cells**;撑爆它的是 cells 不是固定模板。**改任何进 videoPrompt 的字段只许减字,必须加就先删等量**;加字前要能答"挤掉了谁"。**✅ 改之前必读拼装后全文:`GET /admin/api/v1/ai-tasks/{task_no}` → `output.compiledPlan.videoPrompt`(必须用 task_no,数字id返null);同一响应的 `attemptTrace[]` 有每次报错原文。旧写"没接口=蒙眼飞行/待发技术卡"作废** → [详](feedback_prompt_change_hard_rules.md)
+7. 🔴🔴🔴 **出站 videoPrompt 上限 4000 字节 = 死规矩(08-21 技术实测确认:grok 和 H3 都是 4000,不是只有 grok;旧记「4096只是grok的限制/minimax走maxBytes」作废)**:videoPrompt = videoTemplate(现 1660B)+ 编剧写的 cells;撑爆它的是 cells。**超限时系统丢的是台词**(实测出现过出站串零台词、模型自己编到乱码)。现行安全值=systemPrompt 里 cells 预算 **620 字**,实测产出稳定 3100–3700B,最近 15 单零丢失。**改任何进 videoPrompt 的字段只许减字,要加先删等量**;两个都要量:编剧产出 `compiledPlan.videoPrompt` 与实发 `child_tasks[video].input.prompt` → [详](feedback_prompt_change_hard_rules.md)
 7.1 🔴🔴 **案例 visualHint 里一个字都不许写声线/语调/节奏**:实证同案例三版(原状重试1有台词/加声线重试3无台词/纯指派重试4无台词)——换气停顿类指令→编剧压短台词→撞 lineValidation 下限→连环重试→空台词。**声线节奏归全局 videoTemplate【口播节奏】段** → [详](feedback_prompt_change_hard_rules.md)
 7.2 🔴🔴 **烧单是验证手段不是探索手段**:动手前先读现状源(screenwriter-stack→koubo-defect→线上config),08-08 全天跳过这步走了三条弯路(声线/镜头/架构分层记忆里本来就有) → [详](feedback_prompt_change_hard_rules.md)
 7.5 🔴🔴🔴 **交付件 = 能直接照着发的东西(08-16 老板连打两次)**:旁边不许躺 `.bak`(挪进 `_历史版本\`)、正文里不许混我的自查注和复盘(搬进 `_说明.md`)、txt 一律 **utf-8-sig**;⛔ **emoji 键帽 `1️⃣`–`5️⃣` 在记事本是方框**(三码位组合),换 **①②③④⑤** → [详](feedback_deliverable_is_postable.md)
@@ -117,9 +142,9 @@
 - 🔴🔴🔴 **08-14 线上真值(动任何提示词前先对这三个数)**:`systemPrompt` **3996** / `videoTemplate` **414(原版)** / `firstFrameTemplate` **894**。我 08-13 的四刀已全量回滚,现只保留三条经过单刀验证的:①【素材优先级】商家成句台词**一字不增删**(端到端验证:77字原话未改;短台词则原话打头再用商家自己的信息补满)②画板模板**对话剧角色区分**(同性两人靠发型+衣着颜色拉开,已验 1 单,人物参考图仍锁得住)③画板模板**同框多商品必须可辨识不同**(未烧验)。
 - ✅✅ **「其他行业」= `industryId: custom` 已补齐(08-13)** — 视频10/海报16 条,每个启用场景各1条,**零空场景零缺封面零重复**(约375积分)。🔴`custom` **不在 `industryFilters` 表里**,统计行业覆盖必须单独加它。🔴**给 custom 烧样图必须显式禁行业指向 + 禁编造项目价格**(第一版没写→模型自己默认成美业还编了16个项目16个价格),**封面按版式配 `outputRatio`** → [片型](project_thinknova_film_types.md)
 - 🔴🔴 **08-15 技术已修五问题(合订本 08-14 发出当天回2份运营说明)→ 欠线上验收** — ①minimax截断→**拒单**(422010不建单不冻积分;上限=能力JSON `input.fields.prompt.maxBytes` UTF-8字节现1200,调前先问上游;列表接口看不到,在编辑弹窗)②编剧信封已剥+格式异常只重试1次+新增 `masterPipeline.scriptwriter.textModel.maxOutputTokens`(线上值**字符串"4096"**;⛔老路径 `screenwriter.textModel` 仍并存,**动编剧参数认 masterPipeline 新路径**)③海报 label/promptText 分离 ④copyMode 三档已支持**要运营配场景** ⑤copyLanguage 已进文案层。**⚠️编剧验收第1单 `task_364bf8eb1c92` 未过**(3次尝试,invalid JSON 复现;可能Worker未重启,补2单再定论);海报③④⑤归周六。回执存 `00_规格与参考\技术侧文档\`
-- 🔴🔴🔴 [视频链定稿·少参架构(08-18)](project_thinknova_language_pack_rollout.md) — **动 grok/参考图/负面词/提示词前必读**:老板拍板 grok 一律少参(板+1,锁定做进生图层)、全链回中文、多参已证伪;负面词真通道=`languagePacks.zh.fallbacks.negativePrompt`(旧记的 negativePromptPolicy 在中文链不被读=作废);窑鸡案例永久退休。原 08-16 语言包事故档同文件 — **动 482/languagePacks/strict/验语言包修复前必读**:en 包顶掉 4000 字编剧规则(2P0+1P1 已进急件2 待发)、**482 agentInput 已整删=回 08-15 好状态**、多参被 `_merchant_multi_reference_enabled=false` 关着、自动封面帧已上线(旧提案ⓑ解)、模型行写入配方(PUT /models/{id})全在文内。ⓓ日语探针 `task_3c0a410629ab` 成片仍未音验
+- 🔴🔴🔴 [视频链定稿(08-21 最新)](project_thinknova_language_pack_rollout.md) + [双模型台账](reference_thinknova_multiref_model.md) — **动 grok/H3/参考图/负面词/提示词前必读**。现行基线:**中文全链 + 板+1 + 默认模型 482 grok**(`is_default`),白名单 10/15秒都是 `[482,503]`;systemPrompt **4001字**、cells 预算 **620字**、videoTemplate **1660B**、firstFrameTemplate **1172字**;`referenceRouting` 2/2 全局共用。**503 = metaso H3「实景还原版」**:锁定强(瓶身标签全程一致)、能真硬切(工序片 5 刀 vs grok 0 刀)、多参 9 张;但**发音准确率低**(探店 86.7% vs grok 96.1%)、码率低、气更散。⛔ **案例表没有 model 字段 → 按案例分流模型做不到**,只有全局 `is_default` 和按时长的 `defaultModelByDuration`。窑鸡案例永久退休。
 - 🔴 **08-16 晚海报三项验收 2 过 1 半**(copyMode=none✅/ms✅/分离半过,offer 一值三槽进急件2;copy 主提示词=服务端硬编码,运营唯一通道=`languagePolicy.map.<lang>`,map.ms 已加商品名原文+卖点条目两规则烧验过)→ 细节全在 [语言包 rollout 档](project_thinknova_language_pack_rollout.md) 海报节。剩余大项:303条重复封面≈1818积分待批、S14-16 铺行业(copyMode 已通)、paceLevel 问技术;
-- 🔴 **未完待办** — ①🔴🔴 **台词语气退化(老板 08-16 深夜:对话剧调优期最好,现在变差)**:头号嫌疑=08-16 凌晨为塞【cells语言】删的 4 段语气规则(朋友安利/情绪爆点/机器味句),次嫌=08-15 技术把编剧温度 0.7→0.6 → 排查案=`03_工作台\台词语气退化排查_2026-08-16.md`,等技术稳定后单刀 A/B 烧对照;②周六海报侧清单其余项 → `03_工作台\周六待处理_海报侧问题清单_2026-08-16.md`;③公告栏上线后场景改名要发第一条公告;④⚠️ 6 条案例 `prefill.offer` 写的是说明文案,烧样图前必须换真实文案;⑤🔴🔴 **黑场保留(08-16 普查定案,数据版)**:17 条 agent 原片(tempfile 供应商原片,叠黑场前)实测**首帧=板 1/17≈6%**(`caf8cd83` 帧0整板 0.2s 叠化)——低频但一露就是客诉,黑场必须留;**对话剧格网 0/6=panel_crop 后已治好**(老板"100%出格网"印象来自 08-12 前批次);"格网集中在 minimax"无样本可证(minimax 没吃过板,要验须专门烧)。正解仍是**平台自动抽 0.3–0.6s 非黑封面帧**——**08-16 查清:封面帧其实抽了(`cover_frame.applied=true`)但 `thumbnail_url` 没挂上去**(`task_360cc8067099`);🔴 **微信这一路已本地治好**(第一帧定格盖黑头,`_fix_black_head.py` 已接进交付脚本,音频不动、时长不变;⛔不许切黑头,人声最早 0.043s 就起)。🔴取证方法学:**OSS 镜像=叠完黑场的后处理片,真原片只在 tempfile 域名(3天过期),历史取证要趁早**;直连线不加黑场
+- 🔴 **未完待办** — ①🔴🔴 **台词语气退化(老板 08-16 深夜:对话剧调优期最好,现在变差)**:头号嫌疑=08-16 凌晨为塞【cells语言】删的 4 段语气规则(朋友安利/情绪爆点/机器味句),次嫌=08-15 技术把编剧温度 0.7→0.6 → 排查案=`03_工作台\台词语气退化排查_2026-08-16.md`,等技术稳定后单刀 A/B 烧对照;②周六海报侧清单其余项 → `03_工作台\周六待处理_海报侧问题清单_2026-08-16.md`;③公告栏上线后场景改名要发第一条公告;④⚠️ 6 条案例 `prefill.offer` 写的是说明文案,烧样图前必须换真实文案;⑤🔴🔴🔴 **黑场关不掉,已确认要发技术(08-21)** — `deliveryPostProcess.entranceBlackOverlay` 的 **`enabled` 与 `seconds` 两个字段服务端都不读**,0.5 秒淡入写死。取证:同单原片首帧亮度 138.9 无黑场、交付片 0.0,交付片亮度到 t=0.50 才追平原片。⛔ **S08 剧情片板上文字提示词层治不了**(负面词/绝对禁令/"本说明只是拍摄要求"三招全败):案例 visualHint 的元指令段被整段喂给生图模型 → **演示别演剧情片**
 - 🔴🔴🔴 **场景表 = 10 个(08-12 老板拍板,前台+烧单双验)** — S01商品介绍/S02活动介绍/S04信息公告/S05探店打卡/S06手艺揭秘/S07前后对比/**S08剧情短片**/S10教程避坑/S11老板出镜/S14广告大片;下架 S03/S09/S12/S13 **留作空位不删**。🔴**改场景名必须同时改 `scenes[]` 和 `businessActions` 两张表(两个 label 都进编剧)**;【场景要点】已改 **sceneId 精确匹配**;⛔`sceneRules`/`scenePrompts` 内容不进编剧但结构必须在(缺了建单500);🔴`businessScenario` 与案例 `sceneIds[0]` 对不上直接 500001 → [场景规则](reference_thinknova_option_scene_rules.md)
 - ✅ **格网已解+EMMA 结构上线(08-12)** — 解法=剧情片+`panel_crop`+窄口径暗号「分镜推进」(避开「单张实拍=一镜到底」分支,全局原句未动);EMMA=排他锁+角色卡常驻+情绪写在visual+时间非均分 → [口播裁格](project_thinknova_0729_koubo_defect.md)
 - 🔴🔴 **语言分两层别混** — 输出语言 9 种(两侧齐);案例文案 i18n 只有 6 个界面语言,**两侧都没有 th/id/ms**;⛔**`visualHint` 只有 `zh` 键喂编剧,其余语言键是死数据**(vi/en 单实测收到的都是中文),前台可见的只有 title/summary/previewCaption → [字段读取图](reference_thinknova_prompt_fields.md)
