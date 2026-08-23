@@ -24,6 +24,7 @@
 | 做横屏口播片 | [[reference-hengping-x-pipeline]] |
 | 用哪个 skill | [[reference-skills-routing]] |
 | 谈融资/预算 | [[project-thinknova-investor-plan]] |
+| **技术发来新文档/说明** | 🔴 归档进 `00_规格与参考\技术侧文档\` **并当场覆盖冲突的旧记忆**(老板 08-23:「技术给你更新文档你需要覆盖过时的记忆,这些事情你怎么老是漏」) |
 | 接"上次的活" | [[feedback-parallel-sessions-check-first]](先看记忆文件修改时间) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
@@ -40,6 +41,7 @@
 2.7 🔴 **接"上次的活"先看记忆文件修改时间**;另一会话可能几分钟前刚推翻我的结论 → [详](feedback_parallel_sessions_check_first.md)
 2.8 🔴🔴🔴 **老板给的词按他的字面做满,不许自己缩窄定义再报"全部完成"**;拿不准边界先问 → [详](feedback_dont_assume_requirements.md)(「缩窄定义」段)
 2.9 🔴🔴🔴 **「几天没落库/通道零变化」不许推出「他没干活」**;先排查同步链路,区分不了就如实写。快照证明那一秒的状态,不是趋势不是意图——写到"截至X时仍是N"就句号(已犯两次:08-05 冤枉 Codex、08-14 博客快照) → [详](feedback_silence_is_not_evidence.md)
+2.95 🔴🔴🔴 **拿到技术的新文档,当场做三件事:归档 → 找出被它推翻的旧记忆 → 改写那条旧记忆**。只归档不覆盖 = 下次照旧用错的口径。老板 08-23 已就此点名两次。
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 3.1 🔴🔴🔴 **config 里的 placeholder/说明文案 ≠ 实际行为**;对外说任何产品能力前必须有 A/B 实测任务号。08-11 血案:placeholder 写「写台词会照着念」,实测**光填进去平台会改写**,要加一句「一个字都别改」才一字不差,而老板已照错稿录完片 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 **写入被拒先原样重试一次再说**;别把"这条命令能不能发"退回给老板。**唯一硬墙=改我自己的 settings.json 权限段(classifier 死拦,也不许绕,只能给老板贴;08-02 已贴好 36 条 allow)** → [详](feedback_retry_before_escalating.md)
@@ -161,7 +163,8 @@
 - 🔴🔴 **08-14 外部参考入库 → [提示词参考库](reference_prompt_library.md)**(`参考_2026-08-14_漫剧五宫格四件套_硬切与口型.md`)。另一条可抄的:**videoPrompt 只写动态、静态全归 firstFrame**(他们给 grok 4096 只用 1200,正对我们字节账痛点)。
 - 🔴🔴 **锁图三单 08-15(中文提示词基线,案例 `food_v2_S01_service_intro`,482/15秒,古法窑鸡)** — A 锁菜品 `task_0718ec760d69`(菜品图2926):**无台词**=多参无声老病(板+1图);B 锁场景 `task_c07b7fdf5b5b`(场景图2934);C 双锁 `task_e104d8815523`:**成片莫名出大量字幕=首次出现**(「画面绝不出现文字」被破,中文提示词下)。老板看片定性:老问题+新问题,→ 成为英文化实验的对照基线。参考图:桌面 p1人像/p2美业大堂/p3精华瓶/p4店内/p5门头/P6砂锅鸡(p4p5P6同一家欢喜大排档;已传:2926=P6菜品、2934=p4场景)。🔴商家链路参考图只有人/景/物三槽,5张挂不进,要多图槽找技术
 - 🔴🔴 **硬切实验 08-14(实测·待核,每边1单)** — 拉大相邻格景别差异度**救不了 grok 硬切,反而更糟**(对照 `task_ad22ad97b37e` 最长叠化 500ms vs 实验 `task_8d656c18aef8` 2583ms;编剧100%照做=grok自己不切)→ 07-31「grok不硬切=能力边界」暂时站得住,案例已回滚。🔴只测了半个配方:**「板内纯黑格=冻结锚」未测**(我们六格全内容,`entranceBlackOverlay` 是成片叠加层不在板里)。📏判叠化用 `scratchpad/cutdet2.py`(逐帧灰度差),**⚠️别用 ffmpeg scene_score——叠化摊在十几帧会被整段滤掉,差点报反结论**
-- 🔴 **模型 id 500 = MiniMax(`minimax-h3`/1renmanju)**,08-14 改名「效果最佳版·10/15秒(画面与多语言最好·较慢)」。🔴`max_reference_images`=1 但实发 2 张=配置字段是死的;⚠️待落定:定价没配(`billing_unit=per_task`)、失败退积分口径(20% 失败率,老板定「商家自己选」不做降级链);前台 5 模型名互相打架待统一。🔴**08-15 官方 API 情报**(仓库扫描,实测·待核):官方端点 `api.minimax.io /v2/video_generation`,content 多模态数组支持**首帧/尾帧/参考图/参考视频四种 role**,**无 prompt 长度限制、零重试设计** → 1200 字节上限和单图大概率都是中转砍的,拿官方 key 直连对照=待老板拍板 → 全文 `00_规格与参考\提示词参考库\参考_2026-08-15_AI演歪了8仓库扫描_含MiniMaxH3官方API情报.md`(其余 7 仓库 7 跳过:5/6/7 无 license 商用不可用、8=浏览器自动化发布封号风险实锤)
+- 🔴 **模型 id 500 = MiniMax(`minimax-h3`/1renmanju)**,08-14 改名「效果最佳版·10/15秒(画面与多语言最好·较慢)」。🔴**`max_reference_images` 不是死字段,只是不是真值** — 运行时以模型 `capability_json.input.referenceImages.max` 为准,后台表面字段与它**必须两处一致**,只改一处不生效(技术 07-31 说明);⚠️待落定:定价没配(`billing_unit=per_task`)、失败退积分口径(20% 失败率,老板定「商家自己选」不做降级链);前台 5 模型名互相打架待统一。🔴**08-15 官方 API 情报**(仓库扫描,实测·待核):官方端点 `api.minimax.io /v2/video_generation`,content 多模态数组支持**首帧/尾帧/参考图/参考视频四种 role**,**无 prompt 长度限制、零重试设计** → 1200 字节上限和单图大概率都是中转砍的,拿官方 key 直连对照=待老板拍板 → 全文 `00_规格与参考\提示词参考库\参考_2026-08-15_AI演歪了8仓库扫描_含MiniMaxH3官方API情报.md`(其余 7 仓库 7 跳过:5/6/7 无 license 商用不可用、8=浏览器自动化发布封号风险实锤)
+- 🔴🔴🔴 [封面与参考图规则(技术 07-31 说明,已覆盖旧记忆)](../../../../D:/SamsoData/Documents/视频制作平台分析/00_规格与参考/技术侧文档/运营_商家视频封面与参考图配置说明_2026-07-31.md) — ①**封面已自动化**:从成片 15/35/55/75% 抽帧,按黑占比+亮度+边缘清晰度自动选优,独立 JPG 上传 OSS,`thumbnail_url` **不再指向 MP4**;下载/抽帧/上传各重试 3 次,元数据记录失败原因。⛔**旧做法「过关成片抽帧进封面池」「303条重复封面待批」作废**——不用人工挑帧了,开头黑场也不会再被选中。②**历史回填**:`backfill_offline_store_video_covers.php --limit=N`(dry-run)→ 加 `--apply` 执行,可 `--task-no=` 单条;源视频 OSS 已删则 `NoSuchKey` 无法恢复。③**参考图三槽全保留**:`person/scene/productReferenceImageAssetId` 三类原图都留在任务上下文,首帧模型和视频模型**各自按自己能力挑**,不再因首帧只收 1 张就删掉视频阶段可用的图。④🔴**`max_reference_images` 含主图**:上限 2 = 主图(裁格首帧或完整板)+ 1 张商家图(人物→场景→产品优先),**不再是「裁格+完整板」占满两格**;要挂更多参考图只能换支持更多参考的上游模型。⑤`referencePolicyByDuration` 已支持 15/30 秒,`allowStoryboardCrops` 存 true 不再被重置;案例级 `i2vReferenceStrategy` 仍可覆盖(`panel_crop` 用裁格 / `storyboard_board` 用完整板)。⑥⛔**商家端与任务详情不得展示分镜板、裁格首帧、提示词、模型内部参数**。
 - 🔴 [官网博客 API](reference_thinknova_blog_ops.md)(缺 blog.write 令牌) / [扫码发布深链](reference_thinknova_publish_schemes.md)(四平台已真机验证)
 
 ### 内容与产品规矩
