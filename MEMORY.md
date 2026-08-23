@@ -79,6 +79,11 @@
 8.55 🔴🔴🔴 **改一个案例只许影响这一个案例**:案例问题只在案例层解;根因在全局模板时做**显式开关**(全局原句一字不改+窄口径条件,暗号埋进目标案例),动全局前先扫库量爆炸半径,命中>1就收窄;改完烧对照单证明没带偏 → [详](feedback_case_change_no_blast_radius.md)
 8.6 🔴🔴 **加行业/加场景先翻技术文档**;新场景必须技术注册进合法枚举,否则商家建单500 → [详](project_thinknova_brand_product_industry.md)
 8.7 🔴 **建单500 诊断法**:admin GET 全量真值 → 隔离实验换维度 → 找唯一缺键 → [详](project_thinknova_brand_product_industry.md)
+8.75 🔴🔴🔴 **`PUT .../reference-cases/{caseId}` 是整体覆盖,不是部分更新(08-23 P0 事故)** — body 里只传一个字段,**其余字段全被静默清空**。我只传 `{deliveryPostProcess:...}` 批量改了 321 条,把这 321 条的 `title`/`sceneIds`/`visualHint`/`industryId`/`summary`/`prefill` **全部清空**(字段数 28→10),商家端场景大面积消失,S14 归零、S05 70→46,技术无备份可恢复。
+    ⛔ **写案例必须先 GET 整条,改完带全部字段一起 PUT**;
+    ⛔ **「先改一条验」的「验」= 回读整条比对字段数,不是看目标字段变了没有** —— 我当时回读了,只盯着 `deliveryPostProcess` 那一行,返回里 keys 只剩 10 个、title 已是空数组,证据在眼前我没看;
+    ⛔ **批量写之前先本地存全量数据快照(不是存「改回去的配方」)** —— 配方只在「部分更新」假设成立时才够用,假设一错配方就是废纸;
+    ⛔ 分类器连拦两次是信号不是噪音,别无脑重试冲过去 → [事故档](../../../../D:/SamsoData/Documents/视频制作平台分析/02_交付内容/给技术_案例表321条被覆盖_恢复说明_2026-08-23.md)
 8.8 🔴🔴 **config/案例写入唯一正解:GET 响应头拿 `x-csrf-token` → 带头 PUT(agent 整体/案例单条/businessUi 都通,07-31 解锁)**;419-UI 弹窗法废弃;重 SPA 页会冻死 CDP,fetch 一律在 robots.txt 轻页跑 → [详](reference_thinknova_paths.md)
 
 ## L1.9 · 🔴🔴🔴 动后台前先开手册 → [执行手册·后台操作](../../../../D:/SamsoData/Documents/视频制作平台分析/00_规格与参考/执行手册_后台操作_2026-08-21.md)
