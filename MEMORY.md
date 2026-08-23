@@ -78,6 +78,7 @@
 8. **范围边界必写反向**:附"作用域仅X、不碰Y"+双向验收 → [详](feedback_scope_boundary_explicit.md)
 8.5 🔴 **动"前端会读的字段"先改一条验,别一次铺满** → [详](project_thinknova_dingdian_koubao.md)
 8.53 🔴🔴 **案例名实一致:场景+案例名承诺的=成片生成的**;交付不了就改名,不许挂着做不到的承诺;烧单验收多一问"这是不是标题说的那个东西" → [详](feedback_case_name_matches_output.md)
+8.54 🔴🔴🔴 **文案说的，素材上必须真有(08-23~24 一天撞四次)**:凭"应该有"写而不对着图核 = 一整类错(引用了卡上没有的话 / 说图上有红章价格框 / 「好评卡」上根本没客人的话 / 探店片门头写着真实连锁品牌)。**写完对着素材逐句核**;**改文案 > 烧新图**;排雷是逐样打开看不是看文件名 → [详](feedback_name_matches_the_asset.md)
 8.55 🔴🔴🔴 **改一个案例只许影响这一个案例**:案例问题只在案例层解;根因在全局模板时做**显式开关**(全局原句一字不改+窄口径条件,暗号埋进目标案例),动全局前先扫库量爆炸半径,命中>1就收窄;改完烧对照单证明没带偏 → [详](feedback_case_change_no_blast_radius.md)
 8.6 🔴🔴 **加行业/加场景先翻技术文档**;新场景必须技术注册进合法枚举,否则商家建单500 → [详](project_thinknova_brand_product_industry.md)
 8.7 🔴 **建单500 诊断法**:admin GET 全量真值 → 隔离实验换维度 → 找唯一缺键 → [详](project_thinknova_brand_product_industry.md)
@@ -142,6 +143,7 @@
 - 🔴🔴 [抖音封面对标](reference_douyin_cover_benchmark.md)(做封面前打开真图看,29张已存;差距=头占41.5%/元素4-9个/亮背景托暗人/**选帧**;天花板是打光不是设计) / 🔴🔴 [打分闸门与校准](reference_cheat_gates_calibration.md)(**比较两批分数前必读**:跨批不可直接比,必须夹带锚点测漂移)
 - 🔴 **两把尺+四件套 skill** — 小红书笔记 `/xhs-note`(违禁词最高危=「搞钱/变现」),冷启动 `/xhs-growth`;视频脚本按序 `video-script-style`→`high-retention-hook`→`hkrr-clock`→`hurricane-shot-prompt` → [国内营销线](project_thinknova_marketing.md)
 - 🔴🔴🔴 [横屏 X 式管线](reference_hengping_x_pipeline.md) — **做横屏口播片第0步必读**:规则定过五次散在五处、cut.py 抬头写「小蓝那套」但实现零抠像(断的);抠像必须 20帧/块+降到1440×810+断点续跑+等内存回落+TIMEOUT 240;示意图锁 0–55% 带内可绕开「人压素材vs避让」那条未裁定的规矩
+- 🔴🔴🔴 [开场黑场真值(08-24)](project_thinknova_marketing.md) — **黑不黑只由案例级 `entranceBlackOverlay` 决定**(applied→pblack 100,false→0~45,38条无例外);⛔我说的「技术没搞定黑头」「接口拿法不对」**两条都作废**(同 task md5 逐条相同);本地 121 条中 81 条干净,黑的全在 `09_补烧_0811`;微信治法=第一帧定格盖住(⛔不许切,人声最早 0.043s;静图必须取 1.2s,拼板渐隐到 1.0s;🔴人眼看新首帧不能省)
 - 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md)(海报6/视频60;omni·wan·sora=3分/秒,grok系=4分/秒) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个Agent工程主线](project_thinknova_offline_agents.md)
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — **探店片型第0步必读**:萍萍台词公式(钩子→价格锚→短句→三连催单,催单待老板放行);真差距=TTS声调+切镜密度+台词结构;omni已砍;探店案例=`food_beverage_s01_tandian`
 - 🔴🔴🔴 [海报线现状+P0编造事故闭环 08-10](project_thinknova_poster_video_purge.md) — 海报出问题第0步:**拒绝编造6处守卫已上线(修一处不算修完,同铁律多层各一份)**;判编造先查商家资料注入;海报烧单走 business-assets(caseId必填);837条底细/615视频克隆/123清毒;S07/S08未美图化待排
