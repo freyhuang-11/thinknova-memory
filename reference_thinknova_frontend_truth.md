@@ -5,10 +5,20 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-12T17:43:25.590Z
+  modified: 2026-08-23T06:28:13.927Z
 ---
 
 # 商家端才是前台真值(2026-07-30 被老板当场纠正)
+
+## 🔴🔴🔴 2026-08-23 实测:**`thinknova.top/en` 是 404,而且它没坏——这个路径根本不存在**
+**英文=本站默认语言,走无前缀根路径。** 实测(免令牌只读):`/en`、`/en/blog`、`/en/blog/<任意slug>` **全 404**;
+`/`(根)→200 且 `lang="en-US"`;**`/blog/<slug>` →200 且正文就是英文**;`/zh/blog/<slug>` →200。
+`sitemap.xml` 238 条 `<loc>` 里 **`/en/` 出现 0 次**,语言前缀只有 **zh/ja/ko/vi/es/th 六个**。
+→ **正确 URL:英文 `https://thinknova.top/blog/<slug>`(不带 /en)、中文 `…/zh/blog/<slug>`。贴 `/en` 出去就是 404。**
+→ 🔴 **作废一条挂了 36 天的老账**:07-18 记的「落地页 `thinknova.top/en` 为 404(已提技术),修好前 Meta/Reddit Ads 不买量」
+——**前提是错的,它永远不会「修好」因为它没坏**,别再等它、别再当技术待办报。(投流真正的闸是老板 08-05 的整体冻结,与此无关。)
+→ ⚠️ 顺带一条**可交技术的 SEO 缺陷**:`sitemap.xml` 与 `robots.txt` 里所有 URL 写成 **`http://thinknova.top:443/...`**(http+443 畸形组合),
+实测 **302 会跳 https,不是死链**,但 sitemap 该列 canonical URL。服务端生成,运营改不了。
 
 ## 🔴🔴 2026-08-12 实测:成片页**没有字幕入口**,别再对外说平台"有字幕功能"
 成片页真实地址 `https://thinknova.top/zh/app/business-video-assets/result?taskNo={task_no}`。
