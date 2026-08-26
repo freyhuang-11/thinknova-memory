@@ -1,9 +1,7 @@
 # 铁律 · 按触发时机分层(按"什么时候用"排;漏 = 该用时没想起来)
 > 这里只放**触发条件 + 一句动作**。案例、字段路径、复盘全在链接文件里,该用时打开。
-
 ## 🔴🔴🔴 L-1.5 · **执行前必读路由表**(老板 08-21 定:"执行前先看文档,不然每次都会忘")
 > **动手前先在这张表里找到你要做的事,把对应文件打开再动。** 找不到对应行 = 先问,别猜。
-
 | 我要做什么 | 先开哪个 |
 |---|---|
 | **任何后台写操作**(改 config/案例/模型) | 🔴 `00_规格与参考\执行手册_后台操作_2026-08-21.md` — 动手五问 / 字节账 / 真通道 vs 死字段 / 验证四步 / 八个重复踩过的坑 |
@@ -27,13 +25,10 @@
 | **技术发来新文档/说明** | 🔴 归档进 `00_规格与参考\技术侧文档\` **并当场覆盖冲突的旧记忆**(老板 08-23:「技术给你更新文档你需要覆盖过时的记忆,这些事情你怎么老是漏」) |
 | 接"上次的活" | [[feedback-parallel-sessions-check-first]](先看记忆文件修改时间) |
 | **接 ThinkNova 视频平台的活** | 🔴 `03_工作台\交接档_2026-08-26_压缩前状态.md` — 线上七字段现值 / 跑着没验完的单 / 明天单刀上哪两条 / 已定不做的 / 悬着没解释的三条 |
-
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 **动手先过闸,每道闸先输出可检查产物**:闸1 现状源 → 闸2 字节账(挤掉谁) → 闸3 爆炸半径 → 闸4 attemptCount → 闸5 单条验证+老板过目才铺开。**先读后动,先验后铺**;L0-L5 是细则。
-
 ## 🔴🔴🔴 L-0.5 · 动手前先查 skill 路由表 → [什么场景用什么 skill](reference_skills_routing.md)
 三条铁规矩:①`hyperframes`=任何视频/动画强制入口 ②`cheat-score-blind`=内部 sub-agent 主对话绝不调 ③组合拳顺序不乱(视频稿=video-script-style→high-retention-hook→hkrr-clock→hurricane-shot-prompt)。08-11 两跟头全是没查表。
-
 ## L0 · 每次开口/动手前
 0. 🔴🔴🔴 **权威源(技术文档/线上真值/代码)> 我的记忆**;下关键结论前回源核对,实验结论标「实测·待核」带任务号、不外推 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断"现在/多久前"**先跑 `date`** → [详](feedback_check_time_first.md)
@@ -47,27 +42,22 @@
 3.1 🔴🔴🔴 **config 里的 placeholder/说明文案 ≠ 实际行为**;对外说任何产品能力前必须有 A/B 实测任务号。08-11 血案:placeholder 写「写台词会照着念」,实测**光填进去平台会改写**,要加一句「一个字都别改」才一字不差,而老板已照错稿录完片 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 **写入被拒先原样重试一次再说**;别把"这条命令能不能发"退回给老板。**唯一硬墙=改我自己的 settings.json 权限段(classifier 死拦,也不许绕,只能给老板贴;08-02 已贴好 36 条 allow)** → [详](feedback_retry_before_escalating.md)
 3.5 🔴🔴🔴 **「前台有没有X」只认商家端 config 接口,admin config 不是前台真值;新文档与旧记录冲突以最新覆盖** → [详](reference_thinknova_frontend_truth.md)
-
 ## L0.6 · 🔴🔴🔴 三道关口:方案 → 文案 → 才许渲图(老板 2026-08-15 定)
 **关口一:每周内容开工前先交"三条线方案"(讲什么/为什么/素材有无),老板点头才许写稿**——08-13~15 三批十八条抖音稿全是方案层跑偏写到成稿才被看见;方案被否废十分钟,成稿被否废一整批。
 **关口二:「所有要渲染作图的内容是沟通没问题了才做」——文本→点头→才渲卡/封面/成图**;08-13~15 连犯三次(微信七卡/小红书封面/抖音封面)全是没过目先渲完。交付形态=纯文本过目件,渲卡脚本改好**不执行**。同源=闸5。
-
 ## L0.7 · 🔴🔴🔴 英语是未来主语言(老板 2026-08-25 定)
 **「英语未来一定是我们的主语言。」** 直接推翻一批以中文为默认的判断:
 ⛔ **`systemPrompt`【台词可念性】现行原文「绝不出现阿拉伯数字、**英文字母**、型号、计量单位(数字写汉字)」是全局规则、不分语言** —— 九种输出语言里 en/es/vi/id/ms **五种是拉丁字母**,这条同时踩两个雷:①禁英文字母 vs 英文台词全是字母 ②数字写汉字 vs 英文片写汉字。**必须按语言分支,不能一刀切。**
 🔴 **更优解已实测:反引号标记本身就能保住英文专有名词**——`task_30425e8e1329` 在「英文豁免规则已撤掉」的情况下,靠 `` `BSAD美学空间` `` 反引号,店名原样保留。**标记只作用在被标记的词上,不动全局禁令**,比改规则干净。
 🔴 以后任何提示词改动,**必须问一句「英文输出下这条成不成立」**;只验中文 = 没验。
-
 ## L0.9 · 🔴🔴🔴 画面文字与片型口径(老板 2026-08-25/26 定)
 **「字幕锁死不要让他出来就好,适当的画面文字是可以接受的」「他们拍实体店照片有名字,靠参考图给生视频那边能生出来」**
 → 08-25 已把四处规则从「画面里绝不出现任何文字」改成 **【字幕锁死·最高硬规】**:⛔只禁字幕/对白/台词文字/指令原文;✅**放行门头招牌、店名、价目牌、价签、地址牌**(照参考图或商家填的实拍);⛔仍禁自己编店名/编价格/编广告语、禁复制参考图水印。
 🔴该规则**散在 4 个字段,改必须同改**:`opsEditable.taskGoal.firstFrame` / `blockTemplates.task_goal.first_frame_prompt`(镜像) / `screenwriter.systemPrompt` / `promptAssembler.video.outputTypePrompts.first_frame`。回滚包=`ROLLBACK_2026-08-25_字幕锁死口径改动前_六字段原文.json`
 🔴**S14 广告大片 = 极简(老板 08-26)**:「要效果不要台词,信息不念都没关系」→ **必念清单不该管 S14**,23 条 S14 案例的「台词极简不罗列卖点」是对的,别去改它。
 ⛔ 由此**作废**:全库 8 条 S05「留地址文字区」和 160 条实物牌面案例**不是隐患**,不要去清。
-
 ## L0.8 · 🔴🔴🔴 预设即产品(老板 2026-08-13 定调)
 **「商家 90% 以上用默认设置,把工作做进预设是我们系统的意义。」** 三推论:①**验证必须走默认路径**——烧单手动传了某个 selectedOptions 就等于没验那维度的默认值(08-13 血案:手动传 appearanceMode 验好了,默认 product_only 实际出片两人剧无人入镜)②**预设错=全量事故**,四个 Preset 真进提示词(prefill 只是灰字),改必须连源模板一起改 ③新建案例先问"默认值对不对"再问"选项全不全"。
-
 ## L1 · 改配置/提示词前
 4. 🔴 **先查字段读取图**:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md)
 4.3 🔴🔴🔴 **配置字段的语义(每句还是总计?目标还是边界?)不确定=先问技术,绝不凭直觉配**——lineValidation「总计」被我当「每句」配,一字之差造出电报体+连环回退+语速慢三症,烧十几单才定位 → [详](project_thinknova_0729_screenwriter_stack.md)
@@ -107,30 +97,24 @@
     ⛔ **批量写之前先本地存全量数据快照(不是存「改回去的配方」)** —— 配方只在「部分更新」假设成立时才够用,假设一错配方就是废纸;
     ⛔ 分类器连拦两次是信号不是噪音,别无脑重试冲过去 → [事故档](../../../../D:/SamsoData/Documents/视频制作平台分析/02_交付内容/给技术_案例表321条被覆盖_恢复说明_2026-08-23.md)
 8.8 🔴🔴 **config/案例写入唯一正解:GET 响应头拿 `x-csrf-token` → 带头 PUT(agent 整体/案例单条/businessUi 都通,07-31 解锁)**;419-UI 弹窗法废弃;重 SPA 页会冻死 CDP,fetch 一律在 robots.txt 轻页跑 → [详](reference_thinknova_paths.md)
-
 ## L1.9 · 🔴🔴🔴 动后台前先开手册 → [执行手册·后台操作](../../../../D:/SamsoData/Documents/视频制作平台分析/00_规格与参考/执行手册_后台操作_2026-08-21.md)
 老板 08-21 定:「你一直在丢规则,把技术给你的规范整理进执行手册,每次执行后台操作前看一下」。手册含:动手前五问 / 4000字节硬账 / 真通道与死字段对照表 / 写入配方 / 验证四步(回读≠生效) / 成片四层验收 / 已重复踩过的八个坑。
-
 ## L2 · 烧单核验时
 8.85 🔴🔴🔴 **烧单前逐条打勾 → [烧单前强制自查表](../../../../D:/SamsoData/Documents/视频制作平台分析/00_规格与参考/烧单前强制自查表_2026-08-18.md)**(老板 08-18 定「新问题可以有,老问题不许反复」):A字节账(≤3600预留4000硬顶)B配置键要在真实任务里确认生效(byLanguage.en 才是真键;stagePromptPresets/languagePolicy.map 写不进)C查规则互搏 D改对该链模板(en 链模板在 languagePacks.en.masterPipeline...) E案例+行业双轮换 F四层验收全做(含下载板图看图) G一次一单、失败先查根因
 8.9 🔴🔴 **烧单前必报客户视角五要素**(行业/场景/案例/补充信息/验证目标) → [详](feedback_burn_report_format.md);**变量做满再烧** → [详](feedback_prompt_first_then_test.md);🔴 **烧验案例轮换(老板 08-17 定)**:古法窑鸡案例已 100+ 单退休,验证烧单换着案例/行业烧,过关成片抽帧进封面池(一鱼两吃)
 9. 🔴 **逐帧通看**(联系表);音频量死寂;单帧截图=假结论;**证据成对**(真实输入↔输出+任务号,串行≥20秒) → [详](feedback_evidence_standard.md)
 9.5 🔴 **烧完先验三件:task.model 实际派发、编剧 source、字数落区间** → [详](project_thinknova_0729_screenwriter_stack.md)
-
 ## L3 · 给技术发文档前
 12. 🔴 **只发技术才能处理的**(逐条自验"我能不能改");**9段规范**,事实/判断/期望分离,一份最多3问题 → [详](reference_tech_doc_submission_spec.md)
 14. **发文前 7 条自检;发出即冻结,新内容走增量** → [详](feedback_tech_doc_checklist.md)
-
 ## L4 · 汇报沟通时
 16. **每轮说清"验收什么+做了什么"**;说重点/有据质疑/别奉承/追根因/先讨论再操作 → [详](feedback_communication_principles.md)
 18. **要老板拍板用 plan 模式问** → [详](feedback_questions_via_plan_mode.md);**数据新鲜度别贴"过期"也别埋雷** → [详](feedback_data_freshness_framing.md)
-
 ## L5 · 环境红线(违反 = 事故)
 20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀,临时服务器用完即杀 → [详](feedback_kill_python_scope.md)
 22. 🔴 线上 config=唯一真值,禁种子覆盖;464 不主动加白;408/409 未经老板同意不启用;**结构/新字段一律交技术,我只碰纯文本** → [详](feedback_dont_edit_prod_config_structure.md)
 22.7 🔴🔴 **上下文唯一杠杆=减少往返**:一段 JS 干完一整套只回摘要;读文字不截图;证据走联系表 → [详](feedback_context_budget_discipline.md)
 23. **记忆只留当前状态**不堆矛盾层 → [详](feedback_memory_keep_current.md);**老板发的提示词当天归档** → [详](reference_prompt_library.md)
-
 ---
 
 # 用户与沟通
@@ -150,7 +134,6 @@
 - 🔴 [提示词改造架构](reference_thinknova_prompt_architecture.md) — 三层职责+4000字令+4096新语义+镜像双写
 - 🔴 [Grok 审核红线实测](reference_grok_content_policy.md) — 红线是组合不是敏感词
 - [配置权限地图](reference_thinknova_config_powers.md) / [路径接口](reference_thinknova_paths.md) — csrf-PUT 正解/轻页法/CORS服务器法都在 paths
-
 ### 现行状态
 - 🔴🔴 [口播/裁格·格网](project_thinknova_0729_koubo_defect.md) — ✅**格网已解**(剧情片+`panel_crop`,08-12 验 2/2 零格线)。⛔ 旧记「panel_crop 出现 0 次」**作废**:真值 **123 条案例在用**(案例字段要查案例表接口,不能搜 agent config)
 - 🔴🔴🔴 [片型体系+案例库现状](project_thinknova_film_types.md) — **08-18 片型分化两刀已落地**:场景要点升为最高优先级 + 545 条案例按场景改写【台词方向】(七场景验收全过,回滚配方已存);⛔`panel_crop`=一镜到底模式**不是通用防漏板开关**,别全库铺。场景表 10 个/案例 734+861;三档定档
@@ -163,7 +146,7 @@
 - 🔴 **两把尺+四件套 skill** — 小红书笔记 `/xhs-note`(违禁词最高危=「搞钱/变现」),冷启动 `/xhs-growth`;视频脚本按序 `video-script-style`→`high-retention-hook`→`hkrr-clock`→`hurricane-shot-prompt` → [国内营销线](project_thinknova_marketing.md)
 - 🔴🔴🔴 [横屏 X 式管线](reference_hengping_x_pipeline.md) — **做横屏口播片第0步必读**:规则定过五次散在五处、cut.py 抬头写「小蓝那套」但实现零抠像(断的);抠像必须 20帧/块+降到1440×810+断点续跑+等内存回落+TIMEOUT 240;示意图锁 0–55% 带内可绕开「人压素材vs避让」那条未裁定的规矩
 - 🔴🔴🔴 [开场黑场真值(08-24)](project_thinknova_marketing.md) — **黑不黑只由案例级 `entranceBlackOverlay` 决定**(applied→pblack 100,false→0~45,38条无例外);⛔我说的「技术没搞定黑头」「接口拿法不对」**两条都作废**(同 task md5 逐条相同);本地 121 条中 81 条干净,黑的全在 `09_补烧_0811`;微信治法=第一帧定格盖住(⛔不许切,人声最早 0.043s;静图必须取 1.2s,拼板渐隐到 1.0s;🔴人眼看新首帧不能省)
-- 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md)(海报6/视频60;omni·wan·sora=3分/秒,grok系=4分/秒) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个Agent工程主线](project_thinknova_offline_agents.md)
+- 🔴 [定价+推广大使](project_thinknova_pricing_ambassador.md)(**海报6/张;视频15s实扣75=模型60+图6+服务费9,08-10真单审计闭环,旧记「视频60」已作废**;omni·wan·sora=3分/秒,grok系=4分/秒) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个Agent工程主线](project_thinknova_offline_agents.md)
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — **探店片型第0步必读**:萍萍台词公式(钩子→价格锚→短句→三连催单,催单待老板放行);真差距=TTS声调+切镜密度+台词结构;omni已砍;探店案例=`food_beverage_s01_tandian`
 - 🔴🔴🔴 [海报线现状+P0编造事故闭环 08-10](project_thinknova_poster_video_purge.md) — 海报出问题第0步:**拒绝编造6处守卫已上线(修一处不算修完,同铁律多层各一份)**;判编造先查商家资料注入;海报烧单走 business-assets(caseId必填);837条底细/615视频克隆/123清毒;S07/S08未美图化待排
 - 🔴🔴 [海报场景改造 08-03](project_thinknova_poster_scene_revamp.md) — **动海报场景/案例/styleRule 第0步必读**:美图式「渠道×版式」16场景;S11/S16 轻内容被 copy 层压住(08-15 技术已支持 copyMode,待周六配+验);场景注册/迁移/PUT 配方全在文内
@@ -187,7 +170,6 @@
 - 🔴 **模型 id 500 = MiniMax(`minimax-h3`)** — `input.fields.prompt.maxBytes` 现 1200 字节,而 videoPrompt 正常 3500+,**选它必挂**;上限只在编辑弹窗可见,列表接口看不到 → [详](reference_thinknova_multiref_model.md#minimax)
 - 🔴🔴🔴 **封面与参考图规则(技术 07-31 说明)** — `max_reference_images` **含主图**;主图=裁格或完整板,剩余名额给商家图(人→景→产品);上限2时不可能同时发五张 → [详](reference_thinknova_multiref_model.md#封面与参考图)
 - 🔴 [官网博客 API](reference_thinknova_blog_ops.md)(缺 blog.write 令牌) / [扫码发布深链](reference_thinknova_publish_schemes.md)(四平台已真机验证)
-
 ### 内容与产品规矩
 - [北极星-零动脑](feedback_thinknova_zero_brain_northstar.md) / [内容工具不做合规](feedback_thinknova_content_not_compliance.md) / [案例缺口双查法](feedback_case_gap_dual_check.md) / [小红书交付规矩](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
 - 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — 建案例前必读;新建必过 3 条自检
