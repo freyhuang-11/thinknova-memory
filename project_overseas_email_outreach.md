@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-08-28T07:25:08.689Z
+  modified: 2026-08-28T12:23:37.162Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -16,7 +16,7 @@ metadata:
 `D:\SamsoData\Documents\视频制作平台分析\03_工作台\邮件推广系统\`。总入口 `run.py`（注入凭据+环境变量），跑 `python run.py console|send|inbox|dashboard`。控制台 http://127.0.0.1:8025。凭据在桌面 `thinknova.txt`（run.py读，绝不打印）。台账 `outreach.db`（sends/replies/suppression）。
 
 ## 🔴🔴 发信架构（08-28 重构，唯一现状）
-- **发信只有一条命令**：`python run.py daily_send`。`daily_send.py` = 唯一引擎，自己做：找最新全量名单→剔已联系+抑制→随机抽新马各半→静默/窗口(9-18)/STOP守卫→DB互斥锁→把今天补到 `DAILY_TARGET`(默认100)。**幂等**：一天多次调只补到目标、不重复打扰同一人。
+- **发信只有一条命令**：`python run.py daily_send`。`daily_send.py` = 唯一引擎，自己做：找最新全量名单→剔已联系+抑制→随机抽新马各半→静默/窗口(9-18)/STOP守卫→DB互斥锁→把今天补到 `DAILY_TARGET`(08-28起=300，老板定「不用压」；单箱cap 400)。**幂等**：一天多次调只补到目标、不重复打扰同一人。
 - **单一 launcher**：发信只由定时任务 `daily-outreach-send`(10:07) 每天触发一次 `run.py daily_send`。**控制台已改成纯监控**(收信+自动回复+红线)，不再发信。⛔绝不再直接调 send.py 或手传名单路径 = 旧做法会双 launcher 并发+路径失效。
 - **名单已挪进** `邮件推广系统\名单数据\`(不再在 03_工作台 根)。daily_send 运行时自动发现最新 `可发名单_<MY/SG>_全量_*.csv`，别写死路径。
 - 去重双保险：daily_send 建名单时剔已联系 + send.py `already_sent(email,campaign)`；campaign 名固定 `daily_YYYYMMDD`。
@@ -38,7 +38,7 @@ metadata:
 新加坡5.07万+马来22.2万唯一邮箱，全量库 03_工作台/可发名单_XX_全量_2026-08-24.csv。已MX检查+剔连锁/加盟/酒店。死地址~5%（没做邮箱验证，短板）。脚本 scratchpad/overture_wide.py（排除法品类）、mxcheck2.py。
 
 ## 自动运转
-定时任务：**10:07 daily-outreach-send** = 唯一发信驱动，跑 `run.py daily_send`(默认100/天，新马各半)；22:09 nightly-outreach-report(日报→Obsidian每日输出+通知主对话)。仅应用开着+机器醒着时跑。控制台(run.py console, 8025)常驻收信+自动回复+红线，不发信。判定器移植自5173(tiktok-creator-tool/backend/services/reply_classifier.py)。interested+other自动发教程，session已关(英文不碰9.5中文场)，红线只看bounce_spam>1%。DAILY_TARGET/SEND_WINDOW 在 run.py 可调。
+定时任务：**10:07 daily-outreach-send** = 唯一发信驱动，跑 `run.py daily_send`(300/天，新马各半)；22:09 nightly-outreach-report(日报→Obsidian每日输出+通知主对话)。仅应用开着+机器醒着时跑。控制台(run.py console, 8025)常驻收信+自动回复+红线，不发信。判定器移植自5173(tiktok-creator-tool/backend/services/reply_classifier.py)。interested+other自动发教程，session已关(英文不碰9.5中文场)，红线只看bounce_spam>1%。DAILY_TARGET/SEND_WINDOW 在 run.py 可调。
 
 ## 协作
 挂在总指挥（Claude Code）体系下，通过 vault 信箱对接：`AgentMemoryVault/01-Projects/ThinkNova/信箱.md`「给总指挥（来自海外邮件营销线）」栏。已提13个信息需求（积分口径/英文出片能力/注册前台/产品边界/素材），等总指挥回真值再校准话术。现状详见 vault `_memory/海外邮件营销线_现状与运转_2026-08-24.md`。
