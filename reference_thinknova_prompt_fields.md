@@ -105,7 +105,7 @@ systemPromptSource = "screenwriter.systemPrompt"
 
 **要改编剧的画面行为 → 改案例的 visualHint,不是行业 prompt。**
 **要改编剧的规则纪律 → 改 systemPrompt。**
-**要改视频层的锁 → 改 videoTemplate(注意 4096 字节上限)。**
+**要改视频层的锁 → 改 videoTemplate(注意字节上限(**生视频链**:派发层 4000 先撞上,grok 上游 4096 硬拒;⛔别把它和 systemPrompt 的 4000 **字** 混为一谈))。**
 
 ## 硬流程(必须做,不许省)
 

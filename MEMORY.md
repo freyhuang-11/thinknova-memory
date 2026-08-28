@@ -72,7 +72,7 @@
 6. 🔴 **落库 ≠ 送达**:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md)
 6.4 🔴🔴 **英文化已上线**;⛔`opsEditable.stagePromptPresets.image_to_video` 运营写不进(服务端丢写)→ [详](project_thinknova_language_pack_rollout.md)
 6.5 🔴🔴🔴 **grok 语言定律**:多参混语言=音频宕机只剩 BGM,整条单一语言才活;⛔带水印/带字的图绝不能当参考图 → [详](project_thinknova_language_pack_rollout.md)
-7. 🔴🔴🔴 **出站 videoPrompt 有字节硬顶,超限时系统丢的是台词**;改任何进 videoPrompt 的字段**只许减字,要加先删等量**;现值现拉线上 → [详](feedback_prompt_change_hard_rules.md)
+7. 🔴🔴🔴 **三条链上限不同、单位也不同,别混**:编剧 systemPrompt 算**字**、生视频出站算**字节**、生图另有一条更宽的。超限时生视频丢的是台词、生图从尾部硬切。改任何字段前先认清改的是哪条链;**现值现拉线上** → [详](feedback_prompt_change_hard_rules.md)
 7.02/7.03 🔴🔴🔴 **`videoTemplate` 两处不许动**:开场纯黑句(删了 grok 开场露六宫格)、首行方括号(去掉立刻重新露格网),A/B 均已证。⛔删任何一句前先问「它为什么在这里」;动它一个字必须同案例 A/B 烧过,不许凭道理推断 → [详](feedback_prompt_change_hard_rules.md#vt-黑场句)
 7.05 🔴🔴🔴 **生图链也被截断,且截得很狠**(08-27 实测近一半进不去)——**关键规则必须前置进 `taskGoal.firstFrame` 安全区**;判据字段 `_prompt_truncated` → [详](feedback_prompt_change_hard_rules.md#生图链截断)
 7.15 🔴🔴🔴 **动编剧必须同看三处**:systemPrompt + outputContract + 案例 visualHint(最稳=拉 `attempts[0].raw_request` 看模型实收);「编剧连挂」根因常在 `outputContract` → [详](feedback_prompt_change_hard_rules.md#outputcontract)
