@@ -1,3 +1,5 @@
+> 🔴 **本文里出现的一切字数/字节/条数都是当时的历史记录,不是现值。要现值一律现拉线上 config。**(2026-08-27 立)
+
 ﻿---
 name: project-thinknova-0729-byte-surgery
 description: 触发:动 i2v 提示词/查 4096 字节/做无台词预设/选 omni-grok 模型之前 → 07-29 字节手术定案 + voiceMode 开关早已存在 + 模型×语言矩阵

@@ -1,3 +1,5 @@
+> 🔴 **本文里出现的一切字数/字节/条数都是当时的历史记录,不是现值。要现值一律现拉线上 config。**(2026-08-27 立)
+
 ﻿---
 name: reference-thinknova-multiref-model
 description: "触发:要动视频模型或时长、或发现\"用户参考图没进 i2v\"时 → 模型↔时长映射/两模型定位定案/maxReferenceImages 规则/200单成功率诊断/403 根因"
