@@ -51,6 +51,7 @@
 2. 🔴 **提议≠指令**;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴 **例程内能自己拍板的自动跑**,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md)
 2.7 🔴 **接「上次的活」先看记忆文件修改时间**;另一会话可能刚推翻我的结论 → [详](feedback_parallel_sessions_check_first.md)
+2.75 🔴🔴 **我是定时任务/子agent时只做本职**;「做完还要有人接着响应」的活一律路由回常驻会话,别一路接成实际负责人 → [详](feedback_scheduled_task_stay_in_lane.md)
 2.8 🔴🔴🔴 **老板给的词按字面做满,不许自己缩窄定义再报「全部完成」** → [详](feedback_dont_assume_requirements.md)
 2.9 🔴🔴🔴 **「几天没落库/零变化」不许推出「他没干活」**;快照只证明那一秒,不是趋势不是意图 → [详](feedback_silence_is_not_evidence.md)
 2.95 🔴🔴🔴 **拿到技术新文档当场三件事:归档 → 找出被推翻的旧记忆 → 改写它。** 只归档不覆盖 = 下次照旧用错口径。
