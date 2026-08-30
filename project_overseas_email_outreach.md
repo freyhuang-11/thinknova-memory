@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-08-30T17:27:16.152Z
+  modified: 2026-08-30T17:30:27.746Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -22,6 +22,9 @@ metadata:
 - 去重双保险：daily_send 建名单时剔已联系 + send.py `already_sent(email,campaign)`；campaign 名固定 `daily_YYYYMMDD`。
 
 ## 关键技术教训（反复踩过）
+- 🔴🔴🔴 **重启控制台前先查有几个在跑、谁真占着 8025。** 08-31 01:3x 实测：**两个常驻控制台同时在跑**（`run.py console` 两套 launcher+core：11176/9900 与 29944/28712，00:22:15 和 00:22:24 相差 9 秒起的），**且 9900 和 28712 都 LISTENING 在 127.0.0.1:8025**（`netstat -ano` 两行；`Get-NetTCPConnection` 只报 28712）——就是本文件那条「Windows 端口锁不可靠」的实证。
+  → **后果：浏览器打开 8025 被哪个进程服务是不确定的。只重启「那个控制台」很可能不生效**（老板仍被另一个旧进程服务）。**正解 = 两对 PID 全杀，再只起一个。**⛔ 按 PID 精准杀，禁 `taskkill /IM python`（铁律 20）。
+- 🔴 **哪些改动需要重启、哪些不需要，别一刀切**：`console.py` 自身（含它内联的前端 JS，如 `fillTutorial` 按钮文案）**冻在进程里，必须重启**；而 `inbox.py`/`daily_send.py`/`send.py` 是控制台**每轮 spawn 的子进程**，**改完下一轮自动生效，不用重启**。（08-30 19:46 send.py 那次没生效，是因为当时那个 send.py 已经跑起来了、是长活进程，不是「所有改动都要重启」。）
 - 🔴 **Windows 上 socket 端口锁不可靠**：默认允许多进程绑同端口，`SO_EXCLUSIVEADDRUSE` 在多 launcher 环境也挡不住 → 改用 **SQLite 单行互斥锁**(`sendlock` 表，死进程/超6h接管，`pid_alive` 用 OpenProcess 0x1000)。
 - 🔴 **本机每个 `python` 调用在进程表显示成 2 个**(D:\hermes venv 启动器 + pythoncore 真解释器)。"2 个 daily_send / 2 个 send.py" = 一条逻辑管线，别当成并发误杀。判并发看 sendlock 持有者 + 输出行数，不数进程。
 - 🔴 **电脑睡眠会挂起所有进程+跳过定时任务**：老板"电脑不关"≠不睡眠；发送窗口设 9-18 就是防睡醒后深夜发。send.py 已加逐封静默守卫(跨午夜自停)。
