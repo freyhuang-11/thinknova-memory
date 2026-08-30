@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-08-30T16:20:48.430Z
+  modified: 2026-08-30T16:23:11.338Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -38,7 +38,9 @@ metadata:
 新加坡5.07万+马来22.2万唯一邮箱，全量库 03_工作台/可发名单_XX_全量_2026-08-24.csv。已MX检查+剔连锁/加盟/酒店。死地址~5%（没做邮箱验证，短板）。脚本 scratchpad/overture_wide.py（排除法品类）、mxcheck2.py。
 
 ## 自动运转
-发信主驱动 = **常驻控制台**(run.py console, 8025)每轮调 `daily_send`(300/天，新马各半)+收信+自动回复+兜底+红线。定时任务 10:07 daily-outreach-send 是备份；22:09 nightly-outreach-report(日报→Obsidian+通知主对话)。仅应用开着+机器醒着时跑。判定器移植自5173(tiktok-creator-tool/backend/services/reply_classifier.py)。interested+other自动发教程，session已关(英文不碰9.5中文场)，红线只看bounce_spam>1%。DAILY_TARGET/SEND_WINDOW 在 run.py 可调。
+发信主驱动 = **常驻控制台**(run.py console, 8025)每轮调 `daily_send`(300/天，新马各半)+收信+自动回复+兜底+红线。定时任务 10:07 daily-outreach-send 是备份；22:09 nightly-outreach-report(日报→Obsidian+通知主对话)。仅应用开着+机器醒着时跑。判定器移植自5173(tiktok-creator-tool/backend/services/reply_classifier.py)。interested+other自动发教程，session已关(英文不碰9.5中文场)，红线只看bounce_spam>1%（**按批次算，不看累计**）。DAILY_TARGET/SEND_WINDOW 在 run.py 可调。
+- 🔴 **08-30 夜改：`other` 不再自动发教程，只留草稿交人工**（`interested` 仍自动回）。原因：`other`=判定器拿不准，拿不准还自动推销 → 08-24 `punjabirasoimy` 来信「你把我门店位置写错了」，机器回「谢谢回复，这是完整教程」，答非所问。918 封里 `other` 只出现过 1 次，摘出来代价≈0。
+- 🔴 **看「这条线索有没有人管」不能只看 `handled`/`replied_by_human`**：还要看 `auto_replied`/`draft_status`——机器可能已经替你答过、而且答错了。「没人工处理」≠「这人还没被我们碰过」。
 
 ## 老板工作方式（08-30 定，这条线通用）
 - 🔴 **让我自己处理这条线**，别每件小事回问；出现多任务时**自动开子 agent / 多进程并行**处理。
@@ -52,7 +54,8 @@ metadata:
 - 🔴 **MX 探活治不了死地址，别记成已解决。** 已落进 `daily_send.build_list`（fail-open，只在 DNS 明确说域不存在时剔）。但 08-30 实测：当天 20 封死地址退信**域名全都活着、命中 0**，10 个是 gmail.com。**死的是信箱不是域名**，MX 按定义看不见；信箱级要跑 SMTP 试探，Gmail 不给真话还伤信誉。→ 死地址率（现 7.4%/批）只能靠**换名单源**解决。
 - 🔴🔴 **真根因＝职能邮箱，风险几乎全压在它身上**（918 封实测）：职能 223 封 → 判垃圾 **2.69%**、死地址 10.76%、真人回复 **0**；私人 695 封 → 判垃圾 **0.29%**、死地址 5.47%，**两个真人回复全在私人**。8 封垃圾判定 6 封打职能，且 **8 封全部是新加坡企业域、550 措辞一模一样**（同一类企业反垃圾网关，不是 Gmail 判我们）。
   - ⚠️ **更正旧记录**：「基本不碰职能邮箱」是错的，实际 223/918=24% 发给了职能邮箱（私人不够时自动补，SG 名单本身职能占比高）。
-  - ✅ 开关已就绪：`SKIP_ROLE_MAILBOX=1`（daily_send.py）。**默认关，等老板拍板**。剔掉后 MY 约 19.9 万 + SG 约 3 万私人地址，不缺量。
+  - ✅✅ **08-31 老板拍板：`SKIP_ROLE_MAILBOX=1` 已开**（run.py setdefault）。彻底不发职能邮箱，只打私人。剔掉后 MY19.9万+SG3万私人，不缺量。
+  - 🔴 **08-31 抢量配置（老板「电脑带着跑、窗口短、你通知我开跑、冲量但别烧域名」）**：`GAP_SECONDS=(15,45)`≈120封/小时（原 75-210）/ `DAILY_TARGET=500` / `SEND_WINDOW=9-23`（开机就发别卡18点）/ 单箱 `cap=600`。熔断仍守 1%。开机自启没用（机器不重启、到处跑），靠老板说「跑」或常驻控制台在窗口内自驱。
 
 ## 🔴 总指挥待我办/悬而未决（08-30 夜更新）
 - 🔴🔴 **最该做的一件：亲手走一遍英文注册→出片流程并截图**。「你每天把 200 个真人推进这个流程，却没人走过它」。⚠️ 但注册=创建账号,属我的禁区,需老板做或授权我在浏览器走到注册前一步。
