@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-08-30T16:28:03.114Z
+  modified: 2026-08-30T16:49:13.701Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -33,6 +33,14 @@ metadata:
 
 ## 基础设施
 域名 trythinknova.com→301→thinknova.top（可达）。Workspace sam@trythinknova.com，SPF/DKIM/DMARC/MX齐。WhatsApp群 chat.whatsapp.com/CAHneI38TGLAHkBAOC4zw8。页脚 JIMENG NETWORK TECHNOLOGY PTE.LTD./Suntec Tower 2 Level 7, Singapore 038989。签名 Frey。
+
+## 决策页（老板过目件唯一入口，链接固定不变）
+https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「冷邮件决策台」。08-31 建，按老板【决策台工作法】办：⛔不再让老板开本地文件，**每天原地更新这一个链接**，每件待拍板的事必写「回一句什么」。日报仍照旧进 Obsidian 留档，两者不互相替代。
+
+## 对外话术未核实项（发出去就是对商户的承诺）
+- 🔴🔴 **`console.py:364` `fillTutorial()` 预填话术写死了「new accounts get 100 free credits (a video + 6 posters)」——这个数字和权益从未实测核实**。⛔别信「当前话术没写这个数字所以安全」：`templates.py`/`run.py` 那几处确实只写含糊的 "free credits"，**唯独控制台这个「填入教程」按钮写死了数字**，老板一点一发就发出去了。修法=拿掉数字对齐其他模板，或先实测注册核真值。
+- ⚠️ `console.py:364` 还硬编码 `https://trythinknova.com`、**绕过 `PRODUCT_URL` 不带 `?src=`**（归因没上线，暂时无所谓，改口径时别漏这处）。
+- 🔴 **注册归因技术单被老板挂起，`?src=coldmail` 目前不落库**（`run.py:25` 带着，实测不报错）。⛔归因上线前**任何报表不许声称「冷邮件带来几个注册」**，只报回复量（总指挥 08-31 口径）。
 
 ## 名单 Overture Maps（免费$0）
 新加坡5.07万+马来22.2万唯一邮箱，全量库 03_工作台/可发名单_XX_全量_2026-08-24.csv。已MX检查+剔连锁/加盟/酒店。死地址~5%（没做邮箱验证，短板）。脚本 scratchpad/overture_wide.py（排除法品类）、mxcheck2.py。
