@@ -16,7 +16,8 @@
 | 烧验证单 | 🔴 `00_规格与参考\烧单前强制自查表_2026-08-18.md` |
 | **查任何字数/字节/条数现值** | 🔴 **现拉线上 config,不信记忆里的数** → [[reference-thinknova-tech-docs-index]] |
 | 动编剧/台词/长度/字数窗 | [[project-thinknova-0729-screenwriter-stack]] |
-| 动 grok/H3/参考图/负面词/提示词 | [[project-thinknova-language-pack-rollout]] + [[reference-thinknova-multiref-model]] |
+| 动 grok/H3/参考图/负面词/提示词(旧管线) | [[project-thinknova-language-pack-rollout]] + [[reference-thinknova-multiref-model]] |
+| **动视频工作台/长视频拼接(新管线,与旧线隔离)** | 🔴 [[reference-thinknova-video-studio]] |
 | 动片型/案例库/场景表 | [[project-thinknova-film-types]] |
 | 动字幕/画面文字口径 | [[feedback-boss-rulings]](散在 4 个字段,必须同改) |
 | 做探店片型 | [[reference-competitor-gravity-ai]] |
