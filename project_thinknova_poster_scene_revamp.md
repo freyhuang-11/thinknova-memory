@@ -80,3 +80,7 @@ metadata:
 - 运营侧已做满:08-10 三处 CTA 守卫 + 08-11 补两处漏网(`blockTemplates.layout_rules.template`、`languagePolicy.map.zh_en` 里的 CTA 预留位)+ 两层描述语围栏(按类别不给例词)+ 拆掉 `copyPlanTemplates.titleFallback` 的 `{sceneLabel}`。提交串逐字验证送达,成品照旧 → 注入点在提示词之后。
 - 🔴 **字段读取图更正**:`caseInjectionPolicy.includeFields=["visualHint"]` —— **案例 summary 不进提示词**,改 summary 只影响前台展示不影响成片。
 - S07/S08 已按 S09 配方美图化(S08 另加"绝不虚构顾客、评分、好评数量")。三张验证图:S09 最好(零描述语泄漏,仍有软CTA)、S07 美图感成立但副标题泄漏场景名、S08 不达标(泄漏+CTA)——**S08 的不达标原因不在案例层,等技术修完 copyPlan 再复烧**。
+
+
+## 2026-09-01 · 线上真值快照(动场景前先读这份,替代此前所有场景表记忆)
+真值文件:03_工作台\海报场景表真值与缺口_2026-09-01.md(task_848120778c48 实证)。要点:①16 场景全启用,但 admin 内 scenes[] 与 businessActions 在 S01/S02/S03/S06/S11 五处名字打架,**喂文案模型的是 scenes[] 表**(sceneLabel 逐字来自它);②S11 一名两义:内壳名「朋友圈背景·名片」,69 条启用案例里 35 条是老板口播类;③中国平台词 admin 88 处/商家端 zh 41 处,展示层约 10 处可安全改,scenePrompts/style_rules/cta_rules 里 10+ 处进生图 prompt 改词须烧验;英文界面现值就是 Xiaohongshu cover/WeChat article cover 这类;④S14/S15/S16 在 22 行业中 17 行全空;门面资产三场景(官网头图/GBP/WhatsApp 目录)不存在,最近似 S03;⑤缺口最重:travel_agency/mother_baby/flower_plant/photo_studio。构图二轮结论另见 03_工作台\海报构图二轮深挖_2026-09-01.md(风格锚定词/标题3-5字/模型代差嫌疑)。
