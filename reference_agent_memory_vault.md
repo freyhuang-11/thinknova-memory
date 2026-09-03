@@ -1,11 +1,11 @@
 ---
 name: reference-agent-memory-vault
-description: "触发:每次开工第一件事和收工最后一件事 → 开工 pull + 读信箱,收工 push 并验证远端真收到(08-08 有过推空 2 天的事故);平台状态只写 vault 总览,私有记忆不复制状态"
+description: "触发:每次开工第一件事和收工最后一件事 → 开工 pull + 读信箱,收工只 add 自己的文件(⛔禁 git add -A,库是多会话并发写的)、push 并验证远端真收到;平台状态只写 vault 总览,私有记忆不复制状态"
 metadata: 
   node_type: memory
   type: reference
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
-  modified: 2026-09-03T17:23:19.597Z
+  modified: 2026-09-03T17:23:27.976Z
 ---
 
 老板 2026-07-16 引入 [agent-memory-vault](https://github.com/cindyxu1030/agent-memory-vault),已装到 `D:\SamsoData\Documents\AgentMemoryVault\`,用途=老板可见的项目状态 + Claude/Codex 跨 agent 共享记忆。**跨机同步=私有仓库 github.com/freyhuang-11/agent-memory-vault:我每次开工先 `git pull`、收工把状态更新连带 `git push`**(Codex 机同规则)。老板桌面有「平台进度总览」快捷方式(开 Obsidian 直达总览页)。

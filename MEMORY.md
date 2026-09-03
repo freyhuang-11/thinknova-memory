@@ -120,7 +120,7 @@
 ---
 
 # 用户与沟通
-- 🔴 [共享记忆库 AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工 push **并验证远端真收到**
+- 🔴 [共享记忆库 AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工**只 add 自己的文件(⛔禁 `-A`)**+push 并验证远端真收到
 - [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — **桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的**(已三犯);桌面只放成片/成图
 
