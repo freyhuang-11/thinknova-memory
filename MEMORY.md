@@ -1,5 +1,4 @@
 # 铁律 · 按触发时机分层
-
 > 【索引宪法 · 违反即返工】(2026-08-27 立,因为索引胖到 43KB、同一个字数记出 11 个不同的值)
 > ① 一条 = 一行,以 `→ [文件]` 收尾。 写不下 = 正文该下沉,不是该换行。
 > ② 禁入本文件:`task_` 号 / 具体数值(写「现拉线上」)/ 三段以上全路径 / 复盘叙事。
@@ -9,7 +8,6 @@
 
 ## 🔴🔴🔴 L-1.5 · 执行前必读路由表
 > 动手前先在这张表里找到你要做的事,把对应文件打开再动。找不到对应行 = 先问,别猜。
-
 | 我要做什么 | 先开哪个 |
 |---|---|
 | 任何后台写操作 | 🔴 `00_规格与参考\执行手册_后台操作_2026-08-21.md` |
@@ -48,51 +46,26 @@
 
 ## L0 · 每次开口/动手前
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
-1. 🔴 判断「现在/多久前」先跑 `date` → [详](feedback_check_time_first.md)
-2. 🔴 提议≠指令;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
-2.5 🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md)
-2.7 🔴🔴 多会话:接「上次的活」先看记忆改动时间 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md)
-2.8 🔴🔴🔴 老板给的词按字面做满,不许自己缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
-2.9 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
+1. 🔴 判断「现在/多久前」先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴 提议≠指令;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
+2.5 🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md) ／ 🔴🔴 多会话:接「上次的活」先看记忆改动时间 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 老板给的词按字面做满,不许自己缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md) ／ 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
 2.95 🔴🔴🔴 拿到技术新文档当场三件事:归档 → 找出被推翻的旧记忆 → 改写它。 只归档不覆盖 = 下次照旧用错口径。
 2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md)
-3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
-3.1 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
+3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 写入被拒先原样重试一次再说;唯一硬墙=改我自己的 settings.json 权限段 → [详](feedback_retry_before_escalating.md)
 3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md)
 
 ## L1 · 改配置/提示词前
-4. 🔴 先查字段读取图:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md)
-4.3 🔴🔴🔴 配置字段的语义不确定 = 先问技术,绝不凭直觉配 → [详](project_thinknova_0729_screenwriter_stack.md)
-4.5 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
-4.6 🔴🔴🔴 提示词≤4000字,废话重复矛盾全删 → [详](project_thinknova_0729_screenwriter_stack.md)
-4.7 🔴🔴🔴 关键规则一律前置 → [详](project_thinknova_0729_screenwriter_stack.md)
-4.8 🔴 查「有没有某能力」读结构化字段(`capability`),不拿 code/name 正则猜
-5. 🔴 指派式 > 禁令式 → [详](feedback_directive_over_prohibition.md)
-5.3 🔴🔴 微信【多学一点】=按 A/B/C 写、两条走 ThinkNova、其余 ChatGPT 守安全区 → [详](feedback_wechat_learn_safe_zone.md)
-5.4 🔴🔴 微信群=单向输出:提问全周最多 1 次 → [详](feedback_group_oneway_broadcast.md)
-5.5 🔴🔴 对外文案主语是机器 = 返工:一律翻成客户视角「这些都不用你想」 → [详](feedback_customer_view_not_machine_view.md)
-6. 🔴 落库 ≠ 送达:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md)
-6.4 🔴🔴 英文化已上线;⛔`opsEditable.stagePromptPresets.image_to_video` 运营写不进 → [详](project_thinknova_language_pack_rollout.md)
+4. 🔴 先查字段读取图:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 配置字段的语义不确定 = 先问技术,绝不凭直觉配 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
+4.6 🔴🔴🔴 提示词≤4000字,废话重复矛盾全删 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴🔴🔴 关键规则一律前置 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 查「有没有某能力」读结构化字段(`capability`),不拿 code/name 正则猜
+5. 🔴 指派式 > 禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 微信【多学一点】=按 A/B/C 写、两条走 ThinkNova、其余 ChatGPT 守安全区 → [详](feedback_wechat_learn_safe_zone.md)
+5.4 🔴🔴 微信群=单向输出:提问全周最多 1 次 → [详](feedback_group_oneway_broadcast.md) ／ 🔴🔴 对外文案主语是机器 = 返工:一律翻成客户视角「这些都不用你想」 → [详](feedback_customer_view_not_machine_view.md) ／ 6. 🔴 落库 ≠ 送达:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md) ／ 🔴🔴 英文化已上线;⛔`opsEditable.stagePromptPresets.image_to_video` 运营写不进 → [详](project_thinknova_language_pack_rollout.md)
 6.5 🔴🔴🔴 grok:整条单一语言才活,混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
-7. 🔴🔴🔴 三条链上限与单位都不同,改前先认清改的是哪条链 → [详](feedback_prompt_change_hard_rules.md)
-7.02/7.03 🔴🔴🔴 `videoTemplate` 开场黑句 + 首行方括号不许动 → [详](feedback_prompt_change_hard_rules.md#vt-黑场句)
-7.05 🔴🔴🔴 生图链截得很狠,关键规则前置进 `taskGoal.firstFrame` → [详](feedback_prompt_change_hard_rules.md#生图链截断)
-7.15 🔴🔴🔴 动编剧同看 systemPrompt + outputContract + visualHint → [详](feedback_prompt_change_hard_rules.md#outputcontract)
-7.16 🔴🔴 加规则前先问「模型能用什么方式满足它而不解决问题」 → [详](feedback_prompt_change_hard_rules.md)
-7.17/7.18 🔴🔴🔴 验收:先有修复前基线才算证据;不许拿数值检测器代替人眼看图 → [详](feedback_evidence_standard.md)
-7.19 🔴🔴 `lineValidation` 校验的是剥掉声线外壳后的字数,不是 `line` 原始长度 → [详](project_thinknova_0729_screenwriter_stack.md)
-7.195 🔴🔴🔴 编剧连挂一半是回退链两个死通道的锅 → [详](feedback_prompt_change_hard_rules.md)
-7.196 🔴🔴 agent 链负面词挡不住编造→走正面指派;直连文生图相反要写 no text → [详](feedback_prompt_change_hard_rules.md)
-7.1 🔴🔴 visualHint 不许写声线/语调/节奏;声线归 `videoTemplate` → [详](feedback_prompt_change_hard_rules.md)
-7.2 🔴🔴 烧单是验证手段不是探索手段:动手前先读现状源 → [详](feedback_prompt_change_hard_rules.md)
-7.5 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
-8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_scope_boundary_explicit.md)
-8.5 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
-8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md)
-8.54 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_name_matches_the_asset.md)
-8.55 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md)
-8.6/8.7 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
+7. 🔴🔴🔴 三条链上限与单位都不同,改前先认清改的是哪条链 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 `videoTemplate` 开场黑句 + 首行方括号不许动 → [详](feedback_prompt_change_hard_rules.md#vt-黑场句)
+7.05 🔴🔴🔴 生图链截得很狠,关键规则前置进 `taskGoal.firstFrame` → [详](feedback_prompt_change_hard_rules.md#生图链截断) ／ 🔴🔴🔴 动编剧同看 systemPrompt + outputContract + visualHint → [详](feedback_prompt_change_hard_rules.md#outputcontract) ／ 🔴🔴 加规则前先问「模型能用什么方式满足它而不解决问题」 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 验收:先有修复前基线才算证据;不许拿数值检测器代替人眼看图 → [详](feedback_evidence_standard.md)
+7.19 🔴🔴 `lineValidation` 校验的是剥掉声线外壳后的字数,不是 `line` 原始长度 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴🔴🔴 编剧连挂一半是回退链两个死通道的锅 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴 agent 链负面词挡不住编造→走正面指派;直连文生图相反要写 no text → [详](feedback_prompt_change_hard_rules.md)
+7.1 🔴🔴 visualHint 不许写声线/语调/节奏;声线归 `videoTemplate` → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴 烧单是验证手段不是探索手段:动手前先读现状源 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
+8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_scope_boundary_explicit.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
+8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_name_matches_the_asset.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
 8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT → 事故档 `02_交付内容\给技术_案例表321条被覆盖_恢复说明_2026-08-23.md`
 8.8 🔴🔴 写入:GET 拿 `x-csrf-token` → 带头 PUT;fetch 在 robots.txt 轻页跑(重 SPA 冻 CDP) → [详](reference_thinknova_paths.md)
 
@@ -102,8 +75,7 @@
 ## L2 · 烧单核验时
 8.85 🔴🔴🔴 烧单前逐条打勾 A–G → `00_规格与参考\烧单前强制自查表_2026-08-18.md`
 8.9 🔴🔴 烧单前报客户视角五要素 → [详](feedback_burn_report_format.md) [详](feedback_prompt_first_then_test.md)
-9. 🔴 逐帧通看;音频量死寂;单帧截图=假结论;证据成对 → [详](feedback_evidence_standard.md)
-9.5 🔴 烧完先验三件:`task.model` 实际派发、编剧 source、字数落区间 → [详](project_thinknova_0729_screenwriter_stack.md)
+9. 🔴 逐帧通看;音频量死寂;单帧截图=假结论;证据成对 → [详](feedback_evidence_standard.md) ／ 🔴 烧完先验三件:`task.model` 实际派发、编剧 source、字数落区间 → [详](project_thinknova_0729_screenwriter_stack.md)
 
 ## L3 · 给技术发文档前
 12/14. 🔴 给技术只发技术才能处理的 → [详](reference_tech_doc_submission_spec.md) [自检](feedback_tech_doc_checklist.md)
@@ -112,17 +84,13 @@
 16/18. 每轮说清「验收什么+做了什么」 → [详](feedback_communication_principles.md) [plan](feedback_questions_via_plan_mode.md) [新鲜度](feedback_data_freshness_framing.md)
 
 ## L5 · 环境红线(违反 = 事故)
-20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀 → [详](feedback_kill_python_scope.md)
-20.5 🔴🔴 签名 OSS URL 会把 AccessKeyId 带进产物;入库/外发前扫一遍 `LTAI`/`AKID`/`Signature=`
-22. 🔴 线上 config=唯一真值,禁种子覆盖 → [详](feedback_dont_edit_prod_config_structure.md)
-22.7 🔴🔴 上下文唯一杠杆=减少往返:一段 JS 干完一整套只回摘要 → [详](feedback_context_budget_discipline.md)
+20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀 → [详](feedback_kill_python_scope.md) ／ 🔴🔴 签名 OSS URL 会把 AccessKeyId 带进产物;入库/外发前扫一遍 `LTAI`/`AKID`/`Signature=`
+22. 🔴 线上 config=唯一真值,禁种子覆盖 → [详](feedback_dont_edit_prod_config_structure.md) ／ 🔴🔴 上下文唯一杠杆=减少往返:一段 JS 干完一整套只回摘要 → [详](feedback_context_budget_discipline.md)
 23. 记忆只留当前状态不堆矛盾层 → [详](feedback_memory_keep_current.md);老板发的提示词当天归档 → [详](reference_prompt_library.md)
-
 ---
 
 # 用户与沟通
-- 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工只 add 自己的文件并验远端
-- [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
+- 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工只 add 自己的文件并验远端 ／ [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
@@ -135,10 +103,8 @@
 
 ### 现行状态
 - 🔴🔴 [口播/裁格·格网](project_thinknova_0729_koubo_defect.md) — 格网已解;⛔`panel_crop` 不是通用开关
-- 🔴🔴🔴 [片型体系+案例库](project_thinknova_film_types.md) — 场景表 10 个;片型分化已落地;案例条数现拉线上
-- 🔴🔴🔴 [场景表 = 10 个](reference_thinknova_option_scene_rules.md) — 改名须同改 `scenes[]` 与 `businessActions`
-- 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型台账](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读;⛔案例表无 model 字段
-- 🔴🔴🔴 [多参无人声](reference_thinknova_multiref_model.md) — 图越多越不稳,实发砍到 2 张;失败形态=音轨被音乐占满
+- 🔴🔴🔴 [片型体系+案例库](project_thinknova_film_types.md) — 场景表 10 个;片型分化已落地;案例条数现拉线上 ／ 🔴🔴🔴 [场景表 = 10 个](reference_thinknova_option_scene_rules.md) — 改名须同改 `scenes[]` 与 `businessActions`
+- 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型台账](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读;⛔案例表无 model 字段 ／ 🔴🔴🔴 [多参无人声](reference_thinknova_multiref_model.md) — 图越多越不稳,实发砍到 2 张;失败形态=音轨被音乐占满
 - 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md) — 主战场;微信每天出货=硬规定;三条线出稿前必跑 `_check_week/_xhs/_dy.py`
 - 🔴🔴🔴 [小红书线现状](project_thinknova_xhs_line.md) — 写小红书前必读;分享 vs 教只差主语
 - 🔴🔴 [新加坡线下会议线](project_thinknova_sg_events.md) — 每周六;🔴小红书版邀请函绝不能带二维码
