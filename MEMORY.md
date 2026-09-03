@@ -55,6 +55,7 @@
 2.8 🔴🔴🔴 **老板给的词按字面做满,不许自己缩窄定义再报「全部完成」** → [详](feedback_dont_assume_requirements.md)
 2.9 🔴🔴🔴 **「几天没落库/零变化」不许推出「他没干活」**;快照只证明那一秒,不是趋势不是意图 → [详](feedback_silence_is_not_evidence.md)
 2.95 🔴🔴🔴 **拿到技术新文档当场三件事:归档 → 找出被推翻的旧记忆 → 改写它。** 只归档不覆盖 = 下次照旧用错口径。
+2.97 🔴🔴 **我自己写在注释/交付说明里的话不算规矩**；引用前先能指出老板原话或裁决号，指不出且要大改的先问一句 → [详](feedback_self_authored_notes_are_not_rules.md)
 3. 🔴 **没实地用过不下判断**;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md)
 3.1 🔴🔴🔴 **config 里的 placeholder/说明文案 ≠ 实际行为**;对外说任何产品能力前必须有 A/B 实测任务号 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 **写入被拒先原样重试一次再说**;唯一硬墙=改我自己的 settings.json 权限段 → [详](feedback_retry_before_escalating.md)
