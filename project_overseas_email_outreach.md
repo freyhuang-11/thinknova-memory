@@ -5,12 +5,18 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-08-30T17:33:03.055Z
+  modified: 2026-09-04T13:19:34.114Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
 
 新马英文实体商户 → 冷邮件 → 导 thinknova.top 注册用100免费积分自己出片。08-24 建成并跑起来。
+
+## 🔴🔴 控制台保活(09-04 根治反复掉线)
+- **控制台单例=OS 命名互斥锁** `ThinkNovaEmailConsole_8025`(console.py `_single_instance_or_exit()`)。⛔ 别再靠 netstat/端口判重:`ThreadingHTTPServer` 默认 `allow_reuse_address=1`,两个能同绑 8025,端口挡不住(09-04 实证)。进程死锁自动释放,无僵尸。
+- **Windows 定时任务 `ThinkNovaEmailConsole`**(schtasks,非 Claude 任务)跑 `autostart_console.bat`,**9:00-23:00 每小时检查一次**:活着→撞互斥秒退,死了→拉起。`-StartWhenAvailable -AllowStartIfOnBatteries`。**它启的控制台是 Windows 独立进程,不随 Claude 应用关闭而死**——这才是根治(旧问题:控制台是 Claude 应用子进程,应用一关就死→整天 0 发送)。
+- 桌面老 `启动邮件控制台.bat` 无互斥(会双开);带互斥的在项目目录。手动拉起用项目目录那个或直接靠 Windows 任务。
+- 🔴 **机器时区=China Standard Time=UTC+8**,和新马同偏移;静默(0-9)/窗口(9-23)全按 UTC+8 机器本地时。跨会话看时间别被"旧读数"误导——隔天回来 date 会跳一大截。
 
 ## 系统
 `D:\SamsoData\Documents\视频制作平台分析\03_工作台\邮件推广系统\`。总入口 `run.py`（注入凭据+环境变量），跑 `python run.py console|send|inbox|dashboard`。控制台 http://127.0.0.1:8025。凭据在桌面 `thinknova.txt`（run.py读，绝不打印）。台账 `outreach.db`（sends/replies/suppression）。
