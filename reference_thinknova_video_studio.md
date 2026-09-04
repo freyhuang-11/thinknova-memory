@@ -29,3 +29,10 @@ metadata:
 
 ## 关联
 [[project-thinknova-language-pack-rollout]](旧视频链,勿混) [[feedback-boss-rulings]](08-31 长拼接宣传口径) [[reference-thinknova-tech-docs-index]]
+
+## 2026-09-05 更新:TTS 情绪已参数化(技术文档《TTS情绪控制_2026-09-04》)
+- ⛔作废旧说法「情绪只能靠台词文字带」:现在编剧逐镜输出 `ttsEmotion`(auto/happy/sad/angry/fearful/disgusted/surprised/calm/fluent),存 shots.tts_emotion,TTS Worker 对 MiniMax Speech 2.8 HD 写入 `voice_setting.emotion`;非 MiniMax 模型自动不带参数不报错。
+- 配置位:`studioWorkflow.ttsEmotion{enabled,default:'auto',allowed[]}`;营销内容建议 allowed=[auto,happy,surprised,calm,fluent],⛔不开放 angry/fearful/disgusted。
+- 编剧提示词可加强策略但**不得改 JSON 字段名**;推荐句:开场钩子 happy/surprised、卖点 calm/fluent、到店邀请 happy、无诉求 auto。
+- 上线前提:迁移 081 已执行 + Agent 配置保存过一次(缓存失效);历史项目不回填。验收:新 15s 项目查 shots.ttsEmotion + TTS 子任务请求参数带 emotion + happy/calm 听测。
+- 台词文字带情绪(标点/口语接口词)与参数并行有效,两者叠加。
