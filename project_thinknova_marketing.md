@@ -445,3 +445,4 @@ dy01 方向本来是对的(填一句话平台照着出片),坏在事实错了([[
 (`cover_frame.applied=true / seconds=7.521` 但 `thumbnail_url` 仍指 mp4，证据 `task_360cc8067099`)。
 🔴 **微信直接发 mp4 文件时不读平台字段，只看第一帧**，所以那个修复救不了这条路。
 - 规范页 artifact(4b0a83a6)的本地源 = `03_工作台\_spec_page.html`(09-04 从线上拉回),补裁决用 `_patch_spec_page_0904.py` 的写法;裁决 1–25 已全上页。⭕ 要改页先改这个源再带 url 重发,别重建。
+- 🔴🔴🔴 小红书每篇必须：身份句 + 一根柱子 + 一个下一步（裁决 35）；引流篇≥一半 → [详](project_thinknova_xhs_line.md)
