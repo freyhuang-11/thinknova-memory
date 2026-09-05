@@ -36,3 +36,11 @@ metadata:
 - 编剧提示词可加强策略但**不得改 JSON 字段名**;推荐句:开场钩子 happy/surprised、卖点 calm/fluent、到店邀请 happy、无诉求 auto。
 - 上线前提:迁移 081 已执行 + Agent 配置保存过一次(缓存失效);历史项目不回填。验收:新 15s 项目查 shots.ttsEmotion + TTS 子任务请求参数带 emotion + happy/calm 听测。
 - 台词文字带情绪(标点/口语接口词)与参数并行有效,两者叠加。
+
+## 2026-09-05 更新:技术《Studio稳定性修复与官网配置》(代码完成·未上生产,上线后按 §7 验收)
+- ⛔作废「编剧提示词要自己写字数窗口」:上线后**系统按镜头秒数注入最低/目标/最高字数**(3s 7/10/13 … 8s 18/26/36,来源仍 ttsPacing),一次反馈全部违规镜头。运营提示词里的数值规则届时**删掉**,只留「超字数→加长镜头,不删商家事实/优惠」。编剧 prompt 上限 4000 字节,运营模板不被覆盖但受模型上限截。
+- `reviewPolicy` v2:autoApproveFirstSuccess=true(分镜/视频默认采用)、autoGenerateVideos=false、autoCompose=false(默认不自动花钱);老板要的"默认确认一键下一步"=此默认即可。
+- 失败/取消=终态不弹窗不计角标;失败项目有「恢复编辑」入口;中间资产隐藏靠 `repair_studio_visibility_review.php --apply`(需部署人员跑,先 dry-run 备份)。
+- 新错误码:STUDIO_SCRIPT_INPUT_TOO_LONG(必要事实超模型上限,不会静默删)/ STUDIO_CHILD_TASK_CREATE_FAILED / STUDIO_MODEL_ASSET_MISSING。下载改走托管入口,登录失效不启动下载。
+- 官网内容:后台「站点→官网内容与版本」多语言 JSON(zh/en/ja/ko/vi/es/th):company{name,description,address}/support.url(仅 HTTPS)/poweredBy[]/pages{about,help.sections,terms,privacy};草稿→发布→可回滚;公共接口 /api/v1/site-content。**素材包要按此结构交付**;未确认的地址/法务/供应商清单技术不发布。
+- 未解:TN 悬浮角标来源未确认(疑第三方组件);海报乱码需可复现样本;线上 15s/30s 真实项目、退款、外部预览未验。
