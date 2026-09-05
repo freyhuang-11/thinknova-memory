@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-09-05T10:57:05.790Z
+  modified: 2026-09-05T18:11:21.120Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -91,6 +91,10 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
 - **08-30 那晚的实例（claude-56）挑中的 claude-6f，就是 08-28 那晚的同任务实例**，不是老板的对话。→ **两个定时任务互相汇报、互相验算了两天，日报要点没进老板日常对话。**（08-26/08-28 是否同样打歪＝无法回溯核实，不外推。）
 - 🔴 **这是「落库≠送达」的又一例**：Obsidian 那条腿（3A）一直是好的，坏的是通知这条腿（3B）。
 - **修法归老板/常驻会话定，不由运行实例自己改任务书**：①收件人写死一个常驻会话名，或②取消 3B 只留 3A、由老板/常驻会话主动取。另：跑完的实例应退出，别冒充 interactive。
+
+## 🆕 马来语自动回复 + 队列自动发(09-06)
+- 🔴 **马来语线索自动回马来语**(老板 09-06 纠正:平台有马来语内容、能服务,别把马来语线索写死)。`inbox.is_malay()` 判马来语(saya/berminat/boleh/harga/speak malay 等)→ `templates.render_interested_ms`(马来语版:帮做营销+RM2-3.50本地价+问卖什么);英文照旧。poll 自动回 + sweep 兜底都分流。⚠️马来语话术是我非母语写的,老板已过目、可再改。
+- **控制台每轮自动发人工排队回信**:`send_pending_replies` 只发 `draft_status='queued'`(我人工写好并标记的,如马来语单条回复/样片邀约),已加进 `cycle_once`(非静默)。以后 queued 回复不用手动发、也不用一次性定时任务。
 
 ## 🆕 makers 雷达测试线(09-05 起,独立于新马主线)
 - 第二条 campaign `makers_test`:海外 Shopify 独立小卖家(handmade/candles/soap/ceramics/coffee/bakery/florist/leather 等),US/UK/AU/SG。名单来源=搜索发现法(搜品类词→验 Powered by Shopify→取公开联系邮箱),⛔不碰 Etsy/不买名单/不违反站点条款。首批 94 家,MX100%/自有域99%,09-05 14:07 全发出。
