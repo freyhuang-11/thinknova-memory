@@ -49,7 +49,7 @@
 1. 🔴 判断「现在/多久前」先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴 提议≠指令;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md) ／ 🔴🔴 多会话:接「上次的活」先看记忆改动时间 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 老板给的词按字面做满,不许自己缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md) ／ 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
 2.95 🔴🔴🔴 拿到技术新文档当场三件事:归档 → 找出被推翻的旧记忆 → 改写它。 只归档不覆盖 = 下次照旧用错口径。
-2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md)
+2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `_memory\子agent任务书模板_2026-09-06.md` 五行;日报三行制进总览顶部 → [详](feedback_deliverable_is_postable.md)
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 写入被拒先原样重试一次再说;唯一硬墙=改我自己的 settings.json 权限段 → [详](feedback_retry_before_escalating.md)
 3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md)
