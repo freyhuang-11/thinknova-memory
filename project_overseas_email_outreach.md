@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-09-04T13:19:34.114Z
+  modified: 2026-09-05T10:57:05.790Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -91,6 +91,12 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
 - **08-30 那晚的实例（claude-56）挑中的 claude-6f，就是 08-28 那晚的同任务实例**，不是老板的对话。→ **两个定时任务互相汇报、互相验算了两天，日报要点没进老板日常对话。**（08-26/08-28 是否同样打歪＝无法回溯核实，不外推。）
 - 🔴 **这是「落库≠送达」的又一例**：Obsidian 那条腿（3A）一直是好的，坏的是通知这条腿（3B）。
 - **修法归老板/常驻会话定，不由运行实例自己改任务书**：①收件人写死一个常驻会话名，或②取消 3B 只留 3A、由老板/常驻会话主动取。另：跑完的实例应退出，别冒充 interactive。
+
+## 🆕 makers 雷达测试线(09-05 起,独立于新马主线)
+- 第二条 campaign `makers_test`:海外 Shopify 独立小卖家(handmade/candles/soap/ceramics/coffee/bakery/florist/leather 等),US/UK/AU/SG。名单来源=搜索发现法(搜品类词→验 Powered by Shopify→取公开联系邮箱),⛔不碰 Etsy/不买名单/不违反站点条款。首批 94 家,MX100%/自有域99%,09-05 14:07 全发出。
+- 独立话术 `templates.render_makers`(钩子=a week of posts in 20 min、照片输入切割反AI编造、⛔不提店名/价格/积分),send.py 用 `--template makers` 走这套。名单 `_daily/makers_send_list.csv`,装配脚本 `_daily/assemble_makers.py`。
+- 🔴 **计数口径(老板 09-05):600 主线照发满 + makers 额外,不是从600划**。`daily_send` 今日达标只数 `campaign like 'daily_%'`,makers_test 不占 SG/MY 的 600;单日总量可到 ~694(700 cap 内)。
+- 两周(至 09-19)出「发/回/注册」三数,与新马并排比市场;硬退单独盯 makers_test 标签>3% 立停该批。总指挥要求四国配比均衡(SG 基数小、样本偏小已标注)。
 
 ## 协作
 挂在总指挥（Claude Code）体系下，通过 vault 信箱对接：`AgentMemoryVault/01-Projects/ThinkNova/信箱.md`「给总指挥（来自海外邮件营销线）」栏。已提13个信息需求（积分口径/英文出片能力/注册前台/产品边界/素材），等总指挥回真值再校准话术。现状详见 vault `_memory/海外邮件营销线_现状与运转_2026-08-24.md`。
