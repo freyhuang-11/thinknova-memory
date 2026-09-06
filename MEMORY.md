@@ -86,7 +86,7 @@
 ## L5 · 环境红线(违反 = 事故)
 20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀 → [详](feedback_kill_python_scope.md) ／ 🔴🔴 签名 OSS URL 会把 AccessKeyId 带进产物;入库/外发前扫一遍 `LTAI`/`AKID`/`Signature=`
 22. 🔴 线上 config=唯一真值,禁种子覆盖 → [详](feedback_dont_edit_prod_config_structure.md) ／ 🔴🔴 上下文唯一杠杆=减少往返:一段 JS 干完一整套只回摘要 → [详](feedback_context_budget_discipline.md)
-23. 记忆只留当前状态不堆矛盾层 → [详](feedback_memory_keep_current.md);老板发的提示词当天归档 → [详](reference_prompt_library.md)
+23. 记忆只留当前状态不堆矛盾层 → [详](feedback_memory_keep_current.md) ／ 🔴 规则写 WHAT+DONE、只留六类、skill 描述短 → [详](feedback_rule_hygiene.md);老板发的提示词当天归档 → [详](reference_prompt_library.md)
 ---
 
 # 用户与沟通
