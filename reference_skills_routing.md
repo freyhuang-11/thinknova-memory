@@ -134,3 +134,8 @@ metadata:
 今天两个跟头都是这么栽的 —— 封面手搓、选题拍脑袋。
 
 相关:[[reference_cheat_gates_calibration]] [[project_thinknova_xhs_line]] [[project_thinknova_marketing]] [[reference_douyin_cover_benchmark]]
+
+## 2026-09-07 补录(审计发现的孤儿件)
+- 海报构图/排版/标题字数 → `poster-composition`(09-02 建,A 档规则可直接执行)
+- 重大方案/要老板拍板前 → `steelman`(章程第 2 条)
+- 已归档停用(移到 `~/.claude/skills_archive_2026-09-07/`):hallmark、xiaolan-aroll、xiaolan-broll、media-use;hyperframes 全家保留但描述收窄为「明确要渲染时才触发」。
