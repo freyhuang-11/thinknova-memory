@@ -84,3 +84,11 @@ metadata:
 
 ## 2026-09-01 · 线上真值快照(动场景前先读这份,替代此前所有场景表记忆)
 真值文件:03_工作台\海报场景表真值与缺口_2026-09-01.md(task_848120778c48 实证)。要点:①16 场景全启用,但 admin 内 scenes[] 与 businessActions 在 S01/S02/S03/S06/S11 五处名字打架,**喂文案模型的是 scenes[] 表**(sceneLabel 逐字来自它);②S11 一名两义:内壳名「朋友圈背景·名片」,69 条启用案例里 35 条是老板口播类;③中国平台词 admin 88 处/商家端 zh 41 处,展示层约 10 处可安全改,scenePrompts/style_rules/cta_rules 里 10+ 处进生图 prompt 改词须烧验;英文界面现值就是 Xiaohongshu cover/WeChat article cover 这类;④S14/S15/S16 在 22 行业中 17 行全空;门面资产三场景(官网头图/GBP/WhatsApp 目录)不存在,最近似 S03;⑤缺口最重:travel_agency/mother_baby/flower_plant/photo_studio。构图二轮结论另见 03_工作台\海报构图二轮深挖_2026-09-01.md(风格锚定词/标题3-5字/模型代差嫌疑)。
+
+## 2026-09-06 去平台词收口 + 平台风格明确化(两遍 agent,已落地)
+- 海报 agent code = `offline_store_content`(⛔不是 offline_store_poster)。海报链字段中国平台词命中 68→0;剩 36 处全在视频线保护区(screenwriter/masterPipeline/stagePromptPresets)和三张平台选项表(本来就是平台名)。
+- 改了三层+条件键:`businessUi.scenes[]` S01/S02/S10/S14/S15/S16、businessActions、scenePrompts、blockTemplates(style_rules/cta_rules)、optionRules.appearanceMode/endingCta、layout_rules.first_frame_prompt,全部同步 opsEditable 镜像 → 09-03 的「双表打架」已解。S11=「老板出镜·名片」;「老板口播」选项→「老板出镜」。
+- 案例外部表 889 条:19 条 title/summary + 18 条 visualHint + 5 条外语 WeChat 改名;案例 PUT body 必须扁平对象(⛔不包 `{item:}`,一次写坏已修复)。
+- `promptComposer.optionRules.platform` 14 个平台改成具体视觉规格(主体占比/标题字数位置/对比/留白/像截帧还是杂志页),每条前缀「比例以所选尺寸为准」;`promptAssembler.businessOptionPrompts.platform` 是视频口径且海报链不读,未动。
+- 缺口底数:27 行业×16 场景=432 格,=0 有 68 格(S14/S15/S16 十几个行业全空、knowledge_share 除 S01/S10 全空),=1 有 163 格。补案例要烧封面+老板过目,先补前 10 格(餐饮/美发美容/生活服务/零售)。盘点 `03_工作台\海报场景案例盘点_2026-09-06.md`;快照 `00_规格与参考\ROLLBACK_2026-09-06_content场景案例清理前_全量config.json`(全量)+ 二遍前逐字段 diff。
+- 教训:Claude-in-Chrome 对 >100KB 返回体有拦截,快照要分 ≤60KB 段;扩展常掉线,每次 JS 前先 tabs_context。
