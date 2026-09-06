@@ -42,3 +42,6 @@ metadata:
 - 没发出的迭代要明确告知老板当前是草稿第几版。
 
 规则关联:[[reference-tech-doc-submission-spec]](格式唯一真值) [[feedback-evidence-standard]] [[feedback-communication-principles]] [[feedback-questions-via-plan-mode]] [[project-thinknova-offline-agents]]
+
+## 并入自 feedback_scope_boundary_explicit.md(2026-09-07)
+给技术写数量/范围/开关/多版类需求必须同时写反向边界:"作用域仅 X,共用链路上的 Y 不受影响",并给双向验收(X 生效 + Y 不受影响同时成立)。共用调用/函数是"串味"高发点,不声明边界=实现者会取最省事改法波及兄弟场景。

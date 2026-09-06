@@ -21,3 +21,8 @@ metadata:
 4. 与 [[feedback-case-low-coupling]] 的三条自检并用：低耦合管"商家看不看得懂"，本条管"看懂之后拿到的是不是这个"。
 
 关联 [[feedback-evidence-standard]] [[feedback-case-change-no-blast-radius]]
+
+## 并入自 feedback_name_matches_the_asset.md(2026-09-07)
+文案里写的东西必须在素材上真有:写文案前逐句核对素材,找不到就改文案,不凭"应该有"写。
+- 改文案优先于烧新图(零积分,论点常常反而更硬)。
+- 素材排雷逐样打开看,不看文件名;已知雷区:平台水印/二维码、真实连锁门头、伪汉字假网址、虚构店名、服务端硬塞话术。

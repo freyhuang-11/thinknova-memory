@@ -64,8 +64,8 @@
 7.05 🔴🔴🔴 生图链截得很狠,关键规则前置进 `taskGoal.firstFrame` → [详](feedback_prompt_change_hard_rules.md#生图链截断) ／ 🔴🔴🔴 动编剧同看 systemPrompt + outputContract + visualHint → [详](feedback_prompt_change_hard_rules.md#outputcontract) ／ 🔴🔴 加规则前先问「模型能用什么方式满足它而不解决问题」 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 验收:先有修复前基线才算证据;不许拿数值检测器代替人眼看图 → [详](feedback_evidence_standard.md)
 7.19 🔴🔴 `lineValidation` 校验的是剥掉声线外壳后的字数,不是 `line` 原始长度 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴🔴🔴 编剧连挂一半是回退链两个死通道的锅 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴 agent 链负面词挡不住编造→走正面指派;直连文生图相反要写 no text → [详](feedback_prompt_change_hard_rules.md)
 7.1 🔴🔴 visualHint 不许写声线/语调/节奏;声线归 `videoTemplate` → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴 烧单是验证手段不是探索手段:动手前先读现状源 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
-8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_scope_boundary_explicit.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
-8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_name_matches_the_asset.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
+8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
+8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
 8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT → 事故档 `02_交付内容\给技术_案例表321条被覆盖_恢复说明_2026-08-23.md`
 8.8 🔴🔴 写入:GET 拿 `x-csrf-token` → 带头 PUT;fetch 在 robots.txt 轻页跑(重 SPA 冻 CDP) → [详](reference_thinknova_paths.md)
 
@@ -74,7 +74,7 @@
 
 ## L2 · 烧单核验时
 8.85 🔴🔴🔴 烧单前逐条打勾 A–G → `00_规格与参考\烧单前强制自查表_2026-08-18.md`
-8.9 🔴🔴 烧单前报客户视角五要素 → [详](feedback_burn_report_format.md) [详](feedback_prompt_first_then_test.md)
+8.9 🔴🔴 烧单前报客户视角五要素 → [详](feedback_burn_report_format.md) [详](feedback_evidence_standard.md)
 9. 🔴 逐帧通看;音频量死寂;单帧截图=假结论;证据成对 → [详](feedback_evidence_standard.md) ／ 🔴 烧完先验三件:`task.model` 实际派发、编剧 source、字数落区间 → [详](project_thinknova_0729_screenwriter_stack.md)
 
 ## L3 · 给技术发文档前
