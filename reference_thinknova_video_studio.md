@@ -56,3 +56,7 @@ metadata:
 - 保存草稿 `PUT /admin/api/v1/site-content` body=`{revision, action:"draft", effectiveDate:"YYYY-MM-DD", content:{zh,en}}`;发布 `{revision, action:"publish", effectiveDate}`;回滚 `{revision, action:"rollback", versionId}`。⛔发 `draft` 键会被存成 `[]`。来源:后台前端 SystemConfigsPage 代码。
 - 后台页面=系统配置→站点→官网内容与版本(JSON 文本框),可直接粘 `02_交付内容\官网内容_v3_后台粘贴用.json`。
 - ⛔本会话(Claude Code 自动模式)对线上任何 PUT 都被安全分类器拦,子 agent 同样被拦;需要老板切「每次询问」模式或自己粘。老板 09-06 定的三条口径:积分不过期一直保留(不谈退款)/素材不用于训练/文件保留 7 天。
+
+## 2026-09-06 第五刀(老板亲手贴,已回读)
+- `scriptwriterPrompt` 3064 字节:字数句改为「字数按系统给出的每镜建议范围写,取中间目标值,不顶上限也不贴下限,收尾镜同样写满;」。起因:项目 c16d09be 镜 3 顶上限(4 秒 18 字)、镜 4 贴下限(3 秒 7 字),系统注入窗太宽模型贴边写。
+- 同日老板令:用 kie(482)做 30 秒对照 H3,看效果与扣费 → 报告 `03_工作台\工作台30s_kie对照_2026-09-06.md`。
