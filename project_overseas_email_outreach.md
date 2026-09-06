@@ -35,6 +35,7 @@ metadata:
 - 🔴 **本机每个 `python` 调用在进程表显示成 2 个**(D:\hermes venv 启动器 + pythoncore 真解释器)。"2 个 daily_send / 2 个 send.py" = 一条逻辑管线，别当成并发误杀。判并发看 sendlock 持有者 + 输出行数，不数进程。
 - 🔴 **电脑睡眠会挂起所有进程+跳过定时任务**：老板"电脑不关"≠不睡眠；发送窗口设 9-18 就是防睡醒后深夜发。send.py 已加逐封静默守卫(跨午夜自停)。
 - 🔴 **正则/含中文的代码绝不走 bash heredoc**：`\b` 被 shell 解释成退格0x08，正则全废。用 Write/Edit 直接写文件。
+- 🔴🔴 **写盘前先 encode，别让 `open(w)` 先截断**：`io.open(p,"w").write(s)` 是先清空文件再写，`s` 里有一个 emoji 代理对/非法字符就抛错——**原文件已经变 0 字节了**。2026-09-07 这样弄没一份刚写完的稿子。正确写法：`data=s.encode("utf-8")` 先跑通，再 `open(p,"wb").write(data)`。
 - 🔴 **CSV 空值被 DuckDB/csv 读成 NULL**：`NOT(regexp(NULL))` 返回 NULL 会误删无邮箱行。过滤放生成阶段。
 - 🔴 **bbox 猜国家会串**：马来bbox混进13万新加坡记录。用 Overture `addresses[1].country` 过滤。
 - 翻译用 MyMemory 端点（Google gtx 返429）；langpair 不认 auto，要明确 en/ms/zh-CN。
