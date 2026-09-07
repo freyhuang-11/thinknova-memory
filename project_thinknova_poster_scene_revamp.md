@@ -99,3 +99,4 @@ metadata:
 - 09-07 三个坑:①模板抄来的 `sellingPointPreset` 带 `selling_point_sp_food_*` → 保险/风水封面变餐饮(改 `selling_point_detailed`);②prefill 写成「如:…」占位句 → 封面印出说明文字/行业随机;③店名地址电话为空时海报印空标签 → `promptAssembler.commonPrompts.userInputPrompt` 已加「未填写时不出现这些字段和标签」(295→383B)。
 - 封面回填配方:案例自己烧一单海报 → `GET /api/v1/ai/tasks/{taskNo}?assets=1` 取 `assets[0].publicUrl` 去掉 `?` 后的公共桶路径 → PUT `coverImageUrl`+`thumbnailUrl`。海报队列约 1 张/分钟,124 张排 1 小时。
 - Claude-in-Chrome 45 秒超时:每段 JS ≤12 条读写,进度写 localStorage;返回值带 `=`/URL 会被拦。
+- ⛔ 09-07 事故:给 `businessUi.industryFilters` 里 `enabled:false` 的 5 个行业(leisure_hotel/fengshui_metaphysics/styling_aesthetics/insurance_finance/property_agency,老板早已合并废弃)补了 77 条案例并烧封面,约 100 张积分白花。**建案例/烧封面前先看行业开关,关着的一律不补;矩阵盘点只算 enabled 行业(现 21 个 + all)。**
