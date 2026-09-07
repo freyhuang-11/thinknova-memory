@@ -56,3 +56,4 @@ metadata:
 - 商家端 `GET /api/v1/business-video-assets/config`:**扁平化顶层**(referenceCases/businessActions 直接在顶层,无 businessUi 包裹)。引用字段先说清哪个端点。
 
 配套:[[reference-thinknova-prompt-fields]] [[reference-thinknova-config-powers]] [[feedback-dont-edit-prod-config-structure]] [[reference-thinknova-prompt-architecture]]
+- 2026-09-07 《运营说明_Studio编剧稳定性与运营权限修复_2026-09-07.md》— 编剧语言计量/秒数归一/局部修复、videoPromptSuffix、运营服务 Token、供应商健康页、协议确认、官网 SSR;代码完成未部署 → 摘要见 [[reference-thinknova-video-studio]]

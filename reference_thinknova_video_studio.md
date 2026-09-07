@@ -62,3 +62,12 @@ metadata:
 - 同日老板令:用 kie(482)做 30 秒对照 H3,看效果与扣费 → 报告 `03_工作台\工作台30s_kie对照_2026-09-06.md`。
 - 30s kie 实测(09-06,花店 `studio_64063372c421`):211 积分(单镜视频≈24),19 次调用零失败,人声 94%,参考图锁定好;30s 6 镜编剧首次建单失败率高(promo 案例 3 败,member 案例一次过)→ 技术单 1.14。编剧仍编「新店开业/仅限今天」+「绝对满意」承诺 → 下一刀加「事实只用商家给的」。`ttsVoice` 字段吃字符串码 `male-qn-qingse` 不吃 506;`reference-cases?industryId` 过滤无效需翻页本地过滤;项目 `finalAsset.publicUrl` 为 api 域签名串,浏览器 a[download] 可落 `D:\SamsoData\Downloads`(文件名为 asset 号)。
 - ⛔ 英文项目(copyLanguage en)编剧校验用中文字数窗,3 次必败(09-07 实测 `studio_faa4670761cb`),技术单 1.17;修复前工作台只能出中文成片。`ttsVoice` 英文音色码 `English_Graceful_Lady`;506 是 TTS 模型 id 不是音色码。
+
+## 2026-09-07 技术《Studio编剧稳定性与运营权限修复》(代码完成·⛔未部署,归档 `00_规格与参考\技术侧文档\`)
+- 编剧:按 `copyLanguage` 选计量(zh/ja/ko 字,en/es/vi/th 词,`ttsPacing.metricByLanguage`)→ 1.17 解;秒数总和不对用动态规划自动归一(27→30 不调模型)、只修违规镜(`scriptwriterRepair.autoAdjustDurations/repairInvalidShotsOnly` 缺省 true)→ 1.14 解;英文 4 秒预算 6/8/11 词。
+- 新增 `studioWorkflow.videoPromptSuffix`(≤300 UTF-8 字节)拼进每镜视频提示词 → 部署后把「真实手机实拍质感,自然光,保留细节,不过度锐化」放这里,编剧提示词里的质感句可撤。
+- 运营服务 Token(1.10 解):管理员 `php think app:service-token --action=create --scopes=ops.agent:<code>:read/write,ops.cases:<code>:read/write,ops.site:read/write`,90 天可撤销;接口 `/admin/api/v1/ops/agents/{code}/config`(GET 回 revision 哈希,PUT 带 revision)、`/ops/agents/{code}/reference-cases/{id}`、`/ops/site-content`;⛔Token 不进 git/聊天/截图。会话仍 24h。
+- 供应商健康:后台「系统配置→供应商健康诊断」,`GET /admin/api/v1/provider-health`;状态 insufficient_balance/rate_limited/quota_unknown/cooldown/retry_available/recovered;健康不再全局阻断建单。
+- 协议确认(1.13):迁移 083 + 管理员审核正文并「启用协议确认」;默认关;正文哈希变了要重审(LEGAL_REVIEW_REQUIRED)。官网:场景/行业名优先服务端配置(1.16 解)、帮助去重(1.12 解)、SSR 正文。
+- 画质:技术称合成链只有缩放/CRF18 无锐化滤镜,提供 `scripts/compare_studio_video_frames.php`;我 09-07 实测原片 238 vs 成片 534 仍待技术用真实文件复核(1.15 开)。
+- ⛔全部「本地自动化通过」,未做真实 15/30 秒中英验收、未签真实 Token、未部署。部署后验收清单:①英文 30s 花店项目重建一次过;②27 秒脚本自动归一不调模型;③videoPromptSuffix 落地并看视频 prompt;④签 Token 后 PUT→GET 回读;⑤S11 前台显示新名。
