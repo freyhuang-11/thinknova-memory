@@ -73,3 +73,4 @@ metadata:
 - ⛔全部「本地自动化通过」,未做真实 15/30 秒中英验收、未签真实 Token、未部署。部署后验收清单:①英文 30s 花店项目重建一次过;②27 秒脚本自动归一不调模型;③videoPromptSuffix 落地并看视频 prompt;④签 Token 后 PUT→GET 回读;⑤S11 前台显示新名。
 - ⛔ 09-07 事故:site-content `versions[]` 按 id 升序,`versions[0]` 是最老版;我拿它当最新发了 v8,把条款/隐私/帮助页发没了(前台显示「经确认的协议正文尚未发布」)。已用 id 6 内容去地址后发 v10 修复。**以后取当前版=按 id 最大或公共接口 `/api/v1/site-content`。** 技术 09-07 部署已上线:条款页需管理员 `PUT /admin/api/v1/legal-acceptance {enabled,confirmed:true,version:<GET 哈希>}` 审核后才显示;开启 enabled 需 083 迁移。
 - 09-08:`studioWorkflow.videoPromptSuffix` 已写(240 字节):真实纪实 vlog/手机实拍/胶片颗粒暗角/自然光白平衡/人物与首帧一致/不磨皮不锐化/硬切/手持呼吸/焦点主体/边缘轻虚。技术 09-07 版部署后生效(字段此前不存在)。下一步:1.19 让编剧按项目生成全片画面规格(对标 quantv)。
+- 09-08 验收:技术新版英文校验生效(`studio_ae50993e1e9c` 英文 30s 一次过,H3 503,词/秒合规,无修复事件)→ 1.17 关闭。⚠️ 英文音色 `English_Graceful_Lady` 已失效,目录只剩 10 个 `tnsys_*`(用 `tnsys_warm_young_female`),外语音色缺失见 1.21。建单 body 必须显式传 `videoModelId`(省略 422)。
