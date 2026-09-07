@@ -71,3 +71,4 @@ metadata:
 - 协议确认(1.13):迁移 083 + 管理员审核正文并「启用协议确认」;默认关;正文哈希变了要重审(LEGAL_REVIEW_REQUIRED)。官网:场景/行业名优先服务端配置(1.16 解)、帮助去重(1.12 解)、SSR 正文。
 - 画质:技术称合成链只有缩放/CRF18 无锐化滤镜,提供 `scripts/compare_studio_video_frames.php`;我 09-07 实测原片 238 vs 成片 534 仍待技术用真实文件复核(1.15 开)。
 - ⛔全部「本地自动化通过」,未做真实 15/30 秒中英验收、未签真实 Token、未部署。部署后验收清单:①英文 30s 花店项目重建一次过;②27 秒脚本自动归一不调模型;③videoPromptSuffix 落地并看视频 prompt;④签 Token 后 PUT→GET 回读;⑤S11 前台显示新名。
+- ⛔ 09-07 事故:site-content `versions[]` 按 id 升序,`versions[0]` 是最老版;我拿它当最新发了 v8,把条款/隐私/帮助页发没了(前台显示「经确认的协议正文尚未发布」)。已用 id 6 内容去地址后发 v10 修复。**以后取当前版=按 id 最大或公共接口 `/api/v1/site-content`。** 技术 09-07 部署已上线:条款页需管理员 `PUT /admin/api/v1/legal-acceptance {enabled,confirmed:true,version:<GET 哈希>}` 审核后才显示;开启 enabled 需 083 迁移。
