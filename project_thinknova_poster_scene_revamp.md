@@ -92,3 +92,10 @@ metadata:
 - `promptComposer.optionRules.platform` 14 个平台改成具体视觉规格(主体占比/标题字数位置/对比/留白/像截帧还是杂志页),每条前缀「比例以所选尺寸为准」;`promptAssembler.businessOptionPrompts.platform` 是视频口径且海报链不读,未动。
 - 缺口底数:27 行业×16 场景=432 格,=0 有 68 格(S14/S15/S16 十几个行业全空、knowledge_share 除 S01/S10 全空),=1 有 163 格。补案例要烧封面+老板过目,先补前 10 格(餐饮/美发美容/生活服务/零售)。盘点 `03_工作台\海报场景案例盘点_2026-09-06.md`;快照 `00_规格与参考\ROLLBACK_2026-09-06_content场景案例清理前_全量config.json`(全量)+ 二遍前逐字段 diff。
 - 教训:Claude-in-Chrome 对 >100KB 返回体有拦截,快照要分 ≤60KB 段;扩展常掉线,每次 JS 前先 tabs_context。
+
+## 2026-09-07 案例矩阵补齐实录(27 行业 × 19 场景 100%)
+- 商家端场景卡按行业只显示「有 enabled 案例」的场景(`availableBusinessActionIdsByIndustry` 由案例派生,不在 agent config 里)→ 新场景要可见必须每行业 ≥1 条案例。
+- 案例字段:`sceneIds` 是数组(写字符串服务端会转);`sellingPointPreset` 等 5 个 *Preset 是数组;缺 9 个选项字段的案例建海报 500;`enabled:false` 的案例建海报也 500;案例 PUT body 扁平对象。
+- 09-07 三个坑:①模板抄来的 `sellingPointPreset` 带 `selling_point_sp_food_*` → 保险/风水封面变餐饮(改 `selling_point_detailed`);②prefill 写成「如:…」占位句 → 封面印出说明文字/行业随机;③店名地址电话为空时海报印空标签 → `promptAssembler.commonPrompts.userInputPrompt` 已加「未填写时不出现这些字段和标签」(295→383B)。
+- 封面回填配方:案例自己烧一单海报 → `GET /api/v1/ai/tasks/{taskNo}?assets=1` 取 `assets[0].publicUrl` 去掉 `?` 后的公共桶路径 → PUT `coverImageUrl`+`thumbnailUrl`。海报队列约 1 张/分钟,124 张排 1 小时。
+- Claude-in-Chrome 45 秒超时:每段 JS ≤12 条读写,进度写 localStorage;返回值带 `=`/URL 会被拦。
