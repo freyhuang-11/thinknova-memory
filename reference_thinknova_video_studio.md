@@ -74,3 +74,11 @@ metadata:
 - ⛔ 09-07 事故:site-content `versions[]` 按 id 升序,`versions[0]` 是最老版;我拿它当最新发了 v8,把条款/隐私/帮助页发没了(前台显示「经确认的协议正文尚未发布」)。已用 id 6 内容去地址后发 v10 修复。**以后取当前版=按 id 最大或公共接口 `/api/v1/site-content`。** 技术 09-07 部署已上线:条款页需管理员 `PUT /admin/api/v1/legal-acceptance {enabled,confirmed:true,version:<GET 哈希>}` 审核后才显示;开启 enabled 需 083 迁移。
 - 09-08:`studioWorkflow.videoPromptSuffix` 已写(240 字节):真实纪实 vlog/手机实拍/胶片颗粒暗角/自然光白平衡/人物与首帧一致/不磨皮不锐化/硬切/手持呼吸/焦点主体/边缘轻虚。技术 09-07 版部署后生效(字段此前不存在)。下一步:1.19 让编剧按项目生成全片画面规格(对标 quantv)。
 - 09-08 验收:技术新版英文校验生效(`studio_ae50993e1e9c` 英文 30s 一次过,H3 503,词/秒合规,无修复事件)→ 1.17 关闭。⚠️ 英文音色 `English_Graceful_Lady` 已失效,目录只剩 10 个 `tnsys_*`(用 `tnsys_warm_young_female`),外语音色缺失见 1.21。建单 body 必须显式传 `videoModelId`(省略 422)。
+
+## 2026-09-08 技术《商家提示词冲突与语言切换修复》(代码完成·⛔未部署;三条线共用,归档 `00_规格与参考\技术侧文档\`)
+- 新增 `promptComposer.conflictResolution.priorityOrder`(三个 agent 各自配,不互相同步):`user_extra_requirement > selected_option > business_fact > case_visual_rule > scene_rule > industry_rule > ops_template > generated`。硬约束(项目比例/总时长/Studio 单幅/模型语言)不可被任何来源绕过;同级明确冲突(如「人物出镜。无人出镜」)→ `PROMPT_CONFLICT_REQUIRES_ACTION` 不建付费子任务;低优先级冲突句只在本次组装中移除,原文与案例不改。
+- 识别范围=中英文明确独立指令:比例、总时长、人物出现与否、单幅/分屏/多宫格、原生人声、画面文字、正负互斥;⛔不是语义理解,引号内台词/事实 JSON/商品名不动。**客户台词仍会被编剧重写**(冲突检查不含台词照用)。
+- 旧线首帧分镜板不套 Studio 单幅规则 → 旧线拼板仍靠黑场兜底(1.20 更必要)。
+- 保存接口返回 `warnings`,agent 结果带 `config_warnings`(`PROMPT_CONFLICT_AUTO_RESOLVED`=运营模板里有被硬约束覆盖的句子,该整理);Studio 事件 `prompt_conflict_resolved` / `prompt_conflict`;旧线诊断 `promptConflictDiagnostics`(stage/rule/source/winnerSource/action/suggestion)。
+- 语言切换:界面语言≠提示词语言≠口播语言;切换不翻译商品名不改台词不重生;Studio 草稿在内存(刷新/退出不保证)。首次登录卡加载、业务错误跨备用地址重试、写请求重发三个前端竞态已修。
+- 部署后验收:①保存三 agent 配置各看一次 `config_warnings`;②Studio 用「补充要求写 16:9 + 项目 9:16」验事件 `prompt_conflict_resolved`;③同级「人物出镜。无人出镜」验 REQUIRES_ACTION 不扣费;④中→英→中切换项目详情不丢草稿。
