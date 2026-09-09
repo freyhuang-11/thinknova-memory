@@ -90,3 +90,5 @@ metadata:
 ## 🔴🔴🔴 2026-09-10 · 建单参考图字段=数字 `assetId`(如 7706),不是字符串 `asset_xxx`(09-06 起我建的花店项目全部无参考图)
 `POST /business-video-studio/projects` 的 `referenceAssets` 正确形状=`[{"role":"person|product|scene|supplement","assetId":7706}]`(数字 id;实测 04:2x `studio_0c593d16eff7` 回读 input 三张全在;传 `assetNo` 字符串或 `assetId:"asset_xxx"` 都被静默丢弃)。回读时 input 显示的是 `assetNo`,所以别照回读格式发;我 09-06/09-07/09-10 用 `assetId` 建的花店项目(64063372c421 / ae50993e1e9c / b794… / 4848… / 66b5… / 97a9…)服务端静默丢弃 → `input.referenceAssets=[]`、每镜 `referenceImageIndexes=[]`、分镜纯文生图。**老板看英文花店「人物画面不连贯」的根因就是这个,不是编剧层。** 有参考图的项目(餐饮 1f41b5f36c77)每镜 refs 非空,说明管线确实按镜用参考图。⛔以后建单后必回读 `input.referenceAssets` 非空再往下走。
 同日:storyboardPrompt「不正面对镜说话」改为「开场镜和收尾镜看向镜头(眼神交流/微笑/点头),中间镜看活或看商品」;scriptwriterPrompt 加「有参考图时每镜 referenceImageIndexes 不许为空,人物出镜必带人物图;visualPrompt 写视线方向和表情」。lipSyncModelId=0(无口型同步),dialoguePresentationMode=voiceover。
+
+- 09-10 05:xx:`POST /projects/{no}/cancel`(body {}) 可取消 storyboard_review 项目(7 单已取消);工作台 scriptwriterPrompt 2000 字、storyboardPrompt 735 字现值。
