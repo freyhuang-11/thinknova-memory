@@ -58,3 +58,5 @@ metadata:
 配套:[[reference-thinknova-prompt-fields]] [[reference-thinknova-config-powers]] [[feedback-dont-edit-prod-config-structure]] [[reference-thinknova-prompt-architecture]]
 - 2026-09-07 《运营说明_Studio编剧稳定性与运营权限修复_2026-09-07.md》— 编剧语言计量/秒数归一/局部修复、videoPromptSuffix、运营服务 Token、供应商健康页、协议确认、官网 SSR;代码完成未部署 → 摘要见 [[reference-thinknova-video-studio]]
 - 2026-09-08 《运营说明_商家提示词冲突与语言切换修复_2026-09-08.md》— 三线共用 conflictResolution 来源优先级、硬约束不可绕、同级冲突阻断、语言切换三层分离、前端竞态修复;未部署 → 摘要见 [[reference-thinknova-video-studio]]
+
+- 09-10 发出待转:`02_交付内容\给技术_OPS-PLATFORM-20260910-01_推荐码归属+输出层校验+分镜相似度.md`(A 推荐码归属 / B 优惠只说一次 / B-2 句首口头禅 / C 分镜相似度门槛 + C.9 两问:锚图是否锁构图、referenceImageIndexes 分镜阶段是否按镜生效)。
