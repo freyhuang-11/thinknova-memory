@@ -82,3 +82,7 @@ metadata:
 - 保存接口返回 `warnings`,agent 结果带 `config_warnings`(`PROMPT_CONFLICT_AUTO_RESOLVED`=运营模板里有被硬约束覆盖的句子,该整理);Studio 事件 `prompt_conflict_resolved` / `prompt_conflict`;旧线诊断 `promptConflictDiagnostics`(stage/rule/source/winnerSource/action/suggestion)。
 - 语言切换:界面语言≠提示词语言≠口播语言;切换不翻译商品名不改台词不重生;Studio 草稿在内存(刷新/退出不保证)。首次登录卡加载、业务错误跨备用地址重试、写请求重发三个前端竞态已修。
 - 部署后验收:①保存三 agent 配置各看一次 `config_warnings`;②Studio 用「补充要求写 16:9 + 项目 9:16」验事件 `prompt_conflict_resolved`;③同级「人物出镜。无人出镜」验 REQUIRES_ACTION 不扣费;④中→英→中切换项目详情不丢草稿。
+
+
+## 2026-09-10 · scriptwriterPrompt 1444→1686 字(台词风格刀)+ 三单烧验
+加:接口词只许第一镜、默认顺序范式(砂锅店五句)、不编事实、优惠只在第一或第二镜说一次、不写点击/左下角/关注/私信、中文数字写汉字。烧验 `studio_b794e8ad3c92`→`studio_484825112801`→`studio_66b5165eac15`(花店 S02 member,H3,只到分镜,各≈13 积分):编造/效果承诺消失、句子连贯;残留=优惠仍说两次,提示词压不住,建议交校验层(技术单)。建单 body 现值:`ttsVoice` 必须 `tnsys_*`,`videoModelId` 必填 503/482。⛔GET/PUT 在 robots.txt 轻页做长 sleep 会冻死 tab,轮询用 batch wait 分段。
