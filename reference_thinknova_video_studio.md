@@ -95,3 +95,6 @@ metadata:
 
 - ✅ 09-10 15:00 **A1–A4 验证通过**:`ttsPacing.words` 2.0/2.8/3.4、`characters` 3.5/4.5/5.5 + 编剧「按秒数×目标值写满」→ `studio_9fa1a4fec8ce` 静音 43.8%→13.5%,最大空档 0.97s;分镜五镜五主体同人同店。现值:scriptwriterPrompt 2093 字、storyboardPrompt 756 字(参考图无文字则无文字)。未解:优惠两次、无正脸、5 镜非 6 镜。回滚快照 `00_规格与参考\ROLLBACK_编剧与工作台提示词_A1-A4前快照_2026-09-10_0600.txt`。
 - 🔴 项目结构:`data.shots[]`(不是 project.script.shots)带 `revisions[]{type,status,asset.publicUrl}`、`dialoguePacing{unitCount/targetUnits/status}`、`approvedStoryboardRevisionId`;分镜/成片下载=页内 `a.href=publicUrl;a.click()` 落 Downloads;javascript_tool 返回值含 url/query 会被整条拦截,先剥。
+
+- 09-10 15:4x 现值:工作台 scriptwriterPrompt **2190 字**(加:正脸至少一镜、优惠只在末镜、无人物图时 visualPrompt 写地域形象)、storyboardPrompt **930 字**(加【语言与地域】:人物与店面跟随输出语言市场,英文项目不出汉字,参考图无文字则无文字);`ttsPacing.words` 1.8/2.5/3.0(老板听 2.8 偏快);两线 `businessUi.quickRequirementChips` 各加 5 个(pain_first / product_only_no_people / read_my_lines / offer_once_end / show_face),前台 9/9 可见;旧线 S05 探店改好友第一视角四步(3989 字)。
+- 🔴 语言→画面形象的真值在 `promptComposer.languagePolicy.map.{lang}`(两线都有,en 已写「local Western/international, not Chinese-styled」),喂编剧不喂分镜;**有人物参考图时人物以参考图为准**——英文片出现华人脸是参考图本身是华人(花店三张参考图是 AI 海报),不是规则漏。
