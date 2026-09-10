@@ -105,3 +105,7 @@ metadata:
 
 - 🔴🔴🔴 09-10 收工真值:**语速与空白是同一个跷跷板**。`dialoguePacing.recommendedSpeed` 只在 [speed.min, speed.max] 内**加速**填满镜头(v3 实测 1.15/1.15/1.07/1.07/1.03=老板说的「快」);把 words 目标降到 2.5 → speed 回 1.0 但静音 25%(v4)。speed.min 设 0.85 不会触发减速,反而因字数窗变紧让编剧直接 `STUDIO_SCRIPTWRITER_OUTPUT_INVALID`(实测 `studio_3e29a6611762`)。**现值折中:words 2.2/3.0/3.4、characters 3.2/4.3/5.2、speed 1.0–1.08。** 根治=技术单 T1 镜头时长跟随配音,或让 speed 允许 <1。
 - 🔴 09-10:中文探店成片的网红脸=**人物参考图 `asset_0e1b27e6751a`(07-24 上传)本身就是网红自拍**,分镜「人物以参考图为最高真值」优先级高于「不出现网红脸」,系统没错,要换图。餐饮演示单在换图前建议不挂人物图。
+
+- 🔴🔴🔴 09-10 晚 **语速公式定案**:`recommendedSpeed = unitCount/秒数 ÷ targetPerSecond`,夹在 `[speed.min, speed.max]`。目标值必须≈真实语速,否则要么留空(目标低)要么加速变快(允许加速)。**但真实语速逐句差异大**(英文 2.55–3.6 词/秒,同一音色),固定目标压不准 → `SHOT_VOICE_TOO_LONG`(`studio_f88ec83f631d` 3 秒镜配音 3.92 秒)。**现值:words 2.8/3.2/3.6、characters 4.0/4.5/5.0、speed 1.0–1.12、minShotDurationSeconds 3→4。** 验证最好的一单:中医理疗 `studio_b83bd7d47e11` 静音 8.7%。
+- 🔴 TTS 真实入参(`task_1a092f6adc51`):`{text,pitch:0,volume:1,voice,emotion,speed,language_boost,prompt=text}`。情绪标签**有**逐镜传;pitch/volume 恒定、prompt 复读台词 → 情绪起伏小的第二根因是台词写成平铺陈述句。
+- 🔴 `food_s08_review`「达人代看·堂食氛围」= 顾客好评型案例却挂 `sceneIds:["S05"]` 探店,案例锚点要求首句零信息纯情绪 → 成片前 10 秒莫名其妙。案例分类错位待老板定。
