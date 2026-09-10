@@ -102,3 +102,6 @@ metadata:
 - 09-10 16:xx 配置层落地:两线 placeholder(zh/en)三行示例;defaultState appearanceMode=product_store/endingCta=visit_store;appearanceMode.sceneDefault.S08=product_store;海报线首帧提示词前置「人物与店面按输出语言市场」(1715);帮助中心三页 site-content rev 12 已发布(从 versions[last] 内容加节,terms/privacy 保留)。案例折叠需前端。
 
 - 09-10 17:5x 接口补:分镜失败重生成 `POST /projects/{no}/shots/{n}/storyboards`(body {});重生成后需采用版本 `POST /projects/{no}/shots/{n}/storyboards/approve` body `{"revisionId":<revisions[].id>}`(同理视频版本大概率 `/shots/{n}/videos/approve`);项目列表 `GET /projects?page&pageSize`;取消 `POST /projects/{no}/cancel`。Chrome 里我的 tab 不在前台时 viewport 0x0,UI 点击无效,走接口。
+
+- 🔴🔴🔴 09-10 收工真值:**语速与空白是同一个跷跷板**。`dialoguePacing.recommendedSpeed` 只在 [speed.min, speed.max] 内**加速**填满镜头(v3 实测 1.15/1.15/1.07/1.07/1.03=老板说的「快」);把 words 目标降到 2.5 → speed 回 1.0 但静音 25%(v4)。speed.min 设 0.85 不会触发减速,反而因字数窗变紧让编剧直接 `STUDIO_SCRIPTWRITER_OUTPUT_INVALID`(实测 `studio_3e29a6611762`)。**现值折中:words 2.2/3.0/3.4、characters 3.2/4.3/5.2、speed 1.0–1.08。** 根治=技术单 T1 镜头时长跟随配音,或让 speed 允许 <1。
+- 🔴 09-10:中文探店成片的网红脸=**人物参考图 `asset_0e1b27e6751a`(07-24 上传)本身就是网红自拍**,分镜「人物以参考图为最高真值」优先级高于「不出现网红脸」,系统没错,要换图。餐饮演示单在换图前建议不挂人物图。
