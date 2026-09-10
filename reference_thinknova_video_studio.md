@@ -98,3 +98,5 @@ metadata:
 
 - 09-10 15:4x 现值:工作台 scriptwriterPrompt **2190 字**(加:正脸至少一镜、优惠只在末镜、无人物图时 visualPrompt 写地域形象)、storyboardPrompt **930 字**(加【语言与地域】:人物与店面跟随输出语言市场,英文项目不出汉字,参考图无文字则无文字);`ttsPacing.words` 1.8/2.5/3.0(老板听 2.8 偏快);两线 `businessUi.quickRequirementChips` 各加 5 个(pain_first / product_only_no_people / read_my_lines / offer_once_end / show_face),前台 9/9 可见;旧线 S05 探店改好友第一视角四步(3989 字)。
 - 🔴 语言→画面形象的真值在 `promptComposer.languagePolicy.map.{lang}`(两线都有,en 已写「local Western/international, not Chinese-styled」),喂编剧不喂分镜;**有人物参考图时人物以参考图为准**——英文片出现华人脸是参考图本身是华人(花店三张参考图是 AI 海报),不是规则漏。
+
+- 09-10 16:xx 配置层落地:两线 placeholder(zh/en)三行示例;defaultState appearanceMode=product_store/endingCta=visit_store;appearanceMode.sceneDefault.S08=product_store;海报线首帧提示词前置「人物与店面按输出语言市场」(1715);帮助中心三页 site-content rev 12 已发布(从 versions[last] 内容加节,terms/privacy 保留)。案例折叠需前端。
