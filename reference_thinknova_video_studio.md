@@ -109,3 +109,6 @@ metadata:
 - 🔴🔴🔴 09-10 晚 **语速公式定案**:`recommendedSpeed = unitCount/秒数 ÷ targetPerSecond`,夹在 `[speed.min, speed.max]`。目标值必须≈真实语速,否则要么留空(目标低)要么加速变快(允许加速)。**但真实语速逐句差异大**(英文 2.55–3.6 词/秒,同一音色),固定目标压不准 → `SHOT_VOICE_TOO_LONG`(`studio_f88ec83f631d` 3 秒镜配音 3.92 秒)。**现值:words 2.8/3.2/3.6、characters 4.0/4.5/5.0、speed 1.0–1.12、minShotDurationSeconds 3→4。** 验证最好的一单:中医理疗 `studio_b83bd7d47e11` 静音 8.7%。
 - 🔴 TTS 真实入参(`task_1a092f6adc51`):`{text,pitch:0,volume:1,voice,emotion,speed,language_boost,prompt=text}`。情绪标签**有**逐镜传;pitch/volume 恒定、prompt 复读台词 → 情绪起伏小的第二根因是台词写成平铺陈述句。
 - 🔴 `food_s08_review`「达人代看·堂食氛围」= 顾客好评型案例却挂 `sceneIds:["S05"]` 探店,案例锚点要求首句零信息纯情绪 → 成片前 10 秒莫名其妙。案例分类错位待老板定。
+
+- 🔴🔴🔴 09-10 夜 **工作台图生视频阶段的 prompt = visualPrompt + cameraPrompt + 四段服务端硬编码块**(实证 `task_bb3ca14044ac`,677 字):【跨镜头连续性】【动作时长:动作须在前 N-0.4 秒完成,最后 0.4 秒定格】【首帧锁定:以分镜图为最高真值不得重绘漂移】【后期配音硬规则:嘴唇闭合、不得对镜开口、优先侧背面与手部】。**四段都不在 agent 配置里,运营改不了**,是「照片动起来」「情绪不如 agent」的直接原因。`videoPromptSuffix` 的内容**未出现在该 prompt 里**(疑似未注入)。已写进技术单 T6(要求做成可配置 + 首帧锁定分档 + 新增 voiceover_talking 模式)。
+- 09-10 夜运营侧对冲(能改的部分):`continuity.endHoldMilliseconds` 400→**150**;编剧要求 visualPrompt 写「有头有尾的动作过程(从…到…)」而非静态摆拍、cameraPrompt 每镜必须有位移运镜(固定机位全片最多一镜);分镜要求拍「动作进行中的那一瞬」而非摆好的合影。现值 scriptwriterPrompt 2515 / storyboardPrompt 971。
