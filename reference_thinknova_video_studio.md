@@ -100,3 +100,5 @@ metadata:
 - 🔴 语言→画面形象的真值在 `promptComposer.languagePolicy.map.{lang}`(两线都有,en 已写「local Western/international, not Chinese-styled」),喂编剧不喂分镜;**有人物参考图时人物以参考图为准**——英文片出现华人脸是参考图本身是华人(花店三张参考图是 AI 海报),不是规则漏。
 
 - 09-10 16:xx 配置层落地:两线 placeholder(zh/en)三行示例;defaultState appearanceMode=product_store/endingCta=visit_store;appearanceMode.sceneDefault.S08=product_store;海报线首帧提示词前置「人物与店面按输出语言市场」(1715);帮助中心三页 site-content rev 12 已发布(从 versions[last] 内容加节,terms/privacy 保留)。案例折叠需前端。
+
+- 09-10 17:5x 接口补:分镜失败重生成 `POST /projects/{no}/shots/{n}/storyboards`(body {});重生成后需采用版本 `POST /projects/{no}/shots/{n}/storyboards/approve` body `{"revisionId":<revisions[].id>}`(同理视频版本大概率 `/shots/{n}/videos/approve`);项目列表 `GET /projects?page&pageSize`;取消 `POST /projects/{no}/cancel`。Chrome 里我的 tab 不在前台时 viewport 0x0,UI 点击无效,走接口。
