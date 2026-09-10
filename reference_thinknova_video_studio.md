@@ -92,3 +92,6 @@ metadata:
 同日:storyboardPrompt「不正面对镜说话」改为「开场镜和收尾镜看向镜头(眼神交流/微笑/点头),中间镜看活或看商品」;scriptwriterPrompt 加「有参考图时每镜 referenceImageIndexes 不许为空,人物出镜必带人物图;visualPrompt 写视线方向和表情」。lipSyncModelId=0(无口型同步),dialoguePresentationMode=voiceover。
 
 - 09-10 05:xx:`POST /projects/{no}/cancel`(body {}) 可取消 storyboard_review 项目(7 单已取消);工作台 scriptwriterPrompt 2000 字、storyboardPrompt 735 字现值。
+
+- ✅ 09-10 15:00 **A1–A4 验证通过**:`ttsPacing.words` 2.0/2.8/3.4、`characters` 3.5/4.5/5.5 + 编剧「按秒数×目标值写满」→ `studio_9fa1a4fec8ce` 静音 43.8%→13.5%,最大空档 0.97s;分镜五镜五主体同人同店。现值:scriptwriterPrompt 2093 字、storyboardPrompt 756 字(参考图无文字则无文字)。未解:优惠两次、无正脸、5 镜非 6 镜。回滚快照 `00_规格与参考\ROLLBACK_编剧与工作台提示词_A1-A4前快照_2026-09-10_0600.txt`。
+- 🔴 项目结构:`data.shots[]`(不是 project.script.shots)带 `revisions[]{type,status,asset.publicUrl}`、`dialoguePacing{unitCount/targetUnits/status}`、`approvedStoryboardRevisionId`;分镜/成片下载=页内 `a.href=publicUrl;a.click()` 落 Downloads;javascript_tool 返回值含 url/query 会被整条拦截,先剥。
