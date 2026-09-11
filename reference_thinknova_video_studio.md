@@ -112,3 +112,7 @@ metadata:
 
 - 🔴🔴🔴 09-10 夜 **工作台图生视频阶段的 prompt = visualPrompt + cameraPrompt + 四段服务端硬编码块**(实证 `task_bb3ca14044ac`,677 字):【跨镜头连续性】【动作时长:动作须在前 N-0.4 秒完成,最后 0.4 秒定格】【首帧锁定:以分镜图为最高真值不得重绘漂移】【后期配音硬规则:嘴唇闭合、不得对镜开口、优先侧背面与手部】。**四段都不在 agent 配置里,运营改不了**,是「照片动起来」「情绪不如 agent」的直接原因。`videoPromptSuffix` 的内容**未出现在该 prompt 里**(疑似未注入)。已写进技术单 T6(要求做成可配置 + 首帧锁定分档 + 新增 voiceover_talking 模式)。
 - 09-10 夜运营侧对冲(能改的部分):`continuity.endHoldMilliseconds` 400→**150**;编剧要求 visualPrompt 写「有头有尾的动作过程(从…到…)」而非静态摆拍、cameraPrompt 每镜必须有位移运镜(固定机位全片最多一镜);分镜要求拍「动作进行中的那一瞬」而非摆好的合影。现值 scriptwriterPrompt 2515 / storyboardPrompt 971。
+
+- 🔴🔴🔴 09-11 **工作台字数窗定案**:每镜独立校验,窗口=`该镜 durationSeconds × studioWorkflow.ttsPacing`(characters 现值 3.6/4.5/5.2 → 5 秒镜 18–26 字,与报错文案逐字吻合 `studio_30a6b023af9d`)。**旧线 `lineValidation` 是另一条链的全片总计,改它对工作台零影响**。旧线那张表还有两份同名副本(`lineValidation.zh_cn` 68 / `lineValidation.byLanguage.zh_cn` 60),运营改的是死的那份 → 技术单 B3b。
+- 🔴🔴🔴 09-11 **工作台做不出无台词广告大片**:服务端对每镜强制台词字数下限,空 dialogue 直接 `STUDIO_SCRIPTWRITER_OUTPUT_INVALID`(`studio_05b2978dd1de`),过短报「5 秒建议 18-26 字」(`studio_30a6b023af9d`)。**旧线 agent 支持 `voiceMode=none`,工作台不支持** → 技术单 B8。临时解:提示词让 S14 tvc 写「画面注解式旁白」(`studio_74b1255b101f` 一次过)。
+- 09-11 `scriptwriterPrompt` 加【板块人设】段(现 3156 字):探店 S05/S08 拆开写后,S08 才真的出双人对白(`studio_70aa8e0663ef` A 抛问题/B 揭晓);合并写时会被写成第一视角安利(`studio_f59124245184`)。残留缺陷:S08 倒数第二镜仍出口号式总结。回滚表 `00_规格与参考\ROLLBACK_四板块提示词改动_2026-09-11.md`。
