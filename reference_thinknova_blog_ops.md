@@ -42,3 +42,25 @@ metadata:
 - 报错码:401003 缺令牌 / 403003 令牌无效或缺权限 / 404020 不存在 / 409020 code·slug 重复或有关联不能删 / 422020 字段或封面不合法 / 422021 发布校验没过。排查留 `request_id`。
 
 关联:[[reference_thinknova_paths]] [[reference_thinknova_tech_docs_index]] [[project_thinknova_marketing]]
+
+## 🔴 2026-09-11 接手 · token 到手、链路已通
+
+- **token**：老板直接给的（`ops-blog`, id=5, scope=`blog.write`, 到期 2027-09-09）。
+  存 `00_规格与参考\_secretslog_token.txt`（该盘非 git），脚本读文件、**全程不 print**。
+  ⚠️ **它是明文贴进对话的，已在聊天记录里** → 自动化跑通后应让技术重签、把这个作废。
+- **脚本**：`03_工作台\博客发布\_blog.py`（list / draft / show）。
+
+### 🔴 建稿字段（实测，猜错会 422）
+- ⛔ `category_id` / `tag_ids` **不认** → 要 **`category_code`** / **`tag_codes`**（422020 会明确告诉你）
+- 现有分类只有 1 个：`local-store-marketing`
+- 标签词表 10 个：`local-store-content` `poster` `short-video` `customer-faq` `multilingual`
+  `customer-objections` `price-explainer` `process-video` `small-business` `content-workflow`
+
+### 现有 55 篇的"对的样子"（实读一篇反推）
+**中英双语**字段：`title_zh/en`、`summary_zh/en`、`seo_title_zh/en`、`seo_description_zh/en`、`content_zh_md/en_md`。
+**slug** = 英文关键词连字符 + `YYYY-MM`。
+**正文固定七段**（AEO/问答式结构，给 AI 搜索抓的）：
+`# 标题` → `## 简短答案` → `## 适用行业` → `## 操作步骤`(5 步编号) → `## 示例输出`
+→ `## ThinkNova 能做什么`（**含免责：商家自己核对价格政策语言，不承诺销售结果**）→ `## 常见问题`(4 问，`###`)
+篇幅参考：中文 ~700-770 字 / 英文 ~2000-2300 字符。
+现状：55 篇（53 published + 我建的 2 draft），全在 `local-store-marketing` 分类下。
