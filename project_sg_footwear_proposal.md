@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5c696ffe-3c4e-4234-8a39-8e2e7688a3f6
-  modified: 2026-09-11T06:03:14.062Z
+  modified: 2026-09-11T06:13:39.330Z
 ---
 
 给"新加坡鞋包自营品牌"的客户提案，两套 HTML 文档在桌面，中英文各一份 + 对应 PDF：
@@ -17,7 +17,12 @@ metadata:
 - **🔴🔴 价格进不同文档**:**功能设计文档=零价格**(第9节只讲计费"机制":两类费用分开/预充值/用量看板/三条保障,写「具体价格商务另议」,无 0.5/0.2 无月度表);**报价单=有 70k 建设费+模块拆分,但 AI 单价(视频≈0.5/海报≈0.2)不写**,注「按量预充值、单价商务另议」。老板要单独跟客户谈价。
 - 四份文件+PDF 已全部切到此版并核对(0 ERP/CRM、0 App、报价单无 0.5/0.2、饼图7块渲染OK)。12 万旧版备份在本会话 scratchpad `backup_120k_*`。
 
-**报价单抬头/签字格式(2026-09-11 加)**：报价单需带①我方抬头 JIMENG NETWORK TECHNOLOGY PTE. LTD. / UEN 202451052R / 114 Lavender Street #12-78 CT Hub 2 S338729；②客户 FABULOUS GENERAL TRADING AND CONSULTANT PTE. LTD. / UEN 202120103R / Attn: Cheng Choon Lee (Director)；③文末「确认与签收」双栏签字区(报价方授权签字 + 客户 Cheng Choon Lee 签字/盖章/日期)。功能设计不放价格也不放签字。⚠️客户从「新加坡鞋包自营品牌」变 FABULOUS(功能设计封面/页脚仍写鞋包品牌,待老板定要不要改)。
+**🔴 报价单标准格式(2026-09-11 老板拍板「以后 quotation 就这个格式」,所有新报价单套用)**：
+- ①**我方抬头**(doc-head 右上,固定不变)：JIMENG NETWORK TECHNOLOGY PTE. LTD. / UEN 202451052R / 114 Lavender Street #12-78 CT Hub 2 S338729
+- ②**致/To 客户块**(info-grid 第一格,逐单改)：客户公司全名 / UEN / Attn: 对方 director (职务)
+- ③**文末「确认与签收 / Acceptance & Acknowledgement」双栏签字区**：左=报价方授权签字(姓名/职务/盖章/日期空白)，右=客户确认签收(预填对方 director 姓名+职务,留签字/公司盖章/日期)
+- 中英两份都要;功能设计文档不放价格、不放签字。
+- 本单客户值：FABULOUS GENERAL TRADING AND CONSULTANT PTE. LTD. / UEN 202120103R / Cheng Choon Lee (Director)。⚠️客户已从「新加坡鞋包自营品牌」变 FABULOUS，但功能设计封面/页脚仍写鞋包品牌——待老板定要不要改(已问,老板未答)。
 
 **🔴 HTML→PDF 方法(可复用)**：**用 Chrome 不用 Edge**——`C:\Users\samso\AppData\Local\Google\Chrome\Application\chrome.exe`。原因:老板 Edge 浏览器开着时,`msedge --headless` 会被打包应用转发给运行中的实例、静默 exit 0 不出文件(Edge 是 packaged app)。Chrome 是独立 binary、老板没开→干净。命令:`chrome --headless=new --disable-gpu --no-sandbox --user-data-dir=<scratchpad临时> --virtual-time-budget=20000 --run-all-compositor-stages-before-draw --no-pdf-header-footer --print-to-pdf=<输出> file:///<url,空格转%20>`；同目录临时副本注入 `@media print{*{print-color-adjust:exact}}`(否则黑底丢色)+ A4。输出先写 scratchpad 再 cp 到「quotation (1)」(路径带空格括号)。验证用 pypdf 抽文本(cp1252 撞中文→ascii-safe)查金额/序号连续/图表 xobject 存在/无 raw flowchart。
 
