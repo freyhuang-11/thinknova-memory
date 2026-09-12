@@ -19,6 +19,7 @@
 | 动片型/案例库/场景表 | [[project-thinknova-film-types]] |
 | 动字幕/画面文字口径 | [[feedback-boss-rulings]](散在 4 个字段,必须同改) |
 | 做探店片型 | [[reference-competitor-gravity-ai]] |
+| 做代理体系/培训/润色/入口大类（对标 quantv） | 🔴 [[reference-competitor-quantv-playbook]] |
 | 下「前台有没有X」的结论 | [[reference-thinknova-frontend-truth]] |
 | 建案例 | [[feedback-case-low-coupling]] |
 | 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
@@ -32,7 +33,7 @@
 | 谈融资/预算 | [[project-thinknova-investor-plan]] |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
-| 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-09_压缩前状态.md`(旧:08-26) |
+| 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-12_压缩前状态.md`(旧:09-09) |
 | 接增长/海外/融资的活 | 🔴 交接档末段「08-30 压缩前交接」+ `03_工作台\海外市场探测计划_2026-08-30.md` 第八节 |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
@@ -116,7 +117,6 @@
 - 🔴🔴🔴 参考图含主图,名额人→景→产品;模型 id 500=MiniMax 字节上限低必挂 → [详](reference_thinknova_multiref_model.md)
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — 探店片型第 0 步;真差距=TTS 声调+切镜密度+台词结构
 - 🔴🔴 [抖音封面对标](reference_douyin_cover_benchmark.md) / [打分校准](reference_cheat_gates_calibration.md) / [横屏 X 式管线](reference_hengping_x_pipeline.md)
-- 🔴 skill:`/xhs-note`、`/xhs-growth`;视频稿四件套按序 → [详](project_thinknova_marketing.md)
 - 🔴 [定价+大使](project_thinknova_pricing_ambassador.md) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个 Agent](project_thinknova_offline_agents.md) / [博客 API](reference_thinknova_blog_ops.md) / [发布深链](reference_thinknova_publish_schemes.md) / [提示词库](reference_prompt_library.md)
 - 🔴 待办总账 → `03_工作台\待办总账_从记忆迁出_2026-08-24.md`;风格改动一律单刀→烧验→老板过目
 
