@@ -49,8 +49,8 @@
 
 ## L0 · 每次开口/动手前
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
-1. 🔴 判断「现在/多久前」先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴 提议≠指令;模糊回复先确认再动手 → [详](feedback_dont_assume_requirements.md)
-2.5 🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板 → [详](feedback_dont_assume_requirements.md) ／ 🔴🔴 多会话:接「上次的活」先看记忆改动时间 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 老板给的词按字面做满,不许自己缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md) ／ 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
+1. 🔴 判断「现在/多久前」先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴🔴🔴 提议≠指令,模糊回复先确认再动手;老板给的词按字面做满,不许自己缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
+2.5 🔴🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板;多会话接「上次的活」先看记忆改动时间 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
 2.95 🔴🔴🔴 拿到技术新文档当场三件事:归档 → 找出被推翻的旧记忆 → 改写它。 只归档不覆盖 = 下次照旧用错口径。
 2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `_memory\子agent任务书模板_2026-09-06.md` 五行;日报三行制进总览顶部 → [详](feedback_deliverable_is_postable.md)
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
@@ -63,10 +63,10 @@
 5. 🔴 指派式 > 禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 微信【多学一点】=按 A/B/C 写、两条走 ThinkNova、其余 ChatGPT 守安全区 → [详](feedback_wechat_learn_safe_zone.md)
 5.4 🔴🔴 微信群=单向输出:提问全周最多 1 次 → [详](feedback_group_oneway_broadcast.md) ／ 🔴🔴 对外文案主语是机器 = 返工:一律翻成客户视角「这些都不用你想」 → [详](feedback_customer_view_not_machine_view.md) ／ 6. 🔴 落库 ≠ 送达:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md) ／ 🔴🔴 英文化已上线;⛔`opsEditable.stagePromptPresets.image_to_video` 运营写不进 → [详](project_thinknova_language_pack_rollout.md)
 6.5 🔴🔴🔴 grok:整条单一语言才活,混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
-7. 🔴🔴🔴 三条链上限与单位都不同,改前先认清改的是哪条链 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 `videoTemplate` 开场黑句 + 首行方括号不许动 → [详](feedback_prompt_change_hard_rules.md#vt-黑场句)
-7.05 🔴🔴🔴 生图链截得很狠,关键规则前置进 `taskGoal.firstFrame` → [详](feedback_prompt_change_hard_rules.md#生图链截断) ／ 🔴🔴🔴 动编剧同看 systemPrompt + outputContract + visualHint → [详](feedback_prompt_change_hard_rules.md#outputcontract) ／ 🔴🔴 加规则前先问「模型能用什么方式满足它而不解决问题」 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 验收:先有修复前基线才算证据;不许拿数值检测器代替人眼看图 → [详](feedback_evidence_standard.md)
-7.19 🔴🔴 `lineValidation` 校验的是剥掉声线外壳后的字数,不是 `line` 原始长度 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴🔴🔴 编剧连挂一半是回退链两个死通道的锅 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴 agent 链负面词挡不住编造→走正面指派;直连文生图相反要写 no text → [详](feedback_prompt_change_hard_rules.md)
-7.1 🔴🔴 visualHint 不许写声线/语调/节奏;声线归 `videoTemplate` → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴 烧单是验证手段不是探索手段:动手前先读现状源 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
+7. 🔴🔴🔴 改提示词前必读这九条:认清改的是哪条链(三条链上限与单位都不同) ／ `videoTemplate` 开场黑句+首行方括号不许动 ／ 生图链截得狠,关键规则前置进 `taskGoal.firstFrame` ／ 动编剧同看 systemPrompt+outputContract+visualHint ／ 加规则前先问「模型能用什么方式满足它而不解决问题」 ／ 编剧连挂一半是回退链两个死通道的锅 ／ agent 链负面词挡不住编造走正面指派,直连文生图相反要写 no text ／ visualHint 不许写声线/语调/节奏(声线归 `videoTemplate`) ／ 烧单是验证手段不是探索手段,动手前先读现状源 → [详](feedback_prompt_change_hard_rules.md)
+7.05 🔴🔴🔴 验收:先有修复前基线才算证据;不许拿数值检测器代替人眼看图 → [详](feedback_evidence_standard.md)
+7.19 🔴🔴 `lineValidation` 校验的是剥掉声线外壳后的字数,不是 `line` 原始长度 → [详](project_thinknova_0729_screenwriter_stack.md)
+7.1 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
 8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
 8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT → 事故档 `02_交付内容\给技术_案例表321条被覆盖_恢复说明_2026-08-23.md`
