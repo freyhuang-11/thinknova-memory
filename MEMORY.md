@@ -38,6 +38,7 @@
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 五道闸依次过:现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
+🔴🔴🔴 第零闸(开口也算动手):每个判断先找反证、查过数据才说,绝对化词一律删;老板反驳先假设他对 → [详](feedback_adversarial_review_before_reply.md)
 
 ## 🔴🔴🔴 L-0.5 · 动手前先查 skill 路由表 → [什么场景用什么 skill](reference_skills_routing.md)
 三条铁规矩:`hyperframes`=视频/动画强制入口 → [详](reference_skills_routing.md)
