@@ -20,6 +20,7 @@
 | 动字幕/画面文字口径 | [[feedback-boss-rulings]](散在 4 个字段,必须同改) |
 | 做探店片型 | [[reference-competitor-gravity-ai]] |
 | 做代理体系/培训/润色/入口大类（对标 quantv） | 🔴 [[reference-competitor-quantv-playbook]] |
+| 填首页案例/灵感库/一键做同款 | 🔴 [[reference-thinknova-home-inspiration-library]] |
 | 下「前台有没有X」的结论 | [[reference-thinknova-frontend-truth]] |
 | 建案例 | [[feedback-case-low-coupling]] |
 | 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
