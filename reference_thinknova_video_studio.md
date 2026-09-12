@@ -124,3 +124,4 @@ metadata:
 - 🔴🔴🔴 09-12 **两条项目并发进配音阶段 → `STUDIO_TTS_CREATE_FAILED` / MySQL `1205 Lock wait timeout` → 整单 failed、积分不退(191/206)、`/compositions` 重试被拒"项目已结束"**（`studio_70aa8e0663ef`、`studio_f59124245184`，各 30s/6 镜）。单独合成的 `studio_74b1255b101f`、`studio_15a149781554` 正常。⛔ 在技术修好前，**合成一次只推一条**。
 - 09-12 语气词对照：同案例 `tcm_s06_full` 原单 6 句 6 个尾巴 → 新规则下 `studio_4e33937abef1` 5 句 0 个，台词仍自然（"热乎劲儿直往骨头缝里钻"）。
 - 09-12 技术称新增系统配置键 `ai.prompt_polish_system_prompt`（后台 系统配置→AI 提示词→润色系统提示词，支持 `{capability}`），但 `admin/api/v1/system-configs` 110 项里**没有任何 `ai.*` 键** → 未见到，待技术确认是否已发。
+- ✅ 09-12 晚 **工作台收尾规则改由 `endingCta` 决定**（此前提示词从未提及该字段，商家"结尾到店"在工作台是死选项；三条收尾规则互搏已合并为一）。验证 `studio_11411b6ed82d`（tcm_s06_full，visit_store）：末句「想试试这种真材实料的放松吗？来店里体验一次颈肩放松推拿吧」；首句为痛点钩子；语气词 2 处。现值 3101 字。⚠️ 老板待定：09-10《成片标准》C1/C5 是否对门店介绍块（S04/S06）豁免——建议 C5 跟 endingCta、C1 只管营销与探店。
