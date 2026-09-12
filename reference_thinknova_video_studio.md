@@ -118,3 +118,7 @@ metadata:
 - 09-11 `scriptwriterPrompt` 加【板块人设】段(现 3156 字):探店 S05/S08 拆开写后,S08 才真的出双人对白(`studio_70aa8e0663ef` A 抛问题/B 揭晓);合并写时会被写成第一视角安利(`studio_f59124245184`)。残留缺陷:S08 倒数第二镜仍出口号式总结。回滚表 `00_规格与参考\ROLLBACK_四板块提示词改动_2026-09-11.md`。
 - 🔴🔴🔴 09-11 **局部修复路径会整单炸:`STUDIO_SCRIPT_INPUT_TOO_LONG` 局部修复上下文超出输入上限**。S08 类案例 `visualHint` 931 字(全库最长 935),一旦首轮输出违规触发修复,修复调用就超限、整单 failed(`studio_bae3ebf8caad` 提示词 3258 字、`studio_379d3f1a465e` 提示词 3024 字,都炸)。**不是提示词长度问题**:同样 931 字案例的 `studio_70aa8e0663ef` 在 3156 字下一次过(没触发修复)。真因=修复上下文本身太肥 → 技术单 B9。
 - 🔴🔴 09-11 **凡是「让某镜台词变短」的提示词规则都会撞每镜字数下限**:广告大片留空 → 无效;「末镜只收梗」→ 4 字被打回(`task_c2738bb921d7`「4 秒建议 15-20 字,实际 4 字」)。写收梗/极简类规则必须同时写「仍要写够系统给的字数下限」。
+- 🔴 09-12 **技术 09-11 批修复已发布**（robots 已改为 https 无端口为证）。线上复验：**B8** `voiceMode=none` 案例不再要音色、三镜 dialogue 全空校验通过（`studio_7f1ca90eb2d4`）；**B9** 昨天必炸的 `mother_baby_s08_drama` 一次过、pacingAudit 记归一（`studio_15a149781554`）——⚠️ 首轮合规未触发修复，"超限降级 repairSkipped" 分支未被踩到。字幕新键 `maxLines/maxCharsPerLine/safeMarginRatio` 已合并进 `studioWorkflow.subtitle` 并回读保留。前台 `copyLanguage` 9 语全部可选。
+- ⚠️ 技术明说 `none` = **成片全静音**（原视频音轨含环境音 BGM 一律不进成片，不是人声分离）→ 广告大片发不出去，要回给技术：none 应=关 TTS/口播字幕但保留音轨或铺 BGM（并入 T4 音床）。待看 `studio_7f1ca90eb2d4` 成片 ffprobe 确认。
+- ⚠️ **B3b 未落地**：`lineValidation.zh_cn`(68) 与 `byLanguage.zh_cn`(60) 两份仍并存，迁移脚本遇异值拒绝，**必须老板定一个值**（我建议 68：老板甜区 4.6–4.9 字/秒×15s，含标点口径）。B1 `videoPromptSuffix` 未注入仍开着；A5 界面错位技术明说不在本次范围；www TLS 仍握手失败。
+
