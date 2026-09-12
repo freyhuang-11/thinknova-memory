@@ -121,4 +121,6 @@ metadata:
 - 🔴 09-12 **技术 09-11 批修复已发布**（robots 已改为 https 无端口为证）。线上复验：**B8** `voiceMode=none` 案例不再要音色、三镜 dialogue 全空校验通过（`studio_7f1ca90eb2d4`）；**B9** 昨天必炸的 `mother_baby_s08_drama` 一次过、pacingAudit 记归一（`studio_15a149781554`）——⚠️ 首轮合规未触发修复，"超限降级 repairSkipped" 分支未被踩到。字幕新键 `maxLines/maxCharsPerLine/safeMarginRatio` 已合并进 `studioWorkflow.subtitle` 并回读保留。前台 `copyLanguage` 9 语全部可选。
 - ⚠️ 技术明说 `none` = **成片全静音**（原视频音轨含环境音 BGM 一律不进成片，不是人声分离）→ 广告大片发不出去，要回给技术：none 应=关 TTS/口播字幕但保留音轨或铺 BGM（并入 T4 音床）。**已实测**：`studio_7f1ca90eb2d4` 成片有 AAC 轨但 mean/max −91 dB、0–15s 一整段 silence；画面本身过关（三镜连贯、有烟有动作）。已发 OPS-PLATFORM-20260912-02 要求 none 保留 i2v 原音轨或并入 T4 音床。
 - ⚠️ **B3b 未落地**：`lineValidation.zh_cn`(68) 与 `byLanguage.zh_cn`(60) 两份仍并存，迁移脚本遇异值拒绝，**必须老板定一个值**（我建议 68：老板甜区 4.6–4.9 字/秒×15s，含标点口径）。B1 `videoPromptSuffix` 未注入仍开着；A5 界面错位技术明说不在本次范围；www TLS 仍握手失败。
-
+- 🔴🔴🔴 09-12 **两条项目并发进配音阶段 → `STUDIO_TTS_CREATE_FAILED` / MySQL `1205 Lock wait timeout` → 整单 failed、积分不退(191/206)、`/compositions` 重试被拒"项目已结束"**（`studio_70aa8e0663ef`、`studio_f59124245184`，各 30s/6 镜）。单独合成的 `studio_74b1255b101f`、`studio_15a149781554` 正常。⛔ 在技术修好前，**合成一次只推一条**。
+- 09-12 语气词对照：同案例 `tcm_s06_full` 原单 6 句 6 个尾巴 → 新规则下 `studio_4e33937abef1` 5 句 0 个，台词仍自然（"热乎劲儿直往骨头缝里钻"）。
+- 09-12 技术称新增系统配置键 `ai.prompt_polish_system_prompt`（后台 系统配置→AI 提示词→润色系统提示词，支持 `{capability}`），但 `admin/api/v1/system-configs` 110 项里**没有任何 `ai.*` 键** → 未见到，待技术确认是否已发。
