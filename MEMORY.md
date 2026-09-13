@@ -50,7 +50,7 @@
 ## L0 · 每次开口/动手前
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断「现在/多久前」先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴🔴🔴 提议≠指令,模糊回复先确认再动手;老板给的词按字面做满,不许自己缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
-2.5 🔴🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板;多会话接「上次的活」先看记忆改动时间 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
+2.5 🔴🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 平台状态总览,⛔不许说「我记忆停在X月」 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
 2.95 🔴🔴🔴 拿到技术新文档当场三件事:归档 → 找出被推翻的旧记忆 → 改写它。 只归档不覆盖 = 下次照旧用错口径。
 2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `_memory\子agent任务书模板_2026-09-06.md` 五行;日报三行制进总览顶部 → [详](feedback_deliverable_is_postable.md)
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
@@ -110,7 +110,7 @@
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型台账](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读;⛔案例表无 model 字段 ／ 🔴🔴🔴 [多参无人声](reference_thinknova_multiref_model.md) — 图越多越不稳,实发砍到 2 张;失败形态=音轨被音乐占满
 - 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md) — 主战场;微信每天出货=硬规定;三条线出稿前必跑 `_check_week/_xhs/_dy.py`
 - 🔴🔴🔴 [小红书线现状](project_thinknova_xhs_line.md) — 写小红书前必读;分享 vs 教只差主语
-- 🔴🔴 [新加坡线下会议线](project_thinknova_sg_events.md) — 每周六;🔴小红书版邀请函绝不能带二维码
+- 🔴🔴 [线下会已停·外部活动线在跑](project_thinknova_sg_events.md) — 08-30 老板停线下会(只办过 08-22);现改去别人的场
 - 🔴🔴🔴 [开场黑场真值](project_thinknova_marketing.md) — 只由案例级 `entranceBlackOverlay` 决定;抽帧避开前 0.6 秒
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) / [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥;「标题必须有」三处全局硬写死
 - 🔴🔴 海报两条结构性事实:`visualHint` 送不到文案模型;尾部「海报标题:」串=服务端硬编码
