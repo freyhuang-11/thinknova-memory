@@ -93,13 +93,14 @@ metadata:
 ## 编剧 input 的完整进食清单(实证 task_40ca1bd2a775)
 
 ```
-case         = {id, title, visualHint}      ← 画面指令唯一入口
+case         = {id, title, visualHint}      ← 画面风格入口;素材分析开启后画面事实另有入口(分析摘要),案例只提供结构(⚠ 09-13 技术文档口径,未部署,线上复验前不当铁律)
 scene        = {id, label}
 industry     = {id, label}                  ← 只有 id 和名字,没有行业 prompt
 language     = {copyLanguage}
 formSnapshot = {ratio, fields, selectedOptions, durationSeconds, segmentCount}
 sellingPoints= [promptText全文, label]      ← 卖点整段喂进去,所以卖点文案会漏进台词
 extraRequirement / hasReferenceImage / referenceImageCount
+materialAnalysis 摘要(仅 masterPipeline.materialAnalysis.enabled=true 且有图;状态看 childTasks.material_analysis / video_prompt_json.materialAnalysisPlan)(⚠ 09-13 技术文档口径,未部署,线上复验前不当铁律)
 systemPromptSource = "screenwriter.systemPrompt"
 ```
 

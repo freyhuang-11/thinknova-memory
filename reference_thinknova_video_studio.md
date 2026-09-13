@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-31T18:16:43.359Z
+  modified: 2026-09-13T14:08:38.827Z
 ---
 
 # 商家视频工作台(长视频自动拼接线)· 现状源
@@ -41,7 +41,7 @@ metadata:
 - ⛔作废「编剧提示词要自己写字数窗口」:上线后**系统按镜头秒数注入最低/目标/最高字数**(3s 7/10/13 … 8s 18/26/36,来源仍 ttsPacing),一次反馈全部违规镜头。运营提示词里的数值规则届时**删掉**,只留「超字数→加长镜头,不删商家事实/优惠」。编剧 prompt 上限 4000 字节,运营模板不被覆盖但受模型上限截。
 - `reviewPolicy` v2:autoApproveFirstSuccess=true(分镜/视频默认采用)、autoGenerateVideos=false、autoCompose=false(默认不自动花钱);老板要的"默认确认一键下一步"=此默认即可。
 - 失败/取消=终态不弹窗不计角标;失败项目有「恢复编辑」入口;中间资产隐藏靠 `repair_studio_visibility_review.php --apply`(需部署人员跑,先 dry-run 备份)。
-- 新错误码:STUDIO_SCRIPT_INPUT_TOO_LONG(必要事实超模型上限,不会静默删)/ STUDIO_CHILD_TASK_CREATE_FAILED / STUDIO_MODEL_ASSET_MISSING。下载改走托管入口,登录失效不启动下载。
+- 新错误码:STUDIO_SCRIPT_INPUT_TOO_LONG(必要事实超模型上限,不会静默删;素材分析摘要占同一预算,未知项多或运营模板长会撞 → 先精简运营提取/编剧规则,不扩模型上限(⚠ 09-13 技术文档口径,未部署,线上复验前不当铁律))/ STUDIO_CHILD_TASK_CREATE_FAILED / STUDIO_MODEL_ASSET_MISSING。下载改走托管入口,登录失效不启动下载。
 - 官网内容:后台「站点→官网内容与版本」多语言 JSON(zh/en/ja/ko/vi/es/th):company{name,description,address}/support.url(仅 HTTPS)/poweredBy[]/pages{about,help.sections,terms,privacy};草稿→发布→可回滚;公共接口 /api/v1/site-content。**素材包要按此结构交付**;未确认的地址/法务/供应商清单技术不发布。
 - 未解:TN 悬浮角标来源未确认(疑第三方组件);海报乱码需可复现样本;线上 15s/30s 真实项目、退款、外部预览未验。
 
@@ -88,7 +88,7 @@ metadata:
 加:接口词只许第一镜、默认顺序范式(砂锅店五句)、不编事实、优惠只在第一或第二镜说一次、不写点击/左下角/关注/私信、中文数字写汉字。烧验 `studio_b794e8ad3c92`→`studio_484825112801`→`studio_66b5165eac15`(花店 S02 member,H3,只到分镜,各≈13 积分):编造/效果承诺消失、句子连贯;残留=优惠仍说两次,提示词压不住,建议交校验层(技术单)。建单 body 现值:`ttsVoice` 必须 `tnsys_*`,`videoModelId` 必填 503/482。⛔GET/PUT 在 robots.txt 轻页做长 sleep 会冻死 tab,轮询用 batch wait 分段。
 
 ## 🔴🔴🔴 2026-09-10 · 建单参考图字段=数字 `assetId`(如 7706),不是字符串 `asset_xxx`(09-06 起我建的花店项目全部无参考图)
-`POST /business-video-studio/projects` 的 `referenceAssets` 正确形状=`[{"role":"person|product|scene|supplement","assetId":7706}]`(数字 id;实测 04:2x `studio_0c593d16eff7` 回读 input 三张全在;传 `assetNo` 字符串或 `assetId:"asset_xxx"` 都被静默丢弃)。回读时 input 显示的是 `assetNo`,所以别照回读格式发;我 09-06/09-07/09-10 用 `assetId` 建的花店项目(64063372c421 / ae50993e1e9c / b794… / 4848… / 66b5… / 97a9…)服务端静默丢弃 → `input.referenceAssets=[]`、每镜 `referenceImageIndexes=[]`、分镜纯文生图。**老板看英文花店「人物画面不连贯」的根因就是这个,不是编剧层。** 有参考图的项目(餐饮 1f41b5f36c77)每镜 refs 非空,说明管线确实按镜用参考图。⛔以后建单后必回读 `input.referenceAssets` 非空再往下走。
+`POST /business-video-studio/projects` 的 `referenceAssets` 正确形状=`[{"role":"person|product|scene|supplement","assetId":7706}]`(数字 id;实测 04:2x `studio_0c593d16eff7` 回读 input 三张全在;传 `assetNo` 字符串或 `assetId:"asset_xxx"` 都被静默丢弃;09-13 新 PATCH /projects/:no/reference-assets 同形状+body.version=lockVersion,仅「素材待处理」阶段可用(⚠ 09-13 技术文档口径,未部署,线上复验前不当铁律))。回读时 input 显示的是 `assetNo`,所以别照回读格式发;我 09-06/09-07/09-10 用 `assetId` 建的花店项目(64063372c421 / ae50993e1e9c / b794… / 4848… / 66b5… / 97a9…)服务端静默丢弃 → `input.referenceAssets=[]`、每镜 `referenceImageIndexes=[]`、分镜纯文生图。**老板看英文花店「人物画面不连贯」的根因就是这个,不是编剧层。** 有参考图的项目(餐饮 1f41b5f36c77)每镜 refs 非空,说明管线确实按镜用参考图。⛔以后建单后必回读 `input.referenceAssets` 非空再往下走。
 同日:storyboardPrompt「不正面对镜说话」改为「开场镜和收尾镜看向镜头(眼神交流/微笑/点头),中间镜看活或看商品」;scriptwriterPrompt 加「有参考图时每镜 referenceImageIndexes 不许为空,人物出镜必带人物图;visualPrompt 写视线方向和表情」。lipSyncModelId=0(无口型同步),dialoguePresentationMode=voiceover。
 
 - 09-10 05:xx:`POST /projects/{no}/cancel`(body {}) 可取消 storyboard_review 项目(7 单已取消);工作台 scriptwriterPrompt 2000 字、storyboardPrompt 735 字现值。
@@ -114,14 +114,14 @@ metadata:
 - 09-10 夜运营侧对冲(能改的部分):`continuity.endHoldMilliseconds` 400→**150**;编剧要求 visualPrompt 写「有头有尾的动作过程(从…到…)」而非静态摆拍、cameraPrompt 每镜必须有位移运镜(固定机位全片最多一镜);分镜要求拍「动作进行中的那一瞬」而非摆好的合影。现值 scriptwriterPrompt 2515 / storyboardPrompt 971。
 
 - 🔴🔴🔴 09-11 **工作台字数窗定案**:每镜独立校验,窗口=`该镜 durationSeconds × studioWorkflow.ttsPacing`(characters 现值 3.6/4.5/5.2 → 5 秒镜 18–26 字,与报错文案逐字吻合 `studio_30a6b023af9d`)。**旧线 `lineValidation` 是另一条链的全片总计,改它对工作台零影响**。旧线那张表还有两份同名副本(`lineValidation.zh_cn` 68 / `lineValidation.byLanguage.zh_cn` 60),运营改的是死的那份 → 技术单 B3b。
-- 🔴🔴🔴 09-11 **工作台做不出无台词广告大片**:服务端对每镜强制台词字数下限,空 dialogue 直接 `STUDIO_SCRIPTWRITER_OUTPUT_INVALID`(`studio_05b2978dd1de`),过短报「5 秒建议 18-26 字」(`studio_30a6b023af9d`)。**旧线 agent 支持 `voiceMode=none`,工作台不支持** → 技术单 B8。临时解:提示词让 S14 tvc 写「画面注解式旁白」(`studio_74b1255b101f` 一次过)。
+- 🔴🔴🔴 09-11 **工作台做不出无台词广告大片**:(09-11 旧态,已被 09-12 B8 与 09-13「字数=建议」覆盖;09-13 口径未部署,线上复验前不当铁律)服务端对每镜强制台词字数下限,空 dialogue 直接 `STUDIO_SCRIPTWRITER_OUTPUT_INVALID`(`studio_05b2978dd1de`),过短报「5 秒建议 18-26 字」(`studio_30a6b023af9d`)。**旧线 agent 支持 `voiceMode=none`,工作台不支持** → 技术单 B8。临时解:提示词让 S14 tvc 写「画面注解式旁白」(`studio_74b1255b101f` 一次过)。
 - 09-11 `scriptwriterPrompt` 加【板块人设】段(现 3156 字):探店 S05/S08 拆开写后,S08 才真的出双人对白(`studio_70aa8e0663ef` A 抛问题/B 揭晓);合并写时会被写成第一视角安利(`studio_f59124245184`)。残留缺陷:S08 倒数第二镜仍出口号式总结。回滚表 `00_规格与参考\ROLLBACK_四板块提示词改动_2026-09-11.md`。
 - 🔴🔴🔴 09-11 **局部修复路径会整单炸:`STUDIO_SCRIPT_INPUT_TOO_LONG` 局部修复上下文超出输入上限**。S08 类案例 `visualHint` 931 字(全库最长 935),一旦首轮输出违规触发修复,修复调用就超限、整单 failed(`studio_bae3ebf8caad` 提示词 3258 字、`studio_379d3f1a465e` 提示词 3024 字,都炸)。**不是提示词长度问题**:同样 931 字案例的 `studio_70aa8e0663ef` 在 3156 字下一次过(没触发修复)。真因=修复上下文本身太肥 → 技术单 B9。
-- 🔴🔴 09-11 **凡是「让某镜台词变短」的提示词规则都会撞每镜字数下限**:广告大片留空 → 无效;「末镜只收梗」→ 4 字被打回(`task_c2738bb921d7`「4 秒建议 15-20 字,实际 4 字」)。写收梗/极简类规则必须同时写「仍要写够系统给的字数下限」。
+- 🔴🔴 09-11 **凡是「让某镜台词变短」的提示词规则都会撞每镜字数下限** → ⚠ 技术 09-13:台词偏长偏短=建议不重试(待线上复验);09-11「撞每镜字数下限整单打回」口径作废,TTS 超时 SHOT_VOICE_TOO_LONG 仍硬拦(⚠ 09-13 技术文档口径,未部署,线上复验前不当铁律)。旧证据:广告大片留空 → 无效;「末镜只收梗」→ 4 字被打回(`task_c2738bb921d7`「4 秒建议 15-20 字,实际 4 字」)。写收梗/极简类规则必须同时写「仍要写够系统给的字数下限」。
 - 🔴 09-12 **技术 09-11 批修复已发布**（robots 已改为 https 无端口为证）。线上复验：**B8** `voiceMode=none` 案例不再要音色、三镜 dialogue 全空校验通过（`studio_7f1ca90eb2d4`）；**B9** 昨天必炸的 `mother_baby_s08_drama` 一次过、pacingAudit 记归一（`studio_15a149781554`）——⚠️ 首轮合规未触发修复，"超限降级 repairSkipped" 分支未被踩到。字幕新键 `maxLines/maxCharsPerLine/safeMarginRatio` 已合并进 `studioWorkflow.subtitle` 并回读保留。前台 `copyLanguage` 9 语全部可选。
 - ⚠️ 技术明说 `none` = **成片全静音**（原视频音轨含环境音 BGM 一律不进成片，不是人声分离）→ 广告大片发不出去，要回给技术：none 应=关 TTS/口播字幕但保留音轨或铺 BGM（并入 T4 音床）。**已实测**：`studio_7f1ca90eb2d4` 成片有 AAC 轨但 mean/max −91 dB、0–15s 一整段 silence；画面本身过关（三镜连贯、有烟有动作）。已发 OPS-PLATFORM-20260912-02 要求 none 保留 i2v 原音轨或并入 T4 音床。
 - ⚠️ **B3b 未落地**：`lineValidation.zh_cn`(68) 与 `byLanguage.zh_cn`(60) 两份仍并存，迁移脚本遇异值拒绝，**必须老板定一个值**（我建议 68：老板甜区 4.6–4.9 字/秒×15s，含标点口径）。B1 `videoPromptSuffix` 未注入仍开着；A5 界面错位技术明说不在本次范围；www TLS 仍握手失败。
 - 🔴🔴🔴 09-12 **两条项目并发进配音阶段 → `STUDIO_TTS_CREATE_FAILED` / MySQL `1205 Lock wait timeout` → 整单 failed、`/compositions` 重试被拒"项目已结束"（⛔老板 09-12：自家测试账号的积分不追退，技术单里别提）**（`studio_70aa8e0663ef`、`studio_f59124245184`，各 30s/6 镜）。单独合成的 `studio_74b1255b101f`、`studio_15a149781554` 正常。⛔ 在技术修好前，**合成一次只推一条**。
 - 09-12 语气词对照：同案例 `tcm_s06_full` 原单 6 句 6 个尾巴 → 新规则下 `studio_4e33937abef1` 5 句 0 个，台词仍自然（"热乎劲儿直往骨头缝里钻"）。
-- 09-12 技术称新增系统配置键 `ai.prompt_polish_system_prompt`（后台 系统配置→AI 提示词→润色系统提示词，支持 `{capability}`），但 `admin/api/v1/system-configs` 110 项里**没有任何 `ai.*` 键** → 未见到，待技术确认是否已发。
+- 09-12 技术称新增系统配置键 `ai.prompt_polish_system_prompt`（后台 系统配置→AI 提示词→润色系统提示词，支持 `{capability}`），但 `admin/api/v1/system-configs` 110 项里**没有任何 `ai.*` 键** → 未见到，待技术确认是否已发;09-13 技术:ai.* 为可选键,缺省=默认值(队列 5 键默认 7200/21600/60/1/60),不出现在列表不代表未发(⚠ 09-13 技术文档口径,未部署,线上复验前不当铁律)。
 - ✅ 09-12 晚 **工作台收尾规则改由 `endingCta` 决定**（此前提示词从未提及该字段，商家"结尾到店"在工作台是死选项；三条收尾规则互搏已合并为一）。验证 `studio_11411b6ed82d`（tcm_s06_full，visit_store）：末句「想试试这种真材实料的放松吗？来店里体验一次颈肩放松推拿吧」；首句为痛点钩子；语气词 2 处。现值 3101 字。⚠️ 老板待定：09-10《成片标准》C1/C5 是否对门店介绍块（S04/S06）豁免——建议 C5 跟 endingCta、C1 只管营销与探店。
