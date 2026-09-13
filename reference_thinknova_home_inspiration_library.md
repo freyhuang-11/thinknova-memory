@@ -24,3 +24,9 @@ metadata:
 
 关联：[[reference-competitor-quantv-playbook]] [[feedback-case-name-matches-output]] [[project-thinknova-film-types]]
 - 后台 UI：`admin.thinknova.top/#/ai/home-assets`（菜单「灵感创意」）；上传表单=文件/能力/模型/提示词/标签；提示词事后不可编辑（技术单 0913-02 要）。官网首页案例区 09-13 实测为静态内容不读接口（同单）。
+
+## 09-14 实测增量
+- 直连 `POST /api/v1/ai/tasks` 现在必须带 `Idempotency-Key` 头(≤128 字节),否则 422014。
+- 直连生图产物落在我们自己的公共桶 `thinknova-previews` 的 `generated-assets/YYYY/MM/<taskNo>_<hash>.png`(publicUrl 是带 OSS 签名的同桶地址):要拿去当案例封面,**用 oss2 在桶内 copy_object 到 `previews/all/<caseId>_v2.png`** 即可,不用下载、不经过签名 URL(09-14 已验:copy 后公共读 200)。凭据文件 `_凭据_勿动/oss_ak.txt`(两行:id/secret),⛔不打印。
+- 旧线 `POST /business-video-assets/tasks`:`extraRequirement` ≤200 字(422010);`outputType:'video'` + `durationSeconds`(10/15)+ `count:1`;selectedOptions.copyLanguage 用 `zh_cn`(用 `zh` 会 500);caseId 不存在或案例 enabled:false 一律 500(不是 422)。
+- 界面语言 8 种:zh/en/ja/ko/vi/es + **th/ms**(09-14 新增);案例 title/summary 与 config 各 label 都要 8 键,缺 th/ms 时前台回退英文。
