@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-08-02T10:27:42.555Z
+  modified: 2026-09-13T13:20:00.001Z
 ---
 
 # 官网博客运营(2026-08-01 技术交付,本期纯 API 无后台页面)
@@ -104,9 +104,13 @@ metadata:
 ### 1. 发布必须走 `POST /articles/{no}/publish`,不是 `PUT status:"published"`
 `PUT` 里带 `status:"published"` **返回 200 code:0,但根本没发**,回读还是 `draft`、`published_at=None`。
 → 又一次印证:**接口回 OK ≠ 生效,判断看回读的实际状态**。
-- `POST /articles/{no}/publish` 立即发布,**不吃 `published_at`** —— 服务端把时间改成"现在"。
-- 所以**博客没有"预约发布"**:要定时只能靠外部定时器到点再调 publish,或者到点手工发。
-  ⛔ 别再写 `published_at` 当定时用,它只是元数据。
+- ✅ **`POST /articles/{no}/publish` body 带 `published_at`(未来 UTC)= 真预约发布**。
+  2026-09-13 实测 6 篇:回读 `status=published` + `published_at` 为未来时间,
+  且**公开接口 `/api/v1/blog/articles` 在那时间之前看不到它** —— 到点才放。
+  ⛔ **本条推翻了这里原来写的「博客没有预约发布能力、`published_at` 只是元数据」**,
+  那句是没试过带参调用就下的结论,已作废,别再引用。
+- 封装在 `03_工作台\博客发布\_publish.py` 的 `schedule(article_no, "YYYY-MM-DD HH:MM")`(中国时间,自带回读);
+  日常入口 `_daily.py check|publish`。⛔ `_schedule.py` 是失效的 PUT 老写法,已加 raise。
 
 ### 2. `PUT` 是整体覆盖 —— 不只覆盖标签,**封面也会被清掉**
 总指挥提醒过「PUT 覆盖标签关联」,我防了 `tag_codes`,**没防 `cover_asset_no`**:
