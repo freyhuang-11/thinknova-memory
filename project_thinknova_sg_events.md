@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-09-13T18:33:33.687Z
+  modified: 2026-09-13T18:34:04.784Z
 ---
 
 # 🔴🔴🔴 先读这一段:自办线下会**已停**,别拿下面的物料当现行计划
@@ -41,8 +41,10 @@ metadata:
 - SME Centre Conference / Business Show Asia 都**不公开报价,只走邮件**
 - 结论:**现阶段先不买展位**,靠免费能演示的小场。
 
-**节奏**:09-09 定了**每周一 08:30 自动扫**新加坡 + 新山(含 Luma)。
-⚠️ 定时任务近期被老板叫停过一批(权限弹窗),**接手时先确认这条还在不在跑**,别假设。
+**节奏**:定时任务 `weekly-sg-jb-events-scan`「【每周一】新加坡+新山活动扫描」
+**09-14 实查 enabled=true,每周一 08:30 自动跑**(cron `30 8 * * 1`),更新活动页 artifact + 桌面清单,**不代报名**。
+⛔ 别再说「这周没扫」——**先 `list_scheduled_tasks` 看 enabled/nextRunAt**,那才是真值。
+(同日被关掉的是另外两条:`daily-blog-runway`、`rednote-schedule-refill`,别搞混。)
 
 ---
 
