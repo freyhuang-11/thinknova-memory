@@ -30,6 +30,7 @@
 | 写小红书 | [[project-thinknova-xhs-line]] |
 | 用哪个 skill | [[reference-skills-routing]] |
 | 做 YouTube Shorts / 看 GSC 搜索数据 | 🔴 `03_工作台\YouTube\管线_YouTubeShorts华语新马_2026-09-15.md` |
+| 接国内营销线的活(微信/小红书/博客/活动/YouTube/GSC) | 🔴 `03_工作台\交接档_2026-09-15_国内营销线_压缩前.md` |
 | 我这条线还有什么没做 | 🔴 `03_工作台\国内营销线_工作总账_2026-09-15.md` |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
