@@ -28,8 +28,9 @@
 | 海报出问题 | [[project-thinknova-poster-video-purge]] |
 | 动输出语言 | [[project-thinknova-sea-languages]] |
 | 写小红书 | [[project-thinknova-xhs-line]] |
-| 做横屏口播片 | [[reference-hengping-x-pipeline]] |
 | 用哪个 skill | [[reference-skills-routing]] |
+| 做 YouTube Shorts / 看 GSC 搜索数据 | 🔴 `03_工作台\YouTube\管线_YouTubeShorts华语新马_2026-09-15.md` |
+| 我这条线还有什么没做 | 🔴 `03_工作台\国内营销线_工作总账_2026-09-15.md` |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
 | 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-15_台词与画面改造.md`(旧:09-13) |
@@ -57,13 +58,12 @@
 
 ## L1 · 改配置/提示词前
 4. 🔴 先查字段读取图:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 配置字段的语义不确定 = 先问技术,绝不凭直觉配 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
-4.6 🔴🔴🔴 提示词≤4000字,废话重复矛盾全删 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴🔴🔴 关键规则一律前置 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 查「有没有某能力」读结构化字段(`capability`),不拿 code/name 正则猜
+4.6 🔴🔴🔴 提示词≤4000字,废话重复矛盾全删;关键规则一律前置 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 查「有没有某能力」读结构化字段(`capability`),不拿 code/name 正则猜
 5. 🔴 指派式 > 禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 微信【多学一点】=按 A/B/C 写、两条走 ThinkNova、其余 ChatGPT 守安全区 → [详](feedback_wechat_learn_safe_zone.md)
 5.4 🔴🔴 微信群=单向输出:提问全周最多 1 次 → [详](feedback_group_oneway_broadcast.md) ／ 🔴🔴 对外文案主语是机器 = 返工:一律翻成客户视角「这些都不用你想」 → [详](feedback_customer_view_not_machine_view.md) ／ 6. 🔴 落库 ≠ 送达:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md) ／ 🔴🔴 英文化已上线;⛔`opsEditable.stagePromptPresets.image_to_video` 运营写不进 → [详](project_thinknova_language_pack_rollout.md)
 6.5 🔴🔴🔴 grok:整条单一语言才活,混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
 7. 🔴🔴🔴 改提示词前必读这九条:认清改的是哪条链(三条链上限与单位都不同) ／ `videoTemplate` 开场黑句+首行方括号不许动 ／ 生图链截得狠,关键规则前置进 `taskGoal.firstFrame` ／ 动编剧同看 systemPrompt+outputContract+visualHint ／ 加规则前先问「模型能用什么方式满足它而不解决问题」 ／ 编剧连挂一半是回退链两个死通道的锅 ／ agent 链负面词挡不住编造走正面指派,直连文生图相反要写 no text ／ visualHint 不许写声线/语调/节奏(声线归 `videoTemplate`) ／ 烧单是验证手段不是探索手段,动手前先读现状源 → [详](feedback_prompt_change_hard_rules.md)
 7.05 🔴🔴🔴 验收:先有修复前基线才算证据;不许拿数值检测器代替人眼看图 → [详](feedback_evidence_standard.md)
-7.19 🔴🔴 `lineValidation` 校验的是剥掉声线外壳后的字数,不是 `line` 原始长度 → [详](project_thinknova_0729_screenwriter_stack.md)
 7.1 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
 8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
@@ -97,7 +97,7 @@
 # ThinkNova(实体店内容 SaaS)
 
 ### 动手前必背
-- 🔴🔴🔴 [编剧层现状源](project_thinknova_0729_screenwriter_stack.md) — 动编剧/长度/台词/烧验第 0 步;`lineValidation`=全片总计
+- 🔴🔴🔴 [编剧层现状源](project_thinknova_0729_screenwriter_stack.md) — 动编剧/长度/台词/烧验第 0 步;`lineValidation`=全片总计、且校验的是剥掉声线外壳后的字数
 - 🔴🔴 [商家端=前台真值](reference_thinknova_frontend_truth.md) / [技术文档索引](reference_thinknova_tech_docs_index.md) / [模型台账](reference_thinknova_multiref_model.md)
 - 🔴🔴 [提示词字段读取图](reference_thinknova_prompt_fields.md) / [场景·选项·案例写入路由](reference_thinknova_option_scene_rules.md)
 - 🔴 [两条管线](reference_thinknova_pipeline_flow.md) / [提示词架构](reference_thinknova_prompt_architecture.md) / [Grok 红线](reference_grok_content_policy.md) / [权限地图](reference_thinknova_config_powers.md) / [路径](reference_thinknova_paths.md)

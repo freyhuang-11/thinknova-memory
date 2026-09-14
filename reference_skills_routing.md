@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-08-11T14:27:00.993Z
+  modified: 2026-09-14T17:25:00.315Z
 ---
 
 # Skills 路由表(34 个,2026-08-11 全量清点)
@@ -99,6 +99,30 @@ metadata:
 | `xiaolan-aroll` | 口播粗剪:去静音停顿、剪掉喊「卡」的废 take、去重复 retake,**全自动但出 EDL 日志** |
 | `xiaolan-broll` | 整条片的 b-roll 动画层 + 逐词弹出卡拉OK字幕,交**带 alpha 的 ProRes MOV 叠加层**(A-roll 不烧进成片) |
 🔴 `xiaolan-broll` **一次都没用过**,而抖音封面/成片正缺这种叠加层。
+
+### 我要做 YouTube Shorts(华语打新马,2026-09-15 老板把这条线交给国内营销)
+🔴 **管线现状源 = `03_工作台\YouTube\管线_YouTubeShorts华语新马_2026-09-15.md`,动手前必开。**
+⛔ 现有两条英文 Shorts(09-04/09-06,507 播放)**一道闸都没走过**,别拿它们当样板。
+
+| 步 | 用什么 | 硬规矩 |
+|---|---|---|
+| ①选题 | `cheat-seed` / `cheat-recommend` / `cheat-trends` | 前 5–6 条**主动选七维差异最大**的,别都发最有把握的同款 |
+| ②写稿 | **小蓝五条公式** + `video-script-style` | 公式在 `00_规格与参考\提示词参考库\参考_2026-07-20_小蓝内容公式拆解…md`,**第三节已翻译到实体店老板受众,别重翻** |
+| ③过闸 | `cheat-score` → **三道闸** | 闸门原文 `对外推介\营销视频_导演台\_cheat\发布闸门.md`:真实性一票否决 / QL≥4 HP≥3 / composite≥6.5(噪声带 6.79)。🔴**改完必须重打分** |
+| ④分镜 | `hurricane-shot-prompt` + `high-retention-hook` + `hkrr-clock` | 图形语法可抄小蓝;⚠️她的奶油纸底+衬线宋体与我们蓝白冲突,**老板没拍板前不许套** |
+| ⑤出片 | 平台烧单 | 合成前向总指挥申请窗口(1205 未修);⛔不许编客户案例 |
+| ⑥验收 | **`03_工作台\YouTube\_check_short.py`** | 机器闸:规格/开场非黑/静音<10%/切镜≥3/字幕。⚠️`成片与封面_固定规则_v1.md` 里假设**有人出镜**的条款(人物居中/盖脸/头顶 y32%)**不适用纯 B-roll** |
+| ⑦上传 | `YouTube\upload.py` | **先跑闸门,非零不传**;`--skip-gate` 必须写理由且永久进台账 |
+| ⑧复盘 | `YouTube\stats.py` → `cheat-retro` → `cheat-bump` | 🔴**完播率是质量信号,播放量是人气信号**;bump 前不许手动改权重凑分 |
+
+### 我要看 SEO / 搜索数据(2026-09-15 老板把 GSC 也交过来)
+| 我在干什么 | 用 |
+|---|---|
+| 站点真实搜索表现 | **`03_工作台\YouTube\gsc.py`** —— 点击/展示/查询词/页面/国家/sitemap 状态 |
+| 爬虫准入 + sitemap 格式 | `03_工作台\周分析\_run.py` |
+🔴 **两个源不一样,别混**:`_run.py` 扫的是**我们自己的 sitemap 文件**;GSC 说的是 **Google 实际索引了什么**。
+实证:`_run.py` 报「协议/端口错 0 条」,而 GSC 里真实索引着 `http://thinknova.top:443/...`。
+⛔ **Index Coverage(未编入索引的原因)和 Crawl Stats 都没有 API**,只能人在网页界面导 CSV——不许编。
 
 ### 我要动 ThinkNova 的提示词
 **`thinknova-prompts`** —— 总台账 + 操作手册。改编剧 systemPrompt / videoTemplate / i2v 预设 /
