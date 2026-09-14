@@ -218,3 +218,24 @@ metadata:
   - 专业案例 `food_s01_new`(hint 348 字)→ `studio_9de9530bdafd` **一次过**,6 镜,台词把店主写的每条事实都用上了:「真的绝了,你们敢信吗?这家窑鸡居然用泥巴烤的!/ 你看这皮,咔嚓一下脆掉,里面的肉还嫩得像豆腐一样。/ 两个人点这一只刚好,八十八块钱就能吃得这么爽。/ 晚上六点以后人特别多,想来的记得提前打电话留位啊。/ 这种古法手艺现在不多了,赶紧带你饭搭子来尝尝喽。/ 就在楼下那家古法窑鸡店,快冲!真的巨好吃。」情绪逐镜不同,末镜有 CTA。**迄今最好的中文输出。**
   - 通用案例 `custom_s01_intro`(hint 289 字)→ `studio_2b2fa2e58261` **连挂两次**(首版 2 镜过短;retry 后 1 镜过长 1 镜过短)。
   - **结论:案例不是摆设,专业案例显著帮助编剧命中字数窗与事实密度。之前「案例可能无用」的担忧被证伪;四板块方案应是给案例层加父级,不是取代它。** 同时证明:商家只用自然语言+参考图,系统能出好稿(产品承诺成立)。
+
+---
+
+# 🔴🔴🔴 2026-09-15 深夜 · 五条实测硬事实(全部抓线上原始请求坐实,推翻多条旧认知)
+
+1. **英文单不走 `languagePacks.en`。** 抓 `task_a9fd5b49c2e4` 的 `raw_request`:`system` 长度 = 主 `screenwriter.systemPrompt` 的字数(中文那份),`languagePacks.en.masterPipeline.scriptwriter.systemPrompt` 里的段落一个都找不到。英文单 = **中文 systemPrompt + copyLanguage 指定输出语言**。→ 改英文行为要改**主中文提示词**,改 en 包是无效功。`languagePacks` 只有 `en`/`zh` 两个键,且 `zh` 包里根本没有 scriptwriter。
+2. **`languagePolicy.map.zh_cn` 的文字进不了生图链。** 实测 `task_83d6557d1edf` 的 firstFramePrompt 与 videoPrompt 里都搜不到该段原文 → `{languageInstruction}` 对 zh_cn 渲染为空(中文是默认语言)。**把「画面人物为华人/东亚长相」这类信息塞 languagePolicy.map 是无效的。** 正解 = 写进 `blockTemplates.task_goal`(海报 agent 早就这么做了,视频 agent 没有,搬过来即生效,实测 `华人` 出现在出站串里)。
+3. **`lineValidation` 计数含标点。** zh_cn 15 秒 = 60–80 **字符**。实测两次失败:84 字符、104 字符(去标点分别只有 72、89)→ 均判 `lines length out of range`。**所以「每句 N 字」的指导必须按「含标点」给,且必须写成算式(区间中值÷shotCount),写死一个宽区间(如「4到12字」)模型会往下限跑,整单判死。**
+4. **shotCount 上限是 6。** 分镜板物理是 3列×2行六格,systemPrompt 的 position 表只有六个格位(上中/上右/下左/下中/下右/上左)。shotCount=7 时第 7 格无格位。
+5. **失败单也能拿到模型原始输出。** `GET /admin/api/v1/offline-store-content/tasks/{父no}` → `data.detail.agentTimeline[]` 里 `kind==='attempt'` 的项带 `raw_request.{system,prompt}` 和 `raw_response.text`(完整 JSON,含 lines)。**这是诊断失败单与核实「提示词到底有没有送到模型」的唯一正路**,比任何推断都可靠。
+
+## 三道服务端硬校验(改编剧提示词前必须确认这三条还在)
+- `lines` 条数严格 == `shotCount` → 否则 `lines count does not match shot count`
+- 每条必须是完整句 → 否则 `lines are incomplete sentences`(实测断句形态:「他指着X想买真」)
+- 总字数落进 `lineValidation` 区间 → 否则 `lines length out of range`
+
+## 老板 09-15 台词口径(增量)
+- **口语接口(其实/说白了/你想啊)可以保留,但必须用对地方**;⛔不许按句序指派(我写过「第3句和倒数第2句必须用接口起头」→ 每单都在第3句塞「其实」,更像念稿)。现行:只在两句之间真有承接/转折/补充关系时才用,全片最多两处不重复。
+- **商品正面的装饰件一律不许在台词里描述**(商标/logo/徽章/字母标/蝴蝶结/扣件/挂饰/金属件/绣标)——分不清是装饰还是品牌标识,说了必错;画面照参考图拍。老板原话:BEME 的 logo 就是鞋子前面那个东西。
+- **「去哪买/到店」全片只说一次**;offer 本身就是「门店有售」这类地点信息又选了到店 CTA 时,两者并成末句一句说完。
+- ⛔禁用空转开头「难得的是」「值得一提的是」;⛔禁用镜头腔入台词「更直观/看得清楚/取近一点/细节有看头/一眼能看到」。
