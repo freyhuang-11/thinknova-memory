@@ -17,6 +17,7 @@
 | 动 grok/H3/参考图/负面词/提示词(旧管线) | [[project-thinknova-language-pack-rollout]] + [[reference-thinknova-multiref-model]] |
 | 动视频工作台/长视频拼接(新管线,与旧线隔离) | 🔴 [[reference-thinknova-video-studio]] |
 | 动片型/案例库/场景表 | [[project-thinknova-film-types]] |
+| 改任何提示词(编剧/识图/画面风格/案例) | 🔴 [[feedback-prompt-conflict-and-hard-checks]] — 先扫互搏、认硬校验、opsEditable 双写 |
 | 动字幕/画面文字口径 | [[feedback-boss-rulings]](散在 4 个字段,必须同改) |
 | 做探店片型 | [[reference-competitor-gravity-ai]] |
 | 做代理体系/培训/润色/入口大类（对标 quantv） | 🔴 [[reference-competitor-quantv-playbook]] |
@@ -27,14 +28,11 @@
 | 海报出问题 | [[project-thinknova-poster-video-purge]] |
 | 动输出语言 | [[project-thinknova-sea-languages]] |
 | 写小红书 | [[project-thinknova-xhs-line]] |
-| 做抖音封面 | [[reference-douyin-cover-benchmark]] |
-| 比较两批打分 | [[reference-cheat-gates-calibration]] |
 | 做横屏口播片 | [[reference-hengping-x-pipeline]] |
 | 用哪个 skill | [[reference-skills-routing]] |
-| 谈融资/预算 | [[project-thinknova-investor-plan]] |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
-| 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-13_压缩前状态.md`(旧:09-12) |
+| 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-15_台词与画面改造.md`(旧:09-13) |
 | 接增长/海外/融资的活 | 🔴 交接档末段「08-30 压缩前交接」+ `03_工作台\海外市场探测计划_2026-08-30.md` 第八节 |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
@@ -118,7 +116,7 @@
 - 🔴🔴 [东南亚语言扩充](project_thinknova_sea_languages.md) — 动输出语言第 0 步;动模板必量最大单字节
 - 🔴🔴🔴 参考图含主图,名额人→景→产品;模型 id 500=MiniMax 字节上限低必挂 → [详](reference_thinknova_multiref_model.md)
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — 探店片型第 0 步;真差距=TTS 声调+切镜密度+台词结构
-- 🔴🔴 [抖音封面对标](reference_douyin_cover_benchmark.md) / [打分校准](reference_cheat_gates_calibration.md) / [横屏 X 式管线](reference_hengping_x_pipeline.md)
+- 🔴🔴 [抖音封面](reference_douyin_cover_benchmark.md)/[打分校准](reference_cheat_gates_calibration.md)/[横屏X](reference_hengping_x_pipeline.md)
 - 🔴 [定价+大使](project_thinknova_pricing_ambassador.md) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个 Agent](project_thinknova_offline_agents.md) / [博客 API](reference_thinknova_blog_ops.md) / [发布深链](reference_thinknova_publish_schemes.md) / [提示词库](reference_prompt_library.md)
 - 🔴 待办总账 → `03_工作台\待办总账_从记忆迁出_2026-08-24.md`;风格改动一律单刀→烧验→老板过目
 
@@ -133,5 +131,5 @@
 - 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读;万万应对分析=内部件绝不外发
 
 # 其他(休眠)
-- [Compass/TikTok](project_compass.md) / [新加坡鞋包](project_sg_footwear_proposal.md) / [小孩数学](project_kid_math_tutoring.md) + [课程表](reference_kid_math_roadmap.md)
+- [Compass](project_compass.md)/[新加坡鞋包](project_sg_footwear_proposal.md)/[小孩数学](project_kid_math_tutoring.md)+[课程表](reference_kid_math_roadmap.md)
 - 🔴🔴 两库入口:本机 `README_从这里开始.md`,Obsidian 书签「① 从这里开始」;归档=移动不是删除;skill 台账 `00_规格与参考\SKILLS与规则总台账_2026-08-11.md`

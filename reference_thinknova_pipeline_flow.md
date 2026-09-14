@@ -47,3 +47,8 @@ metadata:
 - **必须按完整六步在平台跑**,不许只查单个子任务就下结论(接口通≠功能通)。
 - 子任务用 parentTaskNo 串成同一单再看,别把不同单的编剧/分镜/i2v 张冠李戴。
 - 只在平台测,不用直连(客户用平台)→ 见 [[project-thinknova-offline-agents]] / [[reference-thinknova-config-powers]]。
+
+
+## 🔴 09-15 老板当场纠正:旧线没有 TTS
+旧线(`offline_store_video_agent`)的人声由**图生视频模型直接生成**,链路里根本没有 TTS 环节;**只有视频工作台(`offline_store_video_studio`)才有 TTS 层**(`studioWorkflow.ttsModelId`/`ttsVoice`/`ttsPacing`)。
+⛔ 分析旧线成片的声音问题时不许提 TTS、不许拿 TTS 参数解释旧线的静音或断句。
