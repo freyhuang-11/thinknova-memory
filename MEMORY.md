@@ -106,7 +106,7 @@
 - 🔴🔴 [口播/裁格·格网](project_thinknova_0729_koubo_defect.md) — 格网已解;⛔`panel_crop` 不是通用开关
 - 🔴🔴🔴 [片型体系+案例库](project_thinknova_film_types.md) — 场景表 10 个;片型分化已落地;案例条数现拉线上 ／ 🔴🔴🔴 [场景表 = 10 个](reference_thinknova_option_scene_rules.md) — 改名须同改 `scenes[]` 与 `businessActions`
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型台账](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读;⛔案例表无 model 字段 ／ 🔴🔴🔴 [多参无人声](reference_thinknova_multiref_model.md) — 图越多越不稳,实发砍到 2 张;失败形态=音轨被音乐占满
-- 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md) — 主战场;微信每天出货=硬规定;三条线出稿前必跑 `_check_week/_xhs/_dy.py`
+- 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md) — 主战场;⏸微信出货 09-15 起暂停(老板:群里激活不了);三条线出稿前必跑 `_check_week/_xhs/_dy.py`
 - 🔴🔴🔴 [小红书线现状](project_thinknova_xhs_line.md) — 写小红书前必读;分享 vs 教只差主语
 - 🔴🔴 [线下会已停·外部活动线在跑](project_thinknova_sg_events.md) — 08-30 老板停线下会(只办过 08-22);现改去别人的场
 - 🔴🔴🔴 [开场黑场真值](project_thinknova_marketing.md) — 只由案例级 `entranceBlackOverlay` 决定;抽帧避开前 0.6 秒
