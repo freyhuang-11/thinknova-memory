@@ -239,3 +239,49 @@ metadata:
 - **商品正面的装饰件一律不许在台词里描述**(商标/logo/徽章/字母标/蝴蝶结/扣件/挂饰/金属件/绣标)——分不清是装饰还是品牌标识,说了必错;画面照参考图拍。老板原话:BEME 的 logo 就是鞋子前面那个东西。
 - **「去哪买/到店」全片只说一次**;offer 本身就是「门店有售」这类地点信息又选了到店 CTA 时,两者并成末句一句说完。
 - ⛔禁用空转开头「难得的是」「值得一提的是」;⛔禁用镜头腔入台词「更直观/看得清楚/取近一点/细节有看头/一眼能看到」。
+
+---
+
+# 🔴🔴🔴 2026-09-15 下半场 · 结构性真相（全部线上抓包坐实）
+
+## 分镜板的内容格是 5 格不是 6 格
+板子 3列×2行六格,但**左上是纯黑开场格**(`firstFrameTemplate` 明写「左上格=纯黑屏(铁律)…其余五格」)。而 systemPrompt 的 position 表却把「上左」也列为内容位 → 两处打架,模型产出 `boardCells=5` 但 `cells=6`,服务端报「lines count does not match shot count」。
+→ **`cells`/`boardCells`/`lines` 一律各 5 条。shotCount = 5。** 这解释了老板 09-14 就问的「为什么 5 句那条比 7 句那条好用」——5 是这块板子的真实容量,7 和 6 都超。
+
+## 两条线的 4000 单位不同(踩过大坑)
+- 旧线 `screenwriter.systemPrompt`:**4000 字(字符)**,3998 字保存零警告,实际请求正常。
+- 工作台 `studioWorkflow.scriptwriterPrompt`:**4000 字节**。后台提示写 `prompt limit=4000` 但**实测 2776 字节过、3521 字节挂**——因为「商家事实和系统契约另占空间」,提示里的 4000 不可信。
+→ 我按"字"把工作台从 3101 字压到 1614 字,实际仍是 4163 字节,白做一轮。**动哪条线先确认单位。**
+
+## 模型稳定性(2026-09-15 实测,会变,用前现拉)
+- ✅ `gpt-image-2`(448/451) 生图/分镜:零失败
+- ✅ `MiniMax-H3`(503) 图生视频:14 单 12 成功
+- ✅ `deepseek-v4-flash`(486) / `gpt-5.6-luna`(461) 编剧:有回退链
+- ✅ `qwen3.5-omni-flash`(505) **识图**
+- ❌ `gpt-5-6-terra`(485):2 成功 9 失败,**单账号无回退**,一报 500 账号池就空
+- ❌ **505 当编剧**:输出 `Array to string conversion`,格式不合契约(识图没问题)
+- ❌ `gpt-6-astra`(512):已停用,写进配置被服务端 422 拒
+→ **工作台编剧最终设为 486,与旧线同一个模型**(老板指定)。
+
+## 🔴 出站图片走自家代理,供应商拉不动(两条线同一个病根)
+i2v 出站参数里 `image_url` 与 `reference_image_urls` 都是 `https://api.thinknova.top/api/v1/assets/{no}/media?expires=&signature=&provider=1`,而商家原图本就在公共桶 `thinknova-previews.oss-...aliyuncs.com`。
+- 报错 `Provider task failed: content[1].image_url: cannot download media URL`;`content[0]` 是文字,**`content[1]` 是我方生成的六格分镜板**。
+- 无 Cookie 实测这些 URL 全部 200、签名未过期 → **不是失效,是供应商侧拉我方域名失败**,间歇性。
+- 旧线与工作台**同时命中同一个错**。另:`image_url` 与 `reference_image_urls[0]` 是同一张板,重复传一次白占名额。
+
+## 工作台流程有人工闸门(别把"等确认"当"挂了")
+`scriptwriting → storyboard_generating → **storyboard_review** → video_generating → **video_review** → completed`
+推进接口:`POST /api/v1/business-video-studio/projects/{no}/videos`(body `{}` 全量;`{shotNo:N}` 重试单镜)。
+**建项目的正确结构**(传错会被静默忽略):
+```
+fields:{productName,offer,storeName,storeLocation}
+selectedOptions:{copyLanguage:'zh'}   // 不传默认 en!
+referenceAssetNos:['asset_xxx']       // asset_no 字符串,不是数字 id
+videoModelId / ttsModelId / ttsVoice / durationSeconds / ratio / industryId / sceneId / caseId
+```
+⚠️ 我曾把 productName/offer/copyLanguage 传成顶层字段 → `input.fields` 为空、输出英文,**拿空表单的结果误判"工作台质量差"**。
+
+## 诊断入口
+- 失败单的模型原始输出:`GET /admin/api/v1/offline-store-content/tasks/{父no}` → `data.detail.agentTimeline[]` 里 `kind==='attempt'` 带 `raw_request.{system,prompt}` 与 `raw_response.text`。**核实"提示词到底有没有送到模型"的唯一正路。**
+- 工作台失败:项目详情的 `events[]`(`script_task_created` 带 modelId)与 `attention`(带 errorCode/errorMessage/modelId)。
+- 工作台历史配置:`project.configSnapshot`——可取回任意一天的 `studioWorkflow` 原值(09-12 最后一次成功的版本就是这么取回的)。
