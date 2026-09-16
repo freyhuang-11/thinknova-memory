@@ -20,8 +20,6 @@
 | 改任何提示词(编剧/识图/画面风格/案例) | 🔴 [[feedback-prompt-conflict-and-hard-checks]] — 先扫互搏、认硬校验、opsEditable 双写 |
 | 动字幕/画面文字口径 | [[feedback-boss-rulings]](散在 4 个字段,必须同改) |
 | 做探店片型 | [[reference-competitor-gravity-ai]] |
-| 做代理体系/培训/润色/入口大类（对标 quantv） | 🔴 [[reference-competitor-quantv-playbook]] |
-| 填首页案例/灵感库/一键做同款 | 🔴 [[reference-thinknova-home-inspiration-library]] |
 | 下「前台有没有X」的结论 | [[reference-thinknova-frontend-truth]] |
 | 建案例 | [[feedback-case-low-coupling]] |
 | 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
@@ -69,6 +67,8 @@
 8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
 8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
 8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT;title/summary/visualHint 是 {zh,en} 对象,传字符串写进所有语言键;顶层 visualHintEn/titleEn 是野字段必须 delete → 事故档 `02_交付内容\给技术_案例表321条被覆盖_恢复说明_2026-08-23.md`
+8.78 🔴🔴🔴 任何列表接口先读 `pagination.total` 再翻完;admin 案例列表 pageSize 硬上限 60,拿第一页当全量 = 报错数下错结论
+8.79 🔴🔴 卡在中间态 ≠ 跑通;判定成败只认终态（completed/failed）
 8.8 🔴🔴 写入:GET 拿 `x-csrf-token` → 带头 PUT;fetch 在 robots.txt 轻页跑(重 SPA 冻 CDP) → [详](reference_thinknova_paths.md)
 
 ## L1.9 · 🔴🔴🔴 动后台前先开手册 → `00_规格与参考\执行手册_后台操作_2026-08-21.md`
