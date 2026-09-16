@@ -285,3 +285,13 @@ videoModelId / ttsModelId / ttsVoice / durationSeconds / ratio / industryId / sc
 - 失败单的模型原始输出:`GET /admin/api/v1/offline-store-content/tasks/{父no}` → `data.detail.agentTimeline[]` 里 `kind==='attempt'` 带 `raw_request.{system,prompt}` 与 `raw_response.text`。**核实"提示词到底有没有送到模型"的唯一正路。**
 - 工作台失败:项目详情的 `events[]`(`script_task_created` 带 modelId)与 `attention`(带 errorCode/errorMessage/modelId)。
 - 工作台历史配置:`project.configSnapshot`——可取回任意一天的 `studioWorkflow` 原值(09-12 最后一次成功的版本就是这么取回的)。
+
+## 2026-09-16 全量整改后的结构变化（现值一律现拉，这里只记"哪里变了"）
+
+- **字数窗改过一轮**：原来 systemPrompt / 校验器 / 顶层**四个数字互相打架**且语速超行业基准约 30%，已统一并放宽容错。⚠️改窄过一次导致剧情型案例挂 `lines length out of range`，**窗口太紧剧情片写不下**。
+- **感官词规则从"只堵"改成"堵+疏"**：原来⛔口感手感气味一律不许写，导致餐饮被判「馋人档」却一个馋字不能说，台词退化成干货罗列。现在给了替换写法 + **【念出来测试】**（禁书面压缩词：白气上顶/油光锃亮/香气四溢/软糯弹牙/匠心/臻选）。
+- **`ctaRule`** 从 25 字废话改成「动作＋数字落点＋地点落点」三件事 + 六行业动词表。
+- **13 条场景规则的 CTA 尾部曾自相矛盾**（正文说"结尾必须引导到店"、样板说"不写任何邀请"），已统一。
+- **`industryRules` 加了两段公共内容**：按品类的「物理现象词表」+「运镜配额硬上限 3 个且必须带幅度词」。**后者是绕过"生视频层拿不到运营字段"的唯一通道**——实测行业规则进得去 i2v，`taskGoal.video` 进不去。
+- **`negativePromptPolicy.byIndustry` 键名曾全线失配**（键是 `food_beverage`，线上 industryId 是 `ind_food`），已补 18 个 `ind_*` 键。**加键之前餐饮的行业负面词一条都没发出去。**
+- **`systemPrompt` 已超 4000 字上限**（保存不报错但已越界），再加字必须先删等量。
