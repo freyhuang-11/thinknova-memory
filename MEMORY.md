@@ -34,8 +34,8 @@
 | 我这条线还有什么没做 | 🔴 `03_工作台\国内营销线_工作总账_2026-09-15.md` |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
-| 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-16_全量整改后.md`(旧:09-15) |
-| 接增长/海外/融资的活 | 🔴 交接档末段「08-30 压缩前交接」+ `03_工作台\海外市场探测计划_2026-08-30.md` 第八节 |
+| 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-16_全量整改后.md` |
+| 接增长/海外/融资的活 | 🔴 `03_工作台\海外市场探测计划_2026-08-30.md` 第八节 |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 五道闸依次过:现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
@@ -68,7 +68,7 @@
 7.1 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
 8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
-8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT → 事故档 `02_交付内容\给技术_案例表321条被覆盖_恢复说明_2026-08-23.md`
+8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT;title/summary/visualHint 是 {zh,en} 对象,传字符串写进所有语言键;顶层 visualHintEn/titleEn 是野字段必须 delete → 事故档 `02_交付内容\给技术_案例表321条被覆盖_恢复说明_2026-08-23.md`
 8.8 🔴🔴 写入:GET 拿 `x-csrf-token` → 带头 PUT;fetch 在 robots.txt 轻页跑(重 SPA 冻 CDP) → [详](reference_thinknova_paths.md)
 
 ## L1.9 · 🔴🔴🔴 动后台前先开手册 → `00_规格与参考\执行手册_后台操作_2026-08-21.md`
@@ -119,7 +119,7 @@
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — 探店片型第 0 步;真差距=TTS 声调+切镜密度+台词结构
 - 🔴🔴 [抖音封面](reference_douyin_cover_benchmark.md)/[打分校准](reference_cheat_gates_calibration.md)/[横屏X](reference_hengping_x_pipeline.md)
 - 🔴 [定价+大使](project_thinknova_pricing_ambassador.md) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个 Agent](project_thinknova_offline_agents.md) / [博客 API](reference_thinknova_blog_ops.md) / [发布深链](reference_thinknova_publish_schemes.md) / [提示词库](reference_prompt_library.md)
-- 🔴 待办总账 → `03_工作台\待办总账_从记忆迁出_2026-08-24.md`;风格改动一律单刀→烧验→老板过目
+- 🔴 待办总账 → `03_工作台\待办总账_从记忆迁出_2026-08-24.md`;风格改动单刀→烧验→过目
 
 ### 内容与产品规矩
 - [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [缺口双查](feedback_case_gap_dual_check.md) / [小红书交付](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md)
@@ -132,5 +132,5 @@
 - 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读;万万应对分析=内部件绝不外发
 
 # 其他(休眠)
-- [Compass](project_compass.md)/[新加坡鞋包](project_sg_footwear_proposal.md)/[小孩数学](project_kid_math_tutoring.md)+[课程表](reference_kid_math_roadmap.md)
+- [Compass](project_compass.md)/[鞋包](project_sg_footwear_proposal.md)/[小孩数学](project_kid_math_tutoring.md)+[课程表](reference_kid_math_roadmap.md)
 - 🔴🔴 两库入口:本机 `README_从这里开始.md`,Obsidian 书签「① 从这里开始」;归档=移动不是删除;skill 台账 `00_规格与参考\SKILLS与规则总台账_2026-08-11.md`
