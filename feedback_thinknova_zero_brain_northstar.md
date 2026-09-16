@@ -1,5 +1,5 @@
 ---
-name: feedback_thinknova_zero_brain_northstar
+name: feedback-thinknova-zero-brain-northstar
 description: "触发:要做案例/预设/按钮默认值之前 → 站在\"店老板不动脑\"角度,把每个场景×行业×案例组合的出镜/风格/CTA/卖点全部预设满;需要客户琢磨调按钮=失败"
 metadata: 
   node_type: memory

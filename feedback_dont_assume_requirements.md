@@ -1,5 +1,5 @@
 ---
-name: feedback_dont_assume_requirements
+name: feedback-dont-assume-requirements
 description: "触发:要把自己的分析/建议落地执行之前、要在报告里写\"全部/所有/都完成\"之前、或例程里想请示老板之前 → 老板的词按字面做满不许自己缩窄定义;分清\"我提议的\"vs\"老板拍板的\";但例程内能自己拍板的自动跑,老问题不复述"
 metadata: 
   node_type: memory

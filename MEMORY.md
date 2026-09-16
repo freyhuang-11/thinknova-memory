@@ -26,9 +26,10 @@
 | 海报出问题 | [[project-thinknova-poster-video-purge]] |
 | 动输出语言 | [[project-thinknova-sea-languages]] |
 | 写小红书 | [[project-thinknova-xhs-line]] |
-| 用哪个 skill | [[reference-skills-routing]] |
+| **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
+| **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | 做 YouTube Shorts(**全英文+老板音色**) / 看 GSC | 🔴 `03_工作台\YouTube\管线_YouTubeShorts英文配音_2026-09-15.md` |
-| 接国内营销线的活(微信/小红书/博客/活动/YouTube/GSC) | 🔴 `03_工作台\交接档_2026-09-15_国内营销线_压缩前.md` |
+| 接国内营销线的活(微信/小红书/博客/活动/YouTube/GSC/TikTok) | 🔴 `03_工作台\交接档_2026-09-15_国内营销线_压缩前.md` |
 | 我这条线还有什么没做 | 🔴 `03_工作台\国内营销线_工作总账_2026-09-15.md` |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
@@ -36,11 +37,15 @@
 | 接增长/海外/融资的活 | 🔴 `03_工作台\海外市场探测计划_2026-08-30.md` 第八节 |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
-五道闸依次过:现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
-🔴🔴🔴 第零闸(开口也算动手):每个判断先找反证、查过数据才说,绝对化词一律删;老板反驳先假设他对 → [详](feedback_adversarial_review_before_reply.md)
+六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
+🔴🔴🔴 **闸 0(开口也算动手)= 思考三件套,老板 09-17 令「每一个地方都要用上」**:
+**第一性**管「该怎么做」(⛔不许从「别人都这么做」起步;连试三次同类手段不通=强制转第一性)／
+**steelman** 管「方向对不对」(给老板的东西发出前必跑,⛔不许假中立收尾)／
+**对抗审查**管「这句能不能说」(先找反证、查过数据才说,绝对化词一律删,老板反驳先假设他对)
+→ [分工与实战例](feedback_thinking_protocol.md) [逐句筛](feedback_adversarial_review_before_reply.md)
 
-## 🔴🔴🔴 L-0.5 · 动手前先查 skill 路由表 → [什么场景用什么 skill](reference_skills_routing.md)
-三条铁规矩:`hyperframes`=视频/动画强制入口 → [详](reference_skills_routing.md)
+## 🔴🔴🔴 L-0.5 · 动手前先问「这件事有没有现成的 skill 或脚本」 → [场景路由表](reference_skills_routing.md)
+铁规矩:`hyperframes`=视频/动画强制入口 ／ 🔴 **发布一律走脚本、一律预约、一天一条**(老板 09-17:额度扛不住)／ ⛔ 有副作用的脚本调试一律 `--dry`
 
 ## 🔴🔴🔴 L-0.4 · 老板亲口定的口径 → [老板定调集](feedback_boss_rulings.md)
 动内容/提示词/画面规则/增长策略前扫一眼;现行口径全在文件里,索引不复述 → [详](feedback_boss_rulings.md)
@@ -49,7 +54,6 @@
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断「现在/多久前」先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴🔴🔴 提议≠指令,模糊回复先确认再动手;老板给的词按字面做满,不许自己缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 平台状态总览,⛔不许说「我记忆停在X月」 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
-2.95 🔴🔴🔴 拿到技术新文档当场三件事:归档 → 找出被推翻的旧记忆 → 改写它。 只归档不覆盖 = 下次照旧用错口径。
 2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `_memory\子agent任务书模板_2026-09-06.md` 五行;日报三行制进总览顶部 → [详](feedback_deliverable_is_postable.md)
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 写入被拒先原样重试一次再说;唯一硬墙=改我自己的 settings.json 权限段 → [详](feedback_retry_before_escalating.md)
@@ -61,21 +65,17 @@
 5. 🔴 指派式 > 禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 微信【多学一点】=按 A/B/C 写、两条走 ThinkNova、其余 ChatGPT 守安全区 → [详](feedback_wechat_learn_safe_zone.md)
 5.4 🔴🔴 微信群=单向输出:提问全周最多 1 次 → [详](feedback_group_oneway_broadcast.md) ／ 🔴🔴 对外文案主语是机器 = 返工:一律翻成客户视角「这些都不用你想」 → [详](feedback_customer_view_not_machine_view.md) ／ 6. 🔴 落库 ≠ 送达:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md) ／ 🔴🔴 英文化已上线;⛔`opsEditable.stagePromptPresets.image_to_video` 运营写不进 → [详](project_thinknova_language_pack_rollout.md)
 6.5 🔴🔴🔴 grok:整条单一语言才活,混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
-7. 🔴🔴🔴 改提示词前必读这九条:认清改的是哪条链(三条链上限与单位都不同) ／ `videoTemplate` 开场黑句+首行方括号不许动 ／ 生图链截得狠,关键规则前置进 `taskGoal.firstFrame` ／ 动编剧同看 systemPrompt+outputContract+visualHint ／ 加规则前先问「模型能用什么方式满足它而不解决问题」 ／ 编剧连挂一半是回退链两个死通道的锅 ／ agent 链负面词挡不住编造走正面指派,直连文生图相反要写 no text ／ visualHint 不许写声线/语调/节奏(声线归 `videoTemplate`) ／ 烧单是验证手段不是探索手段,动手前先读现状源 → [详](feedback_prompt_change_hard_rules.md)
+7. 🔴🔴🔴 改提示词前必读那九条(改哪条链/开场黑句不许动/关键规则前置/三字段同看/负面词挡不住编造/声线归 videoTemplate…) → [详](feedback_prompt_change_hard_rules.md)
 7.05 🔴🔴🔴 验收:先有修复前基线才算证据;不许拿数值检测器代替人眼看图 → [详](feedback_evidence_standard.md)
 7.1 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
-8.53 🔴🔴 案例名实一致:交付不了就改名,不许挂着做不到的承诺 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 文案说的素材上必须真有;改文案 > 烧新图;排雷逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
-8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT;title/summary/visualHint 是 {zh,en} 对象,传字符串写进所有语言键;顶层 visualHintEn/titleEn 是野字段必须 delete → 事故档 `02_交付内容\给技术_案例表321条被覆盖_恢复说明_2026-08-23.md`
-8.78 🔴🔴🔴 任何列表接口先读 `pagination.total` 再翻完;admin 案例列表 pageSize 硬上限 60,拿第一页当全量 = 报错数下错结论
+8.53 🔴🔴🔴 案例名实一致:交付不了就改名;文案说的素材上必须真有,改文案 > 烧新图,排雷逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
+8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT;{zh,en} 对象传字符串会写进所有语言键;顶层野字段必须 delete → [详](feedback_boss_rulings.md)
+8.78 🔴🔴🔴 任何列表接口先读 `pagination.total` 再翻完;⚠️**两个案例端点的 pageSize 上限不一样(记忆里 20/60 两说)——报数前现拉**,终止条件用 `items.length===0`
 8.79 🔴🔴 卡在中间态 ≠ 跑通;判定成败只认终态（completed/failed）
 8.8 🔴🔴 写入:GET 拿 `x-csrf-token` → 带头 PUT;fetch 在 robots.txt 轻页跑(重 SPA 冻 CDP) → [详](reference_thinknova_paths.md)
 
-## L1.9 · 🔴🔴🔴 动后台前先开手册 → `00_规格与参考\执行手册_后台操作_2026-08-21.md`
-含:动手前五问 / 字节账 / 死字段表 / 写入配方 / 验证四步 / 成片四层验收 / 踩过的坑。
-
 ## L2 · 烧单核验时
-8.85 🔴🔴🔴 烧单前逐条打勾 A–G → `00_规格与参考\烧单前强制自查表_2026-08-18.md`
 8.9 🔴🔴 烧单前报客户视角五要素 → [详](feedback_burn_report_format.md) [详](feedback_evidence_standard.md)
 9. 🔴 逐帧通看;音频量死寂;单帧截图=假结论;证据成对 → [详](feedback_evidence_standard.md) ／ 🔴 烧完先验三件:`task.model` 实际派发、编剧 source、字数落区间 → [详](project_thinknova_0729_screenwriter_stack.md)
 

@@ -1,5 +1,5 @@
 ---
-name: project_sg_footwear_proposal
+name: project-sg-footwear-proposal
 description: "触发:要改新加坡鞋包提案的报价单/功能设计之前 → 文件位置与双语交付口径;改金额要同时改 HTML 和 chart.js 两处硬编码"
 metadata: 
   node_type: memory

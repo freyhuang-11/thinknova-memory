@@ -1,5 +1,5 @@
 ---
-name: reference_thinknova_blog_ops
+name: reference-thinknova-blog-ops
 description: ThinkNova 官网博客运营接口手册要点(2026-08-01 技术交付)——纯 API 无后台页面、需 blog.write 服务令牌、双语必填才能发布、封面必须是平台资产编号。写/发官网博客前必读。
 metadata: 
   node_type: memory

@@ -1,5 +1,5 @@
 ---
-name: reference_competitor_gravity_ai
+name: reference-competitor-gravity-ai
 description: "竞品「引力Ai」(抖音 AI 探店短视频)实测拆解 2026-08-02——产品=商家上传实拍图逐镜 i2v,卖点「1:1还原店铺细节」,画面锁得死的根因是一镜一图不是剪辑。"
 metadata: 
   node_type: memory
