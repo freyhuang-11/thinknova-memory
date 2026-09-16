@@ -5,10 +5,32 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-09-13T14:08:38.827Z
+  modified: 2026-09-16T07:44:07.669Z
 ---
 
 # 商家视频工作台(长视频自动拼接线)· 现状源
+
+## 🔴🔴🔴 2026-09-16 实拉面板真值(对外报数前先看这段;上一份是 09-05,已有三处不对)
+拉法:`api.thinknova.top/robots.txt` 轻页 → `fetch('/api/v1/business-video-studio/config',{credentials:'include',headers:{'x-thinknova-locale':'zh'}})`;
+面板设置全在 `data.studioWorkflow` 和 `data.tts` 里(⚠️ **顶层 `subtitle`/`videoGeneration` 是短视频线的**,`studioWorkflow.subtitle` 才是长视频的)。
+
+| 项 | 真值(09-16) | 旧稿写的 |
+|---|---|---|
+| 🔴 **音色** | **10 个,全部中文**(温柔女青年/奶凶软萌少女/温暖中年男声/电影解说青年男声/走心青年男声/思雨/子涵/天逸/桃千/醇厚中年男声),都有 previewUrl | ❌ 旧写「12 个,英文 4 个(Graceful Lady…)+粤语2+韩语2+日语1」 |
+| 🔴 **英文音色** | **一个都没有**(zh/en 两个 locale 拉回同一份中文名单) | ❌ 旧稿整段「海外场就演英文试听」**会当场翻车** |
+| 输出语言 | **9 种**(zh/en/ja/ko/es/vi/id/ms/th)——管的是**文案与字幕**,不是配音 | — |
+| 🔴 视频比例 | **4 种**:16:9 横屏 / 9:16 竖屏 / 3:4 竖版 / 4:3 横版 | ❌ 旧写「5 种含 1:1/2:3/3:2」——那是**参考图模型** `supported_ratios`,抄串了 |
+| 🔴 单镜头 | **4–6 秒,默认 5**(`min/maxShotDurationSeconds`) | ❌ 旧写 3–8 秒 |
+| 总时长 | 15/20/30/40/60,默认 15 ✅ 没变 | ✅ |
+| 字幕 | `studioWorkflow.subtitle.enabled=**true**`(默认开),字体 **4 种**:Noto Sans SC / ZCOOL KuaiLe / ZCOOL QingKe HuangYou / ZCOOL XiaoWei ✅ 没变 | ✅ |
+| TTS 模型 | MiniMax Speech 2.8 HD(id 506,5 积分/次) ✅ 没变 | ✅ |
+| 口型同步 | `dialoguePresentationMode='voiceover'`、`lipSyncModelId=0` ⇒ **默认不做口型同步**(背景素材别用正脸说话的) | — |
+| 参考图槽 | 四个,优先级 `hero → scene → product → detail` ✅ | ✅ |
+| 视频模型 | `allowedVideoModelIds=[503]` 一个 | — |
+
+⇒ **对外口径**:海外场只能说「**文案和字幕九种语言,配音目前只有中文音色**」;英文口播要自己配
+(我们 YouTube 线就是绕过平台、用火山克隆老板音色做的 → [[reference-voice-clone-pipeline]])。
+两份桌面直播稿(`直播提词器_中英_v2.html` / `直播稿_中文母稿_v2.html`)已按这张表订正。
 
 权威源:`00_规格与参考\技术侧文档\运营说明_商家视频工作台Agent_2026-08-31.md`(技术 v1.0,08-31 发)。以下只是索引摘要,动手前回源。
 
