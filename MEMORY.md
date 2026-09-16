@@ -19,13 +19,11 @@
 | 动片型/案例库/场景表 | [[project-thinknova-film-types]] |
 | 改任何提示词(编剧/识图/画面风格/案例) | 🔴 [[feedback-prompt-conflict-and-hard-checks]] — 先扫互搏、认硬校验、opsEditable 双写 |
 | 动字幕/画面文字口径 | [[feedback-boss-rulings]](散在 4 个字段,必须同改) |
-| 做探店片型 | [[reference-competitor-gravity-ai]] |
 | 下「前台有没有X」的结论 | [[reference-thinknova-frontend-truth]] |
 | 建案例 | [[feedback-case-low-coupling]] |
 | 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
 | 海报出问题 | [[project-thinknova-poster-video-purge]] |
 | 动输出语言 | [[project-thinknova-sea-languages]] |
-| 写小红书 | [[project-thinknova-xhs-line]] |
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | 做 YouTube Shorts(**全英文+老板音色**) / 看 GSC | 🔴 `03_工作台\YouTube\管线_YouTubeShorts英文配音_2026-09-15.md` |
@@ -73,6 +71,9 @@
 8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT;{zh,en} 对象传字符串会写进所有语言键;顶层野字段必须 delete → [详](feedback_boss_rulings.md)
 8.78 🔴🔴🔴 任何列表接口先读 `pagination.total` 再翻完;⚠️**两个案例端点的 pageSize 上限不一样(记忆里 20/60 两说)——报数前现拉**,终止条件用 `items.length===0`
 8.79 🔴🔴 卡在中间态 ≠ 跑通;判定成败只认终态（completed/failed）
+8.791 🔴🔴🔴 报技术单前先穷举自己这一侧（包括主提示词本身）+ 翻自己写过的历史单;错误码≠根因,接口返回长度可能只是显示截断 → 台账 `02_交付内容\u6280术单台账_2026-09-17_自查后现状.md`
+8.792 🔴🔴🔴 工作台提示词上限=**3500 字节**（不是4000字符）;加规矩必须前置到33%位置以前,加在末尾模型不执行
+8.793 🔴🔴 工作台 dialoguePresentationMode=voiceover 且 lipSync 未配:visualPrompt 不许写正脸开口说话,否则嘴型必错
 8.8 🔴🔴 写入:GET 拿 `x-csrf-token` → 带头 PUT;fetch 在 robots.txt 轻页跑(重 SPA 冻 CDP) → [详](reference_thinknova_paths.md)
 
 ## L2 · 烧单核验时
