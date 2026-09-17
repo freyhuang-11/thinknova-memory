@@ -148,3 +148,14 @@ metadata:
 - 09-12 技术称新增系统配置键 `ai.prompt_polish_system_prompt`（后台 系统配置→AI 提示词→润色系统提示词，支持 `{capability}`），但 `admin/api/v1/system-configs` 110 项里**没有任何 `ai.*` 键** → 未见到，待技术确认是否已发;09-13 技术:ai.* 为可选键,缺省=默认值(队列 5 键默认 7200/21600/60/1/60),不出现在列表不代表未发(⚠ 09-13 技术文档口径,线上待复验)。
 - ✅ 09-12 晚 **工作台收尾规则改由 `endingCta` 决定**（此前提示词从未提及该字段，商家"结尾到店"在工作台是死选项；三条收尾规则互搏已合并为一）。验证 `studio_11411b6ed82d`（tcm_s06_full，visit_store）：末句「想试试这种真材实料的放松吗？来店里体验一次颈肩放松推拿吧」；首句为痛点钩子；语气词 2 处。现值 3101 字。⚠️ 老板待定：09-10《成片标准》C1/C5 是否对门店介绍块（S04/S06）豁免——建议 C5 跟 endingCta、C1 只管营销与探店。
 - 🔴🔴🔴 09-13 22:40 线上实测(总指挥亲拉):`studioWorkflow.referenceAnalysis` 现值 enabled=true modelId=505(qwen3.5-omni-flash,enabled) reuseEnabled=true prompt 741 字 → 工作台识图**已开、已配模型、已部署**;后台 7 个 agent updated_at 全为 09-13 21:44(迁移已跑),offline_store_video_studio 21:51 再改一次。对照:旧线 `promptComposer.masterPipeline.materialAnalysis` enabled=false modelId=0(在线上但关着)。模型 480(wan2.7-t2v)后台 enabled=0,直连页文生视频只剩 494/504、图生视频只剩 482/503,「480 收敛 1080P」问题作废。
+
+## 2026-09-17 晚 · 实地真值（推翻我自己写过的三条）
+
+- 🔴 **项目详情页路由 = `/app/business-video-studio/projects/{projectNo}`**；`?project=` 只会打开新建页。
+  ⚠️ **首屏要 9 秒以上才出内容，5-8 秒整页空白** —— 老板两次说「打不开」都是没等够，不是故障。
+- 🔴 **镜头数据在 `project.script.shots`**（不在顶层 `shots`，顶层恒为空数组）；同级还有 `script.referenceManifest`（图的 role/index/assetId 对照表）。识图内容不在项目详情里，要用 admin `GET /admin/api/v1/ai-tasks/{识图taskNo}` 读 output。
+- 🔴🔴 **`referenceImageIndexes` 一直有值**（`[1][2][3][1][2][3]…` 轮转），我说"始终为空"是错的。真毛病是**序号和 visualPrompt 描述的物件不是同一张图**。
+- 🔴🔴 **"编造的空间"要先打开图看再下结论**。我判定「石砌壁炉+皮椅是编的」，实读识图 output 是「右边有个石头砌成的壁炉」——**原图里本来就有**。据此发的技术单是废单。
+- 🔴🔴🔴 **输出语言 9 种 `zh_cn en ja ko es vi id ms th`（含印尼语），但三条线案例库文案只有 6 种 `zh en ja ko vi es`，缺 th/ms/id**。案例合计 2621 条（视频781/海报1091/工作台749）。东南亚客户（Grab 这类）谈合作时这是真缺口，别说成"没有印尼语"。
+- 海报建单 `POST /api/v1/business-assets/tasks`，查详情 `GET /api/v1/business-assets/tasks/{no}` → `data.detail.task`；6 积分/张。`property_agency` 海报案例线上只有 1 条（`property_agency_s03_bestseller`）。
+- **烧完的单当天推到终态或取消，不许留半截**（老板 09-17：「工作台又一堆没完成的文档」；120 个项目里 8 个卡在 storyboard_review 全是我留的）。

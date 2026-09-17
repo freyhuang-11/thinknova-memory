@@ -164,3 +164,32 @@ SHOT_VOICE_TOO_LONG: 第 2 个镜头配音 2.99 秒，超过 2 秒镜头可安�
 → 压缩器处理不了，**对外却抛 `COMPACT_TOO_SMALL`**，让我按"容量不够"排查了一整晚。
 
 **契约改字段时，两条线的识图提示词都要同步扫一遍旧字段名。**
+
+### 5. 🔴🔴🔴 约束模型不要用「你自己核对一遍」——它做不到
+
+工作台编剧要同时输出 `referenceImageIndexes`（数组序号）和 `visualPrompt`（画面描述）。
+我要求它「写完逐镜核对两处指向同一张图，不一致重写」→ **9 镜只对上 4 镜**。
+原因：它填序号走"轮流用满每张图"的机械逻辑，写画面走叙事逻辑，**两套逻辑独立运行，没有回头校验这个动作**。
+
+**有效的替代（按效果排序）**：
+1. **改生成顺序**——「先按图分组，图1给镜1-3、图2给镜4-6，一组写完再写下一组」（内容分组立刻对了）
+2. **把错误模式原样写给它看**——「出现 1,2,3,1,2,3 这种轮转=整条重写」（比抽象规则强）
+3. ⛔ 最没用的就是「写完检查」「确保一致」「核对一遍」
+
+### 6. 🔴🔴 改台词字数前先拉 `ttsPacing`，那是系统校验的真值
+
+我按 `SHOT_VOICE_TOO_LONG` 报错反推，把台词砍成「3秒≤7词」→ 前台每镜弹
+`Dialogue too short · 9 words · Range 13–18 words; target 16 words`，成片会大段留白。
+
+**现行真值（现拉 `studioWorkflow.ttsPacing`，别信这里的数）**：
+`words min2.5/target3.2/max3.7` ／ `characters min3.6/target4.5/max5.2` ／ `speed 1.0-1.15`
+
+**这是个跷跷板：砍太短=留白，写太长=配音超时整单失败。** 两边我都撞过。
+字数窗必须落在 `镜头秒数 × [minPerSecond, maxPerSecond]` 里面，别自己拍脑袋定。
+
+### 7. ⚠️ 修正上面第 4 条：`visibleFacts` 未必是"旧字段"
+
+09-17 实读线上识图子任务 output（admin `GET /admin/api/v1/ai-tasks/{task_no}`），
+返回的就是 `visibleFacts / productFeatures / observedText / unknowns`，**整单正常跑通**。
+所以"新契约拆成 sellingPoints/useCases/targetAudience/shotSuggestion"这套**在线上未必生效**。
+⇒ **动识图字段名前，先读一条真实任务的 output 看它现在实际输出什么**，别照技术文档改。
