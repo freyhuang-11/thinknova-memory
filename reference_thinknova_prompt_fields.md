@@ -117,3 +117,5 @@ systemPromptSource = "screenwriter.systemPrompt"
 **Why**:2026-07-22 一晚押错三次 —— `subjectDefinition.video`(写了不进提交串)、`industryPrompts`(编剧读不到)、并且基于第二次的错误前提下了"配置改了不生效,要发技术卡"的结论,差点把自己的错甩给技术。用户原话:"技术把很多东西已经放在里面了,你明明自己都可以改"。
 
 相关:[[feedback-evidence-standard]] [[reference-thinknova-prompt-architecture]]
+
+- 🔴🔴 语言分两层:**输出语言 vs 界面 i18n**;`visualHint` 只有 `zh` 键喂编剧(09-17 从索引下沉)。

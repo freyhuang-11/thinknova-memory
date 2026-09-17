@@ -159,3 +159,5 @@ metadata:
 - 🔴🔴🔴 **输出语言 9 种 `zh_cn en ja ko es vi id ms th`（含印尼语），但三条线案例库文案只有 6 种 `zh en ja ko vi es`，缺 th/ms/id**。案例合计 2621 条（视频781/海报1091/工作台749）。东南亚客户（Grab 这类）谈合作时这是真缺口，别说成"没有印尼语"。
 - 海报建单 `POST /api/v1/business-assets/tasks`，查详情 `GET /api/v1/business-assets/tasks/{no}` → `data.detail.task`；6 积分/张。`property_agency` 海报案例线上只有 1 条（`property_agency_s03_bestseller`）。
 - **烧完的单当天推到终态或取消，不许留半截**（老板 09-17：「工作台又一堆没完成的文档」；120 个项目里 8 个卡在 storyboard_review 全是我留的）。
+
+- 🔴🔴🔴 **工作台提示词上限 = 3500 字节**(不是 4000 字符);加规矩必须**前置到 33% 位置以前**,加在末尾模型不执行(09-17 从索引下沉)。
