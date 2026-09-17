@@ -27,8 +27,7 @@
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | 做 YouTube Shorts(**全英文+老板音色**) / 看 GSC | 🔴 `03_工作台\YouTube\管线_YouTubeShorts英文配音_2026-09-15.md` |
-| 接国内营销线的活(微信/小红书/博客/活动/YouTube/GSC/TikTok) | 🔴 `03_工作台\交接档_2026-09-15_国内营销线_压缩前.md` |
-| 我这条线还有什么没做 | 🔴 `03_工作台\国内营销线_工作总账_2026-09-15.md` |
+| 接国内营销线的活 / 我还有什么没做 | 🔴 `03_工作台\` 的 `交接档_2026-09-15_国内营销线_压缩前.md` + `国内营销线_工作总账_2026-09-15.md` |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
 | 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-16_全量整改后.md` |
@@ -36,49 +35,45 @@
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
-🔴🔴🔴 **闸 0(开口也算动手)= 思考三件套,老板 09-17 令「每一个地方都要用上」**:
-**第一性**管「该怎么做」(⛔不许从「别人都这么做」起步;连试三次同类手段不通=强制转第一性)／
-**steelman** 管「方向对不对」(给老板的东西发出前必跑,⛔不许假中立收尾)／
-**对抗审查**管「这句能不能说」(先找反证、查过数据才说,绝对化词一律删,老板反驳先假设他对)
-→ [分工与实战例](feedback_thinking_protocol.md) [逐句筛](feedback_adversarial_review_before_reply.md)
+🔴🔴🔴 **闸 0(开口也算动手)= 三件套**(老板 09-17「每一个地方都要用上」):第一性=「该怎么做」⛔不许从「别人都这么做」起步、连试三次不通强制转;steelman=「方向对不对」给老板前必跑、⛔不许假中立;对抗审查=「这句能不能说」。跑完结论没变又说不出放弃了什么=没跑 → [详](feedback_thinking_protocol.md) [逐句筛](feedback_adversarial_review_before_reply.md)
 
-## 🔴🔴🔴 L-0.5 · 动手前先问「这件事有没有现成的 skill 或脚本」 → [场景路由表](reference_skills_routing.md)
-铁规矩:`hyperframes`=视频/动画强制入口 ／ 🔴 **发布一律走脚本、一律预约、一天一条**(老板 09-17:额度扛不住)／ ⛔ 有副作用的脚本调试一律 `--dry`
+## 🔴🔴🔴 L-0.5 · 动手前先问「有没有现成 skill/脚本」 → [场景路由表](reference_skills_routing.md)
+`hyperframes`=视频/动画强制入口 ／ 🔴 发布一律走脚本+预约+一天一条 ／ ⛔ 有副作用的脚本调试一律 `--dry`
 
 ## 🔴🔴🔴 L-0.4 · 老板亲口定的口径 → [老板定调集](feedback_boss_rulings.md)
-动内容/提示词/画面规则/增长策略前扫一眼;现行口径全在文件里,索引不复述 → [详](feedback_boss_rulings.md)
+动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
 
 ## L0 · 每次开口/动手前
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
-1. 🔴 判断「现在/多久前」先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴🔴🔴 提议≠指令,模糊回复先确认再动手;老板给的词按字面做满,不许自己缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
-2.5 🔴🔴 例程内能自己拍板的自动跑,别每天拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 平台状态总览,⛔不许说「我记忆停在X月」 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 「几天没落库/零变化」不许推出「他没干活」 → [详](feedback_silence_is_not_evidence.md)
+1. 🔴 判断时间先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴🔴🔴 提议≠指令;老板的词按字面做满,⛔不许缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
+2.5 🔴🔴 例程内自己拍板,别拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 总览 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 零变化≠他没干活 → [详](feedback_silence_is_not_evidence.md)
 2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `_memory\子agent任务书模板_2026-09-06.md` 五行;日报三行制进总览顶部 → [详](feedback_deliverable_is_postable.md)
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 写入被拒先原样重试一次再说;唯一硬墙=改我自己的 settings.json 权限段 → [详](feedback_retry_before_escalating.md)
 3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md)
 
 ## L1 · 改配置/提示词前
-4. 🔴 先查字段读取图:拉一条真实任务 input,确认目标字段真在里面 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 配置字段的语义不确定 = 先问技术,绝不凭直觉配 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
+4. 🔴 先查字段读取图,拉真实任务 input 确认字段真在 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 字段语义不确定=先问技术 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
 4.6 🔴🔴🔴 提示词≤4000字,废话重复矛盾全删;关键规则一律前置 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 查「有没有某能力」读结构化字段(`capability`),不拿 code/name 正则猜
 5. 🔴 指派式 > 禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 微信【多学一点】=按 A/B/C 写、两条走 ThinkNova、其余 ChatGPT 守安全区 → [详](feedback_wechat_learn_safe_zone.md)
-5.4 🔴🔴 微信群=单向输出:提问全周最多 1 次 → [详](feedback_group_oneway_broadcast.md) ／ 🔴🔴 对外文案主语是机器 = 返工:一律翻成客户视角「这些都不用你想」 → [详](feedback_customer_view_not_machine_view.md) ／ 6. 🔴 落库 ≠ 送达:PUT 200 只证明写进库;前台/烧单看见才算上线 → [详](feedback_evidence_standard.md) ／ 🔴🔴 英文化已上线;⛔`opsEditable.stagePromptPresets.image_to_video` 运营写不进 → [详](project_thinknova_language_pack_rollout.md)
+5.4 🔴🔴 微信群=单向输出,提问全周≤1 → [详](feedback_group_oneway_broadcast.md) ／ 🔴🔴 对外文案主语是机器=返工 → [详](feedback_customer_view_not_machine_view.md) ／ 6. 🔴 落库≠送达 → [详](feedback_evidence_standard.md) ／ 🔴🔴 ⛔`opsEditable.stagePromptPresets.image_to_video` 运营写不进 → [详](project_thinknova_language_pack_rollout.md)
 6.5 🔴🔴🔴 grok:整条单一语言才活,混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
 7. 🔴🔴🔴 改提示词前必读那九条(改哪条链/开场黑句不许动/关键规则前置/三字段同看/负面词挡不住编造/声线归 videoTemplate…) → [详](feedback_prompt_change_hard_rules.md)
 7.05 🔴🔴🔴 验收:先有修复前基线才算证据;不许拿数值检测器代替人眼看图 → [详](feedback_evidence_standard.md)
 7.1 🔴🔴🔴 交付件=能直接发:无 .bak、无自查注、txt utf-8-sig、键帽换 ①②③ → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向:附「作用域仅X、不碰Y」+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动「前端会读的字段」先改一条验,别一次铺满 → [详](project_thinknova_dingdian_koubao.md)
-8.53 🔴🔴🔴 案例名实一致:交付不了就改名;文案说的素材上必须真有,改文案 > 烧新图,排雷逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档;500 诊断法 → [详](project_thinknova_brand_product_industry.md)
+8.53 🔴🔴🔴 案例名实一致;文案说的素材必须真有,逐样打开看 → [详](feedback_case_name_matches_output.md) ／ 🔴🔴🔴 改一个案例只影响这一个 → [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档 → [详](project_thinknova_brand_product_industry.md)
 8.75 🔴🔴🔴 案例 PUT=整体覆盖:GET 整条→全字段 PUT;{zh,en} 对象传字符串会写进所有语言键;顶层野字段必须 delete → [详](feedback_boss_rulings.md)
 8.78 🔴🔴🔴 任何列表接口先读 `pagination.total` 再翻完;⚠️**两个案例端点的 pageSize 上限不一样(记忆里 20/60 两说)——报数前现拉**,终止条件用 `items.length===0`
 8.79 🔴🔴 卡在中间态 ≠ 跑通;判定成败只认终态（completed/failed）
-8.791 🔴🔴🔴 报技术单前先穷举自己这一侧（包括主提示词本身）+ 翻自己写过的历史单;错误码≠根因,接口返回长度可能只是显示截断 → 台账 `02_交付内容\u6280术单台账_2026-09-17_自查后现状.md`
+8.791 🔴🔴🔴 报技术单前先穷举自己这一侧（包括主提示词本身）+ 翻自己写过的历史单;错误码≠根因,接口返回长度可能只是显示截断 → → [详](feedback_tech_doc_checklist.md)
 8.792 🔴🔴🔴 工作台提示词上限=**3500 字节**（不是4000字符）;加规矩必须前置到33%位置以前,加在末尾模型不执行
 8.793 🔴🔴 工作台 dialoguePresentationMode=voiceover 且 lipSync 未配:visualPrompt 不许写正脸开口说话,否则嘴型必错
 8.8 🔴🔴 写入:GET 拿 `x-csrf-token` → 带头 PUT;fetch 在 robots.txt 轻页跑(重 SPA 冻 CDP) → [详](reference_thinknova_paths.md)
 
 ## L2 · 烧单核验时
 8.9 🔴🔴 烧单前报客户视角五要素 → [详](feedback_burn_report_format.md) [详](feedback_evidence_standard.md)
-9. 🔴 逐帧通看;音频量死寂;单帧截图=假结论;证据成对 → [详](feedback_evidence_standard.md) ／ 🔴 烧完先验三件:`task.model` 实际派发、编剧 source、字数落区间 → [详](project_thinknova_0729_screenwriter_stack.md)
+9. 🔴 逐帧通看+量死寂,单帧截图=假结论 → [详](feedback_evidence_standard.md) ／ 🔴 烧完验三件:`task.model`/编剧 source/字数 → [详](project_thinknova_0729_screenwriter_stack.md)
 
 ## L3 · 给技术发文档前
 12/14. 🔴 给技术只发技术才能处理的 → [详](reference_tech_doc_submission_spec.md) [自检](feedback_tech_doc_checklist.md)
@@ -89,7 +84,7 @@
 ## L5 · 环境红线(违反 = 事故)
 20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀 → [详](feedback_kill_python_scope.md) ／ 🔴🔴 签名 OSS URL 会把 AccessKeyId 带进产物;入库/外发前扫一遍 `LTAI`/`AKID`/`Signature=`
 22. 🔴 线上 config=唯一真值,禁种子覆盖 → [详](feedback_dont_edit_prod_config_structure.md) ／ 🔴🔴 上下文唯一杠杆=减少往返:一段 JS 干完一整套只回摘要 → [详](feedback_context_budget_discipline.md)
-23. 记忆只留当前状态不堆矛盾层 → [详](feedback_memory_keep_current.md) ／ 🔴 规则写 WHAT+DONE、只留六类、skill 描述短 → [详](feedback_rule_hygiene.md);老板发的提示词当天归档 → [详](reference_prompt_library.md)
+23. 记忆只留当前状态 → [详](feedback_memory_keep_current.md) ／ 🔴 规则写 WHAT+DONE → [详](feedback_rule_hygiene.md);老板发的提示词当天归档 → [详](reference_prompt_library.md)
 ---
 
 # 用户与沟通
@@ -120,6 +115,7 @@
 - 🔴🔴 [竞品·引力Ai/萍萍拆解](reference_competitor_gravity_ai.md) — 探店片型第 0 步;真差距=TTS 声调+切镜密度+台词结构
 - 🔴🔴 [抖音封面](reference_douyin_cover_benchmark.md)/[打分校准](reference_cheat_gates_calibration.md)/[横屏X](reference_hengping_x_pipeline.md)
 - 🔴 [定价+大使](project_thinknova_pricing_ambassador.md) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md) / [两个 Agent](project_thinknova_offline_agents.md) / [博客 API](reference_thinknova_blog_ops.md) / [发布深链](reference_thinknova_publish_schemes.md) / [提示词库](reference_prompt_library.md)
+- 🔴🔴🔴 **后台 = `admin.thinknova.top`,cookie 鉴权(老板号 super_admin)** —— ⛔ 博客 token 敲 admin 一律 401,那是用错钥匙不是没权限;要读 `users`/`orders` 走浏览器会话 → [详](reference_thinknova_paths.md)
 - 🔴 待办总账 → `03_工作台\待办总账_从记忆迁出_2026-08-24.md`;风格改动单刀→烧验→过目
 
 ### 内容与产品规矩
