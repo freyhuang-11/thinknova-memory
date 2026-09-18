@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-09-16T07:49:49.702Z
+  modified: 2026-09-18T10:48:18.931Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -20,6 +20,7 @@ metadata:
 - 🔴 **改完必须重启控制台**:`run.py` 把 cap 算成 `OUTREACH_MAILBOXES` 塞进 os.environ,常驻 console 进程在启动那一刻就定死了;
   console 派 `daily_send.py` 是继承自己的 env,**不重新读 run.py**。按 PID 杀(⛔别 `taskkill /IM python`)再跑 `autostart_console.bat`,然后 `/api/status` 回读验。
 - ⛔ **sam@ 不许再往上抬**(它撞过 550 日发上限被限到 ~69,压 60 养着);要上量只能爬 hello@。
+- 🔴 **对外实发文案 = `templates.py`,不是任何"指令/制度"文档**。产品/定价/合规口径一变(如 09-18 定 399 单层、砍招下级),必须扫 templates.py 本身,不能只改文档。09-18 已扫:templates.py 零 159/reseller/招下级/代理/返点语言(实发只说 free credits)——干净。(纪律来自总指挥:定义变更→当场列全下游物料逐个扫,别靠记忆认为"我知道改了";同一个错那天在 4 份文件复制过。)
 
 ## 🔴🔴 2026-09-16 · 新方向:打**服务商**(B2B2C),不只打店主
 老板 09-16:「海外推广这个平台,不止是想 toC,想看看有没有那些服务类的公司,可以用我们的产品给客户生产内容」。
