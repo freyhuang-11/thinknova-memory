@@ -32,6 +32,14 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - API:`https://api.thinknova.top`
 
 ## 后台 API(cookie 鉴权,base `/admin/api/v1`)
+> 🔴 **401 ≠ 端点存在**(2026-09-20 实证)。鉴权中间件**在路由之前**应答:
+> 钥匙不对 → 401「Service token is required」,钥匙对但路径不存在 → 404。
+> ⇒ 拿 401 当「端点在,只是权限不够」是**假线索**,必须用对的钥匙再敲一次才算数。
+> 实例:`/admin/api/v1/blog/articles/stats` admin cookie 敲是 401,service token 敲是 **404**。
+> 🔴 顺带坐实:**官网零统计** —— 服务端 HTML + 12 个 `_nuxt` bundle 全扫无任何统计脚本;
+> 博客端 `/stats` `/analytics` `/views` 系列全 404;文章对象 20 个字段里**没有任何浏览量字段**。
+> ⇒ `?src=` 这类参数**落不了地**,唯一可数的来源信号 = **wa.me 预填文案**(人点开自带一句话)。
+
 - `GET /agents` 列表(含每个agent的 config 对象,字段名是 `config` 不是 config_json;offline_store_video=id4/offline_store_content=id3)
 - `PUT /agents/{code}` 保存(body=完整agent对象,`GET /agents/{code}` → data.agent)。🔴🔴 **07-31 解锁的唯一正解:任意 GET 的响应头里拿 `x-csrf-token`,PUT 时带上该头 = code 0 直连落库**(含 businessUi 子树,placeholderDefaults 实证送达)。商家端建单 POST 同理必带此头(缺=419)。**旧的 419-UI 弹窗 textarea 法、剪贴板人工法全部废弃**。⚠️ 重 SPA 页(#/ai/agents、任务中心)常把 CDP 冻死——**一律在 `admin.thinknova.top/robots.txt` 或 `thinknova.top/robots.txt` 轻页里跑 fetch**;大 JSON 灌浏览器走本地 CORS 服务器(须答 OPTIONS+Access-Control-Allow-Private-Network)。
 - `GET /ai-tasks` 任务列表(prompt字段截断到280;有capability/status/model_name/prompt;**支持 `capability=screenwriter` 过滤、`page_size` 上限 60**)
