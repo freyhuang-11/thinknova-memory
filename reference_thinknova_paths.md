@@ -124,3 +124,37 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **Obsidian 入口**:书签栏第一条「① 从这里开始」=`START_HERE.md`(54行,五条线直达)。`_memory` 50→**28个**,7月逐日流水29份+旧版4份+模板4份进 `_archive/`(全 `git mv`,历史未断)。commit `e614cc7` 已验证远端。
 - 🔴 **两库分工要记住**:ThinkNova 产品线/海外营销在 Obsidian;**国内营销、新加坡线下会、投资人三条线的文件在本机库**,不在 Obsidian(START_HERE 已标真实路径)。
 - ✅ **密钥已加 .gitignore**(08-11):本机库根目录 4 个密钥(oss_ak/manxue_ak/siliconflow_key/volcengine_speech_key)**从未被 git 跟踪、历史也无记录**,已写 `.gitignore` 覆盖 `*ak.txt/*key.txt/*secret*/*token*/*.env` 并 `git check-ignore` 逐个验证。文件本身一字未动。该库 git 最后提交停在 07-01,老板 08-11 定"留着"。
+
+## 🔴🔴🔴 2026-09-19 实测:agent 线建单配方(**通了,2/2 成功**),推翻上面几条旧记录
+**实测 body(直接抄,`POST /api/v1/business-video-assets/tasks`,头带 `x-csrf-token`+`x-thinknova-locale:zh`)**:
+```
+{businessScenario:'new_item', caseId:'food_beverage_gen_s03', industryId:'ind_food',
+ outputType:'video', productName:'...', offer:'...', durationSeconds:15,
+ selectedOptions:{copyLanguage:'en',videoRatio:'9:16',platform:'tiktok',
+   videoStyle:'real_store_promo',appearanceMode:'owner_speaking',
+   visualFocus:'hands_on_process',endingCta:'visit_store',
+   paceLevel:'medium_high',locationEmphasis:'ending'},
+ sellingPoints:['selling_point_pro_service']}
+```
+- 🔴 **`industryId` 要用前台大类 `ind_food`**(不是 `food_beverage`);大类表在 config.industryFilters
+- 🔴 **`outputType` 现在只有 `'video'`** —— 旧记的 `video_10s`/`video_30s_compound` **已废**
+- 🔴🔴🔴 **时长档位只有 10 和 15,没有 30 秒**(`config.pricing.video` 的 key)。**30 秒只能走工作台线**。⇒ 对外别承诺 30 秒
+- 🔴🔴 **`config.subtitle.enabled = false`** —— agent 线**不出字幕**,建单参数里也没有字幕项。⇒ `endingCta` 设了也**落不到画面上**,只能进配音
+- **案例列表**:`GET /business-video-assets/reference-cases?industryId=ind_food` → `data.items`(24 条);`food_beverage_gen_s03`=招牌菜,最常用
+- **全默认 = 缺省不是基线**:七个 selectedOptions 不给,出来的是一镜到底、无卖点、无 CTA 的废片。**必须给全**
+- **实测耗时/成本**:15 秒 = **75 积分**,建单→出片 **248~258 秒**,2/2 一次成功(n=2,不是成功率)
+- ⚠️ **15 秒档场景连续性会断**(台面/地面中途变化),**补全七个参数也消不掉** ⇒ 是模型问题不是操作问题。10 秒档是否同样未验
+
+## 🔴 2026-09-19 积分与售价换算(`GET /api/v1/billing/plans`)
+- **starter $29.80=2980 积分 / creator $99.80=10780 / pro $198=22180** ⇒ **US$1 ≈ 100 积分**
+- ⇒ agent 15 秒片 75 积分 ≈ **US$0.75**;工作台 30 秒 342 积分 ≈ **US$3.42**
+- ⇒ 399 代理包(换 570 额度=57000 积分)的账**对内有说服力,⛔对外别说单条成本**(把成本摊给代理看=觉得被宰)
+- **Stripe 已接**,`/admin/api/v1/orders` 有真实 paid 订单(`order_type:subscription`);用户表已有 `invite_code`/`is_promo_ambassador`
+- ⚠️ **「人工给某用户开额度」的入口仍未验到** = 不知道,不是不通。admin UI 扩展读不了,API 探测被权限分类器拦
+
+## 🔴 2026-09-19 品牌风险检测方法(评论线校准,已验证)
+**`-t 4 -vf "fps=2,scale=480:-1,tile=4x2"` 扫首 4 秒** —— 时间密度和分辨率都够。
+- ⛔ **fps 高但 scale 小(如 fps=10/scale=200)一样会漏**:能看到"那儿有个招牌"但认不出字。**分辨率不够比抽帧太稀更隐蔽**
+- 🔴 **开扫前必须拿已知阳性样本校准**,校准不过不开扫。用未校准方法交的"全部干净"台账比没有更危险
+- 🔴 **库里老片只用来"给他看个样子",⛔绝不当成品交付**:老片带历史(真实招牌/AI乱码/别人品牌),新烧的片从零生成没有历史 ⇒ 走"现场收照片→当天出片"这条路,品牌风险从根上消失
+- 多条片**第 0 帧的缩略图残影 = 编码问题**,不是单条片瑕疵,别误判
