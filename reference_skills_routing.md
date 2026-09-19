@@ -132,6 +132,7 @@ metadata:
 | 查爬虫准入/sitemap | `周分析\_run.py` | 🔴 它扫的是**我们自己的 sitemap 文件**;GSC 说的是 **Google 实际索引了什么**。两个源别混 |
 | 发小红书 | `rednote发布\_auto\publish.py` | Playwright + 持久化登录态;🔴 提交键是**闭合 shadow root**,DOM 找不到 → 截图找红像素点坐标 |
 | 发 TikTok | `TikTok\_auto\tt_post.py` | 🔴 **CDP 连老板自己的 Chrome**,先双击 `_auto\start_chrome_debug.bat`;job 没 `schedule` **直接拒跑** |
+| 给成片烧硬字幕(FB/IG 静音位必需) | `字幕烧录\_burnsub.py` | faster-whisper 转写 → ASS → ffmpeg 烧,音轨 `-c:a copy`。🔴 **先 `--dry` 看文字**(ASR 会听错:实测把 *the prep* 听成 *the preposition*),错了自己写 srt 再 `--srt` 烧。字幕锚在 y≈65–70%,⛔ 不进 y72%+ 牺牲带。⛔ **不走 HyperFrames** —— 在已有 mp4 上叠时间轴文字 ≠ 渲染动画,走 HF 多一次浏览器渲染+重编码+音画漂移风险 |
 | 发博客 | `博客发布\_pub7.py` | create → 配封面 → 预约;一天一篇 |
 | 发冷邮件 | `邮件推广系统\run.py` | cap 在 `MB_CAPS`;⚠️**只抬 cap 不抬 `DAILY_TARGET` = 白抬** |
 | 出稿前过机器闸 | `_check_xhs.py` / `_check_dy.py` / `群内容\_check_week.py` | 三条线出稿前必跑;⛔ 不许为了过闸改阈值 |
