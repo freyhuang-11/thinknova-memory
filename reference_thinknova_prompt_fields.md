@@ -119,3 +119,22 @@ systemPromptSource = "screenwriter.systemPrompt"
 相关:[[feedback-evidence-standard]] [[reference-thinknova-prompt-architecture]]
 
 - 🔴🔴 语言分两层:**输出语言 vs 界面 i18n**;`visualHint` 只有 `zh` 键喂编剧(09-17 从索引下沉)。
+
+## 🔴 `offer` 会被编剧**近乎原样讲出来**（2026-09-20 实测，成对证据）
+
+| | |
+|---|---|
+| 输入 `offer` | `Bugis Street shop in Singapore, open till ten at night` |
+| 成片台词第 4 句 | `The Bugis Street Shop in Singapore is open till 10 at night.` |
+
+任务号 `task_1d5a269ba654`（英文、15s、agent 线）。措辞有轻微改写 ⇒ **是模型行为，不是硬编码照搬**，
+但**内容整条穿过来了**，而且进了配音、也会进字幕。
+
+⇒ **`offer` 要当「会被念出来的句子」写，不是当「给模型看的背景设定」写。**
+⛔ 真实地名、门牌、营业时间、电话、价格**一律不进 `offer`** —— 写进去就是一条
+关于不存在的店的公开事实陈述，撞⛔不编造门店/地址那条红线，而且**后期删不掉**。
+⇒ 地域只到国家级、不指名；店况不写；`offer` 只讲**产品本身**。
+
+⚠️ 这和 [[feedback-visualhint-leaks-into-lines]] 是同一类病的两个字段：
+**凡是会被拉进编剧的字段，写进去的东西都会变成台词。** 发现台词里有不该有的话，
+先去源字段搜那句话，⛔ 别急着加禁令。
