@@ -30,8 +30,10 @@
 | 接国内营销线的活 / 我还有什么没做 | 🔴 `03_工作台\` 的 `交接档_2026-09-15_国内营销线_压缩前.md` + `国内营销线_工作总账_2026-09-15.md` |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
-| 接 ThinkNova 视频平台的活 | 🔴 `03_工作台\交接档_2026-09-16_全量整改后.md` |
+| 接 ThinkNova 视频平台的活 / 接 FB 投流 | 🔴 `03_工作台\交接档_2026-09-20_压缩前.md`(FB 草稿状态·老板三件卡点·三份待 PUT 改稿) |
 | 接增长/海外/融资的活 | 🔴 `03_工作台\海外市场探测计划_2026-08-30.md` 第八节 |
+| 想装闹钟/定时任务/让各线"持续工作" | 🔴 [[feedback-heartbeat-not-cron]] — 只有总指挥有心跳,固定命令 `_pulse.py`,⛔ 不给各线装 cron |
+| 烧 agent/海报线单、写 offer/sellingPoints、FB 投流实操 | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对·Ads Manager 坑 |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
@@ -76,7 +78,7 @@
 ## L5 · 环境红线(违反 = 事故)
 20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀 → [详](feedback_kill_python_scope.md) ／ 🔴🔴 签名 OSS URL 会把 AccessKeyId 带进产物;入库/外发前扫一遍 `LTAI`/`AKID`/`Signature=`
 22. 🔴 线上 config=唯一真值,禁种子覆盖 → [详](feedback_dont_edit_prod_config_structure.md) ／ 🔴🔴 上下文唯一杠杆=减少往返:一段 JS 干完一整套只回摘要 → [详](feedback_context_budget_discipline.md)
-23. 记忆只留当前状态 → [详](feedback_memory_keep_current.md) ／ 🔴 规则写 WHAT+DONE → [详](feedback_rule_hygiene.md);老板发的提示词当天归档 → [详](reference_prompt_library.md)
+23. 记忆只留当前状态 → [详](feedback_memory_keep_current.md) ／ 🔴 规则写 WHAT+DONE → [详](feedback_rule_hygiene.md);老板发的提示词当天归档 → [详](reference_prompt_library.md) ／ 🔴 归因只记来源事故不记谁抓谁 → [详](feedback_attribution_record_source_not_who.md)
 ---
 
 # 用户与沟通
