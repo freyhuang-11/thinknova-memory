@@ -138,3 +138,31 @@ systemPromptSource = "screenwriter.systemPrompt"
 ⚠️ 这和 [[feedback-visualhint-leaks-into-lines]] 是同一类病的两个字段：
 **凡是会被拉进编剧的字段，写进去的东西都会变成台词。** 发现台词里有不该有的话，
 先去源字段搜那句话，⛔ 别急着加禁令。
+
+## 🔴 `sellingPoints` 的标签会被写成**一句自夸台词**（2026-09-20 单变量对照，n=4 阳 / 1 阴）
+
+`selling_point_pro_service`（"专业服务"）每传一次，成片第 2–3 拍就多一句「我们服务好」。
+
+| 任务 | 行业 | 那一拍 |
+|---|---|---|
+| `2417b8d1f14a` | 花店 | **Our professional service** wraps each bouquet while you wait. |
+| `1d5a269ba654` | 手机配件 | **Our professional service** helps you choose. |
+| `12293f9af122` | 皮具 | **Professional service** gives each piece careful attention. |
+| `66bf6194fdcb` | 餐饮 | We handle every order with care（同义改写，没用字面词） |
+| `c2a0a8e651b3` | 餐饮·**对照** | ⛔ **无** ——「You get chicken and rice together in one hot pot.」 |
+
+对照单参数与 `66bf61` **逐字相同，唯一变量 = `sellingPoints` 由 `['selling_point_pro_service']` 改成 `[]`**。
+⇒ 那一拍从**空话**（主语=我们、零信息）变成**产品事实**（主语=你、具体）。
+
+🔴 **结论：这不是编剧层的通病，是标签被当成台词素材念出来了。**
+⇒ **`sellingPoints` 只在那一项确实是这家店的差异点时才传，⛔ 不当默认值每条都传。**
+⇒ ✅ **提示词一个字都不用改** —— 这很重要，因为 agent 线 systemPrompt 现行 **4052 字、已超 4000 硬顶**
+（记忆里的 3460 是旧值），超顶状态下任何新增条款都得先删一条。
+
+⚠️ **⛔ 别和 `offer` 那条混**：两个病、两个主人。
+```
+自夸句「Our professional service…」 ← sellingPoints 标签  ⇒ 改输入解决
+店况句「we close at three」         ← offer 字段          ⇒ 改标签解决不了,两条片都还在
+```
+⚠️ 想加全局「用第二人称」条款之前先看：**人称是按场景号定的**
+（S01 第三人称、S05/S06/S11 第一人称）⇒ 加全局条款会和三个场景互搏。
