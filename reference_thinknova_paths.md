@@ -240,3 +240,10 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
   已落到 `字幕烧录\_burnsub.py` 的 `BAND_LO/BAND_HI/BAND_N`。
 - 🔴 **库里老片只用来"给他看个样子",⛔绝不当成品交付**:老片带历史(真实招牌/AI乱码/别人品牌),新烧的片从零生成没有历史 ⇒ 走"现场收照片→当天出片"这条路,品牌风险从根上消失
 - 多条片**第 0 帧的缩略图残影 = 编码问题**,不是单条片瑕疵,别误判
+
+## 🔴🔴 2026-09-20 编剧层结案:「Our professional service…」自夸句 = 输入侧 `sellingPoints` 标签,不是提示词
+- **实证(4 阳性 + 1 对照,四个行业同一位置)**:传 `sellingPoints:['selling_point_pro_service']` 的 2417b8/1d5a26/12293f/66bf61 全部长出「Our professional service…/We handle every order with care」;同参数只去掉标签的 `c2a0a8` 那一拍变成「You get chicken and rice together in one hot pot」——**从空话变成信息**。
+- ⇒ **凡是被拉进编剧的输入字段,写进去的都会被念成台词**(与 07-22 visualHint、09-20 offer「Bugis Street…open till ten」原样进台词是同一个病)。
+- **口径**:`sellingPoints` 只在那一项确实是这家店的差异点时才传,⛔ 不当默认值;`offer` 只写说出来不丢人的产品卖点;`productName` 保持短。
+- 🔴 **编剧 systemPrompt 现行 4052 字,已超 4000 硬顶**(旧记 ~3460 作废)。全文快照 `D:\SamsoData\Downloads\sysprompt_live_0920.txt`。**人称按场景号定**(S01 第三人称不出现「我」;S05/S11 用「我」;S06 店主第一人称;S02 顾客视角),⛔ 加全局「用你」会与 S05/S06/S11 互搏。S01 规则写的是中文「我」,英文 our/we 不被视为「我」——若要修,场景内改「不出现我/我们/we/our」并先挤字。
+- `opsEditable.screenwriter.systemPrompt` 为空、`masterPipeline.scriptwriter.systemPrompt` 为空 ⇒ **`promptComposer.screenwriter.systemPrompt` 是唯一生效层,不需双写**(09-20 实拉)。
