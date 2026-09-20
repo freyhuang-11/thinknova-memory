@@ -276,3 +276,5 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **S$50 只回答「有没有人来」**:S$10/天÷3 素材,Meta 数小时内压到 1–2 个;⛔ 复盘不许说「画面版赢了」。
 - **素材口径**:CTA `Your first video free`(`First one free` 印在食物上会读成第一份菜免费;同一广告组只用一句承诺);海报线底图顶部自带标题 → 叠字 `--anchor top`;海报线 offer 也会烧成图上文字,⛔ 店况类不进 offer;花店底图出欧洲风(受众不贴)这轮不用。
 - **海报线建单**:`businessScenario` = 动作 id 且须与案例 `sceneIds` 配对(S01→new_item / S03→bestseller / S17→website_hero),`industryId` 前台大类;**`reference-cases?industryId=` 过滤不生效**(全库分页 50/页),⛔ 拿第一条就烧(09-20 风水案例事故,2 张作废)。出图约 60–95 秒 / 6 积分,落盘是 `.png`。
+
+- **09-20 深夜实证·海报线 offer 只能单句**：offer 写成三个分句（`No filming, no editor. Type what you sell, get a video. First one free.`）连烧两个不同案例都被渲染成头尾残句 `No filming , get a video. First one free.`；单句版 `A new video for your shop every day. Made in 5 minutes. First one free.` 一次过（task_29fc00ec4a97，花店 S01）。口径：**海报线 offer ≤ 3 短句、每句 ≤ 8 词、不用逗号从句**。另：S17 website_hero 类案例本身设计为「无文字」，要出带字海报别选它。
