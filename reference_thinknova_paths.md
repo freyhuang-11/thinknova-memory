@@ -267,3 +267,12 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **归因纪律(09-20 两次记反后立)**:记规矩只记「从哪个具体错误来的」,⛔ 不记谁抓的谁——记错了归属,下次会去修错的地方。
 - 🔴 **编剧 systemPrompt 现行 4052 字,已超 4000 硬顶**(旧记 ~3460 作废)。全文快照 `D:\SamsoData\Downloads\sysprompt_live_0920.txt`。**人称按场景号定**(S01 第三人称不出现「我」;S05/S11 用「我」;S06 店主第一人称;S02 顾客视角),⛔ 加全局「用你」会与 S05/S06/S11 互搏。S01 规则写的是中文「我」,英文 our/we 不被视为「我」——若要修,场景内改「不出现我/我们/we/our」并先挤字。
 - `opsEditable.screenwriter.systemPrompt` 为空、`masterPipeline.scriptwriter.systemPrompt` 为空 ⇒ **`promptComposer.screenwriter.systemPrompt` 是唯一生效层,不需双写**(09-20 实拉)。
+
+## 🔴 2026-09-20 晚 · FB 投流实操坑(Ads Manager,老板号 act=1609942062943261)
+- **Ads Manager 编辑页极重**:claude-in-chrome 在上面 10 分钟卡死 3 次(45s 超时);**Escape 键会弹「发布草稿内容?」**——⛔ 一律点「关闭」;草稿自动保存,卡死就 navigate 回 `adsets/edit/standalone?act=…&selected_campaign_ids=…` 重载。改名用 click+ctrl+a+type,form_input 对 combobox 不生效。
+- **消息目标 WhatsApp 需主页先绑号**(要验证码 → 老板做);**新加坡投放需「已验证广告主+付费方」+ 区域受监管类别 `SINGAPORE_UNIVERSAL (#3858550)`**;账户还有「确认账户信息」黄条。三件全归老板。
+- 地域搜索框输中文/英文区域名只匹配商户地点,**区域组要走「浏览」或逐国输英文国名**。
+- **Ad Library 可比样本**:GeekFix Larkin(手机维修,Malay 文案,wasap.click CTA,2025-10 起投 11 个月)—— 本地小店跑得久的广告=本地语言+一个具体承诺+WhatsApp 直达。
+- **S$50 只回答「有没有人来」**:S$10/天÷3 素材,Meta 数小时内压到 1–2 个;⛔ 复盘不许说「画面版赢了」。
+- **素材口径**:CTA `Your first video free`(`First one free` 印在食物上会读成第一份菜免费;同一广告组只用一句承诺);海报线底图顶部自带标题 → 叠字 `--anchor top`;海报线 offer 也会烧成图上文字,⛔ 店况类不进 offer;花店底图出欧洲风(受众不贴)这轮不用。
+- **海报线建单**:`businessScenario` = 动作 id 且须与案例 `sceneIds` 配对(S01→new_item / S03→bestseller / S17→website_hero),`industryId` 前台大类;**`reference-cases?industryId=` 过滤不生效**(全库分页 50/页),⛔ 拿第一条就烧(09-20 风水案例事故,2 张作废)。出图约 60–95 秒 / 6 积分,落盘是 `.png`。
