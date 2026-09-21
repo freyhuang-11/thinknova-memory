@@ -777,3 +777,9 @@ YouTube 观众实测 **100% 在马来西亚**。马来西亚英语通用 ⇒
 - **Why**：老板 09-20 在 YouTube 线把「编店主经历」判为硬红线（EN-H 整条重写）；小红书旧口径却写「允许合理虚构经历」，同一个老板两套标准。09-21 marketing 单方面按严的写了篇11/篇12 并要口径。
 - **How to apply**：新稿一律不写「这家店老板说…」类虚构接活经历；**已发的十篇不动**（改动等于留痕承认造假，风险大于收益）。要放宽只能老板亲口改。
 - **归因纪律补充**：同一时段连跑几轮得出的「规律」不算数——那不是独立样本（09-21 标签规律被自己推翻）。
+
+## 2026-09-21 15:06 · ⛔ WhatsApp 目录不许放订阅/积分/账号类商品（Meta 商业政策原文）
+- **官方原文**（`facebook.com/policies_center/commerce?locale=en_US` 实拉）：**Subscriptions and digital products — Commerce content may not promote the buying, selling or trading of downloadable digital content, digital subscriptions or digital accounts.** 另一条：**Services — 可以，但仅限 WhatsApp Business app 与 FB/IG 的 Appointments**。
+- **Why**：09-20 我按老板「全部放上去」在 WhatsApp 目录建了 5 条，其中 Starter US$29.80/月、Creator US$99.80/月、Pro US$198/月、Partner US$399（≈US$570 平台积分）**四条全是订阅/数字积分**；09-21 业务账户被判「违反商业交易政策」受限。**这是我的错——老板授权的是上架，政策合规是我的活。**
+- **How to apply**：任何 WhatsApp/FB/IG 目录只上**实体商品或服务**；⛔ 订阅、积分包、账号、可下载数字内容一律不上目录，只能在自己网站卖，目录里最多放「服务」（如 Done-for-you 代做一条视频）并把价格写成服务费。
+- **恢复路径**：先删掉违规商品 → 再去账户中心/账户质量提交申诉复审；⛔ 不留着违规商品申诉。
