@@ -813,3 +813,18 @@ YouTube 观众实测 **100% 在马来西亚**。马来西亚英语通用 ⇒
 - 按 `published_at` 拆：已到点 **65** + 未来排期 **14** + 无日期 2 = 81 分毫不差。⇒ **真实线上是 65 篇不是 81**。
 - ⚠️ **未来排期的稿子 `status` 也是 `published`**，判断是否真上线只能比 `published_at` 与当前时间。
 - 「排期 15→14 但线上仍 81」不是发布故障，是 `how-to-advertise-my-restaurant-for-free-2026-09`（published_at 2026-09-21 09:00）今早过点从排期挪进已发，而 total 本来就不区分。**假警报，别再当故障查。**
+
+
+## 2026-09-21 21:0x · `extraRequirement` 有 **200 字符硬上限**（服务端校验，此前不知道）
+- **证据**：商家视频线建单 POST 返回 `422010 / "extraRequirement长度不能超过 200"`。
+- **今天那四句禁令**（printed text / brand logos / emblems on clothing / posters on walls）合计约 **196 字符，已经把额度顶满**。⇒ 「再加一句真实感要求」根本塞不进去，不是模型不听，是**加不进去**。
+- **How to apply**：
+  1. 写 extraRequirement 前先数字符，>200 会被直接拒（code 422010），不是静默截断。
+  2. 额度只有 200 ⇒ **靠 extraRequirement 做画面控制天花板极低**，必须挑最要命的一两条写，⛔ 别堆砌。
+  3. 画面质感（肤质/毛孔/皱纹/光线）、人物长相这类，**该在配置层解决**（`firstFrameTemplate` 决定首帧人物与肤质、`stagePromptPresets.image_to_video.prompt/negativePrompt` 决定动态质感），不是输入层能救的。
+- **与教培四轮全废互为印证**：extraRequirement 明写 `no emblems, badges or crests on clothing` 模型照样出校徽 —— 一部分原因是**案例底图权重高于输入**，另一部分是**额度本身就只有 200**。⇒ 结论不变：**输入侧（extraRequirement / offer / productName）权重远低于案例层（caseId / visualHint）与配置层**。
+
+## 2026-09-21 21:0x · 老板新增画面质量口径：**要真人感**
+- **老板原话**：「最新的视频我看任务形象还是没有真人感，真人肤质，皱纹，毛孔还有光线都没有」。
+- ⇒ 验片除了查乱码/徽标/场景/死寂，**再加一项：人物皮肤是不是塑料感**（毛孔、细纹、肤色不均、真实方向光与高光衰减）。
+- 实验单 `task_bb6affbe5802`：用椰浆饭已验干净的参数，**唯一变量**=extraRequirement 换成 191 字符的纯质感描述（`Documentary realism: visible skin pores, fine lines, uneven skin tone, no retouching or smoothing. Natural directional light with real shadows and specular highlights. Subtle handheld motion.`），与 `task_a511b14b69bc` 对照，用来判断质感能不能靠输入侧控制。
