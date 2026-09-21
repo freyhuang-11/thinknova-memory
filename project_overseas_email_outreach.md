@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-09-20T19:47:37.677Z
+  modified: 2026-09-21T08:38:16.995Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -43,8 +43,8 @@ metadata:
 
 ## 🔴🔴🔴 09-19~21 现行发送口径(以这段为准,接手先看)
 - **发的是 followup(不是首封)**:首封 8638封→注册0,`DAILY_TARGET=0` 暂停;每天发**餐饮 followup**(池 `_daily/followup_餐饮_2026-09-19.csv`,剩~1454),命令 `run.py send --template followup1 --list <餐饮csv> --campaign followup1_YYYYMMDD --limit N --confirm`。创意服务412不发(首封0响应)。
-- **followup 文案(冻结,别动)**:样片页链接(无?src,官网无统计脚本读不到)+ wa.me 预填 CTA `https://wa.me/6598685036?text=...`(点击直接进老板WA=唯一可数来源信号)。⛔无秒数/无价格/无免费做片承诺(30秒档不存在;样片产线产能有限接不住)。
-- **日量 200(老板 09-21 提):hello@140 + sam@60**,⚠️两箱**分别独立跑两个 send**(sam撞过550被限~69、压60干净;单独跑so它550只断自己不连累hello批)。`MB_CAPS` 环境变量控每箱cap。hello从60→140是2.3倍,每天盯 bounce_spam,涨就拉回。
+- **followup 文案(冻结,别动)**:引用上一封 → 样片页链接(5行业demo,`.../what-the-videos-actually-look-like-2026-09`,无?src)→ CTA 两选一:①自助注册 `https://thinknova.top` ②**回复本邮件下单**(定制 done-for-you,老板人工做:S$40/1条、S$35/5条、S$30/10条;30-60秒;含配音字幕+一轮改;约2工作日)。⛔**无 wa.me**(09-21 Meta 封了 WhatsApp,后恢复但对外一律不放,接单只走邮箱回复)。⛔无免费做片承诺(样片产线产能有限接不住)。定制不能接三类:健身房/教培近景/画面要可读文字(见《定制视频_可卖方案与接单表_2026-09-21》)。
+- **日量:两箱现实上限 ≈168,200 达不到**(09-21 实测:hello@ 撞 550 在 108、sam@ 60,两箱各自被 Google 日限压住)。⚠️**明天起降一档稳投递:hello@90 + sam@50 = 140**(总指挥定,老板未拍;别再顶 550,否则像 sam 当初被压到 ~69)。要真 200 得加第 3 个箱。`MB_CAPS` 控每箱cap。🔴**只跑一个 send 进程、不叠**(09-21 STOP/resume 叠出两进程、加剧写锁争用)。发前先跑 `_build_followup_list.py` 预过滤(剔已 followup1% 的人,防重复跟进;09-20 出过1人被发2封)。
 - **驱动=手动**:无 Windows/Claude 自动任务(总指挥 /loop 心跳每天9点后叫我发;口径没冻结+hello没验稳前不上无人值守)。窗口9-23、静默0-9。
 - **回信处理**:真人回信→我写草稿进 `replies.draft_body`、`draft_status='pending'`(⛔不是queued,防 send_pending_replies 自动发)→老板一键发→⛔我不代发→一对一记录填「来源=冷邮件」行。
 - **09-22 复盘节点**:仍0转化则老板把邮件线拿去一起分析。我判断:非文案非池子,是渠道×产品结构不匹配(冷邮件=低意向好奇,产品要跨注册→学会→做片高激活门槛;线下会16注册=5000封冷邮件16倍)。老板已转向 FB投流→WhatsApp 暖入口。
