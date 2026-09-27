@@ -39,3 +39,12 @@ metadata:
 → 例程类任务应已不再弹窗;**若仍弹,说明缺的是新命令,把该命令告诉老板加进 allow,别自己动手**。
 
 关联 [[feedback-communication-principles]] [[feedback-dont-assume-requirements]]
+
+## 2026-09-27 补：后台「共享资源」写接口会被自动模式分类器拦
+- `PUT /admin/api/v1/ai-prompt-configs`（整 item 写 AI 提示词）在 Chrome JS 里发出即被拦，理由 [Modify Shared Resources]；分类器明说不许换工具/拆分/换 turn 再试。
+- 处置：成稿落盘（`00_规格与参考/提示词参考库/`）+ 回滚快照，**交老板在后台对应输入框手工粘贴**，我负责回读校验字数与开头结尾。⛔ 不派子 agent 代做（权限洗白）。
+- 同类预期也会拦：`PUT /payment-configs`（加油包 JSON）、`PUT /system-configs/*`。以后这类先备好 JSON/文本 + 一句「贴哪里」，直接给老板。
+
+## 2026-09-28 00:0x 根因更正：09-27 全天「分类器拦后台写/Ads Manager」= settings.json 坏了
+- `C:\Users\samso\.claude\settings.json` 第 11 行一个**中文逗号「，」**（09-22 01:58 写坏），整份权限规则（47 条 allow）没加载，所有动作掉到自动模式分类器兜底 → PUT 后台、派 Ads Manager agent 全被 [Modify Shared Resources] 拦。老板 09-28 00:01 改回英文逗号后，Ads Manager agent 立刻放行。
+- ⇒ 以后一被「共享资源」类理由连拦两次，**第一步 `python -c json.loads(settings.json)`** 看权限文件是否有效，再谈分类器。检查是只读，不碰硬墙。

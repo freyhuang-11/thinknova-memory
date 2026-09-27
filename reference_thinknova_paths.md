@@ -289,3 +289,129 @@ ThinkNova 实体店双Agent的固定坐标(配合 [[project-thinknova-offline-ag
 - **海报线建单**:`businessScenario` = 动作 id 且须与案例 `sceneIds` 配对(S01→new_item / S03→bestseller / S17→website_hero),`industryId` 前台大类;**`reference-cases?industryId=` 过滤不生效**(全库分页 50/页),⛔ 拿第一条就烧(09-20 风水案例事故,2 张作废)。出图约 60–95 秒 / 6 积分,落盘是 `.png`。
 
 - **09-20 深夜实证·海报线 offer 只能单句**：offer 写成三个分句（`No filming, no editor. Type what you sell, get a video. First one free.`）连烧两个不同案例都被渲染成头尾残句 `No filming , get a video. First one free.`；单句版 `A new video for your shop every day. Made in 5 minutes. First one free.` 一次过（task_29fc00ec4a97，花店 S01）。口径：**海报线 offer ≤ 3 短句、每句 ≤ 8 词、不用逗号从句**。另：S17 website_hero 类案例本身设计为「无文字」，要出带字海报别选它。
+
+
+## 2026-09-22 · 前台功能卡的名称/描述真值在哪（改名必看）
+- **前台真值接口（公开、无需登录）**：`GET https://api.thinknova.top/api/v1/agents` → `data.items[]`，字段含 `name_zh/name_en/name/description/caption_zh|en|ja|ko/web_path/icon/cover_url/sort_order`。⚠️ 该接口按 Accept-Language 只回部分 caption。
+- **写入处（admin）**：`PUT /admin/api/v1/agents/{code}`，body `{name_zh, name_en, metadata}`。多语言全在 `metadata` 里：
+  - `metadata.presentation_i18n[lang]` → `name / description / eyebrow / preview / cta_label / pricing_label`
+  - `metadata.caption_{lang}`
+  - **八种语言**：en / es / ja / ko / ms / th / vi / zh
+- ⚠️ 这些字段**不在 `config.businessUi` 里**，也不在 `config` 任何地方 —— 在 agent 顶层的 `metadata`。找了一圈才发现，记下来省时间。
+- 09-22 已改：`offline_store_video` → 「视频制作 · 15秒」/「Make a Video · 15s」；`offline_store_video_studio` → 「长视频制作 · 20秒起」/「Make a Long Video · 20s+」，八语 × 名称+描述+caption 共 48 处，前台接口已验证生效。回滚 `03_工作台\ROLLBACK_两个视频agent多语言名称_2026-09-22.json`。
+
+## 2026-09-22 · 烧单通道三条坑（子 agent 实测，省下一次踩坑）
+1. 🔴 **建单必带 `x-csrf-token`，否则 419001**。它**不在可读 cookie 里**，要先 GET 任一接口、从**响应头**取。第一轮三单全挂 419001（未扣分），加上就 3/3 成功。
+2. ⚠️ **`www.thinknova.top` 页面 claude-in-chrome 无法 attach**（`Cannot attach to this target`，重试同样失败）⇒ 一律在 **`api.thinknova.top` 同源页**（如 `/robots.txt`）里跑 fetch。
+3. ⚠️ **商家端建单回读路径**：`GET /api/v1/business-video-assets/tasks/{taskNo}` → `data.detail.business`。**不是** `task.input`（那是 admin 路径，商家端套不上）。
+
+
+## 2026-09-23 · 注册赠送积分的真写入点（栽过一次）
+- 🔴 `GET /admin/api/v1/site-configs` 里的 `signup_offer` 是**只读派生视图**。整对象 PUT 回 `code:0, saved:true`，但 echo 和回读**都还是旧值**。
+- **真写入点** = `PUT https://api.thinknova.top/admin/api/v1/system-configs/trial.signup_bonus_days`（另有 `trial.signup_bonus_credits`）。
+- 现值（09-23 05:27 改）：**days = 14**（老板批准，原 3 天），credits = 100。
+- 八语文案 `signup_offer_copy` 已补有效期，**全部用 `{{days}}` 变量**，以后改天数不用再动文案。
+
+## 2026-09-23 · 平台语言真值（做多语言内容前必读）
+- **界面只有 8 语**：`en / zh / ja / ko / vi / es / th / ms`。
+- 🔴 **没有印尼语界面**，`thinknova.top/id` 是 404；带 `Accept-Language: id` 拿到的是英文页，但**接口侧对 id 的兜底却是中文**，两边不一致。
+  ⇒ 印尼客户看到的屏幕是**英文界面**。给印尼人写教程/截图⛔不许编印尼语按钮名，照抄英文栏。
+- ⚠️ **`thinknova.top/en` 路由本身 404**（`/` = 中文，其余六语 200）。英文是广告主语言，这条要修。
+- ⚠️ **越南语积分页 21 行丢声调**（`So du` / `Hoa don va don hang`）。投越南前必修。
+- agent 名称/描述八语真值：`GET https://api.thinknova.top/api/v1/agents` **带 `Accept-Language` 请求头**（`?lang=` 无效）。
+- 术语表全文：`03_工作台\术语表_平台界面八语_2026-09-23.md`
+
+
+## 2026-09-23 · 🔴🔴🔴 WhatsApp 怎么读怎么回（⛔ 别再让老板去授权扩展）
+
+### 走 Meta Business Suite 收件箱，不走 web.whatsapp.com
+- 🔴 Chrome 扩展**对 `web.whatsapp.com` 没有站点权限**（`get_page_text` 报 "Extension manifest must request permission"），而且那个标签页渲染器经常冻住（CDP 30-45 秒超时）。
+- ✅ **`business.facebook.com/latest/inbox/all?...&thread_type=WEC_MESSAGE` 是通的**，WhatsApp 会话全在里面，能读能回。
+- ⇒ ⛔ **不要再跟老板说「你去给扩展授权」** —— 09-23 因为这个被骂「扩展我给过你了啊」。
+
+### 发消息的可靠流程（栽过三次才摸出来）
+每个会话**四步，分开四次调用**，⛔ 不要在同一个 batch 里切会话：
+1. `find` 会话行 → **按坐标点**（`ref` 点 `presentation` 元素经常不生效）
+2. 等 6-7 秒 → **截图确认右侧联系人面板换人了**（URL 里 `selected_item_id` 会变；没变 = 没切过去）
+3. 点输入框 → `type` → **截图确认文字真进去了**（React 受控组件，`type` 有时进不去）
+4. 点「发送」→ 等 5 秒 → **`document.body.innerText.includes(消息前缀)` 验证真发出去了**
+
+### 三个坑
+- 🔴 **渲染器冻住时 `type` 会把非 ASCII 打坏**：越南语 `Đây là link` 变成 `ĐâàéạấàààẳĐăýễíặđể…`（只剩声调符号）。⇒ **打完必须截图/zoom 看一眼**，坏了就 `ctrl+a` + `Delete` 重打。渲染器正常时越南语是好的。
+- 🔴 `ctrl+a` 单独按**不清空**，要 `ctrl+a` 然后 `Delete` 两步。
+- 🔴 `execCommand('insertText')` 和 React 原生 setter **都进不去**那个 Lexical 编辑器，只能用 `computer type`。
+
+### 🔴 链接必须带 `https://`
+WhatsApp 只把**带协议头**的当可点链接。写 `thinknova.top` 是纯文字，客户要手打。
+⇒ 所有对外消息一律写 `https://thinknova.top`。
+⇒ 老板 09-23 定：**引导到首页，⛔ 不是注册页。**
+
+### 兜底话术撞上就得人工接
+`Thanks for reaching out! I'll ask a representative to respond.` 是 Meta 硬编码，指示改不掉。
+**撞了这句的会话 AI 从此不再跟进** ⇒ 必须人工接管。09-23 有两个客户因此被晾了半天到两天。
+
+
+## 2026-09-23 · 🔴🔴 转化断点实测（⛔ 别再凭推理编根因）
+
+### 一、`thinknova.top` 间歇性 502（Meta 抓取器视角）
+- WhatsApp 发链接后，Meta 预览卡**有时显示 `502 Bad Gateway / thinknova.top`**，客户直接看到。
+- 同一链接几分钟后再发，预览卡正常（`AI Image, Video and Audio Creation Platform`）⇒ **间歇性**。
+- 🔴 **本机直连看不到**：5 种 UA（含 `facebookexternalhit/1.1`、`WhatsApp/2.23.20.0`）连续 3 次全 200、0.25-0.41 秒。
+- ⇒ 判据只能是**Meta 那张预览卡**，⛔ 不能用本机 curl 结论说「站点是好的」。
+- 探测脚本：`03_工作台\_probe502.py`（按抓取器 UA 持续采样，出 `探测_502率_*.json`）
+
+### 二、`signup_source` 全是空字符串 ⇒ 广告归因是黑的
+`GET /admin/api/v1/users` 最近 15 个用户 `signup_source` **全为 `""`**。
+⇒ **无法证明任何一个注册来自广告**。争论「N 条咨询 0 转化」时谁也说不清，根因在这。
+
+### 三、注册真实数据（09-23 实拉）
+累计 582 用户。最近三天：09-23 15:25 一个（`zh-CN` + QQ 邮箱，几乎肯定不是广告来的）／09-22 一个 `en-US`／09-21 一个 `en-US`。
+⇒ ⛔ 不是「0 注册」，是「约 1/天，且对不上广告投放的市场」。**说话要用这个口径。**
+
+### 四、`/help` 页面已经存在
+`https://thinknova.top/help`，`Version 15 · Effective date 2026-09-11`，**首页导航里有入口**（首页 HTML 里 `/help` 出现 10 次）。
+已有内容：怎么拍三张参考照片、怎么改台词、为什么 offer 只说一次。
+⚠️ **后台找不到它的编辑位**：`#/settings/configs` 的 112 个 key 里只有 `site.legal_acceptance`；`/admin/api/v1/legal-docs`、`/help-docs`、`/documents`、`/pages` 全不存在。⇒ 已进技术单问。
+
+### 五、⛔ 一条作废
+「`thinknova.top/en` 路由 404 要修」**是我报错的**。英文就住根路径（Nuxt `prefix_except_default`），`/` 返回 200 且 `<html lang="en-US">`。**这不是 bug。**
+
+
+## 2026-09-23 · 🔴 FB 广告素材：**有脚本就用脚本**（老板批过）
+
+老板原话：「广告素材你有脚本你还做成这样？」
+—— 我当时只拿 ffmpeg 把旧视频裁了个比例就交，**跳过了整个素材生成层**。
+
+### 三个脚本的分工（`03_工作台\FB广告图\`）
+| 脚本 | 干什么 |
+|---|---|
+| `_ads.py` | 纯色底 + 排版的广告图（**已降级为对照组**，⛔ 别删） |
+| **`_ads_photo.py`** | 🔴 **投流主线**：海报线/成片底图 + 精确叠字。老板 09-20「为什么我们投流的图片那么素…我们有自己的生图工具」 |
+| `make_single.py` | 只是把视频拆单语+裁比例，**不是素材生成** |
+
+### `_ads_photo.py` 的三层分工（照抄它自己的文件头）
+**画面感来自生图 · 文字精度来自排版 · 品牌风险靠质检**
+- 标题 ≤6 词；自动量**文字覆盖区像素与字色的 WCAG 对比比**（大字 3:1 / 正文 4.5:1），不够自动加深压暗层
+- ⚠️ **裁切必须人眼看**（脚本自己写的）：居中裁可能切掉半个人
+
+用法：`python _ads_photo.py 底图.jpg --code P-XX [--anchor top|center|bottom]`
+
+### 09-23 新增的单语 code（⛔ 没动原有四条英文）
+`P-ID1` Satu baris. Satu video. / `P-ID2` Toko kamu, videonya jadi sendiri. / `P-MS1`（马来语）
+另加 `EYEBROW` 查表（顶部小字按语言走），默认仍是英文 `IF YOU RUN A SHOP`。
+备份 `_ads_photo.py.bak_0923`。
+
+### 🔴 底图不用烧单
+**从已验过零印刷面的成片里抽帧**即可（`ffmpeg -ss T -frames:v 1`）。
+09-23 用的是 `可变性版_0922/src/id_task_f0160cec8425.mp4` 的 13.6 秒帧（有人、有成品、有情绪）。
+⚠️ 4:5 居中裁正好把脸切掉 ⇒ **没有 AI 人脸风险**，和数据最好的 B1「裁切脸」是同一路子。
+
+### ⚠️ 未解决
+老板说「我让你重新做 fb 广告视频是你昨天做的 fb 视频的脚本，你是不是丢记忆了」。
+我搜遍 09-22 前后只找到 `可变性版_0922/_烧单记录与验片脚本.md`（那是**建单参数**不是分镜稿）。
+**已问老板要关键词，⛔ 没猜。**
+
+## 2026-09-27 · 给用户加积分（老板截图指路）
+- 后台 `admin.thinknova.top` → 左栏「总览 → 用户」→ 右上「按用户 ID 或邮箱搜索」找到人 → 该行「操作」列点 **「调整积分」**（同列还有「详情」「大使」）。列表可见「可用 / 冻结 / 创建时间 / 邀请码 / 推广大使」。
+- 用途：SOP v2 §八「两天内付费送 500 积分」的兑现动作——客户回付费截图 → 用她注册邮箱搜到 → 调整积分 +500 → 回她一句已到账。⛔ 加之前先在列表核对「可用」余额和创建时间对得上她的注册时间，别加错人。
+- 老板号 super_admin 有此权限；操作是写动作，按执行手册走：加完回读该行「可用」数字变化再回客户。

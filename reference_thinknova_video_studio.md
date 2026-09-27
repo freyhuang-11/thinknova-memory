@@ -161,3 +161,31 @@ metadata:
 - **烧完的单当天推到终态或取消，不许留半截**（老板 09-17：「工作台又一堆没完成的文档」；120 个项目里 8 个卡在 storyboard_review 全是我留的）。
 
 - 🔴🔴🔴 **工作台提示词上限 = 3500 字节**(不是 4000 字符);加规矩必须**前置到 33% 位置以前**,加在末尾模型不执行(09-17 从索引下沉)。
+
+
+## 2026-09-22 14:xx · 🔴🔴🔴 工作台 i2v 阶段运营一个字都改不了（实证，从「疑似」升级为「确证」）
+**实证任务 `task_ddda97bc560a`**（image_to_video / MiniMax-H3(503) / 09-20 19:16 / succeeded，属成片 `studio_9fad15e306d7`）：实发 prompt **803 字符 / 1773 字节**，搜 `胶片颗粒`/`不磨皮`/`手机实拍`/`纪实`/`自然光`/`暗角`/`不过度锐化` —— **一个都没有**。
+⇒ `studioWorkflow.videoPromptSuffix`（配置里确实有 240 字节、逐字吻合）**确证为死配置**，与 agent 线 `stagePromptPresets.image_to_video.prompt`、`negativePromptPolicy.byRenderTarget.video_prompt` 同病。⛔ 填它 = 白干。（09-10 记的是「疑似未注入」，**现已确证**。）
+
+**实发 i2v prompt 的真实构成**（递归搜索全量 config 回查，命中表）：
+| 实发串成分 | config 来源 |
+|---|---|
+| `按当前阶段和项目设置执行；商家填写决定经营事实…` | **无 → 服务端硬编码** |
+| 【跨镜头连续性】【动作时长】【首帧锁定】【后期配音硬规则】 | **无 → 服务端硬编码** |
+| 每镜 visualPrompt / cameraPrompt（英文） | `studioWorkflow.scriptwriterPrompt` 的产物 |
+| `胶片颗粒` 等质感词 | `studioWorkflow.videoPromptSuffix` 240B —— **但不进派发串** |
+
+🔴 **⇒ 工作台画质的运营杠杆只剩两个，且都是间接的**：
+- `studioWorkflow.scriptwriterPrompt`（3648 字节）→ 决定每镜 visualPrompt/cameraPrompt
+- `studioWorkflow.storyboardPrompt`（3344 字节）→ 决定首帧分镜图
+「服装漂移」「人脸零毛孔」只能从这两侧绕着打，**i2v 侧无解，必须走技术单 T6/B1**。
+
+## 2026-09-22 · ⚠️ 商家端 config 接口不暴露 studioWorkflow 的键 —— 别拿它判断「字段是不是没了」
+子 agent 第一轮读商家端 `/api/v1/business-video-studio/config` 看不到 `videoPromptSuffix`，据此报了「P0 线上被清空 = 回归」，**是错的**。
+**真值读法**：admin `GET /admin/api/v1/agents/offline_store_video_studio → data.agent.config`。
+⇒ 与 L3.5「前台有没有 X 只认商家端」是两回事：**商家端是「前台行为」的真值，不是「运营配置存不存在」的真值**。判断配置字段存亡一律读 admin。
+
+## 2026-09-22 · ⚠️ 工作台编剧的实发 systemPrompt 目前拉不到
+`scriptwriterPrompt` 配置值 **3648 字节 > 3500 上限 148 字节**（admin 侧复核一致），但：工作台编剧任务（如 `task_7748033a1124`）的 `input` 只有 7 个业务字段、不带 systemPrompt，`child_tasks` 空数组；旧线编剧任务带 `systemPromptSource`，工作台这条链不带。
+⇒ **「超限是否真被截断」未实证，所以没删那 148 字节，零写入。** 下一轮要么展开 `studio_diagnostics.stages`，要么让技术给一个「实发 systemPrompt 落盘」的读法。
+⇒ 纪律再确认一次：**配置值超限 ≠ 已被截断**，没实证前⛔不动线上。

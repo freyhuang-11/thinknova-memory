@@ -175,3 +175,188 @@ systemPromptSource = "screenwriter.systemPrompt"
 ```
 ⚠️ 想加全局「用第二人称」条款之前先看：**人称是按场景号定的**
 （S01 第三人称、S05/S06/S11 第一人称）⇒ 加全局条款会和三个场景互搏。
+
+
+## 2026-09-22 04:0x · 🔴🔴🔴 i2v negative_prompt 的真实来源（实证，推翻我之前两次改错的字段）
+
+**公式（烧单实拉 `task_bf58450164e6` 验证）**：
+```
+input.negative_prompt =
+    languagePacks[语言].fallbacks.negativePrompt        <- 第 1 段
+    + "\n" +
+    stagePromptPresets.image_to_video.negativeGuard     <- 第 2 段
+```
+**铁证**：实发串第 1 段长度 = 360 = `languagePacks.zh.fallbacks.negativePrompt` 长度 360，逐字吻合；该单 `_prompt_language="zh"` / `_prompt_language_pack="zh"`。
+
+### ⛔ 两个「死配置」（改了不进派发串，别再浪费时间）
+1. `stagePromptPresets.image_to_video.prompt` —— 早有记录（project_thinknova_0729_koubo_defect 第25行）
+2. `negativePromptPolicy.byRenderTarget.video_prompt` —— **09-22 新证实**。我往它加了 8 个质感词，PUT 200、回读正确，**但烧单实发串一字未变**（556 字符与改前一模一样）。
+
+### 🔴 `languagePacks` 只有 `en` 和 `zh` 两个包
+不是每种语言一个包。⇒ 印尼语/马来语/泰语/越南语单的负面词**全部 fallback 到 en 包**。
+⇒ **改负面词必须改 en**；只改 zh = 只管中文单。两处都要双写 `opsEditable.languagePacks.*`（实测镜像存在且逐字相同）。
+
+### 定位未知字段来源的通法（这次就是这么找到的，很好用）
+拉线上 config，对整棵树做递归字符串搜索，拿**实发串里的特征词**去命中路径：
+```js
+(function walk(o, path){ if (typeof o==='string'){ if(o.indexOf('特征词')>=0) hits.push({path,len:o.length}); return;}
+  if(Array.isArray(o)){o.forEach((v,i)=>walk(v,path+'['+i+']'));return;}
+  if(o&&typeof o==='object'){Object.keys(o).forEach(k=>walk(o[k],path+'.'+k));} })(cfg,'config');
+```
+**长度逐字吻合 = 硬证据**，比读文档猜字段可靠得多。
+
+### 09-22 04:0x 已落地（PUT 200，回读+双写全部通过）
+- `languagePacks.en.fallbacks.negativePrompt`: 941 -> 1192（+11 词，含 no catchlight in the eyes / no visible pores / no rim light / flat dead-white lighting）
+- `languagePacks.zh.fallbacks.negativePrompt`: 360 -> 427（+11 词，含 眼中无高光 / 平光死白 / 没有轮廓光 / 脸上没有明暗过渡）
+- **纯追加，一字未删**。回滚 = en 截到前 941 字符、zh 截到前 360 字符 + 同步镜像。
+- ⏳ **待验**：下一单 i2v `negative_prompt` 搜 `no catchlight` / `眼中无高光`，出现 = 生效。
+
+## 2026-09-22 · 首帧块顺序前置已实证生效
+改后烧单 `task_b98f4811b60e`：`锚点` 从 -1 -> **1889**、`补充要求` 从 -1 -> **2247**。
+⚠️ 但 `_prompt_truncated` 仍为 true（16821 -> 7000）：排在末位的 `subject_definition / style_rules / hard_negative_rules` 仍在截断线外。**减肥只是把关键块换进来了，没消灭截断。**
+
+
+## 2026-09-22 14:xx · 🔴🔴🔴 更正：首帧那一刀「成功」是我误判的 —— 搜块名 ≠ 块内容进来了
+**我 09-22 早上报给老板「锚点从 -1 变 1889、补充要求从 -1 变 2247 ⇒ 两块都进了模型」——错的。**
+**实测反证**（子 agent 烧 `task_15273190661a`，首帧子任务 `task_e125a0ee96f2`）：
+```
+_prompt_truncated: true   _prompt_original_bytes: 15853   _prompt_final_bytes: 6999
+锚点        @1885  ✅
+补充要求    @2227  ✅
+自己填的原句 TAGQC0922ZH   -1   ❌   ← 内容根本没进来
+subject_definition / style_rules / hard_negative_rules 全 -1
+实发串尾部断在半句：「…分镜格与 visualPrompt 都要写成"谁 + 从」
+```
+⇒ `补充要求`/`锚点` 这两个词出现在保留区，**很可能只是别处（如 task_goal）提到了这两个词**，真正的 `user_extra_requirement` / `visual_anchor` 块内容仍在截断线外。
+⇒ 🔴 **判据纪律（新）：验「某块有没有发出去」必须搜自己填进去的、独一无二的具体内容**（例：建单时在 extraRequirement 里埋一个 `TAGQC0922ZH` 这样的哨兵串），**⛔ 不许搜块名/栏目名关键词** —— 块名会在别的块里被提到，一搜就命中，造成「已送达」的假象。
+⇒ ⚠️ 连带：「改 extraRequirement 没用」这个老症状 **根因没解决**，09-22 凌晨那一刀只是把块头挪进了保留区。要么继续给 task_goal 减字节，要么请技术抬 7000 上限。
+
+## 2026-09-22 14:xx · ✅ 负面词那一刀：中文侧已实证生效
+i2v 子任务 `task_fd21390ab804`：`negative_prompt` 长度 623，`眼中无高光` @361 ✅；`_prompt_language=zh` / `_prompt_language_pack=zh`。首帧子任务也吃到（neg 375，`眼中无高光` @84）。
+⏳ **en 包（1192 字，判据 `no catchlight`）至今零验证** —— 那一轮的英文单挂在编剧没走到 i2v。要靠下一条英文单补验。
+
+## 2026-09-22 · 🔴 记忆纠错：i2vReferenceStrategy 线上现值
+`promptComposer.masterPipeline.i2vReferenceStrategy` = **`storyboard_board`**（子任务回显一致），**不是**记忆里写的 `panel_crop`。
+⇒ 老板点名的「六宫格人脸仅 100–150px、i2v 放大 9–13 倍重建」风险**现在是全局默认打开的**。⚠️ 但六宫格是老板明令的必需设计，⛔ 不许再建议改架构。
+
+
+## 2026-09-23 · 🔴🔴🔴 技术 09-22 修复到货（三条旧结论作废，⛔ 别再按旧的办事）
+**文档已归档**：`00_规格与参考\技术侧文档\运营说明_官网注册与视频生成稳定性修复_2026-09-22.md`
+⚠️ **文档自己写明「发布后仍需运营/技术联合验证」⇒ 下面每条都是「技术说已修，待我实证」，⛔ 不许当成已确认就去下结论。**
+
+| 旧结论（⛔ 作废） | 技术说改成了什么 |
+|---|---|
+| 「首帧提示词从**尾部硬切**，商家填的 extraRequirement 进不去」 | 改成**按块优先级压缩**：①用户补充要求 ②视觉锚点 ③主体定义 ④任务目标 ⑤版式/风格/语言/负面/全局。低优先级块先移除。任务 input 保留**原始/最终字节数 + 被移除块的审计信息**（⚠️ 字段名文档没写，要实拉才知道） |
+| 「i2v 四段块**服务端硬编码**，运营一个字都改不了」 | 🔴 **`studioWorkflow.i2vPromptRules` 改成后台可配**：`continuity / actionTiming / firstFrameLock / voiceover.storyboard / voiceover.video / lipSync.storyboard / lipSync.video`，**上限 2000 字节**，`actionTiming` 支持变量 `{{plannedDurationSeconds}} / {{actionDeadlineSeconds}} / {{holdSeconds}}`。旧项目快照无此字段时走原默认，不影响历史项目 |
+| 「编剧上游一抖动=整单报废、图/视频子任务**永久挂 pending/queued**、积分退没退未知」 | 超时/连接重置/EOF/SSL/网络不可达等**瞬时故障有界退避重试**，仍不可用则**回退本地模板**继续链路；但「台词不完整句/长度不合规/JSON 结构错」**仍然失败**（不用模板掩盖）。父任务失败后未派发子任务统一标 `canceled`；有冻结积分则**写入退款状态** |
+
+### 另外两条技术顺手修的（我没报过，但对转化重要）
+- **未登录点主入口/能力卡 → 直接进注册页**（不再先落登录页）；`redirect/src/invite` 参数全程保留，注册后回原目标页；**邀请码输入框默认折叠**（带 `invite` 参数或点「已有邀请码」才出现）
+- **注册奖励文案八语可配**：后台「系统配置 → 站点配置 → 注册奖励文案 JSON」，支持 `zh/en/ja/ko/vi/es/th/ms`，字段 `title/body`，变量 `{{credits}} / {{days}}`；未配置的语言按 en→zh 回退；**仅当赠送积分>0 且有标题才展示**
+
+### ⇒ 技术单 `OPS-AI-20260922-01` 状态更新
+三条里**第 1、2、3 条技术都已处理**。⚠️ 但**在我实证通过之前，这张单不算闭环**。实证判据见下。
+
+### 🔴 我的实证判据（⛔ 不许用文档描述代替实测）
+- **首帧**：建单时在 `extraRequirement` 埋独一无二哨兵串（如 `TAGFIX0923`），出片后在首帧子任务 `input` 里搜它 —— **出现 = 真修好**。（09-22 同样测法结果是 **-1**：块名在、内容不在）
+- **i2v 可配**：往 `i2vPromptRules` 某字段写哨兵串，烧一单看实发 i2v prompt 里有没有
+- **编剧失败**：找 09-22 之后的失败父单，看子任务是不是 `canceled`、有没有退款状态字段
+
+
+## 2026-09-23 04:0x · ✅ 技术 09-22 修复已线上实证（A/B/D 通过，C 缺样本）
+实烧 1 单验证（75 积分），证据落盘 `03_工作台\验证_技术0922三项修复_线上实拉_2026-09-23.json`
+
+### A ✅ 首帧按块压缩**真生效**
+父单 `task_9f75bd726fe1` / 首帧子任务 `task_54f34e2e0bda`：
+- 建单时在 `extraRequirement` 埋哨兵串 `TAGFIX0923` → **实发 prompt 第 2124 字符处命中（≠ -1）**，整段 92 字未被切。09-22 同法测是 **-1**。
+- `_prompt_truncated: true`，`_prompt_original_bytes 16603 → _prompt_final_bytes 6029`
+- 🔴 **审计字段名 = `_prompt_dropped_blocks`**（技术文档没写，实拉才知道）。本次内容：
+  `{prompt:[{layout_rules,2155},{style_rules,1710},{copy_rules,1654},{cta_rules,1284}]}`
+  —— 丢的四块全是第⑤优先级，**用户补充要求原样保留**，优先级顺序与文档一致。
+- 另有 `_offlineStoreParentStage: "image"`
+
+### B ✅ `studioWorkflow.i2vPromptRules` 已在线上，七项都有默认值
+`continuity 243 / actionTiming 285（含三个变量）/ firstFrameLock 183 / voiceover.storyboard 365 / voiceover.video 386 / lipSync.storyboard 198 / lipSync.video 219` 字节，均远低于 2000 上限。
+🔴 **坑**：`studioWorkflow` **顶层还有一个同名旧字段 `continuity`（仅 15 字节）**，与 `i2vPromptRules.continuity` 不是一个东西 —— **改的时候别改错层**。
+⏳ 「改后新项目是否生效」本轮未写入验证，仍待验。
+
+### C ⏳ 编剧失败子任务终态 —— **缺修复后样本，未验到**
+近 50 条（09-21 19:18~09-23 03:42）：succeeded 39 / failed 8 / canceled 2 / pending 1。
+唯一编剧失败父单 `task_354f20f80c0d` 是**修复前**的（09-22 13:30），其 `credit_status=refunded` 但 output 里**没有 refund*/credit* 专用字段**。
+⚠️ 09-22 14:01 的 `task_6e65247fdf03` 失败点是 **video 子任务**（H3 余额不足），不是编剧故障、套不上这条验收；但它的 `material_analysis` 占位子任务**仍停在 pending 没被置 canceled** —— 遗留疑点，样本不对口，**不足以判定修复失效**。
+⇒ 等真实编剧故障出现再验，⛔ 不要为了验它故意制造失败单。
+
+### D ✅ 注册奖励八语已配满 + 注册入口断点已修
+- 配置项实际叫 **`signup_offer_copy`**（`GET /admin/api/v1/site-configs → data.item`，另有 `signup_offer_copy_json` 格式化副本）
+- **8 语全配**：zh/en/ja/ko/vi/es/th/ms，各有 title+body
+- 匿名拉 `thinknova.top/zh` SSR HTML：奖励区块已渲染，`{{credits}}` 已替换成 100
+- **注册入口已修**：匿名首页三个主入口 href 全是 `/zh/auth/register?redirect=...`，直达注册页并带回跳（不再先落登录页）。⚠️ 顶栏仍只有「登录」一个按钮
+
+
+## 2026-09-23 05:xx · 🔴🔴🔴 i2vPromptRules 已改写上线 + 三条旧结论作废
+
+### 写入路由（这次才摸清，⛔ 以后别再摸一遍）
+- 🔴 **admin API 的 base 是 `https://api.thinknova.top`**。打 `admin.thinknova.top/admin/api/...` 会返回 **SPA 的 HTML**（200 + text/html），不是 404，很容易误判成"接口不存在"。
+- `GET/PUT https://api.thinknova.top/admin/api/v1/agents/{code}`，cookie 鉴权，响应头拿 `x-csrf-token`。
+- PUT body = `{name_zh, name_en, metadata, config}`，其中 `config` 传**改过的 stored_config 整体**。
+- 返回对象里 `data.agent` 同时有 `config`（生效值）和 `stored_config`（运营编辑值），**两处都要改，回读两处都要验**。
+- ⛔ **不要读 cookie 名或 csrf 值再打印** —— 会被分类器判 Credential Materialization 拦下。做法：GET→改→PUT 全部在一次 JS 里做完，只返回状态和校验结果。
+
+### `i2vPromptRules` 只在 `offline_store_video_studio`（长视频制作·20秒起）
+七个 agent 逐个扫过，只有它 `hasI2VR=true`。
+⇒ 🔴 **改它只影响长视频线。15 秒线（`offline_store_video`）走 `stagePromptPresets.image_to_video`，而那个 `.prompt` 是死配置** ⇒ **15 秒线的 i2v 提示词运营目前改不了**，要问技术。
+
+### 🔴 三条旧结论作废
+1. ⛔ **「首帧是 2x3 分镜板、人脸只有 100-150px」作废**。实测 **941x1672 单张竖图**（gpt-image-2），`storyboardPrompt` 的「不得多宫格」已生效。
+2. **i2v 输出只有 768P**（6/6）⇒ 941x1672 进去是**降采样**。毛孔类要求写再好也会丢一部分，**要问技术能不能出 1080P**。
+3. **i2v 完全不下发 `negative_prompt`**（6/6 无该 key）⇒ ⛔ 所有要求只能写**正面指派句**，「不要什么」这条路彻底没有。
+4. **`lipSyncModelId = 0`**，`lipSync.storyboard`/`lipSync.video` 是死字段（6/6 不下发）⇒ **「正脸口播一镜到底」在长视频线跑不起来**，⛔ 确认前不许对客户承诺。
+
+### 「语气/情感」的正确归宿 ≠ i2v 字段
+- **语气/语速** = `studioWorkflow.ttsPacing`（按语言分 characters/words 两套速率，`speed.min 1 / max 1.15`）
+- **情绪档** = `studioWorkflow.ttsEmotion`，现 `default:"auto"`，可选 `auto/happy/surprised/calm/fluent`。**09-23 未动，等老板定调**。
+- **表情层面的情感**（画外音模式下人物不说话，情绪只能靠脸）⇒ 写进 `voiceover.storyboard` / `voiceover.video`。
+
+### 顺带记住的坑
+- `studioWorkflow` 顶层的 `continuity` 是**对象** `{enabled,useStoryboardAnchors,maxAnchorImages:1,endHoldMilliseconds:200}`，⛔ 和 `i2vPromptRules.continuity`（字符串）不是一回事。对它做 `new Blob([x]).size` 会得到 15（"[object Object]"），别被这个 15 骗了。
+- `videoPromptSuffix` 里本来就写着「保留皮肤毛孔细节,不磨皮不锐化」，但它是**死配置**（6/6 不进派发串）⇒ 09-23 把同样的意思搬进了 `firstFrameLock`（实证活着的管道）。
+- 单镜头时长 **min3 / max5 / 默认4**（⛔ 不是旧记忆里的 4-6 默认 5）。
+- 回滚：`03_工作台\ROLLBACK_i2vPromptRules_2026-09-23.json`；改稿全文 `03_工作台\交付_2026-09-23_凌晨全线.md` 第三节。
+- ⚠️ **七个字段一单都没烧验**，全是纸面推演。验法：先烧基线 → 一次只改一条 → 人眼逐帧比。
+
+
+## 2026-09-23 · 🔴 提示词润色（Polish prompt）—— 字段、接口、五语实测
+
+### 字段
+`ai.prompt_polish_system_prompt`，在 **`GET/PUT https://api.thinknova.top/admin/api/v1/system-configs/<key>`**，body `{value, description}`。
+🔴 **这张表的 PUT 是整体覆盖** —— 只传 `value` 会把 `description` 清空（09-23 栽过一次，已还原）。**必须带全字段。**
+⚠️ **无镜像字段**（site-configs / agents 里的 "polish" 只是营销文案，不是这个）。
+
+### 🔴 润色接口（实测出来的，⛔ 别再探）
+**`POST https://api.thinknova.top/api/v1/ai/prompt-polish`**
+body: `{"prompt": "...", "capability": "text_to_video"}`
+鉴权：cookie + **`x-csrf-token`**（从任一 GET 的**响应头**取；不带一律 `419001 Security verification failed`）
+⚠️ 419 是在路由之前拦的 ⇒ **不带 token 时所有路径都返回 419，分不出哪个存在**。探路径必须先拿 token。
+⛔ 试过不存在的：`/api/v1/ai/polish-prompt`、`/api/v1/prompt/polish`、`/api/v1/ai/polish`
+
+### 09-23 21:0x 五语实测结果（改成英文提示词之后）
+| 输入 | 输出正文 | 镜头标签 | 混中文 |
+|---|---|---|---|
+| 印尼语 | 印尼语 ✅ | `Shot 1`（英文） | 否 |
+| 马来语 | 马来语 ✅ | `Shot 1`（英文） | 否 |
+| 越南语 | 越南语 ✅ | **`Cảnh 1`** ✅ | 否 |
+| 中文 | 中文 ✅ | **`镜头1`** ✅ | — |
+
+⇒ **老板原来的 bug（英文输入出中文提示词）已修好。**
+⚠️ **遗留**：印尼语/马来语的**镜头标签仍是英文 `Shot 1`**，因为提示词里那条只举了中英两个例子
+（`"Shot 1 (0-4s):" in English, the equivalent in Chinese`），模型对越南语自己推出来了、对印尼马来没推。
+🔴 **老板 09-23 21:1x 已拍板：不改，就这样。**（理由成立：`Shot 1 (0-4s)` 是通用影视术语，而且这是喂给生成模型的串，不是给客户读的文案。）
+
+### 顺带
+- 改后 1299 字 → 4782 字，**超了「提示词 ≤4000 字」通则**；但按 token 算反而更短（约 1500 → 1100），英文比中文省 token。**「4000 是硬限还是通则」未核实**。
+- 🔴 **老板 09-23 亲手改了篇幅那段**，原来只卡中文字数，他补上了英文词数：
+  `Length: video prompts stay within 600 Chinese characters or 800 English words; image prompts within 300 Chinese characters or 400 English words.`
+  **理由（老板原话）：「提示词不够的情况下输出内容是不够的」** —— 英文按中文字数卡会太短，镜头描述写不开。
+  ⇒ 以后写多语言提示词的长度限制，**中文按字、英文按词，两套数，⛔ 不要只写一个数。**
+- 回滚：`03_工作台\ROLLBACK_提示词润色_2026-09-23.json`；报告 `03_工作台\改写_提示词润色_中文转英文_2026-09-23.md`
+- ⚠️ 老板截图里还发现：**英文界面下「运动模式 *」等字段名仍是中文**，前台有中文残留未翻。

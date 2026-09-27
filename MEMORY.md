@@ -27,27 +27,34 @@
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | 做 YouTube Shorts(**全英文+老板音色**) / 看 GSC | 🔴 `03_工作台\YouTube\管线_YouTubeShorts英文配音_2026-09-15.md` |
-| 接国内营销线的活 / 我还有什么没做 | 🔴 `03_工作台\` 的 `交接档_2026-09-15_国内营销线_压缩前.md` + `国内营销线_工作总账_2026-09-15.md` |
+| 接国内营销线的活 / 我还有什么没做 / 周日档·周一档 | 🔴 `03_工作台\交接档_2026-09-27_压缩前_营销线.md`（发布现状·换音色·新样片·平台矩阵待议）+ [[feedback-boss-rulings]] 顶部三节 |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
 | 接 ThinkNova 视频平台的活 / 接 FB 投流 | 🔴 `03_工作台\交接档_2026-09-20_压缩前.md`(FB 草稿状态·老板三件卡点·三份待 PUT 改稿) |
 | 接增长/海外/融资的活 | 🔴 `03_工作台\海外市场探测计划_2026-08-30.md` 第八节 |
 | 想装闹钟/定时任务/让各线"持续工作" | 🔴 [[feedback-heartbeat-not-cron]] — 只有总指挥有心跳,固定命令 `_pulse.py`,⛔ 不给各线装 cron |
-| 烧 agent/海报线单、写 offer/sellingPoints、FB 投流实操 | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对·Ads Manager 坑 |
+| **回 WhatsApp 客户 / 跟进咨询** | 🔴🔴🔴 [WA 操作](reference_whatsapp_ops.md) — 走 `web.whatsapp.com`（Business Suite 发送被拦）；**没输入框=AI接管，点「手动回复」，不是超窗** |
+| **扫 WhatsApp 有没有新客户** | 🔴🔴🔴 [⛔别只看未读](feedback_wa_unread_hides_customers.md) — AI 接管会把未读清零，必须扫全列表时间戳 |
+| **FB 投流 / 调广告 / 判断素材好坏** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) — 图片效率是视频 2.5 倍；瓶颈在咨询之后不在广告；⛔ 别砍地区（Advantage+）|
+| **谈收入 / 算转化 / 做增长判断** | 🔴🔴🔴 [收入真值](reference_thinknova_revenue_truth.md) — 订单 85%、用户 91% 是测试数据；真人注册只 50 个，**线上转化 0**（3 笔付费全是老板线下演示成交） |
+| **说「找不到 / 搜不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — `.claude\projects\D--\*.jsonl` 中文是原文可直接 grep；老板审过的东西当场落盘 |
+| **转述子 agent 的结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；「404」≠「bug」；没证据就说不知道 |
+| 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
+| **做任何对外内容 / 投流素材（出片规格）** | 🔴🔴 `03_工作台\新内容_品牌_0927\_自由版v2须知.md` — 老板定稿风格：纯代码生成高级品牌片、讲痛点、主打东南亚、统一英文；两库方法见 [[reference-content-skills-dbskill-agentmotion]] |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
 🔴🔴🔴 **闸 0(开口也算动手)= 三件套**(老板 09-17「每一个地方都要用上」):第一性=「该怎么做」⛔不许从「别人都这么做」起步、连试三次不通强制转;steelman=「方向对不对」给老板前必跑、⛔不许假中立;对抗审查=「这句能不能说」。跑完结论没变又说不出放弃了什么=没跑 → [详](feedback_thinking_protocol.md) [逐句筛](feedback_adversarial_review_before_reply.md)
 
 ## 🔴🔴🔴 L-0.5 · 动手前先问「有没有现成 skill/脚本」 → [场景路由表](reference_skills_routing.md)
-`hyperframes`=视频/动画强制入口 ／ 🔴 发布一律走脚本+预约+一天一条 ／ ⛔ 有副作用的脚本调试一律 `--dry`
+`hyperframes`=视频/动画强制入口 ／ 🔴 发布一律走脚本+预约+一天一条（抖音/TikTok/小红书 `_auto\publish.py`、YouTube `upload.py`；⛔ 浏览器手点，省额度） ／ ⛔ 有副作用的脚本调试一律 `--dry`
 
 ## 🔴🔴🔴 L-0.4 · 老板亲口定的口径 → [老板定调集](feedback_boss_rulings.md)
 动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
 
 ## L0 · 每次开口/动手前
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
-1. 🔴 判断时间先跑 `date` → [详](feedback_check_time_first.md) ／ 2. 🔴🔴🔴 提议≠指令;老板的词按字面做满,⛔不许缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
+1. 🔴 判断时间先跑 `date` → [详](feedback_check_time_first.md) ／ 🔴🔴🔴 提议≠指令,老板的词按字面做满,⛔不许缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴🔴 例程内自己拍板,别拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 总览 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 零变化≠他没干活 → [详](feedback_silence_is_not_evidence.md)
 2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `_memory\子agent任务书模板_2026-09-06.md` 五行;日报三行制进总览顶部 → [详](feedback_deliverable_is_postable.md)
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
@@ -76,7 +83,7 @@
 16/18. 每轮说清「验收什么+做了什么」 → [详](feedback_communication_principles.md) [plan](feedback_questions_via_plan_mode.md) [新鲜度](feedback_data_freshness_framing.md)
 
 ## L5 · 环境红线(违反 = 事故)
-20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀 → [详](feedback_kill_python_scope.md) ／ 🔴🔴 签名 OSS URL 会把 AccessKeyId 带进产物;入库/外发前扫一遍 `LTAI`/`AKID`/`Signature=`
+20. 🔴 密钥不外发不打印不进 git;🔴 禁 `taskkill /IM python`,按 PID 精准杀 → [详](feedback_kill_python_scope.md) ／ 🔴🔴 签名 OSS URL 会把 AccessKeyId 带进产物;入库/外发前扫一遍 `LTAI`/`AKID`/`Signature=` ／ 🔴🔴🔴 heredoc 吃反斜杠,Windows 路径一律正斜杠,改单行用 Edit 不绕 bash → [详](feedback_no_backslash_in_heredoc.md)
 22. 🔴 线上 config=唯一真值,禁种子覆盖 → [详](feedback_dont_edit_prod_config_structure.md) ／ 🔴🔴 上下文唯一杠杆=减少往返:一段 JS 干完一整套只回摘要 → [详](feedback_context_budget_discipline.md)
 23. 记忆只留当前状态 → [详](feedback_memory_keep_current.md) ／ 🔴 规则写 WHAT+DONE → [详](feedback_rule_hygiene.md);老板发的提示词当天归档 → [详](reference_prompt_library.md) ／ 🔴 归因只记来源事故不记谁抓谁 → [详](feedback_attribution_record_source_not_who.md)
 ---
@@ -113,6 +120,5 @@
 - 🔴🔴🔴 自营 30 天市场计划 = `03_工作台\自营30天市场计划_2026-08-10.md`(只靠自己/按积分充值设计)
 - 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读;万万应对分析=内部件绝不外发
 
-# 其他(休眠)
-- [Compass](project_compass.md)/[鞋包](project_sg_footwear_proposal.md)/[小孩数学](project_kid_math_tutoring.md)+[课程表](reference_kid_math_roadmap.md)
-- 🔴🔴 两库入口:本机 `README_从这里开始.md`,Obsidian 书签「① 从这里开始」;归档=移动不是删除;skill 台账 `00_规格与参考\SKILLS与规则总台账_2026-08-11.md`
+# 其他
+- 休眠:[Compass](project_compass.md)/[鞋包](project_sg_footwear_proposal.md)/[小孩数学](project_kid_math_tutoring.md)+[课程表](reference_kid_math_roadmap.md) ／ 🔴🔴 两库入口=本机 `README_从这里开始.md`+Obsidian 书签「① 从这里开始」;归档=移动不是删除;skill 台账见 `00_规格与参考\`

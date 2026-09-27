@@ -63,3 +63,10 @@ metadata:
 - 2026-09-13 《运营说明_直连生成与任务队列修复_2026-09-13.md》— constraints.qualityRatioPairs/Idempotency-Key/ai.task_queue_*/PROVIDER_BALANCE_EXHAUSTED/迁移 086;未上线 → 归档 `00_规格与参考\技术侧文档\`
 
 - 09-10 发出待转:`02_交付内容\给技术_OPS-PLATFORM-20260910-01_推荐码归属+分镜相似度.md`(A 推荐码归属 / C 分镜相似度门槛;⛔台词优惠重复与口头禅老板定归提示词层不给技术 + C.9 两问:锚图是否锁构图、referenceImageIndexes 分镜阶段是否按镜生效)。
+
+## 2026-09-27 新增
+- `00_规格与参考/技术侧文档/运营说明_提示词润色分层配置_2026-09-27.md` — 后台「系统配置 → AI 提示词」新增分层润色模板：具体能力（文生图/图生图/文生视频/图生视频/视频编辑）→ 生图/生视频通用 → 全局默认（不能空）；变量 `{capability}`；单条 ≤12000 字节。**只影响用户端「润色提示词」按钮的文本，不动生图/生视频模型系统提示词，也不动商家 Agent 编剧提示词。** ⇒ 以后有人说「润色结果不对」先查这层，别动编剧链。
+- 同日技术回执：教程页 thinknova.top/jiaocheng/ 已加 `src=guide&sec=…&lang=…` 归因链接（首步 + 顶部固定 CTA + 底部 CTA，按当前语言/功能动态渲染，页面同一时刻只渲染选中页签所以静态 HTML 里只见 1–2 个）；视频改 YouTube unlisted 嵌入（中文用中文视频，其余用英文视频，id/ms/vi 默认对应字幕）。手机端播放/字幕未实机复验。⇒ OPS-AI-20260927-01 两卡关闭；`signup_source` 归因可开始看 `src=guide`。
+- `技术侧文档/tutorial-media-and-blog-video-operations-2026-09-27.md` — 后台「任务中心 → 教程与博客媒体」(`#/ai/guide-media`)：①教程视频/字幕按「功能(start/short/long/poster/mobile/studio) × 语言(zh/en/id/ms/vi) × 类型(MP4/WebVTT)」上传到对象存储，教程页 `/jiaocheng/` 读公开清单优先播该槽位，未配槽位回退现有（YouTube）；同槽再传=立即覆盖、无回滚按钮，本地留源。②**博客后台可传 MP4（≤150 MB）**，文章正文单独一段 `[video](链接)` 渲染成原生播放器。③首页首屏新增「教程中心」入口。⇒ 客户案例成片可直接进博客文章；教程视频不再依赖 YouTube 嵌入。
+- `技术侧文档/运营说明_积分不足套餐引导_2026-09-27.md` — 可用积分=0 或生成返回 `402001`/`Insufficient credit balance.` 时工作台弹「积分不足」：订购套餐(/pricing)/充值兑换(积分页)/暂不；本页会话关一次不重弹；供应商余额/模型/网络错误⛔不弹；八语文案随前端包。无新运营配置项。⇒ 首次 100 积分用完（两条片）后的转化入口已有，真机与生产支付未复验。
+- 2026-09-27 23:21 教程媒体槽位 **30 MP4 + 30 VTT 全部上传**（公开 manifest 已核 videos 30 / subtitles 30，6 功能×5 语言无缺）；接口 `POST /admin/api/v1/guide-media/upload`（multipart: feature_code / language_code / media_kind video|subtitle / file）。⚠️ 受扩展 file_upload 10 MB 限制，start/short/long 三组用两遍 libx264 压过：long 系列 327 s 只剩 ~127 kbps（1600×708）明显糊；poster/mobile/studio 用原件。要高清：老板在后台「教程与博客媒体」页面直接传 5 条 long 原件（后台上限 150 MB，同槽覆盖）。转码件与原件拷贝在 `03_工作台/教程视频_0923/_slots/`，清单 `槽位上传清单.md`。
