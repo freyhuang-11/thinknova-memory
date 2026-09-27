@@ -1,11 +1,11 @@
 ---
 name: project-thinknova-marketing
-description: 国内营销线唯一现状源(08-04 大整理):铁流程/红线按触发时机分层;当前资产=小红书10篇+成片9条;烧单冻结中;新加坡线下已拆去 project_thinknova_sg_events
+description: 国内营销线现状源:铁流程/红线按触发时机分层;09-27 起出片规格=新内容_品牌_0927\_自由版v2须知.md,发布现状看营销线最新交接档;新加坡线下已拆去 project_thinknova_sg_events
 metadata:
   node_type: memory
   type: project
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-09-04T13:08:01.456Z
+  modified: 2026-09-27T16:19:00.871Z
 ---
 
 ## 🔴🔴🔴 2026-09-17 · TikTok 线：账号**不是新号**（我判断错过一次，这里是真值）
@@ -27,9 +27,8 @@ metadata:
   我 09-17 发的是**英文 + 三行短文案**。算法已经把这个号归进中文小店内容的圈子，**突然换语言换体裁要盯数据**。
 - ⇒ 「养号 2–3 天再发」这条对这个号**不适用**（那是给全新号的）。
 
-### 发布通道（实测通的那条）
-- ⛔ **Playwright 那套在 TikTok 上登不进去**：扫码后静默失败，加了反检测参数也不行。`TikTok\_auto\login.py` 暂时无用。
-- ✅ **走老板自己的 Chrome**（claude-in-chrome MCP）：他本人登录一次 → 我用 `file_upload` 塞 `input[type=file]` → 打文案 → 点发布。全程通。
+### 发布通道
+- ✅ **现行（09-27 起）= 脚本 `TikTok\_auto\publish.py`**（登录态 `login.py`，先 `--dry`），⛔ 浏览器手点。用法见 [[reference-skills-routing]] 发布表。下面是 09-17 手动通道踩过的坑，仍适用于排查。
 - ⚠️ **上传通道限 10MB**，v2 成片 12.7MB ⇒ 先 `ffmpeg -crf 23` 压到 ~4MB（1080x1920 画质无损感）。
 - 🔴🔴 **`find` 工具把「放弃」按钮认成了「发布」**，我点下去弹出「放弃此次发布？」，点「继续编辑」才没丢内容。
   ⇒ **提交这类不可逆按钮，⛔ 不许用 find 的 ref，只认 `textContent.trim()==='发布'` 的那颗 button。**
@@ -37,7 +36,7 @@ metadata:
 - 第一批 5 条的文案/排期/判读标准 = `03_工作台\TikTok\_第一批_文案与排期_2026-09-17.md`。
 
 
-ThinkNova 国内营销线(小红书图文 + 抖音/视频号/快手视频)。Codex=海外线;**新加坡线下会议 → [[project-thinknova-sg-events]]**。我=获客核心(老板07-30令)。
+ThinkNova 国内营销线(名字是工作线名,⛔ 当受众):现行平台矩阵与受众(东南亚六国各行业商家与个人、英文母版 + 抖音/小红书中文版;⛔ 视频号/快手)以 [[feedback-boss-rulings]] 顶部 09-27 各节为准。Codex=海外线(博客 09-17 起归我);**新加坡线下会议 → [[project-thinknova-sg-events]]**。我=获客核心(老板07-30令)。
 **冲突裁决:同一事以本文件更新日期新的条目为准;价格/能力类以线上真值为准,本文件只是索引。**
 
 # L0 · 任何动作前(铁流程,违一条=事故)
@@ -126,7 +125,7 @@ skill 在 `~/.claude/skills/cheat-*`;rubric 用 `starter-rubrics/tutorial-builde
 - 可以不提平台,但输出的每张图每条片必须平台产。
 
 # L4 · 制作流水线(TTS→合成→交付)
-1. 台词 → 老板确认 → TTS(`scratchpad/vo3/`,S_rbgc0p2a2,speech_rate 20,末尾加「嗯。」)
+1. 台词 → 老板确认 → TTS(现行 `YouTube\_tts.py` 默认叶子音色 S_YZhb0p2a2、rate 20 → [[reference-voice-clone-pipeline]];末尾加「嗯。」)
 2. 🔴 **剪「嗯」前必须先词级 ASR 定位**(`scratchpad/asr_words.py`,火山 utterances[].words)——「嗯」可能和末句连读,silencedetect 会把末句一起剪掉(G4 犯过)。
 3. ASR 句级时间戳=字幕唯一来源,禁手填;ASR 别字按原稿纠回。
 4. 合成器 `03_设计稿/小红书封面/_gcomp2.py`(模板含安全区/断行/推拉镜);**HyperFrames video 永远从素材 0 秒播**,同素材两区间只能复制文件。

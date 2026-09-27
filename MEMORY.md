@@ -26,8 +26,8 @@
 | 动输出语言 | [[project-thinknova-sea-languages]] |
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
-| 做 YouTube Shorts(**全英文+老板音色**) / 看 GSC | 🔴 `03_工作台\YouTube\管线_YouTubeShorts英文配音_2026-09-15.md` |
-| 接国内营销线的活 / 我还有什么没做 / 周日档·周一档 | 🔴 `03_工作台\交接档_2026-09-27_压缩前_营销线.md`（发布现状·换音色·新样片·平台矩阵待议）+ [[feedback-boss-rulings]] 顶部三节 |
+| 做 YouTube Shorts(全英文+**叶子音色**;现「先攒着」不发) / 看 GSC | 🔴 03_工作台 下 `YouTube\管线_YouTubeShorts英文配音_2026-09-15.md` + [[reference-voice-clone-pipeline]] 顶部 |
+| 接国内营销线的活 / 我还有什么没做 / 周日档·周一档 | 🔴 `03_工作台\交接档_2026-09-27_压缩前_营销线.md`（发布现状·新样片·平台矩阵已拍板）+ [[feedback-boss-rulings]] 顶部四节 |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
 | 接 ThinkNova 视频平台的活 / 接 FB 投流 | 🔴 `03_工作台\交接档_2026-09-20_压缩前.md`(FB 草稿状态·老板三件卡点·三份待 PUT 改稿) |
@@ -35,12 +35,12 @@
 | 想装闹钟/定时任务/让各线"持续工作" | 🔴 [[feedback-heartbeat-not-cron]] — 只有总指挥有心跳,固定命令 `_pulse.py`,⛔ 不给各线装 cron |
 | **回 WhatsApp 客户 / 跟进咨询** | 🔴🔴🔴 [WA 操作](reference_whatsapp_ops.md) — 走 `web.whatsapp.com`（Business Suite 发送被拦）；**没输入框=AI接管，点「手动回复」，不是超窗** |
 | **扫 WhatsApp 有没有新客户** | 🔴🔴🔴 [⛔别只看未读](feedback_wa_unread_hides_customers.md) — AI 接管会把未读清零，必须扫全列表时间戳 |
-| **FB 投流 / 调广告 / 判断素材好坏** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) — 图片效率是视频 2.5 倍；瓶颈在咨询之后不在广告；⛔ 别砍地区（Advantage+）|
-| **谈收入 / 算转化 / 做增长判断** | 🔴🔴🔴 [收入真值](reference_thinknova_revenue_truth.md) — 订单 85%、用户 91% 是测试数据；真人注册只 50 个，**线上转化 0**（3 笔付费全是老板线下演示成交） |
-| **说「找不到 / 搜不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — `.claude\projects\D--\*.jsonl` 中文是原文可直接 grep；老板审过的东西当场落盘 |
+| **FB 投流 / 调广告 / 判断素材好坏** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) — 图片效率高于视频（倍数现拉）；瓶颈在咨询之后不在广告；⛔ 别砍地区（Advantage+）|
+| **谈收入 / 算转化 / 做增长判断** | 🔴🔴🔴 [收入真值](reference_thinknova_revenue_truth.md) — 订单、用户绝大多数是测试数据（比例现拉）；**线上转化为零**（付费全是老板线下演示成交） |
+| **说「找不到 / 搜不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — 会话 `*.jsonl` 中文是原文可直接 grep；老板审过的东西当场落盘 |
 | **转述子 agent 的结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；「404」≠「bug」；没证据就说不知道 |
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
-| **做任何对外内容 / 投流素材（出片规格）** | 🔴🔴 `03_工作台\新内容_品牌_0927\_自由版v2须知.md` — 老板定稿风格：纯代码生成高级品牌片、讲痛点、主打东南亚、统一英文；两库方法见 [[reference-content-skills-dbskill-agentmotion]] |
+| **做任何对外内容 / 投流素材（出片规格）** | 🔴🔴 03_工作台 下 `新内容_品牌_0927\_自由版v2须知.md` — 老板定稿风格：纯代码生成高级品牌片、讲痛点、主打东南亚六国各行业商家与个人（餐饮一周≤1）、英文母版（抖音/小红书出中文版）；两库方法见 [[reference-content-skills-dbskill-agentmotion]] |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
@@ -63,14 +63,14 @@
 
 ## L1 · 改配置/提示词前
 4. 🔴 先查字段读取图,拉真实任务 input 确认字段真在 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 字段语义不确定=先问技术 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
-4.6 🔴🔴🔴 提示词≤4000字,关键规则前置;查「有没有某能力」读 `capability` 不拿正则猜 → [详](project_thinknova_0729_screenwriter_stack.md)
+4.6 🔴🔴🔴 提示词有字数上限(现拉线上),关键规则前置;查「有没有某能力」读 `capability` 不拿正则猜 → [详](project_thinknova_0729_screenwriter_stack.md)
 5. 🔴 指派式>禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 微信【多学一点】A/B/C 写法 → [详](feedback_wechat_learn_safe_zone.md) ／ 🔴🔴 微信群单向输出 → [详](feedback_group_oneway_broadcast.md) ／ 🔴🔴 文案主语是机器=返工 → [详](feedback_customer_view_not_machine_view.md)
 6. 🔴 落库≠送达 → [详](feedback_evidence_standard.md) ／ 🔴🔴 ⛔`opsEditable.stagePromptPresets.image_to_video` 写不进 ／ 🔴🔴🔴 grok 混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
 7. 🔴🔴🔴 改提示词前必读那九条 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 验收先有修复前基线,⛔不许用检测器代替人眼 → [详](feedback_evidence_standard.md) ／ 🔴🔴🔴 交付件=能直接发 → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动前端读的字段先改一条验 → [详](project_thinknova_dingdian_koubao.md) ／ 🔴🔴🔴 报技术单前先穷举自己这一侧 → [详](feedback_tech_doc_checklist.md)
 8.5 🔴🔴🔴 案例三条:名实一致、素材必须真有、改一个只影响一个 → [详](feedback_case_name_matches_output.md) [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档 → [详](project_thinknova_brand_product_industry.md)
 8.7 🔴🔴🔴 案例 PUT=整体覆盖(全字段) → [详](feedback_boss_rulings.md) ／ 🔴🔴🔴 列表接口先读 `pagination.total`,pageSize 上限现拉 → [详](reference_thinknova_option_scene_rules.md) ／ 🔴🔴 中间态≠跑通,只认终态
-8.8 🔴🔴 工作台:提示词上限 3500 **字节**、规矩前置 33%、voiceover 不许写正脸说话 → [详](reference_thinknova_video_studio.md) ／ 🔴🔴 写入走 `x-csrf-token` → [详](reference_thinknova_paths.md)
+8.8 🔴🔴 工作台:提示词上限按**字节**算(现拉线上)、规矩前置、voiceover 不许写正脸说话 → [详](reference_thinknova_video_studio.md) ／ 🔴🔴 写入走 `x-csrf-token` → [详](reference_thinknova_paths.md)
 
 ## L2 · 烧单核验时
 8.9 🔴🔴 烧单前报客户视角五要素 → [详](feedback_burn_report_format.md) [详](feedback_evidence_standard.md)

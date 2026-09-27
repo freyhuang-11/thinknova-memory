@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-09-17T12:43:35.647Z
+  modified: 2026-09-27T16:18:28.381Z
 ---
 
 # 场景 → 用什么(skill 32 个 + 运营脚本 14 个,2026-09-17 逐个核对过)
@@ -126,12 +126,13 @@ metadata:
 |---|---|---|
 | 发 YouTube | `YouTube\upload.py` → `_publish.py` | 官方 API;**先跑闸门,非零不传**;`--skip-gate` 必须写理由并永久进台账 |
 | 验 YouTube 成片 | `YouTube\_check_short.py` | 机器闸:规格/开场非黑/静音<10%/切镜≥3/字幕 |
-| YouTube 配音 | `YouTube\_tts.py`(单句)/ `_vo.py`(逐拍合成+排时间轴) | 老板音色 `S_rbgc0p2a2` / speech_rate 20;**让声音决定片长** |
+| YouTube 配音 | `YouTube\_tts.py`(单句)/ `_vo.py`(逐拍合成+排时间轴) | 默认**叶子音色** `S_YZhb0p2a2` / rate 20(老板 09-27 定;本人音色 `S_rbgc0p2a2` ⛔ 当默认);**让声音决定片长**。🔴 YouTube 现「先攒着」只进 private 库存 |
 | 看 YouTube 数据 | `YouTube\stats.py` → `cheat-retro` → `cheat-bump` | 🔴 完播率=质量信号,播放量=人气信号;bump 前不许手动改权重凑分 |
 | 看 SEO / 搜索 | `YouTube\gsc.py` | ⛔ Index Coverage 和 Crawl Stats **没有 API**,只能人在网页导 CSV——不许编 |
 | 查爬虫准入/sitemap | `周分析\_run.py` | 🔴 它扫的是**我们自己的 sitemap 文件**;GSC 说的是 **Google 实际索引了什么**。两个源别混 |
 | 发小红书 | `rednote发布\_auto\publish.py` | Playwright + 持久化登录态;🔴 提交键是**闭合 shadow root**,DOM 找不到 → 截图找红像素点坐标 |
-| 发 TikTok | `TikTok\_auto\tt_post.py` | 🔴 **CDP 连老板自己的 Chrome**,先双击 `_auto\start_chrome_debug.bat`;job 没 `schedule` **直接拒跑** |
+| 发 TikTok | `TikTok\_auto\publish.py`(09-27 起现用;登录态 `login.py`) | 先 `--dry`;AI 开关按几何位置找并回读,没开就不发;作品管理页查同名防重发。旧 CDP 版 `tt_post.py`(连老板 Chrome、先双击 `start_chrome_debug.bat`)仅作后备 |
+| 发抖音 | `抖音发布\_auto\publish.py`(09-27 新写已通;登录态 `login.py` → `_profile`) | 第一次/改动后先 `--dry`;job 带 `schedule` 就定时;必勾「内容由AI生成」 |
 | 给成片烧硬字幕(FB/IG 静音位必需) | `字幕烧录\_burnsub.py` | faster-whisper 转写 → ASS → ffmpeg 烧,音轨 `-c:a copy`。🔴 **先 `--dry` 看文字**(ASR 会听错:实测把 *the prep* 听成 *the preposition*),错了自己写 srt 再 `--srt` 烧。字幕锚在 y≈65–70%,⛔ 不进 y72%+ 牺牲带。⛔ **不走 HyperFrames** —— 在已有 mp4 上叠时间轴文字 ≠ 渲染动画,走 HF 多一次浏览器渲染+重编码+音画漂移风险 |
 | 发博客 | `博客发布\_pub7.py` | create → 配封面 → 预约;一天一篇 |
 | 发冷邮件 | `邮件推广系统\run.py` | cap 在 `MB_CAPS`;⚠️**只抬 cap 不抬 `DAILY_TARGET` = 白抬** |
