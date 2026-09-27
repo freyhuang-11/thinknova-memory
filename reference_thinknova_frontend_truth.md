@@ -129,3 +129,4 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 ## 2026-09-28 03:2x 实拉：推广大使前台入口**存在**
 - 路径：`thinknova.top/app/account/ambassador`（账户中心 → Ambassador → Share center / Rules）。页面显示：Ambassador profile Status Enabled、**Invite code**（老板号 3398EE9806）、Attribution 12 months after signup、Invited users 0。
 - ⇒ 老板 09-26「用户前台推广大使找不到推荐码」= 入口太深（账户中心第 5 个 tab），不是没有。给技术的话应是「首页/积分页加一个『邀请得积分』入口直达该页」，不是「做推荐码」。
+- 2026-09-28 05:1x 实机：中文首页优惠位客户端已渲染「免费注册，赠送 100 积分 · 立即开始制作你的第一条视频 · 积分 14 天内用完」（SSR HTML 里的 `{{credits}}` 只是模板串，浏览器里已替换）。英文站同义。⇒ 对外口径：100 积分 = 第一条视频；有效期 14 天 vs 服务协议「不过期」冲突待老板/技术定。
