@@ -125,3 +125,7 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 - `extraRequirement` **硬上限 200 字**,超了报 `422010`。
 - 显式传 `selectedOptions.copyLanguage` 后可回读 `detail.business.selectedOptions` 核对;
   `zh_cn` / `en` / `ms` 三单实测各自重排版式(底部横3格 / 横4格 / 左上竖排3行),不是同版式换字。
+
+## 2026-09-28 03:2x 实拉：推广大使前台入口**存在**
+- 路径：`thinknova.top/app/account/ambassador`（账户中心 → Ambassador → Share center / Rules）。页面显示：Ambassador profile Status Enabled、**Invite code**（老板号 3398EE9806）、Attribution 12 months after signup、Invited users 0。
+- ⇒ 老板 09-26「用户前台推广大使找不到推荐码」= 入口太深（账户中心第 5 个 tab），不是没有。给技术的话应是「首页/积分页加一个『邀请得积分』入口直达该页」，不是「做推荐码」。
