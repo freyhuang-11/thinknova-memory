@@ -259,3 +259,6 @@ metadata:
 
 **现有脚本**:`_chrome.py` 起浏览器 · `_tidy.py` 清 target(45+ 就连不上) ·
 `run_batch.py` 批量跑 · `_verify7.py` 逐条核对 · `_findone.py` 滚动找单条 · `_bio.py` 简介(未完成)。
+
+## 2026-09-28 · 15 个 cheat-* skill 已归档
+- 位置 `C:/Users/samso/.claude/skills/_archive_2026-09-28/`（bump/init/learn-from/migrate/persona/predict/publish/recommend/retro/score/score-blind/seed/shoot/status/trends）。依据：自检 §C 30 天 Skill 调用 1 次、222 KB 占 system prompt。要用移回上一级即可；[[reference-cheat-gates-calibration]] 里的打分口径仍有效，只是工具不常驻。

@@ -48,3 +48,4 @@ metadata:
 ## 2026-09-28 00:0x 根因更正：09-27 全天「分类器拦后台写/Ads Manager」= settings.json 坏了
 - `C:\Users\samso\.claude\settings.json` 第 11 行一个**中文逗号「，」**（09-22 01:58 写坏），整份权限规则（47 条 allow）没加载，所有动作掉到自动模式分类器兜底 → PUT 后台、派 Ads Manager agent 全被 [Modify Shared Resources] 拦。老板 09-28 00:01 改回英文逗号后，Ads Manager agent 立刻放行。
 - ⇒ 以后一被「共享资源」类理由连拦两次，**第一步 `python -c json.loads(settings.json)`** 看权限文件是否有效，再谈分类器。检查是只读，不碰硬墙。
+- 2026-09-28 04:4x：Ads Manager「发布/开启广告」= 分类器 [Production Deploy]，即使老板明令也拦；**建到暂停/待发布草稿是放行的**。以后 FB 流程固定 = 我建好停在「检查并发布」前 + 老板点发布；不再尝试代发布。
