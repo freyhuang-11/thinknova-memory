@@ -89,7 +89,8 @@
 ---
 
 # 用户与沟通
-- 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工只 add 自己的文件并验远端 ／ [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
+- 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工只 add 自己的文件并验远端
+- [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
@@ -101,12 +102,16 @@
 - 🔴 [两条管线](reference_thinknova_pipeline_flow.md) / [提示词架构](reference_thinknova_prompt_architecture.md) / [Grok 红线](reference_grok_content_policy.md) / [权限地图](reference_thinknova_config_powers.md) / [路径](reference_thinknova_paths.md)
 
 ### 现行状态(索引只写「什么时候看哪个」,事实在文件里)
-- 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md)(主战场;⏸微信 09-15 停;出稿必跑 `_check_week/_xhs/_dy.py`) ／ [小红书](project_thinknova_xhs_line.md) ／ [活动线](project_thinknova_sg_events.md)(08-30 停线下会)
+- 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md)(主战场;⏸微信 09-15 停;出稿必跑 `_check_week/_xhs/_dy.py`) ／ [小红书](project_thinknova_xhs_line.md)
+- [活动线](project_thinknova_sg_events.md)(08-30 停线下会)
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
-- 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) ／ [东南亚语言](project_thinknova_sea_languages.md) ／ [竞品拆解](reference_competitor_gravity_ai.md) ／ [抖音封面](reference_douyin_cover_benchmark.md) ／ [打分校准](reference_cheat_gates_calibration.md) ／ [横屏X](reference_hengping_x_pipeline.md)
-- 🔴 [定价+大使](project_thinknova_pricing_ambassador.md) ／ [HyperFrames](reference_hyperframes_production.md) ／ [音色克隆](reference_voice_clone_pipeline.md) ／ [两个 Agent](project_thinknova_offline_agents.md) ／ [博客 API](reference_thinknova_blog_ops.md) ／ [发布深链](reference_thinknova_publish_schemes.md) ／ [提示词库](reference_prompt_library.md)
+- 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) ／ [东南亚语言](project_thinknova_sea_languages.md) ／ [竞品拆解](reference_competitor_gravity_ai.md)
+- [抖音封面](reference_douyin_cover_benchmark.md) ／ [打分校准](reference_cheat_gates_calibration.md) ／ [横屏X](reference_hengping_x_pipeline.md)
+- 🔴 [定价+大使](project_thinknova_pricing_ambassador.md) ／ [HyperFrames](reference_hyperframes_production.md) ／ [音色克隆](reference_voice_clone_pipeline.md)
+- [两个 Agent](project_thinknova_offline_agents.md) ／ [博客 API](reference_thinknova_blog_ops.md) ／ [发布深链](reference_thinknova_publish_schemes.md)
+- [提示词库](reference_prompt_library.md)
 - 🔴🔴🔴 **后台=`admin.thinknova.top`,cookie 鉴权(老板号 super_admin)**;⛔博客 token 敲 admin 必 401=钥匙拿错 → [详](reference_thinknova_paths.md)
 - 🔴 待办总账 → `03_工作台\待办总账_从记忆迁出_2026-08-24.md`
 
@@ -121,4 +126,5 @@
 - 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读;万万应对分析=内部件绝不外发
 
 # 其他
-- 休眠:[Compass](project_compass.md)/[鞋包](project_sg_footwear_proposal.md)/[小孩数学](project_kid_math_tutoring.md)+[课程表](reference_kid_math_roadmap.md) ／ 🔴🔴 两库入口=本机 `README_从这里开始.md`+Obsidian 书签「① 从这里开始」;归档=移动不是删除;skill 台账见 `00_规格与参考\`
+- 休眠:[Compass](project_compass.md)/[鞋包](project_sg_footwear_proposal.md)/[小孩数学](project_kid_math_tutoring.md)+[课程表](reference_kid_math_roadmap.md)
+- 🔴🔴 两库入口=本机 `README_从这里开始.md`+Obsidian 书签「① 从这里开始」;归档=移动不是删除;skill 台账见 `00_规格与参考\`
