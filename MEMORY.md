@@ -32,10 +32,10 @@
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
 | 接 ThinkNova 视频平台的活 / 接 FB 投流 | 🔴 `03_工作台\交接档_2026-09-20_压缩前.md`(FB 草稿状态·老板三件卡点·三份待 PUT 改稿) |
 | 接增长/海外/融资的活 | 🔴 `03_工作台\海外市场探测计划_2026-08-30.md` 第八节 |
-| 想装闹钟/定时任务/让各线"持续工作" | 🔴 [[feedback-heartbeat-not-cron]] — 只有总指挥有心跳,固定命令 `_pulse.py`,⛔ 不给各线装 cron |
-| **回 WhatsApp 客户 / 跟进咨询** | 🔴🔴🔴 [WA 操作](reference_whatsapp_ops.md) — 走 `web.whatsapp.com`（Business Suite 发送被拦）；**没输入框=AI接管，点「手动回复」，不是超窗** |
+| 想装闹钟/定时任务 | 🔴 [[feedback-heartbeat-not-cron]] — ⛔ Claude 定时任务不给各线;Windows 任务跑固定脚本=可（现 4 个） |
+| **回 WhatsApp 客户 / 跟进咨询** | 🔴🔴🔴 [WA 操作](reference_whatsapp_ops.md) — SOP v2.1：默认教+免费积分，只对强意向出样片，24h 跟一句；发文件走「文档」入口 |
 | **扫 WhatsApp 有没有新客户** | 🔴🔴🔴 [⛔别只看未读](feedback_wa_unread_hides_customers.md) — AI 接管会把未读清零，必须扫全列表时间戳 |
-| **FB 投流 / 调广告 / 判断素材好坏** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) — 图片效率高于视频（倍数现拉）；瓶颈在咨询之后不在广告；⛔ 别砍地区（Advantage+）|
+| **FB 投流 / 调广告** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) — 地域=东南亚六国+≤1 欧美（09-27）；盈亏线 100 新币→5 付费；素材归营销线 |
 | **谈收入 / 算转化 / 做增长判断** | 🔴🔴🔴 [收入真值](reference_thinknova_revenue_truth.md) — 订单、用户绝大多数是测试数据（比例现拉）；**线上转化为零**（付费全是老板线下演示成交） |
 | **说「找不到 / 搜不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — 会话 `*.jsonl` 中文是原文可直接 grep；老板审过的东西当场落盘 |
 | **转述子 agent 的结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；「404」≠「bug」；没证据就说不知道 |
@@ -58,7 +58,7 @@
 2.5 🔴🔴 例程内自己拍板,别拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 总览 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 零变化≠他没干活 → [详](feedback_silence_is_not_evidence.md)
 2.97 🔴🔴 自己写的注释/交付说明不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `_memory\子agent任务书模板_2026-09-06.md` 五行;日报三行制进总览顶部 → [详](feedback_deliverable_is_postable.md)
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
-3.2 🔴 写入被拒先原样重试一次再说;唯一硬墙=改我自己的 settings.json 权限段 → [详](feedback_retry_before_escalating.md)
+3.2 🔴 被「共享资源」拦两次先 `json.loads(settings.json)` 查权限文件;唯一硬墙=改自己的 settings.json → [详](feedback_retry_before_escalating.md)
 3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md)
 
 ## L1 · 改配置/提示词前
