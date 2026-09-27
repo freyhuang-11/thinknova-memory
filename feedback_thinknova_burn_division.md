@@ -18,4 +18,4 @@ metadata:
 
 **Why**:烧单是验证动作不是决策动作,请示只是在浪费老板时间;但没修完就烧=白烧积分。
 
-关联:[[feedback-prompt-first-then-test]] [[feedback-evidence-standard]] [[reference-thinknova-paths]]
+关联:[[feedback-evidence-standard]] [[reference-thinknova-paths]]

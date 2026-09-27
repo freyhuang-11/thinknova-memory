@@ -26,4 +26,4 @@ metadata:
 
 **🔴 HTML→PDF 方法(可复用)**：**用 Chrome 不用 Edge**——`C:\Users\samso\AppData\Local\Google\Chrome\Application\chrome.exe`。原因:老板 Edge 浏览器开着时,`msedge --headless` 会被打包应用转发给运行中的实例、静默 exit 0 不出文件(Edge 是 packaged app)。Chrome 是独立 binary、老板没开→干净。命令:`chrome --headless=new --disable-gpu --no-sandbox --user-data-dir=<scratchpad临时> --virtual-time-budget=20000 --run-all-compositor-stages-before-draw --no-pdf-header-footer --print-to-pdf=<输出> file:///<url,空格转%20>`；同目录临时副本注入 `@media print{*{print-color-adjust:exact}}`(否则黑底丢色)+ A4。输出先写 scratchpad 再 cp 到「quotation (1)」(路径带空格括号)。验证用 pypdf 抽文本(cp1252 撞中文→ascii-safe)查金额/序号连续/图表 xobject 存在/无 raw flowchart。
 
-老板要求：中英文永远同步；范围/数量类改动会串共用链路，需正反双向核对。相关铁律 [[feedback_scope_boundary_explicit]]。
+老板要求：中英文永远同步；范围/数量类改动会串共用链路，需正反双向核对。相关铁律 [[feedback-tech-doc-checklist]]。

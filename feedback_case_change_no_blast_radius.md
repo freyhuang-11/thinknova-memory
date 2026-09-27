@@ -26,4 +26,4 @@ metadata:
 08-07 修「前后对比」案例时，我第一版把全局模板的 `门店(同一空间同一光)全片锁死首帧` 直接放宽成 `光线与陈设默认不变,案例明确要求前后对比时按案例变化`。扫库发现 **689 个案例里 79 个 visualHint 含「前后/对比」字样**，其中「贵的和便宜的差在哪」这类产品对比案例本来就该保持同一光才公平——等于给 79 个案例开了口子。
 改法：全局恢复原句，改成「仅当案例写明『改造前后两态反差』时…」，只有目标案例埋了暗号，命中数 = 1。
 
-关联 [[project-thinknova-0729-screenwriter-stack]] [[feedback-scope-boundary-explicit]] [[feedback-directive-over-prohibition]]
+关联 [[project-thinknova-0729-screenwriter-stack]] [[feedback-tech-doc-checklist]] [[feedback-directive-over-prohibition]]
