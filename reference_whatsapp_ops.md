@@ -102,3 +102,9 @@ WhatsApp Business **API**（云 API / Business Suite）有 24 小时客服窗口
 - `+65 8940 1699`：Business 号，Meta AI 挂在上面、web.whatsapp 台账、FB 广告落点、试跑 3 单都从它发。**总指挥 09-28 定：所有新素材/帖子/广告一律用 1699。**
 - `+65 9868 5036`：回访信模板/YouTube 简介/邮件线/官网二维码在用，**没 AI 没人盯**。⇒ 待老板：要么官网二维码/邮件签名换成 1699，要么把 5036 也接进 Business 号；未定前新东西不写 5036。
 - 「免费 100 积分」可以写：首页首屏就印着「免费注册，赠送 100 积分…积分 14 天内用完」（09-27 实拉），老板 09-28 口径也是；早前「注册送多少未核」作废。
+
+## 09-28 补：读列表 / 开会话 / 打字 三条实测（渲染器易冻，8GB 机）
+- **列表真值 = `get_page_text` 或页面标题的 "(N)"**；`#pane-side [role=row]` 的 JS 扫描会抓到旧节点，顶部新会话一条都不出现（09-28 10:1x 三条广告咨询全漏）。
+- **开会话不要点行**（点行两次把渲染器卡死 30 s+），用 `navigate` 到 `web.whatsapp.com/send?phone=<国家码+号码无+无空格>`，等 20 s 再读 `#main`。
+- **打字**：`computer type` 进 footer 编辑器不进字；正解 = JS `ed=document.querySelector('footer [contenteditable="true"]'); ed.focus(); document.execCommand('insertText',false,txt)` → `computer key Return` → 用 `#main` innerText 尾部带时间戳核发出（`.message-out` 选择器已失效，outs=0 不代表没发）。
+- 广告来的咨询若 Meta AI 回的是 "I'll ask a representative"（没走 B 话术），= 已升级人工，必须 ≤15 分钟接。
