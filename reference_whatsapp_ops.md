@@ -108,3 +108,4 @@ WhatsApp Business **API**（云 API / Business Suite）有 24 小时客服窗口
 - **开会话不要点行**（点行两次把渲染器卡死 30 s+），用 `navigate` 到 `web.whatsapp.com/send?phone=<国家码+号码无+无空格>`，等 20 s 再读 `#main`。
 - **打字**：`computer type` 进 footer 编辑器不进字；正解 = JS `ed=document.querySelector('footer [contenteditable="true"]'); ed.focus(); document.execCommand('insertText',false,txt)` → `computer key Return` → 用 `#main` innerText 尾部带时间戳核发出（`.message-out` 选择器已失效，outs=0 不代表没发）。
 - 广告来的咨询若 Meta AI 回的是 "I'll ask a representative"（没走 B 话术），= 已升级人工，必须 ≤15 分钟接。
+- **发出核验（09-28 11:04 又栽一次）**：`#main` innerText 里含我的文字 ≠ 已发——**草稿也在里面**。真值 = 编辑器 `innerText.trim().length===0` **且** #main 时间戳列表多出新时间；或回列表看该行不带「草稿:」前缀。消息末尾是 URL 时 Return 常不发（链接预览抢焦点），改 JS 点 `button[aria-label^="发送"]`。
