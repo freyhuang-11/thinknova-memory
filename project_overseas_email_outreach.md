@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-09-27T08:11:13.781Z
+  modified: 2026-09-28T16:48:14.568Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -72,7 +72,7 @@ metadata:
 - **发的是 followup(不是首封)**:首封 8638封→注册0,`DAILY_TARGET=0` 暂停;每天发**餐饮 followup**(池 `_daily/followup_餐饮_2026-09-19.csv`,剩~1454),命令 `run.py send --template followup1 --list <餐饮csv> --campaign followup1_YYYYMMDD --limit N --confirm`。创意服务412不发(首封0响应)。
 - 🔴 **09-27 起 followup1 停用 → 现行=照片钩子首封 `photo`**(见上 33-39):发【从未联系过】的4类(餐饮/零售/其他服务/装修维修),正文="Hi I'm Frey...send me one photo of {name}...I'll turn it into a 15-second video...free...No sign-up, no card. Just reply with the photo",主题A/B photoA=`{name} — quick question`/photoB=`a short video for {name}`;⛔无价格/积分/链接/wa.me/样片链接。模板 `templates.render_photo`、send `--template photo`、名单 `_build_photo_list.py→_daily/photo_todo.csv`、campaign `photo_YYYYMMDD`。[以下 followup1 为历史;其定制报价 S$40(1-4)/S$35(5-9)/S$30(10+) 仍是"客户要代做/更多"时的口径]:~~followup 文案(09-23)~~:引用上一封 → "短版:你填店名+卖什么+语言,15秒视频就回来" → CTA 两选一:①自助注册 `https://thinknova.top`(送100积分/14天有效/覆盖第一条;之后约40-70积分一条)②**回复本邮件下单**(定制 done-for-you,老板人工做:S$40/1-4条、S$35/5-9条、S$30/10条以上;30-60秒;含配音字幕+一轮改)。⛔**交付不写死天数**(旧"约2工作日"是编的,改"付款前先跟客户确认交付时间")。⛔**无 wa.me**(Meta 封过 WhatsApp,后恢复但对外一律不放,接单只走邮箱)。⛔**无样片链接**:`SAMPLE_PAGE_URL=None`——那篇博客09-23被改空、且博客渲染器连`<a>`都渲染不出,有能真放片的页面之前不许写"点这里看样片"。主题=`three lines of typing, one shop video`(09-23改定,和正文对应、不提"看";⛔有真样片页前主题也不许出现 look/see/watch/demo)。积分数可对客户写(老板09-22:几种付费形式都可让客户知道,推翻旧"邮件不写积分数")。🔴 `thinknova.top` 每10分钟准时 502 一次(整体~0.48%,825次采样,单curl测不出要采样)——收件人点注册约0.5%吃502,已在技术单卡0;⛔"点了没注册"不全算文案头上,有这网关漏。定制不能接三类:健身房/教培近景/画面要可读文字(见《定制视频_可卖方案与接单表_2026-09-21》)。
 - **日量:两箱现实上限 ≈168,200 达不到**(09-21 实测:hello@ 撞 550 在 108、sam@ 60,两箱各自被 Google 日限压住)。⚠️**明天起降一档稳投递:hello@90 + sam@50 = 140**(总指挥定,老板未拍;别再顶 550,否则像 sam 当初被压到 ~69)。要真 200 得加第 3 个箱。`MB_CAPS` 控每箱cap。🔴**只跑一个 send 进程、不叠**(09-21 STOP/resume 叠出两进程、加剧写锁争用)。发前先跑 `_build_photo_list.py`(4类×未联系×私人×MX活→`_daily/photo_todo.csv`);followup_daily.py 已自动跑它,手动补时也跑它。
-- **驱动=Windows 任务 `ThinkNova_FollowupSend`**(老板09-25授权,覆盖"不给各线装cron"):**周一至周五 09:05**,WakeToRun到点唤醒机器+RestartCount重试;链 `tn_followup_launch.py`(ASCII路径启动器,避中文路径坑)`→followup_daily.py`→建名单+sam50+hello90。09-25/26/27 验过自动跑;⚠️机器**关机**时9:05仍可能漏→那天有人叫我起来 `python followup_daily.py` 手动补。⛔任务设置由总指挥管、我不动。窗口9-23、静默0-9。
+- **驱动=Windows 任务 `ThinkNova_FollowupSend`**(老板09-25授权,覆盖"不给各线装cron"):**周一至周五 09:05**,WakeToRun到点唤醒机器+RestartCount重试;链 `tn_followup_launch.py`(ASCII路径启动器,避中文路径坑)`→followup_daily.py`→建名单+sam50+hello90。09-25/26/27 验过自动跑。🔴**但 09-29 00:2x 起两个 Windows 任务(FollowupSend+DailySend)已 Disabled、全线停发**(送达崩+DKIM未配,见 line~192 + 下条基础设施);⛔别重启,等老板配 DKIM+名单验证后每箱 30-50 小量恢复。⛔任务设置由总指挥管、我不动。窗口9-23、静默0-9。
 - **回信处理(09-27 现行)**:auto_reply 已关(`console.py:26=False`),interested/照片回信不自动回。SOP:照片/interested 进来→**总指挥 pulse 每10分钟读 `replies`(handled=0)自动发现**;我被叫起看到也 SendMessage 转他(以 reply id 去重)→他2h烧片(公司账号,15秒75积分)+给回信文案→**老板从 sam@ 发**(成片+一句"注册后100积分够两条 https://thinknova.top",⛔不报价)。⛔我不代发。要代做/复杂问题→转总指挥→老板。邮件回信真值=`replies` 表(⛔不进一对一表,那是 WhatsApp 的)。旧"简单件我自己回"(如 1118 教程)在照片钩子下基本用不到了。
 - **09-22 复盘节点**:仍0转化则老板把邮件线拿去一起分析。我判断:非文案非池子,是渠道×产品结构不匹配(冷邮件=低意向好奇,产品要跨注册→学会→做片高激活门槛;线下会16注册=5000封冷邮件16倍)。老板已转向 FB投流→WhatsApp 暖入口。
 
@@ -114,7 +114,7 @@ metadata:
 - Windows 终端打印中文报 UnicodeEncodeError 但文件通常已写入；跑 py 一律带 `PYTHONIOENCODING=utf-8`。
 
 ## 基础设施
-域名 trythinknova.com→301→thinknova.top（可达）。Workspace sam@trythinknova.com，SPF/DKIM/DMARC/MX齐。WhatsApp群 chat.whatsapp.com/CAHneI38TGLAHkBAOC4zw8。页脚 JIMENG NETWORK TECHNOLOGY PTE.LTD./Suntec Tower 2 Level 7, Singapore 038989。签名 Frey。
+域名 trythinknova.com→301→thinknova.top（可达）。Workspace sam@trythinknova.com。SPF/DMARC/MX 有,🔴**DKIM 实际未配**(09-29 查 `google._domainkey.trythinknova.com` 查不到)——旧记录"DKIM齐"是错的;这是 09-12 后 1831 封 0 回复的根因(邮件进垃圾),⛔恢复发送前老板必须先配 DKIM。WhatsApp群 chat.whatsapp.com/CAHneI38TGLAHkBAOC4zw8。页脚 JIMENG NETWORK TECHNOLOGY PTE.LTD./Suntec Tower 2 Level 7, Singapore 038989。签名 Frey。
 
 ## 决策页（老板过目件唯一入口，链接固定不变）
 https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「冷邮件决策台」。08-31 建，按老板【决策台工作法】办：⛔不再让老板开本地文件，**每天原地更新这一个链接**，每件待拍板的事必写「回一句什么」。日报仍照旧进 Obsidian 留档，两者不互相替代。
