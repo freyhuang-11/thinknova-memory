@@ -89,7 +89,7 @@ WhatsApp Business **API**（云 API / Business Suite）有 24 小时客服窗口
 
 ## 09-28 00:0x 老板定：成片发出后客户没回 → 24 小时后跟进一句
 - 一句话模板：「Did the video play OK on your phone? Anything you'd change?」；再 24 h 无回 ⇒ 判死不再发。已写进 SOP v2 §一。
-- 今日到点：ai beautique（17:25 发）→ 09-28 17:25 跟；rhodapana617（18:04 发）→ 09-28 18:04 跟；Shing's 由老板亲自聊，不跟。
+- 今日到点：ai beautique（17:25 发）→ 09-28 17:25 跟；rhodapana617（18:04 发）→ 09-28 18:04 跟；（09-28 夜作废）Shing's 改由总指挥跟。
 
 ## 七、SOP v2.1（老板 2026-09-28 00:4x 定，现行口径，覆盖上面 §四「报老板发教程」和 09-27「第一句要照片」）
 - 默认路径：Meta AI 开场 = 免费 100 积分 + 教程链接 + 问店型；客户回店型 ⇒ **人工教**（给一句填写示例 + 对应教程）；⛔ 不要照片、⛔ 不代做。
@@ -109,3 +109,5 @@ WhatsApp Business **API**（云 API / Business Suite）有 24 小时客服窗口
 - **打字**：`computer type` 进 footer 编辑器不进字；正解 = JS `ed=document.querySelector('footer [contenteditable="true"]'); ed.focus(); document.execCommand('insertText',false,txt)` → `computer key Return` → 用 `#main` innerText 尾部带时间戳核发出（`.message-out` 选择器已失效，outs=0 不代表没发）。
 - 广告来的咨询若 Meta AI 回的是 "I'll ask a representative"（没走 B 话术），= 已升级人工，必须 ≤15 分钟接。
 - **发出核验（09-28 11:04 又栽一次）**：`#main` innerText 里含我的文字 ≠ 已发——**草稿也在里面**。真值 = 编辑器 `innerText.trim().length===0` **且** #main 时间戳列表多出新时间；或回列表看该行不带「草稿:」前缀。消息末尾是 URL 时 Return 常不发（链接预览抢焦点），改 JS 点 `button[aria-label^="发送"]`。
+
+🔴 **2026-09-28 23:5x 老板令：WA 所有客户跟进由总指挥亲自发，包括 Shing's。⛔ 不要写成 md / 话术让老板去发。** 夜间 23:00–08:00 不主动发，排到次日白天第一拍；一天主动发 ≤8 条。
