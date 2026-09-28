@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-09-28T08:19:36.476Z
+  modified: 2026-09-28T16:46:19.985Z
 ---
 
 老板亲口定的口径,按时间倒序。**索引里只留一句触发条件,正文一律看这里。**
@@ -22,7 +22,7 @@ metadata:
 
 原话（经总指挥转述）：「非常有兴趣的我们才出样片」。
 ⇒ 怎么做：
-- 下周起片尾 CTA = 「Message us on WhatsApp — tell us what you sell」；⛔ 公开承诺「评论就给你做样片」。
+- 下周起片尾 CTA = 「Try it free at thinknova.top」/「上 thinknova.top 免费试」（09-29 总指挥按老板最新令再改：所有渠道默认教，⛔ 放 WhatsApp 号——号码统一老板未拍板）；⛔ 公开承诺「评论就给你做样片」。
 - 本周已排 16 条（旧 CTA）的评论处理：评论同时写「店名/店型+卖什么」才算强意向 → 样片只在 WA 发、每天 ≤3 条、烧前把客户原话+三行发总指挥等 5 分钟；只写 interested 的 → 评论区引导 WA 1699 走 v2.1 默认教+100 积分。
 - ⛔ 再说「样片是唯一带来付费的动作」：3 笔付费全是老板线下当面演示，WA 样片至今 0 付费（见 reference_thinknova_revenue_truth）。
 
