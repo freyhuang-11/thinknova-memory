@@ -27,7 +27,7 @@
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | YouTube Shorts（先攒着不发）/ 看 GSC | 🔴 YouTube 目录下 `管线_YouTubeShorts英文配音_2026-09-15.md` + [[reference-voice-clone-pipeline]] |
-| 接国内营销线的活 / 周日档·周一档 | 🔴 派活=ccd_session_mgmt send_message 到「THINK NOVA marketing」会话，⛔ 别说「不在线」 → [详](feedback_reach_sibling_sessions.md) ＋ 🔴 03_工作台 下 `交接档_2026-09-27_压缩前_营销线.md` + [[feedback-boss-rulings]] 顶部 |
+| 接国内营销线的活 / 周日档·周一档 | 🔴 派活=ccd_session_mgmt send_message 到「THINK NOVA marketing」会话，⛔ 别说「不在线」 → [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束⛔不教怎么做 → [详](feedback_brief_marketing_what_not_how.md) ＋ 🔴 03_工作台 下 `交接档_2026-09-27_压缩前_营销线.md` + [[feedback-boss-rulings]] 顶部 |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
 | 想装闹钟/定时任务 / 心跳频率 | 🔴 [[feedback-heartbeat-not-cron]] — 心跳 1 小时（老板定，不许自改）；Windows 任务跑固定脚本=可 |
