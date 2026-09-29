@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-09-28T16:48:14.568Z
+  modified: 2026-09-29T02:21:43.071Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -190,3 +190,8 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
 - 真实回复累计 3 个：`pedasmanja78@gmail.com` 回「yes」(interested，已自动发教程，待人工跟)、`punjabirasoimy@gmail.com` 回「我们没那家分店」(名单地址写错)。
 
 🔴 **2026-09-29 00:2x 状态：发送全停**（FollowupSend、DailySend 任务 Disabled）。诊断：09-09~11 单号 1000/天后送达崩，09-12 后 1831 封零真人回件；DKIM（google._domainkey）未配。恢复顺序（老板认可）：老板配 DKIM → 名单验证（8463 个，本机 _verify/）→ 每箱 30–50/天起量。另：reply_classifier 曾把真实意向判成 unsubscribe/ooo（reply 700/188），inbox.py 只抓 UNSEEN——修前别信「零回复」。
+
+🔴 **2026-09-29 总指挥三任务已交付**（发送仍停）：
+- **①全库翻漏网真人意向=0 正向**：非退信/非system/未人工回 47 条,剔掉 ooo 自动回执后无一条说「要/感兴趣」;只剩 3 个真人「Stop」(112/334/509,待抑制)、2 个明确拒(608;1090=850eddy 同人)、frostbeard 对方营销邮件误进 5 条。印证 DKIM→垃圾箱、真潜客没看到。
+- **③pending 草稿 18 天不发根因**：`send_pending_replies` 由 console.py(ThinkNovaEmailConsole 每小时 Running)非静默调,但**只发 `draft_status='queued'`**;inbox 对 'other'/(关自动回的)'interested' 一律存 **'pending'(待人工批)**,pending→queued 唯一入口=人在 console 面板点「批准」→ 没人开面板就永远不发(非「无任务跑发送」)。修法待总指挥定(推荐 DailyPulse 报 pending 待批数)。
+- **②名单验证脚本 `import_verify.py` 已建并自测**：MillionVerifier CSV(email,result)→ invalid/disposable/unknown 进 suppression(reason=verify_xxx)、ok 进新表 `email_verify` 标 sendable、catch_all/其它只记录不动作;默认 dry 须 `--commit`,有/无表头都认+去重,`--db` 可指定库测试。⛔不碰发送逻辑(build_list 是否优先 sendable 另定)。等老板给结果文件先 --dry 看分布再 commit。
