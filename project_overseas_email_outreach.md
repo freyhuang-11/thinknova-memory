@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-09-29T02:21:43.071Z
+  modified: 2026-09-29T02:28:30.951Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -194,4 +194,10 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
 🔴 **2026-09-29 总指挥三任务已交付**（发送仍停）：
 - **①全库翻漏网真人意向=0 正向**：非退信/非system/未人工回 47 条,剔掉 ooo 自动回执后无一条说「要/感兴趣」;只剩 3 个真人「Stop」(112/334/509,待抑制)、2 个明确拒(608;1090=850eddy 同人)、frostbeard 对方营销邮件误进 5 条。印证 DKIM→垃圾箱、真潜客没看到。
 - **③pending 草稿 18 天不发根因**：`send_pending_replies` 由 console.py(ThinkNovaEmailConsole 每小时 Running)非静默调,但**只发 `draft_status='queued'`**;inbox 对 'other'/(关自动回的)'interested' 一律存 **'pending'(待人工批)**,pending→queued 唯一入口=人在 console 面板点「批准」→ 没人开面板就永远不发(非「无任务跑发送」)。修法待总指挥定(推荐 DailyPulse 报 pending 待批数)。
-- **②名单验证脚本 `import_verify.py` 已建并自测**：MillionVerifier CSV(email,result)→ invalid/disposable/unknown 进 suppression(reason=verify_xxx)、ok 进新表 `email_verify` 标 sendable、catch_all/其它只记录不动作;默认 dry 须 `--commit`,有/无表头都认+去重,`--db` 可指定库测试。⛔不碰发送逻辑(build_list 是否优先 sendable 另定)。等老板给结果文件先 --dry 看分布再 commit。
+- **②名单验证脚本 `import_verify.py` 已建并自测**：MillionVerifier CSV(email,result)→ invalid/disposable/unknown 进 suppression(reason=verify_xxx)、ok 进新表 `email_verify` 标 sendable、catch_all/其它只记录不动作;默认 dry 须 `--commit`,有/无表头都认+去重,`--db` 可指定库测试。等老板给结果文件先 --dry 看分布再 commit。
+
+🔴 **2026-09-29 总指挥拍板 5 条已执行完**：
+- **①③⑤ 抑制已写**:112/334/509 三个 Stop=unsubscribe、frostbeardstudio(hello@+help@)=marketing_noise、eddy lee451861=not_interested。⚠️其中 3 个 Stop 和 eddy **老分类器早已自动抑制过**(Task1 查询没过滤 suppressed 才冒出来),一直是抑制态、本就不会再发,这次只是重申+改 reason。
+- **④ id754 developerlaunch** 标 `draft_status='hold'`,不进任何发送路径,恢复后总指挥单独回。
+- **② pending 计数进 `_pulse.py`**(修法A):新增 `邮件.pending待批数`/`邮件.pending最老天数` 两字段(读 replies pending且未处理);推送那行由总指挥心跳侧读 `pulse_YYYY-MM-DD.json` 渲染,我没动 `_daily_pulse_job.py`。
+- **③ sendable 闸已加两处**:`_build_photo_list.py`(现行首发)+ `daily_send.build_list`(legacy),带守卫——`email_verify` 空/未建→休眠零影响,导入验证结果后自动只取 verdict='sendable'、catch_all 不发。四文件编译通过。
