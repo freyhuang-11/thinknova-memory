@@ -43,3 +43,5 @@ metadata:
    ⇒ 正确做法：「我去验一下」，而不是「我错了」或者「我对的」。
 
 相关：[[feedback-source-truth-first-commander]] [[feedback-understand-before-judging]] [[feedback-evidence-standard]] [[feedback-silence-is-not-evidence]]
+
+- 2026-09-30 例：营销线报「商家端建单接口全 500」，我没复现就写 P0 让老板转技术；老板前台自己建单正常 ⇒ 是调用方问题，撤回。**兄弟线报「平台坏了」⇒ 先对照前台真实路径（老板/我手点一次或看他的成功请求），能复现才报技术。**
