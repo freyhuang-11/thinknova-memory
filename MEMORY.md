@@ -89,6 +89,7 @@
 # 用户与沟通
 - 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工只 add 自己的文件并验远端
 - [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
+- 🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含提问选项和文件说明;对外素材按投放语言
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
