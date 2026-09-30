@@ -113,3 +113,5 @@ WhatsApp Business **API**（云 API / Business Suite）有 24 小时客服窗口
 - **发出核验（09-28 11:04 又栽一次）**：`#main` innerText 里含我的文字 ≠ 已发——**草稿也在里面**。真值 = 编辑器 `innerText.trim().length===0` **且** #main 时间戳列表多出新时间；或回列表看该行不带「草稿:」前缀。消息末尾是 URL 时 Return 常不发（链接预览抢焦点），改 JS 点 `button[aria-label^="发送"]`。
 
 🔴 **2026-09-28 23:5x 老板令：WA 所有客户跟进由总指挥亲自发，包括 Shing's。⛔ 不要写成 md / 话术让老板去发。** 夜间 23:00–08:00 不主动发，排到次日白天第一拍；一天主动发 ≤8 条。
+
+- 🔴 2026-09-30 实测：网页版 `execCommand('insertText')` 里的 `\n` 会被吞，链接和下一句粘成一坨（如 `thinknova.topWhat kind…`）⇒ 多段内容用「。 / - 」连成一段，或链接后留空格再接下一句。清空编辑器 `execCommand('delete')` 无效（Lexical），要真键盘 Ctrl+A → Delete（视口 0×0 时键盘也无效 ⇒ 别往输入框塞不打算发的草稿）。
