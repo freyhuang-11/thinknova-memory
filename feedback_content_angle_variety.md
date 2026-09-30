@@ -1,0 +1,23 @@
+---
+name: feedback-content-angle-variety
+description: 一批片子风格不同但讲的是同一套（no filming/no editing）= 同质化；派活前每条必须分到不同的痛点角度/能力/证据素材/结尾提问
+metadata:
+  node_type: memory
+  type: feedback
+  originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
+  modified: 2026-09-30T13:58:03.329Z
+---
+
+老板 2026-09-30 晚：「为什么我感觉你内容给的好像都差不多，都是no filming no editing 这种」。
+
+实测：9 种风格里「评论区说说」9/9，「不想出镜」7/9，「第一条免费」7/9；同一条花束成片用在 6 条片里。
+
+**Why**：我写子 agent 任务书时，只要求画面风格不同，痛点、解法、结尾给的是同一套 ⇒ 9 条片其实是同一句话换 9 身衣服。老板要的「每次尝试不一样的」是**讲法不一样**，不只是配色不一样。
+
+**How to apply**：
+- 派任何一批片之前，先填 `新内容_周1005\_角度矩阵.md` 的表：每条的痛点角度 / 面向谁 / 讲平台哪个能力 / 证据素材 / 结尾提问，四列同批不许重复。
+- 「不会拍不会剪不想出镜」「No filming, No editing」一批最多 1 次；同一条真实成片一批最多 1 次（合集片除外）。
+- 结尾提问要问具体的事，⛔ 每条都是「评论区说说你做什么生意」。
+- 交片前自己 grep 一遍全批文案和台词，数重复短语。
+
+关联：[[feedback-boss-rulings]] [[feedback-deliverable-is-postable]]
