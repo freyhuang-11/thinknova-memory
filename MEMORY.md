@@ -106,6 +106,7 @@
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
+- 🔴 [配乐工具链](reference_audio_toolkit.md)（FluidSynth + 真实乐器音色库，10-01 起替代纯代码合成）
 - 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) / [东南亚语言](project_thinknova_sea_languages.md) / [竞品](reference_competitor_gravity_ai.md) / [定价+大使](project_thinknova_pricing_ambassador.md) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md)
 - [抖音封面](reference_douyin_cover_benchmark.md) / [打分校准](reference_cheat_gates_calibration.md) / [横屏X](reference_hengping_x_pipeline.md) / [两个 Agent](project_thinknova_offline_agents.md) / [博客 API](reference_thinknova_blog_ops.md) / [发布深链](reference_thinknova_publish_schemes.md) / [提示词库](reference_prompt_library.md)
 - 🔴🔴🔴 后台接口在 `api.thinknova.top` 同源页跑 fetch（cookie 鉴权）→ [详](reference_thinknova_paths.md)
