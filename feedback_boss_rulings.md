@@ -1087,3 +1087,4 @@ WhatsApp 问候语、Meta Business Agent 的 19 条 FAQ、AI 指示、邮件模�
 - 2026-09-29 19:5x 核：官网右下角联系组件二维码（system-configs `site.contact_widget_qr_url`）解码 = wa.me/message/NY5HCWIWJRX6F1 → phone=6589401699，名称 Thinknova 商业账号 ✅。
 - 2026-09-30 18:0x：**WA 接手后只引导看教程**（教程已很详细），⛔ 不替客户写要填的句子、⛔ 不做样片；只给「一句话是什么 + 对应语言教程链接 + 卡住截图发我」。见 SOP §十五。
 - 2026-09-30 18:1x 老板拍板：**定位扩到「小生意营销视频」**（实体店 + 网店卖家 Shopee/TikTok Shop/Lazada + 服务类），FB 下一版分「For shop owners」vs「For online sellers」测；**注册来源追溯不做**；**注册后跟进要做**；平台已有「新手起步」引导，⛔ 别再说客户要自己写句子/我们帮写。
+- 2026-09-30 18:3x：**WA 不再问客户行业**（对我们没信息帮助）。一来就说清做什么、能做哪些内容、给注册链接+教程，任务只有「帮注册 + 引导做出第一条」。Meta AI v3 话术包 03_工作台/MetaAI_话术包_v3_2026-09-30.md。
