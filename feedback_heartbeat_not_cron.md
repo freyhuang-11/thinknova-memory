@@ -8,6 +8,8 @@ metadata:
   modified: 2026-09-27T08:15:42.582Z
 ---
 
+> 🔴 **现行机制（2026-09-30 起）**：CronCreate 整点 `7 0,10-23 * * *`，01:00–10:00 停（老板定）；⛔ 不再用 ScheduleWakeup 串心跳（09-29 被打断断了一夜）；session-only、7 天到期、app 重启即失效 ⇒ 重启后第一件事 CronList，没有就重建。下文更早的 ScheduleWakeup 说法作废。
+
 **WHAT**:⛔ 不给各线装定时任务(Claude scheduled tasks)。现行架构 = **只有总指挥会话用 `/loop`+ScheduleWakeup 有心跳(1 小时一拍)**,各线等总指挥 SendMessage 派活;定时任务只留周一两个(活动扫描/SEO)。
 
 **Why**(两次同一事故):
