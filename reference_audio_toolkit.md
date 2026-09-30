@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-09-30T18:03:21.085Z
+  modified: 2026-09-30T19:50:50.576Z
 ---
 
 老板 10-01：「你自己渲染视频的音效尽可能也要调整一下」「可以下载，我允许你下载和使用一切工具」。在这之前配乐全是 numpy 现合成，偏素、条条相似。
@@ -17,6 +17,12 @@ metadata:
 - Python 库装在 `C:\Users\samso\AppData\Local\Python\pythoncore-3.11-64\python.exe`：mido、pretty_midi、pedalboard。⚠️ 默认的 `python` 是 hermes 虚拟环境，那里没装。
 - 渲染命令：`fluidsynth.exe -ni -g 0.8 -r 48000 -F out.wav GeneralUser-GS.sf2 in.mid`
 - 🔴 渲染配乐也算本机重活，要先拿 `新内容_周0928\_render.lock`。
-- 用法方向：做一个可复用的声音库（6–8 种风格不同的配乐 + 一套音效），每条片挑不同的，同一批不重样。
+- ✅ 声音库 v1（10-01 完成）：`04_素材库\声音库_v1\`
+  - 8 首配乐 `配乐\bedNN_*.wav`：lo-fi / 尤克里里 / 流行 / 新闻快讯 / 8-bit / 温暖钢琴 / 复古放克 / 电影感铺垫，各 48 秒，-16 LUFS。
+  - 每首有 `分轨\`（仅鼓 / 无鼓）和 `结尾\`（从结尾重拍开始，可以接在任意小节后面）。
+  - 22 个音效在 `音效\`。
+  - 转折点、结尾时间、适合什么片，都写在 `目录.md`；频谱对比图在 `_频谱总览.png`。
+  - 规矩：同一周一批片里，每首配乐只用一次。
+  - ⚠️ 没人真听过，全是脚本测的。01、06 偏暗；glitch 音效要多压一点。
 
 关联：[[feedback-boss-rulings]] [[reference-hyperframes-production]]
