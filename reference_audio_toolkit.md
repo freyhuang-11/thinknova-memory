@@ -26,3 +26,5 @@ metadata:
   - ⚠️ 没人真听过，全是脚本测的。01、06 偏暗；glitch 音效要多压一点。
 
 关联：[[feedback-boss-rulings]] [[reference-hyperframes-production]]
+
+- 补旁白到已成片（10-01 起）：`03_工作台\新内容_周1012\_build\vo_overlay.py <spec.json> [check]`，spec 里写 src/out/lang/lines[[key,开口秒,台词]]；先 check 看超时，叶子 EN rate 30 实测约 2.5 词/秒、ZH rate 20 约 4.5 字/秒（逗号会拖慢）。
