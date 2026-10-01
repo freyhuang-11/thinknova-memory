@@ -26,18 +26,18 @@
 | 动输出语言 | [[project-thinknova-sea-languages]] |
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
-| YouTube Shorts（先攒着不发）/ 看 GSC | 🔴 YouTube 目录下 `管线_YouTubeShorts英文配音_2026-09-15.md` + [[reference-voice-clone-pipeline]] |
+| YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC | 🔴 教程=`教程视频_0923\youtube_queue_upload.py`（Windows 任务 15:05）；宣传片=YouTube 目录 `_promo_upload_skipS4.py`（清单+状态在 `宣传片清单_1003-1014\`）；旧管线 `管线_YouTubeShorts英文配音_2026-09-15.md` |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 派活=ccd_session_mgmt send_message 到「THINK NOVA marketing」会话，⛔ 别说「不在线」 → [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束⛔不教怎么做 → [详](feedback_brief_marketing_what_not_how.md) ＋ 🔴 03_工作台 下 `交接档_2026-09-27_压缩前_营销线.md` + [[feedback-boss-rulings]] 顶部 |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
 | 想装闹钟/定时任务 / 心跳频率 | 🔴 [[feedback-heartbeat-not-cron]] — 整点 cron 7 0,10-23（01–10 停，老板定）；app 重启先重建；Windows 任务跑固定脚本=可 |
-| **回 WhatsApp 客户 / 扫新客户 / 任何获客判断** | 🔴🔴🔴 先看 [现行口径 0930](feedback_current_growth_rules_0930.md)（不问行业·只引导教程·官方号归我私人号不碰·小生意定位）+ [WA 操作](reference_whatsapp_ops.md) + [⛔别只看未读](feedback_wa_unread_hides_customers.md) |
+| **回 WhatsApp 客户 / 扫新客户 / 任何获客判断 / 报价** | 🔴🔴🔴 先看 [现行口径（10-02 整理）](feedback_current_growth_rules_0930.md)（市场·对外口径·价格·WA·带线 六节）+ [WA 操作](reference_whatsapp_ops.md) + [⛔别只看未读](feedback_wa_unread_hides_customers.md) |
 | **FB 投流 / 调广告 / 接总指挥的活** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) + 03_工作台 下最新 `交接档_*_总指挥.md` — 地域现拉；我建到草稿、老板点发布 |
 | **谈收入 / 算转化 / 做增长判断** | 🔴🔴🔴 [收入真值](reference_thinknova_revenue_truth.md) — 大多是测试数据；付费全来自老板线下演示 |
 | **说「找不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — `*.jsonl` 可直接 grep |
 | **转述子 agent 结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；没证据就说不知道 |
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
-| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 `新内容_品牌_0927\_自由版v2须知.md`（老板定稿风格与口径）+ [[reference-content-skills-dbskill-agentmotion]] ＋ 🔴 派一批片前先填角度矩阵，四列不许重 → [详](feedback_content_angle_variety.md) |
+| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 第二、三节 + 03_工作台 `客户需求点库_2026-10-02.md`（痛点轮换）+ `新内容_品牌_0927\_自由版v2须知.md`（老板定稿风格与口径）+ [[reference-content-skills-dbskill-agentmotion]] ＋ 🔴 派一批片前先填角度矩阵，四列不许重 → [详](feedback_content_angle_variety.md) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
