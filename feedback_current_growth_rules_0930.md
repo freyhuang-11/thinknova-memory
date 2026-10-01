@@ -27,7 +27,8 @@ metadata:
 
 ## 三、价格（10-02 00:5x 现拉定价页核实）
 - 充值包（老板已开放，可买）：US$6=500 积分 / US$18=1530 / US$37=3120。月费：US$29.8（2980 积分，页面 About $0.8/video）/ US$99.8 / US$198（About $0.7/video）。15 秒视频 = 75 积分（10-01 建单页实见）。
-- **公开平台**只写美元：「from US$6」「about US$0.7 per video」「Plans from US$29.8/month」「under US$1 per 15-second video」，要和页面对得上，⛔ 编确数。
+- **公开平台**只写美元，统一用「Top-up packs from US$6 · under US$1 per 15-second video」（可补「Plans from US$29.8/month」）。⛔「about US$0.7 per video」（只月付档成立；US$6 包≈$0.90/条；登出态页面该处是空白）。⛔ 编确数。
+- 判断「客户看到什么」一律用能跑 JS 的浏览器看登出态，⛔ 用 curl/静态 HTML（10-02 评论线因此误判充值包「买不了」）。
 - **WhatsApp 一对一**：美元后带当地货币约数（「约」）：US$6 ≈ ฿200 / ₱340 / RM26 / S$8 / Rp100rb；US$29.8 ≈ ฿1,000 / ₱1,700 / RM128 / S$39 / Rp490rb。
 
 ## 四、WhatsApp（官方号 +65 8940 1699 归我；私人号 9868 5036 老板自己处理 ⛔ 不碰）
