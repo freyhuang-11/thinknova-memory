@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-10-01T02:20:11.834Z
+  modified: 2026-10-01T16:21:14.323Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -195,6 +195,8 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
 - **①全库翻漏网真人意向=0 正向**：非退信/非system/未人工回 47 条,剔掉 ooo 自动回执后无一条说「要/感兴趣」;只剩 3 个真人「Stop」(112/334/509,待抑制)、2 个明确拒(608;1090=850eddy 同人)、frostbeard 对方营销邮件误进 5 条。印证 DKIM→垃圾箱、真潜客没看到。
 - **③pending 草稿 18 天不发根因**：`send_pending_replies` 由 console.py(ThinkNovaEmailConsole 每小时 Running)非静默调,但**只发 `draft_status='queued'`**;inbox 对 'other'/(关自动回的)'interested' 一律存 **'pending'(待人工批)**,pending→queued 唯一入口=人在 console 面板点「批准」→ 没人开面板就永远不发(非「无任务跑发送」)。修法待总指挥定(推荐 DailyPulse 报 pending 待批数)。
 - **②名单验证脚本 `import_verify.py` 已建并自测**：MillionVerifier CSV(email,result)→ invalid/disposable/unknown 进 suppression(reason=verify_xxx)、ok 进新表 `email_verify` 标 sendable、catch_all/其它只记录不动作;默认 dry 须 `--commit`,有/无表头都认+去重,`--db` 可指定库测试。等老板给结果文件先 --dry 看分布再 commit。
+
+🔴 **2026-10-02 恢复「小量试发」(老板亲口拍板)**：老板否掉"先买 MillionVerifier",选"DKIM已通→先小量试发测退信率→退信>5%再买验证"。口径冲突已裁:总指挥一度要改"注册拿积分自己做",**老板亲选维持 09-27 免注册版**(回照片→我们帮做 15 秒),该改作废。落地=一次性 Windows 任务 `ThinkNova_TestSend_1002`(10-02 09:10、WakeToRun、跑完即止、⛔不碰 Disabled 的 FollowupSend/DailySend),启动器 `C:\Users\samso\tn_testsend_1002.py`(MB_CAPS=40,40、`send --template photo --limit 80 --campaign photo_20261002 --confirm`、GAP15-45s),名单 photo_todo 前80(其他服务36/餐饮24/零售15/装修5,马来70/新10,免费箱70)。发完写 `_daily/testsend_1002_result.txt`;当天报实发/失败,2天看退信率,>5%停转买验证;**跑完删任务并回总指挥确认**;有人回照片=强意向转总指挥出片。⚠️给总指挥发状态被 auto 分类器拦(Real-World Transactions),改由老板侧知会/总指挥读库。
 
 🔴 **2026-09-29 总指挥拍板 5 条已执行完**：
 - **①③⑤ 抑制已写**:112/334/509 三个 Stop=unsubscribe、frostbeardstudio(hello@+help@)=marketing_noise、eddy lee451861=not_interested。⚠️其中 3 个 Stop 和 eddy **老分类器早已自动抑制过**(Task1 查询没过滤 suppressed 才冒出来),一直是抑制态、本就不会再发,这次只是重申+改 reason。
