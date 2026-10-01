@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-09-30T08:41:39.678Z
+  modified: 2026-10-01T02:20:11.834Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -114,7 +114,7 @@ metadata:
 - Windows 终端打印中文报 UnicodeEncodeError 但文件通常已写入；跑 py 一律带 `PYTHONIOENCODING=utf-8`。
 
 ## 基础设施
-域名 trythinknova.com→301→thinknova.top（可达）。Workspace sam@trythinknova.com。SPF/DMARC/MX 有,🔴**DKIM 未生效**——旧记录"DKIM齐"是错的;这是 09-12 后 1831 封 0 回复的根因(邮件进垃圾)。**09-30 进展**:老板已在 Aliyun 加了 DKIM,但域名 DNS 托管在 **Cloudflare**(NS=dom/zelda.ns.cloudflare.com),Cloudflare 那边还没这条记录 ⇒ **仍未生效**;总指挥在催老板把 DKIM 加到 Cloudflare。⛔恢复发送前必须先在 Cloudflare 配好 DKIM 并验证生效。WhatsApp群 chat.whatsapp.com/CAHneI38TGLAHkBAOC4zw8。页脚 JIMENG NETWORK TECHNOLOGY PTE.LTD./Suntec Tower 2 Level 7, Singapore 038989。签名 Frey。
+域名 trythinknova.com→301→thinknova.top（可达）。Workspace sam@trythinknova.com。SPF/DMARC/MX 有。🔴**DKIM 10-01 已生效并实测通过**:老板 09-30 在 Cloudflare(DNS 托管,NS=dom/zelda.ns.cloudflare.com)加好,10-01 sam@→hello@ 自测收件头 `dkim=pass spf=pass dmarc=pass`、header.d=trythinknova.com(脚本 `_dkim_test.py`,经 run.py 注入凭据)。旧记录"DKIM齐/未配"均作废;09-12 后 1831 封 0 回复的根因(进垃圾)这条已解。⇒ 恢复发送只剩「名单验证」一关。自测脚本:`python run.py _dkim_test`(只发我们自己两箱间)。WhatsApp群 chat.whatsapp.com/CAHneI38TGLAHkBAOC4zw8。页脚 JIMENG NETWORK TECHNOLOGY PTE.LTD./Suntec Tower 2 Level 7, Singapore 038989。签名 Frey。
 
 ## 决策页（老板过目件唯一入口，链接固定不变）
 https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「冷邮件决策台」。08-31 建，按老板【决策台工作法】办：⛔不再让老板开本地文件，**每天原地更新这一个链接**，每件待拍板的事必写「回一句什么」。日报仍照旧进 Obsidian 留档，两者不互相替代。
