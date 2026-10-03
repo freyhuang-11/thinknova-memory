@@ -232,6 +232,7 @@ metadata:
 ## 三道服务端硬校验(改编剧提示词前必须确认这三条还在)
 - `lines` 条数严格 == `shotCount` → 否则 `lines count does not match shot count`
 - 每条必须是完整句 → 否则 `lines are incomplete sentences`(实测断句形态:「他指着X想买真」)
+  - 10-03 实测·待核：**句尾没有句末标点也判不完整**(泰语完整句无标点全挂,加「.」「?」后一次过 task_d7f7451cc81b);**小数点会被当句号拆句**→报 `lines count does not match shot count`(food_s11_owner luna 写「RM8.90」两次挂,写 eight ninety 的都过)。诊断先拉 agentTimeline 原文(见下第 5 条),⛔别先报技术。
 - 总字数落进 `lineValidation` 区间 → 否则 `lines length out of range`
 
 ## 老板 09-15 台词口径(增量)
