@@ -415,3 +415,9 @@ WhatsApp 只把**带协议头**的当可点链接。写 `thinknova.top` 是纯�
 - 后台 `admin.thinknova.top` → 左栏「总览 → 用户」→ 右上「按用户 ID 或邮箱搜索」找到人 → 该行「操作」列点 **「调整积分」**（同列还有「详情」「大使」）。列表可见「可用 / 冻结 / 创建时间 / 邀请码 / 推广大使」。
 - 用途：SOP v2 §八「两天内付费送 500 积分」的兑现动作——客户回付费截图 → 用她注册邮箱搜到 → 调整积分 +500 → 回她一句已到账。⛔ 加之前先在列表核对「可用」余额和创建时间对得上她的注册时间，别加错人。
 - 老板号 super_admin 有此权限；操作是写动作，按执行手册走：加完回读该行「可用」数字变化再回客户。
+
+## 10-04 往后台传本地文件（教程媒体等）· 实测通路
+- 教程媒体 API：GET `/admin/api/v1/guide-media`；POST `/admin/api/v1/guide-media/upload`（multipart：file / feature_code / language_code / media_kind=video|subtitle，带 x-csrf-token）。语言 zh en id ms vi ja ko es th；功能 start short long poster mobile studio + guided_{desktop,mobile}_{register,choose_case,fill_generate,download,poster_reuse,pricing,faq}。公开清单 `GET /api/v1/guide-media/manifest`（里面是签名 URL，⛔ 不打印不落盘）。
+- 通路：robots.txt 轻页 JS 造一个 `<input type=file>` → `find` 拿 ref → claude-in-chrome `file_upload`（一次调用/一个 batch 合计 <10MB，文件要在项目目录里）→ 页面 JS 读 input.files[0] 用 FormData POST。大于 10MB 先 ffmpeg 两遍编码压到 ~8MB。接近 10MB 的 mp4 服务器会 500，压到 8MB 左右就过。
+- ⛔ 走不通：页面 fetch `http://127.0.0.1`（Chrome 本地网络限制）、页面 fetch OSS 公共桶（无 CORS）。
+
