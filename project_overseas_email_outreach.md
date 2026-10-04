@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-10-03T02:36:22.660Z
+  modified: 2026-10-04T12:37:08.251Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -199,7 +199,9 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
 🔴 **2026-10-02 恢复「小量试发」(老板亲口拍板)**：老板否掉"先买 MillionVerifier",选"DKIM已通→先小量试发测退信率→退信>5%再买验证"。口径冲突已裁:总指挥一度要改"注册拿积分自己做",**老板亲选维持 09-27 免注册版**(回照片→我们帮做 15 秒),该改作废。落地=一次性 Windows 任务 `ThinkNova_TestSend_1002`(WakeToRun、跑完即止、⛔不碰 Disabled 的 FollowupSend/DailySend),启动器 `C:\Users\samso\tn_testsend_1002.py`(MB_CAPS=40,40、`send --template photo --limit 80 --confirm`、GAP15-45s),名单 photo_todo 前80(其他服务36/餐饮24/零售15/装修5,马来70/新10,免费箱70)。当天报实发/失败,2天看退信率,>5%停转买验证;**跑完删任务并回总指挥确认**;有人回照片=强意向转总指挥出片。
 - 🔴 **10-02 09:10 首跑失败(0 行)**:任务跑了(Result=0x0)但 send.py 往 sends 写 0 行(连 failed 都没)。排除静默/STOP/名单(--dry 跑出80/0skip)。两种可能都产 0 行:(A)循环前抛异常(睡醒 cred/DNS 没就绪)(B)首封撞供应商日发上限被熔断回滚硬停。真因丢了=**启动器没捕获 send 的 stdout(我的疏漏)**。
 - 🔴 **已加固**:启动器重写=①发前等网络就绪 ②子进程跑 send 把全部输出写 `_daily/testsend_log.txt`③campaign=`photo_20261003`。SMTP 直连=`send_one`(smtp.gmail.com:587 STARTTLS,box["_pw"] 在 env MB{n}_PW、JSON 存 pw_env 指针);DKIM 自测 `python run.py _dkim_test`。
-- ✅ **10-03 10:01 试发成功:实发 80 / 失败 0**(sam40+hello40,维持 09-27 免注册版)。一次性任务 `ThinkNova_TestSend_1002` 已删除,FollowupSend/DailySend 仍 Disabled。⚠️**~30 分硬退 6+软退 1=硬退 7.5%(6/80)**,一上来就过 5%——印证 gmail 死信箱、名单没验。**正式判定看 10-05 两天硬退率,>5% 转买 MillionVerifier**。期间:每天看退信/回信;回照片=强意向即转总指挥出片;问价口径 **充值包 US$6 起 / 月费 US$29.8 起 + 注册链接**;⛔不追发不加量。
+- ✅ **10-03 10:01 试发成功:实发 80 / 失败 0**(sam40+hello40,维持 09-27 免注册版)。一次性任务 `ThinkNova_TestSend_1002` 已删除,FollowupSend/DailySend 仍 Disabled。⚠️**~30 分硬退 6+软退 1=硬退 7.5%(6/80)**,一上来就过 5%——印证 gmail 死信箱、名单没验。期间:每天看退信/回信;回照片=强意向即转总指挥出片;问价口径 **充值包 US$6 起 / 月费 US$29.8 起 + 注册链接**;⛔不追发不加量。
+- 🔴 **10-04 两天判定出炉:硬退 6/80=7.5% > 5%、软退1、spam退0、真人回信0/照片0、待批0**(handled=0 共1140 全退信/系统件)。建议老板走 **C 买 MillionVerifier 洗名单**(账号已建,收件箱有确认/欢迎件;约几十美元、当天出结果;import_verify+sendable闸已就绪)。A继续=赌信誉不建议、B暂停=搁置。诚实提醒:验证修退信不修"0转化",洗完再发仍~0回信=渠道判死。
+- 🔴 **营销线 10-04 改动(别动)**:① inbox.py 加 `_is_pr_contact`(pr_/PR_DOMAINS 媒体回信留 handled=0 人工,旧备份 `_历史版本\inbox.py.bak_before_pr_1004`)——已核**不影响冷邮件正常回信**。② 周一 10-05 09:30 营销线一次性任务 `ThinkNova_PR_1004_once`(hello@ 发2封媒体投稿,脚本 `03_工作台\曝光渠道_1004\_send_pr_1004.py`)⛔别动、那时段我不跑发送。③ 以后模板链接一律 `https://thinknova.top/?src=em_活动名`、⛔不给注册页;积分口径=注册送100积分/45天有效(与上面"充值包6/月费29.8"并存,报价用后者)。
 
 🔴 **2026-09-29 总指挥拍板 5 条已执行完**：
 - **①③⑤ 抑制已写**:112/334/509 三个 Stop=unsubscribe、frostbeardstudio(hello@+help@)=marketing_noise、eddy lee451861=not_interested。⚠️其中 3 个 Stop 和 eddy **老分类器早已自动抑制过**(Task1 查询没过滤 suppressed 才冒出来),一直是抑制态、本就不会再发,这次只是重申+改 reason。
