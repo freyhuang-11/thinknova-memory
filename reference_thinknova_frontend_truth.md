@@ -134,3 +134,7 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 ## 🔴 2026-10-04 curl 看到的是首屏占位值，不是前台真值（我误报一次）
 - curl 拉 /pricing 看到加油包 $5 / Unavailable，那是页面没跑脚本时的占位值；后台 billing.topup_packages 实际是 $6 / $18 / $37、三个都启用，能跑脚本的浏览器看到的也是 $6。
 - ⇒ 前台价格、积分这类数字只认：后台配置，或能跑脚本的浏览器（登出态）。⛔ 拿 curl / WebFetch 的结果下结论，更 ⛔ 因此停掉已批准的发送。
+
+## 🔴 2026-10-04 转述总指挥的平台现状，没实看就对老板下结论（老板：「你在做虚假判断？」）
+- 总指挥说做视频页「只剩三步」，我没核就告诉老板「页面变了、旧教程过时」；老板说标准流程没变。实看：/app/business-video-assets 第一屏仍是「STEP 1 · What does your store do?」行业卡 + Next，新增的只有右下新人引导浮窗「Create your first video · 4/6」。
+- ⇒ 平台流程、价格、界面这类现状，**转述前自己实看**：用老板 Chrome 里登录的测试号（老板 10-04 同意过录屏）或后台配置；同事的描述也只当线索。
