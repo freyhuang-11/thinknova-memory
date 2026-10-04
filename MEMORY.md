@@ -30,7 +30,7 @@
 | 接国内营销线的活 / 周日档·周一档 | 🔴 派活=ccd_session_mgmt send_message 到「THINK NOVA marketing」会话，⛔ 别说「不在线」 → [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束⛔不教怎么做 → [详](feedback_brief_marketing_what_not_how.md) ＋ 🔴 03_工作台 下 `交接档_2026-09-27_压缩前_营销线.md` + [[feedback-boss-rulings]] 顶部 |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆；🔴🔴 老板转来的=已部署（10-03 两次被纠正），⛔ 按文档里「未部署」字样判断，当场线上核+补配置 |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
-| 想装闹钟/定时任务 / 心跳频率 | 🔴 [[feedback-heartbeat-not-cron]] — 整点 cron 7 0,10-23（01–10 停，老板定）；app 重启先重建；Windows 任务跑固定脚本=可 |
+| 想装闹钟/定时任务 / 心跳频率 | 🔴 [[feedback-heartbeat-not-cron]] — 整点 cron 7 * 全天 24 小时（10-04 老板定，夜间做系统优化、不扰客户不叫老板）；app 重启先重建；Windows 任务跑固定脚本=可 |
 | **回 WhatsApp 客户 / 扫新客户 / 任何获客判断 / 报价** | 🔴🔴🔴 先看 [现行口径（10-02 整理）](feedback_current_growth_rules_0930.md)（市场·对外口径·价格·WA·带线 六节）+ [WA 操作](reference_whatsapp_ops.md) + [⛔别只看未读](feedback_wa_unread_hides_customers.md) |
 | **FB 投流 / 调广告 / 接总指挥的活** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) + 03_工作台 下最新 `交接档_*_总指挥.md` — 地域现拉；我建到草稿、老板点发布 |
 | **谈收入 / 算转化 / 做增长判断** | 🔴🔴🔴 [收入真值](reference_thinknova_revenue_truth.md) — 大多是测试数据；付费全来自老板线下演示 |

@@ -1,6 +1,6 @@
 ---
 name: feedback-heartbeat-not-cron
-description: "触发:想装定时任务/闹钟/自动化让各线\"持续工作\"时 → 09-07 与 09-19 两次同一事故,现行架构=只有总指挥一条线有心跳"
+description: "触发:想装定时任务/闹钟/心跳频率 → 现行=总指挥整点 cron 24 小时（10-04 老板定）；各线不装 Claude 定时任务"
 metadata:
   node_type: memory
   type: feedback
@@ -8,7 +8,7 @@ metadata:
   modified: 2026-09-27T08:15:42.582Z
 ---
 
-> 🔴 **现行机制（2026-09-30 起）**：CronCreate 整点 `7 0,10-23 * * *`，01:00–10:00 停（老板定）；⛔ 不再用 ScheduleWakeup 串心跳（09-29 被打断断了一夜）；session-only、7 天到期、app 重启即失效 ⇒ 重启后第一件事 CronList，没有就重建。下文更早的 ScheduleWakeup 说法作废。
+> 🔴 **现行机制（2026-10-04 起）**：CronCreate 整点 `7 * * * *`，**24 小时不停**（老板 10-04 原话「心跳给我24小时开，因为现在和技术那边得dot要合作，半夜你们可以自动化对系统进行优化和调整」，覆盖 09-29 的「01–10 停」）；夜间拍做系统优化/验证/与 dot 邮件往来，⛔ 夜间不主动发客户 WA、不叫老板；⛔ 不再用 ScheduleWakeup 串心跳；session-only、7 天到期、app 重启即失效 ⇒ 每拍先 CronList，没有就重建。下文更早的频率/停歇说法作废。
 
 **WHAT**:⛔ 不给各线装定时任务(Claude scheduled tasks)。现行架构 = **只有总指挥会话用 `/loop`+ScheduleWakeup 有心跳(1 小时一拍)**,各线等总指挥 SendMessage 派活;定时任务只留周一两个(活动扫描/SEO)。
 
