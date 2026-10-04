@@ -130,3 +130,7 @@ insurance_finance(保险理财) / fengshui_metaphysics(风水玄学) / styling_a
 - 路径：`thinknova.top/app/account/ambassador`（账户中心 → Ambassador → Share center / Rules）。页面显示：Ambassador profile Status Enabled、**Invite code**（老板号 3398EE9806）、Attribution 12 months after signup、Invited users 0。
 - ⇒ 老板 09-26「用户前台推广大使找不到推荐码」= 入口太深（账户中心第 5 个 tab），不是没有。给技术的话应是「首页/积分页加一个『邀请得积分』入口直达该页」，不是「做推荐码」。
 - 2026-09-28 05:1x 实机：中文首页优惠位客户端已渲染「免费注册，赠送 100 积分 · 立即开始制作你的第一条视频 · 积分 14 天内用完」（SSR HTML 里的 `{{credits}}` 只是模板串，浏览器里已替换）。英文站同义。⇒ 对外口径：100 积分 = 第一条视频；有效期 14 天 vs 服务协议「不过期」冲突待老板/技术定。
+
+## 🔴 2026-10-04 curl 看到的是首屏占位值，不是前台真值（我误报一次）
+- curl 拉 /pricing 看到加油包 $5 / Unavailable，那是页面没跑脚本时的占位值；后台 billing.topup_packages 实际是 $6 / $18 / $37、三个都启用，能跑脚本的浏览器看到的也是 $6。
+- ⇒ 前台价格、积分这类数字只认：后台配置，或能跑脚本的浏览器（登出态）。⛔ 拿 curl / WebFetch 的结果下结论，更 ⛔ 因此停掉已批准的发送。
