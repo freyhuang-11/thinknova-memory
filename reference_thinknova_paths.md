@@ -421,3 +421,9 @@ WhatsApp 只把**带协议头**的当可点链接。写 `thinknova.top` 是纯�
 - 通路：robots.txt 轻页 JS 造一个 `<input type=file>` → `find` 拿 ref → claude-in-chrome `file_upload`（一次调用/一个 batch 合计 <10MB，文件要在项目目录里）→ 页面 JS 读 input.files[0] 用 FormData POST。大于 10MB 先 ffmpeg 两遍编码压到 ~8MB。接近 10MB 的 mp4 服务器会 500，压到 8MB 左右就过。
 - ⛔ 走不通：页面 fetch `http://127.0.0.1`（Chrome 本地网络限制）、页面 fetch OSS 公共桶（无 CORS）。
 
+
+## kie.ai 对账（2026-10-05 实测）
+- kie 账户由 thinknova 与 hotex 两个项目共用，各有一把 key；kie.ai/usage 页底部按 key 分开显示消耗，图表是 canvas，按天数值从 canvas 的 React props（memoizedProps.data，14 天数组，单位美元）读；1 美元=200 点。
+- ⛔ kie.ai/billing 的余额数字在后台页签里一直显示 0（占位），不能当真；余额以老板截图或交易记录表为准。
+- ⛔ kie.ai/logs 翻到第 6 页左右必卡死页签，逐条对账别走日志页。
+- kie 对失败请求扣 0 点；老板登录态只读查看，不碰 API Keys 页。
