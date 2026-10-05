@@ -28,3 +28,7 @@ metadata:
 5. 各线(营销/邮件)同规,共享额度。
 
 关联:[[feedback-memory-keep-current]] [[feedback-evidence-standard]] [[project-thinknova-storyboard-test]]
+
+## 🔴🔴🔴 2026-10-05 · 老板再次点名（「上下文消耗太快，一天要压缩无数次」）
+当天的大头（按量）：Gmail `search_threads` 默认视图一次 2–3 万字、`get_thread` 拉带引用的整串、Artifact 整页读回、PDF 带图整读、联系表图十几张、在主会话里做了两份 PDF 方案和一份路演稿的全部排版、一天 20 多封给技术的长信、各线长回执原文进上下文。
+规矩（细则写在 `03_工作台/日报/心跳规程_总指挥.md` 的「省上下文」节）：本机检查用 `日报/_beat.py` 一条命令；Gmail 只用 metadata 视图 + pageSize≤3 + newer_than，有新信才读单封；大活（文档、方案、扫描、走查）一律派子 agent，只收结论和路径；给技术一拍最多一封、≤15 行；各线回执 ≤5 行 + 文件路径；战略台只在三个固定拍更新。
