@@ -38,7 +38,7 @@
 | **说「找不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — `*.jsonl` 可直接 grep |
 | **转述子 agent 结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；没证据就说不知道 |
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
-| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 第二、三节 + 03_工作台 `客户需求点库_2026-10-02.md`（痛点轮换）+ `新内容_品牌_0927\_自由版v2须知.md`（老板定稿风格与口径）+ [[reference-content-skills-dbskill-agentmotion]] ＋ 🔴 派一批片前先填角度矩阵，四列不许重 → [详](feedback_content_angle_variety.md) |
+| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 第二、三节 + 03_工作台 `客户需求点库_2026-10-02.md`（痛点轮换）+ `新内容_品牌_0927\_自由版v2须知.md`（老板定稿风格与口径）+ [[reference-content-skills-dbskill-agentmotion]] ＋ 🔴 派一批片前先填角度矩阵，四列不许重 → [详](feedback_content_angle_variety.md) ＋ 🔴 每次数据分析必带「对标同类爆款」一节（老板 10-07）→ [详](feedback_benchmark_trending_each_analysis.md) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
