@@ -103,3 +103,7 @@ metadata:
 | 我要否掉一条老规矩 / 改一条老口径 | **Steelman** 那条老规矩(它当初为什么被定下来?) |
 
 关联:[[feedback-adversarial-review-before-reply]] [[feedback-action-gates]] [[reference-skills-routing]] [[feedback-boss-rulings]] [[feedback-source-truth-first-commander]] [[feedback-understand-before-judging]]
+
+## 2026-10-08 02:1x 老板补充：定期学习更新 + 反复判断
+- 原话：「你作为记忆最丰富和最严谨的角色，需要定期学习和更新自己的技能和记忆，结论到你这里你需要反复判断并给出你认为的最优解。」
+- **How to apply:** ① 任何线/子 agent/技术给的结论，到我这里先过「复核→反证→最优解」三步再外发或执行，日报④节记录推翻了什么；② 每周日 03:07 夜拍跑一次记忆整理（consolidate-memory）+ 技能台账复查（过时规则作废、新规律写入）；③ 每次事故后当天把教训写进对应 feedback 文件，索引只留现行口径。
