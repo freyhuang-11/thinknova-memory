@@ -4,7 +4,7 @@ description: 触发:动编剧层任何东西(提示词/lineValidation/烧验/台
 metadata: 
   node_type: memory
   type: project
-  modified: 2026-09-13T14:08:22.088Z
+  modified: 2026-10-07T04:33:47.376Z
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
 ---
 > 🔴 **本文里出现的一切字数/字节/条数都是当时的历史记录,不是现值。要现值一律现拉线上 config。**(2026-08-27 立)
@@ -301,4 +301,4 @@ videoModelId / ttsModelId / ttsVoice / durationSeconds / ratio / industryId / sc
 - systemPrompt【台词量】加「每条台词句尾有且只有一个句末标点；句中不出现 . ? ! 和小数点（价格读成 eight ninety）；反问另起一条或改逗号；不把两句并成一条」→ 3999 码点（≤4000）。起因：task_db20974ca784 第 3 条两句并一条，校验按句末标点数句 6≠5 报「lines count does not match shot count」。烧验 3 单第 1 次即过。
 - languagePolicy.map.en + opsEditable.languageMap.en 1234B→581B（三件套保留）。起因：英文 i2v 派发串超 4000 字节被截第 5 格 → 第 5 句不念、片尾死寂 3–5 秒。改后第 5 句进、成片 15.08s。
 - 事实：i2v 吃的是父单建单时的配置快照，判生效要看父单建单时间。英文派发串仍 4632B>4000，尾部语言后缀半句被切（i2v 预设里有零字幕规则兜底，待压第二轮）。
-- 待议：en words 窗口上限 44 压线频繁（44/45），拟抬到 48。
+- 12:20 第二轮（ROLLBACK_…_第二轮_en380与words48.json）：map.en 再压 581B→**365B**（三件套齐，删掉「keep facts as given / 币种符号前置 / 不拿种族宗教开玩笑」三条短规则）保留；en 上限 44→48 **烧 3 单后已回滚到 44**（luna 顶着上限写 48/50/49，第 1 次通过率 3/4→1/3，抬上限=抬落点）。🔴 事实：**i2v 派发串里 map.en 被注两份**（头+尾或尾部连两份），同参数单 4632B→4186B 仍超 186B，根治=技术去重复注入，⛔别再压字段。压线要治得改注入句目标值，未动。详见 `01_问题诊断\第二轮_en380与words48_执行记录_2026-10-07.md`。
