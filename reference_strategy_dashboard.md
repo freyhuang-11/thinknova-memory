@@ -18,3 +18,7 @@ metadata:
 - **任务唯一总表** = `03_工作台/任务总表_总指挥.md`，每拍读、当拍改；战略台内容从它来。
 - 相关：[[feedback-heartbeat-not-cron]]（心跳 24 小时）、[[feedback-reach-sibling-sessions]]。
 - 旧看板（都已停更，⛔ 别再更新，老板问「战略台/作战台」一律指上面这个新的）：倒计时作战台 Y74PayUH1pMVmyoRo5cdiM（09-24 停）、作战看板 LQPcRe7RsbT3wc3EV7rEgn（09-18 停）、营销作战台 Bmtpv9oAhrSNURbf2bf3kj（09-19 停）。10-05 发现时未向老板确认他说的「战略台」是不是想续用旧的「倒计时作战台」——下次他提到时问一句。
+
+## Frey 待办板（2026-10-08 建）
+- 链接：https://claude.ai/artifact/Hk7kr956ogiogUbNBuxtFK（db 集合 `items`，字段 t/p(tn|fde|oth)/due/done/note/src(cmd|boss)/ca/ua）。
+- 分工（老板 10-08 定）：FDE/其他两栏老板自己记；我只用 ArtifactData 同步 ThinkNova 条目（doc_id 前缀 tn_）并在日报里提醒到期项。源文件 03_工作台/老板待办板/老板待办板.html。
