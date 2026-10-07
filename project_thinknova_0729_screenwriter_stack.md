@@ -296,3 +296,9 @@ videoModelId / ttsModelId / ttsVoice / durationSeconds / ratio / industryId / sc
 - **`industryRules` 加了两段公共内容**：按品类的「物理现象词表」+「运镜配额硬上限 3 个且必须带幅度词」。**后者是绕过"生视频层拿不到运营字段"的唯一通道**——实测行业规则进得去 i2v，`taskGoal.video` 进不去。
 - **`negativePromptPolicy.byIndustry` 键名曾全线失配**（键是 `food_beverage`，线上 industryId 是 `ind_food`），已补 18 个 `ind_*` 键。**加键之前餐饮的行业负面词一条都没发出去。**
 - **`systemPrompt` 已超 4000 字上限**（保存不报错但已越界），再加字必须先删等量。
+
+## 2026-10-07 12:0x 变更（总指挥，ROLLBACK_offline_store_video_2026-10-07_编剧并句与en压缩.json）
+- systemPrompt【台词量】加「每条台词句尾有且只有一个句末标点；句中不出现 . ? ! 和小数点（价格读成 eight ninety）；反问另起一条或改逗号；不把两句并成一条」→ 3999 码点（≤4000）。起因：task_db20974ca784 第 3 条两句并一条，校验按句末标点数句 6≠5 报「lines count does not match shot count」。烧验 3 单第 1 次即过。
+- languagePolicy.map.en + opsEditable.languageMap.en 1234B→581B（三件套保留）。起因：英文 i2v 派发串超 4000 字节被截第 5 格 → 第 5 句不念、片尾死寂 3–5 秒。改后第 5 句进、成片 15.08s。
+- 事实：i2v 吃的是父单建单时的配置快照，判生效要看父单建单时间。英文派发串仍 4632B>4000，尾部语言后缀半句被切（i2v 预设里有零字幕规则兜底，待压第二轮）。
+- 待议：en words 窗口上限 44 压线频繁（44/45），拟抬到 48。
