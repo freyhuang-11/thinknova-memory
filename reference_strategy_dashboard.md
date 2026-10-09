@@ -22,3 +22,6 @@ metadata:
 ## Frey 待办板（2026-10-08 建）
 - 链接：https://claude.ai/artifact/Hk7kr956ogiogUbNBuxtFK（db 集合 `items`，字段 t/p(tn|fde|oth)/due/done/note/src(cmd|boss)/ca/ua）。
 - 分工（老板 10-08 定）：FDE/其他两栏老板自己记；我只用 ArtifactData 同步 ThinkNova 条目（doc_id 前缀 tn_）并在日报里提醒到期项。源文件 03_工作台/老板待办板/老板待办板.html。
+
+## 对外 PPT 资料包（2026-10-09）
+- GitHub freyhuang-11/website 分支 claude/pensive-galileo-7q3c2s，目录 ppt_input/thinknova/（info.md、README、screenshots、samples）。公开仓库：推前扫供应商名/任务号/本地路径/隐私；只推英文主图（电脑 3–5 + 手机 1–2）。
