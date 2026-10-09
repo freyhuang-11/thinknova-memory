@@ -23,40 +23,6 @@ const THEME = {
 };
 const HEX = THEME.colors;
 
-// ── 课表 ──
-const AGENDA = {
-  brief: [
-    ["09:30", "AI 是怎么工作的", "无记忆的「接话高手」· 工具调用 · Agent"],
-    ["10:30", "必懂的 AI 核心概念", "Skill · Harness · MCP · RAG · Memory · Hooks"],
-    ["11:45", "午休", ""],
-    ["13:00", "Claude Code 与 Codex 上手", "两个 AI 助手怎么用、怎么选 + 现场演示"],
-    ["14:30", "让 AI 守规矩 · 搭工作流", "规则四层力度 · 记忆铁律 · 七步法"],
-    ["15:30", "实战：AI 视频生成", "AI 漫剧生产线 · ThinkNova 视频 Agent"],
-    ["16:30", "GitHub 与总结", "让 AI 的记忆永不丢失 · 结业"],
-  ],
-  full: [
-    ["第 1 天", [
-      ["09:30", "AI 是怎么工作的"],
-      ["11:00", "核心概念（上）"],
-      ["13:30", "核心概念（下）"],
-      ["14:45", "Claude Code 上手"],
-      ["16:15", "实操 1：AI 员工手册"],
-    ]],
-    ["第 2 天", [
-      ["09:30", "Codex 与对比"],
-      ["10:45", "让 AI 守规矩"],
-      ["13:00", "搭建 AI 工作流"],
-      ["14:15", "实战：AI 视频生成"],
-      ["16:00", "GitHub · 总结结业"],
-    ]],
-  ],
-};
-const SECTION_TIME = {
-  brief: { m1: "09:30", m2: "10:30", m3: "13:00", m5: "14:30", m6: "15:00", m7: "15:30", m8: "16:30", end: "16:45" },
-  full: { m1: "第 1 天 · 09:30", m2: "第 1 天 · 11:00", m3: "第 1 天 · 14:45", m4: "第 2 天 · 09:30", m5: "第 2 天 · 10:45", m6: "第 2 天 · 13:00", m7: "第 2 天 · 14:15", m8: "第 2 天 · 16:00", end: "第 2 天 · 16:30" },
-};
-const SECTION_OVERRIDE = { brief: { m3: { title: "Claude Code 与 Codex 上手", sub: "两个会自己动手的 AI 同事" }, m4: null } };
-
 // ── 图标 ──
 const iconCache = {};
 async function icon(name, color = "FFFFFF") {
@@ -73,7 +39,7 @@ async function icon(name, color = "FFFFFF") {
   const pres = new pptxgen();
   pres.layout = "LAYOUT_16x9"; // 10 x 5.625
   pres.theme = { headFontFace: THEME.headFontFace, bodyFontFace: THEME.bodyFontFace };
-  pres.title = FULL ? "AI 实战课（2 天完整版）" : "AI 实战课（1 天精华版）";
+  pres.title = FULL ? "AI 实战课（完整版）" : "AI 实战课（精华版）";
   pres.author = "ThinkNova";
   pres.company = "ThinkNova";
   const C = pres.SchemeColor;
@@ -143,44 +109,29 @@ async function icon(name, color = "FFFFFF") {
   R.cover = async (s) => {
     s.addText("AI 实战课", { placeholder: "title" });
     s.addText("Claude Code × Codex × AI 视频生成", { placeholder: "body" });
-    T(s, FULL ? "2 天完整版" : "1 天精华版", { x: 0.6, y: 3.5, w: 2.2, h: 0.42, fontSize: 14, bold: true, color: C.text1, fill: { color: C.accent1 }, align: "center", valign: "middle" });
+    T(s, FULL ? "完整版" : "精华版", { x: 0.6, y: 3.5, w: 1.6, h: 0.42, fontSize: 14, bold: true, color: C.text1, fill: { color: C.accent1 }, align: "center", valign: "middle" });
     T(s, "主办 · ThinkNova", { x: 0.6, y: 4.6, w: 4, h: 0.35, fontSize: 13, color: C.accent5 });
     s.addShape(pres.shapes.OVAL, { x: 6.9, y: 0.7, w: 3.6, h: 3.6, fill: { color: C.accent2, transparency: 20 }, line: { color: C.accent2, width: 0 } });
     s.addShape(pres.shapes.OVAL, { x: 8.0, y: 3.0, w: 2.2, h: 2.2, fill: { color: C.accent1, transparency: 10 }, line: { color: C.accent1, width: 0 } });
     s.addImage({ data: await icon("FaWandMagicSparkles"), x: 8.0, y: 1.8, w: 1.4, h: 1.4 });
-    return "封面。自我介绍 2 分钟：我们是谁（ThinkNova，做 AI 营销视频的团队），为什么讲这堂课（我们每天都在用 AI 干活，踩过很多坑）。";
+    return "封面。先简单自我介绍：我们是谁（ThinkNova，做 AI 营销视频的团队），为什么讲这堂课（我们每天都在用 AI 干活，踩过很多坑）。";
   };
-  R.agenda = async (s, d) => {
-    s.addText(FULL ? "两天课程安排" : "今天的安排", { placeholder: "title" });
-    if (!FULL) {
-      const rows = AGENDA.brief, h = 0.5, y0 = 1.15;
-      rows.forEach(([t, h1, h2], i) => {
-        const y = y0 + i * (h + 0.06), isBreak = !h2;
-        card(s, 0.5, y, 9, h, isBreak ? C.background1 : C.background2);
-        T(s, t, { x: 0.7, y, w: 1.0, h, fontSize: 14, bold: true, color: isBreak ? C.text2 : C.accent2, valign: "middle" });
-        T(s, h1, { x: 1.8, y, w: 3.4, h, fontSize: 15, bold: !isBreak, color: isBreak ? C.text2 : C.text1, valign: "middle" });
-        if (h2) T(s, h2, { x: 5.2, y, w: 4.2, h, fontSize: 12, color: C.text2, valign: "middle" });
-      });
-      return "过一遍今天的安排。9:30 开始，17:00 结束，中午 75 分钟午休，下午有一次茶歇。";
-    }
-    for (const [di, [day, rows]] of AGENDA.full.entries()) {
-      const x = 0.5 + di * 4.65, w = 4.35;
-      T(s, day, { x, y: 1.1, w, h: 0.45, fontSize: 18, bold: true, color: di ? C.accent1 : C.accent2 });
-      rows.forEach(([t, h1], i) => {
-        const y = 1.65 + i * 0.66;
-        card(s, x, y, w, 0.56);
-        T(s, t, { x: x + 0.2, y, w: 0.9, h: 0.56, fontSize: 13, bold: true, color: di ? C.accent1 : C.accent2, valign: "middle" });
-        T(s, h1, { x: x + 1.15, y, w: w - 1.3, h: 0.56, fontSize: 15, color: C.text1, valign: "middle" });
-      });
-    }
-    T(s, "每天 9:30–17:00 · 午休 12:30–13:30 · 上下午各一次茶歇", { x: 0.5, y: 4.95, w: 9, h: 0.25, fontSize: 11, color: C.text2 });
-    return "两天安排：第一天打基础（原理、概念、Claude Code），第二天讲方法和实战（规则、工作流、AI 视频、GitHub）。两天各有一次动手实操。";
+  R.map = async (s) => {
+    s.addText("课程地图", { placeholder: "title" });
+    const secs = M.filter((m) => m.section).map((m) => m.section);
+    const per = Math.ceil(secs.length / 2), rowH = Math.min(0.72, 3.85 / per);
+    secs.forEach((sec, i) => {
+      const c = Math.floor(i / per), r = i % per, x = 0.5 + c * 4.65, y = 1.15 + r * rowH, w = 4.35;
+      card(s, x, y, w, rowH - 0.1);
+      numDot(s, x + 0.15, y + (rowH - 0.1 - 0.42) / 2, 0.42, i + 1, c ? C.accent1 : C.accent2, 13);
+      T(s, sec.title, { x: x + 0.7, y: y + 0.04, w: w - 0.85, h: (rowH - 0.1) * 0.55, fontSize: 14, bold: true, valign: "middle" });
+      T(s, sec.sub, { x: x + 0.7, y: y + (rowH - 0.1) * 0.55, w: w - 0.85, h: (rowH - 0.1) * 0.42, fontSize: 11, color: C.text2, valign: "top" });
+    });
   };
   R.section = async (s, d) => {
     T(s, d.num, { x: 0.6, y: 0.9, w: 3, h: 1.0, fontSize: 54, bold: true, color: C.accent1, valign: "bottom" });
     s.addText(d.title, { placeholder: "title" });
     s.addText(d.sub, { placeholder: "body" });
-    if (d.time) T(s, d.time, { x: 0.6, y: 3.75, w: 2.6, h: 0.4, fontSize: 13, bold: true, color: C.background1, fill: { color: C.accent2 }, align: "center", valign: "middle" });
     return `进入第 ${Number(d.num)} 部分：${d.title}。${d.sub}。`;
   };
   R.statement = async (s, d) => {
@@ -270,9 +221,9 @@ async function icon(name, color = "FFFFFF") {
     s.addText(d.title, { placeholder: "title" });
     const y = 1.85, h = 0.95;
     const nodes = [
-      { x: 0.5, w: 1.9, t: "你给一个目标", f: C.background2, c: C.text1 },
+      { x: 0.5, w: 1.9, t: "你派一个活", f: C.background2, c: C.text1 },
       { x: 2.9, w: 2.0, t: "AI 想：下一步做什么", f: C.accent2, c: C.background1 },
-      { x: 5.4, w: 2.0, t: "系统执行工具", f: C.background2, c: C.text1 },
+      { x: 5.4, w: 2.0, t: "AI 动手做一步", f: C.background2, c: C.text1 },
       { x: 7.9, w: 1.6, t: "AI 看结果", f: C.accent2, c: C.background1 },
     ];
     nodes.forEach((nd, i) => {
@@ -284,12 +235,27 @@ async function icon(name, color = "FFFFFF") {
     seg(s, 8.7, y, 8.7, 1.35, HEX.accent1, 2);
     seg(s, 3.9, 1.35, 8.7, 1.35, HEX.accent1, 2);
     arrow(s, 3.9, 1.35, 3.9, y - 0.02, HEX.accent1, 2);
-    T(s, "没完成？再来一轮", { x: 5.0, y: 1.05, w: 2.6, h: 0.28, fontSize: 12, bold: true, color: C.accent1, align: "center" });
+    T(s, "没做完？继续", { x: 5.0, y: 1.05, w: 2.6, h: 0.28, fontSize: 12, bold: true, color: C.accent1, align: "center" });
     // 完成分支
     arrow(s, 3.9, y + h + 0.02, 3.9, 3.45, HEX.dk2, 2);
     card(s, 2.9, 3.45, 2.0, 0.75, C.accent1);
-    T(s, "完成 → 向你汇报", { x: 2.9, y: 3.45, w: 2.0, h: 0.75, fontSize: 14, bold: true, color: C.background1, align: "center", valign: "middle" });
-    T(s, "关键：用哪个工具、用几次、什么时候停——都由 AI 自己决定", { x: 5.4, y: 3.45, w: 4.1, h: 0.75, fontSize: 14, color: C.text2, valign: "middle" });
+    T(s, "做完 → 向你汇报", { x: 2.9, y: 3.45, w: 2.0, h: 0.75, fontSize: 14, bold: true, color: C.background1, align: "center", valign: "middle" });
+    T(s, "就像一个靠谱的员工：自己想、自己做、自己检查，做完再找你", { x: 5.4, y: 3.45, w: 4.1, h: 0.75, fontSize: 14, color: C.text2, valign: "middle" });
+  };
+  R.equation = async (s, d) => {
+    s.addText(d.title, { placeholder: "title" });
+    const w = 2.7, y = 1.15, h = 2.75, xs = [0.5, 3.65, 6.8], ops = ["+", "="];
+    for (const [i, it] of d.items.entries()) {
+      const x = xs[i], last = i === d.items.length - 1;
+      card(s, x, y, w, h, last ? C.accent1 : C.background2);
+      await badge(s, x + w / 2 - 0.36, y + 0.2, 0.72, it.icon, last ? C.text1 : C.accent2);
+      T(s, it.h, { x: x + 0.1, y: y + 1.0, w: w - 0.2, h: 0.45, fontSize: 20, bold: true, align: "center", color: last ? C.background1 : C.text1 });
+      T(s, it.sub, { x: x + 0.1, y: y + 1.45, w: w - 0.2, h: 0.38, fontSize: 15, bold: true, align: "center", color: last ? C.text1 : C.accent2 });
+      T(s, it.t, { x: x + 0.15, y: y + 1.9, w: w - 0.3, h: 0.8, fontSize: 13, align: "center", color: last ? C.background1 : C.text2 });
+      if (i < 2) T(s, ops[i], { x: x + w, y: y + h / 2 - 0.35, w: 0.45, h: 0.7, fontSize: 32, bold: true, align: "center", valign: "middle", color: C.accent2 });
+    }
+    card(s, 0.5, 4.1, 9, 0.85, C.text1);
+    T(s, d.caption, { x: 0.75, y: 4.1, w: 8.5, h: 0.85, fontSize: 16, bold: true, color: C.background1, align: "center", valign: "middle" });
   };
   R.layers = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
@@ -306,8 +272,13 @@ async function icon(name, color = "FFFFFF") {
     s.addText(d.title, { placeholder: "title" });
     const head = d.head.map((t) => ({ text: t, options: { bold: true, color: C.background1, fill: { color: C.text1 }, fontSize: 13 } }));
     const body = d.rows.map((r, ri) => r.map((t, ci) => ({ text: t, options: { fontSize: 13, color: C.text1, bold: ci === 0, fill: { color: ri % 2 ? C.background1 : C.background2 } } })));
-    const rowH = Math.min(0.48, 3.85 / (d.rows.length + 1));
+    const avail = d.caption ? 2.75 : 3.85;
+    const rowH = Math.min(d.caption ? 0.62 : 0.48, avail / (d.rows.length + 1));
     s.addTable([head, ...body], { x: 0.5, y: 1.15, w: 9, colW: d.widths, rowH, valign: "middle", border: { type: "solid", pt: 0.75, color: HEX.accent5 }, margin: [0.04, 0.1, 0.04, 0.1], fontFace: THEME.bodyFontFace });
+    if (d.caption) {
+      card(s, 0.5, 4.15, 9, 0.8, C.text1);
+      T(s, d.caption, { x: 0.75, y: 4.15, w: 8.5, h: 0.8, fontSize: 14, bold: true, color: C.background1, valign: "middle" });
+    }
   };
   R.checklist = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
@@ -325,7 +296,7 @@ async function icon(name, color = "FFFFFF") {
     card(s, 0.5, 1.15, 2.5, 3.85, C.accent2);
     s.addImage({ data: await icon("FaChalkboardUser"), x: 0.8, y: 1.45, w: 0.8, h: 0.8 });
     T(s, "课堂实操", { x: 0.8, y: 2.5, w: 2.0, h: 0.5, fontSize: 20, bold: true, color: C.background1 });
-    T(s, d.time, { x: 0.8, y: 3.05, w: 2.0, h: 0.4, fontSize: 15, color: C.background1 });
+    T(s, "动手试一试", { x: 0.8, y: 3.05, w: 2.0, h: 0.4, fontSize: 15, color: C.background1 });
     const n = d.steps.length, rowH = Math.min(0.75, 3.85 / n);
     d.steps.forEach((t, i) => {
       const y = 1.15 + i * rowH;
@@ -375,15 +346,13 @@ async function icon(name, color = "FFFFFF") {
   let secNo = 0;
   for (const mod of M) {
     const slides = mod.slides.filter((sl) => FULL || sl.b);
-    let sec = mod.section;
-    const ov = SECTION_OVERRIDE[VARIANT] && SECTION_OVERRIDE[VARIANT][mod.id];
-    if (ov === null) sec = null; else if (ov) sec = Object.assign({}, sec, ov);
-    const secTitle = sec ? sec.title : mod.id === "open" ? "开场" : "Claude Code 与 Codex 上手";
+    const sec = mod.section;
+    const secTitle = sec ? sec.title : "开场";
     pres.addSection({ title: secTitle });
     if (sec) {
       secNo++;
       const s = pres.addSlide({ masterName: "TN_SECTION", sectionTitle: secTitle });
-      const note = await R.section(s, { num: String(secNo).padStart(2, "0"), title: sec.title, sub: sec.sub, time: SECTION_TIME[VARIANT][mod.id] });
+      const note = await R.section(s, { num: String(secNo).padStart(2, "0"), title: sec.title, sub: sec.sub });
       s.addNotes(note);
     }
     for (const sl of slides) {
