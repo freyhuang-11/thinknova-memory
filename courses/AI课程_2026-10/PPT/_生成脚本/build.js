@@ -345,11 +345,11 @@ async function icon(name, color = "FFFFFF") {
   // ── 组装 ──
   let secNo = 0;
   for (const mod of M) {
-    const slides = mod.slides.filter((sl) => FULL || sl.b);
+    const slides = mod.slides.filter((sl) => FULL || sl.e);
     const sec = mod.section;
     const secTitle = sec ? sec.title : "开场";
     pres.addSection({ title: secTitle });
-    if (sec) {
+    if (sec && FULL) {
       secNo++;
       const s = pres.addSlide({ masterName: "TN_SECTION", sectionTitle: secTitle });
       const note = await R.section(s, { num: String(secNo).padStart(2, "0"), title: sec.title, sub: sec.sub });
@@ -360,7 +360,7 @@ async function icon(name, color = "FFFFFF") {
       const s = pres.addSlide({ masterName: master, sectionTitle: secTitle });
       if (!R[sl.type]) throw new Error("no renderer " + sl.type);
       const auto = await R[sl.type](s, sl);
-      s.addNotes(sl.n || auto || "");
+      s.addNotes((!FULL && sl.nb) || sl.n || auto || "");
     }
   }
   await pres.writeFile({ fileName: OUT });
