@@ -26,7 +26,7 @@
 | 动输出语言 | [[project-thinknova-sea-languages]] |
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
-| YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC | 🔴 教程=`教程视频_0923\youtube_queue_upload.py`（Windows 任务 15:05）；宣传片=YouTube 目录 `_promo_upload_skipS4.py`（清单+状态在 `宣传片清单_1003-1014\`）；旧管线 `管线_YouTubeShorts英文配音_2026-09-15.md` |
+| YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC / 改教程页 | 🔴 教程页现状与改法 → [[project-thinknova-guide-multilang]]；教程=`教程视频_0923\youtube_queue_upload.py`（Windows 任务 15:05）；宣传片=YouTube 目录 `_promo_upload_skipS4.py`（清单+状态在 `宣传片清单_1003-1014\`）；旧管线 `管线_YouTubeShorts英文配音_2026-09-15.md` |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 派活=ccd_session_mgmt send_message 到「THINK NOVA marketing」会话，⛔ 别说「不在线」 → [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束⛔不教怎么做 → [详](feedback_brief_marketing_what_not_how.md) ＋ 🔴 03_工作台 下 `交接档_2026-09-27_压缩前_营销线.md` + [[feedback-boss-rulings]] 顶部 |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆；🔴🔴 老板转来的=已部署（10-03 两次被纠正），⛔ 按文档里「未部署」字样判断，当场线上核+补配置；🔴🔴 10-09 起⛔ 给技术邮箱发信（含 dot、[TN-AUTO]），问题汇总报老板由他定 → [详](feedback_email_tech_immediately.md) |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
