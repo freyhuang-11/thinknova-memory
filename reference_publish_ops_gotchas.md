@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-10-09T18:48:04.396Z
+  modified: 2026-10-10T04:27:33.103Z
 ---
 
 脚本都在 `03_工作台\发布队列\`、`TikTok\_auto\`、`周复盘_1007\`、`新内容_M系列_1008\_build\`。
@@ -20,6 +20,7 @@ metadata:
 - 带「商业内容」声明（brand:true）的定时帖，**网页版删不掉、改不了**（Delete 是灰的），只能老板在 App 里操作 ⇒ 上平台前文案一定要定稿。
 - Studio 作品列表按发布时间倒序、虚拟滚动。`_probe_sched_row.py` 找不到靠后的行；要边滚边读 inner_text（每次 wheel 600，最多约 30 次）。
 - 单条留存：`周复盘_1007\_tt_an.py <item_id...>`，2 秒留存在 `_原始数据\tt_an\net_*.json` 的 `video_retention_rate_realtime` 里取 timestamp=2000；item_id 从 `pull.py tt` 的 net json 里拿（schedule_time 是 UTC 秒，+8 小时）。
+  - 🔴 `_tt_an.py` 每跑一次 net 文件都从 000 重新编号（会覆盖），`net_index.txt` 却只追加 ⇒ 跨次读会串号（10-10 把 0.30 误读成 0.16–0.18，差点误杀一个角度）。**一次只跑一个 id，跑前把 net_* 挪走，跑完马上读**。24h 播放直接看 `an_<id>.txt` 里 `Video views` 下一行。
 - 改简介会弹拼图验证码 ⇒ 交老板在 App 里改。用发片档案搜索也会触发验证码，⛔ 用它做搜索。
 
 **抖音 / 小红书**
