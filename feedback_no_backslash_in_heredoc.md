@@ -41,3 +41,5 @@ metadata:
 
 ⇒ 这条和 [[feedback-evidence-standard]] 同源：**"写进去了" ≠ "写对了"**。
 相关：[[feedback-heartbeat-not-cron]]（那条读快照的命令就在心跳本子里）
+
+- 🔴 10-11 事故：`sed -i "${n}a ..."` 时 n 为空（grep 没匹配上），会在**每一行后面**都插一遍（营销线记忆被插了 464 行）。改记忆一律用 Python 精确替换，先 assert 匹配数 == 1。
