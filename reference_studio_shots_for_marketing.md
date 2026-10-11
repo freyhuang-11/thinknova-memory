@@ -1,42 +1,34 @@
 ---
 name: reference-studio-shots-for-marketing
-description: 营销线用商家视频工作台（studio）生成真实质感镜头做故事片的接口、坑和拼片脚本（10-10 实测）
+description: 营销线故事片的镜头怎么出——10-11 起老板定走「生图 448 + 图生视频 482」（⛔ 工作台），接口、价、坑、拼片脚本
 metadata:
   node_type: memory
   type: reference
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
-  modified: 2026-10-10T19:30:20.676Z
+  modified: 2026-10-11T19:26:18.175Z
 ---
 
-**用途**：知识片 / 故事片的画面。只取工作台的单镜头视频，配音、字幕、标题、片尾我们自己做。成片角标写「画面由 ThinkNova 视频工作台生成（AI）」，片尾那句「这就是这么出来的」也就是真话。
+**现行（老板 10-11 22:3x 定，总指挥转）**：知识片 / 故事片镜头一律 **生图 448 出首帧 → 图生视频 482 出 6 秒**，⛔ 工作台（老板：工作台不稳定）。配音、字幕、标题、片尾我们自己做。角标写「画面由 ThinkNova 生成（AI）」。
+⛔ 片里说「这条视频的画面就是打一句话出来的」：镜头是按详细提示词逐镜生成的，这么说是假话。
 
-**接口**：在 `api.thinknova.top/robots.txt` 轻页里跑 fetch，cookie 鉴权。写操作要带 `x-csrf-token`，这个值从任一 GET 的**响应头**拿。
-- 建项目：`POST /api/v1/business-video-studio/projects`
-  - 必填：industryId、sceneId、caseId（例：ind_food / S06 / food_s06_make）、durationSeconds（20 / 30）、videoModelId 503、ttsModelId 506、ttsVoice、ratio 9:16、subtitleEnabled false。
-  - 选填：fields{productName…}、extraRequirement（逐镜头写清画面，加一句「画面里没有任何可读文字」）、referenceAssets[]。
-  - 头里要带 Idempotency-Key。
-- 改镜头：`PATCH …/projects/{no}/shots/{n}` {visualPrompt}
-- 重出分镜：`POST …/shots/{n}/storyboards` {instruction}
-- 审过分镜：`…/storyboards/approve` {revisionId}
-- 批量出视频：`POST …/projects/{no}/videos`
-- 单镜头重出视频：`POST …/shots/{n}/videos`
-- 停 / 续：`…/cancel`、`…/resume`
+**接口**：在 `api.thinknova.top/robots.txt` 同源页跑 fetch（cookie 鉴权）；写操作带 `x-csrf-token`（从任一 GET 的响应头取）+ `Idempotency-Key`。
+- 生图：`POST /api/v1/ai/tasks {capability:'text_to_image', modelId:448, input:{prompt, ratio:'9:16', size:'1024x1536', quality:'high'}}`，6 分 / 张，约 1 分钟。
+- 图生视频：`{capability:'image_to_video', modelId:482, input:{prompt, ratio:'9:16', resolution:'720p', durationSeconds:6, referenceImages:[首帧 publicUrl]}}`。482 按秒计费，4 分 / 秒，6 秒 = 24 分；约 2 分钟；出片 720×1280，带环境声。
+- 查任务：`GET /api/v1/ai/tasks/{id}` → `data.task.status` / `assets[0].publicUrl`；列表 `?pageSize=&page=`。
+- 下载：`新内容_知识片_1012\_dl_task.py OUTDIR name=task_xxx`。逐帧联系表：`_shot_sheet.py <studio 目录> [镜头号]`。
 
-**价**：分镜图 0 分；视频 MiniMax-H3 每镜 4 分。镜头 768×1344，约 6.6 秒。
+**每镜 30 分**（工作台是 4 分 / 镜）。10-12 下周 6 条共 702 分：多复用已出的镜头，末句画面回到第 1 镜。
 
-**下载**：拿 revision 的 taskNo，跑 `03_工作台\新内容_知识片_1012\_dl_task.py OUTDIR name=task_xxx`，走 OSS，按任务号取。
+**提示词要点**：首帧写死人物外貌（同一条里多镜反复用同一段描述），结尾固定加「no readable text… phone screen faces away」；视频提示词开头写「Continue exactly from this frame…」，并写明不说话、不出字幕、没有音乐。真实人物（A2 老板娘）只拍手和店，在提示词里写死「faces out of frame」。
 
 **坑**
-- 项目里任何一张图在生成时，整个项目禁止 PATCH（422012）⇒ **先把所有要改的都 PATCH 完，再逐个触发重出**。
-- 分镜出完会自动 approved（manualReviewRequired=false），但要手动 POST /videos 才开始出视频。
-- 图片模型会误判内容违规（排队人群的远景被拦过）、会超时（PROVIDER_REQUEST_EXCEPTION）。都退分，换个说法重出就行。
-- 渲染时 Chrome 会卡死，CDP 超时。工作台查询和本地渲染错开做。
-- 测试商家号是多个会话共用的：10-10 19:12 总指挥按老板令取消了全部进行中的项目，包括我们的。动之前在交接档里写清项目号；**重开工作台要老板亲口定**。
+- 482 供应商偶尔报 `Provider task failed: Internal Error`，平台**不自动重试**（尝试 1/3 就直接判失败，积分退回）⇒ 失败就原样重提一次。
+- 同时提交多条时，偶尔某条返回 `Internal server error`、没建单 ⇒ 先查列表确认没有，再单独重提；提交之间隔 1.5 秒。
+- 生图会不听话：两镜里人物不一致（B2 地铁两张出成两个不同的女生，台词是「他」）、镜头上摇带到脸（A2）⇒ **首帧和每段视频都要逐帧看**；带到脸可以裁画面上方去掉，不必重出。
+- Chrome：JS 里 await 长于约 40 秒会 CDP 超时 ⇒ 提交用 `fetch(...).then(存 window 变量)`，另起一个短调用去读；页签会被别的会话关掉 ⇒ 每次先 tabs_context，自己新开一个。
 
-**拼片**：`新内容_知识片_1012\make_story.py`，在 K0x 目录里跑 `python ../make_story.py zh|en html,render,mix,finish`。
-- spec.SHOTS 写每句旁白对应的镜头号。
-- 镜头放在 `studio/shot_<n>.mp4`。
-- 模板 `template_story.html`。
-- K04 v4 是样板。
+**拼片**：每条一个目录（`新内容_知识片_1012\<键>_<名>\`，从 A1 复制 make.py / tts_k.py / lock_k.py，改 TAG 和锁名），spec 写 LINES / TXT（hook / end1 / end2 / endq / who / ai）/ SHOTS / SUBSPLIT；在目录里跑 `python ../make_story.py zh|en html,render,mix,finish`。
+- 中文字幕会断在词中间（「餐 / 馆」「Th / inkNova」），**每条渲完都打印 timeline.json 里的 subs 看一遍**，有断错就加 SUBSPLIT；每屏 ≤10 字（含空格）。
+- EN 片尾产品句长了会压到 AI 小字：模板里 `.en #eai` 已下移到 1420。
 
-和 [[project-thinknova-marketing]]、[[reference-thinknova-video-studio]]（技术侧配置真值）一起看。
+旧做法（工作台 studio 项目接口、422012 PATCH 坑）见 [[reference-thinknova-video-studio]]。和 [[project-thinknova-marketing]]、[[feedback-knowledge-film-live-feel]] 一起看。

@@ -28,7 +28,7 @@
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC / 改教程页 | 🔴 教程页现状与改法 → [[project-thinknova-guide-multilang]]；教程=`教程视频_0923\youtube_queue_upload.py`（Windows 任务 15:05）；宣传片=YouTube 目录 `_promo_upload_skipS4.py`（清单+状态在 `宣传片清单_1003-1014\`）；旧管线 `管线_YouTubeShorts英文配音_2026-09-15.md` |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 派活=ccd_session_mgmt send_message 到「THINK NOVA marketing」会话，⛔ 别说「不在线」 → [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束⛔不教怎么做 → [详](feedback_brief_marketing_what_not_how.md) ＋ 🔴 03_工作台 下 `交接档_2026-09-27_压缩前_营销线.md` + [[feedback-boss-rulings]] 顶部 |
-| 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆；🔴🔴 老板转来的=已部署（10-03 两次被纠正），⛔ 按文档里「未部署」字样判断，当场线上核+补配置；🔴🔴 10-09 起⛔ 给技术邮箱发信（含 dot、[TN-AUTO]），问题汇总报老板由他定 → [详](feedback_email_tech_immediately.md) |
+| 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆；🔴🔴 老板转来的=已部署，⛔ 按文档里「未部署」字样判断，当场线上核+补配置；🔴🔴 10-09 起⛔ 给技术邮箱发信，问题汇总报老板由他定 → [详](feedback_email_tech_immediately.md) |
 | 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
 | 更新战略台 / 找任务清单 / 老板问「各角色在干嘛」 | 🔴 战略台链接+更新法、任务唯一总表 → [详](reference_strategy_dashboard.md) |
 | 想装闹钟/定时任务 / 心跳频率 | 🔴 [[feedback-heartbeat-not-cron]] — 整点 cron 7 * 全天 24 小时（10-04 老板定，夜间做系统优化、不扰客户不叫老板）；app 重启先重建；Windows 任务跑固定脚本=可 |
@@ -38,7 +38,7 @@
 | **说「找不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — `*.jsonl` 可直接 grep |
 | **转述子 agent 结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；没证据就说不知道 |
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
-| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 第二、三节 + 03_工作台 `客户需求点库_2026-10-02.md`（痛点轮换）+ `新内容_品牌_0927\_自由版v2须知.md`（老板定稿风格与口径）+ [[reference-content-skills-dbskill-agentmotion]] ＋ 🔴 派一批片前先填角度矩阵，四列不许重 → [详](feedback_content_angle_variety.md) ＋ 🔴 每次数据分析必带「对标同类爆款」一节（老板 10-07）→ [详](feedback_benchmark_trending_each_analysis.md) |
+| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 第二、三节 + 03_工作台 `客户需求点库_2026-10-02.md`（痛点轮换）+ `新内容_品牌_0927\_自由版v2须知.md`（老板定稿风格与口径）+ [[reference-content-skills-dbskill-agentmotion]] ＋ 🔴 派片前先填角度矩阵 → [详](feedback_content_angle_variety.md) ＋ 🔴 分析必带对标同类爆款 → [详](feedback_benchmark_trending_each_analysis.md) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
@@ -102,7 +102,7 @@
 - 🔴 [两条管线](reference_thinknova_pipeline_flow.md) / [提示词架构](reference_thinknova_prompt_architecture.md) / [Grok 红线](reference_grok_content_policy.md) / [权限地图](reference_thinknova_config_powers.md) / [路径](reference_thinknova_paths.md)
 
 ### 现行状态(索引只写「什么时候看哪个」,事实在文件里)
-- 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md)(主战场;10-11 起：对标库+评论区选题、四步流水线、3+4 对照实验;⏸微信 09-15 停;出稿跑 `_check_*.py`) ／ [发布与渲染的坑](reference_publish_ops_gotchas.md) ／ [工作台出镜头](reference_studio_shots_for_marketing.md) ／ [小红书](project_thinknova_xhs_line.md)
+- 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md)(主战场;10-11 起：对标库+评论区选题、四步流水线、3+4 对照实验;⏸微信 09-15 停;出稿跑 `_check_*.py`) ／ [发布与渲染的坑](reference_publish_ops_gotchas.md) ／ [出镜头](reference_studio_shots_for_marketing.md) ／ [小红书](project_thinknova_xhs_line.md)
 - [活动线](project_thinknova_sg_events.md)(08-30 停线下会)
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
