@@ -17,7 +17,7 @@ metadata:
 - 超过 10 天的会「留到下次」。抖音在内存很低时可能 2400s 超时、无日志：先去后台核确实没发出，再重跑；可以把小红书拆到单独队列先跑。
 
 **TikTok**
-- 带「商业内容」声明（brand:true）的定时帖，**网页版删不掉、改不了**（Delete 是灰的），只能老板在 App 里操作 ⇒ 上平台前文案一定要定稿。
+- 带「商业内容」声明（brand:true）的定时帖，**网页版删不掉、改不了**（Delete 是灰的），只能老板在 App 里操作 ⇒ 上平台前文案一定要定稿。菜单里照样有 Delete（`_del_sched_tt.py` 的 dry 会显示 ok），点了也不报错，但帖子不会删。回读必须先在搜索框里搜文案，虚拟列表里没看到不等于删掉了（10-11 A3 就这么误报过一次）。
 - Studio 作品列表按发布时间倒序、虚拟滚动。`_probe_sched_row.py` 找不到靠后的行；要边滚边读 inner_text（每次 wheel 600，最多约 30 次）。
 - 单条留存：`周复盘_1007\_tt_an.py <item_id...>`，2 秒留存在 `_原始数据\tt_an\net_*.json` 的 `video_retention_rate_realtime` 里取 timestamp=2000；item_id 从 `pull.py tt` 的 net json 里拿（schedule_time 是 UTC 秒，+8 小时）。
   - 🔴 `_tt_an.py` 每跑一次 net 文件都从 000 重新编号（会覆盖），`net_index.txt` 却只追加 ⇒ 跨次读会串号（10-10 把 0.30 误读成 0.16–0.18，差点误杀一个角度）。**一次只跑一个 id，跑前把 net_* 挪走，跑完马上读**。24h 播放直接看 `an_<id>.txt` 里 `Video views` 下一行。
