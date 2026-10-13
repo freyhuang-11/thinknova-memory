@@ -54,8 +54,8 @@ const ILL = {
   "同桌互相看一看": "together",
   "照片焕新": "couple-photo",
   "这样跟 AI 说，最好用": "typing",
-  "先知道这一点": "taking-selfie",
-  "给同桌看看你的作品": "photo-sharing",
+  "先知道这一点": "edit-photo",
+  "给同桌看看你的作品": "celebration",
   "走进视频": "adventure",
   "小窍门：先做一张「参考图」": "photo-session",
   "想去哪里、做什么，打出来就行": "texting",
@@ -139,9 +139,9 @@ const ILL = {
     s.addText(d.sub, { placeholder: "body" });
     T(s, "ThinkNova", { x: 0.7, y: 4.75, w: 4, h: 0.4, fontSize: 20, bold: true, color: C.accent2 });
     const [a1, a2, a3] = ILL[d.title];
-    await polaroid(s, 7.1, 1.95, 2.4, 2.7, -9, { iconName: a1, tint: "FFFFFF" });
-    await polaroid(s, 8.4, 3.05, 2.3, 2.6, 7, { iconName: a2, tint: "FFFFFF" });
-    await polaroid(s, 6.7, 3.8, 2.1, 2.35, -2, { iconName: a3, tint: "FFFFFF" });
+    await polaroid(s, 8.45, 3.25, 2.2, 2.5, 8, { iconName: a2, tint: "FFFFFF" });
+    await polaroid(s, 6.55, 3.85, 2.0, 2.25, -4, { iconName: a3, tint: "FFFFFF" });
+    await polaroid(s, 7.45, 2.05, 2.5, 2.8, -6, { iconName: a1, tint: "FFFFFF" });
   };
   R.closing = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
@@ -187,21 +187,21 @@ const ILL = {
   R.list = async (s, d) => {
     s.addText(d.title, { placeholder: d.act ? "title" : "title" });
     if (d.act) {
-      s.addText([{ text: "  互动时间", options: {} }], { shape: pres.shapes.ROUNDED_RECTANGLE, rectRadius: 0.25, x: 0.6, y: 0.35, w: 2.0, h: 0.5, fill: { color: C.accent1 }, line: { color: C.accent1, width: 0 }, fontSize: 20, bold: true, color: C.background1, align: "center", valign: "middle", margin: 0, fontFace: THEME.bodyFontFace });
+      s.addText("互动时间", { shape: pres.shapes.ROUNDED_RECTANGLE, rectRadius: 0.25, x: 0.6, y: 0.35, w: 2.0, h: 0.5, fill: { color: C.accent1 }, line: { color: C.accent1, width: 0 }, fontSize: 20, bold: true, color: C.background1, align: "center", valign: "middle", margin: 0, fontFace: THEME.bodyFontFace });
     }
     const n = d.items.length, wide = n >= 4; // 四条以上：文字占满宽，插画缩到右上角
-    const top = d.act ? 2.05 : 1.45, H = (d.tip ? 4.25 : 5.05) - top, rowH = Math.min(1.0, H / n), tw = wide ? 7.9 : d.act ? 5.2 : 5.5;
+    const top = d.act ? 2.05 : 1.45, H = (d.tip ? 4.25 : 5.05) - top, rowH = Math.min(1.0, H / n), tw = wide ? 7.9 : d.act ? 5.2 : 5.3;
     for (const [i, t] of d.items.entries()) {
       const y = top + i * rowH;
       if (d.act) num(s, 0.6, y + (rowH - 0.6) / 2, 0.6, i + 1, C.text1);
       else s.addShape(pres.shapes.OVAL, { x: 0.75, y: y + (rowH - 0.26) / 2, w: 0.26, h: 0.26, fill: { color: i % 2 ? X.accent2 : X.accent1 }, line: { color: X.accent1, width: 0 } });
       T(s, t, { x: d.act ? 1.5 : 1.25, y, w: tw, h: rowH, fontSize: 24, valign: "middle" });
     }
-    if (wide) await art(s, ILL[d.title], 7.6, 0.12, 1.9, 1.25);
+    if (wide) await art(s, ILL[d.title], 7.7, 0.3, 1.7, 1.05);
     else if (d.act) {
       s.addShape(pres.shapes.OVAL, { x: 6.85, y: 1.6, w: 2.9, h: 2.9, fill: { color: C.background1 }, line: { color: C.background1, width: 0 } });
       await art(s, ILL[d.title], 6.95, 1.75, 2.7, 2.6);
-    } else await art(s, ILL[d.title], 6.75, 1.35, 2.85, 3.4);
+    } else await art(s, ILL[d.title], 7.0, 1.6, 2.6, 3.1);
     if (d.tip) pill(s, d.tip, 0.6, 4.4, Math.min(wide ? 8.8 : 5.95, 0.9 + d.tip.length * 0.36), 0.62, d.act ? C.background1 : C.accent2, C.text1);
   };
   // 像 WhatsApp 一样的对话气泡：老人一看就懂「这是要打出来的话」
