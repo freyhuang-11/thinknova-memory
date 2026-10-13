@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-10-13T12:44:39.686Z
+  modified: 2026-10-13T12:46:23.306Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -216,7 +216,7 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
     · **10-14(周三)≥17:00 心跳**:发批1 → `cd 邮件推广系统 && python run.py activation_send --go --confirm --day 1`(30封全A,无补积分依赖;发前先 --dry 记录)。发完报老板+更新本条。
     · **10-15(周四)≥10:00 心跳**:发批2 → `--go --confirm --day 2`(15封=2A+13真有积分B1;⛔不带--topup-ids,那9个补积分的没补前发B版="积分还在"=假话,绝不发)。
     · 那9个补积分B0:**老板后台手补+总指挥信号确认后**才单独发(`--go --confirm --topup-ids <9id>`)。
-    · ✅**10-13 修漏洞(总指挥核出)**:activation_send 直调 send_one 漏了抑制检查,已加 `load_suppressed()` 查 outreach.db suppression 表;**id 1695 wenzhong 命中 dead_address 被跳过**→待发 46→**45**(批1 30=10近期活跃+20其余、批2 15=2其余+13B1、fix句8)。1695 是17条任务活跃用户,**是否单发等老板定**。
+    · ✅**10-13 修漏洞(总指挥核出)**:activation_send 直调 send_one 漏了抑制检查,已加 `load_suppressed()` 查 outreach.db suppression 表;**id 1695 wenzhong 命中 dead_address 被跳过**→待发 46→**45**(批1 30=10近期活跃+20其余、批2 15=2其余+13B1、fix句8)。1695 是17条任务活跃用户,**是否单发等老板定**。🔴**load_suppressed 失败即中止真发**(读不到 outreach.db/suppression 就 ⛔ 不发、fail-closed;dry 可继续)——总指挥 10-13 二次加固。
     · 急停:在 `_activation_1013\` 放 `STOP_ACTIVATION` 文件即中止(wrapper `_send_batch.bat` 会检查)。⚠️定时任务我被拦建不了,靠心跳执行+老板手动兜底。sam@ 当天需与followup错峰(合计<60)。
   ⏸发前名单无name列→用 there/老板。**B0 补积分:老板已批9人**(id 1735/1731/1728/1727/1726/1723/1721/1720/1719,全en-US→B-en,名单 `_activation_1013\补积分名单_老板手动_2026-10-13.md`),老板后台手点+100,总指挥给信号后跑 `activation_send.py --topup-ids <9个id>` 并入(待发→55、Day30/25);已验证。**发送通路已验通**:发件箱 sam@trythinknova.com 经 run.py 可加载(日cap60),发车命令 `python run.py activation_send --go --confirm --day 1`(批2次日 `--day 2 [--topup-ids 9id]`)。⚠️**sam@ 与 followup 线共用 Gmail 日上限(历史~69撞550)**:激活日要让 sam@ 的 followup 量压低,保证当天 sam@ 合计 <60,否则部分激活信会退。批1(30)全A、无补积分依赖;补积分只影响批2大小。
   - ✅ **10-13 ③④交付(总指挥派的落地活)**:`02_交付内容\渠道打法_8个可执行_2026-10-13.md`(FB店主群×4含马来语贴+市集×2+商会×2,每个「这周第一步/第一句话/带材料/注意」,⛔是给老板自己执行不替他联系)+ `02_交付内容\案例模板_一页图文_WA话术_2026-10-13.md`(一页图文+WA话术中英马三版,守口径:原话逐字不代写/⛔价格效果数字/两出口/先过目)。
