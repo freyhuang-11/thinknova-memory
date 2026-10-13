@@ -165,7 +165,7 @@ async function icon(name, color = "FFFFFF") {
   R.grid = async (s, d) => {
     if (d.items.length <= 3) return R.cards(s, d);
     s.addText(d.title, { placeholder: "title" });
-    const n = d.items.length, cols = n <= 3 ? n : n === 4 ? 2 : 3, rows = Math.ceil(n / cols);
+    const n = d.items.length, cols = n <= 3 ? n : n === 4 ? 2 : n >= 7 ? 4 : 3, rows = Math.ceil(n / cols);
     const gap = 0.25, w = (9 - gap * (cols - 1)) / cols, top = 1.15, H = 3.85, h = (H - gap * (rows - 1)) / rows;
     for (const [i, it] of d.items.entries()) {
       const x = 0.5 + (i % cols) * (w + gap), y = top + Math.floor(i / cols) * (h + gap);
@@ -267,7 +267,7 @@ async function icon(name, color = "FFFFFF") {
       numDot(s, 0.7, y + 0.07, 0.36, i + 1, C.accent2, 12);
       T(s, t, { x: 1.2, y, w: 5.45, h: rh, fontSize: 12, valign: "middle" });
     });
-    const where = [["ChatGPT", "设置 → 个性化 → 自定义指令"], ["Claude", "设置 → Instructions for Claude\n或「项目」的说明"]];
+    const where = d.where || [["ChatGPT", "设置 → 个性化 → 自定义指令"], ["Claude", "设置 → Instructions for Claude\n或「项目」的说明"]];
     where.forEach(([h, t], i) => {
       const y = 1.1 + i * 2.0;
       card(s, 7.05, y, 2.45, 1.85, C.text1);
@@ -289,6 +289,17 @@ async function icon(name, color = "FFFFFF") {
     s.addText(bullets(d.tell, 14), { isTextBox: true, x: 5.95, y: 1.8, w: 3.35, h: 2.1, valign: "top", margin: 0 });
     card(s, 5.7, 4.2, 3.8, 0.8, C.text1);
     T(s, d.warn, { x: 5.9, y: 4.2, w: 3.45, h: 0.8, fontSize: 12, bold: true, color: C.background1, valign: "middle" });
+  };
+  R.shotsteps = async (s, d) => {
+    s.addText(d.title, { placeholder: "title" });
+    const n = d.steps.length, rh = 3.85 / n;
+    d.steps.forEach((t, i) => {
+      const y = 1.15 + i * rh;
+      numDot(s, 0.5, y + (rh - 0.48) / 2, 0.48, i + 1, i === n - 1 ? C.accent1 : C.accent2, 14);
+      T(s, t, { x: 1.15, y, w: 4.35, h: rh, fontSize: 15, valign: "middle" });
+    });
+    s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 5.8, y: 1.15, w: 3.7, h: 3.85, rectRadius: 0.12, fill: { color: C.background1 }, line: { color: HEX.accent2, width: 1.75, dashType: "dash" } });
+    T(s, d.shot, { x: 6.0, y: 1.15, w: 3.3, h: 3.85, fontSize: 14, color: C.accent2, align: "center", valign: "middle" });
   };
   R.half = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
