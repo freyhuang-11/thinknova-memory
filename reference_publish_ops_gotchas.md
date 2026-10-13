@@ -38,3 +38,5 @@ metadata:
 - 平台标「成功」，交付件也可能是坏的（解码报错，或只有 48 字节）。这时去同一子任务下找能解码的原片，并报技术。
 
 - 🔴 **小红书封面 = 视频第 0 帧**（publish.py 不设封面）。L 系列午间档第 0 帧是黑底 / 还没出字，发出去封面一片黑（10-12 老板截图指出「招牌墙」那条）。规矩：**建小红书 job 前先抽第 0 帧看一眼**，必须有画面和标题；不行就让成片第 0 帧带标题，或者给 publish.py 加上传封面这一步。看已发 / 已排的封面：`发布队列/_xhs_covers.py [N]` → `_xhs_covers.jpg`（只读）。
+- **TikTok 自定义封面（10-13 dry 通过）**：job 写 `"cover": 本地 jpg/png`，publish.py 会 Edit cover → Upload cover（文件框 accept=image/jpeg,png）→ Save。**主页九宫格只显示封面中间 3:4**（弹窗里写着 Preview in profile (4:3)）⇒ 标题放画面中间那块。
+
