@@ -56,7 +56,7 @@
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断时间先跑 `date` → [详](feedback_check_time_first.md) ／ 🔴🔴🔴 提议≠指令,老板的词按字面做满,⛔不许缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴🔴 例程内自己拍板,别拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 总览 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 零变化≠他没干活 → [详](feedback_silence_is_not_evidence.md)
-2.97 🔴🔴 自己写的注释不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault 任务书模板五行 → [详](feedback_deliverable_is_postable.md)
+2.97 🔴🔴 自己写的注释不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `子agent任务书模板_2026-09-06.md` 五行
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 被「共享资源」拦两次先 `json.loads(settings.json)` 查权限文件;唯一硬墙=改自己的 settings.json → [详](feedback_retry_before_escalating.md)
 3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md) ／ 🔴🔴🔴 核界面=对照我方逐屏要求+零基础测+同类平台,⛔「页面变了」报进展 → [详](feedback_ui_check_against_spec.md)
@@ -109,9 +109,9 @@
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
 - 🔴 [配乐工具链](reference_audio_toolkit.md)（FluidSynth + 真实乐器音色库，10-01 起替代纯代码合成）
 - 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) / [东南亚语言](project_thinknova_sea_languages.md) / [竞品](reference_competitor_gravity_ai.md) / [定价+大使](project_thinknova_pricing_ambassador.md) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md)
-- 其余 reference 全表(抖音封面/打分校准/横屏X/两个Agent/博客API/发布深链/提示词库…) → Obsidian「总指挥知识库/06_skills与记忆路由」
+- 其余 reference 全表 → Obsidian「总指挥知识库/06_skills与记忆路由」
 - 🔴🔴🔴 后台接口在 `api.thinknova.top` 同源页跑 fetch（cookie 鉴权）→ [详](reference_thinknova_paths.md)
-- 🔴 待办总账 → `03_工作台\待办总账_从记忆迁出_2026-08-24.md`
+- 🔴 任务唯一总表 → `03_工作台\任务总表_总指挥.md`；等老板定的 → 知识库 04 页
 
 ### 内容与产品规矩
 - [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [缺口双查](feedback_case_gap_dual_check.md) / [小红书交付](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单≤6单/周](feedback_burn_budget_weekly_cap.md) / 🔴[先分析再做·只提前1周](feedback_analyze_before_making.md) / 🔴[知识片要活人感](feedback_knowledge_film_live_feel.md)
@@ -119,7 +119,7 @@
 - 🔴🔴 验收四铁律:成片四项齐验 / 门槛不跨片型 / 「写满」须给合法填充 / 子 agent 挤字数须列不可删清单 → [详](feedback_evidence_standard.md)
 
 # 商务与融资
-- 🔴🔴🔴 [海外邮件营销线](project_overseas_email_outreach.md) — 新马英文冷邮件,系统在 `03_工作台\邮件推广系统\`;❗正则/中文代码绝不走 heredoc
+- 🔴🔴🔴 [邮件线](project_overseas_email_outreach.md) — 冷邮件 10-07 停,现做激活/渠道/选词,系统在 `03_工作台\邮件推广系统\`;❗正则/中文代码绝不走 heredoc
 - 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读，内部件不外发；海外探测计划 08-30 版第八节
 
 # 其他

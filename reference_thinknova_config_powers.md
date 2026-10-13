@@ -1,4 +1,4 @@
-﻿---
+---
 name: reference-thinknova-config-powers
 description: "触发:要给技术提配置类需求之前、或要改 config 任一字段之前 → 先查这张权限地图,凡我自己能改的先改完再说话;🔴 businessUi 子树改不进后台弹窗 textarea(静默丢弃+假回执),只能人工点界面"
 metadata: 
@@ -7,6 +7,8 @@ metadata:
   originSessionId: 7ae79179-08eb-4ee4-a0c1-aeeabe1f4300
   modified: 2026-07-28T20:14:12.532Z
 ---
+
+> ⚠️ 2026-10-14 体检：本文件部分产品事实（行业数 / 场景数 / 语言数 / 默认模型 / 时长 / 价格）已过时，**现行以 Obsidian「总指挥知识库/01_网站_国际版_功能与字段」实拉为准**；冲突时信知识库，并当场改本文件。
 
 > 🔴 07-31 里程碑注:「businessUi 改不进/419 拦直连 PUT」已作废——GET 响应头拿 x-csrf-token 后 agent 整体 PUT 直连可写(含 businessUi,placeholderDefaults 实证送达)。写入正解见 reference_thinknova_paths。
 
