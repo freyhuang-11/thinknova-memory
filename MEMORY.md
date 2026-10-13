@@ -52,7 +52,7 @@
 动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
 
 ## L0 · 每次开口/动手前
-00. 🔴🔴🔴 判断任何事先开 Obsidian「总指挥知识库/00_总入口」(网站功能字段/技术侧/老板侧/工具/路由) → [详](reference_commander_knowledge_base.md)
+00. 🔴🔴🔴 判断先开「总指挥知识库/00_总入口」→ [详](reference_commander_knowledge_base.md) ／ 写「未测」前先查库→本地产物→会话→线上实走(含手机) → [详](feedback_exhaust_own_evidence_before_untested.md)
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断时间先跑 `date` → [详](feedback_check_time_first.md) ／ 🔴🔴🔴 提议≠指令,老板的词按字面做满,⛔不许缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴🔴 例程内自己拍板,别拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 总览 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 零变化≠他没干活 → [详](feedback_silence_is_not_evidence.md)
