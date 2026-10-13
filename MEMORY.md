@@ -52,6 +52,7 @@
 动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
 
 ## L0 · 每次开口/动手前
+00. 🔴🔴🔴 判断任何事先开 Obsidian「总指挥知识库/00_总入口」(网站功能字段/技术侧/老板侧/工具/路由) → [详](reference_commander_knowledge_base.md)
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断时间先跑 `date` → [详](feedback_check_time_first.md) ／ 🔴🔴🔴 提议≠指令,老板的词按字面做满,⛔不许缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴🔴 例程内自己拍板,别拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 总览 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 零变化≠他没干活 → [详](feedback_silence_is_not_evidence.md)
@@ -63,7 +64,7 @@
 ## L1 · 改配置/提示词前
 4. 🔴 先查字段读取图,拉真实任务 input 确认字段真在 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 字段语义不确定=先问技术 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
 4.6 🔴🔴🔴 提示词有字数上限(现拉线上),关键规则前置;查「有没有某能力」读 `capability` 不拿正则猜 → [详](project_thinknova_0729_screenwriter_stack.md)
-5. 🔴 指派式>禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 文案主语是机器=返工 → [详](feedback_customer_view_not_machine_view.md) ／ 微信线（09-15 停）→ [A/B/C](feedback_wechat_learn_safe_zone.md) [单向](feedback_group_oneway_broadcast.md)
+5. 🔴 指派式>禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 文案主语是机器=返工 → [详](feedback_customer_view_not_machine_view.md)
 6. 🔴 落库≠送达 → [详](feedback_evidence_standard.md) ／ 🔴🔴 ⛔`opsEditable.stagePromptPresets.image_to_video` 写不进 ／ 🔴🔴🔴 grok 混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
 7. 🔴🔴🔴 改提示词前必读那九条 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 验收先有修复前基线,⛔不许用检测器代替人眼 → [详](feedback_evidence_standard.md) ／ 🔴🔴🔴 交付件=能直接发 → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动前端读的字段先改一条验 → [详](project_thinknova_dingdian_koubao.md) ／ 🔴🔴🔴 报技术单前先穷举自己这一侧 → [详](feedback_tech_doc_checklist.md)
@@ -89,7 +90,7 @@
 
 # 用户与沟通
 - 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工只 add 自己的文件并验远端
-- [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡;TikTok 达人 SaaS + ThinkNova 双线
+- [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡
 - 🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含提问选项和文件说明;对外素材按投放语言
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
@@ -103,13 +104,12 @@
 
 ### 现行状态(索引只写「什么时候看哪个」,事实在文件里)
 - 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md)(主战场;10-11 起：对标库+评论区选题、四步流水线、3+4 对照实验;⏸微信 09-15 停;出稿跑 `_check_*.py`) ／ [发布与渲染的坑](reference_publish_ops_gotchas.md) ／ [出镜头](reference_studio_shots_for_marketing.md) ／ [小红书](project_thinknova_xhs_line.md)
-- [活动线](project_thinknova_sg_events.md)(08-30 停线下会)
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
 - 🔴 [配乐工具链](reference_audio_toolkit.md)（FluidSynth + 真实乐器音色库，10-01 起替代纯代码合成）
 - 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) / [东南亚语言](project_thinknova_sea_languages.md) / [竞品](reference_competitor_gravity_ai.md) / [定价+大使](project_thinknova_pricing_ambassador.md) / [HyperFrames](reference_hyperframes_production.md) / [音色克隆](reference_voice_clone_pipeline.md)
-- [抖音封面](reference_douyin_cover_benchmark.md) / [打分校准](reference_cheat_gates_calibration.md) / [横屏X](reference_hengping_x_pipeline.md) / [两个 Agent](project_thinknova_offline_agents.md) / [博客 API](reference_thinknova_blog_ops.md) / [发布深链](reference_thinknova_publish_schemes.md) / [提示词库](reference_prompt_library.md)
+- 其余 reference 全表(抖音封面/打分校准/横屏X/两个Agent/博客API/发布深链/提示词库…) → Obsidian「总指挥知识库/06_skills与记忆路由」
 - 🔴🔴🔴 后台接口在 `api.thinknova.top` 同源页跑 fetch（cookie 鉴权）→ [详](reference_thinknova_paths.md)
 - 🔴 待办总账 → `03_工作台\待办总账_从记忆迁出_2026-08-24.md`
 
@@ -123,5 +123,4 @@
 - 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读，内部件不外发；海外探测计划 08-30 版第八节
 
 # 其他
-- 休眠:[Compass](project_compass.md)/[鞋包](project_sg_footwear_proposal.md)/[小孩数学](project_kid_math_tutoring.md)+[课程表](reference_kid_math_roadmap.md)/自营 30 天计划(03_工作台 下 08-10 版)
 - 🔴🔴 两库入口=本机 `README_从这里开始.md`+Obsidian 书签「① 从这里开始」;归档=移动不是删除;skill 台账见 `00_规格与参考\`
