@@ -78,7 +78,7 @@
 9. 🔴 逐帧通看+量死寂,单帧截图=假结论 → [详](feedback_evidence_standard.md) ／ 🔴 烧完验三件:`task.model`/编剧 source/字数 → [详](project_thinknova_0729_screenwriter_stack.md)
 
 ## L3 · 给技术发文档前
-12/14. 🔴 给技术只发技术才能处理的 → [详](reference_tech_doc_submission_spec.md) [自检](feedback_tech_doc_checklist.md)
+12/14. 🔴 给技术只发技术才能处理的;已修/不处理/SEO·GEO 不进清单 → [详](reference_tech_doc_submission_spec.md) [自检](feedback_tech_doc_checklist.md) [10-15](feedback_tech_list_only_actionable.md)
 
 ## L4 · 汇报沟通时
 16/18. 每轮说清「验收什么+做了什么」 → [详](feedback_communication_principles.md) [plan](feedback_questions_via_plan_mode.md) [新鲜度](feedback_data_freshness_framing.md)
