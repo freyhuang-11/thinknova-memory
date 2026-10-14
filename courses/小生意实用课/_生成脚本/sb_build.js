@@ -95,6 +95,18 @@ async function icon(name, color = "FFFFFF") {
     });
   };
 
+  // 截图：按比例放进框里，居中
+  const sizeOf = require("image-size");
+  function shot(s, name, x, y, w, h, border = true) {
+    const p = __dirname + "/shots/" + name + ".png";
+    const { width, height } = sizeOf(require("fs").readFileSync(p));
+    let iw = w, ih = (w * height) / width;
+    if (ih > h) { ih = h; iw = (h * width) / height; }
+    const ix = x + (w - iw) / 2, iy = y + (h - ih) / 2;
+    s.addImage({ path: p, x: ix, y: iy, w: iw, h: ih });
+    if (border) s.addShape(pres.shapes.RECTANGLE, { x: ix, y: iy, w: iw, h: ih, fill: { color: "FFFFFF", transparency: 100 }, line: { color: LINE, width: 0.75 } });
+  }
+
   let part = "";
   const eyebrow = (s) => part && T(s, part, { x: 0.6, y: 0.3, w: 6, h: 0.25, fontSize: 11, bold: true, color: C.accent2 });
 
@@ -194,11 +206,17 @@ async function icon(name, color = "FFFFFF") {
     s.addText(d.title, { placeholder: "title" });
     const head = d.head.map((t) => ({ text: t, options: { bold: true, color: X.accent1, fill: { color: X.dk1 }, fontSize: 13 } }));
     const body = d.rows.map((r, ri) => r.map((t, ci) => ({ text: t, options: { fontSize: 13, color: X.dk1, bold: ci === 0, fill: { color: ri % 2 ? SOFT : "FFFFFF" } } })));
-    const avail = d.caption ? 2.7 : 3.55;
+    const avail = d.caption ? 2.7 : d.img ? 1.9 : 3.55;
     const rowH = Math.min(d.caption ? 0.6 : 0.5, avail / (d.rows.length + 1));
     const W = d.widths.reduce((a, b) => a + b, 0), colW = d.widths.map((v) => (v * 8.8) / W);
     s.addTable([head, ...body], { x: 0.6, y: 1.45, w: 8.8, colW, rowH, valign: "middle", border: { type: "solid", pt: 0.75, color: LINE }, margin: [0.04, 0.12, 0.04, 0.12], fontFace: FONT });
     if (d.caption) note(s, d.caption);
+    if (d.img) {
+      const y = 1.45 + rowH * (d.rows.length + 1) + 0.3;
+      shot(s, d.img, 0.6, y, 5.2, 4.95 - y);
+      box(s, 6.05, y, 3.35, 4.95 - y, X.accent4, X.accent4);
+      T(s, d.imgCap, { x: 6.25, y, w: 2.95, h: 4.95 - y, fontSize: 13, bold: true, valign: "middle" });
+    }
   };
   R.rules = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
@@ -228,9 +246,14 @@ async function icon(name, color = "FFFFFF") {
   R.shotsteps = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
     steps(s, d.steps, 0.6, 1.45, 4.9, 3.55, 15);
-    const b = win(s, 5.8, 1.45, 3.6, 3.55, { title: "截图" });
-    s.addShape(pres.shapes.RECTANGLE, { x: b.x, y: b.y, w: b.w, h: b.h, fill: { color: SOFT }, line: { color: X.accent5, width: 1, dashType: "dash" } });
-    T(s, d.shot, { x: b.x + 0.15, y: b.y, w: b.w - 0.3, h: b.h, fontSize: 13, color: C.accent2, align: "center", valign: "middle" });
+    const b = win(s, 5.8, 1.45, 3.6, 3.55, { title: d.imgs ? "真实界面" : "截图" });
+    if (d.imgs) {
+      const n = d.imgs.length, gh = (b.h + 0.1 - 0.12 * (n - 1)) / n;
+      d.imgs.forEach((im, i) => shot(s, im, b.x - 0.1, b.y - 0.05 + i * (gh + 0.12), b.w + 0.2, gh));
+    } else {
+      s.addShape(pres.shapes.RECTANGLE, { x: b.x, y: b.y, w: b.w, h: b.h, fill: { color: SOFT }, line: { color: X.accent5, width: 1, dashType: "dash" } });
+      T(s, d.shot, { x: b.x + 0.15, y: b.y, w: b.w - 0.3, h: b.h, fontSize: 13, color: C.accent2, align: "center", valign: "middle" });
+    }
   };
   R.workflow = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
@@ -286,6 +309,28 @@ async function icon(name, color = "FFFFFF") {
     s.addText(d.lines.map((t, i) => ({ text: t || " ", options: { breakLine: i < d.lines.length - 1, color: t.startsWith("先别写") ? X.accent1 : /^\d\./.test(t) ? "C9CED6" : "FFFFFF", bold: t.startsWith("先别写") } })),
       { isTextBox: true, x: b.x, y: b.y - 0.05, w: b.w, h: b.h, fontSize: 12.5, valign: "top", margin: 0, fontFace: FONT, paraSpaceAfter: 0 });
     if (d.tip) note(s, d.tip, 4.62, 0.42);
+  };
+  R.screens = async (s, d) => {
+    s.addText(d.title, { placeholder: "title" });
+    const n = d.items.length, gap = 0.35, w = (8.8 - gap * (n - 1)) / n;
+    d.items.forEach((it, i) => {
+      const x = 0.6 + i * (w + gap);
+      const b = win(s, x, 1.4, w, 3.0, { title: "真实界面" });
+      shot(s, it.img, b.x - 0.1, b.y - 0.05, b.w + 0.2, b.h + 0.1);
+      T(s, it.cap, { x, y: 4.5, w, h: 0.5, fontSize: 14, bold: true, align: "center", valign: "middle" });
+    });
+  };
+  // 左边要点，右边一张截图
+  R.screenlist = async (s, d) => {
+    s.addText(d.title, { placeholder: "title" });
+    const rh = 3.5 / d.items.length;
+    d.items.forEach((t, i) => {
+      const y = 1.5 + i * rh;
+      tag(s, 0.6, y + 0.05, 0.42, i + 1, i === d.items.length - 1);
+      T(s, t, { x: 1.2, y, w: 3.0, h: rh - 0.1, fontSize: 15, valign: "top" });
+    });
+    const b = win(s, 4.5, 1.4, 4.9, 3.6, { title: "真实界面" });
+    shot(s, d.img, b.x - 0.1, b.y - 0.05, b.w + 0.2, b.h + 0.1);
   };
   R.half = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
