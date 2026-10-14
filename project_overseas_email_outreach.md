@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-10-13T21:28:45.873Z
+  modified: 2026-10-14T07:29:44.288Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -213,8 +213,8 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
   - 🔴🔴🔴 **10-12 深夜老板再改派:邮件线主线=营销(只聚焦新马)**。① 博客 SEO:每周 3英1中,题=新马店主会 Google 的问句,600-900词真步骤,结尾两出口(注册自助/定制找我们),⛔不编价/案例,走现有博客API。② 新马渠道清单(协会商会/FB店主群/市集,谁/规模/怎么进/给什么/联系,⛔不联系)。③ 激活信降为小活等老板点头。**10-13 已交**:`_blogseo_1013\选题10_搜索依据.md`(10选题,差异=竞品都教"怎么拍"、我们打"一张照片出片")+`_blogseo_1013\渠道清单_新马_v1.md`。总指挥审定10选题全写,**首周序 1→10→8**;规矩:流程照实(店名+卖什么+一张照片→15s,不写全自动神话)、每篇1张真实产品截图(⛔编店名/效果/价格/案例)、两出口自助链=`thinknova.top/app/business-video-assets`、SG英文可用hawker/kopitiam/HDB、先过1篇成稿后不逐篇审。成稿01审过(改3处事实:零字幕只配音/不能改词只能重做/别承诺只填一次;总指挥给了真实创作页截图 `_blogseo_1013\img\create_page_EN_*.jpg` 已插25s那张)。
   - 🔴🔴🔴 **10-13 发前实地发现:博客 SEO 这条线【已经在跑】**!thinknova.top/blog **每天在发**新马店主 SEO 文(Oct7-12 已上线:TikTok Shop照片转视频/WhatsApp Status/手机做店视频/CapCut替代/AI内容多少钱(提US$6)/餐饮hooks),主题与我10选题高度重叠,像国内营销线/现有管线(博客发布脚本 `03_工作台\博客发布\_blog.py`+token在 `00_规格与参考\_secretslog_token.txt`)在产出。⇒ **我再发=撞车/重复,已 hold 发布、报总指挥对齐角色**(并进现有管线 vs 独立发防重)。
   - 🔴🔴 **10-13 激活信**:名单 `_activation_1013\名单_真实用户70_2026-10-13.csv`(PII⛔不外发/不进git)。写了专用 `activation_send.py`(独立冷邮件线:--dry默认只出清单、--go --confirm 才真发、复用 send.py send_one + run.py 注入 sam@trythinknova.com 发件箱、`_sent_log.json` 幂等、≤30/天)。模板口径=`_activation_1013\草稿_9封.md`(A问3问+帮修/B积分还在+教程/C本轮无;发件 sam@ 签名 Frey)。--dry 已跑:**待发46**(A近期活跃11→A其余22→B1 13;版本 A-en18/A-zh15/B-en13;Day1 30/Day2 16),**不发24**(internal5+B0 19)。9封fail>0加"直给免费重做那条"句。清单 `发送清单_dry_1013.csv`。🔴🔴🔴 **待执行(老板10-13晚亲口"明天发"已授权)**:
-    · **10-14(周三)≥17:00 心跳**:发批1 → `cd 邮件推广系统 && python run.py activation_send --go --confirm --day 1 --allow-ids 1695`(**31封**=30全A + 1695单独放行;发前先 --dry 记录)。发完报老板+总指挥,**1695 那封单独报成功/退信**(退了留 suppression 不再试),更新本条。
-    · **10-15(周四)≥10:00 心跳**:发批2 → `--go --confirm --day 2`(15封=2A+13真有积分B1;⛔不带--topup-ids,那9个补积分的没补前发B版="积分还在"=假话,绝不发)。
+    · **10-14 批1(31封)**:10-14 15:2x --dry 已复核✅(抑制读599条/待发46/批1 31含1695/0发B0);已建一次性定时 **83354db2 @17:01**(会话级,app重启会丢→`_send_batch.bat 1`手动兜底)。⚠️定时会**先查总指挥是否回"可发"**(我已承诺核准前不发),核准+无STOP才跑 `python run.py activation_send --go --confirm --day 1 --allow-ids 1695`。发完报老板+总指挥 成功/失败数+失败前3位+**1695单独结果**(退了留suppression不再试)。
+    · **10-15 批2(15封=2A+13真有积分B1)**:一次性定时 **3d5c5aba @10-15 10:01**;`--go --confirm --day 2`(⛔不带--topup-ids,那9个补积分的没补前发B版="积分还在"=假话;总指挥给"9人已补"信号才加 --topup-ids 9个id)。
     · 那9个补积分B0:**老板后台手补+总指挥信号确认后**才单独发(`--go --confirm --topup-ids <9id>`)。
     · ✅**10-13 修漏洞(总指挥核出)**:activation_send 直调 send_one 漏了抑制检查,已加 `load_suppressed()` 查 outreach.db suppression 表;**id 1695 wenzhong 命中 dead_address 被跳过**→待发 46→**45**(批1 30=10近期活跃+20其余、批2 15=2其余+13B1、fix句8)。1695 **老板已定"可以试一下"→ `--allow-ids` 放行、并进批1(批1→31)、A-zh+fix句保留;发完单独报他成功/退信,退了留 suppression 不再试**。🔴**load_suppressed 失败即中止真发**(读不到 outreach.db/suppression 就 ⛔ 不发、fail-closed;dry 可继续)——总指挥 10-13 二次加固。
     · 急停:在 `_activation_1013\` 放 `STOP_ACTIVATION` 文件即中止(wrapper `_send_batch.bat` 会检查)。⚠️定时任务我被拦建不了,靠心跳执行+老板手动兜底。sam@ 当天需与followup错峰(合计<60)。
