@@ -188,7 +188,7 @@ async function icon(name, color = "FFFFFF") {
     T(s, "打个比方", { x: 6.45, y: 1.62, w: 2.7, h: 0.55, fontSize: 15, bold: true, valign: "middle" });
     T(s, d.analogy, { x: 5.75, y: 2.35, w: 3.45, h: 1.3, fontSize: 14 });
     T(s, "例子", { x: 5.75, y: 3.7, w: 2, h: 0.28, fontSize: 11, bold: true, color: C.accent2 });
-    T(s, d.example, { x: 5.75, y: 3.98, w: 3.45, h: 0.95, fontSize: 12, color: C.text2 });
+    T(s, d.example, { x: 5.75, y: 3.98, w: 3.45, h: 0.95, fontSize: 13, color: C.text1 });
   };
   R.table = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
@@ -202,19 +202,19 @@ async function icon(name, color = "FFFFFF") {
   };
   R.rules = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
-    const b = win(s, 0.6, 1.4, 5.9, 3.65, { title: "可以直接复制 · 六条沟通准则", dark: true });
-    const rh = 0.47;
+    const b = win(s, 0.6, 1.35, 6.35, 3.75, { title: "可以直接复制 · 六条沟通准则", dark: true });
+    const rh = b.h / 6;
     d.rules.forEach((t, i) => {
       const y = b.y + i * rh;
       T(s, String(i + 1), { x: b.x, y, w: 0.3, h: rh, fontSize: 12, bold: true, color: C.accent1, valign: "middle" });
-      T(s, t, { x: b.x + 0.35, y, w: b.w - 0.35, h: rh, fontSize: 11, color: "E6E9ED", valign: "middle" });
+      T(s, t, { x: b.x + 0.35, y, w: b.w - 0.35, h: rh, fontSize: 12.5, color: "E6E9ED", valign: "middle" });
     });
     const where = d.where;
     where.forEach(([h, t], i) => {
-      const y = 1.4 + i * 1.9;
-      box(s, 6.75, y, 2.65, 1.75, SOFT, LINE);
-      T(s, "贴到 " + h, { x: 6.95, y: y + 0.18, w: 2.3, h: 0.4, fontSize: 15, bold: true, color: C.accent2 });
-      T(s, t, { x: 6.95, y: y + 0.65, w: 2.3, h: 1.0, fontSize: 13 });
+      const y = 1.35 + i * 2.0;
+      box(s, 7.15, y, 2.25, 1.75, SOFT, LINE);
+      T(s, "贴到 " + h, { x: 7.3, y: y + 0.18, w: 2.0, h: 0.4, fontSize: 14, bold: true, color: C.accent2 });
+      T(s, t, { x: 7.3, y: y + 0.65, w: 2.0, h: 1.0, fontSize: 12 });
     });
   };
   R.exercise = async (s, d) => {
@@ -240,7 +240,7 @@ async function icon(name, color = "FFFFFF") {
     s.addText(bullets(d.tell, 13), { isTextBox: true, x: b.x, y: b.y, w: b.w, h: b.h, valign: "top", margin: 0, fontFace: FONT });
     box(s, 5.75, 4.15, 3.65, 0.85, WARN, WARN);
     s.addImage({ data: await icon("FaTriangleExclamation", X.accent3), x: 5.92, y: 4.42, w: 0.3, h: 0.3 });
-    T(s, d.warn, { x: 6.35, y: 4.15, w: 2.9, h: 0.85, fontSize: 12, bold: true, valign: "middle" });
+    T(s, d.warn, { x: 6.35, y: 4.15, w: 2.9, h: 0.85, fontSize: 13, bold: true, valign: "middle" });
   };
   R.checklist = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
@@ -248,7 +248,7 @@ async function icon(name, color = "FFFFFF") {
     const rowH = Math.min(0.62, 3.55 / per);
     for (const [i, t] of d.items.entries()) {
       const c = Math.floor(i / per), r = i % per, x = 0.6 + c * 4.55, y = 1.45 + r * rowH;
-      await ico(s, x, y + (rowH - 0.38) / 2, 0.38, "FaCheck", X.accent1, X.dk1);
+      await ico(s, x, y + (rowH - 0.38) / 2, 0.38, d.bad ? "FaXmark" : "FaCheck", d.bad ? WARN : X.accent1, d.bad ? X.accent3 : X.dk1);
       T(s, t, { x: x + 0.55, y, w: w - 0.6, h: rowH, fontSize: cols === 2 ? 14 : 16, valign: "middle" });
     }
   };
@@ -276,16 +276,16 @@ async function icon(name, color = "FFFFFF") {
     T(s, "没做完？再想下一步", { x: 4.6, y: 1.27, w: 3.2, h: 0.26, fontSize: 12, bold: true, color: C.accent2, align: "center" });
     // 做完 → 汇报
     line(lx, y + h + 0.04, lx, 3.62);
-    s.addText("做完，向你汇报", { shape: pres.shapes.ROUNDED_RECTANGLE, rectRadius: 0.08, x: 7.3, y: 3.65, w: 2.35, h: 0.75, fill: { color: X.accent1 }, line: { color: X.accent1, width: 0 }, fontSize: 15, bold: true, color: X.dk1, align: "center", valign: "middle", margin: 0, fontFace: FONT });
+    s.addText("做完，向你汇报", { shape: pres.shapes.ROUNDED_RECTANGLE, rectRadius: 0.08, x: 7.05, y: 3.65, w: 2.35, h: 0.75, fill: { color: X.accent1 }, line: { color: X.accent1, width: 0 }, fontSize: 15, bold: true, color: X.dk1, align: "center", valign: "middle", margin: 0, fontFace: FONT });
     T(s, "就像一个靠谱的员工：自己想、自己做、自己检查，做完再找你", { x: 0.6, y: 3.65, w: 6.3, h: 0.75, fontSize: 15, color: C.text2, valign: "middle" });
   };
   // 可照抄的提示词：深色编辑器窗口
   R.prompt = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
-    const b = win(s, 0.6, 1.3, 8.8, 3.35, { title: "可以照抄 · 把【】里换成你的", dark: true });
+    const b = win(s, 0.6, 1.3, 8.8, 3.2, { title: "可以照抄 · 把【】里换成你的", dark: true });
     s.addText(d.lines.map((t, i) => ({ text: t || " ", options: { breakLine: i < d.lines.length - 1, color: t.startsWith("先别写") ? X.accent1 : /^\d\./.test(t) ? "C9CED6" : "FFFFFF", bold: t.startsWith("先别写") } })),
-      { isTextBox: true, x: b.x, y: b.y - 0.05, w: b.w, h: b.h, fontSize: 13, valign: "top", margin: 0, fontFace: FONT, paraSpaceAfter: 0 });
-    if (d.tip) note(s, d.tip, 4.72, 0.42);
+      { isTextBox: true, x: b.x, y: b.y - 0.05, w: b.w, h: b.h, fontSize: 12.5, valign: "top", margin: 0, fontFace: FONT, paraSpaceAfter: 0 });
+    if (d.tip) note(s, d.tip, 4.62, 0.42);
   };
   R.half = async (s, d) => {
     s.addText(d.title, { placeholder: "title" });
