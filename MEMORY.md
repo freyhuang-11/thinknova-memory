@@ -52,12 +52,13 @@
 动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
 
 ## L0 · 每次开口/动手前
+000. 🔴🔴🔴 压缩/重启后第一件事:读 `03_工作台\日报\总指挥_当前状态_滚动.md` + CronList
 00. 🔴🔴🔴 判断先开「总指挥知识库/00_总入口」→ [详](reference_commander_knowledge_base.md) ／ 写「未测」前先查库→本地产物→会话→线上实走(含手机) → [详](feedback_exhaust_own_evidence_before_untested.md)
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断时间先跑 `date` → [详](feedback_check_time_first.md) ／ 🔴🔴🔴 提议≠指令,老板的词按字面做满,⛔不许缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
 2.5 🔴🔴 例程内自己拍板,别拿老问题问老板;🔴🔴🔴 问「X 还在不在做」先 grep vault 总览 → [详](feedback_parallel_sessions_check_first.md) [详](feedback_scheduled_task_stay_in_lane.md) ／ 🔴🔴🔴 零变化≠他没干活 → [详](feedback_silence_is_not_evidence.md)
 2.97 🔴🔴 自己写的注释不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `子agent任务书模板_2026-09-06.md` 五行
-3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 config 里的 placeholder/说明文案 ≠ 实际行为 → [详](feedback_placeholder_is_not_behavior.md)
+3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 placeholder≠实际行为 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 被「共享资源」拦两次先 `json.loads(settings.json)` 查权限文件;唯一硬墙=改自己的 settings.json → [详](feedback_retry_before_escalating.md)
 3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md) ／ 🔴🔴🔴 核界面=对照我方逐屏要求+零基础测+同类平台,⛔「页面变了」报进展 → [详](feedback_ui_check_against_spec.md)
 
@@ -89,9 +90,9 @@
 ---
 
 # 用户与沟通
-- 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull+读信箱,收工只 add 自己的文件并验远端
-- [用户画像](user_profile.md) — 跨境电商 BD/运营,新加坡
-- 🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含提问选项和文件说明;对外素材按投放语言
+- 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull,收工只 add 自己的并验远端
+- [用户画像](user_profile.md)
+- 🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md)
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
