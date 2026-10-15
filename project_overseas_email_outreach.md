@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-10-15T01:47:15.030Z
+  modified: 2026-10-15T02:18:18.421Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -217,6 +217,7 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
     · **10-14 批1(31封)**:10-14 15:2x --dry 已复核✅(抑制读599条/待发46/批1 31含1695/0发B0);已建一次性定时 **83354db2 @17:01**(会话级,app重启会丢→`_send_batch.bat 1`手动兜底)。✅**总指挥10-14 15:3x 已独立核清单、回"可发"批1**(A近期11+其余20含1695、批2 15、无B0无内部除1695无退信、sam@今0发)。定时核准+无STOP才跑 `python run.py activation_send --go --confirm --day 1 --allow-ids 1695`。发完报老板+总指挥 成功/失败数+失败前3位+**1695单独结果**(退了留suppression不再试)。
     · **10-15 批2(15封=2A+13真有积分B1)**:✅总指挥10-15 09:4x 已核dry_1015、**回"可发批2"**(9人仍没补→不加topup、按15发)。真发沙箱拦我→**老板手动跑** `--go --confirm --day 2`(⛔不带--topup-ids)。定时 **859f1846 @10:20 回读_sent_log报数**(B1出现=已发,比对day2算成功/退信报总指挥+老板;没发则催老板)。
     · 那9个补积分B0:**老板后台手补+总指挥信号确认后**才单独发(`--go --confirm --topup-ids <9id>`)。
+    · 🔴 **10-15 总指挥今日任务**:①批2发完回读_sent_log报成功/退信(定时859f1846@10:20);②15:00前报批1+批2回信数按意向分类(感兴趣/问问题/退订/自动回复)、感兴趣附摘要(定时2fae8bd0@14:33查 outreach.db replies表,inbox自动抓取、最新到09:40、激活户现0回信);③问"怎么用/多少钱"的按口径(feedback_current_growth_rules_0930)起草写 `_activation_1013/回信草稿_1015.md` 待总指挥审⛔别直接发。
     · ✅**10-13 修漏洞(总指挥核出)**:activation_send 直调 send_one 漏了抑制检查,已加 `load_suppressed()` 查 outreach.db suppression 表;**id 1695 wenzhong 命中 dead_address 被跳过**→待发 46→**45**(批1 30=10近期活跃+20其余、批2 15=2其余+13B1、fix句8)。1695 **老板已定"可以试一下"→ `--allow-ids` 放行、并进批1(批1→31)、A-zh+fix句保留;发完单独报他成功/退信,退了留 suppression 不再试**。🔴**load_suppressed 失败即中止真发**(读不到 outreach.db/suppression 就 ⛔ 不发、fail-closed;dry 可继续)——总指挥 10-13 二次加固。
     · 急停:在 `_activation_1013\` 放 `STOP_ACTIVATION` 文件即中止(wrapper `_send_batch.bat` 会检查)。⚠️定时任务我被拦建不了,靠心跳执行+老板手动兜底。sam@ 当天需与followup错峰(合计<60)。
   ⏸发前名单无name列→用 there/老板。**B0 补积分:老板已批9人**(id 1735/1731/1728/1727/1726/1723/1721/1720/1719,全en-US→B-en,名单 `_activation_1013\补积分名单_老板手动_2026-10-13.md`),老板后台手点+100,总指挥给信号后跑 `activation_send.py --topup-ids <9个id>` 并入(待发→55、Day30/25);已验证。**发送通路已验通**:发件箱 sam@trythinknova.com 经 run.py 可加载(日cap60),发车命令 `python run.py activation_send --go --confirm --day 1`(批2次日 `--day 2 [--topup-ids 9id]`)。⚠️**sam@ 与 followup 线共用 Gmail 日上限(历史~69撞550)**:激活日要让 sam@ 的 followup 量压低,保证当天 sam@ 合计 <60,否则部分激活信会退。批1(30)全A、无补积分依赖;补积分只影响批2大小。
