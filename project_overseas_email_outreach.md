@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-10-14T13:21:54.885Z
+  modified: 2026-10-15T01:47:15.030Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -215,7 +215,7 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
   - 🔴🔴 **10-13 激活信**:名单 `_activation_1013\名单_真实用户70_2026-10-13.csv`(PII⛔不外发/不进git)。写了专用 `activation_send.py`(独立冷邮件线:--dry默认只出清单、--go --confirm 才真发、复用 send.py send_one + run.py 注入 sam@trythinknova.com 发件箱、`_sent_log.json` 幂等、≤30/天)。模板口径=`_activation_1013\草稿_9封.md`(A问3问+帮修/B积分还在+教程/C本轮无;发件 sam@ 签名 Frey)。--dry 已跑:**待发46**(A近期活跃11→A其余22→B1 13;版本 A-en18/A-zh15/B-en13;Day1 30/Day2 16),**不发24**(internal5+B0 19)。9封fail>0加"直给免费重做那条"句。清单 `发送清单_dry_1013.csv`。🔴 **批1 10-14 20:3x 老板手动跑完(真发 agent 被沙箱拦 Real-World Transactions,必须老板手跑)**:**30/31 成功**(10近期活跃+20其余,零串桶,末封20:44)。**1695 没发=我bug**:`--go` 的 `todo[:30]` 硬上限把追加末尾的放行户1695当第31封截掉(非死地址退信、allow其实生效)。**已修**(放行户 `_override` 不受30上限,见 activation_send.py ~L292)。补发1695=老板重跑 `--go --confirm --day 1 --allow-ids 1695`(30封幂等跳过、只发1695)。
   🔴🔴🔴 **待执行(老板10-13晚亲口"明天发"已授权;真发只能老板手跑)**:
     · **10-14 批1(31封)**:10-14 15:2x --dry 已复核✅(抑制读599条/待发46/批1 31含1695/0发B0);已建一次性定时 **83354db2 @17:01**(会话级,app重启会丢→`_send_batch.bat 1`手动兜底)。✅**总指挥10-14 15:3x 已独立核清单、回"可发"批1**(A近期11+其余20含1695、批2 15、无B0无内部除1695无退信、sam@今0发)。定时核准+无STOP才跑 `python run.py activation_send --go --confirm --day 1 --allow-ids 1695`。发完报老板+总指挥 成功/失败数+失败前3位+**1695单独结果**(退了留suppression不再试)。
-    · **10-15 批2(15封=2A+13真有积分B1)**:一次性定时 **3d5c5aba @10-15 10:01**;`--go --confirm --day 2`(⛔不带--topup-ids,那9个补积分的没补前发B版="积分还在"=假话;总指挥给"9人已补"信号才加 --topup-ids 9个id)。
+    · **10-15 批2(15封=2A+13真有积分B1)**:✅总指挥10-15 09:4x 已核dry_1015、**回"可发批2"**(9人仍没补→不加topup、按15发)。真发沙箱拦我→**老板手动跑** `--go --confirm --day 2`(⛔不带--topup-ids)。定时 **859f1846 @10:20 回读_sent_log报数**(B1出现=已发,比对day2算成功/退信报总指挥+老板;没发则催老板)。
     · 那9个补积分B0:**老板后台手补+总指挥信号确认后**才单独发(`--go --confirm --topup-ids <9id>`)。
     · ✅**10-13 修漏洞(总指挥核出)**:activation_send 直调 send_one 漏了抑制检查,已加 `load_suppressed()` 查 outreach.db suppression 表;**id 1695 wenzhong 命中 dead_address 被跳过**→待发 46→**45**(批1 30=10近期活跃+20其余、批2 15=2其余+13B1、fix句8)。1695 **老板已定"可以试一下"→ `--allow-ids` 放行、并进批1(批1→31)、A-zh+fix句保留;发完单独报他成功/退信,退了留 suppression 不再试**。🔴**load_suppressed 失败即中止真发**(读不到 outreach.db/suppression 就 ⛔ 不发、fail-closed;dry 可继续)——总指挥 10-13 二次加固。
     · 急停:在 `_activation_1013\` 放 `STOP_ACTIVATION` 文件即中止(wrapper `_send_batch.bat` 会检查)。⚠️定时任务我被拦建不了,靠心跳执行+老板手动兜底。sam@ 当天需与followup错峰(合计<60)。
