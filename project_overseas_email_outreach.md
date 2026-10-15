@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-10-15T16:51:27.160Z
+  modified: 2026-10-15T16:54:16.399Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -217,7 +217,8 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
     · **10-14 批1(31封)**:10-14 15:2x --dry 已复核✅(抑制读599条/待发46/批1 31含1695/0发B0);已建一次性定时 **83354db2 @17:01**(会话级,app重启会丢→`_send_batch.bat 1`手动兜底)。✅**总指挥10-14 15:3x 已独立核清单、回"可发"批1**(A近期11+其余20含1695、批2 15、无B0无内部除1695无退信、sam@今0发)。定时核准+无STOP才跑 `python run.py activation_send --go --confirm --day 1 --allow-ids 1695`。发完报老板+总指挥 成功/失败数+失败前3位+**1695单独结果**(退了留suppression不再试)。
     · ✅**10-15 18:08-18:16 老板跑完批2(15/15全发)**。**两批共 45 封全发成功**(批1 30[10近期+20其余]+批2 15[2其余+13B1]=10近期活跃+22其余+13B1),**0退信0回信**(18:18抓inbox确认)。⚠️总指挥一度看到_sent_log=43报"少2封"=他在发送进行中(每封间隔20-50s)查的,非漏发;那2个(shenqidayu/ouyangsd)不在抑制表、已发。
     · 9个补积分B0仍没补(老板没动)→没发;1695补发看老板(命令已给)。
-  - ✅ **10-16 合作开发调研(总指挥派,只调研不发信)**:`邮件推广系统\合作开发_1016.md`——10个新马"已服务小店主"的机构,7个官网实地核实邮箱(HitPay/Revenue Monster bd@/SHOPLINE/ACCCIM/FoodZaps/RAS/SRA membership@)+3个官方表单(Qashier/EasyStore/Fave)。总指挥审后用老板Gmail发,⛔我不发。经验:新马SaaS官网多Cloudflare/Vercel验证墙,WebFetch+自动浏览器都抓不到邮箱;协会/商会官网更常公开邮箱(常Cloudflare邮箱混淆,WebFetch能解码)。回信继续盯,来了按口径(feedback_current_growth_rules_0930)起草写 `_activation_1013/回信草稿_1015.md` 给总指挥审⛔别直接发。真发/手动均沙箱拦agent→必老板手跑。
+  - ✅ **10-16 合作开发调研(总指挥派,只调研不发信)**:`邮件推广系统\合作开发_1016.md`——10个新马"已服务小店主"的机构,7个官网实地核实邮箱(HitPay/Revenue Monster bd@/SHOPLINE/ACCCIM/FoodZaps/RAS/SRA membership@)+3个官方表单(Qashier/EasyStore/Fave)。经验:新马SaaS官网多Cloudflare/Vercel验证墙,WebFetch+自动浏览器都抓不到邮箱(⛔不过任何验证墙/验证码,含"人工过");协会/商会官网更常公开邮箱。
+  - 🔴 **10-16 总指挥已用老板Gmail(freyhuang19@gmail.com)发出6封**(10-16 00:52SGT):SHOPLINE/ACCCIM中文/SRA/RAS/FoodZaps/Revenue Monster;今日10封额度满,HitPay/Qashier/EasyStore/Fave下次。**我的活=每小时查老板Gmail这批回信/退信**(定时1de30e6a@:17,7天过期、app重启需重建;回信/退信在Gmail非outreach.db),有就第一时间报总指挥、感兴趣/问价的按口径建Gmail草稿待审⛔不发;无则静默。基线:0回信0退信。回信继续盯,来了按口径(feedback_current_growth_rules_0930)起草写 `_activation_1013/回信草稿_1015.md` 给总指挥审⛔别直接发。真发/手动均沙箱拦agent→必老板手跑。
     · 那9个补积分B0:**老板后台手补+总指挥信号确认后**才单独发(`--go --confirm --topup-ids <9id>`)。
     · 🔴 **10-15 总指挥今日任务**:①批2发完回读_sent_log报成功/退信(定时859f1846@10:20);②15:00前报批1+批2回信数按意向分类(感兴趣/问问题/退订/自动回复)、感兴趣附摘要(查 outreach.db replies表;激活户14:3x仍0回信)。✅**收件抓取正常**(10-15核实):`run.py console` autopilot 每600s一cycle,cycle内跑 `inbox.py`(auto_reply已关=只收不回)+daily_send;⚠️replies表`max(ts)`是最后回信时间≠最后抓取时间,别再误判"抓取停了";imap_uid卡=无新邮件而非没抓;③问"怎么用/多少钱"的按口径(feedback_current_growth_rules_0930)起草写 `_activation_1013/回信草稿_1015.md` 待总指挥审⛔别直接发。
     · ✅**10-13 修漏洞(总指挥核出)**:activation_send 直调 send_one 漏了抑制检查,已加 `load_suppressed()` 查 outreach.db suppression 表;**id 1695 wenzhong 命中 dead_address 被跳过**→待发 46→**45**(批1 30=10近期活跃+20其余、批2 15=2其余+13B1、fix句8)。1695 **老板已定"可以试一下"→ `--allow-ids` 放行、并进批1(批1→31)、A-zh+fix句保留;发完单独报他成功/退信,退了留 suppression 不再试**。🔴**load_suppressed 失败即中止真发**(读不到 outreach.db/suppression 就 ⛔ 不发、fail-closed;dry 可继续)——总指挥 10-13 二次加固。
