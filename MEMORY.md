@@ -29,7 +29,7 @@
 | YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC / 改教程页 | 🔴 教程页现状与改法 → [[project-thinknova-guide-multilang]]；教程=`教程视频_0923\youtube_queue_upload.py`（Windows 任务 15:05）；宣传片=YouTube 目录 `_promo_upload_skipS4.py`（清单+状态在 `宣传片清单_1003-1014\`）；旧管线 `管线_YouTubeShorts英文配音_2026-09-15.md` |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 派活=ccd_session_mgmt send_message 到「THINK NOVA marketing」会话，⛔ 别说「不在线」 → [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束⛔不教怎么做 → [详](feedback_brief_marketing_what_not_how.md) ＋ 🔴 03_工作台 下 `交接档_2026-09-27_压缩前_营销线.md` + [[feedback-boss-rulings]] 顶部 |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆；🔴🔴 老板转来的=已部署，⛔ 按文档里「未部署」字样判断，当场线上核+补配置；🔴🔴 10-09 起⛔ 给技术邮箱发信，问题汇总报老板由他定 → [详](feedback_email_tech_immediately.md) |
-| 接「上次的活」 | [[feedback-parallel-sessions-check-first]] |
+| 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
 | 更新战略台 / 找任务清单 / 老板问「各角色在干嘛」/ 活动进日历和待办 | 🔴 战略台+待办板 → [详](reference_strategy_dashboard.md)；每周一活动扫描→推荐→日历（提前 1 天，报名提前 2 天）→ [详](feedback_weekly_event_scan.md) |
 | 想装闹钟/定时任务 / 心跳频率 | 🔴 [[feedback-heartbeat-not-cron]] — 整点 cron 7 * 全天 24 小时（10-04 老板定，夜间做系统优化、不扰客户不叫老板）；app 重启先重建；Windows 任务跑固定脚本=可 |
 | **回 WhatsApp 客户 / 扫新客户 / 任何获客判断 / 报价** | 🔴🔴🔴 先看 [现行口径（10-02 整理）](feedback_current_growth_rules_0930.md)（市场·对外口径·价格·WA·带线 六节）+ [WA 操作](reference_whatsapp_ops.md) + [⛔别只看未读](feedback_wa_unread_hides_customers.md) |
