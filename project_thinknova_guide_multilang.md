@@ -19,3 +19,8 @@ metadata:
 - 旧口径仍有效：老板 09-25「教程页就是要每个用户看到自己语言的教程」。
 
 相关：[[reference-thinknova-paths]] [[feedback-email-tech-immediately]]
+
+## YouTube 上传脚本（10-16 从索引下沉）
+- 教程队列：`教程视频_0923/youtube_queue_upload.py`（Windows 任务 15:05）
+- 宣传片定时：YouTube 目录 `_promo_upload_skipS4.py`，清单+状态在 `宣传片清单_1003-1014/`
+- 旧管线：`管线_YouTubeShorts英文配音_2026-09-15.md`
