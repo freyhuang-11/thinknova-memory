@@ -1251,3 +1251,6 @@ WhatsApp 问候语、Meta Business Agent 的 19 条 FAQ、AI 指示、邮件模�
 
 ## 10-18 X 号定位
 - 老板：「X 上我想成为一个 AI 知识博主，加上 ThinkNova 的分享」⇒ 老板 X 号=中文 AI 知识博主，约 7 成实用 AI 知识 + 3 成 ThinkNova 分享；不做广告号。细则在知识库 12 页第十四节。
+
+## 10-18 Product Hunt
+- 老板 10-18：直接上 Product Hunt（和课程无关）；改期到 10-20（周二）15:01 SGT；授权总指挥用他的 PH 账号 @frey_huang 回评论（英文、只答产品事实、不承诺效果、不谈合作分成，回不了的转老板），老板自己也会回。记录在 03_工作台/ProductHunt/上线记录.md。
