@@ -1281,3 +1281,4 @@ WhatsApp 问候语、Meta Business Agent 的 19 条 FAQ、AI 指示、邮件模�
 - 10-18 18:2x（对营销线）：「该做就去做，半夜不管内容多少你都可以弄」⇒ 已定的修改不必拆成多晚，夜间窗口可一次做完。
 - 10-18 老板亲口：「fb没有自然流量，IG和X的话重要点把」——平台优先级：TikTok、Instagram、X 第一，博客第二，YouTube Shorts / 小红书顺带，Facebook 只投流不靠自然发帖；抖音看 10-21 止损检查。
 - 10-18 23:xx 平台优先级：「fb没有自然流量，IG和X的话重要点把」⇒ TikTok、IG、X 第一，博客第二，YouTube Shorts/小红书顺带，FB 只投流不靠自然发帖，抖音看 10-21 检查。
+- 10-19 凌晨 短剧：要电视剧感、剧种一眼可见（8 剧种 + 动漫/Q版/萌娃）、明显换装演绎；随机抽查不用全烧；先做几个内容后面补；MiniMax 默认、grok 留备用；开场黑幕 3 秒太长。详见 project_thinknova_short_drama.md。

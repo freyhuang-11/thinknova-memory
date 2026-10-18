@@ -16,9 +16,9 @@
 | 动编剧/台词/长度/字数窗 | [[project-thinknova-0729-screenwriter-stack]] |
 | 动 grok/H3/参考图/负面词/提示词(旧管线) | [[project-thinknova-language-pack-rollout]] + [[reference-thinknova-multiref-model]] |
 | 动视频工作台/长视频拼接(新管线,与旧线隔离) | 🔴 [[reference-thinknova-video-studio]] |
-| 动片型/案例库/场景表 | [[project-thinknova-film-types]] |
+| 动片型/案例库/场景表 | [[project-thinknova-film-types]] ／ 短剧（S08）→ [详](project_thinknova_short_drama.md) |
 | 改任何提示词(编剧/识图/画面风格/案例) | 🔴 [[feedback-prompt-conflict-and-hard-checks]] — 先扫互搏、认硬校验、opsEditable 双写 |
-| 动字幕/画面文字口径 | [[feedback-boss-rulings]](散在 4 个字段,必须同改) |
+| 动字幕/画面文字口径 | [[feedback-boss-rulings]] |
 | 下「前台有没有X」的结论 | [[reference-thinknova-frontend-truth]] |
 | 建案例 | [[feedback-case-low-coupling]] |
 | 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
