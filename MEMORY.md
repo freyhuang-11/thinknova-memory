@@ -27,7 +27,8 @@
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC / 改教程页 | 🔴 教程页现状、上传脚本路径 → [[project-thinknova-guide-multilang]] |
-| 接国内营销线的活 / 周日档·周一档 | 🔴 派活=ccd_session_mgmt send_message 到「THINK NOVA marketing」会话，⛔ 别说「不在线」 → [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束⛔不教怎么做 → [详](feedback_brief_marketing_what_not_how.md) ＋ 🔴 03_工作台 下 `交接档_2026-09-27_压缩前_营销线.md` + [[feedback-boss-rulings]] 顶部 |
+| 接国内营销线的活 / 周日档·周一档 | 🔴 send_message 到「THINK NOVA marketing」→ [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束 → [详](feedback_brief_marketing_what_not_how.md) + [[feedback-boss-rulings]] |
+| 说「技术没回信」 | 🔴 Gmail 工具看不到垃圾箱，先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md) |
 | 技术发来新文档 | 🔴 归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆；🔴🔴 老板转来的=已部署，⛔ 按文档里「未部署」字样判断，当场线上核+补配置；🔴🔴 10-09 起⛔ 给技术邮箱发信，问题汇总报老板由他定 → [详](feedback_email_tech_immediately.md) |
 | 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
 | 更新战略台 / 找任务清单 / 老板问「各角色在干嘛」/ 活动进日历和待办 | 🔴 战略台+待办板 → [详](reference_strategy_dashboard.md)；每周一活动扫描→推荐→日历（提前 1 天，报名提前 2 天）→ [详](feedback_weekly_event_scan.md) |
