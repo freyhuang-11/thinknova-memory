@@ -7,6 +7,8 @@ metadata:
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
   modified: 2026-09-27T16:18:28.381Z
 ---
+> 🔴 10-20 更新：skill 现行全表与冲突处理见 `03_工作台/skills整理_1020.md`。thinknova-prompts、video-script-style、high-retention-hook、hurricane-shot-prompt、xhs-note、xhs-growth、hkrr-clock 已用 darwin 方法对齐线上与老板 10 月口径（旧版 99_归档/skills_旧版_1020/）；外部 huashu-design、nuwa-skill 老板定不用；darwin 只借方法（9 维评分→每轮改一处→3 评委成对比较→更差就撤），不装其脚本。本文件里 cheat-* 组合拳、「hallmark 仍能加载」两段已过期；HyperFrames 21 个 skill 以 skills整理_1020.md 表为准。
+
 
 > 🔴 2026-10-14 体检：**skill 部分以 Obsidian「总指挥知识库/09_skills全场景表」为准**；cheat-* 已于 09-28 归档、评论线 10-05 停，相关段已删。本文件仍有效的是「二、发布与运营：场景 → 脚本」及各平台发布坑。
 
