@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: 5415ca52-b559-4c91-a28d-36c22f0d137f
-  modified: 2026-10-18T18:05:21.194Z
+  modified: 2026-10-19T07:42:29.951Z
 ---
 
 **是什么**：老板 10-18 要的新片型——带货短剧（反派刁难 → 主角到店 → 换装亮相打脸）。挂在 offline_store_video 的 S08（动作 id `customer_review`，原「剧情短片」空位）。
@@ -30,6 +30,8 @@ metadata:
 - 换装常只换头发不换衣服：要把换装后衣服写死（颜色+款式），并在自查规矩里写「换装后衣服必须明显不同」。
 - Chrome 后台标签常被杀：每次 navigate+JS 放同一 batch，大段文本先存 localStorage 再 PUT。
 
-- 10-19 15:1x 老板：编剧出台词前要自审；每条成片我都查音频（ffmpeg ebur128 响度、silencedetect 空白、ASR 听台词、对照画面人物性别）。
+- 10-19 15:1x 老板：编剧出台词前要自审；每条成片我都查音频（ffmpeg ebur128 响度、silencedetect 空白、ASR 听台词、对照画面人物性别）。⚠️ 老板说「查音频/台词怪」指的是 **agent（offline_store_video）出的片**，不是营销线长片——别查错对象。
+- 10-19 15:3x 萌娃片「念台词怪怪的」（task_095bd6f4cd5d）查因：①两个孩子音高都约 330–340Hz，H3 只给一个童声，听着像一个人自问自答；②案例画面设计和台词错位（第3格画面没人在说、第4格男孩不入画却说「这口怎么回事」——没吃先震惊）；③小孩嘴里念「招牌咖喱鸡，刚出锅冒热气」这种广告词；④「本总裁不吃？」问号让语调上扬。修法写在案例层（v3，见 ROLLBACK 文件）：每格说话人=本格正脸那个、小孩口吻（短句叠字语气词）、只有真提问用问号、店名只末句念一次、声线写成「男孩低装大人 / 女孩三岁尖细高音」。声线能否拉开取决于模型，验证单 task_f441e9cf9d2e。
+- 查台词怪的方法：admin task 详情 `plan.videoPrompt.scriptwriterPlan.cells`（voice/line/timeRange）对 ASR 分段 + 每段 f0 音高（两角色音高差 <30Hz = 同一个声）+ 1fps 联系表看谁在画面里。
 
 **How to apply**：铺开新剧种前先各烧 1 条抽查；成片验：开头 3 秒无六宫格、两人两声线、换装看得出、末句念店名/地址。相关 [[feedback-boss-rulings]] [[project-thinknova-film-types]] [[feedback-case-low-coupling]]
