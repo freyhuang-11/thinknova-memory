@@ -30,4 +30,6 @@ metadata:
 - 换装常只换头发不换衣服：要把换装后衣服写死（颜色+款式），并在自查规矩里写「换装后衣服必须明显不同」。
 - Chrome 后台标签常被杀：每次 navigate+JS 放同一 batch，大段文本先存 localStorage 再 PUT。
 
+- 10-19 15:1x 老板：编剧出台词前要自审；每条成片我都查音频（ffmpeg ebur128 响度、silencedetect 空白、ASR 听台词、对照画面人物性别）。
+
 **How to apply**：铺开新剧种前先各烧 1 条抽查；成片验：开头 3 秒无六宫格、两人两声线、换装看得出、末句念店名/地址。相关 [[feedback-boss-rulings]] [[project-thinknova-film-types]] [[feedback-case-low-coupling]]
