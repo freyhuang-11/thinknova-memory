@@ -30,3 +30,8 @@ metadata:
 
 ## 素材库(对外推介/营销视频_导演台/成品素材库)
 01海报7张(行业_内容_task短号命名)/ 02视频成品=15s AI口播成片(奶茶小吃餐饮美甲服装家政KTV+甜品/女装新增;美睫理疗花店已投单生成)/ 03界面录屏(抖音用素材.mp4=32s全流程)/ 04操作长片3版 / 05视频截帧8张。台账=_命名与用法.md。
+
+## 10-19 更新（老板点头）
+- `npx skills add heygen-com/hyperframes -g -a claude-code -y` 装到 ~/.claude/skills，现在 7 → 21 个 HF 技能（新增 embedded-captions / hyperframes-audio / media-use / general-video / motion-graphics / faceless-explainer / product-launch-video / talking-head-recut 等）；CLI `npx hyperframes@latest` = 0.8.174，doctor 只缺可选项（whisper-cpp / Kokoro / MusicGen / Docker）+ 内存低。
+- 旧版（含我改过的中文 description）备份在 `99_归档/hyperframes_skills_备份_20261019/`。
+- 10-19 那周 6 条「客人对店主说」是自写 ffmpeg+PIL 拼的（`新内容_2分钟_1019/assemble.py`），违反路由表第 1 条且台账没写理由；下一批先走 hyperframes 试一条，对比渲染时长再定。
