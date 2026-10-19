@@ -39,3 +39,4 @@ metadata:
 
 - 10-19 17:5x 两个提示词坑（老板：声音问题是提示词，不报技术）：①videoTemplate 开头「全片真人口播」+ 预设「口播是自然真人声」把整片当一个人说 ⇒ 已加「多人对戏时按「人声」换人、同人同声、不同人明显不同」（公共模板，条件句不影响单人）。②编剧第 1 稿超字数窗被要求重写时，会把整个短剧扔掉改成店员独白 ⇒ 案例规矩加⑨「改字数只增删字句，角色剧情画面声线不变」、⑤改「守住字数窗宁短」。验证单 task_d218dadb4c85。88 条 v1 案例还没加⑨。
 - 10-19 19:1x 验证 task_a55a42fe1b7e（动漫美发，H3，成功）：编剧第 1 次超时、重写**保住了**动漫剧情（systemPrompt【说话人】加「重写也沿用案例角色剧情」生效）；画面真是动漫；声音从「两人同一个 356Hz」变成两种明显不同的声音（低 314–364Hz / 高 533–552Hz），但第 4 句绫华（低沉御姐音）震惊句跳到 533Hz、第 3 句小葵旁白 364Hz——像是按格交替配声，也可能是情绪；已发老板用耳朵判。
+- 10-19 21:4x 封面：57 条短剧案例换成按剧种截的成片高潮帧（宫斗/闺蜜/咖啡店/马来邻里/家庭/动漫/萌娃）；霸总、职场、网红 33 条没样片仍是旧封面。**换案例封面的正路**：POST `/admin/api/v1/agents/offline_store_video/reference-cases/{id}/cover`（multipart file + x-csrf-token）只改 coverImageUrl，另 3 个图字段 + previewAssetType 要 PUT 补齐；本地图片用 claude-in-chrome file_upload 塞进页面上的 input 再 POST（OSS 没开 CORS，浏览器里截不了视频帧）。商家端核：`/api/v1/business-video-assets/reference-cases?page=N&pageSize=24`（上限 24）。
