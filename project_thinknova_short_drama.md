@@ -42,3 +42,9 @@ metadata:
 - 10-19 21:4x 封面：57 条短剧案例换成按剧种截的成片高潮帧（宫斗/闺蜜/咖啡店/马来邻里/家庭/动漫/萌娃）；霸总、职场、网红 33 条没样片仍是旧封面。**换案例封面的正路**：POST `/admin/api/v1/agents/offline_store_video/reference-cases/{id}/cover`（multipart file + x-csrf-token）只改 coverImageUrl，另 3 个图字段 + previewAssetType 要 PUT 补齐；本地图片用 claude-in-chrome file_upload 塞进页面上的 input 再 POST（OSS 没开 CORS，浏览器里截不了视频帧）。商家端核：`/api/v1/business-video-assets/reference-cases?page=N&pageSize=24`（上限 24）。
 - 🔴 10-20 03:1x 根因：视频模型实际收到 = 语言包 + videoTemplate+cells（≤4000B），**i2v 预设不进视频模型**；语言包 zh 原有「穿家常或工作服,朴素不浮夸」每单都进模型，压住短剧换装/晚礼服/古装——已改「穿着按案例,没写就家常或工作服」。往 videoTemplate 加字前先量长单字节（10-20 一单需 4081B 被拒）。
 - 10-20 老板：88 条 v1 短剧换 8 剧种（宫斗/霸总/豪门/民国/武侠/娘惹大宅/马来宫廷/校园），保留 id 换内容与标题。
+
+## 10-20 声线串音真因（实测·待核：038a、6cde）
+- 视频模型按「本格画面里那张正脸」配声，不按 cells.voice。第 4 格「反派不入画、画外惊呼」→ 反派台词被念成主角音区（两条都量到）。
+- 改法：⛔画外说话；第 4 格主角亮相自己说，第 5 格反派同框「只写一句：惊讶+店名合一句认输」。分两句会被条数校验（5 句）打回、重写把末句写坏（10a0）。drama_family_retail 先试，过了铺 88 条。
+- 宫斗剧种「宫斗/反派/刁难/讥讽/锁脸/冷笑」会被生图方判违规，已换中性词（11 条）。
+- 编剧分镜 8/8 没进生图（流程问题，报老板转技术）：画面人物性别可能和 voice 不一致。
