@@ -116,7 +116,7 @@
 - 🔴 任务唯一总表 → `03_工作台\任务总表_总指挥.md`；等老板定的 → 知识库 04 页
 
 ### 内容与产品规矩
-- [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [缺口双查](feedback_case_gap_dual_check.md) / [小红书交付](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单≤6单/周](feedback_burn_budget_weekly_cap.md) / 🔴[先分析再做·只提前1周](feedback_analyze_before_making.md) / 🔴[知识片要活人感](feedback_knowledge_film_live_feel.md)
+- [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [缺口双查](feedback_case_gap_dual_check.md) / [小红书交付](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单上限·每轮抽2–3单不同行业·日≤10](feedback_burn_budget_weekly_cap.md) / 🔴[先分析再做·只提前1周](feedback_analyze_before_making.md) / 🔴[知识片要活人感](feedback_knowledge_film_live_feel.md)
 - 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — 建案例前必读,新建必过 3 条自检
 - 🔴🔴 验收四铁律:成片四项齐验 / 门槛不跨片型 / 「写满」须给合法填充 / 子 agent 挤字数须列不可删清单 → [详](feedback_evidence_standard.md)
 
