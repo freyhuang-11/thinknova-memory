@@ -36,3 +36,5 @@ metadata:
 - 查台词怪的方法：admin task 详情 `plan.videoPrompt.scriptwriterPlan.cells`（voice/line/timeRange）对 ASR 分段 + 每段 f0 音高（两角色音高差 <30Hz = 同一个声）+ 1fps 联系表看谁在画面里。
 
 **How to apply**：铺开新剧种前先各烧 1 条抽查；成片验：开头 3 秒无六宫格、两人两声线、换装看得出、末句念店名/地址。相关 [[feedback-boss-rulings]] [[project-thinknova-film-types]] [[feedback-case-low-coupling]]
+
+- 10-19 17:5x 两个提示词坑（老板：声音问题是提示词，不报技术）：①videoTemplate 开头「全片真人口播」+ 预设「口播是自然真人声」把整片当一个人说 ⇒ 已加「多人对戏时按「人声」换人、同人同声、不同人明显不同」（公共模板，条件句不影响单人）。②编剧第 1 稿超字数窗被要求重写时，会把整个短剧扔掉改成店员独白 ⇒ 案例规矩加⑨「改字数只增删字句，角色剧情画面声线不变」、⑤改「守住字数窗宁短」。验证单 task_d218dadb4c85。88 条 v1 案例还没加⑨。
