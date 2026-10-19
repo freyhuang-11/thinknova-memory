@@ -53,7 +53,7 @@
 动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
 
 ## L0 · 每次开口/动手前
-000. 🔴🔴🔴 压缩/重启后第一件事:读 `03_工作台\日报\总指挥_当前状态_滚动.md` + CronList
+000. 🔴🔴🔴 压缩/重启后第一件事:读 `03_工作台\日报\总指挥_当前状态_滚动.md` + `未完成清单_总指挥.md` + CronList;验证通过才算完,老板问「做完没」先对照清单
 00. 🔴🔴🔴 判断先开「总指挥知识库/00_总入口」→ [详](reference_commander_knowledge_base.md) ／ 写「未测」前先查库→本地产物→会话→线上实走(含手机) → [详](feedback_exhaust_own_evidence_before_untested.md)
 0. 🔴🔴🔴 权威源> 我的记忆 → [详](feedback_source_truth_first_commander.md)
 1. 🔴 判断时间先跑 `date` → [详](feedback_check_time_first.md) ／ 🔴🔴🔴 提议≠指令,老板的词按字面做满,⛔不许缩窄定义再报「全部完成」 → [详](feedback_dont_assume_requirements.md)
@@ -93,7 +93,7 @@
 # 用户与沟通
 - 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull,收工只 add 自己的并验远端
 - [用户画像](user_profile.md) ／ [签约主体](reference_company_entity.md)
-- 🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md)
+- 🔴🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含工具调用之间的每一句进度说明
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
