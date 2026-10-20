@@ -29,7 +29,7 @@
 | YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC / 改教程页 | 🔴 教程页现状、上传脚本路径 → [[project-thinknova-guide-multilang]] |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 send_message 到「THINK NOVA marketing」→ [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束 → [详](feedback_brief_marketing_what_not_how.md) + [[feedback-boss-rulings]] |
 | 说「技术没回信」 | 🔴 Gmail 工具看不到垃圾箱，先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md) |
-| 技术发来新文档 / 国内版协作 | 🔴 国内版走 GitHub agent-md 仓库 → [详](reference_agent_md_repo.md)；归档进 `00_规格与参考\技术侧文档\` 并当场覆盖冲突的旧记忆；🔴🔴 老板转来的=已部署，⛔ 按文档里「未部署」字样判断，当场线上核+补配置；🔴🔴 10-09 起⛔ 给技术邮箱发信，问题汇总报老板由他定 → [详](feedback_email_tech_immediately.md) |
+| 技术发来新文档 / 国内版协作 | 🔴 国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；⛔ 给技术发信 → [详](feedback_email_tech_immediately.md) |
 | 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
 | 更新战略台 / 找任务清单 / 老板问「各角色在干嘛」/ 活动进日历和待办 | 🔴 战略台+待办板 → [详](reference_strategy_dashboard.md)；每周一活动扫描→推荐→日历（提前 1 天，报名提前 2 天）→ [详](feedback_weekly_event_scan.md) |
 | 想装闹钟/定时任务 / 心跳频率 | 🔴 [[feedback-heartbeat-not-cron]] — `7 * * * *` 全天；重启先重建 |
@@ -79,7 +79,7 @@
 9. 🔴 逐帧通看+量死寂,单帧截图=假结论 → [详](feedback_evidence_standard.md) ／ 🔴 烧完验三件:`task.model`/编剧 source/字数 → [详](project_thinknova_0729_screenwriter_stack.md)
 
 ## L3 · 给技术发文档前
-12/14. 🔴 给技术只发技术才能处理的;已修/不处理/SEO·GEO 不进清单;🔴🔴🔴 提示词能管的效果问题(声音/台词/画面)⛔报技术,技术只管流程 → [详](reference_tech_doc_submission_spec.md) [自检](feedback_tech_doc_checklist.md) [10-15](feedback_tech_list_only_actionable.md) [10-19](feedback_prompt_issues_never_to_tech.md)
+12/14. 🔴🔴🔴 给技术前先自审：自己这侧穷尽+线上逐条核+只发未修，做成可转发一段话；提示词能管的⛔报技术 → [自检](feedback_tech_doc_checklist.md) [规范](reference_tech_doc_submission_spec.md) [10-19](feedback_prompt_issues_never_to_tech.md)
 
 ## L4 · 汇报沟通时
 16/18. 每轮说清「验收什么+做了什么」 → [详](feedback_communication_principles.md) [plan](feedback_questions_via_plan_mode.md) [新鲜度](feedback_data_freshness_framing.md)
