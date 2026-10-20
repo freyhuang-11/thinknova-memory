@@ -479,3 +479,7 @@ YouTube Analytics `country` / `insightTrafficSourceType` / `deviceType` 实测�
 ## Bing / IndexNow（10-20 起）
 - 每天一次 IndexNow：只推当天新发布或实质改过的已发布博客页（⛔ offline、⛔ 只改 CTA / 禁用词），推前不用问，4xx 才报总指挥。脚本 03_工作台\SEO_GEO\_indexnow.py（--check / --dry / --run），密钥 = SEO_GEO\IndexNow\ 下总指挥那份，回执 _indexnow_回执.csv。Bing Webmaster 已从 GSC 导入、sitemap 已提交；每周一 SEO 周报写 Bing 收录。
 - Search Console 请求收录稳定做法见 03_工作台\博客发布\_请求收录_做法_1020.md（先 navigate 唤醒标签、JS 定位按钮，不按坐标点）。
+
+## 10-21 老板两条
+- 每周一例程加一项：Drive 海外同步文件夹清理，先问海外线再移 → [[reference-drive-sync-overseas]]。
+- e1b324b6 那次故障只坏 agent 单，图生视频不受影响（老板 10-21 原话「你图生视频不受影响的，应该是agent的问题」）。缺镜头时可以单烧图生视频出镜头再自己拼；走商家端正常流程（经 agent）的单仍等总指挥通知。
