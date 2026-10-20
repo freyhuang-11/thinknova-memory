@@ -191,3 +191,11 @@ metadata:
 `scriptwriterPrompt` 配置值 **3648 字节 > 3500 上限 148 字节**（admin 侧复核一致），但：工作台编剧任务（如 `task_7748033a1124`）的 `input` 只有 7 个业务字段、不带 systemPrompt，`child_tasks` 空数组；旧线编剧任务带 `systemPromptSource`，工作台这条链不带。
 ⇒ **「超限是否真被截断」未实证，所以没删那 148 字节，零写入。** 下一轮要么展开 `studio_diagnostics.stages`，要么让技术给一个「实发 systemPrompt 落盘」的读法。
 ⇒ 纪律再确认一次：**配置值超限 ≠ 已被截断**，没实证前⛔不动线上。
+
+## 🔴 2026-10-21 实测（全流程 studio_4def3ee257da，回滚见 03_工作台/ROLLBACK 10-21 段）
+- 查子任务真实输入：`GET /admin/api/v1/ai-tasks/{taskNo}` → data.task.input（prompt / image_url / reference_image_urls）、output、attempts。成片/分镜存储路径从 output/assets 拿 `generated-assets/...`，公开桶可下；成片用 `GET /api/v1/assets/{assetNo}/download-url` 取对象路径（⛔打印签名串）。
+- 接口（前台代码）：PATCH `/projects/{no}/shots/{n}`（只认 dialogue/visualPrompt/cameraPrompt）、POST `/shots/{n}/storyboards`（重生成，instruction 恒空）、`/storyboards/approve {revisionId}`、POST `/videos`（批量）、`/shots/{n}/videos`（单镜）、`/videos/approve`、POST `/compositions`（合成）、`/cancel`。重生成版本不自动采用。
+- 分镜：每镜 image_url=商家商品照（底图），不带上一镜图；模型 490 maxReferenceImages=1；`constraints.studioStoryboardReferencePolicy.useContinuityAnchors=true` 实测无效；mode=appearance 会加「参考图只锁外观」句（已保留）。商品照若是完整场景，各镜照搬构图。
+- 视频：分镜图=首帧（503 跟得住）；每镜独立生成，镜头间无画面传递 ⇒ 老板要的「上一镜尾帧当下一镜首帧」要技术改串行生成。
+- e1b324b6 后识图契约 v3 要 images[].unknowns，漏写整单 block → 识图提示词已加一句补救。
+- 编剧每次波动大：同案例第二轮 5 镜全拍商品（提示词约束状态连续不稳）。案例 flower_plant_s03_best 本身规定「同一场景不跳场景」。
