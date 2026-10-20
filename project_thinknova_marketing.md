@@ -475,3 +475,7 @@ YouTube Analytics `country` / `insightTrafficSourceType` / `deviceType` 实测�
 - 并进周一 SEO 周报单独一节；1 页「本周变化 → 我们这周做什么」，每条带网址、事实亲核。
 - 查四样：①「AI video maker Malaysia / Singapore small business」及中文问句的 Google / AI 前 10 有没有变、新榜单、有没有提到我们 ②aigc.com.my、ai-content.sg、Pippit、Canva、CapCut（+新发现的）价格 / 免费额度 / 新功能 ③对手本周播放最高 3 条社媒，各拆一句开头 ④新马媒体 / 榜单本周写 AI 工具或小店营销的文章、作者、联系方式。
 - ⛔ 联系任何人、花钱先报总指挥。底稿 03_工作台\竞品分析_1019\（01 引用面 / 02 社媒 / 03 本地对手 / 00 汇总）。
+
+## Bing / IndexNow（10-20 起）
+- 每天一次 IndexNow：只推当天新发布或实质改过的已发布博客页（⛔ offline、⛔ 只改 CTA / 禁用词），推前不用问，4xx 才报总指挥。脚本 03_工作台\SEO_GEO\_indexnow.py（--check / --dry / --run），密钥 = SEO_GEO\IndexNow\ 下总指挥那份，回执 _indexnow_回执.csv。Bing Webmaster 已从 GSC 导入、sitemap 已提交；每周一 SEO 周报写 Bing 收录。
+- Search Console 请求收录稳定做法见 03_工作台\博客发布\_请求收录_做法_1020.md（先 navigate 唤醒标签、JS 定位按钮，不按坐标点）。
