@@ -10,4 +10,4 @@ metadata:
 - 当前项目：`docs/thinknova-domestic-h5/`（国内独立 H5 thinknova.kukuda.net，后端同 api.thinknova.top）。角色：**项目经理（我们）**维护需求/优先级/验收并验收开发回传；开发 Agent（另一台电脑）在 H5 源码仓库实现并回写 `delivery/`；技术负责人给源码/部署映射。
 - 提交规矩：从最新 main 开分支（docs/{project}-{topic}、delivery/{project}-{task}），一提交一主题，提交信息带项目和任务号，UTF-8+LF，提交前 `git diff --check`；「HTTP 200 / 包名变化 / 构建成功」不算功能完成。
 - 10-20 现状：P0-1 通用创作、P0-2 海报场景字段、P0-3 15 秒视频建单、P0-4 任务资产积分反馈；阻塞=技术负责人未给 H5 源码仓库与部署映射（delivery/BLOCKED-独立H5源码与部署映射-2026-10-20.md）。
-- 推送需要写权限：老板账号已被邀请；我这边推送前先确认凭据能写，⛔替老板接受邀请或改账号设置。
+- 10-20 20:1x 起本机 git 已能推送（凭据已在本机）；提交作者设为「Frey Huang (ThinkNova 总指挥 AI)」；按规矩开分支推送，PR 由技术合并（本机无 gh）。⛔替老板接受邀请或改账号设置。
