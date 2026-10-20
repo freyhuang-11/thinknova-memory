@@ -105,7 +105,7 @@
 - 🔴 [两条管线](reference_thinknova_pipeline_flow.md) / [提示词架构](reference_thinknova_prompt_architecture.md) / [Grok 红线](reference_grok_content_policy.md) / [权限地图](reference_thinknova_config_powers.md) / [路径](reference_thinknova_paths.md)
 
 ### 现行状态(索引只写「什么时候看哪个」,事实在文件里)
-- 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md)(主战场;10-11 起：对标库+评论区选题、四步流水线、3+4 对照实验;⏸微信 09-15 停;出稿跑 `_check_*.py`) ／ [发布与渲染的坑](reference_publish_ops_gotchas.md) ／ [出镜头](reference_studio_shots_for_marketing.md) ／ [小红书](project_thinknova_xhs_line.md)
+- 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md)(主战场;出稿跑 `_check_*.py`) ／ [发布与渲染的坑](reference_publish_ops_gotchas.md) ／ [出镜头](reference_studio_shots_for_marketing.md) ／ [小红书](project_thinknova_xhs_line.md)
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
