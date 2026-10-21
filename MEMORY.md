@@ -39,6 +39,7 @@
 | **说「找不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — `*.jsonl` 可直接 grep |
 | **转述子 agent 结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；没证据就说不知道 |
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
+| **找对标 / 拆别人爆款** | 🔴🔴 先开 [对标工具链](reference_benchmark_toolchain.md) — yt-dlp 在 `_tools/ytdlp_env`，⛔ 重装 |
 | **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 第二、三节 + [[reference-content-skills-dbskill-agentmotion]] ＋ 角度矩阵 → [详](feedback_content_angle_variety.md) ＋ 对标爆款 → [详](feedback_benchmark_trending_each_analysis.md) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
