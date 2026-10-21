@@ -427,3 +427,6 @@ WhatsApp 只把**带协议头**的当可点链接。写 `thinknova.top` 是纯�
 - ⛔ kie.ai/billing 的余额数字在后台页签里一直显示 0（占位），不能当真；余额以老板截图或交易记录表为准。
 - ⛔ kie.ai/logs 翻到第 6 页左右必卡死页签，逐条对账别走日志页。
 - kie 对失败请求扣 0 点；老板登录态只读查看，不碰 API Keys 页。
+
+## 10-21 · 建单字段别带句点缩写（总指挥查的根因）
+- 店名「Diya & Co. Sweets」里「Co.」的句点被编剧台词校验当断句：实际 5 句被数成 6 句 → 「lines count does not match shot count」连失败 5 次（task_193dae42fe21）。技术侧计数 bug 未修前，店名 / 商品名 / offer 避开 Co. / St. / No. / Bhd. 这类带句点的缩写。
