@@ -61,7 +61,7 @@
 2.97 🔴🔴 自己写的注释不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `子agent任务书模板_2026-09-06.md` 五行
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 placeholder≠实际行为 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 被「共享资源」拦两次先 `json.loads(settings.json)` 查权限文件;唯一硬墙=改自己的 settings.json → [详](feedback_retry_before_escalating.md)
-3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md) ／ 🔴🔴🔴 核界面=对照我方逐屏要求+零基础测+同类平台,⛔「页面变了」报进展 → [详](feedback_ui_check_against_spec.md)
+3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md) ／ 🔴🔴🔴 核界面=对照我方逐屏要求+零基础测+同类平台+🔴390 宽手机视口走全链路,⛔「页面变了」报进展 → [详](feedback_ui_check_against_spec.md)
 
 ## L1 · 改配置/提示词前
 4. 🔴 先查字段读取图,拉真实任务 input 确认字段真在 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 字段语义不确定=先问技术 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
