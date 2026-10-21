@@ -483,3 +483,6 @@ YouTube Analytics `country` / `insightTrafficSourceType` / `deviceType` 实测�
 ## 10-21 老板两条
 - 每周一例程加一项：Drive 海外同步文件夹清理，先问海外线再移 → [[reference-drive-sync-overseas]]。
 - e1b324b6 那次故障只坏 agent 单，图生视频不受影响（老板 10-21 原话「你图生视频不受影响的，应该是agent的问题」）。缺镜头时可以单烧图生视频出镜头再自己拼；走商家端正常流程（经 agent）的单仍等总指挥通知。
+
+## 10-21 老板授权：窗口自己切前台
+- 老板原话「你以后自己把东西放在前台」。Search Console 这类只能网页点的活，窗口被挡或最小化时 Chrome 会冻标签 → 先用 computer-use open_application("Google Chrome") 切前台（只切窗口，网页操作仍走 Chrome 插件），⛔ 再让老板手动放。细则：`03_工作台/博客发布/_请求收录_做法_1020.md` 10-21 节。
