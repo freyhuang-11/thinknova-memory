@@ -57,4 +57,5 @@ metadata:
 - 我给的「跑通」判断：签约≠闭环，缺 首部交付回款 / 量产单分钟实际成本 / 第二单或月度框架量 / 中转外部付费客户 / 一次收片转卖；工作流先拿意向不先开发。
 - 对外仍不写上游供应商名（见上方红线 1）。
 - 10-20 老板口径更新：首家买方只是其中之一；**市场主流收购价约 US$100–150/分钟**（老板判断）；主收入=大量承制，其次大量中转；成本主要是人力。测算表已改为「首家 80 分钟/月按 $80，其余按市场价」+ 制作人数=交付分钟÷人均产能；工作流开关默认不计入。投资人正文 = Claude Docs「AI 漫剧业务 · 12 个月财务测算」https://claude.ai/code/artifact/d08d11ce-d61b-495d-9268-c043c761a87f （中性：12 个月收入 $64.4 万/经营利润 $28.7 万）。人均产能/月薪/首家月量仍是我的假设，待老板给实数。
-- 10-20 老板：**不要 Excel，要能直接看的 Word**。现行交付件=`02_交付内容/AI漫剧_财务测算_2026-10-20.docx`（生成脚本 scratchpad make_manju_doc.js，数字来自 make_manju_model.py 中性/保守/乐观三档）；xlsx 已移进 99_归档。Word→PDF 自查：PowerShell COM `Word.Application` ExportAsFixedFormat + pymupdf 渲染。
+- 10-20 老板：**不要 Excel，要能直接看的 Word**。现行交付件=`02_交付内容/AI漫剧_财务测算_2026-10-22.docx`（10-20 版已归档）（生成脚本 scratchpad make_manju_doc.js，数字来自 make_manju_model.py 中性/保守/乐观三档）；xlsx 已移进 99_归档。Word→PDF 自查：PowerShell COM `Word.Application` ExportAsFixedFormat + pymupdf 渲染。
+- 10-22 老板定口径：漫剧测算文档**不写资金需求/金额、不聊监管、不写二期拿意向**，改写「可以扩张的点」；副标题只写「内部经营数据」，⛔「融资沟通版」。
