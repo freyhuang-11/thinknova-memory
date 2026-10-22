@@ -1314,3 +1314,4 @@ WhatsApp 问候语、Meta Business Agent 的 19 条 FAQ、AI 指示、邮件模�
 - 10-21 23:2x 国内抖音+小红书换方向：老板「说明方向上有问题，都让营销换方向，拆分别人的视频」⇒ 以拆同类爆款（结构/选题，不搬原素材）为主；老板讲课素材他自己发，⛔ 我们拍。
 - 10-22 22:3x：ChatGPT 广告「先不投了」（方案留档 02_交付内容/ChatGPT广告_350返350_投放方案_1022.md）；国内版客服=企业微信，群二维码会过期 ⇒ 用永久客服链接/联系我码；要做国际版 MCP 开放给客户 Agent（文生图/图生图/文生视频/图生视频 + 渲染 skills + 脚本与自动发布规则，平台客户自选，我们内部不走 MCP）→ 方案 02_交付内容/国际版_MCP开放方案_给客户Agent用_1022.md
 - 10-22 23:2x 国际版：页脚「Powered by OpenAI·xAI·MiniMax·ByteDance·Alibaba Cloud·Google」老板定**保留不改**（对外不出供应商名的例外，只限页脚这一行）；对外客服邮箱统一 freyhuang@jasariellive.com（thinknova.top 无邮箱）；主流页面应是英文，/en/ 404 交技术处理。MCP 名定「ThinkNova MCP」，教程写进 API 文档，认证方式和每日上限问技术。
+- 10-23 01:4x 老板已把 MCP 方案发技术。
