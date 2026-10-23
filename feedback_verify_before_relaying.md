@@ -54,3 +54,6 @@ metadata:
 ## 10-17 事故：有截止时间的决定只问不留后手
 - 15:15 发现 Meta 19:00 定时帖片内有禁语，只用 AskUserQuestion 等老板，回复到时已过 19:00，片子发出。
 - **How to apply:** 有截止时间的决定，问的同时写明「X 点前不回复我就按推荐方案先做（可逆操作）」，截止前 1 小时再提醒一次；可逆的（移到草稿、暂停）先做再报。
+
+## 10-24 实例：多参考图「被截成 1 张」误报给技术
+营销线报「建单只存 1 张参考图」，我只数了 referenceImages 数组长度（=1）就写进给技术第 2 条，没对 image_url 和 referenceImages 是不是同一张图。实际是平台把第 1 张放 image_url、其余放 referenceImages，一张没丢；营销线自己更正后才撤回。**How to apply:** 核「图丢了没」要把所有图片字段（image_url / referenceImages / reference_image_urls）去掉签名参数后比对是否同一张，数总数，不只数一个数组。
