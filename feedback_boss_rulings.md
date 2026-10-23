@@ -1316,3 +1316,4 @@ WhatsApp 问候语、Meta Business Agent 的 19 条 FAQ、AI 指示、邮件模�
 - 10-22 23:2x 国际版：页脚「Powered by OpenAI·xAI·MiniMax·ByteDance·Alibaba Cloud·Google」老板定**保留不改**（对外不出供应商名的例外，只限页脚这一行）；对外客服邮箱统一 freyhuang@jasariellive.com（thinknova.top 无邮箱）；主流页面应是英文，/en/ 404 交技术处理。MCP 名定「ThinkNova MCP」，教程写进 API 文档，认证方式和每日上限问技术。
 - 10-23 01:4x 老板已把 MCP 方案发技术。
 - 10-23 15:2x 老板定：MCP 工具包**给全平台自动发布脚本**（TikTok/小红书/抖音浏览器自动化 + YouTube 官方接口），风险已知；Stripe 10-22 账单是老板测试，不用管；中华总商会安检已回。
+- 10-23 15:5x 国内版企业微信客服永久链接 https://work.weixin.qq.com/kfid/kfc97f77aff4ce881b2（二维码在 agent-md assets/support/wecom-kf-qr.png），已写 PM-43 给开发。
