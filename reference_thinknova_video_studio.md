@@ -199,3 +199,8 @@ metadata:
 - 视频：分镜图=首帧（503 跟得住）；每镜独立生成，镜头间无画面传递 ⇒ 老板要的「上一镜尾帧当下一镜首帧」要技术改串行生成。
 - e1b324b6 后识图契约 v3 要 images[].unknowns，漏写整单 block → 识图提示词已加一句补救。
 - 编剧每次波动大：同案例第二轮 5 镜全拍商品（提示词约束状态连续不稳）。案例 flower_plant_s03_best 本身规定「同一场景不跳场景」。
+
+## 10-23 实测（studio_e79e3417f00b）
+- 分镜 revision 新字段 `referenceDecisions`（每张参考图 role / adopted / reason）+ `promptContext.prompt`（实发提示词）。role 有 product / previous_anchor / first_anchor；reason=limit 表示模型参考图名额满（490 maxReferenceImages=1，名额给了商品图）。想用上前镜锚点就得把 490 改成 2——老板 10-21 定不做首尾帧，暂不改。
+- 建项目 body：industryId / sceneId / caseId / fields{productName,offer,storeName,storeLocation} / referenceAssets[{role,assetId(数字)}] / selectedOptions / durationSeconds / ratio / videoModelId / ttsVoice；15 秒出 4 镜。分镜生成后状态 approved（自动采用），项目停 storyboard_review。
+- 配音模型 506 与声音克隆同属 MiniMax；10-23 MiniMax 返回 1008（余额不足）⇒ 合成配音会失败。

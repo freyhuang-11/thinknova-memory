@@ -15,3 +15,4 @@ metadata:
 - **国内 H5 / 任何手机端页面，验收必须在 390×844 视口做**：Chrome 最大化时 resize_window 不生效 ⇒ 在同站页面里建 `<iframe src="/app/..." style="width:390px;height:844px">`（同源带登录），量 `scrollWidth`、每个 img/video 的显示尺寸 vs 原尺寸。
 - 每次验收都走全链路：入口卡片点击 → 创作页 → 任务列表 → 任务详情 → 资产列表 → 资产详情，不能只验开发这一单改的那一页（今晚 PM-26/27 部署后 4 个入口全跳首页，我差点漏掉）。
 - 10-22：Chrome 标签在后台（document.hidden=true）时，国内 H5 路由淡入动画不跑 ⇒ innerText 为空、像白屏，其实内容在。验收读 textContent，并先看 document.hidden，别误判成页面坏了。
+- 10-23 老板：「你就看 EN？其他语言不看了？」⇒ 国际版任何验收（含新页面如 /mcp）必须 8 语全查：根目录(en)/zh/ja/ko/vi/es/th/ms，状态码 + 正文是否真翻译 + title。只验一个语言 = 没验完。

@@ -62,14 +62,14 @@
 2.97 🔴🔴 自己写的注释不算规矩 → [详](feedback_self_authored_notes_are_not_rules.md) ／ 🔴🔴🔴 派子 agent 先贴 vault `子agent任务书模板_2026-09-06.md` 五行
 3. 🔴 没实地用过不下判断;接口通≠功能通,必实机 → [详](feedback_understand_before_judging.md) ／ 🔴🔴🔴 placeholder≠实际行为 → [详](feedback_placeholder_is_not_behavior.md)
 3.2 🔴 被「共享资源」拦两次先 `json.loads(settings.json)` 查权限文件;唯一硬墙=改自己的 settings.json → [详](feedback_retry_before_escalating.md)
-3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md) ／ 🔴🔴🔴 核界面=对照我方逐屏要求+零基础测+同类平台+🔴390 宽手机视口走全链路,⛔「页面变了」报进展 → [详](feedback_ui_check_against_spec.md)
+3.5 🔴🔴🔴 「前台有没有X」只认商家端 config 接口,admin config 不是前台真值 → [详](reference_thinknova_frontend_truth.md) ／ 🔴🔴🔴 核界面=对照我方逐屏要求+零基础测+同类平台+🔴390 宽全链路+8 语全查,⛔「页面变了」报进展 → [详](feedback_ui_check_against_spec.md)
 
 ## L1 · 改配置/提示词前
 4. 🔴 先查字段读取图,拉真实任务 input 确认字段真在 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 字段语义不确定=先问技术 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
 4.6 🔴🔴🔴 提示词有字数上限(现拉线上),关键规则前置;查「有没有某能力」读 `capability` 不拿正则猜 → [详](project_thinknova_0729_screenwriter_stack.md)
 5. 🔴 指派式>禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 文案主语是机器=返工 → [详](feedback_customer_view_not_machine_view.md)
 6. 🔴 落库≠送达 → [详](feedback_evidence_standard.md) ／ 🔴🔴 ⛔`opsEditable.stagePromptPresets.image_to_video` 写不进 ／ 🔴🔴🔴 grok 混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
-7. 🔴🔴🔴 改提示词前必读那九条 → [详](feedback_prompt_change_hard_rules.md) ／ 🔴🔴🔴 抽样=看效果、全量=逐字查全部提示词字段（各语言、镜像）→ [详](feedback_boss_rulings.md) ／ 🔴🔴🔴 验收先有修复前基线,⛔不许用检测器代替人眼 → [详](feedback_evidence_standard.md) ／ 🔴🔴🔴 交付件=能直接发 → [详](feedback_deliverable_is_postable.md)
+7. 🔴🔴🔴 改提示词前读九条 → [详](feedback_prompt_change_hard_rules.md) ／ 全量=逐字查全部字段 → [详](feedback_boss_rulings.md) ／ 验收先有基线、人眼验 → [详](feedback_evidence_standard.md) ／ 交付件=能直接发 → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动前端读的字段先改一条验 → [详](project_thinknova_dingdian_koubao.md) ／ 🔴🔴🔴 报技术单前先穷举自己这一侧 → [详](feedback_tech_doc_checklist.md)
 8.5 🔴🔴🔴 案例三条:名实一致、素材必须真有、改一个只影响一个 → [详](feedback_case_name_matches_output.md) [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档 → [详](project_thinknova_brand_product_industry.md)
 8.7 🔴🔴🔴 案例 PUT=整体覆盖(全字段) → [详](feedback_boss_rulings.md) ／ 🔴🔴🔴 列表接口先读 `pagination.total`,pageSize 上限现拉 → [详](reference_thinknova_option_scene_rules.md) ／ 🔴🔴 中间态≠跑通,只认终态
@@ -117,7 +117,7 @@
 - 🔴 任务唯一总表 → `03_工作台\任务总表_总指挥.md`；等老板定的 → 知识库 04 页
 
 ### 内容与产品规矩
-- [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [缺口双查](feedback_case_gap_dual_check.md) / [小红书交付](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单上限·每轮抽2–3单不同行业·日≤10](feedback_burn_budget_weekly_cap.md) / 🔴[先分析再做·只提前1周](feedback_analyze_before_making.md) / 🔴[知识片要活人感](feedback_knowledge_film_live_feel.md)
+- [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [缺口双查](feedback_case_gap_dual_check.md) / [小红书](feedback_xiaohongshu_content_workflow.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单上限](feedback_burn_budget_weekly_cap.md) / 🔴[先分析再做](feedback_analyze_before_making.md) / 🔴[活人感](feedback_knowledge_film_live_feel.md)
 - 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — 建案例前必读,新建必过 3 条自检
 - 🔴🔴 验收四铁律:成片四项齐验 / 门槛不跨片型 / 「写满」须给合法填充 / 子 agent 挤字数须列不可删清单 → [详](feedback_evidence_standard.md)
 
