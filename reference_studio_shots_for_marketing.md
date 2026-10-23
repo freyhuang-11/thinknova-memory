@@ -32,3 +32,7 @@ metadata:
 - EN 片尾产品句长了会压到 AI 小字：模板里 `.en #eai` 已下移到 1420。
 
 旧做法（工作台 studio 项目接口、422012 PATCH 坑）见 [[reference-thinknova-video-studio]]。和 [[project-thinknova-marketing]]、[[feedback-knowledge-film-live-feel]] 一起看。
+
+## 🔴 10-23 老板亲口（营销线对话）
+- 「你这边生营销视频我不限制你啊」→ 营销视频用平台生成**不设烧单上限**（覆盖心跳里「新烧单每周 ≤6 单」对营销片的限制）；仍要逐帧验、失败重提别狂刷。
+- 「人物一致性的问题上传形象的3视图啊」→ 固定角色（如 N3 猫老板）先出一张三视图（正 / 侧 / 背）当参考图，之后每镜首帧带着三视图生成；⛔ 再用 HyperFrames 代码画角色片（老板：「这种东西不是应该拿 thinknova 去生成嘛」）。
