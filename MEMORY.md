@@ -32,7 +32,6 @@
 | 技术发来新文档 / 国内版协作 | 🔴 国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；⛔ 给技术发信 → [详](feedback_email_tech_immediately.md) |
 | 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
 | 更新战略台 / 找任务清单 / 老板问「各角色在干嘛」/ 活动进日历和待办 | 🔴 战略台+待办板 → [详](reference_strategy_dashboard.md)；每周一活动扫描（对外合作线交）→推荐→日历（提前 1 天，报名提前 2 天）→ [详](feedback_weekly_event_scan.md) |
-| 录屏 / 录网页操作流程 | 🔴🔴 ⛔ gdigrab 录整个桌面（会录到老板真实屏幕）→ [详](feedback_no_desktop_capture.md) |
 | 想装闹钟/定时任务 / 心跳频率 ／ 开重活前看内存 | 🔴 [[feedback-heartbeat-not-cron]] — `7 * * * *` 全天；重启先重建 ／ 看提交余量走 `_with_lock.py` → [详](feedback_memory_commit_headroom.md) |
 | **回 WhatsApp 客户 / 扫新客户 / 任何获客判断 / 报价** | 🔴🔴🔴 先看 [现行口径（10-02 整理）](feedback_current_growth_rules_0930.md)（市场·对外口径·价格·WA·带线 六节）+ [WA 操作](reference_whatsapp_ops.md) + [⛔别只看未读](feedback_wa_unread_hides_customers.md) |
 | **FB 投流 / 调广告 / 接总指挥的活** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) + 03_工作台 下最新 `交接档_*_总指挥.md` — 地域现拉；我建到草稿、老板点发布 |
@@ -41,7 +40,7 @@
 | **转述子 agent 结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；没证据就说不知道 |
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
 | **找对标 / 拆别人爆款** | 🔴🔴 先开 [对标工具链](reference_benchmark_toolchain.md) — yt-dlp 在 `_tools/ytdlp_env`，⛔ 重装 |
-| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 第二、三节 + [[reference-content-skills-dbskill-agentmotion]] ＋ 角度矩阵 → [详](feedback_content_angle_variety.md) ＋ 对标爆款 → [详](feedback_benchmark_trending_each_analysis.md) |
+| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 第二、三节 + [[reference-content-skills-dbskill-agentmotion]] ＋ 角度矩阵 → [详](feedback_content_angle_variety.md) ＋ 对标爆款 → [详](feedback_benchmark_trending_each_analysis.md) ／ 录屏⛔录整个桌面 → [详](feedback_no_desktop_capture.md) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
