@@ -50,7 +50,7 @@
 `hyperframes`=视频/动画入口 ／ 🔴 发布走脚本+预约+一天一条，⛔ 浏览器手点 ／ ⛔ 有副作用的脚本先 `--dry`
 
 ## 🔴🔴🔴 L-0.4 · 老板亲口定的口径 → [老板定调集](feedback_boss_rulings.md)
-直播/知识类内容只给两个出口(平台或定制开发)，⛔不教观众去别处试 → [详](feedback_livestream_positioning.md) ／ 🔴 占电脑的活只在 23:00 后、对外成品先给老板亲眼看 → [详](feedback_boss_computer_and_review.md)
+直播/知识类内容只给两个出口(平台或定制开发)，⛔不教观众去别处试 → [详](feedback_livestream_positioning.md) ／ 🔴 占电脑的活 02:00 后、对外成品一件件给老板亲眼看 → [详](feedback_boss_computer_and_review.md)
 动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
 
 ## L0 · 每次开口/动手前
