@@ -9,3 +9,4 @@ metadata:
 **Why:** 2026-09-29 老板：「marketing 这条线一直在的啊，你为什么每次都说他们不在线的，在不在线他们都在你的控制范围内」——我连续几次用 ListAgents 查不到就写「不在线、写交接档」，活没真正派到。
 
 **How to apply:** 要给营销/邮件线派活或同步：先 list_sessions 按标题找 → send_message 直接派，要求它做完回一句；交接档/vault 信箱只做留档，不能代替投递。相关：[[reference-agent-memory-vault]]
+- 🔴 10-24：对话没在跑（isRunning=false）时 ListAgents 列不出、按名字发会失败 ⇒ 先 `ccd_session_mgmt list_sessions` 拿 `local_…` id，SendMessage 的 to 填这个 id 就能送达，⛔ 让老板手动打开对话。
