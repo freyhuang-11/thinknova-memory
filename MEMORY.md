@@ -96,6 +96,7 @@
 - [用户画像](user_profile.md) ／ [签约主体](reference_company_entity.md)
 - 🔴🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含工具调用之间的每一句进度说明
 - 🔴 [给技术文档发出即冻结，新内容开续N](feedback_tech_doc_new_file_after_sent.md)
+- 🔴 [海报用平台生图不用矢量，沿用上次认可的版式](feedback_poster_use_generated_image.md)
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
