@@ -40,7 +40,7 @@
 | **转述子 agent 结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；没证据就说不知道 |
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
 | **找对标 / 拆别人爆款** | 🔴🔴 先开 [对标工具链](reference_benchmark_toolchain.md) — yt-dlp 在 `_tools/ytdlp_env`，⛔ 重装 |
-| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 2–3 节 + [角度](feedback_content_angle_variety.md) + [对标](feedback_benchmark_trending_each_analysis.md) ／ 录屏⛔录整个桌面 → [详](feedback_no_desktop_capture.md) |
+| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 2–3 节 + [对标](feedback_benchmark_trending_each_analysis.md) ／ [⛔录整桌面](feedback_no_desktop_capture.md) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
@@ -50,7 +50,7 @@
 `hyperframes`=视频/动画入口 ／ 🔴 发布走脚本+预约+一天一条，⛔ 浏览器手点 ／ ⛔ 有副作用的脚本先 `--dry`
 
 ## 🔴🔴🔴 L-0.4 · 老板亲口定的口径 → [老板定调集](feedback_boss_rulings.md)
-直播/知识类内容只给两个出口(平台或定制开发)，⛔不教观众去别处试 → [详](feedback_livestream_positioning.md)
+直播/知识类内容只给两个出口(平台或定制开发)，⛔不教观众去别处试 → [详](feedback_livestream_positioning.md) ／ 🔴 占电脑的活只在 23:00 后、对外成品先给老板亲眼看 → [详](feedback_boss_computer_and_review.md)
 动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
 
 ## L0 · 每次开口/动手前
@@ -95,7 +95,7 @@
 - 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull,收工只 add 自己的并验远端
 - [用户画像](user_profile.md) ／ [签约主体](reference_company_entity.md)
 - 🔴🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含工具调用之间的每一句进度说明
-- 🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术一次一件](feedback_tech_requests_one_at_a_time.md)／[已发冻结](feedback_tech_doc_new_file_after_sent.md)／[海报用生图](feedback_poster_use_generated_image.md)
+- 🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术说清汇一份](feedback_tech_requests_one_at_a_time.md)／[发布前老板亲看](feedback_boss_reviews_before_publish.md)／[已发冻结](feedback_tech_doc_new_file_after_sent.md)／[海报生图](feedback_poster_use_generated_image.md)
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
@@ -118,7 +118,7 @@
 - 🔴 任务唯一总表 → `03_工作台\任务总表_总指挥.md`；等老板定的 → 知识库 04 页
 
 ### 内容与产品规矩
-- [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单上限](feedback_burn_budget_weekly_cap.md) / 🔴[先分析再做](feedback_analyze_before_making.md) / 🔴[活人感](feedback_knowledge_film_live_feel.md)
+- [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单上限](feedback_burn_budget_weekly_cap.md)
 - 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — 建案例前必读,新建必过 3 条自检
 - 🔴🔴 验收四铁律:成片四项齐验 / 门槛不跨片型 / 「写满」须给合法填充 / 子 agent 挤字数须列不可删清单 → [详](feedback_evidence_standard.md)
 
@@ -127,4 +127,4 @@
 - 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读，内部件不外发；海外探测计划 08-30 版第八节
 
 # 其他
-- 🔴🔴 两库入口=本机 `README_从这里开始.md`+Obsidian 书签「① 从这里开始」;归档=移动不是删除;skill 台账见 `00_规格与参考\`
+- 🔴🔴 入口=本机 `README_从这里开始.md`+Obsidian「① 从这里开始」;归档=移动不删
