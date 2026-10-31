@@ -41,3 +41,7 @@ metadata:
 - **TikTok 自定义封面（10-13 dry 通过）**：job 写 `"cover": 本地 jpg/png`，publish.py 会 Edit cover → Upload cover（文件框 accept=image/jpeg,png）→ Save。**主页九宫格只显示封面中间 3:4**（弹窗里写着 Preview in profile (4:3)）⇒ 标题放画面中间那块。
 - **统一封面模板（总指挥 10-13 定）**：`新内容_知识片_1012/mk_cover_916.py 视频 秒 第一行 第二行 输出.jpg`（9:16，标题在中间 3:4 区，白 / 黄两行，⛔ 标点 / 品牌标 / 网站）。**第二行黄字 = 钩子句：观众痛点或反常识断言**（例「店里一个人都没有」），⛔ 产品 / 功能词。从下一批新排的 TT 起用，抖音 / 小红书先各 dry 一条。
 
+
+## 11-01 双重锁卡死
+- `_auto_publish.py` 自己会等 `_render.lock`（最多 1 小时）；⛔ 再用 `_tools/_with_lock.py` 包它——包装器拿着锁，脚本等锁，互相卡死（11-01 02:06 卡 12 分钟，进程里没有浏览器子进程就是这个症状）。直接跑 `_auto_publish.py`。
+- 本机 `python` 现在先命中 D:\hermes\hermes-agent\venv\Scripts\python.exe（再转 pythoncore-3.11），不影响运行，查进程时别误判成别的程序。
