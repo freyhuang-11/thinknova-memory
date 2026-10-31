@@ -95,7 +95,7 @@
 - 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull,收工只 add 自己的并验远端
 - [用户画像](user_profile.md) ／ [签约主体](reference_company_entity.md)
 - 🔴🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含工具调用之间的每一句进度说明
-- 🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术说清汇一份](feedback_tech_requests_one_at_a_time.md)／[发布前老板亲看](feedback_boss_reviews_before_publish.md)／[已发冻结](feedback_tech_doc_new_file_after_sent.md)／[海报生图](feedback_poster_use_generated_image.md)
+- 🔴 [课程推广人 Yiping 40%](project_course_promoter_yiping.md) ／ 🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术说清汇一份](feedback_tech_requests_one_at_a_time.md)／[发布前老板亲看](feedback_boss_reviews_before_publish.md)／[已发冻结](feedback_tech_doc_new_file_after_sent.md)／[海报生图](feedback_poster_use_generated_image.md)
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
