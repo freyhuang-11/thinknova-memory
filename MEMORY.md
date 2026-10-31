@@ -40,6 +40,7 @@
 | **转述子 agent 结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；没证据就说不知道 |
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
 | **找对标 / 拆别人爆款** | 🔴🔴 先开 [对标工具链](reference_benchmark_toolchain.md) — yt-dlp 在 `_tools/ytdlp_env`，⛔ 重装 |
+| 流量少的平台怎么试 / MCP 让 AI 找到我们 | 🔴 每条 24h+48h 看数调下一条；MCP 可发现性方案 → [详](feedback_low_traffic_24h_48h_iterate.md) |
 | **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 2–3 节 + [对标](feedback_benchmark_trending_each_analysis.md) ／ [⛔录整桌面](feedback_no_desktop_capture.md) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
