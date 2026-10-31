@@ -1,6 +1,6 @@
 ---
 name: reference-studio-shots-for-marketing
-description: 营销线故事片的镜头怎么出——10-11 起老板定走「生图 448 + 图生视频 482」（⛔ 工作台），接口、价、坑、拼片脚本
+description: 营销线故事片的镜头怎么出——10-11 起老板定走「生图 448 + 图生视频 482」（⛔ 工作台；10-24 起多参考锁角色用 503，见 boss_rulings 10-24 00:0x），接口、价、坑、拼片脚本
 metadata:
   node_type: memory
   type: reference

@@ -71,7 +71,7 @@ metadata:
 
 ## 2026-09-05 第四刀落地(报告 `03_工作台\工作台第四刀_情绪与kie_报告_2026-09-05.md`)
 - 🔴 视频通道=**482 grok-imagine-video-1.5(kie)**,`allowedVideoModelIds [482]`;503 H3(metaso)余额告罄+账号层不可用;⛔项目 `videoModelId` 建单即锁死,重生视频不吃 modelId 字段,切通道只能重建。旧线 `modelAllowlistByDuration` 里 503 还在(商家选到会失败)。
-- 现行 `scriptwriterPrompt` 1651 字 / 3918 字节(sha 0025fd81;距 4000 字节上限 80 字节,再加先删),含:字数窗口 3.5-4.2×、情绪写法段、ttsEmotion 策略句、镜头描述自然句(⛔不用竖线/「推近 × 缓」缩写);`ttsEmotion.allowed=[auto,happy,surprised,calm,fluent]`;`speed.min 1.0`。快照 `ROLLBACK_2026-09-05_studio第四刀前_全量config.json`。
+- 现行 `scriptwriterPrompt` 1651 字 / 3918 字节(sha 0025fd81;距 4000 字节上限 80 字节,再加先删;09-05 快照,现拉为准;「4000」与下文「工作台提示词上限 = 3500 字节」打架,现拉线上后删错的那句),含:字数窗口 3.5-4.2×、情绪写法段、ttsEmotion 策略句、镜头描述自然句(⛔不用竖线/「推近 × 缓」缩写);`ttsEmotion.allowed=[auto,happy,surprised,calm,fluent]`;`speed.min 1.0`。快照 `ROLLBACK_2026-09-05_studio第四刀前_全量config.json`。
 - 情绪参数已验通:shots.ttsEmotion → TTS 子任务 `input.emotion` 逐镜一致;surprised F0 271 Hz vs calm 167 Hz(同男声)。
 - 流程现状(稳定性修复已上线):分镜全采用后停 `storyboard_review` 要 `POST /projects/{no}/videos`;视频全采用后要 `POST /compositions`;成片 720×1280、分镜 1536×2731。
 - 编剧 505 三秒钩子镜最易写超(两项目 4 败全在镜 1),`/script/retry` 一次通常过;例句会被照抄,例句别带具体商品。人声占比 69%(kie 成片),每镜尾空 0.2-1.4 s,再压要把 4 秒镜写到 16-17 字。
@@ -162,7 +162,7 @@ metadata:
 - 海报建单 `POST /api/v1/business-assets/tasks`，查详情 `GET /api/v1/business-assets/tasks/{no}` → `data.detail.task`；6 积分/张。`property_agency` 海报案例线上只有 1 条（`property_agency_s03_bestseller`）。
 - **烧完的单当天推到终态或取消，不许留半截**（老板 09-17：「工作台又一堆没完成的文档」；120 个项目里 8 个卡在 storyboard_review 全是我留的）。
 
-- 🔴🔴🔴 **工作台提示词上限 = 3500 字节**(不是 4000 字符);加规矩必须**前置到 33% 位置以前**,加在末尾模型不执行(09-17 从索引下沉)。
+- 🔴🔴🔴 **工作台提示词上限 = 3500 字节**(不是 4000 字符;与上文「距 4000 字节上限」打架,现拉为准);加规矩必须**前置到 33% 位置以前**,加在末尾模型不执行(09-17 从索引下沉)。
 
 
 ## 2026-09-22 14:xx · 🔴🔴🔴 工作台 i2v 阶段运营一个字都改不了（实证，从「疑似」升级为「确证」）

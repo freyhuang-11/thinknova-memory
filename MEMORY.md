@@ -28,8 +28,7 @@
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC / 改教程页 | 🔴 教程页现状、上传脚本路径 → [[project-thinknova-guide-multilang]] |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 send_message 到「THINK NOVA marketing」→ [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束 → [详](feedback_brief_marketing_what_not_how.md) + [[feedback-boss-rulings]] |
-| 说「技术没回信」 | 🔴 Gmail 工具看不到垃圾箱，先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md) |
-| 技术发来新文档 / 国内版协作 | 🔴 国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；⛔ 给技术发信 → [详](feedback_email_tech_immediately.md) |
+| 技术发来新文档 / 国内版协作 / 说「技术没回信」 | 🔴 没回信先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md)；国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；⛔ 给技术发信 → [详](feedback_email_tech_immediately.md) |
 | 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
 | 战略台 / 任务清单 / 各角色在干嘛 / 活动进日历 | 🔴 [战略台+待办板+老板工作台](reference_strategy_dashboard.md)；[周一活动扫描](feedback_weekly_event_scan.md) |
 | 想装闹钟/定时任务 / 心跳频率 ／ 开重活前看内存 | 🔴 [[feedback-heartbeat-not-cron]] — `7 * * * *` 全天；重启先重建 ／ 看提交余量走 `_with_lock.py` → [详](feedback_memory_commit_headroom.md) |
@@ -41,11 +40,11 @@
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
 | **找对标 / 拆别人爆款** | 🔴🔴 先开 [对标工具链](reference_benchmark_toolchain.md) — yt-dlp 在 `_tools/ytdlp_env`，⛔ 重装 |
 | 流量少的平台怎么试 / MCP 让 AI 找到我们 | 🔴 每条 24h+48h 看数调下一条；MCP 可发现性方案 → [详](feedback_low_traffic_24h_48h_iterate.md) |
-| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 2–3 节 + [对标](feedback_benchmark_trending_each_analysis.md) ／ [⛔录整桌面](feedback_no_desktop_capture.md) |
+| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 [现行口径](feedback_current_growth_rules_0930.md) 2–3 节 + [老板 10-31 后](feedback_boss_rulings.md)末尾 + [对标](feedback_benchmark_trending_each_analysis.md) ／ [⛔录整桌面](feedback_no_desktop_capture.md) |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
-🔴🔴🔴 **闸 0(开口也算动手)= 三件套**:第一性=「该怎么做」;steelman=「方向对不对」,给老板前必跑;对抗审查=「这句能不能说」。跑完说不出放弃了什么=没跑 → [详](feedback_thinking_protocol.md) [逐句筛](feedback_adversarial_review_before_reply.md)
+🔴🔴🔴 **闸 0(开口也算动手)= 三件套**:第一性 / steelman(给老板前必跑) / 对抗审查;说不出放弃了什么=没跑 → [详](feedback_thinking_protocol.md) [逐句筛](feedback_adversarial_review_before_reply.md)
 
 ## 🔴🔴🔴 L-0.5 · 动手前先问「有没有现成 skill/脚本」 → [场景路由表](reference_skills_routing.md)
 `hyperframes`=视频/动画入口 ／ 🔴 发布走脚本+预约+一天一条，⛔ 浏览器手点 ／ ⛔ 有副作用的脚本先 `--dry`
@@ -96,7 +95,7 @@
 - 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull,收工只 add 自己的并验远端
 - [用户画像](user_profile.md) ／ [签约主体](reference_company_entity.md)
 - 🔴🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含工具调用之间的每一句进度说明
-- 🔴 [课程推广人 Yiping 40%](project_course_promoter_yiping.md) ／ 🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术说清汇一份](feedback_tech_requests_one_at_a_time.md)／[发布前老板亲看](feedback_boss_reviews_before_publish.md)／[已发冻结](feedback_tech_doc_new_file_after_sent.md)／[海报生图](feedback_poster_use_generated_image.md)
+- 🔴 [Yiping 课程 40%](project_course_promoter_yiping.md)／🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术汇一份](feedback_tech_requests_one_at_a_time.md)／[发布前老板亲看](feedback_boss_reviews_before_publish.md)／[已发冻结](feedback_tech_doc_new_file_after_sent.md)／[海报生图](feedback_poster_use_generated_image.md)
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图
 
 # ThinkNova(实体店内容 SaaS)
