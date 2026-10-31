@@ -25,3 +25,6 @@ metadata:
 
 ## 对外 PPT 资料包（2026-10-09）
 - GitHub freyhuang-11/website 分支 claude/pensive-galileo-7q3c2s，目录 ppt_input/thinknova/（info.md、README、screenshots、samples）。公开仓库：推前扫供应商名/任务号/本地路径/隐私；只推英文主图（电脑 3–5 + 手机 1–2）。
+
+## 老板工作台（10-31 起，替代给老板甩清单）
+- https://claude.ai/artifact/J9Gj6gFfKYeVynjAPLhwgR ：要老板确认的事一条一卡，老板点选项=打勾；数据在页面 db `items`（decision/note/decidedAt）。心跳每拍先 ArtifactData list 读、照办、在 note 追加「总指挥已办」；新待定事项写成新 item，⛔ 改老板选的 decision。老板 10-31：「给我个工作台，我一个一个打勾确认」。

@@ -31,7 +31,7 @@
 | 说「技术没回信」 | 🔴 Gmail 工具看不到垃圾箱，先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md) |
 | 技术发来新文档 / 国内版协作 | 🔴 国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；⛔ 给技术发信 → [详](feedback_email_tech_immediately.md) |
 | 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
-| 战略台 / 任务清单 / 各角色在干嘛 / 活动进日历 | 🔴 [战略台+待办板](reference_strategy_dashboard.md)；[周一活动扫描](feedback_weekly_event_scan.md) |
+| 战略台 / 任务清单 / 各角色在干嘛 / 活动进日历 | 🔴 [战略台+待办板+老板工作台](reference_strategy_dashboard.md)；[周一活动扫描](feedback_weekly_event_scan.md) |
 | 想装闹钟/定时任务 / 心跳频率 ／ 开重活前看内存 | 🔴 [[feedback-heartbeat-not-cron]] — `7 * * * *` 全天；重启先重建 ／ 看提交余量走 `_with_lock.py` → [详](feedback_memory_commit_headroom.md) |
 | **回 WhatsApp 客户 / 扫新客户 / 任何获客判断 / 报价** | 🔴🔴🔴 先看 [现行口径](feedback_current_growth_rules_0930.md)+ [WA 操作](reference_whatsapp_ops.md) + [⛔别只看未读](feedback_wa_unread_hides_customers.md) |
 | **FB 投流 / 调广告 / 接总指挥的活** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) + 03_工作台 下最新 `交接档_*_总指挥.md` — 地域现拉；我建到草稿、老板点发布 |
