@@ -66,4 +66,5 @@ metadata:
 - 11-01 李亚杰口径：回本必须 4–5 个月内（⛔超过半年）；推广 20 万、每月 4 万；C档=作者买生成额度 **12.5 美元/分钟**（老板确认是美元）；其余数值不改。
 - 原 v7.1 无底稿，我按第 11–17 页假设反推队列模型（scratchpad anim_model2.py），对账误差 2–3%、回本 16 vs 原 17 个月。
 - 坑：12.5 美元×原假设「深度作者 180 分钟/月」= 第 2 个月回本、年结余 125 万，太假；老板选**深度作者改 60 分钟/月 → 第 4 个月回本**，20 万档年结余 45.17 万。
-- 产出 `02_交付内容/ai-animation-business-plan-v7.2-investor-budget.pptx`（改 2/15/17/19/20/21 页，删原第 22 页「半年回本条件」）；改稿脚本 scratchpad edit_v72.py；PPT→PDF 用 PowerPoint COM SaveAs 32。
+- 11-01 渠道折扣改：Seedance 8.8折 / WAN 6.5折 / Vega 7折；SD 成本按原 $7÷0.85×0.88 = **$7.25/分钟**，净加价 4.50 → 20 万档年结余 43.05 万，仍第 4 个月回本。现行=v7.3（edit_v73.py 在 v7.2 上叠改），v7.2 已归档。
+- 产出（v7.2 起）`02_交付内容/ai-animation-business-plan-v7.2-investor-budget.pptx`（改 2/15/17/19/20/21 页，删原第 22 页「半年回本条件」）；改稿脚本 scratchpad edit_v72.py；PPT→PDF 用 PowerPoint COM SaveAs 32。
