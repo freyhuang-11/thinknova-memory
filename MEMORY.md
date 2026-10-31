@@ -24,7 +24,7 @@
 | 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
 | 海报出问题 | [[project-thinknova-poster-video-purge]] |
 | 动输出语言 | [[project-thinknova-sea-languages]] |
-| **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] — 场景表逐行带「先问的第一性问题」 |
+| **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC / 改教程页 | 🔴 教程页现状、上传脚本路径 → [[project-thinknova-guide-multilang]] |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 send_message 到「THINK NOVA marketing」→ [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束 → [详](feedback_brief_marketing_what_not_how.md) + [[feedback-boss-rulings]] |
@@ -87,7 +87,7 @@
 16/18. 每轮说清「验收什么+做了什么」 → [详](feedback_communication_principles.md) [plan](feedback_questions_via_plan_mode.md) [新鲜度](feedback_data_freshness_framing.md)
 
 ## L5 · 环境红线(违反 = 事故)
-20. 🔴 密钥不外发不打印;按 PID 杀进程 → [详](feedback_kill_python_scope.md) ／ 🔴🔴 外发前扫 `LTAI`/`AKID`/`Signature=` ／ 🔴🔴🔴 heredoc 吃反斜杠,路径用正斜杠 → [详](feedback_no_backslash_in_heredoc.md)
+20. 🔴 对外发送被拦=自动模式分类器 → [详](feedback_auto_mode_blocks_outbound.md) ／ 🔴 密钥不外发不打印;按 PID 杀进程 → [详](feedback_kill_python_scope.md) ／ 🔴🔴 外发前扫 `LTAI`/`AKID`/`Signature=` ／ 🔴🔴🔴 heredoc 吃反斜杠,路径用正斜杠 → [详](feedback_no_backslash_in_heredoc.md)
 22. 🔴 线上 config=唯一真值,禁种子覆盖 → [详](feedback_dont_edit_prod_config_structure.md) ／ 🔴🔴 上下文唯一杠杆=减少往返:一段 JS 干完一整套只回摘要 → [详](feedback_context_budget_discipline.md)
 23. 记忆只留当前状态 → [详](feedback_memory_keep_current.md) ／ 🔴 规则写 WHAT+DONE → [详](feedback_rule_hygiene.md);老板发的提示词当天归档 → [详](reference_prompt_library.md) ／ 🔴 归因只记来源事故不记谁抓谁 → [详](feedback_attribution_record_source_not_who.md)
 ---
@@ -112,7 +112,7 @@
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
-- 🔴 [配乐工具链](reference_audio_toolkit.md)（FluidSynth + 真实乐器音色库，10-01 起替代纯代码合成）
+- 🔴 [配乐工具链](reference_audio_toolkit.md)
 - 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) / [东南亚语言](project_thinknova_sea_languages.md) / [定价+大使](project_thinknova_pricing_ambassador.md)
 - 其余 reference 全表 → Obsidian「总指挥知识库/06_skills与记忆路由」
 - 🔴🔴🔴 后台接口在 `api.thinknova.top` 同源页跑 fetch（cookie 鉴权）→ [详](reference_thinknova_paths.md)
