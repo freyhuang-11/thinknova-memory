@@ -45,3 +45,8 @@ metadata:
 ## 11-01 双重锁卡死
 - `_auto_publish.py` 自己会等 `_render.lock`（最多 1 小时）；⛔ 再用 `_tools/_with_lock.py` 包它——包装器拿着锁，脚本等锁，互相卡死（11-01 02:06 卡 12 分钟，进程里没有浏览器子进程就是这个症状）。直接跑 `_auto_publish.py`。
 - 本机 `python` 现在先命中 D:\hermes\hermes-agent\venv\Scripts\python.exe（再转 pythoncore-3.11），不影响运行，查进程时别误判成别的程序。
+
+## 11-01 视频号
+- 网页登录态约 14 小时就掉（10-31 22:06 扫、11-01 12:17 已失效）。排前先跑 03_工作台/视频号发布/_list_probe.py 看 logged_in；老板不在电脑前就跑 _qr_login.py，把 _qr/qr_latest.png 裁出二维码放大发聊天，老板手机扫（12:45 成功）。
+- 点「发表」后会弹「以下事项需注意…真人出镜需验证 / 我知道了」，不点掉不提交；publish.py（开发区）已补：点「我知道了」→ 还在发表页就再点一次「发表」。中止后先 _list_probe.py 核「将于…发表」再重跑。
+- 小红书 job 正文字段叫 body，且要列表（一段一项）；写成字符串会被当成逐字分段。
