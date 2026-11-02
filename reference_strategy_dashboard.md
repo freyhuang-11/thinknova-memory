@@ -28,3 +28,9 @@ metadata:
 
 ## 老板工作台（10-31 起，替代给老板甩清单）
 - https://claude.ai/artifact/J9Gj6gFfKYeVynjAPLhwgR ：要老板确认的事一条一卡，老板点选项=打勾；数据在页面 db `items`（decision/note/decidedAt）。心跳每拍先 ArtifactData list 读、照办、在 note 追加「总指挥已办」；新待定事项写成新 item，⛔ 改老板选的 decision。老板 10-31：「给我个工作台，我一个一个打勾确认」。
+
+
+## 11-02 起：老板待办唯一真值 = Google 表（Muse 共管）
+- Drive「Frey 待办（总指挥 × Muse 共用）」fileId `1DqUQ5tMExMzm6mQviynTncKM_j6G1gfVVy4moAdvxjg`；待办板 artifact 和工作台只是镜像。
+- 规则全文在 `03_工作台/待办同步/同步规则_总指挥与Muse.md`：只加不删、Muse 编号 mu_、每改填修改人+时间、晚的算数。
+- **Why:** 老板 11-02 要 Muse 也能管待办，自选 Google 表。**How to apply:** 每拍先读表再镜像；写表前先读最新版，⛔ 整表覆盖掉老板/Muse 的改动。
