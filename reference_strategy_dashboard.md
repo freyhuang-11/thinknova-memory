@@ -30,7 +30,8 @@ metadata:
 - https://claude.ai/artifact/J9Gj6gFfKYeVynjAPLhwgR ：要老板确认的事一条一卡，老板点选项=打勾；数据在页面 db `items`（decision/note/decidedAt）。心跳每拍先 ArtifactData list 读、照办、在 note 追加「总指挥已办」；新待定事项写成新 item，⛔ 改老板选的 decision。老板 10-31：「给我个工作台，我一个一个打勾确认」。
 
 
-## 11-02 起：老板待办唯一真值 = Google 表（Muse 共管）
-- Drive「Frey 待办（总指挥 × Muse 共用）」fileId `1DqUQ5tMExMzm6mQviynTncKM_j6G1gfVVy4moAdvxjg`；待办板 artifact 和工作台只是镜像。
-- 规则全文在 `03_工作台/待办同步/同步规则_总指挥与Muse.md`：只加不删、Muse 编号 mu_、每改填修改人+时间、晚的算数。
-- **Why:** 老板 11-02 要 Muse 也能管待办，自选 Google 表。**How to apply:** 每拍先读表再镜像；写表前先读最新版，⛔ 整表覆盖掉老板/Muse 的改动。
+## 11-02 20:0x 起：老板待办三处分工（Muse 共管）
+- Google 表「Frey 待办（总指挥 × Muse 共用）」fileId `1DqUQ5tMExMzm6mQviynTncKM_j6G1gfVVy4moAdvxjg` = Muse 记账处（老板口头下命令，Muse 记+提醒）。
+- 工作台 J9Gj6… 只放「定」；待办板 Hk7kr… 只放「做」、按分类（tn/sw 软件开发/mj 漫剧中转/fde/oth）。两页每条有老板留言 comment/commentAt，我回 reply/replyAt。
+- 🔴 Drive 连接器 update_file **改不了表格内容**（只改元数据）；回写表要用前台浏览器：名称框跳格 → Delete → Return 进编辑 → 输入 → Tab，中文不进编辑态会丢字。
+- 全文 `03_工作台/待办同步/同步规则_总指挥与Muse.md`。**Why:** 老板 11-02 嫌事多分散，要每件能留言、我统一回，Muse 的事要分类。**How to apply:** 每拍读表→镜像两页→读留言统一回→浏览器回写表。
