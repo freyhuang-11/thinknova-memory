@@ -55,6 +55,11 @@ metadata:
 - 技术 11-01 下午把工具包换成独立仓库 thinknova-mcp（00c501b）：YouTube 发布 `--dry` 只做本地检查，真上传必须加 `--execute`（旧的不带参数直接传已停）。营销线现在用的是本地 v2 开发区脚本，不受影响；换新版时注意。
 - 技术提醒：客户材料⛔ 写「所有平台都实测过」（总指挥在问老板）。
 
+## 🔴 11-02 共用 Chrome：点网页的活交总指挥
+- 本机所有会话共用一个 Chrome 主窗口，前台标签只有一个（通常是总指挥的 WhatsApp）。我的标签永远是后台：hidden、outerWidth=0、JS / zoom 超时、标签号自己变——⛔ 当成窗口最小化或内存不够，也 ⛔ 让老板点开窗口。
+- Search Console 收录、Drive 上传、后台录入：把网址 + 步骤发给总指挥（SendMessage），它用前台标签做；我用 Drive search_files 等只读方式复核。详 03_工作台/_通用做法_Chrome窗口与上传.md 第二·五节。
+- 下面 11-01 那段办法在「只有我一个会话用 Chrome」时才管用。
+
 ## 11-01 Search Console（Chrome 窗口最小化时也能做）
 - 标签 hidden / outerWidth=0、JS 超时时：关掉旧标签 → tabs_context createIfEmpty 开新标签 → navigate → 用 claude-in-chrome computer 的 zoom（截局部）能把页面「叫醒」；之后 find 拿输入框 ref → left_click ref → type 网址 → Return 照常生效（hidden 也行）。computer screenshot 会报 clip.scale 错，用 zoom 代替。
 - 每页：JS 点掉「关闭」→ 等 2 秒 → click ref → type → Return → JS 等 14 秒判「网址尚未收录」再点叶子节点「请求编入索引」→ JS 分段等（单次 JS ≤40 秒，否则 45 秒 CDP 超时）→ 认 dialog 里「已请求编入索引」。JS 返回值⛔ 带 location（带 query 会被拦）。
