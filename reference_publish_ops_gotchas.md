@@ -27,6 +27,7 @@ metadata:
 - 抖音作品管理列表超过约 36 条以后，`_probe_dump.py` 的鼠标滚轮滚不到老的行，要换成拉内层容器的 scrollTop，或者抓列表接口。
 - 小红书回读用 `发布队列/_resched_xhs_probe.py "<标题>"`（它会滚内层 div.content），稳定可用。
 - TikTok 图文走上传页 Photos 标签（默认 Videos，input 只收单个视频）；publish.py 的 job 写 files，11-05 只 --dry 过。
+- `_tt_list_ids.py` 自己拿 _render.lock，⛔ 再包 `_with_lock.py`，否则死锁一直占锁（11-05 空等 1 小时）。
 - Git Bash 里 `_with_lock.py . cmd /c npx ...` 的 /c 会被改写，0 秒退出还报退出码 0；要写 `cmd //c`，渲完看文件在不在。
 - 🔴 小红书标题上限 20 按页面计数算，一面国旗算 4 字：超限时点发布无反应、不报错。publish.py 读 `.max_suffix` 拦截（11-04）；计数以页面为准，⛔ 自己数。
 - 定时换新版：`发布队列\_swap_sub_1007.py Lx` 流程是删旧 → 回读剩 0 → 排新；删不干净就停，避免一条变两条。删定时属于删平台内容，要老板亲口同意。
