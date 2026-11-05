@@ -26,6 +26,7 @@ metadata:
 **抖音 / 小红书**
 - 抖音作品管理列表超过约 36 条以后，`_probe_dump.py` 的鼠标滚轮滚不到老的行，要换成拉内层容器的 scrollTop，或者抓列表接口。
 - 小红书回读用 `发布队列/_resched_xhs_probe.py "<标题>"`（它会滚内层 div.content），稳定可用。
+- 🔴 视频号封面一直「生成中」、发表灰：页面要下 rhino_video.wasm（4.8MB），这台机器 63 KB/s，页面自己下会中止。publish.py 已先预取进缓存（11-05 探测 + dry 各过一次，样本少）。内存低于约 0.3GB 时页面卡死，别硬试；任务列表和发布页列在 shadow 里，locator 要用主页面。位置只能搜附近，选「不显示位置」。设可见权限：视频号 _set_private.py、抖音 _dy_set_private.py。
 - TikTok 图文走上传页 Photos 标签（默认 Videos，input 只收单个视频）；publish.py 的 job 写 files，11-05 只 --dry 过。
 - `_tt_list_ids.py` 自己拿 _render.lock，⛔ 再包 `_with_lock.py`，否则死锁一直占锁（11-05 空等 1 小时）。
 - Git Bash 里 `_with_lock.py . cmd /c npx ...` 的 /c 会被改写，0 秒退出还报退出码 0；要写 `cmd //c`，渲完看文件在不在。
