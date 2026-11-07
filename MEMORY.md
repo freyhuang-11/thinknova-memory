@@ -26,7 +26,7 @@
 | 动输出语言 | [[project-thinknova-sea-languages]] |
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
-| YouTube 上传（教程队列 / 宣传片定时）/ 看 GSC / 改教程页 | 🔴 教程页现状、上传脚本路径 → [[project-thinknova-guide-multilang]] |
+| YouTube 上传 / GSC / 教程页 | 🔴 → [[project-thinknova-guide-multilang]] |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 send_message 到「THINK NOVA marketing」→ [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束 → [详](feedback_brief_marketing_what_not_how.md) + [[feedback-boss-rulings]] |
 | 技术发来新文档 / 国内版协作 / 说「技术没回信」 | 🔴 没回信先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md)；国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；⛔ 给技术发信 → [详](feedback_email_tech_immediately.md) |
 | 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
@@ -67,7 +67,7 @@
 ## L1 · 改配置/提示词前
 4. 🔴 先查字段读取图,拉真实任务 input 确认字段真在 → [详](reference_thinknova_prompt_fields.md) ／ 🔴🔴🔴 字段语义不确定=先问技术 → [详](project_thinknova_0729_screenwriter_stack.md) ／ 🔴 台词出问题先查 visualHint → [详](feedback_visualhint_leaks_into_lines.md)
 4.6 🔴🔴🔴 提示词有字数上限(现拉线上),关键规则前置;查「有没有某能力」读 `capability` 不拿正则猜 → [详](project_thinknova_0729_screenwriter_stack.md)
-5. 🔴 指派式>禁令式 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 文案主语是机器=返工 → [详](feedback_customer_view_not_machine_view.md)
+5. 🔴 指派式>禁令式；给执行线的门槛必带备用路+期限 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 文案主语是机器=返工 → [详](feedback_customer_view_not_machine_view.md)
 6. 🔴 落库≠送达 → [详](feedback_evidence_standard.md) ／ 🔴🔴 ⛔`opsEditable.stagePromptPresets.image_to_video` 写不进 ／ 🔴🔴🔴 grok 混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
 7. 🔴🔴🔴 改提示词前读九条 → [详](feedback_prompt_change_hard_rules.md) ／ 全量=逐字查全部字段 → [详](feedback_boss_rulings.md) ／ 验收先有基线、人眼验 → [详](feedback_evidence_standard.md) ／ 交付件=能直接发 → [详](feedback_deliverable_is_postable.md)
 8. 范围边界必写反向+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动前端读的字段先改一条验 → [详](project_thinknova_dingdian_koubao.md) ／ 🔴🔴🔴 报技术单前先穷举自己这一侧 → [详](feedback_tech_doc_checklist.md)
