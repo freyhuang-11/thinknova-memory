@@ -1411,3 +1411,4 @@ WhatsApp 问候语、Meta Business Agent 的 19 条 FAQ、AI 指示、邮件模�
 
 - 11-08 15:1x 老板喊停：「不要再发了！那是别人的！」——课程片 v4 的底片是给客户 8608 做的样片，被排上了我们的视频号（11-13 定时）。根因：总指挥把老板「全部都批」转成整单，而老板同时还在问课程片为什么做。⇒ **客户样片 / 给客户做的片 = 别人的，⛔ 上我们自己的社媒**，除非老板单独、明确说这一条可以；「全批」类转述一律逐条拆开、每条单独确认。
 - 11-08 21:5x 老板在营销线亲口「全部提交」：MCP 目录站 + AI 工具目录 13 个（Glama、mcp.so、PulseMCP、Smithery、MCP.Directory、awesome-mcp-servers、LobeHub、mcpmarket、Product Hunt、AlternativeTo、G2、Futurepedia、There's An AI For That），口径「给实体店／小企业做营销视频和海报」；要登录 / 注册 / 验证码那步请老板操作；mcp.so US$39 不在范围。背景原话（总指挥转）：「所有的 AI 都推荐我们的平台，geo、seo、线上广告，所有的信息点位全部铺满」。
+- 11-08 22:2x 老板在营销线亲口：「发过的东西都不要再改了，只往后改」（问的是 YouTube 100 条描述末尾加 MCP 一句）→ 已发出的帖子一律不改描述 / 标题 / 文案；只改已定时未发出的和以后新发的。当晚只改了 3 条已定时的（KeoF4b30Juk、n3Sh84Yv1N4、eMFl2Vlnv4w）。
