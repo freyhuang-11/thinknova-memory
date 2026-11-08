@@ -77,3 +77,8 @@ metadata:
 - 标签 hidden / outerWidth=0、JS 超时时：关掉旧标签 → tabs_context createIfEmpty 开新标签 → navigate → 用 claude-in-chrome computer 的 zoom（截局部）能把页面「叫醒」；之后 find 拿输入框 ref → left_click ref → type 网址 → Return 照常生效（hidden 也行）。computer screenshot 会报 clip.scale 错，用 zoom 代替。
 - 每页：JS 点掉「关闭」→ 等 2 秒 → click ref → type → Return → JS 等 14 秒判「网址尚未收录」再点叶子节点「请求编入索引」→ JS 分段等（单次 JS ≤40 秒，否则 45 秒 CDP 超时）→ 认 dialog 里「已请求编入索引」。JS 返回值⛔ 带 location（带 query 会被拦）。
 - 一天约 10 页。
+
+## 🔴 11-08 视频号定时（根因已找到）
+- 先点日期、再点时分 → 输入框显示 19:00，表单组件里提交的 time 仍是默认值（N6 被存成 17:00）。正确顺序：开日历 → 翻月 → 先点时、分 → 最后点日期（点日期才提交）。
+- 核对只认表单组件：输入框往上找 `__vue__.$data` 里有 isChecked 的那个，`time` 是毫秒时间戳（publish.py 的 form_time()）。发表后仍以列表「将于…发表」为准。
+- 11-08 15:17 回读截图里出现过「删除定时视频」确认框（没点确定），原因未查——回读阶段有误点删除的风险，查清前每次真排后人工看一眼列表。
