@@ -34,3 +34,9 @@ metadata:
 **下一步**：技术改完 → 本机 Codex 实测 → 老板看 → 帮 Emily/Gloria 更新、绑账号（内容仍由客户 AI 做）。
 
 相关：[[feedback-boss-rulings]] [[reference-studio-shots-for-marketing]] [[feedback-directive-over-prohibition]]
+
+**🔴 分工原则（老板 11-10 00:3x：「用 GPT 的算力做内容就会出现这样的情况」）**
+- 客户 AI（GPT 等）只做：读资料、照模板填参数、调 ThinkNova 工具、跑工具包脚本、给店主看。画面视频声音 = ThinkNova MCP；拼片字幕检查发布 = 工具包脚本一条命令。
+- ⛔ 客户 AI 用自己的算力做内容（自带生图、写网页动画、hyperframes 之类）、⛔ 读工具包源码、⛔ 用工具包外技能处理客户物料。11-09 实测：Codex 开错文件夹没读到 AGENTS.md → 读源码 + 用个人 hyperframes 拿照片做幻灯片，0 积分、两步耗约 18 万 token、额度用光。
+- 已写进 门店成片「〇、分工」；待给技术：客户打开 AI 的文件夹也要有规则入口；拼检发做成一条命令；AGENTS.md 太长要精简。
+- 测客户 AI 时：cwd 必须是工具包目录（AGENTS.md 所在），屏蔽个人技能（--enable skip_host_skill_discovery）。
