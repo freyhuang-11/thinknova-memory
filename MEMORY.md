@@ -111,11 +111,11 @@
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
-- 🔴 [配乐工具链](reference_audio_toolkit.md)
+- 🔴 [配乐工具链](reference_audio_toolkit.md) ／ 🔴🔴🔴 [客户 AI 出片质量](project_customer_toolkit_quality.md) — 动工具包/技能/给客户 AI 的规矩前必读
 - 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) / [东南亚语言](project_thinknova_sea_languages.md) / [定价+大使](project_thinknova_pricing_ambassador.md)
 - 其余 reference 全表 → Obsidian「总指挥知识库/06_skills与记忆路由」
 - 🔴🔴🔴 后台接口在 `api.thinknova.top` 同源页跑 fetch（cookie 鉴权）→ [详](reference_thinknova_paths.md)
-- 🔴 任务唯一总表 → `03_工作台\任务总表_总指挥.md`；等老板定的 → 知识库 04 页
+- 🔴 任务总表 → `03_工作台\任务总表_总指挥.md`
 
 ### 内容与产品规矩
 - [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单上限](feedback_burn_budget_weekly_cap.md)
