@@ -128,3 +128,4 @@
 
 # 其他
 - 🔴🔴 入口=本机 `README_从这里开始.md`+Obsidian「① 从这里开始」;归档=移动不删
+- 🔴 [客户实测线 11-10](project_customer_test_line_1110.md) — Codex 模拟新客户实测工具包；掉线先读 实测报告.md「当前状态」
