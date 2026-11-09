@@ -111,7 +111,7 @@
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
-- 🔴 [配乐工具链](reference_audio_toolkit.md) ／ 🔴🔴🔴 [客户 AI 出片质量](project_customer_toolkit_quality.md) — 动工具包/技能/给客户 AI 的规矩前必读
+- 🔴 [配乐工具链](reference_audio_toolkit.md) ／ 🔴🔴🔴 [客户 AI 出片质量](project_customer_toolkit_quality.md) — 动工具包/客户 AI 规矩前必读；[实测线](project_customer_test_line_1110.md)
 - 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) / [东南亚语言](project_thinknova_sea_languages.md) / [定价+大使](project_thinknova_pricing_ambassador.md)
 - 其余 reference → Obsidian「06_skills与记忆路由」
 - 🔴🔴🔴 后台接口在 `api.thinknova.top` 同源页跑 fetch（cookie 鉴权）→ [详](reference_thinknova_paths.md)
@@ -123,9 +123,8 @@
 - 🔴🔴 验收四铁律:成片四项齐验 / 门槛不跨片型 / 「写满」须给合法填充 / 子 agent 挤字数须列不可删清单 → [详](feedback_evidence_standard.md)
 
 # 商务与融资
-- 🔴🔴🔴 [邮件线](project_overseas_email_outreach.md) — 冷邮件 10-07 停,现做激活/渠道/选词,系统在 `03_工作台\邮件推广系统\`
+- 🔴🔴🔴 [邮件线](project_overseas_email_outreach.md) — 每天 100 封(11-09 新正文),系统 `03_工作台\邮件推广系统\`
 - 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读，内部件不外发；海外探测计划 08-30 版第八节
 
 # 其他
 - 🔴🔴 入口=本机 `README_从这里开始.md`+Obsidian「① 从这里开始」;归档=移动不删
-- 🔴 [客户实测线](project_customer_test_line_1110.md) — 掉线先读 实测报告.md「当前状态」
