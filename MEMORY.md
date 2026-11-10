@@ -113,14 +113,13 @@
 - 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
 - 🔴 [配乐工具链](reference_audio_toolkit.md) ／ 🔴🔴🔴 [客户 AI 出片质量](project_customer_toolkit_quality.md) — 动工具包/客户 AI 规矩前必读；[实测线](project_customer_test_line_1110.md)
 - 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) / [东南亚语言](project_thinknova_sea_languages.md) / [定价+大使](project_thinknova_pricing_ambassador.md)
-- 其余 reference → Obsidian「06_skills与记忆路由」
 - 🔴🔴🔴 后台接口在 `api.thinknova.top` 同源页跑 fetch（cookie 鉴权）→ [详](reference_thinknova_paths.md)
 - 🔴 任务总表 → `03_工作台\任务总表_总指挥.md`
 
 ### 内容与产品规矩
 - [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单上限](feedback_burn_budget_weekly_cap.md)
 - 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — 建案例前必读,新建必过 3 条自检
-- 🔴🔴 验收四铁律:成片四项齐验 / 门槛不跨片型 / 「写满」须给合法填充 / 子 agent 挤字数须列不可删清单 → [详](feedback_evidence_standard.md)
+- 🔴🔴 验收四铁律 → [详](feedback_evidence_standard.md)
 
 # 商务与融资
 - 🔴🔴🔴 [邮件线](project_overseas_email_outreach.md) — 每天 100 封(11-09 新正文),系统 `03_工作台\邮件推广系统\`

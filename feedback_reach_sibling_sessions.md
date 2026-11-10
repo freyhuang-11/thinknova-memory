@@ -10,3 +10,4 @@ metadata:
 
 **How to apply:** 要给营销/邮件线派活或同步：先 list_sessions 按标题找 → send_message 直接派，要求它做完回一句；交接档/vault 信箱只做留档，不能代替投递。相关：[[reference-agent-memory-vault]]
 - 🔴 10-24：对话没在跑（isRunning=false）时 ListAgents 列不出、按名字发会失败 ⇒ 先 `ccd_session_mgmt list_sessions` 拿 `local_…` id，SendMessage 的 to 填这个 id 就能送达，⛔ 让老板手动打开对话。
+- 🔴 11-10：营销线开着远程控制时，按名字发会被要求二次确认（同名既像本机又像远程）⇒ 一律 list_sessions 拿 `local_…` id 发，不按名字发。
