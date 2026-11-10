@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: e964078a-0c52-4eca-9f02-921ff30c7429
-  modified: 2026-10-31T13:58:26.565Z
+  modified: 2026-11-10T16:45:18.328Z
 ---
 
 # 海外邮件营销线（我主理，独立于 Codex 海外营销）
@@ -74,6 +74,8 @@ metadata:
 - **日量:两箱现实上限 ≈168,200 达不到**(09-21 实测:hello@ 撞 550 在 108、sam@ 60,两箱各自被 Google 日限压住)。⚠️**明天起降一档稳投递:hello@90 + sam@50 = 140**(总指挥定,老板未拍;别再顶 550,否则像 sam 当初被压到 ~69)。要真 200 得加第 3 个箱。`MB_CAPS` 控每箱cap。🔴**只跑一个 send 进程、不叠**(09-21 STOP/resume 叠出两进程、加剧写锁争用)。发前先跑 `_build_photo_list.py`(4类×未联系×私人×MX活→`_daily/photo_todo.csv`);followup_daily.py 已自动跑它,手动补时也跑它。
 - **驱动=Windows 任务 `ThinkNova_FollowupSend`**(老板09-25授权,覆盖"不给各线装cron"):**周一至周五 09:05**,WakeToRun到点唤醒机器+RestartCount重试;链 `tn_followup_launch.py`(ASCII路径启动器,避中文路径坑)`→followup_daily.py`→建名单+sam50+hello90。09-25/26/27 验过自动跑。🔴**但 09-29 00:2x 起两个 Windows 任务(FollowupSend+DailySend)已 Disabled、全线停发**(送达崩+DKIM未配,见 line~192 + 下条基础设施);⛔别重启,等老板配 DKIM+名单验证后每箱 30-50 小量恢复。⛔任务设置由总指挥管、我不动。窗口9-23、静默0-9。
 - **回信处理(09-27 现行)**:auto_reply 已关(`console.py:26=False`),interested/照片回信不自动回。SOP:照片/interested 进来→**总指挥 pulse 每10分钟读 `replies`(handled=0)自动发现**;我被叫起看到也 SendMessage 转他(以 reply id 去重)→他2h烧片(公司账号,15秒75积分)+给回信文案→**老板从 sam@ 发**(成片+一句"注册后100积分够两条 https://thinknova.top",⛔不报价)。⛔我不代发。要代做/复杂问题→转总指挥→老板。邮件回信真值=`replies` 表(⛔不进一对一表,那是 WhatsApp 的)。旧"简单件我自己回"(如 1118 教程)在照片钩子下基本用不到了。
+- 🔴🔴 **换邮箱回的拒绝/退订:原收件地址 + 回信地址两个都进 suppression**(11-11 总指挥定)。店家常用前台/通用地址(recep@/info@)收信、却用具名员工或私人地址回;只屏蔽回信地址=原收件地址仍会被再发。实测 Lim Chee Guan:发到 recep@limcheeguan.sg、Fayth 用 fayth.seet@limcheeguan.sg 回婉拒,11-11 两个地址都已入表(reason not_interested)。
+- 🔴🔴 **分类器"换邮箱回"盲区**(11-11 查实,待修):inbox.py classify() 只认回信地址精确等于已发地址才当真人回复(line~151 `if not known_recipient: return "system"`),店家换邮箱回会被判 system、不进真分类器。历史回扫(诊断_system桶回扫_20261111.md)只埋了 1 条=Lim Chee Guan 婉拒,0 条有意向,故修它为防未来。改法:known 放宽到"同域名(非公共/ISP)+主题是回我们 <ADV> 的信";公共/ISP 域名⛔不走域名兜底。改前在备份副本上验改前改后差异、总指挥点头才上。
 - **09-22 复盘节点**:仍0转化则老板把邮件线拿去一起分析。我判断:非文案非池子,是渠道×产品结构不匹配(冷邮件=低意向好奇,产品要跨注册→学会→做片高激活门槛;线下会16注册=5000封冷邮件16倍)。老板已转向 FB投流→WhatsApp 暖入口。
 
 ## 🔴🔴🔴 09-12/13 老板定调 + 撞墙(推翻下面若干旧假设,以这段为准)
