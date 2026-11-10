@@ -12,7 +12,7 @@ metadata:
 
 - 任务书：`03_工作台/客户视角实测_1110/任务书_客户实测线.md`；规矩：`03_工作台/规则总表_我们与客户_1110.md` 二、三节。
 - 🔴 进度唯一真值：`03_工作台/客户视角实测_1110/实测报告.md` 顶部「当前状态」——每个关键节点当场更新（总指挥 11-10 令），掉线重连先读它。
-- 每轮跑完 SendMessage 给「thinknova新对话」一段话（token、读源码次数、任务号积分、成片路径+check --film、各平台文案、卡点原文）。
+- 每轮跑完 SendMessage 给「ThinkNova 总指挥交接」（11-11 00:3x 起接替旧会话「thinknova新对话」，旧会话已确认）一段话（token、读源码次数、任务号积分、成片路径+check --film、各平台文案、卡点原文）。
 - 实跑目录放 git 仓库外的干净文件夹（视频制作平台分析是 git 仓库，Codex 会搜到补丁技能污染原版对照），结果复制回 `轮次_N/`。总指挥已同意。
 - 实测坑（11-10）：`--enable skip_host_skill_discovery` 挡不住老板个人技能清单注入（会话记录可证）；`codex exec resume` 子命令没有 `--approve-for-me`，要写成 `codex exec --approve-for-me ... resume <id> "<话>"`；🔴 Codex 日志末尾 `tokens used` 是**整个会话累计数**（不是单段），单段用量要从会话 jsonl 的 token_count 逐段相减（11-10 曾因此把装环境额度多算成 19 万、实为 10.5 万）；🔴 **报额度一律用会话 jsonl 里 token_count.rate_limits 的 used_percent**（primary=5 小时窗、secondary=周额度），token 数和额度对不上；`--approve-for-me` 每个批准另起 guardian 子会话（parent_thread_id 指向主会话，可上百万 token），客户手点批准没有这部分；11-10 凌晨停是周额度 100% 不是 5h；一轮实测约吃周额度 15–20%，和海外线同一套餐（总指挥 11-11 定：轮次_3 暂停等老板定账号）；撞线时报错里有恢复时间，跨午夜的定时要按绝对时间等（`date +%H%M` 比较会立刻触发）；Codex 申不申请沙箱外执行是随机的，不申请就看不到本机 FFmpeg/Python、误报「缺依赖」；Codex 会调 save_content_rules 写账号。
 - 轮次_C（Claude 扮客户 AI，11-10 中午）已出合格片，坑：模型自烧字幕要逐帧看重提；人物镜头只用背后 / 俯拍 / 拍手，侧面平视必露脸；卡 persisting 的单占并发名额；本机内存紧时 check/speech_review 要加 `--model base`；MCP 下载链接要 `curl -L`。
