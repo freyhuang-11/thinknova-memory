@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: dfdde839-3802-479e-a6bb-9deab2cf8013
-  modified: 2026-11-10T04:56:49.269Z
+  modified: 2026-11-10T10:23:29.553Z
 ---
 
 客户实测线 = 用本机 Codex 模拟新客户（虚构花店）从零装 ThinkNova 工具包 → 做片 → 各平台发布清单，两轮对比（轮次_1 原版 / 轮次_2 装 客户工具包补丁_1108 技能 + AGENTS.md 分工段）。
@@ -16,6 +16,7 @@ metadata:
 - 实跑目录放 git 仓库外的干净文件夹（视频制作平台分析是 git 仓库，Codex 会搜到补丁技能污染原版对照），结果复制回 `轮次_N/`。总指挥已同意。
 - 实测坑（11-10）：`--enable skip_host_skill_discovery` 挡不住老板个人技能清单注入（会话记录可证）；`codex exec resume` 子命令没有 `--approve-for-me`，要写成 `codex exec --approve-for-me ... resume <id> "<话>"`；一个额度窗口约 17 万 token，装包+做片一轮就用光；Codex 会调 save_content_rules 写账号。
 - 轮次_C（Claude 扮客户 AI，11-10 中午）已出合格片，坑：模型自烧字幕要逐帧看重提；人物镜头只用背后 / 俯拍 / 拍手，侧面平视必露脸；卡 persisting 的单占并发名额；本机内存紧时 check/speech_review 要加 `--model base`；MCP 下载链接要 `curl -L`。
+- 定时续跑坑（11-10 18:22）：换新脚本前没停掉旧的「等到点再跑」脚本，两个同时续同一 Codex 会话，旧原话先抢到、新的报 `already has an active writer`。改定时前先 `Get-CimInstance Win32_Process` 查 run_resume / codex 进程并按 PID 停。
 - ⛔ 发布到任何平台、⛔ 给技术发邮件、⛔ 改老板 ~/.codex、⛔ 换 Codex 账号（额度用完等恢复时间）。
 
 **Why:** 验证客户 AI 是否按「画面声音交 ThinkNova、拼片字幕交脚本」做出合格成片。
