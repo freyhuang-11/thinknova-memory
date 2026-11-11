@@ -19,3 +19,5 @@ metadata:
 - 差异化结论(用户自己竞品报告 2026-06-17)：不拼建联前数据/库大小，**拼建联后管理**(合作推进/样品风控/内容验收/复投/老板复盘)。报告路径见 `D:\SamsoData\Documents\kol工具验收以及产品\KOL_COMPASS_COMPETITOR_DIFFERENTIATION_REPORT_2026-06-17.md`。
 
 关联 [[project_compass]] [[feedback_data_freshness_framing]] [[feedback-communication-principles]]。
+
+- 11-11 补（营销线）：写方案引用「基准片 / 上一条」前，先打开那条原片看前 3 秒再写。11-11 TikTok 开场方案把 11-07 美甲片写成「手部特写开场」，实际是 AI 店员对镜头说话，渲染前自己核出来才没做成非单变量测试。
