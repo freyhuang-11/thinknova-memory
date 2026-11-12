@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: dfdde839-3802-479e-a6bb-9deab2cf8013
-  modified: 2026-11-12T14:35:06.044Z
+  modified: 2026-11-12T15:28:48.519Z
 ---
 
 客户实测线 = 用本机 Codex 模拟新客户（虚构花店）从零装 ThinkNova 工具包 → 做片 → 各平台发布清单，两轮对比（轮次_1 原版 / 轮次_2 装 客户工具包补丁_1108 技能 + AGENTS.md 分工段）。
@@ -23,6 +23,7 @@ metadata:
 - 11-11 老板问「营销线为什么没问题、为什么不把规则提炼给客户」：对比见实测报告末节（营销线第一版也被退回 6 处，靠审改）；附件 A 下一版提纲 `03_工作台/客户视角实测_1110/附件A下一版_提纲_1111.md` v2 已改（总指挥审：店主只答≤3 个是非题；第一秒手在动；默认格式带数据待老板定；第五节对照表 23 行）。🔴 轮次_2 切镜：进点照做、出点统一 4.2 秒，是技能「每个 4～6 秒」和「说完 0.5 秒切」打架（15 号 A2），不是单纯没照做。总指挥会话 ListAgents 可能看不到，用 `local_dc6a6e40-…` 会话号发能送达。
 - 11-11 19:2x 技术发版：MCP 第二批已上线（get_balance 报价核：6 秒 24 积分、三个新报错码都能触发；报价必须带 client_request_id）；工具包 v3.1.10（e2cec28）修了 CRLF verify。cust_R3 已换 v3.1.10 底子（安装器方式 autocrlf=false 克隆 + 原样解附件 + 本地重建清单 + 复制旧 .venv，没跑 setup）；旧的改名 `cust_R3_v316底`。🔴 v3.1.10 原版 doctor files 就 FAIL（health.py 没跟 LF 归一，总指挥单列 16 号加急）；setup 停在 local_runtime_check，旧版跑 update 代码能快进但退出 2；拼片 / 手动下载不受影响，automation.py 自动运行被拦（探针证据在 轮次_3/v3.1.10_*）。探针做法：新临时文件夹 + 外壳脚本把安装步骤换空操作；⛔ rm -rf 相对路径（安全检查会拦），用新文件夹名。
 - 11-12 22:4x v3.1.12（63c050f）验收四项全过：干净安装真跑 setup exit 0、files PASS；v3.1.10 升级 exit 0、memory/本地规矩没丢；16 号已修（health 改用 file_integrity）。缺口：check.py --help 没写 --store-film / --shop-name / --featured-service。本机 ego 安装标记在，setup 不会再弹安装器。cust_R3 仍是 v3.1.10 底，换不换待总指挥定。
+- 11-12 23:5x v3.1.13（fbf8c4e）验收：升级退出 2——setup 新加 `automation.py install-daily-schedules`，Windows/Mac 不问就装两个每 5 分钟的计划任务（本机失败、没建出，⛔ 重跑以免真装）；validate-week 拦得住连两天同拍法 / 热门问题不足，拦不住文案「虚构」（文案检查只在自动运行路里）。验收探针用 `scratchpad/v3112/fresh_install`（现已是 v3.1.13）。
 - ⛔ 发布到任何平台、⛔ 给技术发邮件、⛔ 改老板 ~/.codex、⛔ 换 Codex 账号（额度用完等恢复时间）。
 
 **Why:** 验证客户 AI 是否按「画面声音交 ThinkNova、拼片字幕交脚本」做出合格成片。
