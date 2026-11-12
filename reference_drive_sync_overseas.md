@@ -23,3 +23,9 @@ metadata:
 - 动完回总指挥 ≤5 行：移了哪些、还挂着哪些。
 - **Why**：10-21 我凭版本号和禁语判过时，差点动海外线已排在用的素材（三张海报 IG 10-21、X 10-23 在用），老板纠正：要看对方发没发。
 - 新素材照旧：上传前 ASR + 逐帧查禁语，同文件夹放 `00_说明_*.md`，信箱提醒 Codex，回执总指挥。
+
+## 11-12 起常规（总指挥 16:1x）
+- 每条新片英文版做完就顺手传 Drive「ThinkNova_海外营销同步/视频」（文件夹 id 1VkE3MZBKdx8-h39ptx_qU7135kLPQ4MU），不等通知；文件名 `ThinkNova_EN_<内容>_<秒>s_<MMDD>.mp4`，压 720p。
+- 传法：Drive 连接器 create_file，base64Content 填 `sha256:<hex>:<绝对路径>` 文件引用（比 Chrome 拖放省事，16:10 实测通）；读回 fileSize 对本地字节数。
+- 传完在 vault 信箱 `01-Projects/ThinkNova/信箱/海外营销_Codex.md` 写：文件名 / 时长 / 字节数 / 给哪类客户看 / 建议第一行文案，推 vault。
+- 作废的不删，移到 Drive「ThinkNova_海外营销同步/99_归档」（id 1SiNFXWzbhHjZxDu-3kzSS1gqemBZKwAx）。
