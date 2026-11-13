@@ -29,3 +29,4 @@ metadata:
 - 传法：Drive 连接器 create_file，base64Content 填 `sha256:<hex>:<绝对路径>` 文件引用（比 Chrome 拖放省事，16:10 实测通）；读回 fileSize 对本地字节数。
 - 传完在 vault 信箱 `01-Projects/ThinkNova/信箱/海外营销_Codex.md` 写：文件名 / 时长 / 字节数 / 给哪类客户看 / 建议第一行文案，推 vault。
 - 作废的不删，移到 Drive「ThinkNova_海外营销同步/99_归档」（id 1SiNFXWzbhHjZxDu-3kzSS1gqemBZKwAx）。
+- 11-13 起（总指挥 12:3x）：每条英文版顺带传 SRT（同名 .srt）。用 faster-whisper medium 听成片出逐字稿 + 时间轴（不是 assemble 出的台词 srt）；专有词转写听错的按台词改回，并在信箱请海外线亲耳听。存 03_工作台/海外同步_上传区_1112/srt/。
