@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: dfdde839-3802-479e-a6bb-9deab2cf8013
-  modified: 2026-11-13T04:37:52.043Z
+  modified: 2026-11-13T09:28:13.736Z
 ---
 
 客户实测线 = 用本机 Codex 模拟新客户（虚构花店）从零装 ThinkNova 工具包 → 做片 → 各平台发布清单，两轮对比（轮次_1 原版 / 轮次_2 装 客户工具包补丁_1108 技能 + AGENTS.md 分工段）。
@@ -26,6 +26,7 @@ metadata:
 - 11-12 23:5x v3.1.13（fbf8c4e）验收：升级退出 2——setup 新加 `automation.py install-daily-schedules`，Windows/Mac 不问就装两个每 5 分钟的计划任务（本机失败、没建出，⛔ 重跑以免真装）；validate-week 拦得住连两天同拍法 / 热门问题不足，拦不住文案「虚构」（文案检查只在自动运行路里）。验收探针用 `scratchpad/v3112/fresh_install`、`update_from_3110`（11-13 起都已是 v3.1.15）。
 - 11-13 00:4x v3.1.15（ef3fe1f）验收五项全过：从 3.1.12 / 3.1.13 升级都退出 0、files PASS、本地文件不丢、不再装计划任务（改为 `toolkit.py authorization --install-schedules`，要服务端配对授权）；validate-week 已能拦文案 / 开场「虚构」；帮助补齐；平台能力表没变。
 - 11-13 12:5x v3.1.16（59f91e1）验收：升级过；新增 `bootstrap.py recover`（文件被改或有新版就另克隆官方副本并切过去 → 轮次_3「旧版+附件」会被绕开，要重定）、`toolkit.py film`（待审包，检查不过也交预览）。🔴 store_v2 自动调速起反作用：拼片按镜内 4.2–4.8 把原声放慢、空档拉长，检查按全片含停顿算 4.0–5.2 → 原片 3.95、调后 3.46 都判太慢（证据 轮次_3/v3.1.16验收/）。
+- 11-13 17:4x v3.1.18（e0e80b2）验收：升级过；`enable-production`（只制作→每天停在 awaiting_review 不发布）/ `enable-youtube`（加 YouTube 公开上传）都要店主在 ThinkNova 网页确认设备和预算；「定时交给客户 AI」= `assistant-schedule` 给出两条本机命令，由客户 AI 自己的定时功能到点跑，不是 YouTube 后台定时；平台能力表没变。
 - ⛔ 发布到任何平台、⛔ 给技术发邮件、⛔ 改老板 ~/.codex、⛔ 换 Codex 账号（额度用完等恢复时间）。
 
 **Why:** 验证客户 AI 是否按「画面声音交 ThinkNova、拼片字幕交脚本」做出合格成片。
