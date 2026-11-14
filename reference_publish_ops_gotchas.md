@@ -102,3 +102,4 @@ metadata:
 - 🔴 11-13 02:5x 总指挥（技术 v3.1.15 平台能力表）：文案 ⛔「自动发 / 自动发到 X 个平台 / can post for you daily」。现行说法 =「每天自动做好片和文案，你点一下就发」；只有 YouTube 能授权后无人值守自动发；工具包能发 YouTube、TikTok、小红书、抖音、Facebook、Instagram、LinkedIn、X，**没有视频号**（v2 README 写了视频号，以技术能力表为准）。价格只写官网现拉「每月 US$xx 起」。_copy_check 已查这项（知识库 19.5）。
 - 🔴 视频号（11-13）：登录约十几小时～几天失效，没有开放接口。每次老板扫完码，趁有效把往后一周以上排满（视频号最远能排 12 天，11-13 实测排 11-25 通过；定时登录失效后照发）。保活试验：每 4 小时只读跑一次 03_工作台/视频号发布/_list_rows.py，记失效时间。TikTok：开了 Your brand 的帖网页删不掉、只能手机 App；定时最远 10 天。
 - TikTok 读评论 / 私信（11-13 实测）：Studio 评论页 tiktokstudio/comment 能直接读；商家后台 business-suite/messages 私信列表在内嵌框里（innerText 要遍历 pg.frames），先关「Level up」推广框（点右上 ×，Esc 无效）；点进旧帖评论会弹**拖滑块验证** → ⛔ 碰，停；点消息请求会弹「Use Contact Card · Accept」条款框 → ⛔ 点。要看全只能请老板手机看。脚本 TikTok/_auto/_acq_read.py --comments --requests。
+- TikTok publish.py 会把任务的 tags 字段再拼到 caption 末尾 → caption 里 ⛔ 再写 # 标签，否则重复（11-14 宠物店 / 头疗 / 蜡烛 / 手工皂 / 保险代理 5 条踩了）；_copy_check 已拦。
