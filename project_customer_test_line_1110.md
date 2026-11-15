@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: dfdde839-3802-479e-a6bb-9deab2cf8013
-  modified: 2026-11-15T15:17:11.617Z
+  modified: 2026-11-15T17:32:57.150Z
 ---
 
 客户实测线 = 扮成新客户的 AI（先是本机 Codex，轮次_4 起是我自己用本会话 MCP），从零用 ThinkNova 工具包和给客户的话术做片，找出卡点报总指挥。
@@ -22,7 +22,7 @@ metadata:
 - 字幕每屏 ≤7 字（技能写 9 字会被 FILM_SUBTITLE_SPLIT_REQUIRED 拦）。
 - 实跑目录放 git 仓库外（scratchpad），克隆用 `-c core.autocrlf=false`；MCP 下载先下到 scratchpad 再拷进中文路径；转写设 `CT2_USE_MKL=0 OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1`。
 - 测 recover / setup：用短路径（本机 LongPathsEnabled=0），LOCALAPPDATA 重定向到 scratchpad 并拷 ego 安装标记，否则会弹 ego 安装器、在真 AppData 建目录；⛔ `rm -rf` 相对路径（安全检查拦）。
-- Codex exec 测脚本：`-s read-only --ephemeral --skip-git-repo-check -C 空目录 -o 输出`。⛔ 提示词写「不运行任何命令」，否则 GPT 读不了文件、直接停。老板 ChatGPT 额度 4 次并发就会打满（11-15 23:15 打满过一次），并发别超过 2。老板 config 挂着 node_repl 等插件，要干净环境加 `--ignore-user-config -m <模型>`。
+- Codex exec 测脚本：`-s read-only --ephemeral --skip-git-repo-check -C 空目录 -o 输出`。⛔ 提示词写「不运行任何命令」，否则 GPT 读不了文件、直接停。老板 ChatGPT 额度 4 次并发就会打满（11-15 23:15 打满过一次），并发别超过 2。老板 config 挂着 node_repl 等插件，要干净环境加 `--ignore-user-config -m <模型>`，**同时必须加 `-c windows.sandbox=elevated`**，否则 Windows 只读沙箱把读文件命令全拒（blocked by policy），11-16 01:30 三次白跑。
 - Codex 实测（轮次_1～3）：日志末尾 `tokens used` 是会话累计；报额度只看会话 jsonl 的 rate_limits.used_percent；`--approve-for-me` 另起 guardian 子会话吃大量 token；改定时前先按 PID 停旧脚本。
 - 设备配对（enable-production）要老板本人在 ThinkNova 网页确认，本机权限检查也拦，⛔ 代授权。
 
