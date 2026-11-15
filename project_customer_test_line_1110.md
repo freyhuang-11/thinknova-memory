@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: dfdde839-3802-479e-a6bb-9deab2cf8013
-  modified: 2026-11-15T10:34:15.000Z
+  modified: 2026-11-15T12:42:42.179Z
 ---
 
 客户实测线 = 用本机 Codex 模拟新客户（虚构花店）从零装 ThinkNova 工具包 → 做片 → 各平台发布清单，两轮对比（轮次_1 原版 / 轮次_2 装 客户工具包补丁_1108 技能 + AGENTS.md 分工段）。
@@ -30,6 +30,7 @@ metadata:
 - 11-14 16:xx 99cd0cb 验收：正常升级过；「被拦自动恢复」从旧版升级不生效（跑的是旧 update）；recover 新副本建在旁边名字更长，本机深路径撞 260 字符上限失败并留半成品；短路径下 recover 成功但新副本 memory.md 是空模板（客户记忆没带过去）；设定板 / 负面词校验都对，超 3 张参考图报错码误写成 NOT_AUTHORIZED；六拍残留仍在。🔴 测 recover 要用短路径（`scratchpad/t`、`w`），本机 LongPathsEnabled=0。
 - 11-15 17:xx c7cbe24 验收：recover 新副本改放 `%LOCALAPPDATA%\tn-kit\tn-*`、客户 memory/reminders/AGENTS.local/规则/登录文件都带过去 ✅；失败报 WINDOWS_PATH_TOO_LONG ✅ 但清理删不掉只读 git 包 → 留下含登录凭据副本的半成品；拼片裁空白 36.0→32.5 秒、FAIL 12→4（只剩镜头交界停顿 0.58–0.78 秒），没吃字；超 3 张参考图报错码已改。🔴 测 recover 时把 LOCALAPPDATA 重定向到 scratchpad，并拷 ego 安装标记、PLAYWRIGHT_BROWSERS_PATH 指本机缓存，否则会弹 ego 安装器 / 在真 AppData 建 tn-kit。
 - 11-15 19:xx 075f5a7 验收：recover 失败能清干净 ✅；拼片 30.8 秒、3 FAIL，但 🔴 切点切在声音里（逐 20ms 音量包络为证，c7cbe24 没有）；script 校验不带 script 字段就整个跳过；daily-film 新电脑报 .runner.lock 不存在；技能「voice-over, no lip-sync」和 schema 2 校验打架；短片只有服务端 schema 2 路径放行。查吃字用逐 20ms RMS 包络 + 导出 wav 给人耳回听，转写字数相同不算证据。
+- 11-15 晚 轮次_4 话术实跑（我当客户 AI，用本会话 pro 号 MCP 真生成；目录 `03_工作台/客户视角实测_1110/轮次_4_话术实跑/`，积分账 / 弯路表 / 冲突清单都在里面）：A 花店 30 秒 v1 只差 1 个 FILM_SENTENCE_PAUSE；B 红龟粿 15 秒被 FILM_DURATION（30–40）拦，短片路径绕过又撞语速和片尾静音。🔴 线上 animate_image 默认 11-15 20:2x 起变 21:9 / 768p，会话工具说明不能传 ratio → 暂停生成。C（daily-film）卡在配对：要老板本人在 ThinkNova 网页确认设备和预算，⛔ 代授权。教训：每单必先报价（报价里看得到规格）。
 - ⛔ 发布到任何平台、⛔ 给技术发邮件、⛔ 改老板 ~/.codex、⛔ 换 Codex 账号（额度用完等恢复时间）。
 
 **Why:** 验证客户 AI 是否按「画面声音交 ThinkNova、拼片字幕交脚本」做出合格成片。
