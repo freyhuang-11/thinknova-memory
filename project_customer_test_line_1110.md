@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: dfdde839-3802-479e-a6bb-9deab2cf8013
-  modified: 2026-11-14T07:37:43.207Z
+  modified: 2026-11-15T08:35:12.197Z
 ---
 
 客户实测线 = 用本机 Codex 模拟新客户（虚构花店）从零装 ThinkNova 工具包 → 做片 → 各平台发布清单，两轮对比（轮次_1 原版 / 轮次_2 装 客户工具包补丁_1108 技能 + AGENTS.md 分工段）。
@@ -28,6 +28,7 @@ metadata:
 - 11-13 12:5x v3.1.16（59f91e1）验收：升级过；新增 `bootstrap.py recover`（文件被改或有新版就另克隆官方副本并切过去 → 轮次_3「旧版+附件」会被绕开，要重定）、`toolkit.py film`（待审包，检查不过也交预览）。🔴 store_v2 自动调速起反作用：拼片按镜内 4.2–4.8 把原声放慢、空档拉长，检查按全片含停顿算 4.0–5.2 → 原片 3.95、调后 3.46 都判太慢（证据 轮次_3/v3.1.16验收/）。
 - 11-13 17:4x v3.1.18（e0e80b2）验收：升级过；`enable-production`（只制作→每天停在 awaiting_review 不发布）/ `enable-youtube`（加 YouTube 公开上传）都要店主在 ThinkNova 网页确认设备和预算；「定时交给客户 AI」= `assistant-schedule` 给出两条本机命令，由客户 AI 自己的定时功能到点跑，不是 YouTube 后台定时；平台能力表没变。
 - 11-14 16:xx 99cd0cb 验收：正常升级过；「被拦自动恢复」从旧版升级不生效（跑的是旧 update）；recover 新副本建在旁边名字更长，本机深路径撞 260 字符上限失败并留半成品；短路径下 recover 成功但新副本 memory.md 是空模板（客户记忆没带过去）；设定板 / 负面词校验都对，超 3 张参考图报错码误写成 NOT_AUTHORIZED；六拍残留仍在。🔴 测 recover 要用短路径（`scratchpad/t`、`w`），本机 LongPathsEnabled=0。
+- 11-15 17:xx c7cbe24 验收：recover 新副本改放 `%LOCALAPPDATA%\tn-kit\tn-*`、客户 memory/reminders/AGENTS.local/规则/登录文件都带过去 ✅；失败报 WINDOWS_PATH_TOO_LONG ✅ 但清理删不掉只读 git 包 → 留下含登录凭据副本的半成品；拼片裁空白 36.0→32.5 秒、FAIL 12→4（只剩镜头交界停顿 0.58–0.78 秒），没吃字；超 3 张参考图报错码已改。🔴 测 recover 时把 LOCALAPPDATA 重定向到 scratchpad，并拷 ego 安装标记、PLAYWRIGHT_BROWSERS_PATH 指本机缓存，否则会弹 ego 安装器 / 在真 AppData 建 tn-kit。
 - ⛔ 发布到任何平台、⛔ 给技术发邮件、⛔ 改老板 ~/.codex、⛔ 换 Codex 账号（额度用完等恢复时间）。
 
 **Why:** 验证客户 AI 是否按「画面声音交 ThinkNova、拼片字幕交脚本」做出合格成片。
