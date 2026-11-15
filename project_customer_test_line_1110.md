@@ -1,39 +1,32 @@
 ---
 name: project-customer-test-line-1110
-description: 客户实测线（11-10 总指挥派）：用本机 Codex 按新客户从零实测 ThinkNova 工具包；掉线重连先读实测报告顶部「当前状态」
+description: 客户实测线（11-10 起，总指挥派）：扮客户 AI 实测 ThinkNova 工具包 / 话术 / 脚本；掉线先读轮次_4「当前状态_断点.md」
 metadata:
   node_type: memory
   type: project
   originSessionId: dfdde839-3802-479e-a6bb-9deab2cf8013
-  modified: 2026-11-15T12:42:42.179Z
+  modified: 2026-11-15T13:23:57.204Z
 ---
 
-客户实测线 = 用本机 Codex 模拟新客户（虚构花店）从零装 ThinkNova 工具包 → 做片 → 各平台发布清单，两轮对比（轮次_1 原版 / 轮次_2 装 客户工具包补丁_1108 技能 + AGENTS.md 分工段）。
+客户实测线 = 扮成新客户的 AI（先是本机 Codex，轮次_4 起是我自己用本会话 MCP），从零用 ThinkNova 工具包和给客户的话术做片，找出卡点报总指挥。
 
-- 任务书：`03_工作台/客户视角实测_1110/任务书_客户实测线.md`；规矩：`03_工作台/规则总表_我们与客户_1110.md` 二、三节。
-- 🔴 进度唯一真值：`03_工作台/客户视角实测_1110/实测报告.md` 顶部「当前状态」——每个关键节点当场更新（总指挥 11-10 令），掉线重连先读它。
-- 每轮跑完 SendMessage 给「ThinkNova 总指挥交接」（11-11 00:3x 起接替旧会话「thinknova新对话」，旧会话已确认）一段话（token、读源码次数、任务号积分、成片路径+check --film、各平台文案、卡点原文）。
-- 实跑目录放 git 仓库外的干净文件夹（视频制作平台分析是 git 仓库，Codex 会搜到补丁技能污染原版对照），结果复制回 `轮次_N/`。总指挥已同意。
-- 实测坑（11-10）：`--enable skip_host_skill_discovery` 挡不住老板个人技能清单注入（会话记录可证）；`codex exec resume` 子命令没有 `--approve-for-me`，要写成 `codex exec --approve-for-me ... resume <id> "<话>"`；🔴 Codex 日志末尾 `tokens used` 是**整个会话累计数**（不是单段），单段用量要从会话 jsonl 的 token_count 逐段相减（11-10 曾因此把装环境额度多算成 19 万、实为 10.5 万）；🔴 **报额度一律用会话 jsonl 里 token_count.rate_limits 的 used_percent**（primary=5 小时窗、secondary=周额度），token 数和额度对不上；`--approve-for-me` 每个批准另起 guardian 子会话（parent_thread_id 指向主会话，可上百万 token），客户手点批准没有这部分；11-10 凌晨停是周额度 100% 不是 5h；一轮实测约吃周额度 15–20%，和海外线同一套餐（总指挥 11-11 定：轮次_3 暂停等老板定账号）；撞线时报错里有恢复时间，跨午夜的定时要按绝对时间等（`date +%H%M` 比较会立刻触发）；Codex 申不申请沙箱外执行是随机的，不申请就看不到本机 FFmpeg/Python、误报「缺依赖」；Codex 会调 save_content_rules 写账号。
-- 轮次_C（Claude 扮客户 AI，11-10 中午）已出合格片，坑：模型自烧字幕要逐帧看重提；人物镜头只用背后 / 俯拍 / 拍手，侧面平视必露脸；卡 persisting 的单占并发名额；本机内存紧时 check/speech_review 要加 `--model base`；MCP 下载链接要 `curl -L`。
-- 轮次_1 结论（11-10 18:39）：不给预算 → 0 积分照片幻灯片；给了预算 → 先报价 + max_credits 建单，但画面只做「照片动起来」、主动关掉视频模型声音改用 Windows 本机 TTS、为过转写检查删掉台词里的店名、读源码 6 次。详见实测报告。
-- 定时续跑坑（11-10 18:22）：换新脚本前没停掉旧的「等到点再跑」脚本，两个同时续同一 Codex 会话，旧原话先抢到、新的报 `already has an active writer`。改定时前先 `Get-CimInstance Win32_Process` 查 run_resume / codex 进程并按 PID 停。
-- 布置实测目录别用本机 git 默认 clone（core.autocrlf=true → 全 CRLF → `toolkit verify` 全挂）；要 `core.autocrlf=false` 检出。覆盖式打补丁会被 verify 判成本地修改，Codex 会另克隆原版、拼片走原版脚本（轮次_2 实测）。
-- 轮次_2 结论（11-11 04:31）：31.9 秒成片在 `轮次_2/成片/`，198 积分、读源码 0、原生配音、不露脸，check --film no FAIL；❌ 画面台词仍有一句对不上；拼片走官方副本（补丁字幕没用上）；Codex 遇转写同音字不自判通过、标「待回听」；一轮约吃周额度 26%。总指挥审：比轮次_1 进一大步但不算合格（每镜末尾断气 1 秒多、七镜只一镜有人做事、字幕无底框），15 号加第 8 条；片尾卡放不放店主联系方式待老板定（第 9 条暂缓；老板现行规矩是联系方式放平台主页简介、内容不写站外联系方式）。审片要量 silencedetect + 逐镜看动态，不能只信 check 的 no FAIL。「按台词起止切镜」门店成片技能第四节早已写明，轮次_2 Codex 读到了仍写死 4.2 秒（日志可证）→ 轮次_3 原文再验，不改 cust_R3（改了就和冻结附件不一致、清单要重建）。轮次_3 静音验收两个数都报：现行自检单 2 秒（d=2）、总指挥定的 1 秒（d=1）；附件 A 下一版等轮次_3 后一次出（15 号 A1）。轮次_3 暂停等老板定账号（准备在 `cust_R3`、`run_r3.sh`）。
-- 11-11 老板问「营销线为什么没问题、为什么不把规则提炼给客户」：对比见实测报告末节（营销线第一版也被退回 6 处，靠审改）；附件 A 下一版提纲 `03_工作台/客户视角实测_1110/附件A下一版_提纲_1111.md` v2 已改（总指挥审：店主只答≤3 个是非题；第一秒手在动；默认格式带数据待老板定；第五节对照表 23 行）。🔴 轮次_2 切镜：进点照做、出点统一 4.2 秒，是技能「每个 4～6 秒」和「说完 0.5 秒切」打架（15 号 A2），不是单纯没照做。总指挥会话 ListAgents 可能看不到，用 `local_dc6a6e40-…` 会话号发能送达。
-- 11-11 19:2x 技术发版：MCP 第二批已上线（get_balance 报价核：6 秒 24 积分、三个新报错码都能触发；报价必须带 client_request_id）；工具包 v3.1.10（e2cec28）修了 CRLF verify。cust_R3 已换 v3.1.10 底子（安装器方式 autocrlf=false 克隆 + 原样解附件 + 本地重建清单 + 复制旧 .venv，没跑 setup）；旧的改名 `cust_R3_v316底`。🔴 v3.1.10 原版 doctor files 就 FAIL（health.py 没跟 LF 归一，总指挥单列 16 号加急）；setup 停在 local_runtime_check，旧版跑 update 代码能快进但退出 2；拼片 / 手动下载不受影响，automation.py 自动运行被拦（探针证据在 轮次_3/v3.1.10_*）。探针做法：新临时文件夹 + 外壳脚本把安装步骤换空操作；⛔ rm -rf 相对路径（安全检查会拦），用新文件夹名。
-- 11-12 22:4x v3.1.12（63c050f）验收四项全过：干净安装真跑 setup exit 0、files PASS；v3.1.10 升级 exit 0、memory/本地规矩没丢；16 号已修（health 改用 file_integrity）。缺口：check.py --help 没写 --store-film / --shop-name / --featured-service。本机 ego 安装标记在，setup 不会再弹安装器。cust_R3 仍是 v3.1.10 底，换不换待总指挥定。
-- 11-12 23:5x v3.1.13（fbf8c4e）验收：升级退出 2——setup 新加 `automation.py install-daily-schedules`，Windows/Mac 不问就装两个每 5 分钟的计划任务（本机失败、没建出，⛔ 重跑以免真装）；validate-week 拦得住连两天同拍法 / 热门问题不足，拦不住文案「虚构」（文案检查只在自动运行路里）。验收探针用 `scratchpad/v3112/fresh_install`、`update_from_3110`（11-13 起都已是 v3.1.15）。
-- 11-13 00:4x v3.1.15（ef3fe1f）验收五项全过：从 3.1.12 / 3.1.13 升级都退出 0、files PASS、本地文件不丢、不再装计划任务（改为 `toolkit.py authorization --install-schedules`，要服务端配对授权）；validate-week 已能拦文案 / 开场「虚构」；帮助补齐；平台能力表没变。
-- 11-13 12:5x v3.1.16（59f91e1）验收：升级过；新增 `bootstrap.py recover`（文件被改或有新版就另克隆官方副本并切过去 → 轮次_3「旧版+附件」会被绕开，要重定）、`toolkit.py film`（待审包，检查不过也交预览）。🔴 store_v2 自动调速起反作用：拼片按镜内 4.2–4.8 把原声放慢、空档拉长，检查按全片含停顿算 4.0–5.2 → 原片 3.95、调后 3.46 都判太慢（证据 轮次_3/v3.1.16验收/）。
-- 11-13 17:4x v3.1.18（e0e80b2）验收：升级过；`enable-production`（只制作→每天停在 awaiting_review 不发布）/ `enable-youtube`（加 YouTube 公开上传）都要店主在 ThinkNova 网页确认设备和预算；「定时交给客户 AI」= `assistant-schedule` 给出两条本机命令，由客户 AI 自己的定时功能到点跑，不是 YouTube 后台定时；平台能力表没变。
-- 11-14 16:xx 99cd0cb 验收：正常升级过；「被拦自动恢复」从旧版升级不生效（跑的是旧 update）；recover 新副本建在旁边名字更长，本机深路径撞 260 字符上限失败并留半成品；短路径下 recover 成功但新副本 memory.md 是空模板（客户记忆没带过去）；设定板 / 负面词校验都对，超 3 张参考图报错码误写成 NOT_AUTHORIZED；六拍残留仍在。🔴 测 recover 要用短路径（`scratchpad/t`、`w`），本机 LongPathsEnabled=0。
-- 11-15 17:xx c7cbe24 验收：recover 新副本改放 `%LOCALAPPDATA%\tn-kit\tn-*`、客户 memory/reminders/AGENTS.local/规则/登录文件都带过去 ✅；失败报 WINDOWS_PATH_TOO_LONG ✅ 但清理删不掉只读 git 包 → 留下含登录凭据副本的半成品；拼片裁空白 36.0→32.5 秒、FAIL 12→4（只剩镜头交界停顿 0.58–0.78 秒），没吃字；超 3 张参考图报错码已改。🔴 测 recover 时把 LOCALAPPDATA 重定向到 scratchpad，并拷 ego 安装标记、PLAYWRIGHT_BROWSERS_PATH 指本机缓存，否则会弹 ego 安装器 / 在真 AppData 建 tn-kit。
-- 11-15 19:xx 075f5a7 验收：recover 失败能清干净 ✅；拼片 30.8 秒、3 FAIL，但 🔴 切点切在声音里（逐 20ms 音量包络为证，c7cbe24 没有）；script 校验不带 script 字段就整个跳过；daily-film 新电脑报 .runner.lock 不存在；技能「voice-over, no lip-sync」和 schema 2 校验打架；短片只有服务端 schema 2 路径放行。查吃字用逐 20ms RMS 包络 + 导出 wav 给人耳回听，转写字数相同不算证据。
-- 11-15 晚 轮次_4 话术实跑（我当客户 AI，用本会话 pro 号 MCP 真生成；目录 `03_工作台/客户视角实测_1110/轮次_4_话术实跑/`，积分账 / 弯路表 / 冲突清单都在里面）：A 花店 30 秒 v1 只差 1 个 FILM_SENTENCE_PAUSE；B 红龟粿 15 秒被 FILM_DURATION（30–40）拦，短片路径绕过又撞语速和片尾静音。🔴 线上 animate_image 默认 11-15 20:2x 起变 21:9 / 768p，会话工具说明不能传 ratio → 暂停生成。C（daily-film）卡在配对：要老板本人在 ThinkNova 网页确认设备和预算，⛔ 代授权。教训：每单必先报价（报价里看得到规格）。
-- ⛔ 发布到任何平台、⛔ 给技术发邮件、⛔ 改老板 ~/.codex、⛔ 换 Codex 账号（额度用完等恢复时间）。
+- 🔴 **掉线 / 压缩后先读** `03_工作台/客户视角实测_1110/轮次_4_话术实跑/当前状态_断点.md`（正在做什么、等谁、文件在哪）；轮次_1～3 和各版工具包验收的明细在 `实测报告.md` 末尾各节。
+- 汇报只给「ThinkNova 总指挥交接」：SendMessage to `local_dc6a6e40-e3ff-4970-a20a-2f6d7af4797e`（按名字常找不到）。回老板中文。
+- **现在（11-15 21:4x）**：写《脚本模板_v1.md》并用 4 个干净子 agent 对照测（模板组 vs 只给七条规则组）；竖屏未恢复，⛔ 建横屏视频单；C 路 daily-film 等老板自己跑 enable-production 配对。
+- 轮次_4 结论：A 花店 30 秒对白片只差 FILM_SENTENCE_PAUSE；B 15 秒产品片被 FILM_DURATION（30–40）拦死；片尾叠字只有服务端短片路径能做；工具包 / 标准冲突 15 条在 `工具包和标准冲突清单_给技术.md`；积分账已结算 432。
 
-**Why:** 验证客户 AI 是否按「画面声音交 ThinkNova、拼片字幕交脚本」做出合格成片。
-**How to apply:** 接这条线时先读当前状态，再按任务书命令继续；相关口径见 [[feedback-boss-rulings]]。
+## 可复用的坑（每条都踩过）
+- **每单先 get_balance 报价**：报价里看得到画幅 / 时长 / 积分；11-15 20:34 线上默认变 21:9 时，没报价直接建单白花 60。本会话 animate_image 工具说明是旧缓存，没有 ratio / duration_seconds；ratio 传了也被忽略；edit_image 没有 21:9。
+- **审片**：不能只信 check 的 no FAIL；量 silencedetect + 逐镜看动态 + 逐 20ms 音量包络查切点吃字，转写字数相同不算证据。
+- 视频模型原声约 5.3～5.6 字 / 秒，写字数、改声音描述都压不下来；面部大特写最容易换脸；第二段只带末帧 + 人物三视图时门店会换。
+- 字幕每屏 ≤7 字（技能写 9 字会被 FILM_SUBTITLE_SPLIT_REQUIRED 拦）。
+- 实跑目录放 git 仓库外（scratchpad），克隆用 `-c core.autocrlf=false`；MCP 下载先下到 scratchpad 再拷进中文路径；转写设 `CT2_USE_MKL=0 OMP_NUM_THREADS=2 HF_HUB_OFFLINE=1`。
+- 测 recover / setup：用短路径（本机 LongPathsEnabled=0），LOCALAPPDATA 重定向到 scratchpad 并拷 ego 安装标记，否则会弹 ego 安装器、在真 AppData 建目录；⛔ `rm -rf` 相对路径（安全检查拦）。
+- Codex 实测（轮次_1～3）：日志末尾 `tokens used` 是会话累计；报额度只看会话 jsonl 的 rate_limits.used_percent；`--approve-for-me` 另起 guardian 子会话吃大量 token；改定时前先按 PID 停旧脚本。
+- 设备配对（enable-production）要老板本人在 ThinkNova 网页确认，本机权限检查也拦，⛔ 代授权。
 
-- 🔴 **11-11 老板更正**：11-10 海外线**根本没用** Codex 额度。当天周额度 0→约 31% 全是两轮客户实测吃的。「海外线 + 老板自己上周约 84%」是我没看 Mac 日志的推断，作废；轮次_3 的选项不许再写「海外线会被吃干」。
+## 边界
+⛔ 发布到任何平台、⛔ 给技术发邮件、⛔ 改老板 ~/.codex、⛔ 换 Codex 账号、⛔ 往老板 pro 号存内容规则。虚构店和测试片一律标「测试」。
+
+**Why:** 验证客户 AI 只靠工具包和我们的话术能不能做出合格成片，把挡路的地方变成给技术的清单和话术修改。
+**How to apply:** 接线先读断点文件，再照总指挥最新一条消息做；口径见 [[feedback-boss-rulings]]。
