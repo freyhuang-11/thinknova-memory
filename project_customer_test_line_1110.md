@@ -33,3 +33,10 @@ metadata:
 
 **Why:** 验证客户 AI 只靠工具包和我们的话术能不能做出合格成片，把挡路的地方变成给技术的清单和话术修改。
 **How to apply:** 接线先读断点文件，再照总指挥最新一条消息做；口径见 [[feedback-boss-rulings]]。
+
+## 11-17 晚增量（实测·待核）
+- 讲解种草 4 段走通用路径（film:true+end_card）能过检：每个 clip 用 `dur` 剪掉生成尾巴的静音，把总长压进 30–40s；v3 门店路径不认 4 段。
+- 插入镜头话不停：一次生成里写「cuts away ~3s… sentence keeps going without any pause」+Sound 行重复，1 条样本成功（task_fc55fdc90729）；15s 只说 9.4s，余下要剪。
+- 提示词里单独写一个没台词的近景 → 模型空出 2s+ 没人说话（毛毛洗护 FAIL）；近景要挂在台词上。
+- 下载 asset media 链接要 `curl -L`，不加会得到 0 字节。
+- 总表：轮次_5_MCP出片对照/总表_11-17实测线.md
