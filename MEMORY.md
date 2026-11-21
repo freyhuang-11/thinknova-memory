@@ -96,6 +96,7 @@
 - [用户画像](user_profile.md) ／ [签约主体](reference_company_entity.md)
 - 🔴🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含工具调用之间的每一句进度说明
 - 🔴 [Yiping 课程 40%](project_course_promoter_yiping.md)／🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术汇一份](feedback_tech_requests_one_at_a_time.md)／[发布前老板亲看](feedback_boss_reviews_before_publish.md)／[已发冻结](feedback_tech_doc_new_file_after_sent.md)／[海报生图](feedback_poster_use_generated_image.md)
+- 🔴🔴 [⛔ 一直新开 Chrome](feedback_chrome_no_new_window.md) — 老板 Chrome 本来就登 freyhuang，先看已有标签再用，别 createIfEmpty 开一堆窗口
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图；做出的视频当场 SendUserFile 发进对话框 → [详](feedback_send_videos_in_chat.md)
 
 # ThinkNova(实体店内容 SaaS)
