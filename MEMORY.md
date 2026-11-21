@@ -129,3 +129,4 @@
 
 # 其他
 - 🔴🔴 入口=本机 `README_从这里开始.md`+Obsidian「① 从这里开始」;归档=移动不删
+- [数据路线 11-22](project_thinknova_data_strategy_1122.md) — 改计划书 / 隐私协议 / 数据回传需求前必读
