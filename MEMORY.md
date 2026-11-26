@@ -13,7 +13,7 @@
 | 任何后台写操作 | 🔴 `00_规格与参考\执行手册_后台操作_2026-08-21.md` |
 | 烧验证单 | 🔴 `00_规格与参考\烧单前强制自查表_2026-08-18.md` |
 | 查任何字数/字节/条数现值 | 🔴 现拉线上 config,不信记忆里的数 → [[reference-thinknova-tech-docs-index]] |
-| 动编剧/台词/长度/字数窗 | [[project-thinknova-0729-screenwriter-stack]] |
+| 动平台旧线编剧/台词字数窗（自家片和 MCP 的台词长度看 current_film_rules） | [[project-thinknova-0729-screenwriter-stack]] |
 | 动 grok/H3/参考图/负面词/提示词(旧管线) | [[project-thinknova-language-pack-rollout]] + [[reference-thinknova-multiref-model]] |
 | 动视频工作台/长视频拼接(新管线,与旧线隔离) | 🔴 [[reference-thinknova-video-studio]] |
 | 动片型/案例库/场景表 | [[project-thinknova-film-types]] ／ 短剧（S08）→ [详](project_thinknova_short_drama.md) |
@@ -22,18 +22,18 @@
 | 下「前台有没有X」的结论 | [[reference-thinknova-frontend-truth]] |
 | 建案例 | [[feedback-case-low-coupling]] |
 | 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
-| 海报出问题 | [[project-thinknova-poster-video-purge]] |
+| 海报出问题 | [[project-thinknova-poster-scene-revamp]] |
 | 动输出语言 | [[project-thinknova-sea-languages]] |
 | **用哪个 skill / 发布跑哪个脚本** | 🔴 [[reference-skills-routing]] |
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | YouTube 上传 / GSC / 教程页 | 🔴 → [[project-thinknova-guide-multilang]] |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 send_message 到「THINK NOVA marketing」→ [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束 → [详](feedback_brief_marketing_what_not_how.md) + [[feedback-boss-rulings]] |
-| 技术发来新文档 / 国内版协作 / 说「技术没回信」 | 🔴 没回信先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md)；国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；🔴 技术回执来信 → 核完直接回复那封写漏改（11-26 授权），新问题仍写文档给老板转 |
+| 技术发来新文档 / 国内版协作 / 说「技术没回信」 | 新发件地址没回信先查垃圾箱 → [详](feedback_gmail_spam_blind_spot.md)；国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；🔴 技术回执来信 → 核完直接回复那封写漏改（11-26 授权），新问题仍写文档给老板转 |
 | 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
 | 战略台 / 任务清单 / 各角色在干嘛 / 活动进日历 | 🔴 [战略台+待办板+老板工作台](reference_strategy_dashboard.md)；[周一活动扫描](feedback_weekly_event_scan.md) |
 | 想装闹钟/定时任务 / 心跳频率 ／ 开重活前看内存 | 🔴 [[feedback-heartbeat-not-cron]] — `7 * * * *` 全天；重启先重建 ／ 看提交余量走 `_with_lock.py` → [详](feedback_memory_commit_headroom.md) |
-| **获客判断 / 报价** | 🔴 [增长口径](feedback_current_growth_rules_0930.md)（09-30 版，与 current_film_rules 冲突按后者）；⛔ 扫 / 回 WhatsApp（老板 11-14） |
-| **FB 投流 / 调广告 / 接总指挥的活** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) + 03_工作台 下最新 `交接档_*_总指挥.md` — 地域现拉；我建到草稿、老板点发布 |
+| **获客判断 / 报价** | 🔴 [现行口径](feedback_current_film_rules.md) 第三节（全自动、前置条件）；⛔ 扫 / 回 WhatsApp（11-14） |
+| FB / GPT 投流 | 全部暂停，重开要老板定 |
 | **谈收入 / 算转化 / 做增长判断** | 🔴🔴🔴 [收入真值](reference_thinknova_revenue_truth.md) — 大多是测试数据；付费全来自老板线下演示 |
 | **说「找不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — `*.jsonl` 可直接 grep |
 | **转述子 agent 结论 / 下根因** | 🔴🔴🔴 [verify-before-relaying](feedback_verify_before_relaying.md) — 自己跑一遍再报；没证据就说不知道 |
@@ -43,7 +43,7 @@
 | **出片 / 审片 / 做对外内容 / 给客户 MCP 定规则** | 🔴🔴🔴 [现行出片口径](feedback_current_film_rules.md)（唯一权威，七条 + 审片重出 + 作废表）；原话来龙去脉 → [[feedback-boss-rulings]] |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
-六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
+六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开（平台配置 / 花钱这类；自家内容风格自己定，11-24）。
 🔴🔴🔴 **闸 0(开口也算动手)= 三件套**:第一性 / steelman(给老板前必跑) / 对抗审查;说不出放弃了什么=没跑 → [详](feedback_thinking_protocol.md) [逐句筛](feedback_adversarial_review_before_reply.md)
 
 ## 🔴🔴🔴 L-0.5 · 动手前先问「有没有现成 skill/脚本」 → [场景路由表](reference_skills_routing.md)
@@ -69,7 +69,7 @@
 5. 🔴 指派式>禁令式；给执行线的门槛必带备用路+期限 → [详](feedback_directive_over_prohibition.md) ／ 🔴🔴 文案主语是机器=返工 → [详](feedback_customer_view_not_machine_view.md)
 6. 🔴 落库≠送达 → [详](feedback_evidence_standard.md) ／ 🔴🔴 ⛔`opsEditable.stagePromptPresets.image_to_video` 写不进 ／ 🔴🔴🔴 grok 混语言=只剩 BGM → [详](project_thinknova_language_pack_rollout.md)
 7. 🔴🔴🔴 改提示词前读九条 → [详](feedback_prompt_change_hard_rules.md) ／ 全量=逐字查全部字段 → [详](feedback_boss_rulings.md) ／ 验收先有基线、人眼验 → [详](feedback_evidence_standard.md) ／ 交付件=能直接发 → [详](feedback_deliverable_is_postable.md)
-8. 范围边界必写反向+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动前端读的字段先改一条验 → [详](project_thinknova_dingdian_koubao.md) ／ 🔴🔴🔴 报技术单前先穷举自己这一侧 → [详](feedback_tech_doc_checklist.md)
+8. 范围边界必写反向+双向验收 → [详](feedback_tech_doc_checklist.md) ／ 🔴 动前端读的字段先改一条、验过再铺开 ／ 🔴🔴🔴 报技术单前先穷举自己这一侧 → [详](feedback_tech_doc_checklist.md)
 8.5 🔴🔴🔴 案例三条:名实一致、素材必须真有、改一个只影响一个 → [详](feedback_case_name_matches_output.md) [详](feedback_case_change_no_blast_radius.md) ／ 🔴🔴 加行业/场景先翻技术文档 → [详](project_thinknova_brand_product_industry.md)
 8.7 🔴🔴🔴 案例 PUT=整体覆盖(全字段) → [详](feedback_boss_rulings.md) ／ 🔴🔴🔴 列表接口先读 `pagination.total`,pageSize 上限现拉 → [详](reference_thinknova_option_scene_rules.md) ／ 🔴🔴 中间态≠跑通,只认终态
 8.8 🔴🔴 工作台:提示词上限按**字节**算(现拉线上)、规矩前置、voiceover 不许写正脸说话 → [详](reference_thinknova_video_studio.md) ／ 🔴🔴 写入走 `x-csrf-token` → [详](reference_thinknova_paths.md)
@@ -94,7 +94,7 @@
 - 🔴 [AgentMemoryVault](reference_agent_memory_vault.md) — 开工 pull,收工只 add 自己的并验远端
 - [用户画像](user_profile.md) ／ [签约主体](reference_company_entity.md)
 - 🔴🔴🔴 [回复老板一律中文](feedback_reply_in_chinese.md) — 含工具调用之间的每一句进度说明
-- 🔴 [Yiping 课程 40%](project_course_promoter_yiping.md)／🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术汇一份](feedback_tech_requests_one_at_a_time.md)／[发布前老板亲看](feedback_boss_reviews_before_publish.md)／[已发冻结](feedback_tech_doc_new_file_after_sent.md)／[海报生图](feedback_poster_use_generated_image.md)
+- 🔴 [Yiping 课程 40%](project_course_promoter_yiping.md)／🔴🔴 [只定规矩不下场](feedback_commander_sets_rules_lines_execute.md)／[技术汇一份](feedback_tech_requests_one_at_a_time.md)／[营销线成片先给我审](feedback_current_film_rules.md)／[已发冻结](feedback_tech_doc_checklist.md)／[海报生图](feedback_poster_use_generated_image.md)
 - 🔴🔴🔴 [⛔ import 一次性脚本借函数](feedback_no_import_scripts_for_functions.md) — 顶层会直接写线上（11-22 覆盖两篇博客），要用就复制函数
 - 🔴🔴 [⛔ 一直新开 Chrome](feedback_chrome_no_new_window.md) — 老板 Chrome 本来就登 freyhuang，先看已有标签再用，别 createIfEmpty 开一堆窗口
 - 🔴🔴🔴 [文件放哪](feedback_file_placement.md) — 桌面=`D:\SamsoData\Desktop`,C 盘桌面是假的;桌面只放成片/成图；做出的视频当场 SendUserFile 发进对话框 → [详](feedback_send_videos_in_chat.md)
@@ -111,22 +111,22 @@
 - 🔴🔴🔴 [国内营销线](project_thinknova_marketing.md)(主战场;出稿跑 `_check_*.py`) ／ [发布与渲染的坑](reference_publish_ops_gotchas.md) ／ [出镜头](reference_studio_shots_for_marketing.md) ／ [小红书](project_thinknova_xhs_line.md)
 - 🔴🔴🔴 [片型+案例库](project_thinknova_film_types.md) ／ [视频线与海报线是两套表](reference_thinknova_option_scene_rules.md) — **条数一律现拉线上**
 - 🔴🔴🔴 [视频链定稿](project_thinknova_language_pack_rollout.md) + [双模型/多参](reference_thinknova_multiref_model.md) — 动 grok/参考图/负面词前必读
-- 🔴🔴🔴 [海报线](project_thinknova_poster_video_purge.md) ／ [场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
+- 🔴 [海报线 · 场景改造](project_thinknova_poster_scene_revamp.md) — 09-01 已移交总指挥
 - 🔴 [配乐工具链](reference_audio_toolkit.md) ／ 🔴🔴🔴 [客户 AI 出片质量](project_customer_toolkit_quality.md) — 动工具包/客户 AI 规矩前必读；[实测线](project_customer_test_line_1110.md)
-- 🔴🔴 [口播/裁格](project_thinknova_0729_koubo_defect.md) / [东南亚语言](project_thinknova_sea_languages.md) / [定价+大使](project_thinknova_pricing_ambassador.md)
+- 🔴🔴 [东南亚语言](project_thinknova_sea_languages.md) / [定价+大使](project_thinknova_pricing_ambassador.md)
 - 🔴🔴🔴 后台接口在 `api.thinknova.top` 同源页跑 fetch（cookie 鉴权）→ [详](reference_thinknova_paths.md)
 - 🔴 任务总表 → `03_工作台\任务总表_总指挥.md`
 
 ### 内容与产品规矩
-- [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [烧单分工](feedback_thinknova_burn_division.md) / 🔴[烧单上限](feedback_burn_budget_weekly_cap.md)
+- [零动脑](feedback_thinknova_zero_brain_northstar.md) / [不做合规](feedback_thinknova_content_not_compliance.md) / [烧单分工](feedback_thinknova_burn_division.md) / [烧单上限（旧，每天出片按 current_film_rules）](feedback_burn_budget_weekly_cap.md)
 - 🔴🔴 [案例一律低耦合](feedback_case_low_coupling.md) — 建案例前必读,新建必过 3 条自检
 - 🔴🔴 验收四铁律 → [详](feedback_evidence_standard.md)
 
 # 商务与融资
-- 🔴🔴🔴 [邮件线](project_overseas_email_outreach.md) — 每天 100 封(11-09 新正文),系统 `03_工作台\邮件推广系统\`
-- 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读，内部件不外发；海外探测计划 08-30 版第八节
+- 🔴🔴🔴 [邮件线](project_overseas_email_outreach.md) — 每天 150 封、两箱全天均匀发、撞 550 停到第二天(11-26),系统 `03_工作台\邮件推广系统\`
+- 🔴🔴 [投资人线](project_thinknova_investor_plan.md) — 谈融资/预算前必读，内部件不外发；现行看文件里 11-11 v8
 
 # 其他
 - 🔴🔴 入口=本机 `README_从这里开始.md`+Obsidian「① 从这里开始」;归档=移动不删
 - [数据路线 11-22](project_thinknova_data_strategy_1122.md) — 改计划书 / 隐私协议 / 数据回传需求前必读
-- [直播口径](feedback_livestream_positioning.md) ／ [占电脑的活 02:00 后](feedback_boss_computer_and_review.md)
+- [直播口径（直播已暂停）](feedback_livestream_positioning.md) ／ [占电脑的活 02:00 后](feedback_boss_computer_and_review.md)

@@ -102,3 +102,5 @@ metadata:
 - 封面回填配方:案例自己烧一单海报 → `GET /api/v1/ai/tasks/{taskNo}?assets=1` 取 `assets[0].publicUrl` 去掉 `?` 后的公共桶路径 → PUT `coverImageUrl`+`thumbnailUrl`。海报队列约 1 张/分钟,124 张排 1 小时。
 - Claude-in-Chrome 45 秒超时:每段 JS ≤12 条读写,进度写 localStorage;返回值带 `=`/URL 会被拦。
 - ⛔ 09-07 事故:给 `businessUi.industryFilters` 里 `enabled:false` 的 5 个行业(leisure_hotel/fengshui_metaphysics/styling_aesthetics/insurance_finance/property_agency,老板早已合并废弃)补了 77 条案例并烧封面,约 100 张积分白花。**建案例/烧封面前先看行业开关,关着的一律不补;矩阵盘点只算 enabled 行业(现 21 个 + all)。**
+
+- 11-26 并入：海报 08-09～12 视频污染事故的完整记录（技术已闭环）移到 archive_1126/project_thinknova_poster_video_purge.md，查历史时看。

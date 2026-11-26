@@ -8,6 +8,9 @@ metadata:
   modified: 2026-10-17T18:03:07.290Z
 ---
 
+> ⚠️ 11-26 审计：部分过时——结构化提问规矩有效；第 1 条 EnterPlanMode 流程已被同文件 10-18 段覆盖 处理：第 1 条改成「直接 AskUserQuestion（≤4 问）」；补「创作选择题 ⛔问老板（11-24）」。冲突处一律按 feedback_current_film_rules.md。
+
+
 **本条=「需老板拍板的问题怎么问」的唯一主文件。** 老板两次立规:
 - 2026-06-24(Compass):「把你需要我做判断的问题全部用 plan 模式来提交给我」「每次需要我判断的都需要用 plan 模式给到我」,并要求写进项目 CLAUDE.md(**已写 `D:\SamsoData\Documents\Kol compass\CLAUDE.md`**)。
 - 2026-07-08(ThinkNova):所有需要他回答的问题,全部用 plan 模式对话。他明确说"用文字问太费劲",要给选项、可点选。

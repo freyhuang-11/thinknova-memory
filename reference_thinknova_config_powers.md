@@ -8,6 +8,9 @@ metadata:
   modified: 2026-07-28T20:14:12.532Z
 ---
 
+> ⚠️ 11-26 审计：部分过时——能改/改不动的地图有用，但首尾自相矛盾：07-31 注已经证明直连 PUT 可以写 businessUi 处理：description 删掉「businessUi 改不进…只能人工点」；顶部表格那一行标作废；删 L33「PUT 被 classifier 拦」；L75「ko 仍在」改成现拉；删 L51（L68 已更正）。冲突处一律按 feedback_current_film_rules.md。
+
+
 > ⚠️ 2026-10-14 体检：本文件部分产品事实（行业数 / 场景数 / 语言数 / 默认模型 / 时长 / 价格）已过时，**现行以 Obsidian「总指挥知识库/01_网站_国际版_功能与字段」实拉为准**；冲突时信知识库，并当场改本文件。
 
 > 🔴 07-31 里程碑注:「businessUi 改不进/419 拦直连 PUT」已作废——GET 响应头拿 x-csrf-token 后 agent 整体 PUT 直连可写(含 businessUi,placeholderDefaults 实证送达)。写入正解见 reference_thinknova_paths。

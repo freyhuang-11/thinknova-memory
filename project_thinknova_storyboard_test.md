@@ -8,6 +8,9 @@ metadata:
   modified: 2026-07-30T18:44:17.515Z
 ---
 
+> ⚠️ 11-26 审计：部分过时——取证和接口手册（admin base、全料入口、案例单条 PUT、建单必填、抽帧命令）全部有效 处理：「未验/待办」节（07-31 旧悬案）删掉或归档；「两模型定位」在 448/503/H3 主力下还用不用，拿不准，待核。冲突处一律按 feedback_current_film_rules.md。
+
+
 # 故事板/生图/i2v · 取证手册与定案(07-31 里程碑清账版)
 > 过程流水与旧实验 → `archive/storyboard_test_history_to_0729.md`。裁格/黑幕/提示词/长度现状 → [[project-thinknova-0729-screenwriter-stack]](唯一现状源)。
 

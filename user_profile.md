@@ -7,6 +7,9 @@ metadata:
   originSessionId: 13b9c7a4-13f1-46fb-9e52-731156ceefc2
 ---
 
+> ⚠️ 11-26 审计：部分过时——只写了跨境电商 BD/Compass，没写 ThinkNova 已是主线；「先讨论拍板再动手、不喜欢自作主张」与 11-24「自己去尝试、不要一直问我」冲突 处理：补 ThinkNova 现况（base 马来西亚，面向全球，新加坡是现阶段市场）；决策风格改成「花钱/改账号/联系外部/客户素材/他点名要看的才问，创作自己定」。冲突处一律按 feedback_current_film_rules.md。
+
+
 - 跨境电商行业，主战场 TikTok Shop 东南亚（SG / MY 已跑通，TH / VN / PH / 其他市场未启动）
 - 自己原本是 BD / 运营，深度做过 TikTok 达人建联 + 合作管理
 - 同时也是开发者（有自己的 dev 环境，跟 Codex 协作开发 Compass）

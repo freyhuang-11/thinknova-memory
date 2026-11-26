@@ -7,6 +7,9 @@ metadata:
   originSessionId: 6862e621-cd1a-482c-a813-ec6d018d14ad
   modified: 2026-09-27T16:18:28.381Z
 ---
+
+> ⚠️ 11-26 审计：部分过时——文件头已自认部分过期；还有几处具体冲突 处理：①「YouTube 配音默认叶子、声音决定片长」改成「仅纯旁白片」（11-23）；②删「YouTube 先攒着 private」（11-24 继续发）；③video-script-style 那一行改成「只管口语技巧，结构片长看 current_film_rules」；④删掉铁规矩 2 和第三、四节里 09-28 已归档的 cheat-*/hallmark；⑤`_burnsub.py` 注「白字黑描边 ⛔底框」；⑥冷邮件补「150 封两箱均匀」。冲突处一律按 feedback_current_film_rules.md。
+
 > 🔴 10-20 更新：skill 现行全表与冲突处理见 `03_工作台/skills整理_1020.md`。thinknova-prompts、video-script-style、high-retention-hook、hurricane-shot-prompt、xhs-note、xhs-growth、hkrr-clock 已用 darwin 方法对齐线上与老板 10 月口径（旧版 99_归档/skills_旧版_1020/）；外部 huashu-design、nuwa-skill 老板定不用；darwin 只借方法（9 维评分→每轮改一处→3 评委成对比较→更差就撤），不装其脚本。本文件里 cheat-* 组合拳、「hallmark 仍能加载」两段已过期；HyperFrames 21 个 skill 以 skills整理_1020.md 表为准。
 
 
