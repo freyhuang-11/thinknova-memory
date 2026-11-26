@@ -154,7 +154,7 @@ skill 在 `~/.claude/skills/cheat-*`;rubric 用 `starter-rubrics/tutorial-builde
 
 # 技术配方(API 真值索引,用前回源核对)
 - 文生视频:`POST /api/v1/ai/tasks` {capability:'text_to_video',modelId:494,input:{prompt,ratio:'9:16',resolution:'720p',durationSeconds}};查 `/api/v1/ai/tasks/{id}?assets=1` 取 `task.output.assets[0].storage_path` 拼 OSS 前缀。
-- 🔴🔴 **文生图(448)只传 prompt,别传别的**(08-06 老板纠正+实测):`input:{prompt}` 就够。多传 ratio/size/quality **建单会 200 但任务必 failed**,错误码 `INVALID_PROVIDER_RESPONSE / Protocol V2 response is missing providerTaskId`——我一次废掉 4 单才查出来(对比同期成功单的 input 只有 prompt)。**构图/比例写进提示词文字**(如"竖版3:4构图")。**要传参考图 = 用图生图 492,不是文生图。**
+- 🔴🔴 **文生图(448)要竖版必须传 `input.ratio:'9:16'`**(11-26 实测更正 08-06 旧条):只写在提示词里 → 一律 1024×1024(task_a1f19367eb57 等 4 张);传 ratio → 1440×2560(task_3cbcfda7bdf1,带参考图也行)。size / quality 没再试。旧条「只传 prompt、多传必 failed」作废。
 - 🔴 `GET /api/v1/ai/models` 返回 `data.models[]`(不是 data.items),字段 capability/enabled/isDefault。
 - 商家视频:`POST /api/v1/business-video-assets/tasks`;🔴 durationSeconds 顶层+selectedOptions 两处都放,缺=422;价=30底+3/秒(10s=60,15s=75)。海报:`business-assets/tasks`,6分/张。`offline-store-content/tasks` 不是建单口(POST 必500)。
 - 🔴 建单 500=案例×场景组合不合法(space_stay 全行业500=平台侧问题);诊断=固定其他维度单换一维。
