@@ -261,3 +261,5 @@ https://claude.ai/code/artifact/15c92d84-6b16-4d6b-a4c3-0323972e3f17 ——「�
 - **④ id754 developerlaunch** 标 `draft_status='hold'`,不进任何发送路径,恢复后总指挥单独回。
 - **② pending 计数进 `_pulse.py`**(修法A):新增 `邮件.pending待批数`/`邮件.pending最老天数` 两字段(读 replies pending且未处理);推送那行由总指挥心跳侧读 `pulse_YYYY-MM-DD.json` 渲染,我没动 `_daily_pulse_job.py`。
 - **③ sendable 闸已加两处**:`_build_photo_list.py`(现行首发)+ `daily_send.build_list`(legacy),带守卫——`email_verify` 空/未建→休眠零影响,导入验证结果后自动只取 verdict='sendable'、catch_all 不发。四文件编译通过。
+
+- 11-26 老板批：发信改成全天均匀发 + 撞 Gmail 550 就停到第二天。daily_send.py 按窗口已过时间算「到现在最多该发几封」、每轮（10 分钟）最多 2 封，150 封约每小时 11 封、22 点发完，电脑醒得晚就少发、⛔ 补发；send.py 撞上限写 PAUSE_UNTIL=明天，daily_send 见到就跳过。备份 *_backup_20261126_1400.py。起因：11-25 150 封挤在 21:39–23:08 发完，11-26 09 点再发 43 封就撞 Gmail 24 小时滚动上限，之后每 10 分钟重试一直撞。
