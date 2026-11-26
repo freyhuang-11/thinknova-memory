@@ -18,7 +18,7 @@
 | 动视频工作台/长视频拼接(新管线,与旧线隔离) | 🔴 [[reference-thinknova-video-studio]] |
 | 动片型/案例库/场景表 | [[project-thinknova-film-types]] ／ 短剧（S08）→ [详](project_thinknova_short_drama.md) |
 | 改任何提示词(编剧/识图/画面风格/案例) | 🔴 [[feedback-prompt-conflict-and-hard-checks]] — 先扫互搏、认硬校验、opsEditable 双写 |
-| 动字幕/画面文字口径 | [[feedback-boss-rulings]] |
+| 动字幕/画面文字口径 | 🔴 [[feedback-current-film-rules]] |
 | 下「前台有没有X」的结论 | [[reference-thinknova-frontend-truth]] |
 | 建案例 | [[feedback-case-low-coupling]] |
 | 动海报场景/案例/styleRule | [[project-thinknova-poster-scene-revamp]] |
@@ -28,11 +28,11 @@
 | **下方向判断 / 给老板拍板 / 否掉一条老规矩** | 🔴 先跑 `steelman` → [[feedback-thinking-protocol]] |
 | YouTube 上传 / GSC / 教程页 | 🔴 → [[project-thinknova-guide-multilang]] |
 | 接国内营销线的活 / 周日档·周一档 | 🔴 send_message 到「THINK NOVA marketing」→ [详](feedback_reach_sibling_sessions.md)；只给主题/受众/约束 → [详](feedback_brief_marketing_what_not_how.md) + [[feedback-boss-rulings]] |
-| 技术发来新文档 / 国内版协作 / 说「技术没回信」 | 🔴 没回信先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md)；国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；⛔ 给技术发信 → [详](feedback_email_tech_immediately.md) |
+| 技术发来新文档 / 国内版协作 / 说「技术没回信」 | 🔴 没回信先问老板垃圾箱 → [详](feedback_gmail_spam_blind_spot.md)；国内版走 agent-md 仓库 → [详](reference_agent_md_repo.md)；归档技术侧文档、覆盖旧记忆；🔴🔴 老板转来=已部署，当场线上核；🔴 技术回执来信 → 核完直接回复那封写漏改（11-26 授权），新问题仍写文档给老板转 |
 | 接「上次的活」 / 给海外 Codex 同步素材 | [[feedback-parallel-sessions-check-first]] ／ 素材走老板 Drive 同步文件夹 → [详](reference_drive_sync_overseas.md) |
 | 战略台 / 任务清单 / 各角色在干嘛 / 活动进日历 | 🔴 [战略台+待办板+老板工作台](reference_strategy_dashboard.md)；[周一活动扫描](feedback_weekly_event_scan.md) |
 | 想装闹钟/定时任务 / 心跳频率 ／ 开重活前看内存 | 🔴 [[feedback-heartbeat-not-cron]] — `7 * * * *` 全天；重启先重建 ／ 看提交余量走 `_with_lock.py` → [详](feedback_memory_commit_headroom.md) |
-| **回 WhatsApp 客户 / 扫新客户 / 任何获客判断 / 报价** | 🔴🔴🔴 先看 [现行口径](feedback_current_growth_rules_0930.md)+ [WA 操作](reference_whatsapp_ops.md) + [⛔别只看未读](feedback_wa_unread_hides_customers.md) |
+| **获客判断 / 报价** | 🔴 [增长口径](feedback_current_growth_rules_0930.md)（09-30 版，与 current_film_rules 冲突按后者）；⛔ 扫 / 回 WhatsApp（老板 11-14） |
 | **FB 投流 / 调广告 / 接总指挥的活** | 🔴🔴🔴 [投流实数](reference_thinknova_fb_ads_truth.md) + 03_工作台 下最新 `交接档_*_总指挥.md` — 地域现拉；我建到草稿、老板点发布 |
 | **谈收入 / 算转化 / 做增长判断** | 🔴🔴🔴 [收入真值](reference_thinknova_revenue_truth.md) — 大多是测试数据；付费全来自老板线下演示 |
 | **说「找不到 / 没有这个东西」** | 🔴🔴🔴 [先搜会话记录](feedback_search_transcripts_too.md) — `*.jsonl` 可直接 grep |
@@ -40,7 +40,7 @@
 | 烧 agent/海报线单、写 offer/sellingPoints | 🔴 [[reference-thinknova-paths]] 09-19/09-20 段 — 输入侧红线·海报线建单配对 |
 | **找对标 / 拆别人爆款** | 🔴🔴 先开 [对标工具链](reference_benchmark_toolchain.md) — yt-dlp 在 `_tools/ytdlp_env`，⛔ 重装 |
 | 流量少的平台怎么试 / MCP 让 AI 找到我们 | 🔴 每条 24h+48h 看数调下一条；MCP 可发现性方案 → [详](feedback_low_traffic_24h_48h_iterate.md) |
-| **做对外内容 / 投流素材（出片规格）** | 🔴🔴 排前答「给谁看、看完做什么」→ [详](feedback_every_film_who_and_why.md)；先看 vault _memory/营销视频知识库.md（不能做 / 效果好 / 可尝试，带数据）＋ [现行口径](feedback_current_growth_rules_0930.md) 2–3 节 + [老板 10-31 后](feedback_boss_rulings.md)末尾 + [对标](feedback_benchmark_trending_each_analysis.md) ／ [⛔录整桌面](feedback_no_desktop_capture.md) |
+| **出片 / 审片 / 做对外内容 / 给客户 MCP 定规则** | 🔴🔴🔴 [现行出片口径](feedback_current_film_rules.md)（唯一权威，七条 + 审片重出 + 作废表）；原话来龙去脉 → [[feedback-boss-rulings]] |
 
 ## 🔴🔴🔴 L-1 · 唯一入口:[行动闸门](feedback_action_gates.md)
 六道闸依次过:**闸0 三件套** → 现状源 → 字节账 → 爆炸半径 → attemptCount → 单条验证+老板过目才铺开。
@@ -49,9 +49,8 @@
 ## 🔴🔴🔴 L-0.5 · 动手前先问「有没有现成 skill/脚本」 → [场景路由表](reference_skills_routing.md)
 `hyperframes`=视频/动画入口 ／ 🔴 发布走脚本+预约+一天一条，⛔ 浏览器手点 ／ ⛔ 有副作用的脚本先 `--dry`
 
-## 🔴🔴🔴 L-0.4 · 老板亲口定的口径 → [老板定调集](feedback_boss_rulings.md)
-直播/知识类内容只给两个出口(平台或定制开发)，⛔不教观众去别处试 → [详](feedback_livestream_positioning.md) ／ 🔴 占电脑的活 02:00 后、对外成品一件件给老板亲眼看 → [详](feedback_boss_computer_and_review.md)
-动内容/提示词/画面规则/增长策略前扫一眼;索引不复述。
+## 🔴🔴🔴 L-0.4 · 老板口径：先看 [现行出片口径](feedback_current_film_rules.md)，原话在 [老板定调集](feedback_boss_rulings.md)（11-18 前 → archive_to_1118，只查来源）
+老板新定调：同一拍追加定调集末尾 **并** 改 current_film_rules 和作废表，再同步营销线；冲突按最新。
 
 ## L0 · 每次开口/动手前
 000. 🔴🔴🔴 压缩/重启后第一件事:读 `03_工作台\日报\总指挥_当前状态_滚动.md` + `未完成清单_总指挥.md` + CronList;验证通过才算完,老板问「做完没」先对照清单
@@ -130,3 +129,4 @@
 # 其他
 - 🔴🔴 入口=本机 `README_从这里开始.md`+Obsidian「① 从这里开始」;归档=移动不删
 - [数据路线 11-22](project_thinknova_data_strategy_1122.md) — 改计划书 / 隐私协议 / 数据回传需求前必读
+- [直播口径](feedback_livestream_positioning.md) ／ [占电脑的活 02:00 后](feedback_boss_computer_and_review.md)
